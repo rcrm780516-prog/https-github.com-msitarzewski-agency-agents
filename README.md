@@ -47,43 +47,45 @@ Luego abre <http://localhost:8080>.
 
 ---
 
-## El video de la intro (chroma key)
+## El video de la intro (chroma key en el navegador)
 
-Tienes un `.mp4` con **fondo verde** del rapelista limpiando. Para usarlo en el
-sitio hay que convertirlo a **WebM con canal alfa** (transparencia):
-
-```bash
-./scripts/convert-intro.sh ruta/a/tu-video-verde.mp4
-```
-
-Esto genera `assets/video/intro.webm`. Requiere [ffmpeg](https://ffmpeg.org).
-
-Si el verde no se elimina bien, ajusta el tono y la tolerancia:
-
-```bash
-# ./scripts/convert-intro.sh <archivo> <colorHex> <similarity> <blend>
-./scripts/convert-intro.sh tu-video-verde.mp4 0x00B140 0.18 0.12
-```
+El video del rapelista (`assets/video/intro_src.mp4`, con fondo verde) **ya está
+integrado**. El fondo verde se elimina **en tiempo real con JavaScript Canvas**
+(`assets/js/intro.js`) — no requiere conversión a WebM-alpha y funciona en todos
+los navegadores modernos, **incluido Safari/iOS**.
 
 ### Cómo funciona la animación
 
-1. Al cargar, una capa de **espuma** cubre la pantalla y el contenido se ve
-   borroso "a través del cristal".
-2. El video del rapelista (ya transparente) se reproduce encima.
-3. Conforme avanza el video, la espuma se va "limpiando" y el contenido se
-   enfoca.
+1. Al cargar, una capa de **espuma de jabón** cubre la pantalla y el contenido se
+   ve borroso "a través del cristal".
+2. El video del rapelista se procesa frame a frame en un `<canvas>`, eliminando
+   los píxeles verdes (croma) para que solo se vea la persona.
+3. Conforme avanza el video, la espuma se va "limpiando" y el contenido se enfoca.
 4. Al terminar el video (el rapelista desciende por sus cuerdas), el overlay se
    desvanece.
 
+### Ajustar el chroma key
+
+Si quieres afinar la eliminación del verde, edita las constantes al inicio de
+`assets/js/intro.js`:
+
+```js
+const KEY_R = 76, KEY_G = 135, KEY_B = 87; // color verde del fondo (muestreado)
+const THRESHOLD = 72;   // qué tan estricto: súbelo si queda borde verde
+const SPILL     = 0.55; // corrección de derrame verde en los bordes
+```
+
+> Para reemplazar el video, sustituye `assets/video/intro_src.mp4` por tu nuevo
+> archivo. Si el nuevo fondo verde tiene otro tono, vuelve a muestrear el color y
+> ajusta `KEY_R/G/B`.
+
 **Fallbacks automáticos** (la intro se omite y se muestra el contenido):
-- Navegadores Safari/iOS (soporte limitado de WebM-alpha).
 - Usuarios con `prefers-reduced-motion`.
 - Si el video falla, no carga, o el autoplay está bloqueado.
 - Si el usuario hace clic en **"Saltar intro"** o presiona `Esc`.
 
-> Nota: WebM con alfa no funciona en Safari/iOS. Si necesitas la intro también
-> ahí, habría que añadir una versión `.mov` (HEVC con alfa) como segunda fuente.
-> Avísame y lo agregamos.
+> Nota: `scripts/convert-intro.sh` (conversión a WebM-alpha con ffmpeg) se conserva
+> como alternativa, pero **no es necesario**: el método Canvas es el que está activo.
 
 ---
 
@@ -111,16 +113,35 @@ Para recibir los mensajes de forma profesional, conéctalo a un servicio:
 
 ---
 
+## Datos de contacto ya integrados
+
+- **Teléfono / WhatsApp:** +52 998 110 7776
+- **Facebook:** https://www.facebook.com/SkySolutionsCancun
+- **Instagram:** https://www.instagram.com/skysolutionsmx/
+- **Botón flotante de WhatsApp** activo en todas las páginas
+- **Mapa de Google** embebido en la sección de contacto (búsqueda "Sky Solutions
+  MX Cancún"). Para fijar la ubicación exacta, reemplaza la URL del `iframe` en
+  `index.html` por el enlace "Insertar mapa" de tu ficha de Google Maps.
+
+## Galería
+
+Las imágenes de la galería son **placeholders**. Coloca tus fotos reales en
+`assets/img/gallery/` y reemplaza los bloques `.gallery-ph` por etiquetas
+`<img>` en la sección `#galeria` de `index.html`.
+
 ## Antes de publicar (checklist)
 
-- [ ] Generar `assets/video/intro.webm` desde el `.mp4`.
-- [ ] Actualizar **teléfono, WhatsApp y correo** reales. Busca en `index.html`
-      los atributos `data-contact="phone"`, `data-contact="email"`,
-      `data-contact="whatsapp"` y los enlaces `tel:` / `mailto:` / `wa.me`.
-- [ ] Conectar el formulario (`FORM_ENDPOINT`).
-- [ ] Reemplazar fotos/proyectos reales en `assets/img/`.
-- [ ] Ajustar las cifras del hero (`+12 años`, `+500 trabajos`, etc.).
-- [ ] Verificar textos de ambos idiomas.
+- [x] Video de intro integrado (chroma key por canvas).
+- [x] Teléfono / WhatsApp reales (+52 998 110 7776).
+- [x] Redes sociales (Facebook + Instagram) y botón flotante de WhatsApp.
+- [ ] Confirmar el **correo electrónico** real (actualmente
+      `contacto@skysolutionmx.com`, placeholder).
+- [ ] Conectar el formulario (`FORM_ENDPOINT` en `assets/js/main.js`).
+- [ ] Subir **fotos reales** a `assets/img/gallery/`.
+- [ ] Reemplazar logos/testimonios de **clientes** por los reales.
+- [ ] Ajustar la cifra de **+500 trabajos** del hero si se desea.
+- [ ] Fijar la ubicación exacta en el **mapa de Google**.
+- [ ] Verificar textos en ambos idiomas (ES/EN).
 
 ---
 
