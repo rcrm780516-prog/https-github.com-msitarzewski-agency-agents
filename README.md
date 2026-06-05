@@ -134,8 +134,7 @@ Las imágenes de la galería son **placeholders**. Coloca tus fotos reales en
 - [x] Video de intro integrado (chroma key por canvas).
 - [x] Teléfono / WhatsApp reales (+52 998 110 7776).
 - [x] Redes sociales (Facebook + Instagram) y botón flotante de WhatsApp.
-- [ ] Confirmar el **correo electrónico** real (actualmente
-      `contacto@skysolutionmx.com`, placeholder).
+- [x] **Correo electrónico** real integrado (`gerencia@skysolutionsmx.com`).
 - [ ] Conectar el formulario (`FORM_ENDPOINT` en `assets/js/main.js`).
 - [ ] Subir **fotos reales** a `assets/img/gallery/`.
 - [ ] Reemplazar logos/testimonios de **clientes** por los reales.

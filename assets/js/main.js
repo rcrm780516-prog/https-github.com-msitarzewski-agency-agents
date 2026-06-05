@@ -103,7 +103,7 @@
         Si es null, usa el fallback mailto.
      ---------------------------------------------------------- */
   const FORM_ENDPOINT  = null; // Ejemplo: "https://formspree.io/f/tu-id"
-  const FALLBACK_EMAIL = "contacto@skysolutionmx.com";
+  const FALLBACK_EMAIL = "gerencia@skysolutionsmx.com";
 
   const t = (k) => {
     const l = window.__lang || "es";
