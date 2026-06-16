@@ -1,0 +1,36 @@
+# Configuración del negocio — Generado por AgentKit
+negocio:
+  nombre: "Virtuoso Marketing"
+  descripcion: >
+    Agencia de marketing estratégico fundada en 2017, con sedes en Guadalajara (Jalisco)
+    y Cancún (Quintana Roo). Especializada en 4 sectores: marketing médico,
+    marketing gastronómico, marketing de retail (spas, tiendas de tinas de hidromasaje,
+    comercio de ropa deportiva, etc.) y marketing turístico/hotelero. Convierte redes,
+    anuncios y activos digitales en citas, reservaciones, clientes y ventas — no solo
+    seguidores o likes. Ofrece planes de redes y campañas (Meta/Google Ads), construcción
+    de sitios y landing pages, automatizaciones con Agentes IA y la plataforma AdQUANTUM.
+  horario: "Lunes a Viernes 9:00am a 9:00pm, Sábados 10:00am a 3:00pm"
+  ubicaciones:
+    - "Guadalajara, Jalisco"
+    - "Cancún, Quintana Roo"
+  contacto:
+    whatsapp:
+      - "998 344 1662"
+      - "998 201 1676"
+    telefono: "998 201 1676"
+    web: "https://virtuoso.com.mx"
+    facebook: "https://www.facebook.com/Virtuosomkt/"
+    instagram: "https://www.instagram.com/virtuoso.mkt"
+
+agente:
+  nombre: "Sofía"
+  tono: "Amigable y cercano, con orientación a ventas"
+  casos_de_uso:
+    - "Atención a clientes y respuesta de preguntas frecuentes"
+    - "Asesoría comercial sobre planes y servicios (vendedor)"
+    - "Calificación de leads y escalamiento a un estratega humano"
+
+metadata:
+  creado: "2026-06-16"
+  version: "1.0"
+  proveedor_whatsapp: "meta"
