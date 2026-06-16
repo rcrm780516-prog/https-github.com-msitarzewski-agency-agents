@@ -89,6 +89,25 @@ DATABASE_URL=sqlite+aiosqlite:///./agentkit.db
 
 Listo: cualquier persona que escriba al WhatsApp de Virtuoso será atendida por Sofía.
 
+## CRM integrado (panel /admin)
+
+Sofía guarda cada prospecto como un **lead** y completa su ficha automáticamente
+(nombre, giro, ciudad, objetivo, presupuesto, plan de interés, estado y temperatura)
+con una extracción por IA económica en segundo plano.
+
+Panel privado (protegido con la variable `ADMIN_KEY`):
+
+- `/admin?key=TU_CLAVE` → métricas (leads totales, nuevos/activos en 7 días, ganados,
+  conversión) y tabla de todos los leads con su estado y temperatura.
+- `/admin/chat?key=TU_CLAVE&tel=NUMERO` → conversación completa de un cliente.
+- `/admin/export.csv?key=TU_CLAVE` → descarga los leads en CSV (Excel/Google Sheets).
+- Botón **Traspasar 📲** → link de WhatsApp hacia la línea de atención
+  (`WHATSAPP_ATENCION`, por defecto 998 344 1662) con el resumen del cliente.
+
+> Variables nuevas: `ADMIN_KEY` y `WHATSAPP_ATENCION`.
+> Si `ADMIN_KEY` está vacía, el panel queda deshabilitado por seguridad.
+> Para no perder datos en cada despliegue usa **PostgreSQL** (`DATABASE_URL`).
+
 ## Personalizar
 
 Edita `config/prompts.yaml` para ajustar el tono o las reglas, y

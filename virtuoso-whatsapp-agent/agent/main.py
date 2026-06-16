@@ -7,17 +7,31 @@ Funciona con cualquier proveedor (Meta, Twilio) gracias a la capa de providers.
 """
 
 import os
+import asyncio
 import logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import PlainTextResponse, HTMLResponse, Response
 from dotenv import load_dotenv
 
 from agent.brain import generar_respuesta
-from agent.memory import inicializar_db, guardar_mensaje, obtener_historial
+from agent.memory import (
+    inicializar_db, guardar_mensaje, obtener_historial, registrar_contacto,
+)
 from agent.providers import obtener_proveedor
+from agent import crm
 
 load_dotenv()
+
+# Conserva referencias de tareas en segundo plano para que no las recoja el GC
+_tareas_fondo: set = set()
+
+
+def _en_segundo_plano(corutina):
+    """Lanza una corutina en segundo plano sin bloquear la respuesta de WhatsApp."""
+    tarea = asyncio.create_task(corutina)
+    _tareas_fondo.add(tarea)
+    tarea.add_done_callback(_tareas_fondo.discard)
 
 # Configuración de logging según entorno
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
@@ -79,6 +93,9 @@ async def webhook_handler(request: Request):
 
             logger.info(f"Mensaje de {msg.telefono}: {msg.texto}")
 
+            # CRM: registra el contacto y su actividad
+            await registrar_contacto(msg.telefono)
+
             # Obtener historial ANTES de guardar el mensaje actual
             # (brain.py agrega el mensaje actual, evitando duplicados)
             historial = await obtener_historial(msg.telefono)
@@ -95,8 +112,49 @@ async def webhook_handler(request: Request):
 
             logger.info(f"Respuesta a {msg.telefono}: {respuesta}")
 
+            # CRM: en segundo plano, extrae/actualiza los datos del lead (no bloquea)
+            _en_segundo_plano(crm.actualizar_lead_desde_conversacion(msg.telefono))
+
         return {"status": "ok"}
 
     except Exception as e:
         logger.error(f"Error en webhook: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ════════════════════════════════════════════════════════════
+# Panel privado del CRM (protegido con ADMIN_KEY)
+# ════════════════════════════════════════════════════════════
+
+def _verificar_admin(key: str):
+    """Valida el acceso al panel. Lanza 403/404 si no procede."""
+    if not crm.admin_habilitado():
+        raise HTTPException(status_code=404, detail="Panel no configurado (define ADMIN_KEY)")
+    if not crm.clave_valida(key):
+        raise HTTPException(status_code=403, detail="Clave incorrecta")
+
+
+@app.get("/admin", response_class=HTMLResponse)
+async def admin_dashboard(key: str = ""):
+    """Panel principal del CRM: métricas + lista de leads."""
+    _verificar_admin(key)
+    return await crm.render_dashboard(key)
+
+
+@app.get("/admin/chat", response_class=HTMLResponse)
+async def admin_chat(tel: str, key: str = ""):
+    """Vista de una conversación completa."""
+    _verificar_admin(key)
+    return await crm.render_chat(tel, key)
+
+
+@app.get("/admin/export.csv")
+async def admin_export(key: str = "", estado: str = ""):
+    """Descarga todos los leads en CSV (para Excel/Google Sheets)."""
+    _verificar_admin(key)
+    contenido = await crm.exportar_csv(estado=estado or None)
+    return Response(
+        content=contenido,
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=leads-virtuoso.csv"},
+    )
