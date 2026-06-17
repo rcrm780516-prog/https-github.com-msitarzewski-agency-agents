@@ -8,6 +8,7 @@ por número de teléfono usando SQLite (local) o PostgreSQL (producción).
 
 import os
 from datetime import datetime, timedelta
+from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import String, Text, DateTime, select, Integer, func
@@ -15,14 +16,34 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Configuración de base de datos
+# Configuración de base de datos.
+# Soporta SQLite (local), PostgreSQL de Railway (interno) y Postgres externo gratis
+# como Neon o Supabase (que requieren SSL).
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./agentkit.db")
+_connect_args: dict = {}
 
-# Si es PostgreSQL en producción, ajustar el esquema de URL
-if DATABASE_URL.startswith("postgresql://"):
-    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+if DATABASE_URL.startswith("postgres"):
+    # Normalizar el esquema al driver async (asyncpg)
+    if DATABASE_URL.startswith("postgresql://"):
+        DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+    elif DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+asyncpg://", 1)
 
-engine = create_async_engine(DATABASE_URL, echo=False)
+    # asyncpg NO entiende parámetros como sslmode/channel_binding en la URL.
+    # Los quitamos y, si estaban (o el host es externo), activamos SSL por connect_args.
+    partes = urlsplit(DATABASE_URL)
+    query = parse_qsl(partes.query)
+    tenia_ssl = any(k in ("sslmode", "ssl") for k, _ in query)
+    query_limpia = [(k, v) for k, v in query if k not in ("sslmode", "channel_binding", "ssl")]
+    DATABASE_URL = urlunsplit(
+        (partes.scheme, partes.netloc, partes.path, urlencode(query_limpia), partes.fragment)
+    )
+    host_externo = any(h in (partes.netloc or "") for h in ("neon.tech", "supabase", "render.com", "amazonaws"))
+    es_interno_railway = "railway.internal" in (partes.netloc or "")
+    if (tenia_ssl or host_externo) and not es_interno_railway:
+        _connect_args = {"ssl": True}
+
+engine = create_async_engine(DATABASE_URL, echo=False, connect_args=_connect_args)
 async_session = async_sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 
