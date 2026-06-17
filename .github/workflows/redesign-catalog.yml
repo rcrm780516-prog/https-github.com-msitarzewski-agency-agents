@@ -1,4 +1,4 @@
-name: Redesign Catalog - Luxury Edition
+name: Redesign Catalog - Dark Luxury Edition
 
 on:
   push:
@@ -25,17 +25,17 @@ jobs:
       - name: Download PDF from Canva export
         run: |
           curl -L -o /tmp/catalogo_original.pdf \
-            "https://export-download.canva.com/eo9uw/DAHM1veo9uw/-1/0-5035531080125901016.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260616%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260616T173156Z&X-Amz-Expires=81730&X-Amz-Signature=5d70ca134397f8d39b171d87a31d01633d7f268d12581a6e9c44329239c53a3a&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Wed%2C%2017%20Jun%202026%2016%3A14%3A06%20GMT"
+            "https://export-download.canva.com/eo9uw/DAHM1veo9uw/-1/0-6099506497347549983.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAQYCGKMUH5AO7UJ26%2F20260616%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260616T213639Z&X-Amz-Expires=70193&X-Amz-Signature=61c2edc30945e6c295a3a425e36dfd1b6feb97b005974d373250c4493c8576e8&X-Amz-SignedHeaders=host%3Bx-amz-expected-bucket-owner&response-expires=Wed%2C%2017%20Jun%202026%2017%3A06%3A32%20GMT"
           echo "PDF size: $(du -h /tmp/catalogo_original.pdf | cut -f1)"
           python3 -c "import fitz; doc=fitz.open('/tmp/catalogo_original.pdf'); print(f'Pages: {len(doc)}')"
 
-      - name: Process PDF - Replace blue with luxury gold palette
-        run: python3 scripts/redesign_catalog.py /tmp/catalogo_original.pdf assets/Catalogo_Spa_Occidente_Lujo.pdf
+      - name: Process PDF - Dark luxury palette (dark bg + gold + brand blue)
+        run: python3 scripts/redesign_catalog_dark.py /tmp/catalogo_original.pdf assets/Catalogo_Spa_Occidente_Dark.pdf
 
       - name: Commit redesigned catalog
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/Catalogo_Spa_Occidente_Lujo.pdf
-          git commit -m "Add redesigned luxury catalog - blue replaced with gold palette" || echo "Nothing to commit"
+          git add assets/Catalogo_Spa_Occidente_Dark.pdf
+          git commit -m "Add dark luxury catalog - charcoal bg, cream text, gold accents, brand blue" || echo "Nothing to commit"
           git push origin claude/spa-occidente-catalog-redesign-9pou6o
