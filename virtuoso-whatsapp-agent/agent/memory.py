@@ -82,6 +82,9 @@ class Lead(Base):
     resumen: Mapped[str] = mapped_column(Text, default="")
     notas: Mapped[str] = mapped_column(Text, default="")
     mensajes_count: Mapped[int] = mapped_column(Integer, default=0)
+    # Handoff: si ya se notificó al equipo (998 344 1662) sobre este lead
+    handoff_enviado: Mapped[int] = mapped_column(Integer, default=0)  # 0=no, 1=sí
+    handoff_motivo: Mapped[str] = mapped_column(String(120), default="")
     creado: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     actualizado: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     ultimo_mensaje: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
@@ -202,6 +205,18 @@ async def obtener_lead(telefono: str) -> dict | None:
         return _lead_a_dict(lead)
 
 
+async def marcar_handoff(telefono: str, motivo: str):
+    """Marca que ya se notificó al equipo sobre este lead (para no repetir)."""
+    async with async_session() as session:
+        lead = await session.get(Lead, telefono)
+        if lead is None:
+            return
+        lead.handoff_enviado = 1
+        lead.handoff_motivo = motivo[:120]
+        lead.actualizado = datetime.utcnow()
+        await session.commit()
+
+
 async def listar_leads(estado: str | None = None, limite: int = 1000) -> list[dict]:
     """Lista los leads (opcionalmente filtrados por estado), del más reciente al más viejo."""
     async with async_session() as session:
@@ -267,6 +282,8 @@ def _lead_a_dict(lead: "Lead") -> dict:
         "resumen": lead.resumen or "",
         "notas": lead.notas or "",
         "mensajes_count": lead.mensajes_count or 0,
+        "handoff_enviado": bool(lead.handoff_enviado),
+        "handoff_motivo": lead.handoff_motivo or "",
         "creado": lead.creado.isoformat() if lead.creado else "",
         "actualizado": lead.actualizado.isoformat() if lead.actualizado else "",
         "ultimo_mensaje": lead.ultimo_mensaje.isoformat() if lead.ultimo_mensaje else "",

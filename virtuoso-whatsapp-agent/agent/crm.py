@@ -28,7 +28,9 @@ from agent.memory import (
     obtener_lead,
     obtener_historial,
     estadisticas_crm,
+    marcar_handoff,
 )
+from agent.notificaciones import notificar_equipo
 
 load_dotenv()
 logger = logging.getLogger("agentkit")
@@ -60,7 +62,9 @@ _PROMPT_EXTRACCION = """Eres un extractor de datos de CRM. Lee la conversación 
   "plan_interes": "",
   "temperatura": "frio|tibio|caliente",
   "estado": "nuevo|en_conversacion|calificado|propuesta_solicitada|ganado|perdido|seguimiento",
-  "resumen": ""
+  "resumen": "",
+  "dio_precio": false,
+  "pidio_cita_o_llamada": false
 }
 
 Reglas:
@@ -70,6 +74,9 @@ Reglas:
   "calificado" si ya dio giro+objetivo+ciudad; "ganado" solo si confirmó contratar;
   "perdido" si dijo claramente que no le interesa; si no, "en_conversacion".
 - "resumen": 1-2 frases con lo más importante para que un humano dé seguimiento.
+- "dio_precio": true si Sofía YA mencionó un costo/precio/cifra de algún plan en la conversación.
+- "pidio_cita_o_llamada": true si el cliente pidió una cita, una llamada, que lo contacten,
+  hablar con un asesor/estratega o dejó/pidió datos de contacto.
 - Responde ÚNICAMENTE el JSON."""
 
 
@@ -100,10 +107,40 @@ async def actualizar_lead_desde_conversacion(telefono: str):
         datos = json.loads(texto)
         if datos.get("estado") not in ESTADOS_VALIDOS:
             datos.pop("estado", None)
+
+        # Separar las banderas de disparo (no son campos de texto del lead)
+        dio_precio = bool(datos.pop("dio_precio", False))
+        pidio_cita = bool(datos.pop("pidio_cita_o_llamada", False))
+
         await actualizar_lead(telefono, datos)
         logger.info(f"CRM: lead {telefono} actualizado ({datos.get('estado', '')})")
+
+        # Handoff automático: avisar al equipo una sola vez por lead
+        if dio_precio or pidio_cita:
+            lead = await obtener_lead(telefono) or {}
+            if not lead.get("handoff_enviado"):
+                motivo = "pidió cita/llamada" if pidio_cita else "ya se le dieron precios"
+                await _notificar_handoff(telefono, lead, motivo)
     except Exception as e:
         logger.warning(f"CRM: no se pudo actualizar lead {telefono}: {e}")
+
+
+async def _notificar_handoff(telefono: str, lead: dict, motivo: str):
+    """Construye y envía el aviso al equipo, y marca el lead para no repetir."""
+    mensaje = (
+        f"🔔 *Lead listo para seguimiento* — Sofía\n"
+        f"Motivo: {motivo}\n"
+        f"Tel cliente: {telefono}\n"
+        f"Nombre: {lead.get('nombre') or '-'}\n"
+        f"Giro: {lead.get('giro') or '-'} · Ciudad: {lead.get('ciudad') or '-'}\n"
+        f"Interés: {lead.get('plan_interes') or '-'}\n"
+        f"Resumen: {lead.get('resumen') or '-'}\n"
+        f"Escríbele: https://wa.me/{telefono.lstrip('+')}"
+    )
+    ok = await notificar_equipo(mensaje)
+    if ok:
+        await marcar_handoff(telefono, motivo)
+        logger.info(f"CRM: handoff notificado para {telefono} ({motivo})")
 
 
 # ════════════════════════════════════════════════════════════
@@ -215,8 +252,9 @@ async def render_dashboard(key: str) -> str:
     filas = ""
     for l in leads:
         color = _COLOR_ESTADO.get(l["estado"], "#6B7280")
+        aviso = " 🔔" if l.get("handoff_enviado") else ""
         filas += f"""<tr>
-          <td>{_EMOJI_TEMP.get(l['temperatura'],'')} {_e(l['nombre'] or l['telefono'])}</td>
+          <td>{_EMOJI_TEMP.get(l['temperatura'],'')} {_e(l['nombre'] or l['telefono'])}{aviso}</td>
           <td>{_e(l['giro'])}</td><td>{_e(l['ciudad'])}</td>
           <td>{_e(l['plan_interes'])}</td>
           <td><span class="badge" style="background:{color}">{_e(l['estado'])}</span></td>
