@@ -107,8 +107,9 @@ async def webhook_handler(request: Request):
             await guardar_mensaje(msg.telefono, "user", msg.texto)
             await guardar_mensaje(msg.telefono, "assistant", respuesta)
 
-            # Enviar respuesta por WhatsApp via el proveedor
-            await proveedor.enviar_mensaje(msg.telefono, respuesta)
+            # Enviar respuesta por WhatsApp via el proveedor, RESPONDIENDO por el
+            # mismo número que recibió el mensaje (soporta varios números a la vez)
+            await proveedor.enviar_mensaje(msg.telefono, respuesta, msg.phone_number_id)
 
             logger.info(f"Respuesta a {msg.telefono}: {respuesta}")
 

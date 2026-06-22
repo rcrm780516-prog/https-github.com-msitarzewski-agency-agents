@@ -37,6 +37,8 @@ class ProveedorMeta(ProveedorWhatsApp):
         for entry in body.get("entry", []):
             for change in entry.get("changes", []):
                 value = change.get("value", {})
+                # ID del número que RECIBIÓ el mensaje (clave para atender varios números)
+                pnid = value.get("metadata", {}).get("phone_number_id", "")
                 for msg in value.get("messages", []):
                     if msg.get("type") == "text":
                         mensajes.append(MensajeEntrante(
@@ -44,15 +46,18 @@ class ProveedorMeta(ProveedorWhatsApp):
                             texto=msg.get("text", {}).get("body", ""),
                             mensaje_id=msg.get("id", ""),
                             es_propio=False,  # Meta solo envía mensajes entrantes
+                            phone_number_id=pnid,
                         ))
         return mensajes
 
-    async def enviar_mensaje(self, telefono: str, mensaje: str) -> bool:
-        """Envía mensaje via Meta WhatsApp Cloud API."""
-        if not self.access_token or not self.phone_number_id:
-            logger.warning("META_ACCESS_TOKEN o META_PHONE_NUMBER_ID no configurados")
+    async def enviar_mensaje(self, telefono: str, mensaje: str, phone_number_id: str | None = None) -> bool:
+        """Envía mensaje via Meta WhatsApp Cloud API, respondiendo por el número correcto."""
+        # Responde por el MISMO número que recibió el mensaje; si no viene, usa el de .env
+        emisor = phone_number_id or self.phone_number_id
+        if not self.access_token or not emisor:
+            logger.warning("META_ACCESS_TOKEN o phone_number_id no configurados")
             return False
-        url = f"https://graph.facebook.com/{self.api_version}/{self.phone_number_id}/messages"
+        url = f"https://graph.facebook.com/{self.api_version}/{emisor}/messages"
         headers = {
             "Authorization": f"Bearer {self.access_token}",
             "Content-Type": "application/json",

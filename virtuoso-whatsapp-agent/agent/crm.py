@@ -43,6 +43,10 @@ WHATSAPP_ATENCION = os.getenv("WHATSAPP_ATENCION", "5219983441662")
 
 ADMIN_KEY = os.getenv("ADMIN_KEY", "")
 
+# Aviso de handoff al equipo. Ponlo en "false" si ves los chats directo en la app
+# (por ejemplo, con coexistencia en el mismo número).
+HANDOFF_ENABLED = os.getenv("HANDOFF_ENABLED", "true").strip().lower() not in ("false", "0", "no")
+
 _client = AsyncAnthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 ESTADOS_VALIDOS = [
@@ -115,8 +119,8 @@ async def actualizar_lead_desde_conversacion(telefono: str):
         await actualizar_lead(telefono, datos)
         logger.info(f"CRM: lead {telefono} actualizado ({datos.get('estado', '')})")
 
-        # Handoff automático: avisar al equipo una sola vez por lead
-        if dio_precio or pidio_cita:
+        # Handoff automático: avisar al equipo una sola vez por lead (si está activado)
+        if HANDOFF_ENABLED and (dio_precio or pidio_cita):
             lead = await obtener_lead(telefono) or {}
             if not lead.get("handoff_enviado"):
                 motivo = "pidió cita/llamada" if pidio_cita else "ya se le dieron precios"
