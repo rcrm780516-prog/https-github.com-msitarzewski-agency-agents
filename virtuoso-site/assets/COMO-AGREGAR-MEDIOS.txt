@@ -1,0 +1,46 @@
+════════════════════════════════════════════════════════════════
+  VIRTUOSO MARKETING — Cómo colocar las fotos y el video
+════════════════════════════════════════════════════════════════
+
+El HTML ya está 100% maquetado y cableado. Solo falta copiar los
+archivos reales (las fotos/video son privados y de 16 MB; no pudieron
+descargarse automáticamente). Mientras un slot esté vacío, la página
+muestra un fondo elegante con emoji (no se ve rota).
+
+────────────────────────────────────────────────────────────────
+1) VIDEO DEL HERO  →  assets/video/
+────────────────────────────────────────────────────────────────
+  Drive: "Cartoon.mp4"
+  Renómbralo/colócalo como:  assets/video/Cartoon.mp4
+  ▸ Se reproduce en bucle, silenciado, como fondo del hero.
+  ▸ ARRANCA automáticamente cuando termina la animación del ovni
+    (o al pulsar "Saltar intro").
+
+────────────────────────────────────────────────────────────────
+2) FOTOS DE PORTAFOLIO  →  assets/img/   (sección "Nuestro trabajo")
+────────────────────────────────────────────────────────────────
+  Coloca como food-01.jpg … food-06.jpg  (fotos de comida/marca, JPG):
+
+  food-01.jpg  →  Drive: AQM2W1xH8La09YZugakqYIJLnef52Trl...JPG   (grande, izquierda)
+  food-02.jpg  →  Drive: 491447433_17956404410942485_...n.JPG
+  food-03.jpg  →  Drive: 466069645_1295728038528647_...n_webp.JPG
+  food-04.jpg  →  Drive: 473683083_122137517612460916_...n.JPG
+  food-05.jpg  →  Drive: 481703130_122136280160619655_...n.JPG
+  food-06.jpg  →  Drive: "☀️ ¡Despierta tu día...English Muffin...".JPG (grande, derecha)
+
+  (También sirve: 490845612_17954814482942485_...n.JPG como alterna.)
+
+────────────────────────────────────────────────────────────────
+3) CAPTURAS DE RESULTADOS  →  assets/img/   (sección "Resultados reales")
+────────────────────────────────────────────────────────────────
+  Coloca como result-01.png … result-04.png  (screenshots, PNG):
+
+  result-01.png  →  Drive: IMG_3025.PNG  (post Da Cetto, +464 reacciones)
+  result-02.png  →  Drive: IMG_3029.PNG
+  result-03.png  →  Drive: IMG_2402.PNG
+  result-04.png  →  Drive: IMG_2511.PNG  (o IMG_2508 / IMG_2689 / IMG_2781)
+
+────────────────────────────────────────────────────────────────
+NOTA: los nombres de archivo deben coincidir EXACTAMENTE (minúsculas,
+sin espacios). Si prefieres otros nombres, ajusta los src en index.html.
+════════════════════════════════════════════════════════════════
