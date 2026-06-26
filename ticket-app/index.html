@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>EventPass — Boletos Virtuales con QR</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50:'#f5f3ff', 100:'#ede9fe', 200:'#ddd6fe', 500:'#8b5cf6', 600:'#7c3aed', 700:'#6d28d9', 800:'#5b21b6', 900:'#4c1d95' }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- QR Code generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+  <!-- QR Code scanning -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" crossorigin="anonymous"></script>
+  <!-- Supabase (loaded on demand) -->
+  <style>
+    /* ── Ticket card ── */
+    .ticket-card {
+      background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #1e1b4b 100%);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .ticket-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, rgba(255,255,255,.02) 0px, rgba(255,255,255,.02) 1px, transparent 1px, transparent 8px);
+    }
+    .ticket-notch-left, .ticket-notch-right {
+      position: absolute;
+      top: 50%;
+      width: 24px;
+      height: 24px;
+      background: #f3f4f6;
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    .ticket-notch-left  { left: -12px; }
+    .ticket-notch-right { right: -12px; }
+    .ticket-divider {
+      border-top: 2px dashed rgba(255,255,255,.25);
+      margin: 0 -1.5rem;
+    }
+    /* ── Animations ── */
+    @keyframes slideUp   { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
+    @keyframes pulse-ring { 0%,100% { opacity:.6; transform:scale(1) } 50% { opacity:1; transform:scale(1.08) } }
+    .anim-slide  { animation: slideUp .25s ease-out; }
+    .anim-pulse  { animation: pulse-ring 1.4s ease-in-out infinite; }
+    /* ── Print ── */
+    @media print {
+      body > *:not(#print-zone) { display:none !important; }
+      #print-zone { display:block !important; position:fixed; inset:0; padding:24px; background:white; }
+    }
+    /* ── QR reader overrides ── */
+    #qr-reader video { border-radius: 12px; }
+    #qr-reader img   { display:none; }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans">
+
+<!-- ══════════════════════ NAV ══════════════════════ -->
+<nav class="bg-brand-700 text-white sticky top-0 z-40 shadow-lg">
+  <div class="max-w-md mx-auto px-4 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <button id="btn-back" onclick="App.back()" class="hidden p-1 rounded-lg hover:bg-brand-600 transition" aria-label="Volver">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <span class="font-bold text-lg tracking-tight">🎟 EventPass</span>
+    </div>
+    <span id="nav-subtitle" class="text-sm font-medium text-brand-200"></span>
+    <button onclick="App.go('settings')" class="p-1 rounded-lg hover:bg-brand-600 transition" aria-label="Configuración">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════════ VIEWS ══════════════════════ -->
+<main class="max-w-md mx-auto px-4 py-5 space-y-4">
+
+  <!-- ── Dashboard ── -->
+  <div id="v-dashboard">
+    <div class="text-center mb-5">
+      <p class="text-2xl font-bold text-gray-800">Bienvenido</p>
+      <p class="text-sm text-gray-500 mt-1">Gestiona boletos virtuales con QR para tus eventos</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-3 gap-3 mb-5">
+      <div class="bg-white rounded-2xl p-3 text-center shadow-sm">
+        <div class="text-2xl font-bold text-brand-600" id="s-events">0</div>
+        <div class="text-xs text-gray-500 mt-0.5">Eventos</div>
+      </div>
+      <div class="bg-white rounded-2xl p-3 text-center shadow-sm">
+        <div class="text-2xl font-bold text-blue-500" id="s-tickets">0</div>
+        <div class="text-xs text-gray-500 mt-0.5">Boletos</div>
+      </div>
+      <div class="bg-white rounded-2xl p-3 text-center shadow-sm">
+        <div class="text-2xl font-bold text-green-500" id="s-used">0</div>
+        <div class="text-xs text-gray-500 mt-0.5">Validados</div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="space-y-3">
+      <button onclick="App.go('create-event')"
+        class="w-full bg-brand-600 hover:bg-brand-700 text-white rounded-2xl p-4 flex items-center gap-4 shadow-md transition active:scale-95">
+        <div class="w-11 h-11 bg-brand-500 rounded-xl flex items-center justify-center text-xl flex-shrink-0">🎉</div>
+        <div class="text-left">
+          <div class="font-semibold">Crear Evento</div>
+          <div class="text-sm text-brand-200">Nuevo evento con boletos QR</div>
+        </div>
+        <svg class="w-4 h-4 ml-auto opacity-60 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+      <button onclick="App.go('events')"
+        class="w-full bg-white hover:bg-gray-50 text-gray-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm border border-gray-100 transition active:scale-95">
+        <div class="w-11 h-11 bg-blue-100 rounded-xl flex items-center justify-center text-xl flex-shrink-0">📋</div>
+        <div class="text-left">
+          <div class="font-semibold">Mis Eventos</div>
+          <div class="text-sm text-gray-500">Ver y gestionar eventos</div>
+        </div>
+        <svg class="w-4 h-4 ml-auto text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+      <button onclick="App.go('scanner')"
+        class="w-full bg-white hover:bg-gray-50 text-gray-800 rounded-2xl p-4 flex items-center gap-4 shadow-sm border border-gray-100 transition active:scale-95">
+        <div class="w-11 h-11 bg-green-100 rounded-xl flex items-center justify-center text-xl flex-shrink-0">📷</div>
+        <div class="text-left">
+          <div class="font-semibold">Escanear Boleto</div>
+          <div class="text-sm text-gray-500">Validar en la entrada</div>
+        </div>
+        <svg class="w-4 h-4 ml-auto text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- Recent events -->
+    <div id="dash-recent" class="mt-5 hidden">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Recientes</p>
+      <div id="dash-recent-list" class="space-y-2"></div>
+    </div>
+  </div>
+
+  <!-- ── Create Event ── -->
+  <div id="v-create-event" class="hidden">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Nuevo Evento</h2>
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-4">
+      <div>
+        <label class="text-sm font-medium text-gray-700 block mb-1">Nombre del evento *</label>
+        <input id="f-ename" type="text" placeholder="ej. Fiesta de Quince Años" class="input-base">
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-sm font-medium text-gray-700 block mb-1">Fecha *</label>
+          <input id="f-edate" type="date" class="input-base">
+        </div>
+        <div>
+          <label class="text-sm font-medium text-gray-700 block mb-1">Hora</label>
+          <input id="f-etime" type="time" class="input-base">
+        </div>
+      </div>
+      <div>
+        <label class="text-sm font-medium text-gray-700 block mb-1">Lugar</label>
+        <input id="f-elocation" type="text" placeholder="ej. Salón de Eventos del Centro" class="input-base">
+      </div>
+      <div>
+        <label class="text-sm font-medium text-gray-700 block mb-1">Descripción</label>
+        <textarea id="f-edesc" rows="2" placeholder="Información adicional…" class="input-base resize-none"></textarea>
+      </div>
+      <div class="flex gap-3 pt-1">
+        <button onclick="App.back()" class="flex-1 border border-gray-300 text-gray-700 rounded-xl py-2.5 font-medium hover:bg-gray-50 transition">Cancelar</button>
+        <button onclick="App.createEvent()" class="flex-1 bg-brand-600 text-white rounded-xl py-2.5 font-medium hover:bg-brand-700 transition">Crear Evento</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Events List ── -->
+  <div id="v-events" class="hidden">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-bold text-gray-800">Mis Eventos</h2>
+      <button onclick="App.go('create-event')" class="bg-brand-600 text-white text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-brand-700 transition">+ Crear</button>
+    </div>
+    <div id="events-list" class="space-y-3"></div>
+    <div id="events-empty" class="hidden text-center py-14">
+      <div class="text-5xl mb-3">🎉</div>
+      <p class="text-gray-500">Aún no tienes eventos.</p>
+      <button onclick="App.go('create-event')" class="mt-3 text-brand-600 font-medium text-sm">Crear primer evento →</button>
+    </div>
+  </div>
+
+  <!-- ── Manage Event ── -->
+  <div id="v-manage-event" class="hidden">
+    <!-- Event banner -->
+    <div class="bg-brand-700 text-white rounded-2xl p-4 mb-4">
+      <p class="font-bold text-lg leading-snug" id="me-name"></p>
+      <p class="text-brand-200 text-sm mt-0.5" id="me-meta"></p>
+      <p class="text-brand-200 text-sm" id="me-loc"></p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex rounded-xl bg-white shadow-sm border border-gray-100 mb-4 overflow-hidden">
+      <button id="tab-gen" onclick="App.tab('gen')" class="flex-1 py-2.5 text-sm font-semibold border-b-2 transition">Generar Boleto</button>
+      <button id="tab-lst" onclick="App.tab('lst')" class="flex-1 py-2.5 text-sm font-semibold border-b-2 transition">Lista</button>
+    </div>
+
+    <!-- Tab: Generate -->
+    <div id="tab-gen-body">
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-4">
+        <div>
+          <label class="text-sm font-medium text-gray-700 block mb-1">Nombre del asistente *</label>
+          <input id="f-aname" type="text" placeholder="Nombre completo" class="input-base">
+        </div>
+        <div>
+          <label class="text-sm font-medium text-gray-700 block mb-1">Email (opcional)</label>
+          <input id="f-aemail" type="email" placeholder="correo@ejemplo.com" class="input-base">
+        </div>
+        <button onclick="App.genTicket()" class="w-full bg-brand-600 text-white rounded-xl py-2.5 font-medium hover:bg-brand-700 transition">
+          🎫 Generar Boleto
+        </button>
+      </div>
+    </div>
+
+    <!-- Tab: List -->
+    <div id="tab-lst-body" class="hidden">
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-sm text-gray-500" id="t-count">0 boletos</span>
+        <button onclick="App.exportCSV()" class="text-sm text-brand-600 font-medium">Exportar CSV</button>
+      </div>
+      <div id="tickets-list" class="space-y-2"></div>
+      <div id="tickets-empty" class="hidden text-center py-10">
+        <div class="text-4xl mb-2">🎫</div>
+        <p class="text-sm text-gray-500">Sin boletos todavía.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Ticket Display (printable) ── -->
+  <div id="v-ticket" class="hidden">
+    <div class="flex gap-3 mb-4 no-print">
+      <button onclick="window.print()" class="flex-1 border border-gray-300 text-gray-700 rounded-xl py-2.5 font-medium hover:bg-gray-50 transition text-sm">🖨 Imprimir / PDF</button>
+      <button onclick="App.shareTicket()" class="flex-1 bg-brand-600 text-white rounded-xl py-2.5 font-medium hover:bg-brand-700 transition text-sm">📤 Compartir</button>
+    </div>
+    <div id="print-zone">
+      <div class="ticket-card text-white p-6 shadow-2xl relative" id="ticket-card">
+        <div class="ticket-notch-left"></div>
+        <div class="ticket-notch-right"></div>
+
+        <!-- Header -->
+        <div class="flex items-start justify-between mb-4 relative">
+          <div class="flex-1 min-w-0 pr-3">
+            <p class="text-xs text-brand-300 uppercase tracking-widest font-medium mb-1">🎟 EventPass</p>
+            <p class="text-xl font-bold leading-tight" id="tk-event"></p>
+          </div>
+          <div class="text-right flex-shrink-0">
+            <p class="text-xs text-brand-300">Boleto</p>
+            <p class="text-3xl font-mono font-bold" id="tk-num"></p>
+          </div>
+        </div>
+
+        <!-- Details grid -->
+        <div class="grid grid-cols-2 gap-3 text-sm mb-4 relative">
+          <div><p class="text-brand-300 text-xs">Fecha</p><p class="font-medium" id="tk-date"></p></div>
+          <div><p class="text-brand-300 text-xs">Hora</p><p class="font-medium" id="tk-time"></p></div>
+          <div class="col-span-2"><p class="text-brand-300 text-xs">Lugar</p><p class="font-medium" id="tk-loc"></p></div>
+        </div>
+
+        <!-- Divider -->
+        <div class="ticket-divider my-4"></div>
+
+        <!-- Attendee + QR -->
+        <div class="flex items-center gap-4 relative">
+          <div class="flex-1 min-w-0">
+            <p class="text-xs text-brand-300 mb-1">Asistente</p>
+            <p class="font-bold text-lg leading-snug" id="tk-name"></p>
+            <p class="text-brand-300 text-xs mt-1 truncate" id="tk-email"></p>
+          </div>
+          <div class="bg-white rounded-xl p-2 flex-shrink-0">
+            <div id="tk-qr" class="w-28 h-28"></div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="ticket-divider my-4"></div>
+        <div class="text-center relative">
+          <p class="text-xs text-brand-400 font-mono" id="tk-id"></p>
+          <p class="text-xs text-brand-400 mt-1">Presenta este boleto en la entrada del evento</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Scanner ── -->
+  <div id="v-scanner" class="hidden">
+    <div class="text-center mb-4">
+      <p class="text-xl font-bold text-gray-800">Escanear Boleto</p>
+      <p class="text-sm text-gray-500 mt-1">Apunta la cámara al código QR del boleto</p>
+    </div>
+
+    <!-- Camera box -->
+    <div class="relative bg-black rounded-2xl overflow-hidden mb-4" style="aspect-ratio:1/1">
+      <div id="qr-reader" class="absolute inset-0"></div>
+      <!-- Corner frame -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none" id="scan-frame">
+        <div class="relative w-52 h-52">
+          <span class="absolute top-0    left-0   w-8 h-8 border-t-4 border-l-4 border-brand-400 rounded-tl-lg"></span>
+          <span class="absolute top-0    right-0  w-8 h-8 border-t-4 border-r-4 border-brand-400 rounded-tr-lg"></span>
+          <span class="absolute bottom-0 left-0   w-8 h-8 border-b-4 border-l-4 border-brand-400 rounded-bl-lg"></span>
+          <span class="absolute bottom-0 right-0  w-8 h-8 border-b-4 border-r-4 border-brand-400 rounded-br-lg"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scan controls -->
+    <div class="flex gap-3 mb-4">
+      <button id="btn-scan-start" onclick="App.startScan()"
+        class="flex-1 bg-green-600 hover:bg-green-700 text-white rounded-xl py-3 font-semibold transition">
+        📷 Iniciar Cámara
+      </button>
+      <button id="btn-scan-stop" onclick="App.stopScan()"
+        class="flex-1 bg-red-500 hover:bg-red-600 text-white rounded-xl py-3 font-semibold transition hidden">
+        ⏹ Detener
+      </button>
+    </div>
+
+    <!-- Manual ID entry -->
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+      <p class="text-xs text-gray-500 mb-2">O ingresa el ID del boleto manualmente:</p>
+      <div class="flex gap-2">
+        <input id="manual-id" type="text" placeholder="UUID del boleto"
+          class="flex-1 border border-gray-200 rounded-lg px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-brand-500">
+        <button onclick="App.validateId(document.getElementById('manual-id').value.trim())"
+          class="bg-brand-600 text-white text-sm font-medium px-4 rounded-lg hover:bg-brand-700 transition">
+          Validar
+        </button>
+      </div>
+    </div>
+
+    <!-- Scan result -->
+    <div id="scan-result" class="hidden mt-4"></div>
+  </div>
+
+  <!-- ── Settings ── -->
+  <div id="v-settings" class="hidden">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Configuración</h2>
+
+    <!-- Supabase -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 mb-4">
+      <h3 class="font-semibold text-gray-800 mb-1">☁️ Sincronización Multi-dispositivo</h3>
+      <p class="text-sm text-gray-500 mb-3">
+        Conecta Supabase (gratis en <a href="https://supabase.com" target="_blank" class="text-brand-600 underline">supabase.com</a>)
+        para que varios celulares puedan validar boletos en tiempo real.
+      </p>
+      <div class="space-y-3">
+        <div>
+          <label class="text-sm font-medium text-gray-700 block mb-1">Project URL</label>
+          <input id="sb-url" type="url" placeholder="https://xxxx.supabase.co" class="input-base font-mono text-xs">
+        </div>
+        <div>
+          <label class="text-sm font-medium text-gray-700 block mb-1">Anon / Public Key</label>
+          <input id="sb-key" type="text" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9…" class="input-base font-mono text-xs">
+        </div>
+        <button onclick="App.saveSupabase()" class="w-full bg-green-600 text-white rounded-xl py-2.5 font-medium hover:bg-green-700 transition text-sm">
+          Conectar con Supabase
+        </button>
+        <div id="sb-status" class="text-sm text-center"></div>
+      </div>
+      <details class="mt-4">
+        <summary class="text-xs text-gray-400 cursor-pointer select-none">¿Cómo configurar Supabase? (pasos)</summary>
+        <ol class="text-xs text-gray-500 mt-2 space-y-1 list-decimal list-inside">
+          <li>Crea una cuenta gratuita en supabase.com</li>
+          <li>Crea un nuevo proyecto</li>
+          <li>Ve a Project Settings → API</li>
+          <li>Copia la "Project URL" y la "anon public" key</li>
+          <li>En el SQL Editor, ejecuta el script de la sección inferior</li>
+          <li>Pega los valores aquí y presiona "Conectar"</li>
+        </ol>
+        <pre class="mt-3 bg-gray-900 text-green-400 text-xs rounded-lg p-3 overflow-auto whitespace-pre-wrap">-- Ejecutar en Supabase SQL Editor:
+create table if not exists ep_events (
+  id uuid primary key,
+  name text not null,
+  date text,
+  time text,
+  location text,
+  description text,
+  created_at bigint
+);
+create table if not exists ep_tickets (
+  id uuid primary key,
+  event_id uuid references ep_events(id),
+  ticket_number text,
+  attendee_name text,
+  attendee_email text,
+  is_used boolean default false,
+  used_at bigint,
+  created_at bigint
+);
+alter table ep_events  enable row level security;
+alter table ep_tickets enable row level security;
+create policy "public_all" on ep_events  for all using (true) with check (true);
+create policy "public_all" on ep_tickets for all using (true) with check (true);</pre>
+      </details>
+    </div>
+
+    <!-- Export / Import -->
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 mb-4">
+      <h3 class="font-semibold text-gray-800 mb-1">📦 Exportar / Importar datos</h3>
+      <p class="text-sm text-gray-500 mb-3">Transfiere datos entre dispositivos sin Supabase.</p>
+      <div class="flex gap-3">
+        <button onclick="App.exportJSON()" class="flex-1 border border-gray-300 text-gray-700 rounded-xl py-2 text-sm font-medium hover:bg-gray-50 transition">
+          Exportar JSON
+        </button>
+        <label class="flex-1 bg-brand-600 text-white rounded-xl py-2 text-sm font-medium text-center cursor-pointer hover:bg-brand-700 transition">
+          Importar JSON
+          <input type="file" accept=".json" class="hidden" onchange="App.importJSON(event)">
+        </label>
+      </div>
+    </div>
+
+    <!-- Danger zone -->
+    <div class="bg-white rounded-2xl shadow-sm border border-red-100 p-5">
+      <h3 class="font-semibold text-red-600 mb-1">⚠️ Zona de peligro</h3>
+      <p class="text-sm text-gray-500 mb-3">Elimina todos los datos guardados en este dispositivo.</p>
+      <button onclick="App.clearAll()" class="w-full border border-red-300 text-red-600 rounded-xl py-2 text-sm font-medium hover:bg-red-50 transition">
+        Borrar todos los datos
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══════════════════════ TOAST ══════════════════════ -->
+<div id="toast" class="fixed bottom-6 inset-x-0 flex justify-center pointer-events-none z-50 hidden">
+  <div id="toast-msg" class="bg-gray-900 text-white text-sm font-medium px-5 py-2.5 rounded-full shadow-xl max-w-xs text-center"></div>
+</div>
+
+<!-- ══════════════════════ GLOBAL STYLES ══════════════════════ -->
+<style>
+  .input-base { width:100%; border:1px solid #d1d5db; border-radius:0.75rem; padding:0.5rem 0.75rem; font-size:.9rem; outline:none; transition:box-shadow .15s; }
+  .input-base:focus { box-shadow:0 0 0 3px #c4b5fd; border-color:#7c3aed; }
+</style>
+
+<!-- ══════════════════════ APP SCRIPT ══════════════════════ -->
+<script>
+// ─────────────────────────────────────────
+//  Storage layer (localStorage + Supabase)
+// ─────────────────────────────────────────
+const Store = {
+  get events()  { return JSON.parse(localStorage.getItem('ep_events')  || '[]'); },
+  get tickets() { return JSON.parse(localStorage.getItem('ep_tickets') || '[]'); },
+  saveEvents(d)  { localStorage.setItem('ep_events',  JSON.stringify(d)); },
+  saveTickets(d) { localStorage.setItem('ep_tickets', JSON.stringify(d)); },
+  clear() { localStorage.removeItem('ep_events'); localStorage.removeItem('ep_tickets'); },
+
+  sb: null,  // Supabase client
+
+  async initSupabase(url, key) {
+    if (!url || !key) return;
+    // Dynamically load Supabase SDK
+    if (!window.supabase) {
+      await new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+        s.onload = res; s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    }
+    this.sb = window.supabase.createClient(url, key);
+  },
+
+  async upsertEvent(ev) {
+    if (!this.sb) return;
+    await this.sb.from('ep_events').upsert(ev);
+  },
+
+  async upsertTicket(t) {
+    if (!this.sb) return;
+    await this.sb.from('ep_tickets').upsert(t);
+  },
+
+  async loadFromSupabase() {
+    if (!this.sb) return false;
+    const [evRes, tkRes] = await Promise.all([
+      this.sb.from('ep_events').select('*'),
+      this.sb.from('ep_tickets').select('*')
+    ]);
+    if (evRes.error || tkRes.error) return false;
+    // Merge: remote wins on used_at
+    const remoteTickets = tkRes.data || [];
+    const localTickets  = this.tickets;
+    const merged = [...remoteTickets];
+    localTickets.forEach(lt => {
+      if (!merged.find(rt => rt.id === lt.id)) merged.push(lt);
+    });
+    this.saveEvents(evRes.data || []);
+    this.saveTickets(merged);
+    return true;
+  }
+};
+
+// ─────────────────────────────────────────
+//  Utilities
+// ─────────────────────────────────────────
+const uuid = () =>
+  ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+
+const fmtDate = d => {
+  if (!d) return '';
+  const [y, m, day] = d.split('-');
+  const M = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  return `${+day} ${M[+m-1]} ${y}`;
+};
+
+let _toastTimer;
+const toast = (msg, ms = 3000) => {
+  const el = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  el.classList.remove('hidden');
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => el.classList.add('hidden'), ms);
+};
+
+const beep = ok => {
+  try {
+    const ac = new (window.AudioContext || window.webkitAudioContext)();
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.connect(g); g.connect(ac.destination);
+    if (ok) {
+      o.frequency.setValueAtTime(880, ac.currentTime);
+      o.frequency.setValueAtTime(1100, ac.currentTime + .1);
+      g.gain.setValueAtTime(.25, ac.currentTime);
+      g.gain.exponentialRampToValueAtTime(.001, ac.currentTime + .35);
+      o.start(); o.stop(ac.currentTime + .35);
+    } else {
+      o.frequency.setValueAtTime(200, ac.currentTime);
+      g.gain.setValueAtTime(.25, ac.currentTime);
+      g.gain.exponentialRampToValueAtTime(.001, ac.currentTime + .25);
+      o.start(); o.stop(ac.currentTime + .25);
+    }
+  } catch(_) {}
+};
+
+// ─────────────────────────────────────────
+//  App
+// ─────────────────────────────────────────
+const App = {
+  view: 'dashboard',
+  history: [],
+  currentEventId: null,
+  currentTicket: null,
+  scanner: null,
+  scannerOn: false,
+
+  // ── Navigation ──
+  go(view, push = true) {
+    if (push && view !== this.view) this.history.push(this.view);
+
+    if (this.view === 'scanner' && view !== 'scanner') this.stopScan();
+
+    document.querySelectorAll('[id^="v-"]').forEach(el => el.classList.add('hidden'));
+    const el = document.getElementById(`v-${view}`);
+    if (el) { el.classList.remove('hidden'); el.classList.add('anim-slide'); setTimeout(()=>el.classList.remove('anim-slide'),300); }
+
+    this.view = view;
+
+    const titles = { dashboard:'', 'create-event':'Crear Evento', events:'Mis Eventos', 'manage-event':'Gestionar Evento', ticket:'Mi Boleto', scanner:'Escanear', settings:'Configuración' };
+    document.getElementById('nav-subtitle').textContent = titles[view] || '';
+    document.getElementById('btn-back').classList.toggle('hidden', view === 'dashboard');
+
+    if (view === 'dashboard')      this.renderDashboard();
+    if (view === 'events')         this.renderEvents();
+    if (view === 'manage-event')   this.renderManage();
+    if (view === 'settings')       this.renderSettings();
+  },
+
+  back() {
+    const prev = this.history.pop() || 'dashboard';
+    this.go(prev, false);
+  },
+
+  // ── Dashboard ──
+  renderDashboard() {
+    const { events, tickets } = Store;
+    document.getElementById('s-events').textContent  = events.length;
+    document.getElementById('s-tickets').textContent = tickets.length;
+    document.getElementById('s-used').textContent    = tickets.filter(t => t.is_used).length;
+
+    const recent = [...events].sort((a,b) => b.created_at - a.created_at).slice(0, 4);
+    const sec  = document.getElementById('dash-recent');
+    const list = document.getElementById('dash-recent-list');
+    if (!recent.length) { sec.classList.add('hidden'); return; }
+    sec.classList.remove('hidden');
+    list.innerHTML = recent.map(e => {
+      const et = tickets.filter(t => t.event_id === e.id);
+      return `<div onclick="App.openEvent('${e.id}')"
+        class="bg-white rounded-xl p-3 flex items-center gap-3 shadow-sm cursor-pointer hover:shadow-md transition active:scale-95">
+        <div class="w-9 h-9 bg-brand-100 rounded-lg flex items-center justify-center text-lg flex-shrink-0">🎉</div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-gray-800 text-sm truncate">${e.name}</p>
+          <p class="text-xs text-gray-400">${fmtDate(e.date)} · ${et.length} boletos</p>
+        </div>
+        <span class="text-xs text-green-600 font-medium flex-shrink-0">${et.filter(t=>t.is_used).length} ✓</span>
+      </div>`;
+    }).join('');
+  },
+
+  // ── Create Event ──
+  createEvent() {
+    const name  = document.getElementById('f-ename').value.trim();
+    const date  = document.getElementById('f-edate').value;
+    const time  = document.getElementById('f-etime').value;
+    const loc   = document.getElementById('f-elocation').value.trim();
+    const desc  = document.getElementById('f-edesc').value.trim();
+
+    if (!name) { toast('Por favor ingresa el nombre del evento'); return; }
+    if (!date) { toast('Por favor selecciona la fecha'); return; }
+
+    const ev = { id: uuid(), name, date, time, location: loc, description: desc, created_at: Date.now() };
+    const evs = Store.events; evs.push(ev); Store.saveEvents(evs);
+    Store.upsertEvent(ev);
+
+    // Clear form
+    ['f-ename','f-edate','f-etime','f-elocation','f-edesc'].forEach(id => document.getElementById(id).value = '');
+
+    toast('✅ Evento creado');
+    this.openEvent(ev.id);
+  },
+
+  // ── Events List ──
+  renderEvents() {
+    const evs   = [...Store.events].sort((a,b) => b.created_at - a.created_at);
+    const tkts  = Store.tickets;
+    const list  = document.getElementById('events-list');
+    const empty = document.getElementById('events-empty');
+    if (!evs.length) { list.innerHTML=''; empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+    list.innerHTML = evs.map(e => {
+      const et = tkts.filter(t => t.event_id === e.id);
+      const used = et.filter(t => t.is_used).length;
+      const pct  = et.length ? used/et.length*100 : 0;
+      return `<div onclick="App.openEvent('${e.id}')"
+        class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 cursor-pointer hover:shadow-md transition active:scale-95">
+        <div class="flex items-start justify-between mb-2">
+          <div class="flex-1 min-w-0 pr-3">
+            <p class="font-semibold text-gray-800">${e.name}</p>
+            <p class="text-sm text-gray-500 mt-0.5">${fmtDate(e.date)}${e.time?' · '+e.time:''}</p>
+            ${e.location?`<p class="text-sm text-gray-400">📍 ${e.location}</p>`:''}
+          </div>
+          <svg class="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex-1 bg-gray-100 rounded-full h-1.5">
+            <div class="bg-green-500 h-1.5 rounded-full" style="width:${pct}%"></div>
+          </div>
+          <span class="text-xs text-gray-400 flex-shrink-0">${used}/${et.length} validados</span>
+        </div>
+      </div>`;
+    }).join('');
+  },
+
+  openEvent(id) {
+    this.currentEventId = id;
+    this.go('manage-event');
+  },
+
+  // ── Manage Event ──
+  renderManage() {
+    const e = Store.events.find(x => x.id === this.currentEventId);
+    if (!e) return;
+    document.getElementById('me-name').textContent = e.name;
+    document.getElementById('me-meta').textContent = fmtDate(e.date) + (e.time ? ' · ' + e.time : '');
+    document.getElementById('me-loc').textContent  = e.location ? '📍 ' + e.location : '';
+    document.getElementById('nav-subtitle').textContent = e.name;
+    document.getElementById('f-aname').value  = '';
+    document.getElementById('f-aemail').value = '';
+    this.tab('gen');
+  },
+
+  tab(t) {
+    const active   = 'border-brand-600 text-brand-700';
+    const inactive = 'border-transparent text-gray-500';
+    document.getElementById('tab-gen').className = `flex-1 py-2.5 text-sm font-semibold border-b-2 transition ${t==='gen'?active:inactive}`;
+    document.getElementById('tab-lst').className = `flex-1 py-2.5 text-sm font-semibold border-b-2 transition ${t==='lst'?active:inactive}`;
+    document.getElementById('tab-gen-body').classList.toggle('hidden', t !== 'gen');
+    document.getElementById('tab-lst-body').classList.toggle('hidden', t !== 'lst');
+    if (t === 'lst') this.renderTickets();
+  },
+
+  renderTickets() {
+    const tkts  = Store.tickets.filter(t => t.event_id === this.currentEventId)
+                               .sort((a,b) => +a.ticket_number - +b.ticket_number);
+    const list  = document.getElementById('tickets-list');
+    const empty = document.getElementById('tickets-empty');
+    document.getElementById('t-count').textContent = `${tkts.length} boleto${tkts.length!==1?'s':''}`;
+    if (!tkts.length) { list.innerHTML=''; empty.classList.remove('hidden'); return; }
+    empty.classList.add('hidden');
+    list.innerHTML = tkts.map(t => `
+      <div class="bg-white rounded-xl p-3 flex items-center gap-3 shadow-sm">
+        <div class="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${t.is_used?'bg-green-100 text-green-700':'bg-gray-100 text-gray-500'}">
+          ${t.is_used ? '✓' : '#'+t.ticket_number}
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-medium text-gray-800 text-sm truncate">${t.attendee_name}</p>
+          ${t.attendee_email?`<p class="text-xs text-gray-400 truncate">${t.attendee_email}</p>`:''}
+          ${t.is_used?`<p class="text-xs text-orange-500">Usado: ${new Date(t.used_at).toLocaleString('es')}</p>`:''}
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-xs px-2 py-0.5 rounded-full font-medium ${t.is_used?'bg-green-100 text-green-700':'bg-gray-100 text-gray-500'}">
+            ${t.is_used?'Usado':'Pendiente'}
+          </span>
+          <button onclick="App.showTicket('${t.id}')" class="p-1 text-brand-600">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+          </button>
+        </div>
+      </div>`).join('');
+  },
+
+  // ── Generate Ticket ──
+  genTicket() {
+    const name  = document.getElementById('f-aname').value.trim();
+    const email = document.getElementById('f-aemail').value.trim();
+    if (!name) { toast('Ingresa el nombre del asistente'); return; }
+
+    const tkts  = Store.tickets;
+    const evTkts = tkts.filter(t => t.event_id === this.currentEventId);
+    const t = {
+      id: uuid(),
+      event_id: this.currentEventId,
+      ticket_number: String(evTkts.length + 1).padStart(4, '0'),
+      attendee_name: name,
+      attendee_email: email,
+      is_used: false,
+      used_at: null,
+      created_at: Date.now()
+    };
+    tkts.push(t); Store.saveTickets(tkts);
+    Store.upsertTicket(t);
+
+    document.getElementById('f-aname').value  = '';
+    document.getElementById('f-aemail').value = '';
+
+    this.showTicket(t.id);
+  },
+
+  // ── Show / Print Ticket ──
+  showTicket(id) {
+    const t = Store.tickets.find(x => x.id === id);
+    if (!t) return;
+    const e = Store.events.find(x => x.id === t.event_id);
+    if (!e) return;
+    this.currentTicket = t;
+
+    document.getElementById('tk-event').textContent = e.name;
+    document.getElementById('tk-num').textContent   = '#' + t.ticket_number;
+    document.getElementById('tk-date').textContent  = fmtDate(e.date) || '—';
+    document.getElementById('tk-time').textContent  = e.time || '—';
+    document.getElementById('tk-loc').textContent   = e.location || '—';
+    document.getElementById('tk-name').textContent  = t.attendee_name;
+    document.getElementById('tk-email').textContent = t.attendee_email || '';
+    document.getElementById('tk-id').textContent    = t.id;
+
+    // Generate QR
+    const qrEl = document.getElementById('tk-qr');
+    qrEl.innerHTML = '';
+    new QRCode(qrEl, { text: t.id, width: 112, height: 112, colorDark:'#1e1b4b', colorLight:'#ffffff', correctLevel: QRCode.CorrectLevel.H });
+
+    this.go('ticket');
+  },
+
+  shareTicket() {
+    if (!this.currentTicket) return;
+    if (navigator.share) {
+      navigator.share({ title: 'Mi Boleto — EventPass', text: `Boleto #${this.currentTicket.ticket_number} para ${this.currentTicket.attendee_name}` }).catch(()=>{});
+    } else {
+      toast('Usa "Imprimir / PDF" para guardar o compartir');
+    }
+  },
+
+  // ── Export CSV ──
+  exportCSV() {
+    const e    = Store.events.find(x => x.id === this.currentEventId);
+    const tkts = Store.tickets.filter(t => t.event_id === this.currentEventId);
+    const rows = [['Boleto','Nombre','Email','Estado','Fecha uso'],
+      ...tkts.map(t => [
+        '#'+t.ticket_number, t.attendee_name, t.attendee_email||'',
+        t.is_used?'Usado':'Pendiente',
+        t.used_at ? new Date(t.used_at).toLocaleString('es') : ''
+      ])
+    ];
+    const csv  = rows.map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const blob = new Blob(['﻿'+csv], { type:'text/csv;charset=utf-8;' });
+    const a    = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download:`boletos-${e?.name||'evento'}.csv` });
+    a.click(); URL.revokeObjectURL(a.href);
+  },
+
+  // ── Scanner ──
+  async startScan() {
+    if (this.scannerOn) return;
+    document.getElementById('btn-scan-start').classList.add('hidden');
+    document.getElementById('btn-scan-stop').classList.remove('hidden');
+    document.getElementById('scan-result').classList.add('hidden');
+
+    try {
+      this.scanner = new Html5Qrcode('qr-reader');
+      await this.scanner.start(
+        { facingMode: 'environment' },
+        { fps: 10, qrbox: { width: 200, height: 200 } },
+        text => this.onScanned(text),
+        () => {}
+      );
+      this.scannerOn = true;
+    } catch (err) {
+      this.showResult('error', '❌ No se pudo acceder a la cámara. Verifica los permisos.', null);
+      document.getElementById('btn-scan-start').classList.remove('hidden');
+      document.getElementById('btn-scan-stop').classList.add('hidden');
+    }
+  },
+
+  stopScan() {
+    if (this.scanner && this.scannerOn) {
+      this.scanner.stop().then(() => { this.scanner = null; this.scannerOn = false; }).catch(()=>{ this.scanner = null; this.scannerOn = false; });
+    }
+    document.getElementById('btn-scan-start').classList.remove('hidden');
+    document.getElementById('btn-scan-stop').classList.add('hidden');
+  },
+
+  onScanned(text) {
+    if (this.scanner) { try { this.scanner.pause(); } catch(_){} }
+    this.validateId(text.trim());
+    setTimeout(() => { if (this.scanner && this.scannerOn) try { this.scanner.resume(); } catch(_){} }, 3000);
+  },
+
+  validateId(id) {
+    if (!id) { toast('Ingresa el ID del boleto'); return; }
+    const tkts = Store.tickets;
+    const idx  = tkts.findIndex(t => t.id === id);
+
+    if (idx === -1) {
+      this.showResult('error', '❌ Boleto no encontrado', null);
+      beep(false); return;
+    }
+
+    const t = tkts[idx];
+    const e = Store.events.find(x => x.id === t.event_id);
+
+    if (t.is_used) {
+      this.showResult('warn',
+        `⚠️ Boleto #${t.ticket_number} ya fue utilizado`,
+        `<p><strong>Asistente:</strong> ${t.attendee_name}</p><p><strong>Usado el:</strong> ${new Date(t.used_at).toLocaleString('es')}</p>`
+      );
+      beep(false); return;
+    }
+
+    // Mark used
+    tkts[idx] = { ...t, is_used: true, used_at: Date.now() };
+    Store.saveTickets(tkts);
+    Store.upsertTicket(tkts[idx]);
+
+    this.showResult('ok',
+      `✅ ¡Boleto válido! Bienvenid@`,
+      `<p><strong>Boleto:</strong> #${t.ticket_number}</p><p><strong>Asistente:</strong> ${t.attendee_name}</p>${e?`<p><strong>Evento:</strong> ${e.name}</p>`:''}`
+    );
+    beep(true);
+    document.getElementById('manual-id').value = '';
+  },
+
+  showResult(type, title, body) {
+    const colors = { ok:'bg-green-50 border-green-200 text-green-800', warn:'bg-amber-50 border-amber-200 text-amber-800', error:'bg-red-50 border-red-200 text-red-800' };
+    const el = document.getElementById('scan-result');
+    el.innerHTML = `<div class="${colors[type]||colors.error} border rounded-2xl p-4 anim-slide">
+      <p class="font-bold">${title}</p>
+      ${body?`<div class="mt-2 text-sm space-y-0.5">${body}</div>`:''}
+    </div>`;
+    el.classList.remove('hidden');
+  },
+
+  // ── Settings ──
+  renderSettings() {
+    document.getElementById('sb-url').value = localStorage.getItem('ep_sb_url') || '';
+    document.getElementById('sb-key').value = localStorage.getItem('ep_sb_key') || '';
+    const url = localStorage.getItem('ep_sb_url');
+    const key = localStorage.getItem('ep_sb_key');
+    document.getElementById('sb-status').innerHTML = (url && key)
+      ? '<span class="text-green-600">✅ Supabase conectado</span>'
+      : '<span class="text-gray-400">Sin configurar · usando almacenamiento local</span>';
+  },
+
+  async saveSupabase() {
+    const url = document.getElementById('sb-url').value.trim();
+    const key = document.getElementById('sb-key').value.trim();
+    if (!url || !key) { toast('Ingresa la URL y la clave'); return; }
+    localStorage.setItem('ep_sb_url', url);
+    localStorage.setItem('ep_sb_key', key);
+    try {
+      await Store.initSupabase(url, key);
+      const ok = await Store.loadFromSupabase();
+      document.getElementById('sb-status').innerHTML = ok
+        ? '<span class="text-green-600">✅ Conectado y sincronizado</span>'
+        : '<span class="text-red-500">⚠️ Conexión fallida — verifica las credenciales</span>';
+      if (ok) toast('✅ Sincronizado con Supabase');
+    } catch(err) {
+      document.getElementById('sb-status').innerHTML = '<span class="text-red-500">⚠️ Error al conectar</span>';
+    }
+  },
+
+  // ── Export / Import JSON ──
+  exportJSON() {
+    const data = { version:1, exported_at: new Date().toISOString(), events: Store.events, tickets: Store.tickets };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+    const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download:`eventpass-backup-${new Date().toISOString().slice(0,10)}.json` });
+    a.click(); URL.revokeObjectURL(a.href);
+    toast('Datos exportados');
+  },
+
+  importJSON(ev) {
+    const file = ev.target.files[0]; if (!file) return;
+    const r = new FileReader();
+    r.onload = e => {
+      try {
+        const d = JSON.parse(e.target.result);
+        if (!d.events || !d.tickets) throw 0;
+        // Merge, remote (imported) wins for used status
+        const evs  = Store.events;
+        const tkts = Store.tickets;
+        d.events.forEach(x  => { if (!evs.find(y=>y.id===x.id))  evs.push(x); });
+        d.tickets.forEach(x => {
+          const i = tkts.findIndex(y=>y.id===x.id);
+          if (i===-1) tkts.push(x);
+          else if (x.is_used) tkts[i] = x;
+        });
+        Store.saveEvents(evs); Store.saveTickets(tkts);
+        toast(`✅ Importado: ${d.events.length} eventos, ${d.tickets.length} boletos`);
+        this.renderDashboard();
+      } catch(_) { toast('Archivo inválido'); }
+    };
+    r.readAsText(file);
+    ev.target.value = '';
+  },
+
+  clearAll() {
+    if (!confirm('¿Seguro? Esto borra TODOS los eventos y boletos en este dispositivo.')) return;
+    Store.clear();
+    toast('Datos eliminados');
+    this.go('dashboard', false);
+  },
+
+  // ── Init ──
+  async init() {
+    const url = localStorage.getItem('ep_sb_url');
+    const key = localStorage.getItem('ep_sb_key');
+    if (url && key) {
+      await Store.initSupabase(url, key).catch(()=>{});
+      Store.loadFromSupabase().catch(()=>{});
+    }
+    this.go('dashboard', false);
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => App.init());
+</script>
+</body>
+</html>
