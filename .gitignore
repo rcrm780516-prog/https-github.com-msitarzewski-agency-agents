@@ -2,3 +2,9 @@ virtuoso-site.zip
 
 # Generated deliverable (regenerable from virtuoso-site/)
 virtuoso-site-kit.zip
+virtuoso-site/assets/video/*.mp4
+virtuoso-site/assets/img/*.jpg
+virtuoso-site/assets/img/*.jpeg
+virtuoss-site/assets/img/*.png
+virtuoso-site/assets/img/*.png
+virtuoso-site/assets/img/*.webp
