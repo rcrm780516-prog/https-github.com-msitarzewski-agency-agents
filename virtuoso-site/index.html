@@ -256,6 +256,11 @@ nav.scrolled{background:rgba(6,5,4,0.92);backdrop-filter:blur(20px);padding:18px
 .v-h2 em{font-style:italic;color:var(--gold);}
 .v-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
 .v-card{background:var(--black);padding:56px 48px;position:relative;overflow:hidden;}
+.v-card-img{display:block;width:calc(100% + 96px);height:210px;object-fit:cover;margin:-56px -48px 30px;transition:transform .7s ease;}
+.v-card:hover .v-card-img{transform:scale(1.06);}
+.about-media{width:100%;margin-bottom:36px;border-radius:6px;overflow:hidden;aspect-ratio:4/3;}
+.about-media img{width:100%;height:100%;object-fit:cover;display:block;}
+@media(max-width:560px){.v-card-img{height:180px;}}
 .v-card-num{font-family:var(--corm);font-size:80px;font-weight:300;color:rgba(200,129,58,0.08);position:absolute;top:20px;right:24px;line-height:1;}
 .v-card-icon{font-size:36px;margin-bottom:24px;}
 .v-card-name{font-family:var(--corm);font-size:32px;font-weight:400;font-style:italic;margin-bottom:16px;}
@@ -476,6 +481,7 @@ body.en .en-text{display:block;}
     <p class="about-text"><span class="es-text">Nos apalancamos en la inteligencia artificial para construir agentes que automatizan procesos críticos de negocio para pequeñas, medianas y grandes empresas — convirtiendo la automatización inteligente en ventaja competitiva real.</span><span class="en-text">We leverage artificial intelligence to build agents that automate critical business processes for small, medium and large enterprises — turning intelligent automation into a real competitive advantage.</span></p>
   </div>
   <div class="about-right">
+    <div class="about-media"><img src="assets/img/about.jpg" alt="Producción de contenido y marketing gastronómico de Virtuoso Marketing" loading="lazy"></div>
     <div class="about-stat-row"><div class="asr-n">1,400+</div><div class="asr-l"><span class="es-text">Clientes activos en todo México</span><span class="en-text">Active clients across Mexico</span></div></div>
     <div class="about-stat-row"><div class="asr-n">3</div><div class="asr-l"><span class="es-text">Verticales de alto valor: restaurantes, turismo y marketing médico</span><span class="en-text">High-value verticals: restaurants, tourism and medical marketing</span></div></div>
     <div class="about-stat-row"><div class="asr-n">2</div><div class="asr-l"><span class="es-text">Sedes estratégicas: Cancún y Guadalajara</span><span class="en-text">Strategic offices: Cancún and Guadalajara</span></div></div>
@@ -534,9 +540,9 @@ body.en .en-text{display:block;}
   <div class="v-label"><span class="es-text">Nuestras industrias</span><span class="en-text">Our industries</span></div>
   <h2 class="v-h2"><span class="es-text">Especialización<br><em>profunda</em></span><span class="en-text">Deep<br><em>specialization</em></span></h2>
   <div class="v-grid">
-        <div class="v-card" onclick="openModal('vert1')"><div class="v-card-num">01</div><div class="v-card-icon">🏥</div><div class="v-card-name"><span class="es-text">Marketing Médico</span><span class="en-text">Medical Marketing</span></div><div class="v-card-desc"><span class="es-text">Nuestro nicho más rentable. Clínicas, médicos y profesionales de salud.</span><span class="en-text">Our most profitable niche. Clinics, doctors and health professionals.</span></div><div class="v-card-tag sc-click">Ver más →</div></div>
-        <div class="v-card" onclick="openModal('vert2')"><div class="v-card-num">02</div><div class="v-card-icon">🍽️</div><div class="v-card-name"><span class="es-text">Restaurantes</span><span class="en-text">Restaurants</span></div><div class="v-card-desc"><span class="es-text">Estrategia de contenido apetitoso, campañas de delivery y reputación.</span><span class="en-text">Appetizing content strategy, delivery campaigns and reputation.</span></div><div class="v-card-tag sc-click">Ver más →</div></div>
-        <div class="v-card" onclick="openModal('vert3')"><div class="v-card-num">03</div><div class="v-card-icon">🌴</div><div class="v-card-name"><span class="es-text">Turismo</span><span class="en-text">Tourism</span></div><div class="v-card-desc"><span class="es-text">Hoteles, tours y negocios turísticos de la Riviera Maya.</span><span class="en-text">Hotels, tours and tourism businesses in the Riviera Maya.</span></div><div class="v-card-tag sc-click">Ver más →</div></div>
+        <div class="v-card" onclick="openModal('vert1')"><img class="v-card-img" src="assets/img/vertical-medico.jpg" alt="Marketing médico para clínicas, doctores y hospitales en México" loading="lazy"><div class="v-card-num">01</div><div class="v-card-icon">🏥</div><div class="v-card-name"><span class="es-text">Marketing Médico</span><span class="en-text">Medical Marketing</span></div><div class="v-card-desc"><span class="es-text">Nuestro nicho más rentable. Clínicas, médicos y profesionales de salud.</span><span class="en-text">Our most profitable niche. Clinics, doctors and health professionals.</span></div><div class="v-card-tag sc-click">Ver más →</div></div>
+        <div class="v-card" onclick="openModal('vert2')"><img class="v-card-img" src="assets/img/vertical-restaurantes.jpg" alt="Marketing para restaurantes en Cancún y Guadalajara" loading="lazy"><div class="v-card-num">02</div><div class="v-card-icon">🍽️</div><div class="v-card-name"><span class="es-text">Restaurantes</span><span class="en-text">Restaurants</span></div><div class="v-card-desc"><span class="es-text">Estrategia de contenido apetitoso, campañas de delivery y reputación.</span><span class="en-text">Appetizing content strategy, delivery campaigns and reputation.</span></div><div class="v-card-tag sc-click">Ver más →</div></div>
+        <div class="v-card" onclick="openModal('vert3')"><img class="v-card-img" src="assets/img/vertical-turismo.jpg" alt="Marketing turístico para hoteles y tours en la Riviera Maya" loading="lazy"><div class="v-card-num">03</div><div class="v-card-icon">🌴</div><div class="v-card-name"><span class="es-text">Turismo</span><span class="en-text">Tourism</span></div><div class="v-card-desc"><span class="es-text">Hoteles, tours y negocios turísticos de la Riviera Maya.</span><span class="en-text">Hotels, tours and tourism businesses in the Riviera Maya.</span></div><div class="v-card-tag sc-click">Ver más →</div></div>
       </div>
 <div class="v-card-name"><span class="es-text">Restaurantes</span><span class="en-text">Restaurants</span></div><div class="v-card-desc"><span class="es-text">Desde marisquerías en Cancún hasta fine dining en Guadalajara. Estrategia de contenido apetitoso, campañas de delivery y gestión de reputación en Google y plataformas de reseñas.</span><span class="en-text">From seafood restaurants in Cancún to fine dining in Guadalajara. Appetizing content strategy, delivery campaigns and reputation management on Google and review platforms.</span></div><div class="v-card-tag"><span class="es-text">Gastronomía</span><span class="en-text">Gastronomy</span></div></div>
     <div class="v-card"><div class="v-card-num">03</div><div class="v-card-icon">🌴</div><div class="v-card-name"><span class="es-text">Turismo</span><span class="en-text">Tourism</span></div><div class="v-card-desc"><span class="es-text">Hoteles, tours y negocios turísticos de la Riviera Maya. Posicionamiento en inglés para turismo médico de EE.UU. y Canadá, y estrategias para atraer viajeros internacionales.</span><span class="en-text">Hotels, tours and tourism businesses in the Riviera Maya. English positioning for medical tourism from the US and Canada, and strategies to attract international travelers.</span></div><div class="v-card-tag"><span class="es-text">Riviera Maya</span><span class="en-text">Riviera Maya</span></div></div>
@@ -592,20 +598,20 @@ body.en .en-text{display:block;}
   </div>
   <div class="rs-grid">
     <div class="rs-card">
-      <div class="rs-phone"><img src="assets/img/result-01.png" alt="Resultado de campaña en Instagram" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rs-fallback" style="display:none;">📈</div></div>
-      <div class="rs-meta"><div class="n">+464</div><div class="l"><span class="es-text">Reacciones en un solo post</span><span class="en-text">Reactions on a single post</span></div></div>
+      <div class="rs-phone"><img src="assets/img/result-01.jpg" alt="Publicación de cliente con interacción real en Instagram" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rs-fallback" style="display:none;">📈</div></div>
+      <div class="rs-meta"><div class="n">Real</div><div class="l"><span class="es-text">Contenido publicado que genera interacción</span><span class="en-text">Published content that drives interaction</span></div></div>
     </div>
     <div class="rs-card">
-      <div class="rs-phone"><img src="assets/img/result-02.png" alt="Crecimiento orgánico en redes" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rs-fallback" style="display:none;">🚀</div></div>
-      <div class="rs-meta"><div class="n">x3</div><div class="l"><span class="es-text">Alcance orgánico</span><span class="en-text">Organic reach</span></div></div>
+      <div class="rs-phone"><img src="assets/img/result-02.jpg" alt="Contenido de marca de cliente restaurantero en redes sociales" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rs-fallback" style="display:none;">🚀</div></div>
+      <div class="rs-meta"><div class="n">Restaurantes</div><div class="l"><span class="es-text">Contenido de marca en redes sociales</span><span class="en-text">Brand content on social media</span></div></div>
     </div>
     <div class="rs-card">
-      <div class="rs-phone"><img src="assets/img/result-03.png" alt="Interacción de la comunidad" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rs-fallback" style="display:none;">💬</div></div>
-      <div class="rs-meta"><div class="n">+ Engagement</div><div class="l"><span class="es-text">Comunidad activa y fiel</span><span class="en-text">Active, loyal community</span></div></div>
+      <div class="rs-phone"><img src="assets/img/result-03.jpg" alt="Producción de contenido para marketing médico y de salud" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rs-fallback" style="display:none;">💬</div></div>
+      <div class="rs-meta"><div class="n">Médico</div><div class="l"><span class="es-text">Producción de contenido para salud</span><span class="en-text">Content production for healthcare</span></div></div>
     </div>
     <div class="rs-card">
-      <div class="rs-phone"><img src="assets/img/result-04.png" alt="Campaña publicitaria con conversión" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rs-fallback" style="display:none;">🎯</div></div>
-      <div class="rs-meta"><div class="n">ROAS 6.4x</div><div class="l"><span class="es-text">Retorno sobre inversión publicitaria</span><span class="en-text">Return on ad spend</span></div></div>
+      <div class="rs-phone"><img src="assets/img/result-04.jpg" alt="Creativo publicitario de producción propia para campañas" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="rs-fallback" style="display:none;">🎯</div></div>
+      <div class="rs-meta"><div class="n">Producción</div><div class="l"><span class="es-text">Creativos publicitarios de alto impacto</span><span class="en-text">High-impact advertising creatives</span></div></div>
     </div>
   </div>
 </section>

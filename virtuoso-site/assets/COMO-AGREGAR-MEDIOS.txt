@@ -1,90 +1,44 @@
 ════════════════════════════════════════════════════════════════
-  VIRTUOSO MARKETING — Kit para Hostinger
-  Cómo colocar las fotos y el video (paso a paso)
+  VIRTUOSO MARKETING — Kit para Hostinger (COMPLETO)
 ════════════════════════════════════════════════════════════════
 
-El index.html ya está 100% maquetado y cableado. NO tiene errores.
-Solo faltan los archivos reales de imagen. Mientras un slot esté
-vacío, la página muestra un emoji elegante (no se ve rota).
+✅ Este kit YA INCLUYE todas las fotos y el video optimizados.
+   Solo súbelo a public_html/ y funciona. No tienes que renombrar nada.
 
-POR QUÉ: tus fotos en Google Drive son privadas y el entorno que
-generó el sitio no puede extraer binarios privados a disco. Por eso
-el video (que tú subiste) sí se ve, pero las fotos (que nunca
-estuvieron en el kit) no.
-
-SOLUCIÓN: sube estos 11 archivos a la carpeta correcta en Hostinger,
-con el NOMBRE EXACTO indicado (minúsculas, sin espacios).
-
-────────────────────────────────────────────────────────────────
-ESTRUCTURA FINAL EN HOSTINGER (public_html/)
-────────────────────────────────────────────────────────────────
+ESTRUCTURA:
   public_html/
     index.html
+    robots.txt
+    sitemap.xml
     assets/
-      video/
-        Cartoon.mp4            ◄ ya lo tienes subido (por eso se ve)
+      video/Cartoon.mp4            (video del hero, 7.5 MB, optimizado)
       img/
-        food-01.jpg
-        food-02.jpg
-        food-03.jpg
-        food-04.jpg
-        food-05.jpg
-        food-06.jpg
-        result-01.png
-        result-02.png
-        result-03.png
-        result-04.png
+        hero-poster.jpg            (póster del hero)
+        about.jpg                  (Quiénes somos)
+        vertical-medico.jpg        (vertical Marketing Médico)
+        vertical-restaurantes.jpg  (vertical Restaurantes)
+        vertical-turismo.jpg       (vertical Turismo)
+        food-01..06.jpg            (portafolio "Nuestro trabajo")
+        result-01..04.jpg          (sección "Resultados reales")
 
 ────────────────────────────────────────────────────────────────
-1) VIDEO DEL HERO  →  assets/video/Cartoon.mp4   (ya hecho)
+SUSTITUCIONES QUE CONVIENE REEMPLAZAR CUANDO TENGAS EL MATERIAL REAL
 ────────────────────────────────────────────────────────────────
-  Drive: "Cartoon.mp4"
-  ▸ Se reproduce en bucle, silenciado, como fondo del hero.
-  ▸ ARRANCA cuando termina la animación del ovni (o al "Saltar intro").
+- about.jpg  → ahora usa el creativo "marketing gastronómico".
+   Ideal: una FOTO REAL de tu equipo/oficina (humaniza la agencia).
+- vertical-turismo.jpg → ahora usa una imagen de playa (Dos Equis).
+   Ideal: una foto real de hotel/tour/Riviera Maya de un cliente.
+- result-01..04.jpg → mezcla capturas reales + creativos.
+   Cuando tengas métricas reales (alcance, ROAS, leads), mándalas y
+   las pongo con sus números verificables.
+
+Para reemplazar cualquiera: sube tu nueva imagen con EL MISMO NOMBRE
+a assets/img/ (sobrescribe), o mándamela al chat y la integro.
 
 ────────────────────────────────────────────────────────────────
-2) FOTOS DE PORTAFOLIO  →  assets/img/   (sección "Nuestro trabajo")
+PENDIENTES OPCIONALES (avísame si los quieres)
 ────────────────────────────────────────────────────────────────
-  Descarga cada enlace (abre en tu navegador, estás logueado como
-  dueño), renómbralo al nombre destino y súbelo a assets/img/
-
-  food-01.jpg  (grande, izquierda)
-     https://drive.google.com/uc?export=download&id=1JWbmhAEhf6xZqIO3mIbAtHpGLhz19cAK
-  food-02.jpg
-     https://drive.google.com/uc?export=download&id=1s1RWs_cgGDyyzlTkPW88tEg69GmSLaSs
-  food-03.jpg
-     https://drive.google.com/uc?export=download&id=1tHuHC06GQhNKjhlJcGB3XM_et9x0NQ88
-  food-04.jpg
-     https://drive.google.com/uc?export=download&id=1wSyzrYXTbHgLJ5TNsSPYZoVtCCiGhFsy
-  food-05.jpg
-     https://drive.google.com/uc?export=download&id=1q6axI56OvV5JUaXYBe1_a6y_xqSY-Jzp
-  food-06.jpg  (grande, derecha)
-     https://drive.google.com/uc?export=download&id=1V48UfbKLZ3FWJkC1z6c6nBIbuqpt5mBI
-
-────────────────────────────────────────────────────────────────
-3) CAPTURAS DE RESULTADOS  →  assets/img/   (sección "Resultados reales")
-────────────────────────────────────────────────────────────────
-  result-01.png  (post Da Cetto, +464 reacciones)
-     https://drive.google.com/uc?export=download&id=1FBQt3ZxPxh_uBn-j79cgnavkFcfJw_gq
-  result-02.png
-     https://drive.google.com/uc?export=download&id=1EYnUw-2dcOOC5D2L-opPOYYDxPqW45yq
-  result-03.png
-     https://drive.google.com/uc?export=download&id=1mRjKOT2gdOUm3j9yPS7dlRGdpyKlBYx1
-  result-04.png
-     https://drive.google.com/uc?export=download&id=1FUejTFUAAN35XYAi3KfcT5tFWbBG0w2k
-
-────────────────────────────────────────────────────────────────
-ALTERNATIVA SIN RENOMBRAR
-────────────────────────────────────────────────────────────────
-  Si prefieres no renombrar archivos, súbelos con el nombre que
-  quieras y edita en index.html los src correspondientes (busca
-  "assets/img/food-" y "assets/img/result-").
-
-  O MÁS FÁCIL: súbeme las fotos al chat y te devuelvo el zip con
-  todo dentro, listo para subir sin renombrar nada.
-
-────────────────────────────────────────────────────────────────
-NOTA SOBRE FORMATOS: si una foto de Drive viene en .webp o .heic,
-conviértela a .jpg antes de subir (Hostinger y el navegador las
-sirven mejor). Los .PNG de resultados súbelos tal cual como .png.
+- Fotos de ciudades (Cancún / Guadalajara) para la sección Ciudades.
+- Un video de comida en loop como mosaico en el portafolio
+  (tengo "sesion hamburguesas" y otros listos para integrar).
 ════════════════════════════════════════════════════════════════
