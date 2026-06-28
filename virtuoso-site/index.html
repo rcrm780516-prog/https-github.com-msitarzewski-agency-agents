@@ -373,6 +373,13 @@ body.en .en-text{display:block;}
 /* Capa principal: el video SIEMPRE completo (sin recorte) y lo más grande posible */
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:1;opacity:0;transition:opacity 1.4s ease;pointer-events:none;}
 .hero-video.on{opacity:1;}
+/* En móvil: un solo video (iOS limita videos simultáneos). Ocultamos la capa difuminada
+   y usamos el póster como fondo de respaldo para que nunca se vea negro. */
+@media(max-width:768px){
+  .hero-video-bg{display:none !important;}
+  .hero-video{object-fit:contain;}
+  .hero{background:#060504 url('assets/img/hero-poster.jpg') center/cover no-repeat;}
+}
 .hero-video-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(6,5,4,.5) 0%,rgba(6,5,4,.25) 42%,rgba(6,5,4,.92) 100%);}
 .hero-eyebrow,.hero-h1,.hero-bottom,.hero-scroll{position:relative;z-index:3;}
 
@@ -418,10 +425,10 @@ body.en .en-text{display:block;}
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <video id="heroVideoBg" class="hero-video-bg" muted loop playsinline preload="auto" aria-hidden="true">
+  <video id="heroVideoBg" class="hero-video-bg" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true">
     <source src="assets/video/Cartoon.mp4" type="video/mp4">
   </video>
-  <video id="heroVideo" class="hero-video" muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg">
+  <video id="heroVideo" class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/img/hero-poster.jpg">
     <source src="assets/video/Cartoon.mp4" type="video/mp4">
   </video>
   <div class="hero-video-overlay"></div>
@@ -1649,13 +1656,27 @@ function runIntro(){
 function startHeroVideo(){
   ["heroVideoBg","heroVideo"].forEach(function(id){
     var v=document.getElementById(id);
-    if(!v||v.dataset.started)return;
-    v.dataset.started="1";
-    v.classList.add("on");
+    if(!v)return;
+    if(getComputedStyle(v).display==="none")return; /* fondo difuminado oculto en móvil */
+    v.classList.add("on");           /* visible aunque el autoplay falle (muestra póster) */
+    if(v.dataset.started)return;
     var p=v.play();
     if(p&&p.catch)p.catch(function(){});
+    v.dataset.started="1";
   });
 }
+/* Resiliencia móvil: el video se ve aunque la intro o el autoplay fallen */
+(function(){
+  var v=document.getElementById("heroVideo");
+  if(!v)return;
+  v.addEventListener("loadeddata",function(){v.classList.add("on");});
+  ["touchstart","click"].forEach(function(ev){
+    document.addEventListener(ev,function(){startHeroVideo();},{once:true});
+  });
+  window.addEventListener("load",function(){
+    setTimeout(function(){ if(!v.classList.contains("on")) startHeroVideo(); },5500);
+  });
+})();
 
 /* PAGE UFO */
 var ufoFlying=false;
