@@ -1,0 +1,50 @@
+{
+  "instruccion_para_chatgpt": "Eres un estratega de marketing y publicidad. Analiza este video promocional de la agencia 'Virtuoso Marketing' a partir de la descripcion detallada (no tengo el archivo, solo estos datos). Dame: 1) analisis del concepto y mensaje, 2) fortalezas y debilidades, 3) claridad de la propuesta de valor y del CTA, 4) coherencia de marca y tono, 5) adecuacion del formato/duracion para redes (Reels, TikTok, YouTube, web hero), 6) publico objetivo probable, 7) recomendaciones concretas de mejora y variantes de copy/llamado a la accion, 8) una calificacion del 1 al 10 con justificacion.",
+  "video": {
+    "titulo_archivo": "Cartoon.mp4",
+    "duracion_segundos": 37.5,
+    "formato": "MP4 H.264, 1280x720, 16:9, 24fps, SIN audio",
+    "uso_actual": "Video de fondo del hero (portada) del sitio virtuoso.com.mx",
+    "generado_con_ia": true
+  },
+  "marca": {
+    "nombre": "Virtuoso Marketing",
+    "giro": "Agencia de marketing digital y publicidad (Cancun y Guadalajara, Mexico)",
+    "tagline": "Si no vende, no es creativo",
+    "cta_en_video": "Yes, we are here to help you",
+    "paleta": "Oscura/cinematografica con acentos dorado y neon (magenta/azul)"
+  },
+  "concepto_narrativo": "Transformacion de bloques de construccion (LEGO = creatividad cruda, juego, ideas) en una epica aventura pirata cinematografica. Metafora: la agencia toma ideas/bloques y los convierte en historias de marca audaces que 'conquistan'. Mezcla estetica ludica (bloques) con produccion cinematografica realista (pirata, kraken, tripulacion).",
+  "linea_de_tiempo": [
+    {"t": "0-2s", "escena": "Oficina moderna oscura; dos creativos (hombre y mujer) arrodillados ante una montana enorme de bloques de colores", "texto_en_pantalla": "si no vende, no es creativo + logo VIRTUOSO marketing", "emocion": "intriga / inicio"},
+    {"t": "5-8s", "escena": "Los creativos construyen algo con los bloques en el piso de la oficina", "texto_en_pantalla": "logo Virtuoso", "emocion": "construccion / proceso"},
+    {"t": "9-12s", "escena": "Revelan un PIRATA hecho de bloques (LEGO) de pie en la oficina", "texto_en_pantalla": "si no vende, no es creativo + logo", "emocion": "sorpresa / wow"},
+    {"t": "13-16s", "escena": "Primer plano extremo y cinematografico de un ojo humano real", "texto_en_pantalla": "ninguno", "emocion": "tension / transicion al mundo imaginado"},
+    {"t": "17-20s", "escena": "Pirata realista al timon de un barco, con un KRAKEN (tentaculos) y mar tormentoso, canones", "texto_en_pantalla": "marca de agua Ai", "emocion": "epico / aventura"},
+    {"t": "21-24s", "escena": "Una mano sostiene un celular con el logo Virtuoso y un chat", "texto_en_pantalla": "Yes, we are here to help you", "emocion": "cercania / CTA"},
+    {"t": "25-28s", "escena": "Capitan pirata al timon con su tripulacion alzando espadas y gritando, mar bravo", "texto_en_pantalla": "ninguno", "emocion": "triunfo / fuerza de equipo"},
+    {"t": "29-32s", "escena": "Primer plano del rostro del pirata de bloques (con parche)", "texto_en_pantalla": "ninguno", "emocion": "regreso al concepto ludico"},
+    {"t": "33-37s", "escena": "Cierre: logo Virtuoso marketing sobre fondo negro", "texto_en_pantalla": "VIRTUOSO marketing - Si no vende, no es creativo", "emocion": "cierre de marca"}
+  ],
+  "estilo_visual": {
+    "tono": "Cinematografico, audaz, creativo, ligeramente epico/fantastico",
+    "tecnica": "Mezcla de imagen real (oficina, ojo, manos) con escenas generadas por IA (pirata, kraken, tripulacion) y estetica de bloques",
+    "ritmo": "Medio; transiciones marcadas entre mundo real/oficina y mundo imaginado/pirata",
+    "texto_idioma": "Mezcla espanol e ingles"
+  },
+  "audio": "El archivo NO tiene audio (silenciado para usarse como fondo de hero)",
+  "elementos_de_marketing_detectados": {
+    "propuesta_de_valor": "Creatividad que VENDE (no creatividad por vanidad)",
+    "diferenciador": "Capacidad de convertir ideas en historias de marca espectaculares; uso de IA",
+    "llamado_a_la_accion": "Yes, we are here to help you (suave, en ingles)",
+    "branding": "Logo presente de inicio a fin; tagline repetido",
+    "posibles_debilidades_a_evaluar": ["duracion de 37s puede ser larga para redes", "mezcla de idiomas es/en", "sin audio limita uso fuera de la web", "metafora pirata puede no leerse clara para todos", "CTA poco especifico"]
+  },
+  "preguntas_a_responder": [
+    "El mensaje 'si no vende, no es creativo' se comunica con claridad?",
+    "La metafora bloques->pirata fortalece o distrae la propuesta de valor?",
+    "Funciona igual como hero web (sin audio) que como anuncio en redes?",
+    "Que version recortada (10-15s) recomendarias y que momentos conservar?",
+    "Que CTA y copy alternativos aumentarian conversion?"
+  ]
+}
