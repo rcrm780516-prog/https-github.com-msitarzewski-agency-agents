@@ -373,12 +373,23 @@ body.en .en-text{display:block;}
 /* Capa principal: el video SIEMPRE completo (sin recorte) y lo más grande posible */
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:1;opacity:0;transition:opacity 1.4s ease;pointer-events:none;}
 .hero-video.on{opacity:1;}
-/* En móvil: un solo video (iOS limita videos simultáneos). Ocultamos la capa difuminada
-   y usamos el póster como fondo de respaldo para que nunca se vea negro. */
+/* En móvil: video en su PROPIA banda arriba (completo) y el texto debajo sobre
+   fondo oscuro sólido = 100% legible, sin encimar imágenes (sin "plasta"). */
 @media(max-width:768px){
+  .hero{min-height:auto;display:flex;flex-direction:column;justify-content:flex-start;
+        padding:0 0 56px;background:#060504;overflow:hidden;}
+  .hero-bg,.hero-grid{display:none;}
   .hero-video-bg{display:none !important;}
-  .hero-video{object-fit:contain;}
-  .hero{background:#060504 url('assets/img/hero-poster.jpg') center/cover no-repeat;}
+  .hero-video{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:16/9;
+              object-fit:cover;opacity:1 !important;margin-bottom:30px;}
+  .hero-video-overlay{display:none !important;}
+  .hero-eyebrow{padding:0 24px;margin-bottom:18px;}
+  .hero-h1{padding:0 24px;margin-bottom:26px;}
+  .hero-h1 .line2{padding-left:0;}
+  .hero-bottom{padding:0 24px;}
+  .hero-sub{max-width:none;color:rgba(245,242,236,0.7);}
+  .hero-stats{gap:22px;flex-wrap:wrap;}
+  .hero-scroll{display:none;}
 }
 .hero-video-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(180deg,rgba(6,5,4,.5) 0%,rgba(6,5,4,.25) 42%,rgba(6,5,4,.92) 100%);}
 .hero-eyebrow,.hero-h1,.hero-bottom,.hero-scroll{position:relative;z-index:3;}
