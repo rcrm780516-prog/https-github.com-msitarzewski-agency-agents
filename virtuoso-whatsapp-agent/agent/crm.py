@@ -119,18 +119,27 @@ async def actualizar_lead_desde_conversacion(telefono: str):
         await actualizar_lead(telefono, datos)
         logger.info(f"CRM: lead {telefono} actualizado ({datos.get('estado', '')})")
 
-        # Handoff automático: avisar al equipo una sola vez por lead (si está activado)
+        # Handoff automático: avisa por CADA motivo distinto (precios / cita-llamada),
+        # sin repetir el mismo motivo. Así un aviso de precios no bloquea el de "pide llamada".
         if HANDOFF_ENABLED and (dio_precio or pidio_cita):
             lead = await obtener_lead(telefono) or {}
-            if not lead.get("handoff_enviado"):
-                motivo = "pidió cita/llamada" if pidio_cita else "ya se le dieron precios"
-                await _notificar_handoff(telefono, lead, motivo)
+            ya_avisados = set(filter(None, (lead.get("handoff_motivo") or "").split("|")))
+            nuevos = set()
+            if pidio_cita:
+                nuevos.add("pidió cita/llamada")
+            if dio_precio:
+                nuevos.add("ya se le dieron precios")
+            pendientes = nuevos - ya_avisados
+            if pendientes:
+                motivo_mostrar = " y ".join(sorted(pendientes))
+                acumulado = "|".join(sorted(ya_avisados | pendientes))
+                await _notificar_handoff(telefono, lead, motivo_mostrar, acumulado)
     except Exception as e:
         logger.warning(f"CRM: no se pudo actualizar lead {telefono}: {e}")
 
 
-async def _notificar_handoff(telefono: str, lead: dict, motivo: str):
-    """Construye y envía el aviso al equipo, y marca el lead para no repetir."""
+async def _notificar_handoff(telefono: str, lead: dict, motivo: str, acumulado: str):
+    """Construye y envía el aviso al equipo, y guarda los motivos ya avisados."""
     mensaje = (
         f"🔔 *Lead listo para seguimiento* — Sofía\n"
         f"Motivo: {motivo}\n"
@@ -143,7 +152,7 @@ async def _notificar_handoff(telefono: str, lead: dict, motivo: str):
     )
     ok = await notificar_equipo(mensaje)
     if ok:
-        await marcar_handoff(telefono, motivo)
+        await marcar_handoff(telefono, acumulado)
         logger.info(f"CRM: handoff notificado para {telefono} ({motivo})")
 
 
