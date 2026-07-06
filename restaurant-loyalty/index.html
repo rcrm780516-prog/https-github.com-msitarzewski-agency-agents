@@ -1,0 +1,282 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesa de Control · Lealtad</title>
+<link rel="stylesheet" href="assets/styles.css">
+
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">🍽️</div>
+      <div>
+        <h1 id="rname">Programa de Lealtad</h1>
+        <div class="sub">Mesa de control</div>
+      </div>
+    </div>
+    <span id="modeBadge" class="badge">…</span>
+  </div>
+
+  <!-- Estadísticas -->
+  <div class="grid stats">
+    <div class="card stat"><div class="num" id="stCustomers">0</div><div class="lbl">Clientes</div></div>
+    <div class="card stat"><div class="num" id="stVisits">0</div><div class="lbl">Visitas totales</div></div>
+    <div class="card stat"><div class="num" id="stRewards">0</div><div class="lbl">Premios listos ahora</div></div>
+  </div>
+
+  <!-- Alta de cliente -->
+  <div class="card mb">
+    <h2>➕ Registrar nuevo cliente</h2>
+    <form id="addForm" class="row" autocomplete="off">
+      <div style="flex:2 1 220px">
+        <label for="cname">Nombre del cliente</label>
+        <input type="text" id="cname" placeholder="Ej: María López" required maxlength="60">
+      </div>
+      <div style="flex:1 1 160px">
+        <label for="cphone">Teléfono (opcional)</label>
+        <input type="tel" id="cphone" placeholder="Ej: 55 1234 5678" maxlength="30">
+      </div>
+      <div style="flex:0 0 auto; display:flex; align-items:flex-end">
+        <button class="btn primary" type="submit">Crear y generar QR</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Lista -->
+  <div class="card">
+    <div class="spread mb">
+      <h2 style="margin:0">👥 Clientes</h2>
+      <input type="search" id="search" placeholder="Buscar por nombre o código…" style="max-width:280px">
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Cliente</th><th>Código</th><th>Visitas</th><th>Última visita</th><th>Premio</th></tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div id="emptyState" class="empty" style="display:none">
+      Aún no hay clientes. Registra el primero arriba. ☝️
+    </div>
+  </div>
+
+  <p class="notice mt" id="dataNotice"></p>
+</div>
+
+<!-- Modal detalle de cliente -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="head">
+      <strong id="mName">Cliente</strong>
+      <button class="close no-print" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="body">
+      <div class="qr-card mb">
+        <div class="qr-box"><div id="mQr"></div></div>
+        <div class="cid" id="mCode">—</div>
+        <div class="muted" style="font-size:13px; margin-top:4px">El cliente guarda o imprime este QR. El mesero lo escanea en cada visita.</div>
+      </div>
+
+      <div class="big-count">
+        <div class="n" id="mCount">0</div>
+        <div class="l">visitas acumuladas</div>
+      </div>
+
+      <div id="mRewards" class="mt"></div>
+
+      <div class="row mt no-print">
+        <button class="btn primary" id="mAddVisit">✅ Registrar visita</button>
+        <button class="btn ghost" onclick="window.print()">🖨️ Imprimir QR</button>
+      </div>
+      <div class="row no-print" style="margin-top:8px">
+        <a class="btn ghost" id="mOpenScan" target="_blank" rel="noopener">📱 Abrir vista del mesero</a>
+      </div>
+
+      <h2 class="mt">📋 Historial de visitas</h2>
+      <div class="visit-log" id="mLog"></div>
+
+      <div class="mt no-print center">
+        <button class="btn danger" id="mDelete">Eliminar cliente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="assets/qrcode.js"></script>
+<script src="assets/app.js"></script>
+<script>
+const { store, Rewards, Util, config } = window.Loyalty;
+let CURRENT = null;      // cliente abierto en el modal
+let ALL = [];            // cache de clientes
+
+/* ---- PIN opcional ---- */
+(function gate(){
+  const pin = (config.crmPin || "").toString().trim();
+  if (!pin) return;
+  if (sessionStorage.getItem("crm_ok") === "1") return;
+  const entered = window.prompt("Ingresa el PIN de la mesa de control:");
+  if (entered !== pin) {
+    document.body.innerHTML = '<div class="wrap center" style="padding-top:80px"><h1>🔒 Acceso restringido</h1><p class="muted">PIN incorrecto. Recarga la página para intentar de nuevo.</p></div>';
+    throw new Error("PIN incorrecto");
+  }
+  sessionStorage.setItem("crm_ok", "1");
+})();
+
+/* ---- Encabezado / badge de modo ---- */
+document.getElementById("rname").textContent = config.restaurantName || "Programa de Lealtad";
+document.title = (config.restaurantName || "Lealtad") + " · Mesa de Control";
+const badge = document.getElementById("modeBadge");
+if (window.Loyalty.isDemo) {
+  badge.textContent = "● Modo demo (este navegador)";
+  badge.className = "badge demo";
+  document.getElementById("dataNotice").textContent =
+    "Estás en MODO DEMO: los datos se guardan solo en este navegador. Para sincronizar entre celular y PC, configura Supabase (mira README.md).";
+} else {
+  badge.textContent = "● Nube conectada";
+  badge.className = "badge cloud";
+  document.getElementById("dataNotice").textContent =
+    "Conectado a la nube. Los datos se sincronizan al instante en todos los dispositivos.";
+}
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._t); t._t = setTimeout(()=>t.classList.remove("show"), 2200);
+}
+
+function rewardCellFor(count){
+  const earned = Rewards.earnedAt(count);
+  if (earned.length) {
+    return '<span class="pill reward">' + earned.map(r => (r.icon||"🎁")+" "+Util.esc(r.label)).join(" · ") + '</span>';
+  }
+  // próximo más cercano
+  const prog = Rewards.progress(count).filter(p=>!p.available).sort((a,b)=>a.missing-b.missing)[0];
+  if (!prog) return '<span class="muted">—</span>';
+  return '<span class="muted">Faltan ' + prog.missing + ' → ' + (prog.rule.icon||"🎁") + '</span>';
+}
+
+async function refresh(){
+  ALL = await store.listCustomers();
+  ALL.sort((a,b)=> new Date(b.created_at) - new Date(a.created_at));
+  // stats
+  document.getElementById("stCustomers").textContent = ALL.length;
+  const totalVisits = ALL.reduce((s,c)=>s+c.visitCount,0);
+  document.getElementById("stVisits").textContent = totalVisits;
+  const readyNow = ALL.filter(c => Rewards.earnedAt(c.visitCount).length > 0).length;
+  document.getElementById("stRewards").textContent = readyNow;
+  renderTable();
+}
+
+function renderTable(){
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const rows = ALL.filter(c =>
+    !q || c.name.toLowerCase().includes(q) || c.id.toLowerCase().includes(q));
+  const tb = document.getElementById("tbody");
+  document.getElementById("emptyState").style.display = ALL.length ? "none" : "block";
+  tb.innerHTML = rows.map(c => `
+    <tr class="clickable" data-id="${Util.esc(c.id)}">
+      <td><strong>${Util.esc(c.name)}</strong>${c.phone?'<br><span class="muted" style="font-size:12px">'+Util.esc(c.phone)+'</span>':''}</td>
+      <td><span class="muted" style="font-family:ui-monospace,monospace">${Util.esc(c.id)}</span></td>
+      <td><span class="pill count">${c.visitCount}</span></td>
+      <td class="muted">${Util.fmtDateShort(c.lastVisit)}</td>
+      <td>${rewardCellFor(c.visitCount)}</td>
+    </tr>`).join("");
+  tb.querySelectorAll("tr").forEach(tr =>
+    tr.addEventListener("click", ()=> openCustomer(tr.dataset.id)));
+}
+
+async function openCustomer(id){
+  const c = await store.getCustomer(id);
+  if (!c) { toast("Cliente no encontrado"); return; }
+  CURRENT = c;
+  document.getElementById("mName").textContent = c.name;
+  document.getElementById("mCode").textContent = c.id;
+  document.getElementById("mCount").textContent = c.visitCount;
+  Util.renderQR(document.getElementById("mQr"), Util.scanUrl(c.id), 220);
+  document.getElementById("mOpenScan").href = Util.scanUrl(c.id);
+  renderModalRewards(c.visitCount);
+  renderLog(c.visits);
+  document.getElementById("modal").classList.add("open");
+}
+
+function renderModalRewards(count){
+  const box = document.getElementById("mRewards");
+  const earned = Rewards.earnedAt(count);
+  let html = "";
+  if (earned.length){
+    html += '<div class="reward-hit"><div class="big">🎁</div><h3>¡Premio disponible!</h3><div>' +
+      earned.map(r => (r.icon||"🎁")+" <strong>"+Util.esc(r.label)+"</strong>").join("<br>") +
+      '</div></div>';
+  }
+  html += '<h2>Progreso</h2>';
+  html += Rewards.progress(count).map(p => {
+    const pct = Math.round(((p.rule.everyVisits - p.missing) / p.rule.everyVisits) * 100);
+    return `<div class="progress-item">
+      <div class="ic">${p.rule.icon||"🎁"}</div>
+      <div class="txt">
+        <div class="t">${Util.esc(p.rule.label)}</div>
+        <div class="s">${p.available ? "¡Disponible ahora!" : "Faltan "+p.missing+" visita(s) (cada "+p.rule.everyVisits+")"}</div>
+        <div class="bar"><span style="width:${p.available?100:pct}%"></span></div>
+      </div>
+    </div>`;
+  }).join("");
+  box.innerHTML = html;
+}
+
+function renderLog(visits){
+  const log = document.getElementById("mLog");
+  if (!visits.length){ log.innerHTML = '<div class="muted">Sin visitas aún.</div>'; return; }
+  log.innerHTML = visits.slice().reverse().map((v,i)=>`
+    <div class="v"><span>Visita #${visits.length - i}${v.note?' · '+Util.esc(v.note):''}</span>
+    <span class="muted">${Util.fmtDate(v.created_at)}</span></div>`).join("");
+}
+
+function closeModal(){ document.getElementById("modal").classList.remove("open"); CURRENT=null; }
+document.getElementById("modal").addEventListener("click", e => { if (e.target.id==="modal") closeModal(); });
+
+/* ---- Acciones ---- */
+document.getElementById("addForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const name = document.getElementById("cname").value.trim();
+  if (!name) return;
+  const phone = document.getElementById("cphone").value.trim();
+  try {
+    const c = await store.createCustomer({ name, phone });
+    document.getElementById("cname").value = "";
+    document.getElementById("cphone").value = "";
+    await refresh();
+    toast("Cliente creado ✔");
+    openCustomer(c.id);
+  } catch (err){ toast("Error: " + err.message); }
+});
+
+document.getElementById("mAddVisit").addEventListener("click", async ()=>{
+  if (!CURRENT) return;
+  const btn = document.getElementById("mAddVisit");
+  btn.disabled = true;
+  try {
+    await store.addVisit(CURRENT.id);
+    await openCustomer(CURRENT.id);   // recarga detalle
+    await refresh();                  // recarga tabla/stats
+    toast("Visita registrada ✔");
+  } catch (err){ toast("Error: " + err.message); }
+  btn.disabled = false;
+});
+
+document.getElementById("mDelete").addEventListener("click", async ()=>{
+  if (!CURRENT) return;
+  if (!confirm("¿Eliminar a "+CURRENT.name+" y todas sus visitas? Esta acción no se puede deshacer.")) return;
+  try {
+    await store.deleteCustomer(CURRENT.id);
+    closeModal(); await refresh(); toast("Cliente eliminado");
+  } catch (err){ toast("Error: " + err.message); }
+});
+
+document.getElementById("search").addEventListener("input", renderTable);
+
+/* ---- Inicio ---- */
+refresh().catch(err => toast("Error al cargar: " + err.message));
+</script>
