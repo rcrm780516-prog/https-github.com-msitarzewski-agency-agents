@@ -11,6 +11,7 @@ visitas, 50% de descuento cada 5). Todo se maneja desde una **mesa de control
 | Archivo | Para qué sirve |
 |---|---|
 | `index.html` | **Mesa de control (CRM).** Registrar clientes, ver visitas, generar/imprimir el QR, estadísticas. La abres en la PC. |
+| `registro.html` | **Auto-registro del cliente.** Link público que abres en el celular: el cliente escribe su nombre y obtiene al instante su QR único (para descargar o capturar). Compártelo por WhatsApp o pon un QR de este link en la mesa. |
 | `escanear.html` | **Vista del mesero.** Es la página que abre el QR al escanearlo con el celular: muestra las visitas y el premio, y tiene el botón "Registrar visita". |
 | `config.js` | **El único archivo que editas.** Nombre del restaurante, premios y (opcional) conexión a la nube. |
 | `schema.sql` | Script para crear la base de datos en Supabase (solo si usas la nube). |

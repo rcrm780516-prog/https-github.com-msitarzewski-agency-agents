@@ -39,6 +39,13 @@
         <button class="btn primary" type="submit">Crear y generar QR</button>
       </div>
     </form>
+    <div class="spread mt" style="border-top:1px solid var(--border); padding-top:14px">
+      <span class="muted" style="font-size:13px">📱 ¿Prefieres que el cliente se registre solo desde su celular?</span>
+      <div class="row" style="flex:0 0 auto">
+        <a class="btn ghost" id="openRegLink" href="registro.html" target="_blank" rel="noopener">Abrir registro</a>
+        <button class="btn ghost" id="copyRegLink" type="button">Copiar link</button>
+      </div>
+    </div>
   </div>
 
   <!-- Lista -->
@@ -276,6 +283,20 @@ document.getElementById("mDelete").addEventListener("click", async ()=>{
 });
 
 document.getElementById("search").addEventListener("input", renderTable);
+
+/* ---- Link público de auto-registro ---- */
+(function(){
+  const regUrl = new URL("registro.html", window.location.href).href;
+  document.getElementById("openRegLink").href = regUrl;
+  document.getElementById("copyRegLink").addEventListener("click", async ()=>{
+    try {
+      await navigator.clipboard.writeText(regUrl);
+      toast("Link de registro copiado ✔");
+    } catch(e){
+      window.prompt("Copia este link y compártelo con tus clientes:", regUrl);
+    }
+  });
+})();
 
 /* ---- Inicio ---- */
 refresh().catch(err => toast("Error al cargar: " + err.message));
