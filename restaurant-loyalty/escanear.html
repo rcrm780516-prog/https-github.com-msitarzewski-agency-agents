@@ -1,0 +1,143 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registrar visita · Lealtad</title>
+<link rel="stylesheet" href="assets/styles.css">
+
+<div class="wrap wrap-narrow">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">🍽️</div>
+      <div>
+        <h1 id="rname">Lealtad</h1>
+        <div class="sub">Vista del mesero</div>
+      </div>
+    </div>
+    <span id="modeBadge" class="badge">…</span>
+  </div>
+
+  <div id="content" class="card">
+    <div class="center muted" style="padding:30px 0">Cargando cliente…</div>
+  </div>
+
+  <p class="center mt no-print">
+    <a class="btn ghost" href="index.html">← Ir a la mesa de control</a>
+  </p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="assets/qrcode.js"></script>
+<script src="assets/app.js"></script>
+<script>
+const { store, Rewards, Util, config } = window.Loyalty;
+
+document.getElementById("rname").textContent = config.restaurantName || "Lealtad";
+document.title = (config.restaurantName || "Lealtad") + " · Registrar visita";
+const badge = document.getElementById("modeBadge");
+if (window.Loyalty.isDemo){ badge.textContent="● Modo demo"; badge.className="badge demo"; }
+else { badge.textContent="● Nube"; badge.className="badge cloud"; }
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._t); t._t = setTimeout(()=>t.classList.remove("show"), 2200);
+}
+
+function getId(){
+  const p = new URLSearchParams(location.search);
+  return (p.get("id") || "").trim();
+}
+
+const content = document.getElementById("content");
+
+function render(c, justRegistered){
+  const earned = justRegistered ? Rewards.earnedAt(c.visitCount) : [];
+  const progress = Rewards.progress(c.visitCount);
+
+  let html = "";
+
+  html += `<div class="spread mb"><strong style="font-size:18px">${Util.esc(c.name)}</strong>
+    <span class="muted" style="font-family:ui-monospace,monospace;font-size:12px">${Util.esc(c.id)}</span></div>`;
+
+  html += `<div class="big-count"><div class="n">${c.visitCount}</div><div class="l">visitas acumuladas</div></div>`;
+
+  if (earned.length){
+    html += `<div class="reward-hit">
+      <div class="big">🎁</div>
+      <h3>¡Entregar premio en mesa!</h3>
+      <div>${earned.map(r=>(r.icon||"🎁")+' <strong>'+Util.esc(r.label)+'</strong>').join("<br>")}</div>
+    </div>`;
+  }
+
+  // Beneficios disponibles ahora mismo (aunque no se acabe de registrar)
+  const availableNow = progress.filter(p=>p.available);
+  if (!earned.length && availableNow.length){
+    html += `<div class="reward-hit">
+      <div class="big">✅</div>
+      <h3>Beneficio disponible</h3>
+      <div>${availableNow.map(p=>(p.rule.icon||"🎁")+' <strong>'+Util.esc(p.rule.label)+'</strong>').join("<br>")}</div>
+    </div>`;
+  }
+
+  html += `<h2 class="mt">Progreso hacia premios</h2>`;
+  html += progress.map(p=>{
+    const pct = Math.round(((p.rule.everyVisits - p.missing)/p.rule.everyVisits)*100);
+    return `<div class="progress-item">
+      <div class="ic">${p.rule.icon||"🎁"}</div>
+      <div class="txt">
+        <div class="t">${Util.esc(p.rule.label)}</div>
+        <div class="s">${p.available ? "¡Disponible ahora!" : "Faltan "+p.missing+" visita(s)"}</div>
+        <div class="bar"><span style="width:${p.available?100:pct}%"></span></div>
+      </div>
+    </div>`;
+  }).join("");
+
+  html += `<div class="mt"><button class="btn primary big" id="reg">✅ Registrar esta visita</button></div>`;
+  if (c.lastVisit){
+    html += `<p class="center muted mt" style="font-size:13px">Última visita: ${Util.fmtDate(c.lastVisit)}</p>`;
+  }
+
+  content.innerHTML = html;
+  document.getElementById("reg").addEventListener("click", registerVisit);
+}
+
+async function registerVisit(){
+  const id = getId();
+  const btn = document.getElementById("reg");
+  btn.disabled = true; btn.textContent = "Registrando…";
+  try {
+    await store.addVisit(id);
+    const c = await store.getCustomer(id);
+    render(c, true);              // muestra premio si aplica
+    toast("Visita registrada ✔");
+  } catch (err){
+    toast("Error: " + err.message);
+    btn.disabled = false; btn.textContent = "✅ Registrar esta visita";
+  }
+}
+
+async function init(){
+  const id = getId();
+  if (!id){
+    content.innerHTML = '<div class="empty">No se indicó ningún cliente.<br><span class="muted">Escanea el QR de un cliente o abre la mesa de control.</span></div>';
+    return;
+  }
+  try {
+    const c = await store.getCustomer(id);
+    if (!c){
+      let extra = window.Loyalty.isDemo
+        ? '<p class="notice mt">Estás en <b>modo demo</b>: los datos viven en cada navegador por separado, por eso este celular no ve al cliente creado en la PC. Configura Supabase para sincronizar (README.md).</p>'
+        : '';
+      content.innerHTML = '<div class="empty">Cliente no encontrado (código: <b>'+Util.esc(id)+'</b>).'+extra+'</div>';
+      return;
+    }
+    render(c, false);
+  } catch (err){
+    content.innerHTML = '<div class="empty">Error al cargar: '+Util.esc(err.message)+'</div>';
+  }
+}
+
+init();
+</script>

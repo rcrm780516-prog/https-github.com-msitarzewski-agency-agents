@@ -1,0 +1,130 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Únete al programa de lealtad</title>
+<link rel="stylesheet" href="assets/styles.css">
+
+<div class="wrap wrap-narrow">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo">🍽️</div>
+      <div>
+        <h1 id="rname">Programa de Lealtad</h1>
+        <div class="sub">Regístrate y empieza a ganar premios</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paso 1: formulario -->
+  <div id="stepForm" class="card">
+    <h2>🎁 Crea tu tarjeta digital</h2>
+    <p class="muted" style="margin-top:-6px">Escribe tu nombre y recibe tu código QR. Muéstralo en cada visita para sumar puntos.</p>
+    <form id="regForm" autocomplete="off">
+      <div class="mb">
+        <label for="cname">Tu nombre</label>
+        <input type="text" id="cname" placeholder="Ej: María López" required maxlength="60" autofocus>
+      </div>
+      <div class="mb">
+        <label for="cphone">Teléfono (opcional)</label>
+        <input type="tel" id="cphone" placeholder="Ej: 55 1234 5678" maxlength="30">
+      </div>
+      <button class="btn primary big" type="submit" id="submitBtn">Crear mi tarjeta y ver mi QR</button>
+    </form>
+    <p id="formNote" class="notice mt" style="display:none"></p>
+  </div>
+
+  <!-- Paso 2: QR generado -->
+  <div id="stepDone" class="card" style="display:none">
+    <div class="center">
+      <div class="reward-hit" style="margin-top:0">
+        <div class="big">🎉</div>
+        <h3>¡Listo, <span id="doneName"></span>!</h3>
+        <div>Esta es tu tarjeta de lealtad.</div>
+      </div>
+
+      <div class="qr-card">
+        <div class="qr-box"><div id="qr"></div></div>
+        <div class="cid" id="doneCode">—</div>
+      </div>
+
+      <p class="muted mt" style="font-size:14px">
+        📸 <strong>Guarda una captura de este QR</strong> o tómale una foto.
+        Muéstralo en el restaurante en cada visita.
+      </p>
+
+      <div class="mt">
+        <a class="btn primary big" id="saveLink" download="mi-tarjeta-lealtad.png">⬇️ Descargar mi QR</a>
+      </div>
+      <div class="mt">
+        <button class="btn ghost" id="againBtn">Registrar a otra persona</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="center mt muted" style="font-size:12px" id="privacy">
+    Solo guardamos tu nombre para tu programa de lealtad.
+  </p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="config.js"></script>
+<script src="assets/qrcode.js"></script>
+<script src="assets/app.js"></script>
+<script>
+const { store, Util, config } = window.Loyalty;
+
+document.getElementById("rname").textContent = config.restaurantName || "Programa de Lealtad";
+document.title = "Únete · " + (config.restaurantName || "Lealtad");
+
+// Aviso si está en modo demo (no sirve para uso real desde el celular)
+if (window.Loyalty.isDemo){
+  const n = document.getElementById("formNote");
+  n.style.display = "block";
+  n.innerHTML = "⚠️ <b>Modo demo:</b> este registro se guarda solo en este teléfono. Para uso real, el restaurante debe activar la nube (Supabase).";
+}
+
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._t); t._t = setTimeout(()=>t.classList.remove("show"), 2500);
+}
+
+document.getElementById("regForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const name = document.getElementById("cname").value.trim();
+  if (!name){ return; }
+  const phone = document.getElementById("cphone").value.trim();
+  const btn = document.getElementById("submitBtn");
+  btn.disabled = true; btn.textContent = "Creando tu tarjeta…";
+  try {
+    const c = await store.createCustomer({ name, phone });
+    showDone(c);
+  } catch (err){
+    toast("No se pudo crear: " + err.message);
+    btn.disabled = false; btn.textContent = "Crear mi tarjeta y ver mi QR";
+  }
+});
+
+function showDone(c){
+  document.getElementById("stepForm").style.display = "none";
+  document.getElementById("stepDone").style.display = "block";
+  document.getElementById("doneName").textContent = c.name;
+  document.getElementById("doneCode").textContent = c.id;
+  Util.renderQR(document.getElementById("qr"), Util.scanUrl(c.id), 240);
+  // enlace de descarga a partir de la imagen del QR
+  const img = document.querySelector("#qr img");
+  if (img && img.src){ document.getElementById("saveLink").href = img.src; }
+  window.scrollTo(0,0);
+}
+
+document.getElementById("againBtn").addEventListener("click", ()=>{
+  document.getElementById("cname").value = "";
+  document.getElementById("cphone").value = "";
+  document.getElementById("stepDone").style.display = "none";
+  document.getElementById("stepForm").style.display = "block";
+  const b = document.getElementById("submitBtn");
+  b.disabled = false; b.textContent = "Crear mi tarjeta y ver mi QR";
+  document.getElementById("cname").focus();
+});
+</script>
