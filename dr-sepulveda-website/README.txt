@@ -5,34 +5,49 @@
 
 CONTENIDO DEL PAQUETE
 ----------------------
-  index.html        → Página principal (con placeholders de fotos)
-  embed_images.py   → Script para incrustar tus fotos en el HTML
+  index.html        → Página principal (con marcadores de foto)
+  embed_images.py   → Script Python para incrustar las fotos
   sitemap.xml       → Mapa del sitio para Google
   robots.txt        → Instrucciones para buscadores
   404.html          → Página de error personalizada
   .htaccess         → Configuración del servidor Apache
   README.txt        → Este archivo
 
-IMPORTANTE: El archivo index.html contiene marcadores de texto
-en lugar de las fotos reales. Debes ejecutar embed_images.py
-para incrustar tus fotografías antes de subir el sitio.
-
 
 PASO 1 — INCRUSTAR LAS FOTOGRAFÍAS
 ------------------------------------
-1. Coloca tus fotografías en esta misma carpeta con estos nombres exactos:
+Tienes 9 fotos + el logo que debes incrustar en el sitio.
 
-   foto_perfil_azul.jpg   → Foto en ropa quirúrgica azul (portada del sitio)
-   foto_perfil_bata.jpg   → Foto en bata blanca en consultorio
-   foto_cirugia_1.jpg     → Cirugía con artroscopio
-   foto_cirugia_2.jpg     → Cirugía de rodilla closeup
-   foto_cirugia_3.jpg     → Cirugía con gorro Biotechsa
-   foto_cirugia_4.jpg     → Cirugía articulación doblada
-   foto_cirugia_5.jpg     → Equipo quirúrgico con luces de OR
-   foto_cirugia_6.jpg     → Equipo quirúrgico letrero Quirofano
-   foto_cirugia_7.jpg     → Doctor y colega con articulación
+1. Coloca tus fotografías en esta misma carpeta con estos
+   nombres exactos (puedes usar .jpg, .jpeg, .png o .webp):
 
-   Puedes usar .jpg, .jpeg, .png o .webp — el script lo detecta.
+   logo.jpg      → Logotipo del Dr. Sepúlveda
+                   (aparece automáticamente en blanco en el
+                    encabezado; se recomienda PNG sin fondo)
+
+   foto_1.jpg    → Foto en traje quirúrgico azul
+                   (portada / sección de inicio del sitio)
+
+   foto_2.jpg    → Foto en bata blanca en consultorio
+                   (sección "Acerca del Doctor")
+
+   foto_3.jpg    → Cirugía — Prótesis de rodilla y cadera
+                   (tarjeta de servicio 1)
+
+   foto_4.jpg    → Cirugía — Artroscopia de rodilla y hombro
+                   (tarjeta de servicio 2)
+
+   foto_5.jpg    → Cirugía — Fracturas y traumatología
+                   (tarjeta de servicio 3)
+
+   foto_6.jpg    → Cirugía — Lesiones deportivas y mano
+                   (tarjeta de servicio 4)
+
+   foto_7.jpg    → Cirugía para galería (imagen principal grande)
+
+   foto_8.jpg    → Cirugía para galería (imagen pequeña 1)
+
+   foto_9.jpg    → Cirugía para galería (imagen pequeña 2)
 
 2. Asegúrate de tener Python 3 instalado. Para instalar Pillow:
       pip install Pillow
@@ -43,6 +58,11 @@ PASO 1 — INCRUSTAR LAS FOTOGRAFÍAS
 4. Se generará index-final.html con las fotos ya incrustadas.
 
 5. Renombra index-final.html → index.html (reemplaza el anterior).
+
+NOTA SOBRE EL LOGO: El sitio aplica automáticamente el filtro
+"blanco" al logo para que se vea correctamente sobre el
+encabezado azul marino. Para mejores resultados usa un PNG
+con fondo transparente.
 
 
 PASO 2 — ACTUALIZAR EL DOMINIO EN SITEMAP
@@ -65,13 +85,13 @@ Sube TODOS estos archivos:
   ✓ 404.html
   ✓ .htaccess
 
-NOTA: .htaccess es un archivo oculto — activa "Mostrar archivos ocultos"
-en el administrador de archivos de Hostinger para verlo.
+NOTA: .htaccess es un archivo oculto — activa "Mostrar archivos
+ocultos" en el administrador de archivos de Hostinger.
 
 NO subas estos archivos al servidor:
   ✗ embed_images.py   (script local, no debe estar en el servidor)
   ✗ README.txt        (este archivo)
-  ✗ las fotografías sueltas (ya están incrustadas en el HTML)
+  ✗ Las fotografías sueltas (ya están incrustadas en el HTML)
 
 
 PASO 4 — CONFIGURAR SSL EN HOSTINGER
@@ -99,10 +119,5 @@ WhatsApp:     81 2202 6068
 Cédula prof.: 12556748
 Cédula esp.:  15582450
 COFEPRIS:     2619012002A00339
-
-SOPORTE
--------
-Si tienes dudas sobre la configuración, contacta a tu agencia web
-o al soporte técnico de Hostinger en hpanel.hostinger.com.
 
 ========================================================
