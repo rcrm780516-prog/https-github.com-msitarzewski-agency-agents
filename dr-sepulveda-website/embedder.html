@@ -67,19 +67,19 @@ header p{color:#4a6272;font-size:.9rem}
   <div class="card">
     <h2>👨‍⚕️ Fotografías del Doctor</h2>
     <div class="photo-grid">
-      <div class="photo-item" id="item-PERFIL_AZUL">
-        <label>Foto en ropa quirúrgica azul</label>
-        <small>Hero principal del sitio (portada)</small>
-        <input type="file" accept="image/*" onchange="loadPhoto(this,'PERFIL_AZUL')">
-        <img class="preview" id="prev-PERFIL_AZUL" alt="">
-        <div id="status-PERFIL_AZUL" class="status waiting">Sin seleccionar</div>
+      <div class="photo-item" id="item-CIRUGIA_1">
+        <label>Foto principal del sitio (portada)</label>
+        <small>Aparece en el inicio — foto en traje quirúrgico azul</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_1')">
+        <img class="preview" id="prev-CIRUGIA_1" alt="">
+        <div id="status-CIRUGIA_1" class="status waiting">Sin seleccionar</div>
       </div>
-      <div class="photo-item" id="item-PERFIL_BATA">
-        <label>Foto en bata blanca</label>
-        <small>Sección "Acerca del Doctor"</small>
-        <input type="file" accept="image/*" onchange="loadPhoto(this,'PERFIL_BATA')">
-        <img class="preview" id="prev-PERFIL_BATA" alt="">
-        <div id="status-PERFIL_BATA" class="status waiting">Sin seleccionar</div>
+      <div class="photo-item" id="item-CIRUGIA_2">
+        <label>Foto en consultorio (bata blanca)</label>
+        <small>Sección "Acerca del Doctor" — foto en bata blanca</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_2')">
+        <img class="preview" id="prev-CIRUGIA_2" alt="">
+        <div id="status-CIRUGIA_2" class="status waiting">Sin seleccionar</div>
       </div>
     </div>
   </div>
@@ -87,51 +87,37 @@ header p{color:#4a6272;font-size:.9rem}
   <div class="card">
     <h2>🏥 Fotografías Quirúrgicas</h2>
     <div class="photo-grid">
-      <div class="photo-item" id="item-CIRUGIA_1">
-        <label>Cirugía 1</label>
-        <small>Tira de cirugías — posición 1</small>
-        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_1')">
-        <img class="preview" id="prev-CIRUGIA_1" alt="">
-        <div id="status-CIRUGIA_1" class="status waiting">Sin seleccionar</div>
-      </div>
-      <div class="photo-item" id="item-CIRUGIA_2">
-        <label>Cirugía 2</label>
-        <small>Tira de cirugías — posición 2</small>
-        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_2')">
-        <img class="preview" id="prev-CIRUGIA_2" alt="">
-        <div id="status-CIRUGIA_2" class="status waiting">Sin seleccionar</div>
-      </div>
       <div class="photo-item" id="item-CIRUGIA_3">
         <label>Cirugía 3</label>
-        <small>Tira de cirugías — posición 3</small>
+        <small>Tarjeta de servicio — Prótesis de rodilla y cadera</small>
         <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_3')">
         <img class="preview" id="prev-CIRUGIA_3" alt="">
         <div id="status-CIRUGIA_3" class="status waiting">Sin seleccionar</div>
       </div>
       <div class="photo-item" id="item-CIRUGIA_4">
         <label>Cirugía 4</label>
-        <small>Galería — posición 1</small>
+        <small>Tarjeta de servicio — Artroscopia de rodilla y hombro</small>
         <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_4')">
         <img class="preview" id="prev-CIRUGIA_4" alt="">
         <div id="status-CIRUGIA_4" class="status waiting">Sin seleccionar</div>
       </div>
       <div class="photo-item" id="item-CIRUGIA_5">
         <label>Cirugía 5</label>
-        <small>Galería — posición 2</small>
+        <small>Galería — imagen principal (grande)</small>
         <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_5')">
         <img class="preview" id="prev-CIRUGIA_5" alt="">
         <div id="status-CIRUGIA_5" class="status waiting">Sin seleccionar</div>
       </div>
       <div class="photo-item" id="item-CIRUGIA_6">
         <label>Cirugía 6</label>
-        <small>Galería — posición 3</small>
+        <small>Galería — posición 2</small>
         <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_6')">
         <img class="preview" id="prev-CIRUGIA_6" alt="">
         <div id="status-CIRUGIA_6" class="status waiting">Sin seleccionar</div>
       </div>
       <div class="photo-item" id="item-CIRUGIA_7">
         <label>Cirugía 7</label>
-        <small>Galería — posición 4</small>
+        <small>Galería — posición 3</small>
         <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_7')">
         <img class="preview" id="prev-CIRUGIA_7" alt="">
         <div id="status-CIRUGIA_7" class="status waiting">Sin seleccionar</div>
@@ -152,9 +138,9 @@ header p{color:#4a6272;font-size:.9rem}
 <script>
 const MAX_WIDTH = {
   LOGO: 600,
-  PERFIL_AZUL: 800, PERFIL_BATA: 700,
-  CIRUGIA_1: 700, CIRUGIA_2: 700, CIRUGIA_3: 700,
-  CIRUGIA_4: 700, CIRUGIA_5: 700, CIRUGIA_6: 700, CIRUGIA_7: 700
+  CIRUGIA_1: 800, CIRUGIA_2: 700,
+  CIRUGIA_3: 700, CIRUGIA_4: 700,
+  CIRUGIA_5: 700, CIRUGIA_6: 700, CIRUGIA_7: 700
 };
 const QUALITY = 0.82;
 

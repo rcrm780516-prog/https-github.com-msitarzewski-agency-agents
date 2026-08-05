@@ -88,7 +88,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,37,64,0.97);backdrop-fi
 .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;}
 @media(max-width:768px){.services-grid{grid-template-columns:1fr;}}
 .service-card{border-radius:2px;overflow:hidden;background:var(--card);box-shadow:0 2px 16px rgba(0,0,0,0.07);}
-.service-photo{width:100%;height:220px;object-fit:cover;display:block;}
+.service-photo{width:100%;height:220px;object-fit:cover;display:block;object-position:top center;}
+.service-header-band{width:100%;height:140px;background:linear-gradient(135deg,#0A2540 0%,#0d3356 100%);display:flex;align-items:center;justify-content:center;}
+.service-header-band svg{opacity:0.6;}
 .service-body{padding:24px;}
 .service-tag{font-family:"Courier New",monospace;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--copper);margin-bottom:10px;display:block;}
 .service-card h3{font-family:Georgia,serif;font-size:1.15rem;color:var(--navy);margin-bottom:10px;}
@@ -316,7 +318,8 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
     </div>
   </div>
   <div class="hero-photo">
-    <img src="__B64_FOTO_PERFIL_AZUL__" alt="Dr. Víctor Sepúlveda, Traumatólogo y Ortopedista, Monterrey NL">
+    <!-- FOTO 1: traje quirúrgico azul — portada del sitio -->
+    <img src="__B64_FOTO_CIRUGIA_1__" alt="Dr. Víctor Sepúlveda, Traumatólogo y Ortopedista, Monterrey NL">
   </div>
 </section>
 
@@ -349,8 +352,9 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
     <h2>Tratamientos y procedimientos</h2>
     <div class="services-grid">
 
+      <!-- Tarjeta 1: foto cirugía 3 -->
       <div class="service-card">
-        <img class="service-photo" src="__B64_FOTO_CIRUGIA_1__" alt="Prótesis de rodilla y cadera">
+        <img class="service-photo" src="__B64_FOTO_CIRUGIA_3__" alt="Prótesis de rodilla y cadera">
         <div class="service-body">
           <span class="service-tag">Cirugía articular</span>
           <h3>Prótesis de rodilla y cadera</h3>
@@ -359,8 +363,9 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
         </div>
       </div>
 
+      <!-- Tarjeta 2: foto cirugía 4 -->
       <div class="service-card">
-        <img class="service-photo" src="__B64_FOTO_CIRUGIA_2__" alt="Artroscopia de rodilla y hombro">
+        <img class="service-photo" src="__B64_FOTO_CIRUGIA_4__" alt="Artroscopia de rodilla y hombro">
         <div class="service-body">
           <span class="service-tag">Cirugía endoscópica</span>
           <h3>Artroscopia de rodilla y hombro</h3>
@@ -369,8 +374,11 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
         </div>
       </div>
 
+      <!-- Tarjeta 3: sin foto (diseño limpio) -->
       <div class="service-card">
-        <img class="service-photo" src="__B64_FOTO_CIRUGIA_3__" alt="Fracturas y traumatología">
+        <div class="service-header-band">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C5742A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
         <div class="service-body">
           <span class="service-tag">Traumatología</span>
           <h3>Fracturas y traumatología</h3>
@@ -379,8 +387,11 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
         </div>
       </div>
 
+      <!-- Tarjeta 4: sin foto (diseño limpio) -->
       <div class="service-card">
-        <img class="service-photo" src="__B64_FOTO_CIRUGIA_4__" alt="Lesiones deportivas y cirugía de mano">
+        <div class="service-header-band">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C5742A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
         <div class="service-body">
           <span class="service-tag">Ortopedia deportiva</span>
           <h3>Lesiones deportivas y mano</h3>
@@ -398,7 +409,8 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
   <div class="section-inner">
     <div class="about-grid">
       <div class="about-photo-frame">
-        <img src="__B64_FOTO_PERFIL_BATA__" alt="Dr. Víctor Sepúlveda en consultorio — Traumatólogo Monterrey">
+        <!-- FOTO 2: bata blanca en consultorio -->
+        <img src="__B64_FOTO_CIRUGIA_2__" alt="Dr. Víctor Sepúlveda en consultorio — Traumatólogo Monterrey">
         <div class="about-badge">
           <small>Traumatólogo &amp; Ortopedista</small>
           <strong>Monterrey, NL</strong>
@@ -558,7 +570,7 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
       </details>
       <details>
         <summary>¿La artroscopia requiere hospitalización?</summary>
-        <p>En la mayoría de los casos la artroscopia es ambulatoria: el paciente ingresa y es dado de alta el mismo día. Se realiza bajo anestesia regional o general según el procedimiento. La recuperación es significativamente más rápida que con cirugía abierta.</p>
+        <p>En la mayoría de los casos la artroscopia es ambulatoria: el paciente ingresa y es dado de alta el mismo día. Se realiza bajo anestesia regional o general. La recuperación es significativamente más rápida que con cirugía abierta y las molestias postoperatorias son menores.</p>
       </details>
       <details>
         <summary>¿El consultorio acepta seguros de gastos médicos?</summary>
@@ -587,7 +599,7 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 8.82a19.79 19.79 0 01-3.07-8.67A2 2 0 012.62 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.59a16 16 0 006 6l.96-.96a2 2 0 012.12-.45c.906.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       Llamar al consultorio
     </a>
-    <a href="https://maps.google.com/?q=Dra+Fernando+Guajardo+160+Monterrey+NL" target="_blank" rel="noopener" class="social-item">
+    <a href="https://maps.google.com/?q=Fernando+Guajardo+160+Monterrey+NL" target="_blank" rel="noopener" class="social-item">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       Centro Médico González, Monterrey
     </a>
@@ -678,18 +690,15 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
   window.addEventListener('scroll',function(){
     nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,0.4)' : 'none';
   },{passive:true});
-
   var btn = document.getElementById('hamburger');
   var links = document.getElementById('nav-links');
   btn.addEventListener('click',function(){
     var open = links.classList.toggle('open');
     btn.setAttribute('aria-expanded', open);
   });
-
   links.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click',function(){ links.classList.remove('open'); });
   });
-
   var stored = localStorage.getItem('theme');
   if(stored) document.documentElement.setAttribute('data-theme', stored);
 })();
