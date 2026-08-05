@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Página no encontrada — Dr. Víctor Sepúlveda</title>
+<meta name="robots" content="noindex,follow">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --t900:#082028;--t700:#1a5f6a;--t600:#217380;
+    --g500:#c4902a;
+    --bg:#f4f9fa;--surf:#fff;--tx:#0a2228;--tx2:#2e6673;
+  }
+  @media(prefers-color-scheme:dark){
+    :root{--bg:#060e11;--surf:#0d1e24;--tx:#e8f4f7;--tx2:#7fc4d0}
+  }
+  body{
+    font-family:system-ui,-apple-system,sans-serif;
+    background:var(--bg);color:var(--tx);
+    min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+    padding:2rem;
+  }
+  .logo-wrap{
+    width:80px;height:110px;margin:0 auto 2rem;
+    background:var(--t900);border-radius:12px;
+    display:flex;align-items:center;justify-content:center;padding:12px;
+  }
+  h1{font-size:clamp(1.4rem,4vw,2rem);color:var(--t900);margin-bottom:.75rem}
+  @media(prefers-color-scheme:dark){h1{color:var(--tx)}}
+  p{color:var(--tx2);margin-bottom:2rem;max-width:420px;line-height:1.6}
+  .btn{
+    display:inline-block;background:var(--t700);color:#fff;
+    padding:.75rem 2rem;border-radius:8px;text-decoration:none;
+    font-weight:600;font-size:.95rem;transition:background .2s;
+  }
+  .btn:hover{background:var(--t600)}
+  .code{
+    font-size:6rem;font-weight:900;line-height:1;
+    background:linear-gradient(135deg,var(--t700),var(--g500));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    background-clip:text;margin-bottom:1rem;
+  }
+</style>
+</head>
+<body>
+<div class="logo-wrap" aria-hidden="true">
+  <svg viewBox="0 0 280 390" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:56px;height:78px">
+    <path d="M112 8 C106 7 95 12 91 22 L79 82 C73 98 80 118 95 128 L116 136 L136 136 C152 126 158 106 152 90 L140 22 C136 12 130 7 124 8 Z" stroke="white" stroke-width="3.5" fill="none"/>
+    <path d="M152 102 C161 99 172 104 175 115 C178 126 173 137 164 140 C155 143 146 138 144 127 C142 116 144 105 152 102 Z" stroke="white" stroke-width="3" fill="none"/>
+    <line x1="68" y1="152" x2="178" y2="152" stroke="white" stroke-width="2"/>
+    <path d="M65 158 Q124 168 185 158" stroke="white" stroke-width="3.5" fill="none"/>
+    <line x1="74" y1="165" x2="64" y2="272" stroke="white" stroke-width="16" stroke-linecap="round"/>
+    <line x1="160" y1="165" x2="156" y2="272" stroke="white" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="185" cy="180" rx="13" ry="10" stroke="white" stroke-width="3" fill="none"/>
+    <line x1="194" y1="190" x2="200" y2="272" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+    <text x="140" y="308" font-family="'Arial Black',Arial,sans-serif" font-size="23" font-weight="900" fill="white" letter-spacing="1.5" text-anchor="middle">DR. VÍCTOR</text>
+    <line x1="14" y1="324" x2="266" y2="324" stroke="white" stroke-width="2"/>
+    <text x="140" y="360" font-family="Arial,Helvetica,sans-serif" font-size="12.5" fill="white" letter-spacing="5.5" text-anchor="middle">SEPÚLVEDA</text>
+  </svg>
+</div>
+
+<div class="code">404</div>
+<h1>Página no encontrada</h1>
+<p>La página que buscas no existe o fue movida. Regresa al inicio para agendar tu consulta con el Dr. Sepúlveda.</p>
+<a href="/" class="btn">Ir al inicio</a>
+</body>
+</html>
