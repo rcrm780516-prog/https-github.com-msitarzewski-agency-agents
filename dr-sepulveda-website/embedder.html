@@ -200,6 +200,27 @@ function loadIndex(input){
 function loadPhoto(input,key){
   const file=input.files[0];
   if(!file) return;
+
+  // Logo: read as-is (preserves SVG, PNG transparency, etc.)
+  if(key==='LOGO'){
+    const reader=new FileReader();
+    reader.onload=e=>{
+      const dataUrl=e.target.result;
+      photos[key]=dataUrl;
+      const prev=document.getElementById('prev-'+key);
+      prev.src=dataUrl;
+      prev.classList.add('visible');
+      const sizeKB=Math.round(file.size/1024);
+      document.getElementById('status-'+key).textContent='✓ '+file.name+' — '+sizeKB+' KB (original)';
+      document.getElementById('status-'+key).className='status ok';
+      document.getElementById('item-'+key).classList.add('loaded');
+      checkReady();
+    };
+    reader.readAsDataURL(file);
+    return;
+  }
+
+  // Fotos: redimensionar y comprimir a JPEG
   const canvas=document.createElement('canvas');
   const ctx=canvas.getContext('2d');
   const img=new Image();
