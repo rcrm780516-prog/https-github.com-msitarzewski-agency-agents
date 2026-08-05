@@ -69,8 +69,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,37,64,0.97);backdrop-fi
 .hero-stats{display:flex;gap:32px;flex-wrap:wrap;padding-top:32px;border-top:1px solid rgba(255,255,255,0.15);}
 .hero-stat-num{font-family:Georgia,serif;font-size:1.8rem;color:#fff;font-weight:700;line-height:1;}
 .hero-stat-label{font-size:0.75rem;color:rgba(255,255,255,0.5);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;}
-.hero-photo{display:none;overflow:hidden;position:relative;}
-@media(min-width:769px){.hero-photo{display:block;}}
+.hero-photo{display:block;overflow:hidden;position:relative;height:320px;}
+@media(min-width:769px){.hero-photo{height:auto;}}
 .hero-photo img{width:100%;height:100%;object-fit:contain;background:#0A2540;}
 .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(10,37,64,0.4) 0%,transparent 50%);}
 
