@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Incrustar Fotos — Dr. Víctor Sepúlveda</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f0f4f8;color:#1a2b3c;min-height:100vh;padding:2rem 1rem}
+.container{max-width:820px;margin:0 auto}
+header{text-align:center;margin-bottom:2rem}
+header h1{font-size:1.5rem;color:#082028;margin-bottom:.4rem}
+header p{color:#4a6272;font-size:.9rem}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.08);padding:1.5rem;margin-bottom:1rem}
+.card h2{font-size:1rem;font-weight:700;color:#082028;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.badge{background:#1a5f6a;color:#fff;font-size:.7rem;padding:.2rem .5rem;border-radius:999px}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
+.photo-item{border:2px dashed #cce4ea;border-radius:8px;padding:.75rem;display:flex;flex-direction:column;gap:.5rem;transition:border-color .2s}
+.photo-item.loaded{border-color:#1a5f6a;border-style:solid}
+.photo-item label{font-size:.8rem;font-weight:600;color:#2e6673}
+.photo-item small{font-size:.73rem;color:#5a95a0;line-height:1.4}
+.photo-item input[type=file]{font-size:.8rem;width:100%}
+.preview{width:100%;height:80px;object-fit:cover;border-radius:4px;display:none}
+.preview.visible{display:block}
+.status{font-size:.72rem;margin-top:.25rem}
+.status.ok{color:#1a6a3a}
+.status.waiting{color:#8a9aaa}
+.btn-generate{width:100%;padding:1rem;background:linear-gradient(135deg,#1a5f6a,#217380);color:#fff;border:none;border-radius:10px;font-size:1.1rem;font-weight:700;cursor:pointer;margin-top:1.5rem;transition:opacity .2s}
+.btn-generate:hover{opacity:.9}
+.btn-generate:disabled{opacity:.5;cursor:not-allowed}
+.progress{margin-top:1rem;background:#eef7fa;border-radius:8px;overflow:hidden;display:none}
+.progress-bar{height:8px;background:linear-gradient(90deg,#1a5f6a,#c4902a);width:0%;transition:width .3s}
+.log{margin-top:.75rem;font-size:.8rem;color:#2e6673;display:none;background:#eef7fa;padding:.75rem;border-radius:8px;max-height:180px;overflow-y:auto}
+.note{background:#fff8e8;border-left:4px solid #c4902a;padding:.75rem 1rem;border-radius:0 6px 6px 0;font-size:.82rem;color:#5a4010;margin-bottom:1rem}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📷 Incrustar Fotos en el Sitio Web</h1>
+    <p>Dr. Víctor Sepúlveda — Traumatólogo y Ortopedista</p>
+  </header>
+
+  <div class="note">
+    <strong>Instrucciones:</strong> Selecciona cada fotografía haciendo clic en su campo. Puedes usar JPG, PNG o WEBP. Cuando termines, haz clic en <strong>"Generar index-final.html"</strong> — el archivo se descargará con todas las fotos incrustadas y listo para subir a Hostinger.
+  </div>
+
+  <!-- index.html -->
+  <div class="card">
+    <h2>📄 Archivo index.html <span class="badge">Requerido primero</span></h2>
+    <input type="file" id="file-index" accept=".html" onchange="loadIndex(this)">
+    <div id="status-index" class="status waiting">Selecciona el archivo index.html del paquete descargado</div>
+  </div>
+
+  <!-- LOGO -->
+  <div class="card">
+    <h2>🏷️ Logotipo</h2>
+    <div class="photo-grid">
+      <div class="photo-item" id="item-LOGO">
+        <label>Logo del Dr. Sepúlveda</label>
+        <small>Aparece en el encabezado del sitio (se mostrará en blanco automáticamente sobre el fondo azul marino)</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'LOGO')">
+        <img class="preview" id="prev-LOGO" alt="">
+        <div id="status-LOGO" class="status waiting">Sin seleccionar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCTOR -->
+  <div class="card">
+    <h2>👨‍⚕️ Fotografías del Doctor</h2>
+    <div class="photo-grid">
+      <div class="photo-item" id="item-CIRUGIA_1">
+        <label>Foto 1 — Portada del sitio</label>
+        <small>Foto en traje quirúrgico azul · Aparece en el inicio</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_1')">
+        <img class="preview" id="prev-CIRUGIA_1" alt="">
+        <div id="status-CIRUGIA_1" class="status waiting">Sin seleccionar</div>
+      </div>
+      <div class="photo-item" id="item-CIRUGIA_2">
+        <label>Foto 2 — Sección "Acerca del Doctor"</label>
+        <small>Foto en bata blanca en consultorio</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_2')">
+        <img class="preview" id="prev-CIRUGIA_2" alt="">
+        <div id="status-CIRUGIA_2" class="status waiting">Sin seleccionar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <div class="card">
+    <h2>🏥 Fotografías de Servicios</h2>
+    <div class="photo-grid">
+      <div class="photo-item" id="item-CIRUGIA_3">
+        <label>Foto 3 — Prótesis de rodilla y cadera</label>
+        <small>Tarjeta de servicio 1</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_3')">
+        <img class="preview" id="prev-CIRUGIA_3" alt="">
+        <div id="status-CIRUGIA_3" class="status waiting">Sin seleccionar</div>
+      </div>
+      <div class="photo-item" id="item-CIRUGIA_4">
+        <label>Foto 4 — Artroscopia de rodilla y hombro</label>
+        <small>Tarjeta de servicio 2</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_4')">
+        <img class="preview" id="prev-CIRUGIA_4" alt="">
+        <div id="status-CIRUGIA_4" class="status waiting">Sin seleccionar</div>
+      </div>
+      <div class="photo-item" id="item-CIRUGIA_5">
+        <label>Foto 5 — Fracturas y traumatología</label>
+        <small>Tarjeta de servicio 3</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_5')">
+        <img class="preview" id="prev-CIRUGIA_5" alt="">
+        <div id="status-CIRUGIA_5" class="status waiting">Sin seleccionar</div>
+      </div>
+      <div class="photo-item" id="item-CIRUGIA_6">
+        <label>Foto 6 — Lesiones deportivas y mano</label>
+        <small>Tarjeta de servicio 4</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_6')">
+        <img class="preview" id="prev-CIRUGIA_6" alt="">
+        <div id="status-CIRUGIA_6" class="status waiting">Sin seleccionar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GALERÍA -->
+  <div class="card">
+    <h2>🖼️ Galería Quirúrgica</h2>
+    <div class="photo-grid">
+      <div class="photo-item" id="item-CIRUGIA_7">
+        <label>Foto 7 — Galería principal (grande)</label>
+        <small>Imagen de mayor tamaño en la galería</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_7')">
+        <img class="preview" id="prev-CIRUGIA_7" alt="">
+        <div id="status-CIRUGIA_7" class="status waiting">Sin seleccionar</div>
+      </div>
+      <div class="photo-item" id="item-CIRUGIA_8">
+        <label>Foto 8 — Galería pequeña 1</label>
+        <small>Segunda imagen en la galería</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_8')">
+        <img class="preview" id="prev-CIRUGIA_8" alt="">
+        <div id="status-CIRUGIA_8" class="status waiting">Sin seleccionar</div>
+      </div>
+      <div class="photo-item" id="item-CIRUGIA_9">
+        <label>Foto 9 — Galería pequeña 2</label>
+        <small>Tercera imagen en la galería</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_9')">
+        <img class="preview" id="prev-CIRUGIA_9" alt="">
+        <div id="status-CIRUGIA_9" class="status waiting">Sin seleccionar</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-generate" id="btn-gen" onclick="generate()" disabled>
+    ⬇ Generar index-final.html (con todas las fotos)
+  </button>
+
+  <div class="progress" id="progress-wrap">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+  <div class="log" id="log"></div>
+</div>
+
+<script>
+const MAX_WIDTH = {
+  LOGO:900,
+  CIRUGIA_1:900, CIRUGIA_2:800,
+  CIRUGIA_3:800, CIRUGIA_4:800, CIRUGIA_5:800, CIRUGIA_6:800,
+  CIRUGIA_7:1000, CIRUGIA_8:800, CIRUGIA_9:800
+};
+const QUALITY = 0.82;
+
+let indexHtml = null;
+const photos = {};
+
+function logMsg(msg){
+  const el=document.getElementById('log');
+  el.style.display='block';
+  el.innerHTML+=msg+'<br>';
+  el.scrollTop=el.scrollHeight;
+}
+
+function setProgress(pct){
+  document.getElementById('progress-wrap').style.display='block';
+  document.getElementById('progress-bar').style.width=pct+'%';
+}
+
+function loadIndex(input){
+  const file=input.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    indexHtml=e.target.result;
+    document.getElementById('status-index').textContent='✓ '+file.name+' cargado ('+Math.round(file.size/1024)+' KB)';
+    document.getElementById('status-index').className='status ok';
+    checkReady();
+  };
+  reader.readAsText(file,'utf-8');
+}
+
+function loadPhoto(input,key){
+  const file=input.files[0];
+  if(!file) return;
+  const canvas=document.createElement('canvas');
+  const ctx=canvas.getContext('2d');
+  const img=new Image();
+  const url=URL.createObjectURL(file);
+  img.onload=()=>{
+    let w=img.width, h=img.height;
+    const maxW=MAX_WIDTH[key]||800;
+    if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+    canvas.width=w;canvas.height=h;
+    ctx.drawImage(img,0,0,w,h);
+    const dataUrl=canvas.toDataURL('image/jpeg',QUALITY);
+    photos[key]=dataUrl;
+    const prev=document.getElementById('prev-'+key);
+    prev.src=dataUrl;
+    prev.classList.add('visible');
+    const sizeKB=Math.round(dataUrl.length*3/4/1024);
+    document.getElementById('status-'+key).textContent='✓ '+file.name+' — '+sizeKB+' KB';
+    document.getElementById('status-'+key).className='status ok';
+    document.getElementById('item-'+key).classList.add('loaded');
+    URL.revokeObjectURL(url);
+    checkReady();
+  };
+  img.src=url;
+}
+
+function checkReady(){
+  document.getElementById('btn-gen').disabled=!indexHtml;
+}
+
+function generate(){
+  if(!indexHtml){alert('Primero carga el archivo index.html');return;}
+  document.getElementById('btn-gen').disabled=true;
+  document.getElementById('log').innerHTML='';
+  setProgress(5);
+  let html=indexHtml;
+  const keys=Object.keys(MAX_WIDTH);
+  let done=0;
+  for(const key of keys){
+    const placeholder=key==='LOGO'?'__B64_LOGO__':'__B64_FOTO_'+key+'__';
+    if(photos[key]){
+      const before=html.length;
+      html=html.replaceAll(placeholder,photos[key]);
+      logMsg('✓ '+key+(html.length!==before?' — incrustado':' — placeholder no encontrado'));
+    } else {
+      logMsg('⚠ '+key+' — sin foto (omitida)');
+    }
+    done++;
+    setProgress(5+Math.round(done/keys.length*90));
+  }
+  setProgress(100);
+  logMsg('');
+  logMsg('✅ ¡Listo! Descargando index-final.html...');
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='index-final.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  document.getElementById('btn-gen').disabled=false;
+}
+</script>
+</body>
+</html>
