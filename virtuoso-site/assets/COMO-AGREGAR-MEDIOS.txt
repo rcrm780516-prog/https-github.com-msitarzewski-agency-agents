@@ -11,7 +11,7 @@ ESTRUCTURA:
     robots.txt
     sitemap.xml
     assets/
-      video/Cartoon.mp4            (video del hero, 7.5 MB, optimizado)
+      video/Cartoon.mp4            (video del hero, 3.3 MB, optimizado)
       img/
         hero-poster.jpg            (póster del hero)
         about.jpg                  (Quiénes somos)
