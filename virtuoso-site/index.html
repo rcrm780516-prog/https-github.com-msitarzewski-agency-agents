@@ -382,9 +382,6 @@ body.en .en-text{display:block;}
 
 <!-- MEDIA STYLES (video hero + portfolio + resultados) -->
 <style>
-/* Capa de fondo: copia del video difuminada que rellena los bordes (sin barras negras) */
-.hero-video-bg{display:none !important;}
-.hero-video-bg.on{opacity:1;}
 /* Capa principal: el video SIEMPRE completo (sin recorte) y lo más grande posible */
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1;opacity:0;transition:opacity 1.4s ease;pointer-events:none;}
 .hero-video.on{opacity:1;}
@@ -394,7 +391,6 @@ body.en .en-text{display:block;}
   .hero{min-height:auto;display:flex;flex-direction:column;justify-content:flex-start;
         padding:0 0 56px;background:#060504;overflow:hidden;}
   .hero-bg,.hero-grid{display:none;}
-  .hero-video-bg{display:none !important;}
   .hero-video{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:16/9;
               object-fit:cover;opacity:1 !important;margin-bottom:30px;}
   .hero-video-overlay{display:none !important;}
@@ -451,9 +447,6 @@ body.en .en-text{display:block;}
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-  <video id="heroVideoBg" class="hero-video-bg" autoplay muted loop playsinline webkit-playsinline preload="auto" aria-hidden="true">
-    <source src="assets/video/Cartoon.mp4?v=2" type="video/mp4">
-  </video>
   <video id="heroVideo" class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/img/hero-poster.jpg">
     <source src="assets/video/Cartoon.mp4?v=2" type="video/mp4">
   </video>
@@ -1673,17 +1666,14 @@ function runIntro(){
 
 /* HERO VIDEO — arranca al terminar la intro del ovni */
 function startHeroVideo(){
-  ["heroVideoBg","heroVideo"].forEach(function(id){
-    var v=document.getElementById(id);
-    if(!v)return;
-    if(getComputedStyle(v).display==="none")return; /* fondo difuminado oculto en móvil */
-    v.classList.add("on");           /* visible aunque el autoplay falle (muestra póster) */
-    if(v.dataset.started)return;
-    try{v.currentTime=0;}catch(e){}  /* arranca desde el principio al revelarse */
-    var p=v.play();
-    if(p&&p.catch)p.catch(function(){});
-    v.dataset.started="1";
-  });
+  var v=document.getElementById("heroVideo");
+  if(!v)return;
+  v.classList.add("on");           /* visible aunque el autoplay falle (muestra póster) */
+  if(v.dataset.started)return;
+  try{v.currentTime=0;}catch(e){}  /* arranca desde el principio al revelarse */
+  var p=v.play();
+  if(p&&p.catch)p.catch(function(){});
+  v.dataset.started="1";
 }
 /* Resiliencia móvil: el video se ve aunque la intro o el autoplay fallen */
 (function(){
