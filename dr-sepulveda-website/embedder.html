@@ -113,11 +113,39 @@ header p{color:#4a6272;font-size:.9rem}
         <div id="status-CIRUGIA_5" class="status waiting">Sin seleccionar</div>
       </div>
       <div class="photo-item" id="item-CIRUGIA_6">
-        <label>Foto 6 — Lesiones deportivas y mano</label>
+        <label>Foto 6 — Lesiones deportivas</label>
         <small>Tarjeta de servicio 4</small>
         <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_6')">
         <img class="preview" id="prev-CIRUGIA_6" alt="">
         <div id="status-CIRUGIA_6" class="status waiting">Sin seleccionar</div>
+      </div>
+      <div class="photo-item" id="item-CIRUGIA_10">
+        <label>Foto 10 — Cirugía robótica de rodilla</label>
+        <small>Tarjeta de servicio 5 (nueva)</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CIRUGIA_10')">
+        <img class="preview" id="prev-CIRUGIA_10" alt="">
+        <div id="status-CIRUGIA_10" class="status waiting">Sin seleccionar</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICADOS -->
+  <div class="card">
+    <h2>🎓 Certificados y Diplomas</h2>
+    <div class="photo-grid">
+      <div class="photo-item" id="item-CERT_1">
+        <label>Certificado 1 — Especialidad / Diploma</label>
+        <small>Se muestra en la sección "Certificaciones y Formación"</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CERT_1')">
+        <img class="preview" id="prev-CERT_1" alt="">
+        <div id="status-CERT_1" class="status waiting">Sin seleccionar</div>
+      </div>
+      <div class="photo-item" id="item-CERT_2">
+        <label>Certificado 2 — COFEPRIS / Registro</label>
+        <small>Segundo certificado en la sección de formación</small>
+        <input type="file" accept="image/*" onchange="loadPhoto(this,'CERT_2')">
+        <img class="preview" id="prev-CERT_2" alt="">
+        <div id="status-CERT_2" class="status waiting">Sin seleccionar</div>
       </div>
     </div>
   </div>
@@ -165,7 +193,9 @@ const MAX_WIDTH = {
   LOGO:400,
   CIRUGIA_1:700, CIRUGIA_2:600,
   CIRUGIA_3:600, CIRUGIA_4:600, CIRUGIA_5:600, CIRUGIA_6:600,
-  CIRUGIA_7:700, CIRUGIA_8:600, CIRUGIA_9:600
+  CIRUGIA_7:700, CIRUGIA_8:600, CIRUGIA_9:600,
+  CIRUGIA_10:600,
+  CERT_1:900, CERT_2:900
 };
 const QUALITY = 0.72; // peso reducido para compatibilidad móvil
 
@@ -259,7 +289,7 @@ function generate(){
   const keys=Object.keys(MAX_WIDTH);
   let done=0;
   for(const key of keys){
-    const placeholder=key==='LOGO'?'__B64_LOGO__':'__B64_FOTO_'+key+'__';
+    const placeholder=key==='LOGO'?'__B64_LOGO__':key.startsWith('CERT')?'__B64_'+key+'__':'__B64_FOTO_'+key+'__';
     if(photos[key]){
       const before=html.length;
       html=html.replaceAll(placeholder,photos[key]);

@@ -177,8 +177,9 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,37,64,0.97);backdrop-fi
 /* SERVICES */
 .services{background:var(--bg);padding:80px 0;}
 .services-inner{max-width:1180px;margin:0 auto;padding:0 24px;}
-.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;}
-@media(max-width:768px){.services-grid{grid-template-columns:1fr;}}
+.services-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:48px;}
+@media(min-width:600px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+@media(min-width:1024px){.services-grid{grid-template-columns:repeat(3,1fr);}}
 .service-card{border-radius:2px;overflow:hidden;background:var(--card);box-shadow:0 2px 16px rgba(0,0,0,0.07);}
 .service-photo{width:100%;height:260px;object-fit:contain;display:block;background:#0A2540;}
 .service-body{padding:24px;}
@@ -354,6 +355,44 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
   .blog-card{padding:24px 20px;}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;}}
+
+/* HERO LOGO IN HERO SECTION */
+.hero-logo-hero{margin-bottom:20px;}
+#hero-logo-display{height:90px;width:auto;object-fit:contain;display:block;}
+@media(min-width:769px){#hero-logo-display{height:170px;}}
+
+/* HERO INSURANCE BANNER */
+.hero-insurance{display:inline-flex;align-items:center;gap:10px;background:rgba(197,116,42,0.13);border:1px solid rgba(197,116,42,0.4);color:rgba(255,255,255,0.95);padding:11px 20px;border-radius:4px;font-family:Georgia,serif;font-size:0.88rem;font-style:italic;letter-spacing:0.03em;margin-bottom:22px;}
+.hero-insurance strong{font-style:normal;color:var(--copper);}
+
+/* HERO DOMICILIO BADGE */
+.hero-domicilio-badge{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.65);font-size:0.82rem;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.12);}
+.hero-domicilio-badge svg{color:var(--copper);flex-shrink:0;}
+
+/* GALLERY HIDDEN */
+.gallery.gallery-hidden{display:none;}
+
+/* CERTIFICATES */
+.certs{background:var(--navy);padding:80px 0;}
+.certs .section-label{color:rgba(255,255,255,0.45);}
+.certs h2{color:#fff;}
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+@media(max-width:900px){.certs-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.certs-grid{grid-template-columns:1fr;}}
+.cert-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;overflow:hidden;transition:border-color 0.2s;}
+.cert-card:hover{border-color:rgba(197,116,42,0.5);}
+.cert-img-wrap{width:100%;height:200px;overflow:hidden;background:rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;}
+.cert-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+.cert-img-placeholder{display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,0.2);}
+.cert-img-placeholder span{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;}
+.cert-body{padding:20px 22px;}
+.cert-title{font-family:Georgia,serif;font-size:1rem;color:#fff;margin-bottom:6px;line-height:1.3;}
+.cert-sub{font-size:0.75rem;color:rgba(255,255,255,0.45);letter-spacing:0.06em;text-transform:uppercase;}
+.cert-num{font-size:0.72rem;color:var(--copper);margin-top:10px;font-family:"Courier New",monospace;letter-spacing:0.04em;}
+.cert-text-card{background:rgba(255,255,255,0.04);border:1px solid rgba(197,116,42,0.3);border-radius:4px;padding:28px;display:flex;flex-direction:column;justify-content:center;min-height:290px;}
+.cert-text-card .cert-icon{margin-bottom:16px;color:var(--copper);}
+.cert-text-card .cert-title{font-size:1.05rem;margin-bottom:12px;}
+.cert-text-card .cert-sub{margin-bottom:6px;}
 </style>
 </head>
 <body>
@@ -395,18 +434,33 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
 <!-- HERO -->
 <section id="inicio" class="hero">
   <div class="hero-text">
+    <div class="hero-logo-hero">
+      <img id="hero-logo-display" src="__B64_LOGO__" alt="Dr. Víctor Sepúlveda"
+           onerror="this.style.display='none'">
+    </div>
     <p class="hero-eyebrow">Traumatólogo &amp; Ortopedista · Monterrey, NL</p>
     <h1 class="hero-title">
       <span class="name-line">Dr. Víctor</span>
       <span class="name-line accent">Sepúlveda</span>
     </h1>
     <p class="hero-subtitle">Traumatólogo y Ortopedista certificado en Monterrey, NL. Prótesis de rodilla y cadera, artroscopia, ligamento cruzado, fracturas y lesiones deportivas. Más de 12 años de experiencia.</p>
+    <div class="hero-insurance">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <strong>Aceptamos</strong>&nbsp;todos los seguros de gastos médicos mayores
+    </div>
     <div class="hero-actions">
-      <a href="#agenda" class="btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <a href="https://wa.me/528122026068?text=Hola%20Dr.%20Sep%C3%BAlveda%2C%20quiero%20agendar%20una%20cita" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+      <a href="#agenda" class="btn-outline">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Agendar cita en línea
       </a>
-      <a href="#servicios" class="btn-outline">Ver servicios</a>
+    </div>
+    <div class="hero-domicilio-badge">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Consultas a domicilio disponibles — comunícate por WhatsApp para coordinar
     </div>
     <div class="hero-stats">
       <div>
@@ -447,6 +501,10 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
     <div class="cred-item">
       <span class="cred-label">Institución</span>
       <span class="cred-val">UANL</span>
+    </div>
+    <div class="cred-item">
+      <span class="cred-label">Atención</span>
+      <span class="cred-val" style="font-size:0.85rem;">Domicilio &amp; Consultorio</span>
     </div>
   </div>
 </section>
@@ -496,9 +554,33 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
         <img class="service-photo" src="__B64_FOTO_CIRUGIA_6__" alt="Lesiones deportivas — Dr. Víctor Sepúlveda" loading="lazy">
         <div class="service-body">
           <span class="service-tag">Ortopedia deportiva</span>
-          <h3>Lesiones deportivas y mano</h3>
-          <p>Atención especializada en lesiones del deportista: desgarros ligamentarios, tendinitis, esguinces y cirugía reconstructiva de mano y muñeca. Retorno deportivo seguro.</p>
+          <h3>Lesiones deportivas</h3>
+          <p>Atención especializada en lesiones del deportista: desgarros ligamentarios, tendinitis, esguinces y cirugía reconstructiva. Protocolo de retorno deportivo seguro y progresivo.</p>
           <a href="#contacto" class="service-link">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Tarjeta 5: foto cirugía 10 — cirugía robótica -->
+      <div class="service-card">
+        <img class="service-photo" src="__B64_FOTO_CIRUGIA_10__" alt="Cirugía robótica de rodilla — Dr. Víctor Sepúlveda" loading="lazy">
+        <div class="service-body">
+          <span class="service-tag">Tecnología avanzada</span>
+          <h3>Cirugía robótica de rodilla</h3>
+          <p>Procedimiento asistido por brazo robótico para máxima precisión en el reemplazo articular de rodilla. Menor trauma óseo, mejor alineación del implante y recuperación más rápida.</p>
+          <a href="#contacto" class="service-link">Consultar →</a>
+        </div>
+      </div>
+
+      <!-- Tarjeta 6: Consultas a domicilio -->
+      <div class="service-card">
+        <div class="service-photo" style="background:linear-gradient(135deg,#0A2540 60%,#1A3A5C);display:flex;align-items:center;justify-content:center;height:260px;">
+          <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="rgba(197,116,42,0.7)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="service-body">
+          <span class="service-tag">Atención personalizada</span>
+          <h3>Consultas a domicilio</h3>
+          <p>El Dr. Sepúlveda ofrece consultas médicas en la comodidad de tu hogar para pacientes con dificultad de movilidad o postoperatorio. Evaluación clínica completa en casa.</p>
+          <a href="https://wa.me/528122026068?text=Hola%20Dr.%20Sep%C3%BAlveda%2C%20necesito%20una%20consulta%20a%20domicilio" class="service-link">Solicitar →</a>
         </div>
       </div>
 
@@ -530,11 +612,65 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
           <li>Registro COFEPRIS No. 2619012002A00339</li>
           <li>Centro Médico González — Consultorio 203, Monterrey NL</li>
         </ul>
-        <a href="#agenda" class="btn-primary" style="margin-top:8px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Agendar consulta en línea
-        </a>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+          <a href="https://wa.me/528122026068?text=Hola%20Dr.%20Sep%C3%BAlveda%2C%20quiero%20agendar%20una%20consulta" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+          <a href="#agenda" class="btn-outline" style="border-color:rgba(10,37,64,0.3);color:var(--navy);">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Cita en línea
+          </a>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificados" class="certs">
+  <div class="section-inner">
+    <span class="section-label">Formación y Certificaciones</span>
+    <h2>Respaldo académico y profesional</h2>
+    <div class="certs-grid">
+
+      <!-- Tarjeta texto: formación -->
+      <div class="cert-text-card">
+        <div class="cert-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div class="cert-title">Médico Cirujano y Partero</div>
+        <div class="cert-sub">Universidad Autónoma de Nuevo León — UANL</div>
+        <div class="cert-sub" style="margin-top:10px;">Especialidad en Traumatología y Ortopedia</div>
+        <div class="cert-num">Cédula Prof. 12556748 · Esp. 15582450</div>
+      </div>
+
+      <!-- Tarjeta imagen certificado 1 -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <img src="__B64_CERT_1__" alt="Certificado — Dr. Víctor Sepúlveda" loading="lazy"
+               onerror="this.parentElement.innerHTML='<div class=\'cert-img-placeholder\'><svg width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z\'/><polyline points=\'14 2 14 8 20 8\'/></svg><span>Agregar certificado</span></div>'">
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">Certificado de Especialidad</div>
+          <div class="cert-sub">Traumatología y Ortopedia</div>
+          <div class="cert-num">Cédula de Especialidad No. 15582450</div>
+        </div>
+      </div>
+
+      <!-- Tarjeta imagen certificado 2 -->
+      <div class="cert-card">
+        <div class="cert-img-wrap">
+          <img src="__B64_CERT_2__" alt="Registro COFEPRIS — Dr. Víctor Sepúlveda" loading="lazy"
+               onerror="this.parentElement.innerHTML='<div class=\'cert-img-placeholder\'><svg width=\'40\' height=\'40\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z\'/><polyline points=\'14 2 14 8 20 8\'/></svg><span>Agregar certificado</span></div>'">
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">Registro COFEPRIS</div>
+          <div class="cert-sub">Comisión Federal para la Protección contra Riesgos Sanitarios</div>
+          <div class="cert-num">Reg. No. 2619012002A00339</div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -545,6 +681,8 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
     <span class="section-label">Padecimientos</span>
     <h2>¿Qué tratamos? Ortopedia y Traumatología Monterrey</h2>
     <div class="cond-grid">
+      <span class="cond-chip">Prótesis de rodilla</span>
+      <span class="cond-chip">Prótesis de cadera</span>
       <span class="cond-chip">Dolor de rodilla</span>
       <span class="cond-chip">Artrosis de rodilla</span>
       <span class="cond-chip">Artrosis de cadera</span>
@@ -557,7 +695,6 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
       <span class="cond-chip">Espolón calcáneo</span>
       <span class="cond-chip">Tendinitis y bursitis</span>
       <span class="cond-chip">Hernia de disco lumbar</span>
-      <span class="cond-chip">Pie diabético</span>
       <span class="cond-chip">Lesiones deportivas</span>
       <span class="cond-chip">Osteoporosis</span>
       <span class="cond-chip">Artritis reumatoide</span>
@@ -869,6 +1006,18 @@ footer{background:#060F1A;color:rgba(255,255,255,0.4);padding:32px 0;font-size:0
   });
   var stored = localStorage.getItem('theme');
   if(stored) document.documentElement.setAttribute('data-theme', stored);
+
+  // Gallery: hidden by default, shown when nav "Galería" is clicked
+  var galSection = document.getElementById('galeria');
+  var galLink = document.querySelector('a[href="#galeria"]');
+  if(galSection){ galSection.classList.add('gallery-hidden'); }
+  if(galLink && galSection){
+    galLink.addEventListener('click',function(e){
+      e.preventDefault();
+      galSection.classList.remove('gallery-hidden');
+      setTimeout(function(){ galSection.scrollIntoView({behavior:'smooth'}); }, 60);
+    });
+  }
 })();
 </script>
 </body>
