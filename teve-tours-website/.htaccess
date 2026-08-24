@@ -1,0 +1,70 @@
+# ==========================================================================
+# TEVE Transfers & Tours — configuración del servidor (Hostinger / Apache)
+# Sube este archivo a public_html/ junto con index.html
+# IMPORTANTE: el nombre empieza con punto y NO tiene extensión: .htaccess
+# ==========================================================================
+
+# --------------------------------------------------------------------------
+# 1. Forzar HTTPS y www  (evita contenido duplicado en Google)
+# --------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http -> https
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # sin www -> con www
+  RewriteCond %{HTTP_HOST} ^tevetours\.com [NC]
+  RewriteRule ^(.*)$ https://www.tevetours.com/$1 [R=301,L]
+
+  # ------------------------------------------------------------------------
+  # 2. Rutas internas del sitio (/servicios, /tours, ...) sirven index.html
+  #    Sin esto, entrar directo a www.tevetours.com/tours daría error 404.
+  # ------------------------------------------------------------------------
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(servicios|tours|destinos|tim|blog|contacto)/?$ /index.html [L]
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 3. Compresión — la página pesa mucho menos al viajar
+# --------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json image/svg+xml
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 4. Caché del navegador — mejora la velocidad y la nota de PageSpeed
+# --------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg        "access plus 1 year"
+  ExpiresByType image/png         "access plus 1 year"
+  ExpiresByType image/webp        "access plus 1 year"
+  ExpiresByType image/svg+xml     "access plus 1 year"
+  ExpiresByType image/x-icon      "access plus 1 year"
+  ExpiresByType text/css          "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType text/html         "access plus 0 seconds"
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 5. Seguridad básica
+# --------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# No mostrar el listado de archivos de las carpetas
+Options -Indexes
+
+# Página de error personalizada
+ErrorDocument 404 /index.html
+
+# Codificación por defecto
+AddDefaultCharset UTF-8

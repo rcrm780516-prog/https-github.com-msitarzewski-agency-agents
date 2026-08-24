@@ -1,0 +1,52 @@
+CARPETA DE IMÁGENES — TEVE Transfers & Tours
+=============================================
+
+Sube aquí el logotipo y todas las fotos. Después escribe la ruta
+en el archivo teve-config.js (por ejemplo: "img/logo.png").
+
+NOMBRES SUGERIDOS Y MEDIDAS
+---------------------------
+
+  logo.png            400 x 120   PNG con fondo transparente (barra superior)
+  logo-blanco.png     400 x 120   PNG transparente en blanco (pie de página oscuro)
+  favicon.png          32 x  32   El iconito de la pestaña del navegador
+  og-teve.jpg        1200 x 630   La imagen que se ve al compartir en WhatsApp/Facebook
+
+  hero-cancun.jpg    1920 x 1080  Portada principal
+  porque-teve.jpg    1920 x  800  Fondo de la sección "¿Por qué TEVE?"
+  tim.jpg             800 x  800  Foto de Tim (se recorta en círculo)
+
+  servicio-1.jpg      800 x  500  Transfer aeropuerto
+  servicio-2.jpg      800 x  500  Chofer privado
+  servicio-3.jpg      800 x  500  Grupos
+  servicio-4.jpg      800 x  500  Catamarán
+  servicio-5.jpg      800 x  500  Yate
+  servicio-6.jpg      800 x  500  Concierge
+
+  tour-chichen.jpg    800 x  500
+  tour-tulum.jpg      800 x  500
+  tour-catamaran.jpg  800 x  500
+  tour-cenote.jpg     800 x  500
+  tour-akumal.jpg     800 x  500
+  tour-coba.jpg       800 x  500
+
+  destino-chichen.jpg  800 x 1000  (VERTICAL)
+  destino-tulum.jpg    800 x 1000  (VERTICAL)
+  destino-isla.jpg     800 x 1000  (VERTICAL)
+  destino-bacalar.jpg  800 x 1000  (VERTICAL)
+
+
+ANTES DE SUBIR
+--------------
+1. Comprime cada foto en https://squoosh.app  (deja cada una bajo 300 KB).
+2. Usa nombres sin acentos, sin espacios y en minúsculas.
+   BIEN: tour-chichen-itza.jpg
+   MAL:  Tour Chichén Itzá.JPG
+3. Formato JPG para fotos, PNG para el logo (necesita transparencia).
+
+
+NO ES OBLIGATORIO SUBIR TODO DE UNA VEZ
+---------------------------------------
+Cada imagen que dejes vacía ("") en teve-config.js se reemplaza sola por
+un fondo degradado animado con los colores de la marca. El sitio nunca se
+ve roto. Puedes ir agregando fotos poco a poco.

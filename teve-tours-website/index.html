@@ -3,37 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TEVE Transfers &amp; Tours — Transportación Privada en Cancún</title>
-<meta name="description" content="TEVE Transfers &amp; Tours: transportación privada, chofer privado y tours privados en Cancún y Riviera Maya. Reserva directo por WhatsApp.">
+
+<title>Transportación Privada y Tours en Cancún | TEVE Transfers &amp; Tours</title>
+<meta name="description" content="Transfers privados del aeropuerto de Cancún, chofer privado por día y tours a la medida en Riviera Maya. Reserva directo por WhatsApp con Tim.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="TEVE Transfers &amp; Tours">
+<link rel="canonical" href="https://www.tevetours.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TEVE Transfers &amp; Tours">
+<meta property="og:title" content="Transportación Privada y Tours en Cancún | TEVE Transfers &amp; Tours">
+<meta property="og:description" content="Transfers privados del aeropuerto de Cancún, chofer privado por día y tours a la medida en Riviera Maya.">
+<meta property="og:url" content="https://www.tevetours.com/">
+<meta property="og:locale" content="es_MX">
+<meta name="twitter:card" content="summary_large_image">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-<script type="application/ld+json">
+<!-- Datos estructurados para Google. Se sincronizan solos con teve-config.js -->
+<script type="application/ld+json" id="schemaOrg">
 {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "name": "TEVE Transfers & Tours",
+  "description": "Transportación privada, chofer privado y tours privados en Cancún y Riviera Maya.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Zona Hotelera",
     "addressLocality": "Cancún",
-    "addressRegion": "QR",
+    "addressRegion": "Quintana Roo",
     "postalCode": "77500",
     "addressCountry": "MX"
   },
   "email": "reservas@tevetours.com",
   "telephone": "+52-998-000-0000",
   "url": "https://www.tevetours.com",
+  "areaServed": ["Cancún", "Riviera Maya", "Tulum", "Playa del Carmen", "Isla Mujeres"],
   "paymentAccepted": ["cash", "credit card", "paypal"],
-  "priceRange": "$$",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "500"
-  }
+  "priceRange": "$$"
 }
 </script>
+
+<!-- ARCHIVO DE PERSONALIZACIÓN: logo, imágenes, teléfonos, precios y textos -->
+<script src="teve-config.js"></script>
 
 <style>
   :root {
@@ -47,7 +61,6 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
   body {
     font-family: var(--font);
     color: var(--primary);
@@ -57,134 +70,115 @@
   }
   img { max-width: 100%; display: block; }
   a { text-decoration: none; color: inherit; }
-  button { font-family: var(--font); cursor: pointer; border: none; background: none; }
+  button { font-family: var(--font); cursor: pointer; border: none; background: none; color: inherit; }
   ul { list-style: none; }
-  h1, h2, h3, h4 { font-weight: 700; color: var(--primary); }
+  h1, h2, h3, h4, h5 { font-weight: 700; color: var(--primary); }
 
   .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
 
-  /* ============ BUTTONS (cloned pill style) ============ */
+  /* ============ BOTONES (píldora, clonado de Odigoo) ============ */
   .btn-secondary {
-    display: inline-block;
-    background: var(--secondary);
-    color: #fff;
-    padding: 13px 32px;
-    border-radius: 100px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 0.02em;
+    display: inline-block; background: var(--secondary); color: #fff;
+    padding: 13px 32px; border-radius: 100px; font-weight: 700; font-size: 0.95rem;
+    text-transform: uppercase; text-align: center; letter-spacing: 0.02em;
     transition: background 0.25s, transform 0.15s;
   }
   .btn-secondary:hover { background: #0388bd; transform: translateY(-1px); }
 
   .btn-outline {
-    display: inline-block;
-    border: 1.5px solid var(--primary);
-    color: var(--primary);
-    padding: 11px 30px;
-    border-radius: 100px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-transform: uppercase;
+    display: inline-block; border: 1.5px solid var(--primary); color: var(--primary);
+    padding: 11px 30px; border-radius: 100px; font-weight: 700; font-size: 0.9rem;
+    text-transform: uppercase; transition: background 0.2s, color 0.2s;
   }
   .btn-outline:hover { background: var(--primary); color: #fff; }
 
   .btn-white {
-    display: inline-block;
-    background: #fff;
-    color: var(--primary);
-    padding: 10px 26px;
-    border-radius: 100px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-transform: uppercase;
+    display: inline-block; background: #fff; color: var(--primary);
+    padding: 11px 28px; border-radius: 100px; font-weight: 700; font-size: 0.85rem;
+    text-transform: uppercase; transition: background 0.2s;
   }
   .btn-white:hover { background: var(--fourth); }
 
   .btn-wa {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--wa);
-    color: #fff;
-    padding: 13px 30px;
-    border-radius: 100px;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
+    display: inline-flex; align-items: center; gap: 10px; background: var(--wa); color: #fff;
+    padding: 13px 30px; border-radius: 100px; font-weight: 700; text-transform: uppercase;
+    font-size: 0.9rem; transition: background 0.2s;
   }
   .btn-wa:hover { background: #1eb857; }
 
-  /* ============ NAV ============ */
+  /* ============ BARRA SUPERIOR ============ */
+  .topbar {
+    background: var(--primary); color: #cfe3ea; font-size: 0.78rem;
+    padding: 7px 0;
+  }
+  .topbar-inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 20px;
+    display: flex; align-items: center; justify-content: flex-end; gap: 22px; flex-wrap: wrap;
+  }
+  .topbar a { display: inline-flex; align-items: center; gap: 6px; }
+  .topbar a:hover { color: #fff; }
+
+  /* ============ NAVEGACIÓN ============ */
   .nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 200;
-    background: #fff;
-    border-bottom: 1px solid #eef2f4;
-    transition: box-shadow 0.25s;
+    position: sticky; top: 0; z-index: 200; background: #fff;
+    border-bottom: 1px solid #eef2f4; transition: box-shadow 0.25s;
   }
   .nav.scrolled { box-shadow: 0 2px 14px rgba(2,34,46,0.08); }
   .nav-inner {
-    max-width: 1280px; margin: 0 auto; padding: 14px 20px;
-    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1280px; margin: 0 auto; padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
   }
-  .logo { display: flex; flex-direction: column; line-height: 1; }
+  .logo { display: flex; align-items: center; flex-direction: column; line-height: 1; }
+  .logo img { height: 44px; width: auto; }
   .logo-word { font-size: 1.7rem; font-weight: 900; color: var(--primary); letter-spacing: 0.04em; }
   .logo-sub { font-size: 0.62rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; margin-top: 2px; }
 
-  .nav-links {
-    display: flex; align-items: center; gap: 30px;
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links .nav-link {
+    font-size: 0.92rem; font-weight: 500; color: var(--primary); padding: 6px 2px; position: relative;
   }
-  .nav-links button.nav-link {
-    font-size: 0.92rem; font-weight: 500; color: var(--primary);
-    padding: 6px 2px; position: relative;
-  }
-  .nav-links button.nav-link::after {
+  .nav-links .nav-link::after {
     content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 2px;
     background: var(--secondary); transition: width 0.2s;
   }
-  .nav-links button.nav-link:hover::after,
-  .nav-links button.nav-link.active::after { width: 100%; }
-  .nav-links button.nav-link:hover,
-  .nav-links button.nav-link.active { color: var(--secondary); }
+  .nav-links .nav-link:hover::after, .nav-links .nav-link.active::after { width: 100%; }
+  .nav-links .nav-link:hover, .nav-links .nav-link.active { color: var(--secondary); }
 
-  .nav-ham { display: none; flex-direction: column; gap: 5px; }
-  .nav-ham span { width: 24px; height: 2px; background: var(--primary); display: block; }
+  .nav-ham { display: none; flex-direction: column; gap: 5px; padding: 6px; }
+  .nav-ham span { width: 24px; height: 2px; background: var(--primary); display: block; transition: transform 0.2s, opacity 0.2s; }
+  .nav-ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-ham.open span:nth-child(2) { opacity: 0; }
+  .nav-ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   .nav-drawer { display: none; }
 
-  /* ============ HERO ============ */
+  /* ============ PORTADA ============ */
   .hero {
-    position: relative;
-    height: 92vh; min-height: 560px;
+    position: relative; height: 88vh; min-height: 540px;
     display: flex; align-items: center; justify-content: center; text-align: center;
-    color: #fff;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
+    color: #fff; overflow: hidden;
     background: linear-gradient(160deg, #02222e 0%, #063a4d 45%, #04a4e3 140%);
+    background-size: cover; background-position: center;
   }
-  .hero-veil { position: absolute; inset: 0; background: rgba(2,34,46,0.42); }
   .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.65; }
-  .hero-content { position: relative; z-index: 2; padding: 0 20px; }
-  .hero-eyebrow { font-size: 1.15rem; font-weight: 400; opacity: 0.9; margin-bottom: 6px; }
+  .hero-veil { position: absolute; inset: 0; background: rgba(2,34,46,0.45); }
+  .hero-content { position: relative; z-index: 2; padding: 0 20px; max-width: 900px; }
+  .hero-eyebrow { font-size: 1.1rem; font-weight: 400; opacity: 0.9; margin-bottom: 6px; letter-spacing: 0.04em; }
   .hero h1 { font-size: clamp(2.3rem, 6vw, 4.2rem); font-weight: 900; color: #fff; text-wrap: balance; line-height: 1.08; }
-  .hero-sub { max-width: 560px; margin: 18px auto 0; font-size: 1.05rem; opacity: 0.92; }
+  .hero-sub { max-width: 600px; margin: 18px auto 26px; font-size: 1.05rem; opacity: 0.92; }
+  .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-  /* ============ SEARCH WIDGET ============ */
-  .search-wrap { max-width: 1000px; margin: -55px auto 60px; padding: 0 20px; position: relative; z-index: 5; }
+  /* ============ BUSCADOR ============ */
+  .search-wrap { max-width: 1000px; margin: -55px auto 56px; padding: 0 20px; position: relative; z-index: 5; }
   .search-box {
-    background: #fff; border: 1px solid var(--third); border-radius: 12px;
-    padding: 14px 24px 24px; box-shadow: 0 18px 40px rgba(2,34,46,0.14);
+    background: #fff; border: 1px solid #e3e9ec; border-radius: 12px;
+    padding: 6px 24px 24px; box-shadow: 0 18px 40px rgba(2,34,46,0.14);
   }
   .search-tabs { display: flex; border-bottom: 1px solid #eee; margin-bottom: 20px; }
   .search-tab {
     flex: 1; text-align: center; padding: 14px 10px; font-weight: 700; font-size: 0.95rem;
-    color: var(--third); border-bottom: 3px solid var(--third); display: flex; align-items: center; justify-content: center; gap: 8px;
+    color: var(--third); border-bottom: 3px solid transparent;
+    display: flex; align-items: center; justify-content: center; gap: 8px; transition: color 0.2s, border-color 0.2s;
   }
   .search-tab.active { color: var(--secondary); border-bottom-color: var(--secondary); }
   .search-panel { display: none; }
@@ -193,43 +187,53 @@
   .search-field { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 6px; }
   .search-field label { font-size: 0.75rem; color: var(--third); font-weight: 500; }
   .search-field select, .search-field input {
-    border: 1px solid #ddd; border-radius: 8px; padding: 11px 12px; font-size: 0.9rem; font-family: var(--font); color: var(--primary);
+    border: 1px solid #ddd; border-radius: 8px; padding: 11px 12px;
+    font-size: 0.9rem; font-family: var(--font); color: var(--primary); background: #fff;
   }
+  .search-field select:focus, .search-field input:focus { outline: 2px solid var(--secondary); outline-offset: -1px; }
   .search-btn-wrap { display: flex; justify-content: center; margin-top: 18px; }
 
-  /* ============ SECTION GENERICS ============ */
+  /* ============ SECCIONES ============ */
   .page-section { display: none; }
-  .page-section.active { display: block; animation: fadeIn 0.4s ease; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: none; } }
+  .page-section.active { display: block; animation: fadeIn 0.35s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
   .section { padding: 70px 0; }
   .section-alt { background: var(--fourth); }
+  .section-top { padding-top: 90px; }
   .sec-head { text-align: center; margin-bottom: 42px; }
   .sec-eyebrow { font-size: 0.95rem; color: var(--third); margin-bottom: 4px; }
   .sec-title { font-size: clamp(1.7rem, 3.4vw, 2.5rem); color: var(--secondary); font-weight: 800; }
   .sec-title.dark { color: var(--primary); }
 
-  /* ============ SERVICE CARDS (Odigoo card clone) ============ */
-  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 24px; }
+  /* ============ TARJETAS DE SERVICIO ============ */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
   .svc-card {
-    border: 1px solid var(--secondary); border-radius: 12px; padding: 26px; transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid var(--secondary); border-radius: 12px; padding: 26px;
+    display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; background: #fff;
   }
   .svc-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(2,34,46,0.1); }
   .svc-img { width: 100%; aspect-ratio: 16/10; border-radius: 8px; margin-bottom: 18px; background-size: cover; background-position: center; }
   .svc-card h3 { text-align: center; color: var(--secondary); font-size: 1.15rem; margin-bottom: 12px; }
-  .svc-card p { color: #445; font-size: 0.93rem; margin-bottom: 18px; text-align: center; }
+  .svc-card p { color: #445; font-size: 0.93rem; margin-bottom: 12px; text-align: center; flex: 1; }
+  .svc-desde { text-align: center; font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
   .svc-card .btn-secondary { width: 100%; }
 
-  /* ============ TOUR CARDS ============ */
-  .tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr)); gap: 20px; }
+  /* ============ TARJETAS DE TOUR ============ */
+  .tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
   .tour-card {
-    border: 1px solid var(--third); border-radius: 8px; display: flex; flex-direction: column;
-    transition: box-shadow 0.2s;
+    border: 1px solid #e3e9ec; border-radius: 8px; display: flex; flex-direction: column;
+    overflow: hidden; background: #fff; transition: box-shadow 0.2s, transform 0.2s;
   }
-  .tour-card:hover { box-shadow: 0 12px 26px rgba(2,34,46,0.1); }
-  .tour-img { aspect-ratio: 16/10; background-size: cover; background-position: center; border-radius: 8px 8px 0 0; }
+  .tour-card:hover { box-shadow: 0 12px 26px rgba(2,34,46,0.1); transform: translateY(-3px); }
+  .tour-img { aspect-ratio: 16/10; background-size: cover; background-position: center; position: relative; }
+  .tour-badge {
+    position: absolute; top: 12px; left: 12px; background: rgba(255,255,255,0.94); color: var(--primary);
+    font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 5px 12px; border-radius: 100px;
+  }
   .tour-body { padding: 18px 18px 0; flex: 1; }
-  .tour-body h3 { font-size: 1rem; text-transform: capitalize; margin-bottom: 10px; }
+  .tour-body h3 { font-size: 1rem; margin-bottom: 10px; line-height: 1.35; }
   .tour-body p { font-size: 0.87rem; color: #556; margin-bottom: 14px; }
   .tour-price-row { display: flex; align-items: baseline; gap: 6px; }
   .tour-price-row span:first-child { font-size: 0.8rem; color: var(--third); }
@@ -237,231 +241,249 @@
   .tour-footer { padding: 14px 18px 18px; display: flex; justify-content: flex-end; }
   .tour-footer .btn-outline { padding: 8px 22px; font-size: 0.78rem; }
 
-  /* ============ DESTINATIONS (image overlay cards) ============ */
-  .dest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 18px; }
+  /* ============ DESTINOS ============ */
+  .dest-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
   .dest-card {
-    position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 4/5; cursor: pointer;
+    position: relative; border-radius: 10px; overflow: hidden; aspect-ratio: 4/5;
+    background-size: cover; background-position: center;
   }
   .dest-card canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .dest-veil { position: absolute; inset: 0; background: linear-gradient(to top, rgba(2,34,46,0.85), rgba(2,34,46,0.1) 60%); }
+  .dest-veil { position: absolute; inset: 0; background: linear-gradient(to top, rgba(2,34,46,0.88), rgba(2,34,46,0.12) 62%); }
   .dest-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; color: #fff; }
-  .dest-days { font-size: 0.78rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.05em; }
-  .dest-info h3 { color: #fff; font-size: 1.25rem; margin: 4px 0 8px; text-transform: capitalize; }
+  .dest-days { font-size: 0.75rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.05em; }
+  .dest-info h3 { color: #fff; font-size: 1.25rem; margin: 4px 0 8px; }
   .dest-info p { font-size: 0.83rem; opacity: 0.9; margin-bottom: 14px; }
 
-  /* ============ TIM / WHY SECTION ============ */
+  /* ============ SECCIÓN "POR QUÉ" / TIM ============ */
   .why-wrap {
     position: relative; padding: 90px 20px; text-align: center; color: #fff; overflow: hidden;
+    background: var(--primary); background-size: cover; background-position: center;
   }
   .why-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.9; }
-  .why-veil { position: absolute; inset: 0; background: rgba(2,34,46,0.7); }
+  .why-veil { position: absolute; inset: 0; background: rgba(2,34,46,0.72); }
   .why-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; }
   .why-inner h4 { color: var(--secondary); font-weight: 400; font-size: 1.05rem; margin-bottom: 6px; }
-  .why-inner h2 { color: #fff; font-size: clamp(1.7rem,4vw,2.6rem); margin-bottom: 20px; }
+  .why-inner h2 { color: #fff; font-size: clamp(1.7rem, 4vw, 2.6rem); margin-bottom: 20px; }
   .why-inner p { opacity: 0.92; font-size: 1rem; margin-bottom: 26px; }
-  .tim-quote { font-style: italic; font-size: 1.1rem; max-width: 560px; margin: 0 auto 26px; opacity: 0.95; }
+  .tim-photo {
+    width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+    border: 4px solid var(--secondary); margin: 0 auto 22px;
+  }
+  .tim-quote { font-style: italic; font-size: 1.1rem; max-width: 580px; margin: 0 auto 26px; opacity: 0.95; }
   .tim-quote span { display: block; font-style: normal; font-size: 0.8rem; margin-top: 8px; color: var(--secondary); }
 
-  /* ============ REVIEWS ============ */
-  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 20px; }
+  /* ============ RESEÑAS ============ */
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
   .review-card { background: var(--fourth); border-radius: 10px; padding: 24px; }
-  .stars { color: var(--secondary); font-size: 0.9rem; margin-bottom: 10px; }
+  .stars { color: var(--secondary); font-size: 0.9rem; margin-bottom: 10px; letter-spacing: 2px; }
   .review-card p.txt { font-size: 0.9rem; color: #334; margin-bottom: 14px; }
   .review-name { font-weight: 700; font-size: 0.85rem; }
   .review-loc { font-size: 0.78rem; color: var(--third); }
 
-  /* ============ BLOG CARDS ============ */
-  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 20px; }
-  .blog-card { background: var(--fourth); border-radius: 10px; padding: 22px; display: flex; flex-direction: column; }
+  /* ============ BLOG ============ */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .blog-card { background: var(--fourth); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+  .blog-img { aspect-ratio: 16/9; background-size: cover; background-position: center; }
+  .blog-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
   .blog-cat { font-size: 0.7rem; text-transform: uppercase; color: var(--secondary); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px; }
-  .blog-card h5 { font-size: 1rem; margin-bottom: 10px; }
+  .blog-card h5 { font-size: 1rem; margin-bottom: 10px; line-height: 1.35; }
   .blog-card p { font-size: 0.85rem; color: #556; flex: 1; margin-bottom: 14px; }
-  .blog-more { color: var(--secondary); text-decoration: underline; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px; }
+  .blog-more { color: var(--secondary); text-decoration: underline; font-size: 0.85rem; }
 
-  /* ============ CONTACT / FORM ============ */
-  .contact-wrap { background: var(--fourth); padding: 70px 0; border-radius: 16px; }
+  /* ============ CONTACTO ============ */
+  .contact-wrap { background: var(--fourth); padding: 60px 24px; border-radius: 16px; }
   .contact-head { text-align: center; margin-bottom: 34px; }
-  .contact-head h3 { font-size: 0.95rem; color: var(--third); font-weight: 500; }
-  .contact-head h2 { font-size: clamp(1.5rem,3vw,2.1rem); color: var(--primary); }
-  form.contact-form { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; max-width: 900px; margin: 0 auto; }
+  .contact-head h3 { font-size: 0.95rem; color: var(--third); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .contact-head h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); color: var(--primary); }
+  form.contact-form { display: flex; flex-wrap: wrap; gap: 16px; max-width: 900px; margin: 0 auto; }
   .form-item { flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: 6px; }
   .form-item label { font-size: 0.78rem; color: var(--third); }
   .form-item input, .form-item textarea, .form-item select {
-    border: 1px solid #ddd; border-radius: 6px; padding: 11px 13px; font-family: var(--font); font-size: 0.9rem;
+    border: 1px solid #ddd; border-radius: 6px; padding: 11px 13px;
+    font-family: var(--font); font-size: 0.9rem; background: #fff; color: var(--primary);
   }
+  .form-item input:focus, .form-item textarea:focus { outline: 2px solid var(--secondary); outline-offset: -1px; }
   .form-item.full { flex-basis: 100%; }
   .form-submit { flex-basis: 100%; display: flex; justify-content: center; margin-top: 8px; gap: 14px; flex-wrap: wrap; }
   .opt-row { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: #556; }
 
-  /* ============ TRUST STRIP ============ */
+  .contact-direct { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-top: 40px; }
+  .contact-chip {
+    display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid #e3e9ec;
+    border-radius: 100px; padding: 12px 24px; font-size: 0.9rem; font-weight: 500;
+  }
+  .contact-chip strong { color: var(--secondary); }
+
+  /* ============ FRANJA DE CONFIANZA ============ */
   .trust-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 26px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
   .trust-item { text-align: center; }
   .trust-num { font-size: 1.6rem; font-weight: 900; color: var(--secondary); }
   .trust-lbl { font-size: 0.75rem; color: var(--third); text-transform: uppercase; letter-spacing: 0.05em; }
 
-  /* ============ FOOTER (cloned Odigoo structure) ============ */
+  /* ============ PIE DE PÁGINA ============ */
   .footer-newsletter { background: var(--secondary); color: #fff; padding: 50px 20px; text-align: center; }
-  .footer-newsletter h4 { font-weight: 300; font-size: 1rem; }
-  .footer-newsletter h2 { color: #fff; font-size: clamp(1.6rem,4vw,2.6rem); margin: 6px 0 24px; }
+  .footer-newsletter h4 { font-weight: 300; font-size: 1rem; color: #fff; }
+  .footer-newsletter h2 { color: #fff; font-size: clamp(1.6rem, 4vw, 2.6rem); margin: 6px 0 24px; }
   .nl-form { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; max-width: 560px; margin: 0 auto; }
-  .nl-form input { flex: 1; min-width: 220px; border: none; border-radius: 100px; padding: 12px 18px; font-family: var(--font); }
+  .nl-form input { flex: 1; min-width: 220px; border: none; border-radius: 100px; padding: 12px 20px; font-family: var(--font); }
 
   .footer-main { background: var(--primary); color: #cfe3ea; padding: 46px 20px 0; }
+  .footer-logo { text-align: center; margin-bottom: 30px; }
+  .footer-logo img { height: 48px; width: auto; margin: 0 auto; }
   .footer-tabs { display: flex; max-width: 700px; margin: 0 auto; border-radius: 6px 6px 0 0; overflow: hidden; }
-  .footer-tabs button { flex: 1; padding: 14px; font-weight: 600; font-size: 0.9rem; text-transform: capitalize; }
+  .footer-tabs button { flex: 1; padding: 14px; font-weight: 600; font-size: 0.9rem; }
   .footer-tabs button.active { background: #fff; color: var(--primary); }
   .footer-tabs button:not(.active) { background: var(--primary); color: #fff; border: 1px solid #133a4a; }
   .footer-panel { display: none; padding: 30px 0; text-align: center; }
   .footer-panel.active { display: block; }
   .footer-block { margin-bottom: 26px; }
-  .footer-block h4 { color: #fff; font-size: 0.95rem; margin-bottom: 14px; text-transform: capitalize; font-weight: 500; }
+  .footer-block h4 { color: #fff; font-size: 0.95rem; margin-bottom: 14px; font-weight: 500; }
   .phone-pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-  .phone-pill { border: 1px solid #fff; border-radius: 100px; padding: 8px 20px; font-size: 0.85rem; color: #fff; }
-  .social-row { display: flex; gap: 18px; justify-content: center; margin-top: 6px; }
-  .social-row a { width: 40px; height: 40px; border: 1px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem; }
+  .phone-pill { border: 1px solid #fff; border-radius: 100px; padding: 8px 20px; font-size: 0.85rem; color: #fff; transition: background 0.2s; }
+  .phone-pill:hover { background: rgba(255,255,255,0.12); }
+  .social-row { display: flex; gap: 14px; justify-content: center; }
+  .social-row a {
+    width: 40px; height: 40px; border: 1px solid #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: #fff; transition: background 0.2s;
+  }
+  .social-row a:hover { background: rgba(255,255,255,0.14); }
+  .social-row svg { width: 18px; height: 18px; fill: currentColor; }
 
-  .discover-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 20px; text-align: left; max-width: 900px; margin: 0 auto; }
+  .discover-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: left; max-width: 900px; margin: 0 auto; }
   .discover-cols h5 { color: #fff; font-size: 0.85rem; margin-bottom: 10px; font-weight: 600; }
-  .discover-cols li a { font-size: 0.78rem; color: #9fc2cf; display: block; padding: 3px 0; }
-  .discover-cols li a:hover { color: #fff; }
+  .discover-cols a { font-size: 0.78rem; color: #9fc2cf; display: block; padding: 3px 0; }
+  .discover-cols a:hover { color: #fff; }
 
   .footer-bottom { text-align: center; padding: 26px 0; border-top: 1px solid #133a4a; margin-top: 10px; }
   .footer-links { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; margin-bottom: 14px; }
   .footer-links a { font-size: 0.78rem; color: #9fc2cf; text-decoration: underline; }
   .footer-copy { font-size: 0.75rem; color: #7fa3b0; }
 
-  /* ============ WA FLOAT ============ */
+  /* ============ BOTÓN FLOTANTE WHATSAPP ============ */
   .wa-float {
     position: fixed; bottom: 22px; right: 22px; z-index: 300;
     width: 58px; height: 58px; border-radius: 50%; background: var(--wa);
-    display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 20px rgba(37,211,102,0.45);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.45); transition: transform 0.2s;
   }
-  .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+  .wa-float:hover { transform: scale(1.07); }
+  .wa-float svg { width: 30px; height: 30px; fill: #fff; }
 
-  /* ============ RESPONSIVE ============ */
+  /* ============ RESPONSIVO ============ */
   @media (max-width: 880px) {
     .nav-links { display: none; }
     .nav-ham { display: flex; }
     .nav-drawer.open {
-      display: flex; flex-direction: column; position: fixed; top: 62px; left: 0; right: 0; bottom: 0;
-      background: #fff; padding: 26px 24px; gap: 20px; z-index: 199; overflow-y: auto;
+      display: flex; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: #fff; padding: 84px 24px 26px; gap: 4px; z-index: 199; overflow-y: auto;
     }
-    .nav-drawer button.nav-link { font-size: 1.05rem; text-align: left; padding: 10px 0; border-bottom: 1px solid #eee; }
+    .nav-drawer .nav-link { font-size: 1.05rem; text-align: left; padding: 14px 0; border-bottom: 1px solid #eee; }
+    .nav-drawer .btn-secondary { margin-top: 18px; }
     .search-wrap { margin-top: -35px; }
     .footer-tabs { max-width: 100%; }
+    .topbar-inner { justify-content: center; }
+    .hero { height: auto; padding: 90px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .page-section.active { animation: none; }
+    * { transition: none !important; }
   }
 </style>
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
+<!-- ============ BARRA SUPERIOR ============ -->
+<div class="topbar">
+  <div class="topbar-inner" id="topbarInner"></div>
+</div>
+
+<!-- ============ NAVEGACIÓN ============ -->
 <nav class="nav" id="mainNav">
   <div class="nav-inner">
-    <button class="logo" onclick="showPage('home')" aria-label="Inicio TEVE">
-      <span class="logo-word">TEVE</span>
-      <span class="logo-sub">Transfers &amp; Tours</span>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <button class="nav-link active" data-page="home" onclick="showPage('home')">Inicio</button>
-      <button class="nav-link" data-page="servicios" onclick="showPage('servicios')">Servicios</button>
-      <button class="nav-link" data-page="tours" onclick="showPage('tours')">Tours Privados</button>
-      <button class="nav-link" data-page="destinos" onclick="showPage('destinos')">Destinos</button>
-      <button class="nav-link" data-page="tim" onclick="showPage('tim')">Conoce a Tim</button>
-      <button class="nav-link" data-page="blog" onclick="showPage('blog')">Blog de Viajes</button>
-      <button class="btn-secondary" style="padding:10px 24px; font-size:0.82rem;" onclick="showPage('contacto')">Contáctanos</button>
-    </div>
-    <button class="nav-ham" id="hamBtn" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    <a class="logo" href="/" data-page="home" id="navLogo" aria-label="Inicio TEVE Transfers &amp; Tours"></a>
+    <div class="nav-links" id="navLinks"></div>
+    <button class="nav-ham" id="hamBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
-  <div class="nav-drawer" id="navDrawer">
-    <button class="nav-link" data-page="home" onclick="showPage('home')">Inicio</button>
-    <button class="nav-link" data-page="servicios" onclick="showPage('servicios')">Servicios</button>
-    <button class="nav-link" data-page="tours" onclick="showPage('tours')">Tours Privados</button>
-    <button class="nav-link" data-page="destinos" onclick="showPage('destinos')">Destinos</button>
-    <button class="nav-link" data-page="tim" onclick="showPage('tim')">Conoce a Tim</button>
-    <button class="nav-link" data-page="blog" onclick="showPage('blog')">Blog de Viajes</button>
-    <button class="btn-secondary" onclick="showPage('contacto')">Contáctanos</button>
-  </div>
+  <div class="nav-drawer" id="navDrawer"></div>
 </nav>
 
-<!-- ============ HOME PAGE ============ -->
+<!-- ============ INICIO ============ -->
 <div class="page-section active" id="page-home">
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <canvas id="heroCanvas"></canvas>
+  <section class="hero" id="heroSection">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
     <div class="hero-veil"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">TEVE Transfers &amp; Tours</div>
-      <h1>Vive Cancún<br>a tu Manera</h1>
-      <p class="hero-sub">Transportación privada y tours a la medida en Cancún y Riviera Maya. Un solo chofer de confianza, del aeropuerto a tus recuerdos.</p>
+      <div class="hero-eyebrow" id="heroEyebrow"></div>
+      <h1 id="heroTitle"></h1>
+      <p class="hero-sub" id="heroSub"></p>
+      <div class="hero-cta">
+        <a class="btn-secondary" href="/servicios" data-page="servicios">Ver Servicios</a>
+        <button class="btn-wa" onclick="waMsg('¡Hola! Quiero cotizar un servicio privado en Cancún.')">Cotizar por WhatsApp</button>
+      </div>
     </div>
   </section>
 
   <div class="search-wrap">
     <div class="search-box">
       <div class="search-tabs">
-        <button class="search-tab active" onclick="showTab('transfer')">🚐 Traslados</button>
-        <button class="search-tab" onclick="showTab('tour')">📍 Tours</button>
+        <button class="search-tab active" data-tab="transfer">🚐 Traslados</button>
+        <button class="search-tab" data-tab="tour">📍 Tours</button>
       </div>
       <div class="search-panel active" id="panel-transfer">
         <div class="search-fields">
           <div class="search-field">
-            <label>Tipo</label>
-            <select>
+            <label for="f-tipo">Tipo de servicio</label>
+            <select id="f-tipo">
               <option>Aeropuerto → Hotel</option>
               <option>Hotel → Aeropuerto</option>
-              <option>Aeropuerto → Hotel → Aeropuerto</option>
+              <option>Redondo (ida y vuelta)</option>
             </select>
           </div>
           <div class="search-field">
-            <label>Desde</label>
-            <input type="text" placeholder="Aeropuerto Internacional de Cancún" value="Aeropuerto Internacional de Cancún">
+            <label for="f-desde">Desde</label>
+            <input id="f-desde" type="text" value="Aeropuerto Internacional de Cancún">
           </div>
           <div class="search-field">
-            <label>Hacia</label>
-            <input type="text" placeholder="Nombre de tu hotel">
+            <label for="f-hacia">Hacia</label>
+            <input id="f-hacia" type="text" placeholder="Nombre de tu hotel">
           </div>
           <div class="search-field">
-            <label>Fecha Llegada</label>
-            <input type="date">
+            <label for="f-fecha">Fecha de llegada</label>
+            <input id="f-fecha" type="date">
           </div>
           <div class="search-field">
-            <label>Pasajeros</label>
-            <input type="number" min="1" value="2">
+            <label for="f-pax">Pasajeros</label>
+            <input id="f-pax" type="number" min="1" value="2">
           </div>
         </div>
         <div class="search-btn-wrap">
-          <button class="btn-secondary" onclick="waSearch('traslado')">Buscar</button>
+          <button class="btn-secondary" onclick="buscarTraslado()">Cotizar Traslado</button>
         </div>
       </div>
       <div class="search-panel" id="panel-tour">
         <div class="search-fields">
           <div class="search-field">
-            <label>Destino / Experiencia</label>
-            <input type="text" placeholder="Chichén Itzá, Tulum, Isla Mujeres...">
+            <label for="t-destino">Destino o experiencia</label>
+            <input id="t-destino" type="text" placeholder="Chichén Itzá, Tulum, Isla Mujeres...">
           </div>
           <div class="search-field">
-            <label>Fecha</label>
-            <input type="date">
+            <label for="t-fecha">Fecha</label>
+            <input id="t-fecha" type="date">
           </div>
           <div class="search-field">
-            <label>Pasajeros</label>
-            <input type="number" min="1" value="2">
+            <label for="t-pax">Pasajeros</label>
+            <input id="t-pax" type="number" min="1" value="2">
           </div>
         </div>
         <div class="search-btn-wrap">
-          <button class="btn-secondary" onclick="waSearch('tour')">Buscar</button>
+          <button class="btn-secondary" onclick="buscarTour()">Cotizar Tour</button>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container">
-    <div class="trust-strip">
-      <div class="trust-item"><div class="trust-num">500+</div><div class="trust-lbl">Viajeros Felices</div></div>
-      <div class="trust-item"><div class="trust-num">5.0★</div><div class="trust-lbl">TripAdvisor</div></div>
-      <div class="trust-item"><div class="trust-num">8+</div><div class="trust-lbl">Años en Cancún</div></div>
-      <div class="trust-item"><div class="trust-num">USD</div><div class="trust-lbl">CAD y AUD aceptados</div></div>
-    </div>
+    <div class="trust-strip" id="trustStrip"></div>
   </div>
 
   <section class="section">
@@ -470,26 +492,7 @@
         <div class="sec-eyebrow">Lo que ofrecemos</div>
         <h2 class="sec-title">Nuestros Servicios de Transportación</h2>
       </div>
-      <div class="services-grid">
-        <div class="svc-card">
-          <div class="svc-img" style="background:linear-gradient(135deg,#04a4e3,#02222e);"></div>
-          <h3>Transportación Privada</h3>
-          <p>Viaja seguro y cómodo a cualquier lugar de Cancún, la Riviera Maya, Tulum o Chichén Itzá en nuestros vehículos privados. Disponibles 365 días.</p>
-          <button class="btn-secondary" onclick="showPage('servicios')">¡Quiero Información!</button>
-        </div>
-        <div class="svc-card">
-          <div class="svc-img" style="background:linear-gradient(135deg,#0a3a4f,#04a4e3);"></div>
-          <h3>Traslados del Aeropuerto</h3>
-          <p>Shuttle privado desde el aeropuerto de Cancún a cualquier lugar de la Riviera Maya. Tu conductor te espera, aunque tu vuelo se retrase.</p>
-          <button class="btn-secondary" onclick="showPage('servicios')">¡Reserva Hoy Mismo!</button>
-        </div>
-        <div class="svc-card">
-          <div class="svc-img" style="background:linear-gradient(135deg,#02222e,#0388bd);"></div>
-          <h3>Chofer Privado por Día</h3>
-          <p>Tu propio chofer bilingüe por horas o por día. Ideal para estadías largas: playas, restaurantes, compras, todo a tu ritmo.</p>
-          <button class="btn-secondary" onclick="showPage('servicios')">¡Obtener Cotización!</button>
-        </div>
-      </div>
+      <div class="services-grid" id="homeServicesGrid"></div>
     </div>
   </section>
 
@@ -500,74 +503,40 @@
         <h2 class="sec-title dark">Tours Privados Destacados</h2>
       </div>
       <div class="tours-grid" id="homeToursGrid"></div>
+      <div style="text-align:center; margin-top:34px;">
+        <a class="btn-outline" href="/tours" data-page="tours">Ver Todos los Tours</a>
+      </div>
     </div>
   </section>
 
-  <section class="why-wrap">
-    <canvas id="whyCanvasHome"></canvas>
+  <section class="why-wrap" id="whyHome">
+    <canvas id="whyCanvasHome" aria-hidden="true"></canvas>
     <div class="why-veil"></div>
     <div class="why-inner">
       <h4>¿Por qué TEVE?</h4>
       <h2>¿Qué nos hace diferentes?</h2>
       <p>TEVE Transfers &amp; Tours es la opción líder en transportación privada y tours a la medida en Cancún, Tulum y la Riviera Maya. Un solo chofer de confianza que te acompaña desde el aeropuerto hasta tu último día de vacaciones. Sin sorpresas, sin shuttles compartidos: tu experiencia, diseñada para ti.</p>
-      <button class="btn-white" onclick="showPage('contacto')">Permítenos Planear Tu Viaje</button>
+      <a class="btn-white" href="/contacto" data-page="contacto">Permítenos Planear Tu Viaje</a>
     </div>
   </section>
 </div>
 
-<!-- ============ SERVICIOS PAGE ============ -->
+<!-- ============ SERVICIOS ============ -->
 <div class="page-section" id="page-servicios">
-  <section class="section" style="padding-top:130px;">
+  <section class="section section-top">
     <div class="container">
       <div class="sec-head">
         <div class="sec-eyebrow">Transportación en Cancún</div>
         <h2 class="sec-title">Servicios Privados TEVE</h2>
       </div>
-      <div class="services-grid">
-        <div class="svc-card">
-          <div class="svc-img" style="background:linear-gradient(135deg,#04a4e3,#02222e);"></div>
-          <h3>Transfer Privado Aeropuerto ↔ Hotel</h3>
-          <p>Recepción con letrero en el aeropuerto, ayuda con equipaje y vehículo con aire acondicionado. Desde $45 USD por trayecto.</p>
-          <button class="btn-secondary" onclick="waMsg('Hola, quiero cotizar un transfer privado aeropuerto-hotel.')">Cotizar Ahora</button>
-        </div>
-        <div class="svc-card">
-          <div class="svc-img" style="background:linear-gradient(135deg,#0a3a4f,#04a4e3);"></div>
-          <h3>Chofer Privado por Día</h3>
-          <p>Van de lujo y chofer bilingüe a tu disposición por horas o el día completo. Desde $180 USD/día.</p>
-          <button class="btn-secondary" onclick="waMsg('Hola, quiero contratar un chofer privado por día.')">Cotizar Ahora</button>
-        </div>
-        <div class="svc-card">
-          <div class="svc-img" style="background:linear-gradient(135deg,#02222e,#0388bd);"></div>
-          <h3>Transportación para Grupos</h3>
-          <p>¿Planeas una conferencia, boda o evento corporativo? Contamos con flotilla y logística a la medida. Desde $650 USD.</p>
-          <button class="btn-secondary" onclick="waMsg('Hola, necesito transportación privada para un grupo.')">Cotizar Ahora</button>
-        </div>
-        <div class="svc-card">
-          <div class="svc-img" style="background:linear-gradient(135deg,#0388bd,#02222e);"></div>
-          <h3>Catamarán a Isla Mujeres</h3>
-          <p>Zarpa hacia Isla Mujeres, snorkel incluido y tiempo libre en la isla. Coordinado por tu chofer TEVE. Desde $95 USD.</p>
-          <button class="btn-secondary" onclick="waMsg('Hola, quiero información del catamarán a Isla Mujeres.')">Cotizar Ahora</button>
-        </div>
-        <div class="svc-card">
-          <div class="svc-img" style="background:linear-gradient(135deg,#04a4e3,#0a3a4f);"></div>
-          <h3>Renta de Yate Privado</h3>
-          <p>Desde una lancha deportiva hasta un catamarán de lujo. Día de pesca, atardecer o isla privada. Desde $650 USD/medio día.</p>
-          <button class="btn-secondary" onclick="waMsg('Hola, quiero rentar un yate privado.')">Cotizar Ahora</button>
-        </div>
-        <div class="svc-card">
-          <div class="svc-img" style="background:linear-gradient(135deg,#02222e,#04a4e3);"></div>
-          <h3>Travel Concierge</h3>
-          <p>Planeación completa de tu itinerario: reservaciones, actividades y recomendaciones locales de quien vive aquí.</p>
-          <button class="btn-secondary" onclick="waMsg('Hola, quiero un travel concierge para mi viaje.')">Cotizar Ahora</button>
-        </div>
-      </div>
+      <div class="services-grid" id="servicesGridFull"></div>
     </div>
   </section>
 </div>
 
-<!-- ============ TOURS PAGE ============ -->
+<!-- ============ TOURS ============ -->
 <div class="page-section" id="page-tours">
-  <section class="section" style="padding-top:130px;">
+  <section class="section section-top">
     <div class="container">
       <div class="sec-head">
         <div class="sec-eyebrow">Los Mejores</div>
@@ -578,71 +547,31 @@
   </section>
 </div>
 
-<!-- ============ DESTINOS PAGE ============ -->
+<!-- ============ DESTINOS ============ -->
 <div class="page-section" id="page-destinos">
-  <section class="section" style="padding-top:130px;">
+  <section class="section section-top">
     <div class="container">
       <div class="sec-head">
         <div class="sec-eyebrow">A Donde Te Llevamos</div>
         <h2 class="sec-title">Destinos Privados</h2>
       </div>
-      <div class="dest-grid">
-        <div class="dest-card">
-          <canvas class="dest-canvas" data-palette="jungle"></canvas>
-          <div class="dest-veil"></div>
-          <div class="dest-info">
-            <div class="dest-days">Medio día o día completo</div>
-            <h3>Chichén Itzá</h3>
-            <p>2.5 hrs desde Cancún · Guía privado incluido</p>
-            <button class="btn-white" onclick="waMsg('Hola, quiero cotizar un tour privado a Chichén Itzá.')">Descubrir Más</button>
-          </div>
-        </div>
-        <div class="dest-card">
-          <canvas class="dest-canvas" data-palette="coastal"></canvas>
-          <div class="dest-veil"></div>
-          <div class="dest-info">
-            <div class="dest-days">Excursión de un día</div>
-            <h3>Tulum</h3>
-            <p>1.5 hrs desde Cancún · Ruinas y cenotes</p>
-            <button class="btn-white" onclick="waMsg('Hola, quiero cotizar un tour privado a Tulum.')">Descubrir Más</button>
-          </div>
-        </div>
-        <div class="dest-card">
-          <canvas class="dest-canvas" data-palette="ocean"></canvas>
-          <div class="dest-veil"></div>
-          <div class="dest-info">
-            <div class="dest-days">Día completo</div>
-            <h3>Isla Mujeres</h3>
-            <p>30 min en ferry · Catamarán disponible</p>
-            <button class="btn-white" onclick="waMsg('Hola, quiero cotizar un tour a Isla Mujeres.')">Descubrir Más</button>
-          </div>
-        </div>
-        <div class="dest-card">
-          <canvas class="dest-canvas" data-palette="lagoon"></canvas>
-          <div class="dest-veil"></div>
-          <div class="dest-info">
-            <div class="dest-days">Con opción de noche</div>
-            <h3>Bacalar y Holbox</h3>
-            <p>3-4 hrs · Magia fuera del camino turístico</p>
-            <button class="btn-white" onclick="waMsg('Hola, quiero cotizar un tour a Bacalar y Holbox.')">Descubrir Más</button>
-          </div>
-        </div>
-      </div>
+      <div class="dest-grid" id="destGrid"></div>
     </div>
   </section>
 </div>
 
-<!-- ============ TIM PAGE ============ -->
+<!-- ============ TIM ============ -->
 <div class="page-section" id="page-tim">
-  <section class="why-wrap" style="padding-top:150px;">
-    <canvas id="whyCanvasTim"></canvas>
+  <section class="why-wrap" id="whyTim" style="padding-top:110px;">
+    <canvas id="whyCanvasTim" aria-hidden="true"></canvas>
     <div class="why-veil"></div>
     <div class="why-inner">
       <h4>Conoce a tu Guía</h4>
-      <h2>Tim — Tu Persona de Confianza en Cancún</h2>
-      <p class="tim-quote">"Tim fue mucho más que un chofer, se volvió parte de nuestras vacaciones. Sabía exactamente a dónde llevarnos y todo fluyó sin esfuerzo."<span>— Sarah M., Toronto · TripAdvisor</span></p>
-      <p>Tim lleva más de 8 años guiando viajeros por Cancún y la Riviera Maya. Bilingüe, conectado con la cultura local y genuinamente comprometido con hacer inolvidable tu viaje — por eso su nombre aparece de forma espontánea en cientos de reseñas de cinco estrellas.</p>
-      <button class="btn-white" onclick="waMsg('Hola Tim! Quiero reservar un servicio privado contigo.')">Escríbele a Tim por WhatsApp</button>
+      <img class="tim-photo" id="timPhoto" alt="Tim, chofer y guía privado en Cancún" style="display:none;">
+      <h2 id="timTitulo"></h2>
+      <p class="tim-quote" id="timCita"></p>
+      <p id="timBio"></p>
+      <button class="btn-white" id="timBoton"></button>
     </div>
   </section>
 
@@ -652,140 +581,98 @@
         <div class="sec-eyebrow">Reseñas Reales</div>
         <h2 class="sec-title dark">Lo Que Dicen Nuestros Viajeros</h2>
       </div>
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="txt">"Tim se encargó de todo: aeropuerto, Chichén Itzá, cenote, comida. Nunca sentimos prisa y sabía cada rincón para evitar las multitudes."</p>
-          <div class="review-name">Jennifer K.</div>
-          <div class="review-loc">Houston, Texas 🇺🇸</div>
-        </div>
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="txt">"Como canadienses pasando 6 semanas cada invierno en Cancún, encontrar transportación confiable era nuestra mayor preocupación. Tim la resolvió por completo."</p>
-          <div class="review-name">Robert &amp; Linda S.</div>
-          <div class="review-loc">Vancouver, BC 🇨🇦</div>
-        </div>
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="txt">"Llegamos desde Sydney sin saber nada de la zona. Tim se volvió nuestro concierge no oficial. Ya lo recomendé a cuatro amigos."</p>
-          <div class="review-name">Michael P.</div>
-          <div class="review-loc">Sydney, Australia 🇦🇺</div>
-        </div>
-      </div>
+      <div class="reviews-grid" id="reviewsGrid"></div>
     </div>
   </section>
 </div>
 
-<!-- ============ BLOG PAGE ============ -->
+<!-- ============ BLOG ============ -->
 <div class="page-section" id="page-blog">
-  <section class="section" style="padding-top:130px;">
+  <section class="section section-top">
     <div class="container">
       <div class="sec-head">
         <div class="sec-eyebrow">Guía de Viaje</div>
         <h2 class="sec-title">Planea tu Viaje a Cancún</h2>
       </div>
-      <div class="blog-grid">
-        <div class="blog-card">
-          <div class="blog-cat">Aeropuerto y Traslados</div>
-          <h5>Transfer Privado vs Compartido: ¿Cuál te conviene?</h5>
-          <p>Comparamos ambas opciones para que decidas con datos reales antes de reservar tu próximo viaje.</p>
-          <a class="blog-more" href="#" onclick="return false;">Ver más →</a>
-        </div>
-        <div class="blog-card">
-          <div class="blog-cat">Tours Privados</div>
-          <h5>Chichén Itzá Privado desde Cancún: Guía Completa 2026</h5>
-          <p>Hora ideal de llegada, qué llevar, mejor parada para comer y por qué un guía privado cambia la experiencia.</p>
-          <a class="blog-more" href="#" onclick="return false;">Ver más →</a>
-        </div>
-        <div class="blog-card">
-          <div class="blog-cat">Para Viajeros Canadienses</div>
-          <h5>Estadías de Invierno en Cancún: Guía de Transporte</h5>
-          <p>Todo lo que necesitas saber sobre transportación privada recurrente para estadías de 4 a 8 semanas.</p>
-          <a class="blog-more" href="#" onclick="return false;">Ver más →</a>
-        </div>
-      </div>
+      <div class="blog-grid" id="blogGrid"></div>
     </div>
   </section>
 </div>
 
-<!-- ============ CONTACTO PAGE ============ -->
+<!-- ============ CONTACTO ============ -->
 <div class="page-section" id="page-contacto">
-  <section class="section" style="padding-top:130px;">
+  <section class="section section-top">
     <div class="container">
       <div class="contact-wrap">
         <div class="contact-head">
-          <h3>¿PLANEAS UN VIAJE A CANCÚN?</h3>
-          <h2>NUESTRO EQUIPO ESTÁ LISTO PARA AYUDARTE</h2>
+          <h3>¿Planeas un viaje a Cancún?</h3>
+          <h2>Nuestro equipo está listo para ayudarte</h2>
         </div>
-        <form class="contact-form" onsubmit="submitContact(event)">
-          <div class="form-item"><label>Nombre(s)*</label><input type="text" required></div>
-          <div class="form-item"><label>Apellido(s)*</label><input type="text" required></div>
-          <div class="form-item"><label>Correo Electrónico*</label><input type="email" required></div>
-          <div class="form-item"><label>Teléfono*</label><input type="tel" required></div>
-          <div class="form-item"><label>Fecha de Llegada</label><input type="date"></div>
-          <div class="form-item"><label>Fecha de Salida</label><input type="date"></div>
-          <div class="form-item"><label>Adultos</label><input type="number" min="1" value="2"></div>
-          <div class="form-item"><label>Menores</label><input type="number" min="0" value="0"></div>
-          <div class="form-item full"><label>Descripción / Servicio de Interés</label><textarea rows="4"></textarea></div>
-          <div class="form-item full" style="flex-direction:row; gap:20px; justify-content:center;">
+        <form class="contact-form" onsubmit="enviarContacto(event)">
+          <div class="form-item"><label for="c-nombre">Nombre(s)*</label><input id="c-nombre" type="text" required></div>
+          <div class="form-item"><label for="c-apellido">Apellido(s)*</label><input id="c-apellido" type="text" required></div>
+          <div class="form-item"><label for="c-email">Correo electrónico*</label><input id="c-email" type="email" required></div>
+          <div class="form-item"><label for="c-tel">Teléfono*</label><input id="c-tel" type="tel" required></div>
+          <div class="form-item"><label for="c-llegada">Fecha de llegada</label><input id="c-llegada" type="date"></div>
+          <div class="form-item"><label for="c-salida">Fecha de salida</label><input id="c-salida" type="date"></div>
+          <div class="form-item"><label for="c-adultos">Adultos</label><input id="c-adultos" type="number" min="1" value="2"></div>
+          <div class="form-item"><label for="c-menores">Menores</label><input id="c-menores" type="number" min="0" value="0"></div>
+          <div class="form-item full"><label for="c-msg">Servicio de interés / comentarios</label><textarea id="c-msg" rows="4"></textarea></div>
+          <div class="form-item full" style="flex-direction:row; gap:20px; justify-content:center; flex-wrap:wrap;">
             <label class="opt-row"><input type="checkbox" checked> Recibir alertas por SMS</label>
-            <label class="opt-row"><input type="checkbox" checked> Recibir alertas por Email</label>
+            <label class="opt-row"><input type="checkbox" checked> Recibir alertas por email</label>
           </div>
           <div class="form-submit">
-            <button type="submit" class="btn-secondary">Enviar</button>
-            <button type="button" class="btn-wa" onclick="waMsg('Hola Tim! Quiero cotizar un servicio con TEVE Transfers & Tours.')">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
-              Escríbenos por WhatsApp
+            <button type="submit" class="btn-wa">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+              Enviar por WhatsApp
             </button>
           </div>
         </form>
+        <div class="contact-direct" id="contactDirect"></div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ============ WHATSAPP FLOAT ============ -->
-<a class="wa-float" href="https://wa.me/529980000000?text=Hola!%20Quiero%20informaci%C3%B3n%20de%20un%20servicio%20privado%20en%20Canc%C3%BAn." target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+<!-- ============ BOTÓN FLOTANTE WHATSAPP ============ -->
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
 </a>
 
-<!-- ============ FOOTER ============ -->
+<!-- ============ PIE DE PÁGINA ============ -->
 <footer>
   <div class="footer-newsletter">
     <h4>Tu próxima aventura empieza aquí</h4>
     <h2>Recibe inspiración en tu correo</h2>
-    <div class="nl-form">
-      <input type="email" placeholder="Tu correo electrónico">
-      <button class="btn-white" onclick="alert('¡Gracias por suscribirte!')">Enviar</button>
-    </div>
+    <form class="nl-form" onsubmit="suscribir(event)">
+      <input type="email" id="nlEmail" placeholder="Tu correo electrónico" required aria-label="Tu correo electrónico">
+      <button class="btn-white" type="submit">Suscribirme</button>
+    </form>
   </div>
 
   <div class="footer-main">
+    <div class="footer-logo" id="footerLogo"></div>
     <div class="footer-tabs">
-      <button id="ftab-contact" class="active" onclick="showFooterTab('contact')">Contacto</button>
-      <button id="ftab-discover" onclick="showFooterTab('discover')">Descubrir</button>
+      <button id="ftab-contact" class="active" data-ftab="contact">Contacto</button>
+      <button id="ftab-discover" data-ftab="discover">Descubrir</button>
     </div>
 
     <div class="footer-panel active" id="fpanel-contact">
       <div class="footer-block">
         <h4>Llámanos</h4>
-        <div class="phone-pills">
-          <span class="phone-pill">USA: (786) 409-0545</span>
-          <span class="phone-pill">Toll Free: (800) 704-5202</span>
-          <span class="phone-pill">MX: (998) 000-0000</span>
-        </div>
+        <div class="phone-pills" id="footerPhones"></div>
       </div>
       <div class="footer-block">
         <h4>Envíanos un correo</h4>
-        <a href="mailto:reservas@tevetours.com" style="color:#fff;">reservas@tevetours.com</a>
+        <a id="footerEmail" href="#" style="color:#fff; text-decoration:underline;"></a>
+      </div>
+      <div class="footer-block" id="footerSocialBlock">
+        <h4>Redes Sociales</h4>
+        <div class="social-row" id="footerSocial"></div>
       </div>
       <div class="footer-block">
-        <h4>Redes Sociales</h4>
-        <div class="social-row">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="Instagram">ig</a>
-          <a href="https://wa.me/529980000000" aria-label="WhatsApp">wa</a>
-        </div>
+        <h4 id="footerHorario" style="font-weight:400; color:#9fc2cf;"></h4>
       </div>
     </div>
 
@@ -793,112 +680,516 @@
       <div class="discover-cols">
         <div>
           <h5>Cancún</h5>
-          <ul>
-            <li><a href="#" onclick="showPage('destinos');return false;">¿Qué Ver?</a></li>
-            <li><a href="#" onclick="showPage('servicios');return false;">Traslados y Transportación</a></li>
-            <li><a href="#" onclick="showPage('tours');return false;">Tours</a></li>
-            <li><a href="#" onclick="showPage('blog');return false;">Blog de Viajes</a></li>
-          </ul>
+          <a href="/destinos" data-page="destinos">¿Qué ver?</a>
+          <a href="/servicios" data-page="servicios">Traslados y transportación</a>
+          <a href="/tours" data-page="tours">Tours privados</a>
+          <a href="/blog" data-page="blog">Blog de viajes</a>
         </div>
         <div>
           <h5>Riviera Maya</h5>
-          <ul>
-            <li><a href="#" onclick="showPage('destinos');return false;">Tulum</a></li>
-            <li><a href="#" onclick="showPage('destinos');return false;">Isla Mujeres</a></li>
-            <li><a href="#" onclick="showPage('destinos');return false;">Bacalar y Holbox</a></li>
-          </ul>
+          <a href="/destinos" data-page="destinos">Tulum</a>
+          <a href="/destinos" data-page="destinos">Isla Mujeres</a>
+          <a href="/destinos" data-page="destinos">Bacalar y Holbox</a>
+          <a href="/destinos" data-page="destinos">Chichén Itzá</a>
         </div>
         <div>
           <h5>Servicios</h5>
-          <ul>
-            <li><a href="#" onclick="showPage('servicios');return false;">Chofer Privado</a></li>
-            <li><a href="#" onclick="showPage('servicios');return false;">Grupos y Eventos</a></li>
-            <li><a href="#" onclick="showPage('servicios');return false;">Renta de Yates</a></li>
-          </ul>
+          <a href="/servicios" data-page="servicios">Chofer privado</a>
+          <a href="/servicios" data-page="servicios">Grupos y eventos</a>
+          <a href="/servicios" data-page="servicios">Renta de yates</a>
+          <a href="/servicios" data-page="servicios">Travel concierge</a>
         </div>
         <div>
           <h5>Compañía</h5>
-          <ul>
-            <li><a href="#" onclick="showPage('tim');return false;">Conoce a Tim</a></li>
-            <li><a href="#" onclick="showPage('contacto');return false;">Contáctanos</a></li>
-          </ul>
+          <a href="/tim" data-page="tim">Conoce a Tim</a>
+          <a href="/contacto" data-page="contacto">Contáctanos</a>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="footer-links">
-        <a href="#">Política de Privacidad</a>
-        <a href="#">Aviso Legal</a>
-        <a href="#">Términos y Condiciones</a>
-        <a href="#">Cookies</a>
+        <a href="/aviso-de-privacidad">Aviso de Privacidad</a>
+        <a href="/terminos">Términos y Condiciones</a>
+        <a href="/cookies">Política de Cookies</a>
       </div>
-      <div class="footer-copy">© 2026 TEVE Transfers &amp; Tours. Todos los Derechos Reservados.</div>
+      <div class="footer-copy" id="footerCopy"></div>
     </div>
   </div>
 </footer>
 
 <script>
-/* ===================== PAGE NAVIGATION (hidden until nav click) ===================== */
-const pages = ['home','servicios','tours','destinos','tim','blog','contacto'];
+/* ==========================================================================
+   TEVE — MOTOR DEL SITIO
+   No hace falta editar este archivo. Todo el contenido vive en teve-config.js
+   ========================================================================== */
 
-function showPage(id) {
-  pages.forEach(p => {
+const C = window.TEVE_CONFIG || {};
+const PAGES = ['home', 'servicios', 'tours', 'destinos', 'tim', 'blog', 'contacto'];
+const RUTAS = {
+  home: '/', servicios: '/servicios', tours: '/tours',
+  destinos: '/destinos', tim: '/tim', blog: '/blog', contacto: '/contacto'
+};
+
+/* ---------- utilidades ---------- */
+const esc = s => String(s == null ? '' : s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+// Devuelve el CSS de fondo: la imagen del config, o un degradado de marca si está vacía.
+const DEGRADADOS = [
+  'linear-gradient(135deg,#04a4e3,#02222e)',
+  'linear-gradient(135deg,#0a3a4f,#04a4e3)',
+  'linear-gradient(135deg,#02222e,#0388bd)',
+  'linear-gradient(135deg,#0388bd,#02222e)',
+  'linear-gradient(135deg,#04a4e3,#0a3a4f)',
+  'linear-gradient(135deg,#02222e,#04a4e3)'
+];
+function fondo(src, i) {
+  return src
+    ? `background-image:url('${esc(src)}')`
+    : `background:${DEGRADADOS[i % DEGRADADOS.length]}`;
+}
+
+/* ---------- WhatsApp ---------- */
+function waLink(texto) {
+  const num = (C.contacto && C.contacto.whatsapp) || '';
+  return 'https://wa.me/' + num + '?text=' + encodeURIComponent(texto || (C.contacto && C.contacto.whatsappTexto) || '');
+}
+function waMsg(texto) { window.open(waLink(texto), '_blank', 'noopener'); }
+
+function buscarTraslado() {
+  const v = id => (document.getElementById(id) || {}).value || '';
+  waMsg(`¡Hola! Quiero cotizar un traslado privado.
+Tipo: ${v('f-tipo')}
+Desde: ${v('f-desde')}
+Hacia: ${v('f-hacia')}
+Fecha: ${v('f-fecha') || 'por definir'}
+Pasajeros: ${v('f-pax')}`);
+}
+function buscarTour() {
+  const v = id => (document.getElementById(id) || {}).value || '';
+  waMsg(`¡Hola! Quiero cotizar un tour privado.
+Destino: ${v('t-destino') || 'por definir'}
+Fecha: ${v('t-fecha') || 'por definir'}
+Pasajeros: ${v('t-pax')}`);
+}
+function enviarContacto(e) {
+  e.preventDefault();
+  const v = id => (document.getElementById(id) || {}).value || '';
+  waMsg(`¡Hola! Solicito una cotización desde el sitio web.
+Nombre: ${v('c-nombre')} ${v('c-apellido')}
+Email: ${v('c-email')}
+Teléfono: ${v('c-tel')}
+Llegada: ${v('c-llegada') || 'por definir'} · Salida: ${v('c-salida') || 'por definir'}
+Adultos: ${v('c-adultos')} · Menores: ${v('c-menores')}
+Comentarios: ${v('c-msg') || '—'}`);
+}
+function suscribir(e) {
+  e.preventDefault();
+  const email = (document.getElementById('nlEmail') || {}).value || '';
+  waMsg(`¡Hola! Quiero suscribirme al boletín de viajes. Mi correo es: ${email}`);
+  e.target.reset();
+}
+
+/* ---------- navegación (páginas ocultas hasta hacer clic) ---------- */
+function showPage(id, push) {
+  if (!PAGES.includes(id)) id = 'home';
+
+  PAGES.forEach(p => {
     const el = document.getElementById('page-' + p);
     if (el) el.classList.toggle('active', p === id);
   });
-  document.querySelectorAll('.nav-link').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.page === id);
+  document.querySelectorAll('[data-page]').forEach(el => {
+    el.classList.toggle('active', el.dataset.page === id && el.classList.contains('nav-link'));
   });
-  document.getElementById('navDrawer').classList.remove('open');
-  window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+
+  cerrarMenu();
+  actualizarSEO(id);
+
+  if (push !== false && window.history && history.pushState) {
+    // En file:// el navegador bloquea pushState; el sitio sigue funcionando igual.
+    try { history.pushState({ page: id }, '', RUTAS[id]); } catch (err) { /* sin ruta */ }
+  }
+  window.scrollTo(0, 0);
 }
 
-/* Mobile hamburger */
-document.getElementById('hamBtn').addEventListener('click', () => {
-  document.getElementById('navDrawer').classList.toggle('open');
+function actualizarSEO(id) {
+  const seo = (C.seo && C.seo[id]) || {};
+  const dominio = (C.marca && C.marca.dominio) || '';
+  if (seo.titulo) document.title = seo.titulo;
+  if (seo.descripcion) {
+    const m = document.querySelector('meta[name="description"]');
+    if (m) m.setAttribute('content', seo.descripcion);
+    const og = document.querySelector('meta[property="og:description"]');
+    if (og) og.setAttribute('content', seo.descripcion);
+  }
+  const ogt = document.querySelector('meta[property="og:title"]');
+  if (ogt && seo.titulo) ogt.setAttribute('content', seo.titulo);
+  const canon = document.querySelector('link[rel="canonical"]');
+  if (canon && dominio) canon.setAttribute('href', dominio + RUTAS[id]);
+  const ogu = document.querySelector('meta[property="og:url"]');
+  if (ogu && dominio) ogu.setAttribute('content', dominio + RUTAS[id]);
+}
+
+function paginaDesdeURL() {
+  const path = window.location.pathname.replace(/\/+$/, '') || '/';
+  const hit = Object.keys(RUTAS).find(k => RUTAS[k] === path);
+  if (hit) return hit;
+  const hash = (window.location.hash || '').replace(/^#\/?/, '');
+  return PAGES.includes(hash) ? hash : 'home';
+}
+
+function cerrarMenu() {
+  const d = document.getElementById('navDrawer');
+  const h = document.getElementById('hamBtn');
+  if (d) d.classList.remove('open');
+  if (h) { h.classList.remove('open'); h.setAttribute('aria-expanded', 'false'); }
+}
+
+// Un solo listener captura todos los enlaces internos del sitio.
+document.addEventListener('click', e => {
+  const link = e.target.closest('[data-page]');
+  if (!link) return;
+  e.preventDefault();
+  showPage(link.dataset.page);
 });
 
-/* Sticky nav shadow */
+window.addEventListener('popstate', () => showPage(paginaDesdeURL(), false));
+
+document.getElementById('hamBtn').addEventListener('click', function () {
+  const d = document.getElementById('navDrawer');
+  const abierto = d.classList.toggle('open');
+  this.classList.toggle('open', abierto);
+  this.setAttribute('aria-expanded', String(abierto));
+});
+
 window.addEventListener('scroll', () => {
   document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+/* ---------- pestañas ---------- */
+document.querySelectorAll('.search-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.search-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+document.querySelectorAll('[data-ftab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const t = btn.dataset.ftab;
+    document.getElementById('ftab-contact').classList.toggle('active', t === 'contact');
+    document.getElementById('ftab-discover').classList.toggle('active', t === 'discover');
+    document.getElementById('fpanel-contact').classList.toggle('active', t === 'contact');
+    document.getElementById('fpanel-discover').classList.toggle('active', t === 'discover');
+  });
 });
 
-/* Search widget tabs */
-function showTab(tab) {
-  document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.search-panel').forEach(p => p.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  document.getElementById('panel-' + tab).classList.add('active');
+/* ==========================================================================
+   RENDERIZADO DESDE teve-config.js
+   ========================================================================== */
+
+/* ---------- marca y logotipo ---------- */
+function bloqueLogo(fuente, alto) {
+  if (fuente) {
+    return `<img src="${esc(fuente)}" alt="${esc(C.marca.nombreCompleto)}" style="height:${esc(alto || 44)}px;">`;
+  }
+  return `<span class="logo-word">${esc(C.marca.nombre)}</span>
+          <span class="logo-sub">${esc(C.marca.tagline)}</span>`;
 }
 
-/* Footer tabs */
-function showFooterTab(tab) {
-  document.getElementById('ftab-contact').classList.toggle('active', tab === 'contact');
-  document.getElementById('ftab-discover').classList.toggle('active', tab === 'discover');
-  document.getElementById('fpanel-contact').classList.toggle('active', tab === 'contact');
-  document.getElementById('fpanel-discover').classList.toggle('active', tab === 'discover');
+function renderMarca() {
+  if (!C.marca) return;
+  document.getElementById('navLogo').innerHTML = bloqueLogo(C.marca.logo, C.marca.logoAlto);
+
+  const fLogo = document.getElementById('footerLogo');
+  const fuente = C.marca.logoBlanco || C.marca.logo;
+  fLogo.innerHTML = fuente
+    ? `<img src="${esc(fuente)}" alt="${esc(C.marca.nombreCompleto)}" style="height:48px;">`
+    : `<span class="logo-word" style="color:#fff;">${esc(C.marca.nombre)}</span>
+       <span class="logo-sub" style="display:block;">${esc(C.marca.tagline)}</span>`;
+
+  if (C.marca.favicon) {
+    const l = document.createElement('link');
+    l.rel = 'icon'; l.href = C.marca.favicon;
+    document.head.appendChild(l);
+  }
+  if (C.marca.imagenRedes) {
+    const m = document.createElement('meta');
+    m.setAttribute('property', 'og:image');
+    m.setAttribute('content', C.marca.imagenRedes);
+    document.head.appendChild(m);
+  }
+  document.getElementById('footerCopy').textContent =
+    `© ${new Date().getFullYear()} ${C.marca.nombreCompleto}. Todos los derechos reservados.`;
 }
 
-/* WhatsApp helpers */
-function waMsg(text) {
-  window.open('https://wa.me/529980000000?text=' + encodeURIComponent(text), '_blank');
-}
-function waSearch(type) {
-  waMsg(type === 'traslado' ? 'Hola! Quiero cotizar un traslado privado en Cancún.' : 'Hola! Quiero cotizar un tour privado en Cancún.');
-}
-function submitContact(e) {
-  e.preventDefault();
-  waMsg('Hola! Acabo de llenar el formulario de contacto en su sitio y me gustaría recibir más información.');
+/* ---------- menú ---------- */
+const MENU = [
+  { id: 'home', texto: 'Inicio' },
+  { id: 'servicios', texto: 'Servicios' },
+  { id: 'tours', texto: 'Tours Privados' },
+  { id: 'destinos', texto: 'Destinos' },
+  { id: 'tim', texto: 'Conoce a Tim' },
+  { id: 'blog', texto: 'Blog de Viajes' }
+];
+
+function renderMenu() {
+  const enlaces = MENU.map(m =>
+    `<a class="nav-link" href="${RUTAS[m.id]}" data-page="${m.id}">${esc(m.texto)}</a>`
+  ).join('');
+  const cta = `<a class="btn-secondary" style="padding:10px 24px;font-size:0.82rem;" href="/contacto" data-page="contacto">Contáctanos</a>`;
+  document.getElementById('navLinks').innerHTML = enlaces + cta;
+  document.getElementById('navDrawer').innerHTML = enlaces + cta;
 }
 
-/* ===================== CANVAS BACKGROUNDS ===================== */
-function initHeroCanvas(canvas) {
-  if (!canvas) return;
+/* ---------- barra superior ---------- */
+function renderTopbar() {
+  const c = C.contacto || {};
+  const partes = [];
+  if (c.telefonos && c.telefonos[0]) {
+    partes.push(`<a href="tel:${esc(c.telefonos[0].marcar)}">📞 ${esc(c.telefonos[0].numero)}</a>`);
+  }
+  if (c.email) partes.push(`<a href="mailto:${esc(c.email)}">✉️ ${esc(c.email)}</a>`);
+  if (c.horario) partes.push(`<span>🕑 ${esc(c.horario)}</span>`);
+  document.getElementById('topbarInner').innerHTML = partes.join('');
+}
+
+/* ---------- portada ---------- */
+function renderPortada() {
+  const p = C.portada || {};
+  document.getElementById('heroEyebrow').textContent = (C.marca && C.marca.nombreCompleto) || '';
+  document.getElementById('heroTitle').innerHTML = p.titulo || '';
+  document.getElementById('heroSub').textContent = p.subtitulo || '';
+
+  const hero = document.getElementById('heroSection');
+  const img = C.imagenes && C.imagenes.hero;
+  if (img) {
+    hero.style.backgroundImage = `url('${img}')`;
+    const cv = document.getElementById('heroCanvas');
+    if (cv) cv.style.display = 'none';
+  }
+
+  const porQue = C.imagenes && C.imagenes.porQue;
+  if (porQue) {
+    ['whyHome', 'whyTim'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.style.backgroundImage = `url('${porQue}')`;
+        const cv = el.querySelector('canvas');
+        if (cv) cv.style.display = 'none';
+      }
+    });
+  }
+
+  document.getElementById('trustStrip').innerHTML = (p.metricas || []).map(m => `
+    <div class="trust-item">
+      <div class="trust-num">${esc(m.numero)}</div>
+      <div class="trust-lbl">${esc(m.texto)}</div>
+    </div>`).join('');
+}
+
+/* ---------- servicios ---------- */
+function tarjetaServicio(s, i) {
+  return `
+    <div class="svc-card">
+      <div class="svc-img" style="${fondo(s.imagen, i)}"></div>
+      <h3>${esc(s.titulo)}</h3>
+      <p>${esc(s.texto)}</p>
+      ${s.desde ? `<div class="svc-desde">${esc(s.desde)}</div>` : ''}
+      <button class="btn-secondary" onclick="waMsg('¡Hola! Quiero información sobre: ${esc(s.titulo).replace(/'/g, '&#39;')}')">Cotizar Ahora</button>
+    </div>`;
+}
+function renderServicios() {
+  const todos = C.servicios || [];
+  document.getElementById('servicesGridFull').innerHTML = todos.map(tarjetaServicio).join('');
+  const destacados = todos.filter(s => s.destacado);
+  document.getElementById('homeServicesGrid').innerHTML =
+    (destacados.length ? destacados : todos.slice(0, 3)).map(tarjetaServicio).join('');
+}
+
+/* ---------- tours ---------- */
+function tarjetaTour(t, i) {
+  return `
+    <div class="tour-card">
+      <div class="tour-img" style="${fondo(t.imagen, i)}">
+        ${t.duracion ? `<span class="tour-badge">${esc(t.duracion)}</span>` : ''}
+      </div>
+      <div class="tour-body">
+        <h3>${esc(t.titulo)}</h3>
+        <p>${esc(t.texto)}</p>
+        <div class="tour-price-row"><span>Desde</span><span class="tour-price">${esc(t.precio)}</span></div>
+      </div>
+      <div class="tour-footer">
+        <button class="btn-outline" onclick="waMsg('¡Hola! Quiero reservar el tour: ${esc(t.titulo).replace(/'/g, '&#39;')}')">Reservar</button>
+      </div>
+    </div>`;
+}
+function renderTours() {
+  const todos = C.tours || [];
+  document.getElementById('toursGridFull').innerHTML = todos.map(tarjetaTour).join('');
+  document.getElementById('homeToursGrid').innerHTML = todos.slice(0, 3).map(tarjetaTour).join('');
+}
+
+/* ---------- destinos ---------- */
+function renderDestinos() {
+  document.getElementById('destGrid').innerHTML = (C.destinos || []).map(d => `
+    <div class="dest-card" style="${d.imagen ? `background-image:url('${esc(d.imagen)}')` : ''}">
+      ${d.imagen ? '' : `<canvas class="dest-canvas" data-palette="${esc(d.paleta || 'ocean')}" aria-hidden="true"></canvas>`}
+      <div class="dest-veil"></div>
+      <div class="dest-info">
+        <div class="dest-days">${esc(d.duracion)}</div>
+        <h3>${esc(d.nombre)}</h3>
+        <p>${esc(d.texto)}</p>
+        <button class="btn-white" onclick="waMsg('¡Hola! Quiero cotizar un tour privado a ${esc(d.nombre).replace(/'/g, '&#39;')}')">Descubrir Más</button>
+      </div>
+    </div>`).join('');
+  initDestCanvas();
+}
+
+/* ---------- Tim ---------- */
+function renderTim() {
+  const t = C.tim || {};
+  document.getElementById('timTitulo').textContent = t.titulo || '';
+  document.getElementById('timBio').textContent = t.biografia || '';
+  document.getElementById('timCita').innerHTML =
+    `"${esc(t.citaDestacada)}"<span>— ${esc(t.citaAutor)}</span>`;
+
+  const btn = document.getElementById('timBoton');
+  btn.textContent = t.botonTexto || 'Escríbenos por WhatsApp';
+  btn.onclick = () => waMsg('¡Hola Tim! Quiero reservar un servicio privado contigo.');
+
+  const foto = C.imagenes && C.imagenes.timFoto;
+  const el = document.getElementById('timPhoto');
+  if (foto) { el.src = foto; el.style.display = 'block'; }
+
+  document.getElementById('reviewsGrid').innerHTML = (C.resenas || []).map(r => `
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="txt">"${esc(r.texto)}"</p>
+      <div class="review-name">${esc(r.nombre)}</div>
+      <div class="review-loc">${esc(r.lugar)}</div>
+    </div>`).join('');
+}
+
+/* ---------- blog ---------- */
+function renderBlog() {
+  document.getElementById('blogGrid').innerHTML = (C.blog || []).map((b, i) => `
+    <div class="blog-card">
+      <div class="blog-img" style="${fondo(b.imagen, i)}"></div>
+      <div class="blog-body">
+        <div class="blog-cat">${esc(b.categoria)}</div>
+        <h5>${esc(b.titulo)}</h5>
+        <p>${esc(b.texto)}</p>
+        ${b.enlace
+          ? `<a class="blog-more" href="${esc(b.enlace)}">Leer artículo →</a>`
+          : `<span class="blog-more" style="opacity:0.55;cursor:default;">Próximamente</span>`}
+      </div>
+    </div>`).join('');
+}
+
+/* ---------- contacto y pie de página ---------- */
+const ICONOS_RED = {
+  facebook: '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>',
+  instagram: '<svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1018.6 12 6.6 6.6 0 0012 5.4zm0 10.9A4.3 4.3 0 1116.3 12 4.3 4.3 0 0112 16.3zm6.9-11.1a1.5 1.5 0 11-1.5-1.5 1.5 1.5 0 011.5 1.5z"/></svg>',
+  tripadvisor: '<svg viewBox="0 0 24 24"><path d="M12 6c-3 0-5.7.8-7.9 2.2H1l1.7 1.9a5.1 5.1 0 007.6 6.7l1.7 1.9 1.7-1.9a5.1 5.1 0 007.6-6.7L23 8.2h-3.1A14.4 14.4 0 0012 6zm-4.4 9.8a3.2 3.2 0 113.2-3.2 3.2 3.2 0 01-3.2 3.2zm8.8 0a3.2 3.2 0 113.2-3.2 3.2 3.2 0 01-3.2 3.2zm-8.8-4.7a1.5 1.5 0 101.5 1.5 1.5 1.5 0 00-1.5-1.5zm8.8 0a1.5 1.5 0 101.5 1.5 1.5 1.5 0 00-1.5-1.5z"/></svg>',
+  youtube: '<svg viewBox="0 0 24 24"><path d="M23 7.5s-.2-1.6-.9-2.3c-.9-.9-1.8-.9-2.3-1C16.6 4 12 4 12 4h-.1s-4.5 0-7.7.2c-.4 0-1.4.1-2.3 1-.7.7-.9 2.3-.9 2.3S.8 9.4.8 11.3v1.8c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.6.2 7.6.2s4.6 0 7.8-.2c.5-.1 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.8c0-1.9-.2-3.8-.2-3.8zM9.8 15.1V8.9l6 3.1z"/></svg>',
+  tiktok: '<svg viewBox="0 0 24 24"><path d="M16.6 5.8a4.8 4.8 0 01-1.1-3.1h-3.2v12.9a2.9 2.9 0 11-2.1-2.8V9.5a6.1 6.1 0 105.2 6V9.7a8 8 0 004.7 1.5V8a4.8 4.8 0 01-3.5-2.2z"/></svg>'
+};
+
+function renderContacto() {
+  const c = C.contacto || {};
+
+  document.getElementById('footerPhones').innerHTML = (c.telefonos || []).map(t =>
+    `<a class="phone-pill" href="tel:${esc(t.marcar)}">${esc(t.etiqueta)}: ${esc(t.numero)}</a>`
+  ).join('');
+
+  const em = document.getElementById('footerEmail');
+  em.href = 'mailto:' + (c.email || '');
+  em.textContent = c.email || '';
+
+  document.getElementById('footerHorario').textContent = c.horario || '';
+
+  const redes = C.redes || {};
+  const activas = Object.keys(redes).filter(k => redes[k]);
+  const social = document.getElementById('footerSocial');
+  social.innerHTML = activas.map(k =>
+    `<a href="${esc(redes[k])}" target="_blank" rel="noopener" aria-label="${esc(k)}">${ICONOS_RED[k] || ''}</a>`
+  ).join('') + `<a href="${esc(waLink())}" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
+    </a>`;
+
+  const chips = [];
+  if (c.whatsapp) chips.push(`<a class="contact-chip" href="${esc(waLink())}" target="_blank" rel="noopener"><strong>WhatsApp</strong> Respuesta inmediata</a>`);
+  if (c.email) chips.push(`<a class="contact-chip" href="mailto:${esc(c.email)}"><strong>Email</strong> ${esc(c.email)}</a>`);
+  (c.telefonos || []).forEach(t => {
+    chips.push(`<a class="contact-chip" href="tel:${esc(t.marcar)}"><strong>${esc(t.etiqueta)}</strong> ${esc(t.numero)}</a>`);
+  });
+  document.getElementById('contactDirect').innerHTML = chips.join('');
+
+  document.getElementById('waFloat').href = waLink();
+}
+
+/* ---------- datos estructurados sincronizados con el config ---------- */
+function renderSchema() {
+  try {
+    const el = document.getElementById('schemaOrg');
+    const data = JSON.parse(el.textContent);
+    const c = C.contacto || {}, m = C.marca || {};
+    if (m.nombreCompleto) data.name = m.nombreCompleto;
+    if (m.dominio) data.url = m.dominio;
+    if (c.email) data.email = c.email;
+    if (c.telefonos && c.telefonos[0]) data.telephone = c.telefonos[0].marcar;
+    if (c.direccion) {
+      data.address = {
+        '@type': 'PostalAddress',
+        streetAddress: c.direccion.calle,
+        addressLocality: c.direccion.ciudad,
+        addressRegion: c.direccion.estado,
+        postalCode: c.direccion.cp,
+        addressCountry: c.direccion.pais
+      };
+    }
+    const redes = Object.values(C.redes || {}).filter(Boolean);
+    if (redes.length) data.sameAs = redes;
+    if (m.imagenRedes) data.image = m.imagenRedes;
+    el.textContent = JSON.stringify(data, null, 2);
+  } catch (err) { /* si el config no está, se conserva el schema estático */ }
+}
+
+/* ---------- analítica opcional ---------- */
+function renderAnalitica() {
+  const a = C.analitica || {};
+  if (a.googleAnalytics) {
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + a.googleAnalytics;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', a.googleAnalytics);
+  }
+  if (a.googleTagManager) {
+    const s = document.createElement('script');
+    s.text = "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','" + a.googleTagManager + "');";
+    document.head.appendChild(s);
+  }
+}
+
+/* ==========================================================================
+   FONDOS ANIMADOS (solo cuando no hay foto en el config)
+   ========================================================================== */
+function initCanvasSuave(canvas) {
+  if (!canvas || canvas.style.display === 'none') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const ctx = canvas.getContext('2d');
-  let t = 0, raf;
+  let t = 0, raf = null, visible = true;
   function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
   function draw() {
+    if (!visible) return;
     const w = canvas.width, h = canvas.height;
     ctx.clearRect(0, 0, w, h);
     for (let i = 0; i < 4; i++) {
@@ -915,72 +1206,69 @@ function initHeroCanvas(canvas) {
     raf = requestAnimationFrame(draw);
   }
   resize(); draw();
-  new ResizeObserver(resize).observe(canvas.parentElement);
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(canvas.parentElement);
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) cancelAnimationFrame(raf); else { t = 0; raf = requestAnimationFrame(draw); }
+    visible = !document.hidden;
+    if (!visible) { cancelAnimationFrame(raf); } else { raf = requestAnimationFrame(draw); }
   });
 }
-initHeroCanvas(document.getElementById('heroCanvas'));
-initHeroCanvas(document.getElementById('whyCanvasHome'));
-initHeroCanvas(document.getElementById('whyCanvasTim'));
 
-const palettes = {
-  jungle: ['#0a2a12','#1c4a20'],
-  coastal: ['#0a2030','#164460'],
-  ocean: ['#02222e','#04a4e3'],
-  lagoon: ['#08283a','#0e4a5e']
+const PALETAS = {
+  jungle:  ['#0a2a12', '#1c4a20'],
+  coastal: ['#0a2030', '#164460'],
+  ocean:   ['#02222e', '#04a4e3'],
+  lagoon:  ['#08283a', '#0e4a5e']
 };
-document.querySelectorAll('.dest-canvas').forEach(c => {
-  const ctx = c.getContext('2d');
-  const pal = palettes[c.dataset.palette] || palettes.ocean;
-  let t = Math.random() * 50;
-  function resize() { c.width = c.offsetWidth; c.height = c.offsetHeight; }
-  function draw() {
-    const w = c.width, h = c.height;
-    const g = ctx.createLinearGradient(0, 0, w, h);
-    g.addColorStop(0, pal[0]); g.addColorStop(1, pal[1]);
-    ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
-    const cx = w * (0.4 + Math.sin(t * 0.3) * 0.15), cy = h * (0.4 + Math.cos(t * 0.2) * 0.15);
-    const rg = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.7);
-    rg.addColorStop(0, 'rgba(255,255,255,0.08)'); rg.addColorStop(1, 'rgba(255,255,255,0)');
-    ctx.fillStyle = rg; ctx.fillRect(0, 0, w, h);
-    t += 0.01;
-    requestAnimationFrame(draw);
-  }
-  resize(); draw();
-  new ResizeObserver(resize).observe(c.parentElement);
-});
-
-/* ===================== TOUR DATA (renders in both home + tours page) ===================== */
-const tours = [
-  { name: 'Chichén Itzá y Cenote con Experiencia Maya', desc: 'Vive una aventura visitando una de las 7 maravillas del mundo, un cenote y aprende sobre la cocina maya.', price: '$2,197 MXN', color: '#04a4e3' },
-  { name: 'Tulum, Cenote y Playa del Carmen', desc: 'Conoce Tulum, una de las ciudades mayas frente al mar más impresionantes, además de un cenote y la 5ta Avenida.', price: '$1,723 MXN', color: '#0a3a4f' },
-  { name: 'Catamarán de Lujo a Isla Mujeres', desc: 'Navega entre Cancún e Isla Mujeres, con snorkel y tiempo libre en la isla.', price: '$2,039 MXN', color: '#02222e' },
-  { name: 'Visita a Cenote y Snorkel en Laguna', desc: 'Sumérgete en agua cristalina de cenote y conoce una laguna espectacular.', price: '$1,407 MXN', color: '#0388bd' },
-  { name: 'Akumal: Snorkel con Tortugas y Cenotes', desc: 'Nada junto a tortugas marinas en Akumal y explora un cenote con estalactitas impresionantes.', price: '$1,953 MXN', color: '#04a4e3' },
-  { name: 'Observación de Monos y Visita a Cobá', desc: 'Descubre la selva maya, observa monos araña y visita la enigmática ciudad de Cobá.', price: '$9,322 MXN', color: '#02222e' }
-];
-
-function renderTours(targetId, limit) {
-  const el = document.getElementById(targetId);
-  if (!el) return;
-  const list = limit ? tours.slice(0, limit) : tours;
-  el.innerHTML = list.map(t => `
-    <div class="tour-card">
-      <div class="tour-img" style="background:linear-gradient(135deg, ${t.color}, #02222e);"></div>
-      <div class="tour-body">
-        <h3>${t.name}</h3>
-        <p>${t.desc}</p>
-        <div class="tour-price-row"><span>Desde</span><span class="tour-price">${t.price}</span></div>
-      </div>
-      <div class="tour-footer">
-        <button class="btn-outline" onclick="waMsg('Hola! Quiero reservar: ${t.name}')">Reservar</button>
-      </div>
-    </div>
-  `).join('');
+function initDestCanvas() {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.dest-canvas').forEach(c => {
+    const ctx = c.getContext('2d');
+    const pal = PALETAS[c.dataset.palette] || PALETAS.ocean;
+    let t = Math.random() * 50;
+    function resize() { c.width = c.offsetWidth; c.height = c.offsetHeight; }
+    function draw() {
+      const w = c.width, h = c.height;
+      const g = ctx.createLinearGradient(0, 0, w, h);
+      g.addColorStop(0, pal[0]); g.addColorStop(1, pal[1]);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      const cx = w * (0.4 + Math.sin(t * 0.3) * 0.15), cy = h * (0.4 + Math.cos(t * 0.2) * 0.15);
+      const rg = ctx.createRadialGradient(cx, cy, 0, cx, cy, w * 0.7);
+      rg.addColorStop(0, 'rgba(255,255,255,0.08)'); rg.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = rg; ctx.fillRect(0, 0, w, h);
+      if (reduce) return;
+      t += 0.01;
+      requestAnimationFrame(draw);
+    }
+    resize(); draw();
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(c.parentElement);
+  });
 }
-renderTours('homeToursGrid', 3);
-renderTours('toursGridFull');
+
+/* ==========================================================================
+   ARRANQUE
+   ========================================================================== */
+if (!window.TEVE_CONFIG) {
+  console.error('TEVE: no se encontró teve-config.js. Súbelo junto a index.html.');
+}
+
+renderMarca();
+renderMenu();
+renderTopbar();
+renderPortada();
+renderServicios();
+renderTours();
+renderDestinos();
+renderTim();
+renderBlog();
+renderContacto();
+renderSchema();
+renderAnalitica();
+
+initCanvasSuave(document.getElementById('heroCanvas'));
+initCanvasSuave(document.getElementById('whyCanvasHome'));
+initCanvasSuave(document.getElementById('whyCanvasTim'));
+
+showPage(paginaDesdeURL(), false);
 </script>
 
 </body>

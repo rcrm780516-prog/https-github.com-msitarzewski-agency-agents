@@ -1,0 +1,39 @@
+# robots.txt — TEVE Transfers & Tours
+# https://www.tevetours.com
+
+User-agent: *
+Allow: /
+
+# Archivos internos que no aportan nada a Google
+Disallow: /teve-config.js
+Disallow: /img/originales/
+Disallow: /*?s=
+Disallow: /*?buscar=
+
+# Rastreadores de IA — permitidos: ayudan a que recomienden TEVE
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Bots de rastreo agresivo de la competencia
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
+
+Sitemap: https://www.tevetours.com/sitemap.xml
