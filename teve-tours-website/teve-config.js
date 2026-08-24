@@ -323,7 +323,7 @@ window.TEVE_CONFIG = {
     },
     {
       categoria: "Tours Privados",
-      titulo: "Chichén Itzá Privado desde Cancún: Guía Completa",
+      titulo: "Chichén Itzá Privado desde Cancún: Guía Completa 2026",
       texto: "Hora ideal de llegada, qué llevar, la mejor parada para comer y por qué un guía privado cambia la experiencia.",
       imagen: "",
       enlace: ""
