@@ -1,0 +1,1392 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Auditoría Digital 360° — DM Wellness Beauty and Nutrition</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --pp:#6B1E7A; --pp2:#A020C0; --pp3:#C77DDB; --ink:#1C1526; --gray:#5B5566;
+    --line:#E4DEE9; --bg:#FBF9FC; --red:#C42B4A; --amber:#D98324; --green:#1E8E5A;
+  }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:"Liberation Sans","DejaVu Sans",Arial,sans-serif; color:var(--ink); font-size:8.4pt; line-height:1.38; }
+  .page{ width:210mm; min-height:297mm; padding:12.5mm 13mm 8mm; page-break-after:always; position:relative; display:flex; flex-direction:column; background:#fff; }
+  .page:last-child{ page-break-after:auto; }
+  .ph{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1.6pt solid var(--pp); padding-bottom:2mm; margin-bottom:4mm; }
+  .ph b{ color:var(--pp); font-size:8pt; letter-spacing:.09em; text-transform:uppercase; }
+  .ph span{ font-size:7.5pt; color:var(--gray); letter-spacing:.05em; }
+  .pf{ margin-top:auto; padding-top:2.6mm; border-top:.6pt solid var(--line); display:flex; justify-content:space-between; font-size:7pt; color:#8C8496; letter-spacing:.03em; }
+  h1{ font-size:20pt; line-height:1.15; color:var(--pp); letter-spacing:-.02em; }
+  h2{ font-size:12.6pt; color:var(--pp); margin-bottom:2.2mm; letter-spacing:-.01em; }
+  h3{ font-size:9.9pt; margin:3.4mm 0 1.5mm; color:var(--ink); }
+  h4{ font-size:8.6pt; margin:2.8mm 0 1.2mm; color:var(--pp); text-transform:uppercase; letter-spacing:.06em; }
+  p{ margin-bottom:1.9mm; }
+  ul,ol{ margin:0 0 2.2mm 4.2mm; }
+  li{ margin-bottom:.9mm; }
+  strong{ font-weight:bold; }
+  .lead{ font-size:9.4pt; line-height:1.42; color:var(--gray); }
+  table{ width:100%; border-collapse:collapse; margin:2mm 0 2.8mm; font-size:7.3pt; }
+  th{ background:var(--pp); color:#fff; text-align:left; padding:1.4mm 1.7mm; font-size:6.8pt; text-transform:uppercase; letter-spacing:.05em; font-weight:bold; }
+  td{ padding:1.25mm 1.7mm; border-bottom:.5pt solid var(--line); vertical-align:top; }
+  tr:nth-child(even) td{ background:var(--bg); }
+  .num{ text-align:right; font-variant-numeric:tabular-nums; }
+  .ctr{ text-align:center; }
+  .tag{ display:inline-block; padding:.4mm 1.4mm; border-radius:2mm; font-size:6.4pt; font-weight:bold; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; }
+  .t-crit{ background:#FBE4E9; color:var(--red); } .t-alt{ background:#FBEEDC; color:var(--amber); }
+  .t-med{ background:#E6F0FB; color:#2A5FA8; } .t-ok{ background:#E1F3EA; color:var(--green); }
+  .box{ border:.8pt solid var(--line); border-left:3pt solid var(--pp2); padding:2.6mm 3.2mm; margin:2.2mm 0; background:var(--bg); border-radius:0 2mm 2mm 0; }
+  .box.crit{ border-left-color:var(--red); background:#FDF6F7; }
+  .box.win{ border-left-color:var(--green); background:#F4FBF7; }
+  .box h4{ margin-top:0; }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.6mm; }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:2.4mm; }
+  .kpi{ border:.8pt solid var(--line); border-radius:2.5mm; padding:2.4mm 2.2mm; text-align:center; background:#fff; }
+  .kpi .v{ font-size:16pt; font-weight:bold; color:var(--pp); line-height:1.05; letter-spacing:-.02em; }
+  .kpi .v.bad{ color:var(--red); } .kpi .v.good{ color:var(--green); } .kpi .v.warn{ color:var(--amber); }
+  .kpi .l{ font-size:6.5pt; color:var(--gray); text-transform:uppercase; letter-spacing:.06em; margin-top:1.5mm; line-height:1.3; }
+  .bar{ height:3.6mm; background:#EFEAF3; border-radius:1mm; overflow:hidden; margin:1mm 0; }
+  .bar i{ display:block; height:100%; background:linear-gradient(90deg,var(--pp),var(--pp2)); }
+  .bar i.r{ background:linear-gradient(90deg,#A82040,var(--red)); }
+  .bar i.g{ background:linear-gradient(90deg,#146B43,var(--green)); }
+  .barrow{ display:grid; grid-template-columns:42mm 1fr 20mm; gap:2.5mm; align-items:center; margin-bottom:1.3mm; font-size:7.4pt; }
+  .barrow .lbl{ color:var(--gray); }
+  .barrow .val{ text-align:right; font-weight:bold; font-variant-numeric:tabular-nums; }
+  .cover{ background:linear-gradient(150deg,#3A0F45 0%,var(--pp) 45%,var(--pp2) 100%); color:#fff; justify-content:space-between; }
+  .cover h1{ color:#fff; font-size:31pt; }
+  .cover .sub{ font-size:13pt; opacity:.9; margin-top:4mm; }
+  .cover .meta{ font-size:9pt; opacity:.8; line-height:1.9; }
+  .rule{ width:34mm; height:2.4pt; background:#fff; margin:7mm 0; opacity:.85; }
+  .score{ display:flex; align-items:center; gap:5mm; }
+  .score .big{ font-size:44pt; font-weight:bold; line-height:1; letter-spacing:-.03em; }
+  .toc li{ display:flex; justify-content:space-between; border-bottom:.5pt dotted var(--line); padding:1.05mm 0; list-style:none; font-size:8pt; }
+  .toc ul{ margin:0; }
+  .toc b{ color:var(--pp); }
+  .small{ font-size:6.9pt; color:var(--gray); line-height:1.45; }
+  .chk{ list-style:none; margin-left:0; }
+  .chk li{ padding-left:6mm; position:relative; }
+  .chk li:before{ content:"□"; position:absolute; left:0; color:var(--pp2); font-size:11pt; line-height:1; top:.3mm; }
+  .quote{  font-style:italic; color:var(--gray); border-left:2pt solid var(--pp3); padding-left:3mm; margin:2mm 0; font-size:8.6pt; }
+  .copyblock{ background:#F5F1F8; border:.6pt dashed var(--pp3); border-radius:2mm; padding:2.2mm 2.8mm; font-family:"DejaVu Sans Mono",monospace; font-size:7pt; line-height:1.45; white-space:pre-wrap; margin:1.8mm 0; }
+  .split{ display:grid; grid-template-columns:1fr 1fr; gap:0; border:.8pt solid var(--line); border-radius:2mm; overflow:hidden; margin:2.2mm 0; }
+  .split>div{ padding:2.6mm 3mm; }
+  .split .a{ background:#FDF6F7; border-right:.8pt solid var(--line); }
+  .split .b{ background:#F4FBF7; }
+  .split h4{ margin-top:0; }
+
+  .t1 table{ font-size:7pt; } .t1 td{ padding:1.05mm 1.5mm; } .t1 th{ padding:1.2mm 1.5mm; font-size:6.5pt; }
+  .t1 p{ margin-bottom:1.6mm; } .t1 li{ margin-bottom:.75mm; } .t1 .box{ padding:2.2mm 2.8mm; margin:1.9mm 0; }
+  .t1 h3{ margin:2.8mm 0 1.3mm; } .t1 table{ margin:1.7mm 0 2.3mm; }
+  .t2 table{ font-size:6.7pt; } .t2 td{ padding:.9mm 1.4mm; } .t2 th{ padding:1mm 1.4mm; font-size:6.3pt; }
+  .t2 p{ margin-bottom:1.4mm; } .t2 li{ margin-bottom:.65mm; } .t2 .box{ padding:2mm 2.6mm; margin:1.6mm 0; }
+  .t2 h3{ margin:2.4mm 0 1.1mm; } .t2 table{ margin:1.5mm 0 2mm; } .t2 .lead{ font-size:8.8pt; }
+  .t2 .copyblock{ font-size:6.6pt; padding:1.9mm 2.4mm; margin:1.5mm 0; }
+  .t3 table{ font-size:6.3pt; } .t3 td{ padding:.75mm 1.2mm; } .t3 th{ padding:.85mm 1.2mm; font-size:6pt; }
+  .t3 p{ margin-bottom:1.2mm; } .t3 li{ margin-bottom:.55mm; } .t3 .box{ padding:1.8mm 2.4mm; margin:1.4mm 0; }
+  .t3 h3{ margin:2.1mm 0 1mm; } .t3 table{ margin:1.3mm 0 1.7mm; } .t3 .lead{ font-size:8.4pt; }
+  .t3 h2{ font-size:11.6pt; margin-bottom:1.8mm; }
+  .t3 .copyblock{ font-size:6.3pt; padding:1.7mm 2.2mm; margin:1.3mm 0; line-height:1.4; }
+</style>
+</head>
+<body>
+
+<!-- ============ PORTADA ============ -->
+<section class="page cover">
+  <div>
+    <div style="font-size:8.5pt;letter-spacing:.28em;text-transform:uppercase;opacity:.85">Auditoría de Marketing Digital</div>
+    <div class="rule"></div>
+    <h1>Auditoría Digital 360°<br>y Análisis Competitivo</h1>
+    <div class="sub"><strong>DM Wellness Beauty and Nutrition</strong><br>Clínica integral de belleza, nutrición y spa</div>
+  </div>
+  <div style="display:flex;gap:6mm;flex-wrap:wrap">
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:5mm 6mm;min-width:52mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Calificación global</div>
+      <div style="font-size:40pt;font-weight:bold;line-height:1.05">28<span style="font-size:16pt;opacity:.7">/100</span></div>
+      <div style="font-size:8.5pt;opacity:.9">Presencia digital crítica</div>
+    </div>
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:5mm 6mm;min-width:52mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Hallazgos críticos</div>
+      <div style="font-size:40pt;font-weight:bold;line-height:1.05">11</div>
+      <div style="font-size:8.5pt;opacity:.9">de 34 detectados en total</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="rule" style="margin:0 0 5mm"></div>
+    <strong>Ubicación auditada:</strong> Calle Dr. José María Vértiz 995, Narvarte, Benito Juárez, CDMX, C.P. 03023<br>
+    <strong>Activos evaluados:</strong> Instagram @dm_wbn2 · Facebook (página) · Sin sitio web · Sin perfil de Google Business<br>
+    <strong>Zona competitiva:</strong> Narvarte Poniente / Narvarte Oriente / Vértiz Narvarte — Alcaldía Benito Juárez<br>
+    <strong>Fecha del levantamiento:</strong> 27 de agosto de 2026
+  </div>
+</section>
+
+<!-- ============ ÍNDICE ============ -->
+<section class="page">
+  <div class="ph"><b>Contenido</b><span>DM Wellness · Auditoría Digital 360°</span></div>
+  <h2>Índice del informe</h2>
+  <p class="lead" style="margin-bottom:6mm">Este documento se lee en tres bloques: <strong>diagnóstico</strong> (qué está pasando y con qué números), <strong>comparativa</strong> (qué hace la competencia de su zona) y <strong>ejecución</strong> (qué hacer, en qué orden y cómo se mide).</p>
+  <div class="toc"><ul>
+    <li><span><b>01</b> &nbsp; Resumen ejecutivo — el veredicto en una página</span><span>3</span></li>
+    <li><span><b>02</b> &nbsp; Metodología, fuentes y límites de la auditoría</span><span>4</span></li>
+    <li><span><b>03</b> &nbsp; Scorecard: calificación canal por canal</span><span>5</span></li>
+    <li><span><b>04</b> &nbsp; Instagram: auditoría del perfil</span><span>6</span></li>
+    <li><span><b>05</b> &nbsp; Instagram: rendimiento real de contenido (12 reels)</span><span>7</span></li>
+    <li><span><b>06</b> &nbsp; Instagram: diagnóstico de contenido y copy</span><span>8</span></li>
+    <li><span><b>07</b> &nbsp; Facebook: estado y plan de verificación</span><span>9</span></li>
+    <li><span><b>08</b> &nbsp; El agujero negro: sin Google Business Profile</span><span>10</span></li>
+    <li><span><b>09</b> &nbsp; Sin sitio web: qué se pierde exactamente</span><span>11</span></li>
+    <li><span><b>10</b> &nbsp; NAP, directorios y el hallazgo del Int. 304</span><span>12</span></li>
+    <li><span><b>11</b> &nbsp; Riesgo regulatorio: COFEPRIS y políticas de Meta</span><span>13</span></li>
+    <li><span><b>12</b> &nbsp; Mapa competitivo de la zona Narvarte</span><span>14</span></li>
+    <li><span><b>13</b> &nbsp; Benchmark duro: DM vs. Skintopia</span><span>15</span></li>
+    <li><span><b>14</b> &nbsp; Qué hace la competencia que ustedes no hacen</span><span>16</span></li>
+    <li><span><b>15</b> &nbsp; Qué contenido gana en este nicho (evidencia)</span><span>17</span></li>
+    <li><span><b>16</b> &nbsp; Embudo actual vs. embudo propuesto</span><span>18</span></li>
+    <li><span><b>17</b> &nbsp; Los 34 hallazgos priorizados</span><span>19</span></li>
+    <li><span><b>18</b> &nbsp; Plan de 90 días — Fase 1: Fundación (días 1–30)</span><span>21</span></li>
+    <li><span><b>19</b> &nbsp; Plan de 90 días — Fase 2: Tracción (días 31–60)</span><span>22</span></li>
+    <li><span><b>20</b> &nbsp; Plan de 90 días — Fase 3: Escala (días 61–90)</span><span>23</span></li>
+    <li><span><b>21</b> &nbsp; Perfil de Instagram optimizado (copy listo)</span><span>24</span></li>
+    <li><span><b>22</b> &nbsp; Calendario editorial de 4 semanas</span><span>25</span></li>
+    <li><span><b>23</b> &nbsp; Motor de reseñas y sistema de WhatsApp</span><span>26</span></li>
+    <li><span><b>24</b> &nbsp; Presupuesto y proyección de pacientes</span><span>27</span></li>
+    <li><span><b>25</b> &nbsp; Tablero de KPIs y cadencia de revisión</span><span>28</span></li>
+    <li><span><b>26</b> &nbsp; Supuestos, riesgos y fuentes consultadas</span><span>29</span></li>
+  </ul></div>
+  <div class="box" style="margin-top:auto">
+    <h4>Nota sobre el tono de este documento</h4>
+    <p style="margin:0">Se pidió una <strong>auditoría dura</strong>. Este informe no suaviza los hallazgos: cada crítica va acompañada del dato que la sostiene y de la acción correctiva concreta. Todo número presentado como medición fue extraído de fuentes públicas el 27/08/2026; todo número presentado como proyección está etiquetado como tal y acompañado de sus supuestos.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 2</span></div>
+</section>
+
+<!-- ============ 01 RESUMEN EJECUTIVO ============ -->
+<section class="page">
+  <div class="ph"><b>01 · Resumen ejecutivo</b><span>Agosto 2026</span></div>
+  <h2>El veredicto en una página</h2>
+  <p class="lead">DM Wellness tiene el activo más difícil de conseguir —una clínica operando, con equipo de alta gama, aviso COFEPRIS vigente y 6,800 seguidores— y está desperdiciándolo por completo en los tres puntos donde realmente se decide un paciente: <strong>búsqueda local, prueba social y conversión</strong>.</p>
+
+  <div class="grid4" style="margin:5mm 0">
+    <div class="kpi"><div class="v bad">0</div><div class="l">Reseñas públicas indexadas</div></div>
+    <div class="kpi"><div class="v bad">0</div><div class="l">Presencia en Google Maps</div></div>
+    <div class="kpi"><div class="v bad">0.09%</div><div class="l">Engagement en Instagram</div></div>
+    <div class="kpi"><div class="v bad">2</div><div class="l">Reels publicados en agosto</div></div>
+  </div>
+
+  <h3>Los cinco hallazgos que más dinero cuestan</h3>
+  <table>
+    <tr><th style="width:8mm">#</th><th>Hallazgo</th><th style="width:24mm">Severidad</th><th style="width:47mm">Impacto en pacientes</th></tr>
+    <tr><td><strong>1</strong></td><td><strong>No existen en Google Maps ni en el paquete local.</strong> Sin ficha de negocio, la clínica es estructuralmente invisible para toda búsqueda "cerca de mí" —el patrón #1 de descubrimiento en estética.</td><td><span class="tag t-crit">Crítica</span></td><td>Pérdida del canal de mayor intención de compra. Cero captación por búsqueda.</td></tr>
+    <tr><td><strong>2</strong></td><td><strong>Cero prueba social verificable.</strong> Competidores a menos de 1 km acumulan 38 y 997+ opiniones públicas. DM tiene 0 reseñas indexadas en cualquier plataforma.</td><td><span class="tag t-crit">Crítica</span></td><td>En medicina estética la reseña es el sustituto de la confianza. Sin ella, el precio se vuelve la única variable.</td></tr>
+    <tr><td><strong>3</strong></td><td><strong>El contenido colapsó justo cuando debía acelerar.</strong> 8 reels en julio → 2 en agosto. Duración media de 17 s contra 56 s del competidor líder.</td><td><span class="tag t-crit">Crítica</span></td><td>En agosto Skintopia generó ~44× más reproducciones que DM. El algoritmo castiga la intermitencia.</td></tr>
+    <tr><td><strong>4</strong></td><td><strong>Los dos reels de mayor alcance son los que Meta prohíbe promocionar.</strong> Antes/después corporales y encuadres de partes del cuerpo violan las políticas de publicidad de salud y belleza.</td><td><span class="tag t-crit">Crítica</span></td><td>Su mejor contenido orgánico es inutilizable en pauta y pone en riesgo la cuenta publicitaria.</td></tr>
+    <tr><td><strong>5</strong></td><td><strong>El embudo termina en un enlace de WhatsApp sin sistema.</strong> Sin sitio, sin landing, sin píxel, sin captura de datos, sin guion de cierre, sin seguimiento.</td><td><span class="tag t-crit">Crítica</span></td><td>Todo el tráfico que sí llega se pierde sin medición ni remarketing posible.</td></tr>
+  </table>
+
+  <div class="split">
+    <div class="a">
+      <h4 style="color:var(--red)">Lo que está roto</h4>
+      <ul style="margin-bottom:0">
+        <li>Invisibles en búsqueda local y en mapas</li>
+        <li>Sin prueba social ni credenciales visibles en creativos</li>
+        <li>Publicación intermitente y formatos demasiado cortos</li>
+        <li>Nutrición y spa prácticamente ausentes del contenido</li>
+        <li>Datos de negocio inconsistentes entre fuentes</li>
+      </ul>
+    </div>
+    <div class="b">
+      <h4 style="color:var(--green)">Lo que ya tienen y no explotan</h4>
+      <ul style="margin-bottom:0">
+        <li>Aviso COFEPRIS 2409145036X00027 vigente</li>
+        <li>Equipo diferenciador: Venus Legacy, Endolift Mónaco, Dermapen</li>
+        <li>6,800 seguidores —más que varios competidores que sí facturan</li>
+        <li>Tres líneas de negocio cruzables: estética, nutrición y spa</li>
+        <li>Ubicación en corredor médico consolidado sobre Vértiz</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>La tesis de esta auditoría</h4>
+    <p style="margin:0">El problema de DM Wellness <strong>no es de talento clínico ni de equipamiento: es de infraestructura de captación</strong>. Las tres primeras acciones del plan —ficha de Google, motor de reseñas y regularización del perfil— cuestan cero pesos en medios y se ejecutan en 30 días. Son también las tres que más pacientes producen. La pauta publicitaria no debe encenderse hasta que estén hechas: sin ellas, cada peso invertido en anuncios se derrama.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 3</span></div>
+</section>
+
+<!-- ============ 02 METODOLOGÍA ============ -->
+<section class="page">
+  <div class="ph"><b>02 · Metodología</b><span>Alcance, fuentes y límites</span></div>
+  <h2>Cómo se hizo esta auditoría</h2>
+  <p class="lead">Toda afirmación de este informe está clasificada en una de tres categorías. Se declaran explícitamente para que ninguna estimación se confunda con una medición.</p>
+
+  <div class="grid3" style="margin:5mm 0">
+    <div class="kpi" style="text-align:left"><div class="v" style="font-size:12pt">Medido</div><div class="l" style="text-transform:none;letter-spacing:0;font-size:7.6pt;text-align:left">Dato extraído directamente de la fuente pública el 27/08/2026. Verificable y reproducible.</div></div>
+    <div class="kpi" style="text-align:left"><div class="v warn" style="font-size:12pt">Inferido</div><div class="l" style="text-transform:none;letter-spacing:0;font-size:7.6pt;text-align:left">Conclusión derivada de datos medidos más benchmarks del sector. Se explicita el razonamiento.</div></div>
+    <div class="kpi" style="text-align:left"><div class="v" style="font-size:12pt;color:var(--gray)">Proyectado</div><div class="l" style="text-transform:none;letter-spacing:0;font-size:7.6pt;text-align:left">Escenario a futuro bajo supuestos declarados. No es una promesa de resultado.</div></div>
+  </div>
+
+  <h3>Fuentes consultadas</h3>
+  <table>
+    <tr><th>Fuente</th><th>Qué aportó</th><th style="width:26mm">Estado</th></tr>
+    <tr><td>Perfil público de Instagram @dm_wbn2</td><td>Nombre, biografía, seguidores, seguidos, publicaciones, enlace externo, foto de perfil</td><td><span class="tag t-ok">Obtenido</span></td></tr>
+    <tr><td>Pestaña de Reels de @dm_wbn2</td><td>12 reels con reproducciones, likes, comentarios, duración, fecha y portada</td><td><span class="tag t-ok">Obtenido</span></td></tr>
+    <tr><td>Perfil y reels de @skintopia_mx (competidor de zona)</td><td>Mismo conjunto de métricas para comparación directa</td><td><span class="tag t-ok">Obtenido</span></td></tr>
+    <tr><td>Búsqueda web sobre Vértiz 995 y zona Narvarte</td><td>Competidores, precios públicos, número de opiniones, directorios dominantes</td><td><span class="tag t-ok">Obtenido</span></td></tr>
+    <tr><td>Análisis de contenido destacado del nicho (México, español)</td><td>12 piezas que superaron ampliamente la mediana de su creador: formatos, ganchos y patrones</td><td><span class="tag t-ok">Obtenido</span></td></tr>
+    <tr><td>Página de Facebook (enlace <em>share</em> proporcionado)</td><td>—</td><td><span class="tag t-alt">No accesible</span></td></tr>
+    <tr><td>Herramienta de volumen de búsqueda (Semrush)</td><td>—</td><td><span class="tag t-alt">Sin créditos</span></td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Limitaciones declaradas — léanse antes de las conclusiones</h4>
+    <ul style="margin-bottom:0">
+      <li><strong>Facebook no pudo ser auditado en detalle.</strong> El enlace <code>facebook.com/share/1CXJTYty5Q/</code> no fue accesible desde el entorno de análisis. En la sección 07 se entrega un protocolo de verificación de 12 puntos para que el equipo lo complete internamente en menos de 20 minutos.</li>
+      <li><strong>No hay volúmenes de búsqueda con cifra exacta.</strong> La herramienta de datos de búsqueda no tenía créditos disponibles. Por eso este informe <em>no publica ningún volumen mensual inventado</em>. La priorización de palabras clave se sustenta en evidencia estructural del buscador: existen páginas dedicadas a "botox cerca de mí en Vértiz Narvarte" y "rejuvenecimiento facial en Vértiz Narvarte" construidas por agregadores comerciales, lo que prueba que hay demanda monetizable a nivel de colonia.</li>
+      <li><strong>Instagram no publica alcance ni guardados a terceros.</strong> Las tasas de interacción se calculan sobre reproducciones y likes visibles. Los datos internos de Instagram Insights (alcance, guardados, compartidos, visitas al perfil, toques al enlace) darán una lectura más precisa y deben incorporarse en la siguiente revisión.</li>
+      <li><strong>Las opiniones de competidores se leyeron de fichas de directorio</strong>, no de una auditoría de autenticidad de reseñas.</li>
+    </ul>
+  </div>
+
+  <h3>Qué se evaluó</h3>
+  <table>
+    <tr><th>Dimensión</th><th>Criterios revisados</th><th style="width:16mm" class="ctr">Peso</th></tr>
+    <tr><td>Búsqueda local y mapas</td><td>Ficha de negocio, categorías, NAP, fotos, publicaciones, preguntas, atributos</td><td class="ctr">25%</td></tr>
+    <tr><td>Prueba social</td><td>Volumen, frecuencia, calificación y gestión de reseñas en Google, Doctoralia y agregadores</td><td class="ctr">20%</td></tr>
+    <tr><td>Activos propios</td><td>Sitio web, landing pages, captura de datos, medición, remarketing</td><td class="ctr">20%</td></tr>
+    <tr><td>Redes sociales</td><td>Optimización de perfil, cadencia, formatos, interacción, coherencia de oferta</td><td class="ctr">20%</td></tr>
+    <tr><td>Conversión y cumplimiento</td><td>Ruta de contacto, guiones, tiempos de respuesta, COFEPRIS, políticas de plataformas</td><td class="ctr">15%</td></tr>
+  </table>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 4</span></div>
+</section>
+
+<!-- ============ 03 SCORECARD ============ -->
+<section class="page">
+  <div class="ph"><b>03 · Scorecard</b><span>Calificación canal por canal</span></div>
+  <h2>Dónde está parada la clínica hoy</h2>
+
+  <div class="score" style="background:linear-gradient(135deg,#F7F2FA,#FDF6F7);border:.8pt solid var(--line);border-radius:3mm;padding:6mm;margin-bottom:6mm">
+    <div><div class="big" style="color:var(--red)">28</div><div class="small" style="text-align:center">de 100</div></div>
+    <div>
+      <h3 style="margin-top:0">Presencia digital: <span style="color:var(--red)">crítica</span></h3>
+      <p style="margin-bottom:0">Una clínica de medicina estética en Benito Juárez con este perfil está compitiendo con una sola mano. Los 28 puntos provienen casi por completo de un activo —la base de seguidores en Instagram y el aviso sanitario vigente—; el resto de la infraestructura de captación sencillamente no existe. La buena noticia: <strong>casi todo lo faltante es de construcción rápida y bajo costo</strong>, no requiere obra, contrataciones ni tecnología nueva.</p>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>Canal / dimensión</th><th class="ctr" style="width:18mm">Puntaje</th><th style="width:52mm">Estado</th><th>Comentario del auditor</th></tr>
+    <tr><td><strong>Google Business Profile</strong></td><td class="ctr"><strong style="color:var(--red)">0/100</strong></td><td><div class="bar"><i class="r" style="width:1%"></i></div></td><td>No existe. Es el hallazgo más caro del informe.</td></tr>
+    <tr><td><strong>Sitio web / activos propios</strong></td><td class="ctr"><strong style="color:var(--red)">0/100</strong></td><td><div class="bar"><i class="r" style="width:1%"></i></div></td><td>Sin dominio, sin landing, sin medición, sin remarketing.</td></tr>
+    <tr><td><strong>Reseñas y prueba social</strong></td><td class="ctr"><strong style="color:var(--red)">3/100</strong></td><td><div class="bar"><i class="r" style="width:3%"></i></div></td><td>Cero opiniones indexadas. Competencia con 38 y 997+.</td></tr>
+    <tr><td><strong>Directorios de salud</strong></td><td class="ctr"><strong style="color:var(--red)">5/100</strong></td><td><div class="bar"><i class="r" style="width:5%"></i></div></td><td>Ausentes de Doctoralia. Posible ficha sin reclamar en agregadores.</td></tr>
+    <tr><td><strong>SEO local</strong></td><td class="ctr"><strong style="color:var(--red)">4/100</strong></td><td><div class="bar"><i class="r" style="width:4%"></i></div></td><td>Marca no recuperable por búsqueda. Sin señales geográficas.</td></tr>
+    <tr><td><strong>Instagram — perfil</strong></td><td class="ctr"><strong style="color:var(--amber)">38/100</strong></td><td><div class="bar"><i style="width:38%"></i></div></td><td>Buena base de seguidores; nombre, bio y enlace desaprovechados.</td></tr>
+    <tr><td><strong>Instagram — contenido</strong></td><td class="ctr"><strong style="color:var(--amber)">31/100</strong></td><td><div class="bar"><i style="width:31%"></i></div></td><td>Producción digna, pero corta, intermitente y sin autoridad en cámara.</td></tr>
+    <tr><td><strong>Instagram — interacción</strong></td><td class="ctr"><strong style="color:var(--red)">12/100</strong></td><td><div class="bar"><i class="r" style="width:12%"></i></div></td><td>0.09% de interacción. 1 comentario en 12 reels.</td></tr>
+    <tr><td><strong>Facebook</strong></td><td class="ctr"><strong style="color:var(--gray)">n/d</strong></td><td><div class="bar"><i style="width:0%"></i></div></td><td>No verificable en esta auditoría. Protocolo en sección 07.</td></tr>
+    <tr><td><strong>Conversión (WhatsApp)</strong></td><td class="ctr"><strong style="color:var(--amber)">25/100</strong></td><td><div class="bar"><i style="width:25%"></i></div></td><td>Enlace existente, pero sin guion, sin SLA ni seguimiento medido.</td></tr>
+    <tr><td><strong>Cumplimiento COFEPRIS</strong></td><td class="ctr"><strong style="color:var(--amber)">45/100</strong></td><td><div class="bar"><i style="width:45%"></i></div></td><td>Aviso vigente y declarado en bio, pero ausente de los creativos.</td></tr>
+    <tr><td><strong>Coherencia de oferta</strong></td><td class="ctr"><strong style="color:var(--red)">18/100</strong></td><td><div class="bar"><i class="r" style="width:18%"></i></div></td><td>La marca promete nutrición y spa; el contenido casi no los muestra.</td></tr>
+  </table>
+
+  <div class="box">
+    <h4>Lectura del scorecard</h4>
+    <p style="margin:0">Cinco de las doce dimensiones puntúan por debajo de 10/100 y <strong>las cinco son de captación, no de contenido</strong>. Esto tiene una consecuencia estratégica directa: aumentar la producción de reels sin construir antes ficha de Google, reseñas y activo propio subiría el alcance sin subir proporcionalmente las citas. La secuencia correcta es <strong>captación → prueba social → contenido → pauta</strong>, y así está ordenado el plan de 90 días.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 5</span></div>
+</section>
+
+<!-- ============ 04 INSTAGRAM PERFIL ============ -->
+<section class="page">
+  <div class="ph"><b>04 · Instagram</b><span>Auditoría del perfil @dm_wbn2</span></div>
+  <h2>El perfil: nueve errores en once líneas de texto</h2>
+
+  <div class="grid4" style="margin-bottom:5mm">
+    <div class="kpi"><div class="v">6,800</div><div class="l">Seguidores</div></div>
+    <div class="kpi"><div class="v">214</div><div class="l">Seguidos</div></div>
+    <div class="kpi"><div class="v">168</div><div class="l">Publicaciones</div></div>
+    <div class="kpi"><div class="v bad">1</div><div class="l">Enlace externo (sin medición)</div></div>
+  </div>
+
+  <h4>Estado actual del perfil (transcripción literal)</h4>
+  <div class="copyblock">Nombre:   DM Wellnes Beauty and Nutrition
+Usuario:  @dm_wbn2
+Bio:      Clínica Integral de Belleza y Nutrición 💜 Wellnes Beauty and Nutrition
+          COFEPRIS: 2409145036X00027
+Enlace:   https://wa.link/2tsga5</div>
+
+  <table>
+    <tr><th style="width:8mm">#</th><th style="width:42mm">Elemento</th><th>Problema detectado</th><th style="width:20mm" class="ctr">Severidad</th></tr>
+    <tr><td>1</td><td><strong>Campo "Nombre"</strong></td><td>Instagram indexa este campo en su buscador. Hoy dice únicamente el nombre de marca —que nadie busca— y desperdicia el único espacio donde se pueden colocar las palabras que sí busca un paciente: <em>medicina estética</em>, <em>Narvarte</em>, <em>CDMX</em>.</td><td class="ctr"><span class="tag t-crit">Crítica</span></td></tr>
+    <tr><td>2</td><td><strong>Error ortográfico</strong></td><td>"Wellnes" con una sola <em>s</em>, repetido en el nombre y en la bio. En una clínica que vende precisión clínica, un error de marca visible en la primera línea erosiona la percepción de rigor.</td><td class="ctr"><span class="tag t-alt">Alta</span></td></tr>
+    <tr><td>3</td><td><strong>Sin ubicación en la bio</strong></td><td>No aparece colonia, alcaldía ni ciudad. Un usuario que llega al perfil no sabe si la clínica está en CDMX o en Monterrey, y debe escribir para averiguarlo. Fricción pura.</td><td class="ctr"><span class="tag t-crit">Crítica</span></td></tr>
+    <tr><td>4</td><td><strong>Sin horario</strong></td><td>"¿A qué hora abren?" es de las tres primeras preguntas por mensaje directo. Responderla en la bio libera tiempo del equipo y acelera el agendado.</td><td class="ctr"><span class="tag t-med">Media</span></td></tr>
+    <tr><td>5</td><td><strong>Sin cédula profesional visible</strong></td><td>Los competidores auditados publican cédula en la bio y en los videos. En un sector con casos documentados de mala praxis, la credencial es un argumento de venta, no un trámite.</td><td class="ctr"><span class="tag t-alt">Alta</span></td></tr>
+    <tr><td>6</td><td><strong>Enlace único a WhatsApp</strong></td><td>Un <code>wa.link</code> suelto: sin parámetros de seguimiento, sin página intermedia, sin píxel, sin posibilidad de saber qué contenido generó el mensaje ni de rehacer campañas de remarketing.</td><td class="ctr"><span class="tag t-crit">Crítica</span></td></tr>
+    <tr><td>7</td><td><strong>Sin lista de servicios</strong></td><td>La bio menciona "belleza y nutrición" en abstracto. No hay una sola palabra sobre botox, ácido hialurónico, láser, nutrición clínica o masaje: exactamente los términos por los que la gente busca.</td><td class="ctr"><span class="tag t-alt">Alta</span></td></tr>
+    <tr><td>8</td><td><strong>Usuario no memorable</strong></td><td><code>dm_wbn2</code> no es pronunciable, no es deletreable por teléfono y el sufijo "2" sugiere una cuenta de reemplazo. Un paciente que oye el nombre en consulta no puede encontrarla después.</td><td class="ctr"><span class="tag t-med">Media</span></td></tr>
+    <tr><td>9</td><td><strong>Ratio de seguidos muy bajo</strong></td><td>214 cuentas seguidas para un negocio local implica que no hay estrategia de interacción con la comunidad de la zona: negocios vecinos, colonias colindantes, alianzas.</td><td class="ctr"><span class="tag t-med">Media</span></td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Diagnóstico de raíz</h4>
+    <p style="margin:0">El perfil está redactado como una <strong>tarjeta de presentación</strong>, no como una <strong>página de aterrizaje</strong>. Recibe visitas —los reels generan tráfico— y las devuelve sin convertir porque no responde las tres preguntas que decide un paciente en menos de siete segundos: <em>¿dónde están?</em>, <em>¿quién me va a atender y con qué credencial?</em> y <em>¿cuánto y cómo agendo?</em>. La versión reescrita, lista para copiar y pegar, está en la sección 21.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 6</span></div>
+</section>
+
+<!-- ============ 05 REELS DATA ============ -->
+<section class="page t2">
+  <div class="ph"><b>05 · Instagram</b><span>Rendimiento real del contenido</span></div>
+  <h2>Los números que Instagram no muestra en el perfil</h2>
+  <p class="lead">Estos son los 12 reels visibles de @dm_wbn2 al 27/08/2026, ordenados del más reciente al más antiguo. Es la radiografía completa del motor de contenido.</p>
+
+  <table>
+    <tr><th style="width:19mm">Fecha</th><th>Tema del reel</th><th class="ctr" style="width:14mm">Dur.</th><th class="num" style="width:20mm">Reprod.</th><th class="num" style="width:14mm">Likes</th><th class="num" style="width:18mm">Interac.</th></tr>
+    <tr><td>26 ago 2026</td><td>Venus Legacy — piel firme y rejuvenecida</td><td class="ctr">19 s</td><td class="num">85</td><td class="num">0</td><td class="num" style="color:var(--red)">0.00%</td></tr>
+    <tr><td>08 ago 2026</td><td>Trend de humor — "emergencia de cosmetóloga"</td><td class="ctr">5 s</td><td class="num">654</td><td class="num">6</td><td class="num">0.92%</td></tr>
+    <tr><td>21 jul 2026</td><td>Maderoterapia — moldeo corporal</td><td class="ctr">37 s</td><td class="num"><strong>1,743</strong></td><td class="num">14</td><td class="num">0.80%</td></tr>
+    <tr><td>18 jul 2026</td><td>Dermapen — colágeno y textura</td><td class="ctr">30 s</td><td class="num">309</td><td class="num">5</td><td class="num">1.62%</td></tr>
+    <tr><td>16 jul 2026</td><td>Retiro de verrugas planas</td><td class="ctr">9 s</td><td class="num">397</td><td class="num">3</td><td class="num">0.76%</td></tr>
+    <tr><td>10 jul 2026</td><td>Endolift Mónaco — grasa localizada</td><td class="ctr">34 s</td><td class="num">181</td><td class="num">4</td><td class="num">2.21%</td></tr>
+    <tr><td>09 jul 2026</td><td>Antes/después corporal — "no es magia"</td><td class="ctr">4 s</td><td class="num"><strong>1,082</strong></td><td class="num">7</td><td class="num">0.65%</td></tr>
+    <tr><td>07 jul 2026</td><td>Marca — "tú eres la ocasión"</td><td class="ctr">20 s</td><td class="num">327</td><td class="num">4</td><td class="num">1.22%</td></tr>
+    <tr><td>02 jul 2026</td><td>Faciales profesionales</td><td class="ctr">12 s</td><td class="num">569</td><td class="num">12</td><td class="num">2.11%</td></tr>
+    <tr><td>30 jun 2026</td><td>Armonización facial</td><td class="ctr">20 s</td><td class="num">185</td><td class="num">4</td><td class="num">2.16%</td></tr>
+    <tr><td>26 jun 2026</td><td>Venus Legacy — redefinir figura</td><td class="ctr">10 s</td><td class="num">580</td><td class="num">7</td><td class="num">1.21%</td></tr>
+    <tr><td>25 jun 2026</td><td>Productos nuevos de skincare</td><td class="ctr">7 s</td><td class="num">228</td><td class="num">5</td><td class="num">2.19%</td></tr>
+    <tr style="background:#F5F1F8"><td colspan="2"><strong>TOTALES / PROMEDIOS (12 reels · 62 días)</strong></td><td class="ctr"><strong>17 s</strong></td><td class="num"><strong>6,340</strong></td><td class="num"><strong>71</strong></td><td class="num"><strong>1 coment.</strong></td></tr>
+  </table>
+
+  <div class="grid4" style="margin:4mm 0 5mm">
+    <div class="kpi"><div class="v">528</div><div class="l">Reproducciones promedio</div></div>
+    <div class="kpi"><div class="v">362</div><div class="l">Reproducciones mediana</div></div>
+    <div class="kpi"><div class="v bad">5.9</div><div class="l">Likes promedio por reel</div></div>
+    <div class="kpi"><div class="v bad">0.087%</div><div class="l">Interacción sobre seguidores</div></div>
+  </div>
+
+  <h3>Lo que estos números significan</h3>
+
+  <h4>1. La audiencia de 6,800 seguidores no está viendo el contenido</h4>
+  <p>Un reel alcanza en mediana a <strong>362 personas</strong>: el 5.3% de la base de seguidores. Dicho de otro modo, <strong>94 de cada 100 seguidores no ven una publicación típica</strong>. Con 5.9 likes de promedio, la tasa de interacción sobre seguidores es de 0.087%, entre diez y treinta veces por debajo de lo que se considera saludable para una cuenta local de estética (1%–3%).</p>
+
+  <h4>2. Hay una desconexión entre el tamaño de la cuenta y su comportamiento</h4>
+  <p>Cuando una cuenta tiene muchos seguidores pero casi ninguna interacción, la causa suele ser una de tres, y conviene identificar cuál antes de invertir en pauta:</p>
+  <ul>
+    <li><strong>Audiencia inflada o no local</strong> — seguidores comprados, ganados en sorteos o atraídos por contenido viral fuera de la zona de servicio. Se detecta en Instagram Insights → Audiencia → Ciudades principales. <em>Si menos del 60% de los seguidores está en CDMX, la base no sirve para llenar la agenda.</em></li>
+    <li><strong>Fatiga por intermitencia</strong> — la cuenta pasó de 8 reels en julio a 2 en agosto; el sistema de recomendación reduce la distribución de cuentas que dejan de publicar.</li>
+    <li><strong>Formato demasiado corto</strong> — con duración media de 17 segundos y varios reels de 4 a 9 segundos, hay muy poco tiempo de visualización acumulado, que es la señal principal que Instagram premia.</li>
+  </ul>
+
+  <h4>3. El contenido que más alcance obtiene es el que menos pacientes trae</h4>
+  <p>Los dos reels con mayor alcance —maderoterapia (1,743) y antes/después corporal (1,082)— son planos de cuerpo en ropa interior. Consiguen reproducciones porque activan curiosidad, no intención de compra: su tasa de interacción (0.80% y 0.65%) está <em>por debajo</em> de la de los reels de armonización facial o faciales (2.16% y 2.11%), que alcanzan a menos gente pero a gente más correcta. <strong>El alcance sin intención es tráfico que no agenda.</strong></p>
+
+  <div class="box crit">
+    <h4>El dato de agosto, sin adornos</h4>
+    <p style="margin:0">En agosto de 2026 DM Wellness publicó <strong>2 reels que sumaron 739 reproducciones</strong>. En el mismo mes, un competidor a menos de un kilómetro publicó <strong>9 reels que sumaron 32,735 reproducciones</strong>. Aun descontando por completo su pieza viral, la diferencia sigue siendo de <strong>11 a 1</strong>. Con la pieza viral incluida, de <strong>44 a 1</strong>. No es un problema de algoritmo: es un problema de volumen.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 7</span></div>
+</section>
+
+<!-- ============ 06 CONTENIDO Y COPY ============ -->
+<section class="page">
+  <div class="ph"><b>06 · Instagram</b><span>Diagnóstico de contenido y copy</span></div>
+  <h2>Qué falla en las piezas, una por una</h2>
+
+  <h4>A. Cadencia: el patrón de abandono</h4>
+  <div style="margin:3mm 0 5mm">
+    <div class="barrow"><span class="lbl">Junio (25–30)</span><div class="bar"><i style="width:33%"></i></div><span class="val">3 reels</span></div>
+    <div class="barrow"><span class="lbl">Julio</span><div class="bar"><i class="g" style="width:100%"></i></div><span class="val">8 reels</span></div>
+    <div class="barrow"><span class="lbl">Agosto</span><div class="bar"><i class="r" style="width:25%"></i></div><span class="val">2 reels</span></div>
+  </div>
+  <p>Entre el 21 de julio y el 8 de agosto pasaron <strong>18 días sin publicar</strong>; entre el 8 y el 26 de agosto, otros <strong>18 días</strong>. Instagram interpreta esos silencios como señal de cuenta inactiva y reduce la distribución inicial de las piezas siguientes. Se ve con claridad en el resultado: el reel del 26 de agosto obtuvo <strong>85 reproducciones, el peor dato del periodo y cero likes</strong>. Publicar con irregularidad cuesta más caro que no publicar.</p>
+
+  <h4>B. Ausencia de rostro y de autoridad clínica</h4>
+  <p>De los 12 reels, la mayoría son planos cerrados de procedimiento —manos con guantes, pantallas de equipo, piel— sin una persona que hable a cámara. Solo dos piezas muestran al personal, y en ninguna se identifica al médico por nombre, especialidad ni cédula. En medicina estética <strong>el paciente no compra el aparato, compra a quien lo opera</strong>. El competidor líder de la zona dedica una serie completa a presentar a sus cuatro dermatólogas con nombre y trayectoria.</p>
+
+  <h4>C. Copy: hashtags mal construidos y llamadas a la acción débiles</h4>
+  <table>
+    <tr><th style="width:52mm">Problema</th><th>Evidencia textual</th><th style="width:48mm">Corrección</th></tr>
+    <tr><td><strong>Hashtags pegados sin espacio</strong></td><td class="small"><code>#medicinaestética#humorcosme#saludybelleza#saludybelleza#aguatermal</code></td><td>Separar con espacio, 8–12 por pieza, sin repetir.</td></tr>
+    <tr><td><strong>Hashtag duplicado</strong></td><td class="small"><code>#saludybelleza</code> aparece dos veces en el mismo pie</td><td>Etiqueta desperdiciada; sustituir por una geográfica.</td></tr>
+    <tr><td><strong>Cero hashtags geográficos</strong></td><td class="small">Ninguna pieza usa <code>#narvarte</code>, <code>#benitojuarez</code>, <code>#cdmx</code> ni <code>#vertiznarvarte</code></td><td>Al menos 3 geográficos por pieza. Es gratis y es el único filtro de zona que ofrece la plataforma.</td></tr>
+    <tr><td><strong>CTA sin fricción resuelta</strong></td><td class="small">"agenda tu valoración" sin decir dónde, cuándo, cuánto ni cómo</td><td>"Escribe VALORACIÓN al DM y te damos horario hoy mismo. Narvarte, Vértiz 995."</td></tr>
+    <tr><td><strong>Sin ancla de precio</strong></td><td class="small">Ninguna pieza menciona costo, rango ni "valoración sin costo"</td><td>El precio filtra curiosos y aumenta la calidad del mensaje entrante.</td></tr>
+    <tr><td><strong>Errores de puntuación y espaciado</strong></td><td class="small">"limpiar,hidratar,revitalizar", "Moldea,drena", "Valórarte"</td><td>Revisión editorial antes de publicar. Suma percepción de rigor.</td></tr>
+  </table>
+
+  <h4>D. Incoherencia entre la marca prometida y el contenido publicado</h4>
+  <p>La cuenta se llama <em>Beauty <strong>and Nutrition</strong></em> y la bio anuncia una "Clínica Integral de Belleza <strong>y Nutrición</strong>". Sin embargo, <strong>de los 12 reels auditados, cero tratan sobre nutrición</strong> y solo uno roza el terreno del spa (maderoterapia). Esto tiene dos costos:</p>
+  <ul>
+    <li><strong>Comercial:</strong> la nutrición es el único de los tres servicios con <strong>ingreso recurrente</strong> —consulta de seguimiento mensual— y es el que estabiliza el flujo de caja frente a la estética, que es transaccional y estacional. Hoy no se está vendiendo.</li>
+    <li><strong>De posicionamiento:</strong> una clínica "integral" que solo muestra estética compite de frente contra decenas de cabinas y consultorios. Una clínica que muestra <strong>el circuito completo —valoración nutricional + tratamiento corporal + spa—</strong> compite en una categoría con muchísima menos oferta en la zona.</li>
+  </ul>
+
+  <div class="box win">
+    <h4>La oportunidad que nadie en la zona está tomando</h4>
+    <p style="margin:0">Los competidores auditados en Narvarte son <strong>clínicas dermatológicas o consultorios de medicina estética puros</strong>. Ninguno ofrece de forma integrada estética + nutrición + spa bajo el mismo techo. Ese es el territorio propio de DM Wellness y, por ahora, está vacío: es el eje de posicionamiento que se recomienda en el plan.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 8</span></div>
+</section>
+
+<!-- ============ 07 FACEBOOK ============ -->
+<section class="page">
+  <div class="ph"><b>07 · Facebook</b><span>Estado y protocolo de verificación</span></div>
+  <h2>Facebook: lo que no pudo medirse y cómo cerrarlo</h2>
+
+  <div class="box crit">
+    <h4>Declaración de límite</h4>
+    <p style="margin:0">El enlace proporcionado (<code>facebook.com/share/1CXJTYty5Q/</code>) es un enlace corto de compartir que no fue accesible desde el entorno de análisis. <strong>No se emiten conclusiones sobre el rendimiento de la página de Facebook.</strong> Lo que sigue es un protocolo de 12 puntos que el equipo puede completar internamente en menos de 20 minutos y que convierte esta laguna en un checklist accionable.</p>
+  </div>
+
+  <h3>Protocolo de verificación — completar internamente</h3>
+  <table>
+    <tr><th style="width:8mm">#</th><th>Punto a verificar</th><th style="width:66mm">Estándar correcto</th></tr>
+    <tr><td>1</td><td>¿La página tiene una URL personalizada legible?</td><td><code>facebook.com/dmwellnessnarvarte</code>, no una cadena numérica.</td></tr>
+    <tr><td>2</td><td>¿La categoría de la página es la correcta?</td><td>"Clínica de medicina estética" o "Spa médico" — no "Empresa local" genérica.</td></tr>
+    <tr><td>3</td><td>¿Están cargados dirección, teléfono y horario?</td><td>Idénticos, carácter por carácter, a los de Google e Instagram.</td></tr>
+    <tr><td>4</td><td>¿Está activado el botón de acción?</td><td>"Enviar WhatsApp" o "Reservar" visible en la portada.</td></tr>
+    <tr><td>5</td><td>¿La página está vinculada a la cuenta de Instagram?</td><td>Vinculación en Meta Business Suite: obligatoria para publicar y pautar en ambas.</td></tr>
+    <tr><td>6</td><td>¿Existe un Administrador Comercial (Business Manager) propio?</td><td>La clínica debe ser <strong>propietaria</strong> de los activos, no un tercero o una cuenta personal.</td></tr>
+    <tr><td>7</td><td>¿Hay reseñas/recomendaciones activadas?</td><td>Activar y solicitar. Es la segunda fuente de prueba social después de Google.</td></tr>
+    <tr><td>8</td><td>¿Cuántas publicaciones lleva en los últimos 30 días?</td><td>Mínimo viable: replicar los reels de Instagram + 2 publicaciones propias por semana.</td></tr>
+    <tr><td>9</td><td>¿Está configurado el catálogo de servicios?</td><td>Cada tratamiento como servicio con foto, descripción y rango de precio.</td></tr>
+    <tr><td>10</td><td>¿Hay respuestas automáticas y tiempo de respuesta visible?</td><td>El distintivo "Responde en pocos minutos" aumenta la tasa de mensajes.</td></tr>
+    <tr><td>11</td><td>¿Existen páginas duplicadas de la clínica?</td><td>Buscar el nombre y la dirección; fusionar duplicados. Dividen reseñas y alcance.</td></tr>
+    <tr><td>12</td><td>¿La cuenta publicitaria tiene restricciones o rechazos previos?</td><td>Revisar Calidad de la cuenta. Es determinante antes de invertir en pauta.</td></tr>
+  </table>
+
+  <h3>Por qué Facebook sigue importando en este negocio</h3>
+  <p>Existe la tentación de descartar Facebook por considerarlo una plataforma de audiencia mayor. Para una clínica de medicina estética en CDMX eso es un error de lectura por tres razones concretas:</p>
+  <ul>
+    <li><strong>La demografía de mayor poder adquisitivo para estética facial —mujeres de 38 a 60 años— sigue teniendo alta actividad en Facebook</strong>, y es justamente el segmento que compra armonización, rellenos, tensado y tratamientos antiedad, con tickets muy superiores a la limpieza facial.</li>
+    <li><strong>Los grupos vecinales de la zona</strong> (Narvarte, Del Valle, Vértiz Narvarte, Álamos, Portales) concentran recomendaciones locales de alta conversión. Una presencia bien llevada ahí es captación orgánica gratuita y geográficamente perfecta.</li>
+    <li><strong>La pauta se administra desde el mismo lugar.</strong> Aunque los anuncios se muestren solo en Instagram, la infraestructura vive en Meta: página, Business Manager, catálogo y píxel. Si esa base está desordenada, la pauta arranca torcida.</li>
+  </ul>
+
+  <div class="box">
+    <h4>Acción inmediata sugerida</h4>
+    <p style="margin:0">Completar los 12 puntos y enviar capturas de los puntos 6 y 12 —propiedad del Business Manager y calidad de la cuenta publicitaria— antes de cualquier inversión en anuncios. Son los dos que, si están mal, invalidan todo el gasto posterior.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 9</span></div>
+</section>
+
+<!-- ============ 08 GOOGLE BUSINESS ============ -->
+<section class="page t1">
+  <div class="ph"><b>08 · Búsqueda local</b><span>El hallazgo más caro del informe</span></div>
+  <h2>Sin ficha de Google: invisibles donde se decide</h2>
+  <p class="lead">De todos los hallazgos de esta auditoría, este es el que más pacientes cuesta y el más barato de corregir. Es gratuito, se activa en 15 minutos y se verifica en 5 a 14 días.</p>
+
+  <h3>Qué se pierde exactamente sin ficha de negocio</h3>
+  <table>
+    <tr><th style="width:56mm">Superficie de Google</th><th>Qué ocurre hoy</th></tr>
+    <tr><td><strong>Google Maps</strong></td><td>La clínica no aparece. Un usuario en Narvarte que abra Maps y escriba "medicina estética" verá a Skintopia, a los consultorios de Vértiz y a las cabinas de la zona. A DM Wellness, no. No existe.</td></tr>
+    <tr><td><strong>Paquete local (los 3 resultados con mapa)</strong></td><td>Es el bloque que concentra la mayor parte de los clics en búsquedas con intención local. Requiere ficha verificada: sin ella la participación es cero, no baja.</td></tr>
+    <tr><td><strong>Búsquedas "cerca de mí"</strong></td><td>"medicina estética cerca de mí", "spa cerca de mí", "nutriólogo cerca de mí" —el patrón dominante desde móvil— se resuelven exclusivamente con fichas de negocio.</td></tr>
+    <tr><td><strong>Panel de conocimiento de marca</strong></td><td>Quien escuche el nombre de la clínica y lo busque en Google no encuentra un panel con teléfono, horario, fotos y botón de llamada. Encuentra resultados ajenos. <strong>Se pierden incluso los pacientes referidos.</strong></td></tr>
+    <tr><td><strong>Reseñas de Google</strong></td><td>Es el repositorio de prueba social de mayor peso en México. Sin ficha no puede existir ni una sola reseña, aunque los pacientes queden encantados.</td></tr>
+    <tr><td><strong>Llamadas y rutas medibles</strong></td><td>La ficha reporta cuántas personas pidieron indicaciones, llamaron o visitaron el perfil. Hoy no hay ningún dato de demanda local.</td></tr>
+    <tr><td><strong>Publicaciones y ofertas</strong></td><td>Promociones, novedades y eventos publicables directamente en el resultado de búsqueda, sin costo.</td></tr>
+    <tr><td><strong>Reservas y mensajes</strong></td><td>Botón de mensaje directo y, opcionalmente, agenda integrada desde el propio resultado.</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>La consecuencia estratégica</h4>
+    <p style="margin:0">Un negocio de servicio presencial sin ficha de Google <strong>solo puede ser encontrado por quien ya sabe que existe</strong>. Toda la captación depende de Instagram y del paso peatonal. Eso explica la tensión de fondo del negocio: se produce contenido, se gasta esfuerzo, y la agenda no se llena en proporción. El contenido genera notoriedad; la ficha de Google captura intención. Faltando la segunda, la primera se evapora.</p>
+  </div>
+
+  <h3>Configuración correcta de la ficha (no basta con crearla)</h3>
+  <table>
+    <tr><th style="width:44mm">Elemento</th><th>Configuración recomendada para DM Wellness</th></tr>
+    <tr><td>Nombre del negocio</td><td>Exactamente el nombre legal/comercial, sin palabras clave añadidas: <strong>DM Wellness Beauty and Nutrition</strong>. Añadir palabras clave al nombre es motivo de suspensión.</td></tr>
+    <tr><td>Categoría principal</td><td><strong>Clínica de medicina estética</strong> — es la que determina para qué búsquedas se compite.</td></tr>
+    <tr><td>Categorías secundarias</td><td>Spa médico · Nutricionista · Centro de estética · Clínica de adelgazamiento · Centro de masajes</td></tr>
+    <tr><td>Dirección</td><td>Con número interior. Confirmar previamente colonia y código postal oficiales (ver sección 10).</td></tr>
+    <tr><td>Teléfono</td><td>El mismo que aparece en los reels: 55 3496 0420. Un único número en todas las plataformas.</td></tr>
+    <tr><td>Horario</td><td>Cargar horario real, incluido sábado, y activar horarios especiales en días festivos.</td></tr>
+    <tr><td>Fotografías</td><td>Mínimo 25 al arranque: fachada (para que la encuentren), recepción, cada cabina, cada equipo, el personal con bata, y 5 fotos verticales de procedimiento. Añadir 4 nuevas cada mes.</td></tr>
+    <tr><td>Servicios</td><td>Cargar uno por uno los tratamientos con descripción y precio o rango. Cada servicio es una entrada más por la que la ficha puede aparecer.</td></tr>
+    <tr><td>Atributos</td><td>Accesible, estacionamiento, cita previa, pago con tarjeta, propiedad de mujeres (si aplica), sanitarios.</td></tr>
+    <tr><td>Descripción</td><td>750 caracteres incluyendo "Narvarte", "Benito Juárez", "CDMX", los tratamientos principales y el aviso COFEPRIS.</td></tr>
+    <tr><td>Publicaciones</td><td>Una por semana como mínimo. Es señal de actividad y ocupa espacio visual en el resultado.</td></tr>
+    <tr><td>Preguntas y respuestas</td><td>Sembrar las 10 preguntas frecuentes reales y responderlas desde la cuenta del negocio.</td></tr>
+  </table>
+
+  <div class="box win">
+    <h4>Plazo y coste</h4>
+    <p style="margin:0"><strong>Coste en medios: $0.</strong> Alta: 15 minutos. Verificación por video o postal: de 5 a 14 días. Carga completa de fotos, servicios y preguntas: una jornada de trabajo. Es, por mucho, la acción con mayor retorno del plan completo.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 10</span></div>
+</section>
+
+<!-- ============ 09 SIN SITIO WEB ============ -->
+<section class="page">
+  <div class="ph"><b>09 · Activos propios</b><span>El costo de no tener sitio web</span></div>
+  <h2>Sin sitio propio: alquilando toda la audiencia</h2>
+  <p class="lead">Hoy el 100% de la relación digital de DM Wellness con sus pacientes vive dentro de plataformas de terceros. Si mañana Instagram restringe la cuenta —por una política de contenido, por un reporte o por un error— la clínica pierde su único canal de captación de un día para otro, sin lista de contactos, sin correos, sin nada que recuperar.</p>
+
+  <h3>Las siete funciones que hoy no existen</h3>
+  <table>
+    <tr><th style="width:44mm">Función ausente</th><th>Consecuencia medible</th></tr>
+    <tr><td><strong>Medición</strong></td><td>Sin píxel de Meta ni etiqueta de Google no se sabe qué reel, qué anuncio o qué palabra generó cada mensaje. Toda decisión de inversión se toma a ciegas.</td></tr>
+    <tr><td><strong>Remarketing</strong></td><td>Entre el 90% y el 97% de quien mira un tratamiento no agenda en la primera visita. Sin público de remarketing, esas personas se pierden por completo. Es la audiencia más barata y más caliente que existe, y hoy no se está construyendo.</td></tr>
+    <tr><td><strong>Captura de datos</strong></td><td>Cero correos y cero teléfonos propios. No hay base para reactivar pacientes, promocionar temporada baja ni construir recurrencia.</td></tr>
+    <tr><td><strong>Páginas por tratamiento</strong></td><td>Cada tratamiento debería tener su página: es la forma de aparecer en búsquedas específicas ("endolift CDMX", "maderoterapia Narvarte") y de convertir mejor la pauta.</td></tr>
+    <tr><td><strong>Precios y filtrado</strong></td><td>Sin precios publicados, cada consulta de costo consume tiempo del equipo en WhatsApp. Publicar rangos filtra y eleva la calidad del mensaje entrante.</td></tr>
+    <tr><td><strong>Prueba social propia</strong></td><td>No hay dónde alojar testimonios, casos, credenciales, certificaciones de equipo ni el aviso COFEPRIS de forma permanente y verificable.</td></tr>
+    <tr><td><strong>Agenda en línea</strong></td><td>Reservar fuera de horario de atención es imposible. Una parte relevante de la demanda de estética se genera de noche y en fin de semana, justo cuando no hay quien responda el WhatsApp.</td></tr>
+  </table>
+
+  <h3>Qué construir — deliberadamente mínimo</h3>
+  <p>No se recomienda un sitio corporativo grande. Para una clínica local, un sitio de <strong>seis páginas bien hechas convierte mejor que uno de treinta</strong>:</p>
+  <table>
+    <tr><th style="width:44mm">Página</th><th>Objetivo y contenido esencial</th></tr>
+    <tr><td><strong>Inicio</strong></td><td>Quiénes son, dónde están, los tres servicios, prueba social, botón de WhatsApp fijo y mapa.</td></tr>
+    <tr><td><strong>Medicina estética</strong></td><td>Cada tratamiento con qué es, para quién, cuántas sesiones, qué se siente, cuidados y rango de precio.</td></tr>
+    <tr><td><strong>Nutrición</strong></td><td>Metodología, qué incluye la consulta, seguimiento, y la oferta de paquete mensual.</td></tr>
+    <tr><td><strong>Spa</strong></td><td>Menú de masajes y rituales, duraciones y precios. Es la puerta de entrada de menor barrera al resto de servicios.</td></tr>
+    <tr><td><strong>Nosotros</strong></td><td>Médicos con nombre, cédula y formación. Fotos reales de la clínica. Aviso COFEPRIS visible.</td></tr>
+    <tr><td><strong>Contacto / Agenda</strong></td><td>Formulario corto, WhatsApp, teléfono, mapa, transporte público y referencias para llegar.</td></tr>
+  </table>
+
+  <div class="grid3" style="margin-top:4mm">
+    <div class="kpi" style="text-align:left"><div class="v" style="font-size:11pt">Plazo</div><div class="l" style="text-transform:none;letter-spacing:0;text-align:left;font-size:7.8pt">2 a 3 semanas desde la entrega de textos y fotografías.</div></div>
+    <div class="kpi" style="text-align:left"><div class="v" style="font-size:11pt">Inversión típica</div><div class="l" style="text-transform:none;letter-spacing:0;text-align:left;font-size:7.8pt">Rango de mercado en CDMX para este alcance: $18,000 a $35,000 MXN, más dominio y hospedaje anual.</div></div>
+    <div class="kpi" style="text-align:left"><div class="v" style="font-size:11pt">Imprescindible</div><div class="l" style="text-transform:none;letter-spacing:0;text-align:left;font-size:7.8pt">Píxel de Meta, etiqueta de Google, WhatsApp con parámetros de seguimiento y velocidad en móvil.</div></div>
+  </div>
+
+  <div class="box">
+    <h4>Orden recomendado</h4>
+    <p style="margin:0">El sitio es la acción <strong>número cuatro</strong> del plan, no la primera. La ficha de Google, las reseñas y la reparación del perfil de Instagram producen pacientes antes y sin costo de desarrollo. Ahora bien, el sitio debe estar listo <strong>antes</strong> de encender pauta: pautar hacia un WhatsApp sin medición es gastar sin poder optimizar.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 11</span></div>
+</section>
+
+<!-- ============ 10 NAP ============ -->
+<section class="page">
+  <div class="ph"><b>10 · Datos de negocio</b><span>NAP, directorios y hallazgo Int. 304</span></div>
+  <h2>Los datos de la clínica no coinciden entre sí</h2>
+  <p class="lead">NAP —nombre, dirección y teléfono— es la base sobre la que Google decide si dos menciones se refieren al mismo negocio. Cuando no coinciden, la confianza del algoritmo se reparte y la ficha pierde posiciones. En DM Wellness hay al menos tres inconsistencias activas.</p>
+
+  <h3>Inconsistencias detectadas</h3>
+  <table>
+    <tr><th style="width:30mm">Campo</th><th style="width:56mm">Versión declarada</th><th>Versión hallada en fuentes públicas</th></tr>
+    <tr><td><strong>Colonia</strong></td><td>Narvarte Oriente</td><td>Los directorios indexan Vértiz 995 como <strong>Narvarte Poniente</strong>. Vértiz es la calle que divide ambas colonias, por lo que la acera determina cuál corresponde. Debe resolverse contra el registro postal oficial y usarse una sola versión en todas partes.</td></tr>
+    <tr><td><strong>Código postal</strong></td><td>03023</td><td>Aparecen <strong>03020</strong> y <strong>03023</strong> asociados al mismo número de la calle en distintas fichas.</td></tr>
+    <tr><td><strong>Número interior</strong></td><td>No declarado</td><td>Existe una ficha pública en un agregador de reservas con dirección <strong>"Vértiz 995, Int. 304"</strong> y teléfono <strong>55 3083 9876</strong>, que no coincide con el teléfono mostrado en los propios reels de la clínica (<strong>55 3496 0420</strong>).</td></tr>
+    <tr><td><strong>Nombre</strong></td><td>DM Wellness Beauty and Nutrition</td><td>El perfil de Instagram escribe "DM <strong>Wellnes</strong>" con una sola <em>s</em>, en nombre y biografía.</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Hallazgo prioritario — la ficha del Int. 304</h4>
+    <p style="margin-bottom:2mm">En el mismo edificio y con el mismo número exterior existe una ficha en un agregador de reservas, con interior 304 y un teléfono distinto al de la clínica. Caben tres posibilidades y las tres exigen acción esta semana:</p>
+    <ol style="margin-bottom:0">
+      <li><strong>Es de la clínica y está sin reclamar</strong> — hay que reclamarla de inmediato: está recibiendo tráfico de búsqueda que hoy no se capitaliza y muestra un teléfono equivocado.</li>
+      <li><strong>Es de un consultorio vecino</strong> — hay que documentarlo para no duplicar direcciones al crear la ficha de Google y para verificar que el número interior propio quede correctamente diferenciado.</li>
+      <li><strong>Es un duplicado antiguo</strong> — hay que solicitar su fusión o eliminación. Los duplicados reparten reseñas y confunden al algoritmo.</li>
+    </ol>
+  </div>
+
+  <h3>Directorios que hoy dominan las búsquedas de la zona</h3>
+  <p>Las búsquedas comerciales del barrio no las gana ninguna clínica: las ganan los agregadores. Existen páginas construidas específicamente para "botox cerca de mí en Vértiz Narvarte" y "rejuvenecimiento facial en Vértiz Narvarte". <strong>Eso es una prueba directa de que hay demanda con intención de compra a nivel de colonia</strong>, y de que hoy la está capturando un intermediario.</p>
+  <table>
+    <tr><th style="width:38mm">Plataforma</th><th style="width:26mm">Estado de DM</th><th>Prioridad y razón</th></tr>
+    <tr><td><strong>Google Business Profile</strong></td><td><span class="tag t-crit">Ausente</span></td><td><strong>Máxima.</strong> Sin sustituto posible. Gratuito.</td></tr>
+    <tr><td><strong>Doctoralia</strong></td><td><span class="tag t-crit">Ausente</span></td><td><strong>Alta.</strong> Es donde los competidores acumulan opiniones y donde el paciente compara médicos. Perfil gratuito disponible.</td></tr>
+    <tr><td><strong>Agregadores de reserva</strong> (tipo Fresha / AgendaPro)</td><td><span class="tag t-alt">Por verificar</span></td><td><strong>Alta.</strong> Dominan la búsqueda por colonia. Resolver primero el caso del Int. 304.</td></tr>
+    <tr><td><strong>Directorios de estética</strong></td><td><span class="tag t-crit">Ausente</span></td><td><strong>Media.</strong> Alta y ficha con enlace. Trabajo de una sola vez.</td></tr>
+    <tr><td><strong>Apple Maps / Waze</strong></td><td><span class="tag t-crit">Ausente</span></td><td><strong>Media.</strong> Relevante para quien llega en coche a un corredor con estacionamiento complicado.</td></tr>
+  </table>
+
+  <div class="box">
+    <h4>Regla operativa: el documento maestro de NAP</h4>
+    <p style="margin:0">Antes de dar de alta cualquier ficha, fijar en un solo documento la versión canónica exacta —nombre, calle, número exterior e interior, colonia, alcaldía, CP, teléfono, horario— y <strong>copiarla y pegarla en todas partes, sin variaciones</strong>. Ni "Calle" vs. "C.", ni "Dr." vs. "Doctor", ni un número de teléfono distinto para WhatsApp. La consistencia literal es lo que Google premia.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 12</span></div>
+</section>
+
+<!-- ============ 11 COMPLIANCE ============ -->
+<section class="page">
+  <div class="ph"><b>11 · Riesgo regulatorio</b><span>COFEPRIS y políticas de Meta</span></div>
+  <h2>Dos riesgos que pueden apagar la captación de golpe</h2>
+
+  <h3>A. COFEPRIS: tienen el aviso, no lo están usando</h3>
+  <p>DM Wellness declara en su biografía el aviso <strong>2409145036X00027</strong>. Eso es un activo real: significa que el trámite está hecho. El problema es que <strong>el aviso no aparece en ninguna de las piezas de contenido</strong>, que es precisamente donde la publicidad ocurre.</p>
+  <p>El competidor líder de la zona hace exactamente lo contrario: incrusta su aviso de publicidad <em>quemado dentro del video</em>, visible en cada reel. Esa práctica tiene un doble efecto —cumplimiento y percepción de seriedad— y hoy DM está pagando el costo del trámite sin cobrar ninguno de sus dos beneficios.</p>
+
+  <table>
+    <tr><th style="width:52mm">Elemento</th><th style="width:26mm">Estado DM</th><th>Acción correctiva</th></tr>
+    <tr><td>Aviso de publicidad declarado</td><td><span class="tag t-ok">Sí, en bio</span></td><td>Mantener y verificar vigencia y alcance del trámite frente a los servicios que efectivamente se publicitan.</td></tr>
+    <tr><td>Aviso visible en los creativos</td><td><span class="tag t-crit">No</span></td><td>Incorporar al pie de cada reel y cada imagen, en tipografía legible. Añadirlo a la plantilla de edición para que salga siempre.</td></tr>
+    <tr><td>Cédula profesional del responsable</td><td><span class="tag t-crit">No visible</span></td><td>Publicar en bio, en el sitio y en las piezas donde el médico aparezca.</td></tr>
+    <tr><td>Lenguaje de resultados</td><td><span class="tag t-alt">Por revisar</span></td><td>Evitar afirmaciones absolutas ("elimina", "resultados garantizados") y sustituir por lenguaje condicionado: "reduce la apariencia de", "los resultados varían según cada paciente".</td></tr>
+    <tr><td>Consentimiento de imagen de pacientes</td><td><span class="tag t-alt">Por documentar</span></td><td>Consentimiento informado por escrito y específico para uso publicitario de cada imagen. Archivarlo. Es exigible.</td></tr>
+    <tr><td>Datos personales</td><td><span class="tag t-alt">Por documentar</span></td><td>Aviso de privacidad publicado y aceptación registrada en todo formulario y en la conversación de WhatsApp, conforme a la ley aplicable.</td></tr>
+  </table>
+
+  <h3>B. Meta: el mejor contenido orgánico es el que no se puede promocionar</h3>
+  <div class="box crit">
+    <p style="margin-bottom:2mm">Los dos reels de mayor alcance de la cuenta —maderoterapia (1,743 reproducciones) y el antes/después corporal (1,082)— presentan <strong>encuadres cerrados de cuerpo en ropa interior y comparativas antes/después</strong>. Las políticas de publicidad de Meta para salud y belleza restringen expresamente:</p>
+    <ul style="margin-bottom:2mm">
+      <li>Las <strong>imágenes de "antes y después"</strong> que muestren resultados esperables de un tratamiento.</li>
+      <li>Los <strong>encuadres centrados en partes específicas del cuerpo</strong>.</li>
+      <li>El contenido que induzca a <strong>percepción negativa del propio cuerpo</strong> o que implique atributos personales del espectador.</li>
+    </ul>
+    <p style="margin:0"><strong>Consecuencia práctica:</strong> el contenido que hoy mejor funciona en orgánico sería rechazado como anuncio, y la acumulación de rechazos deteriora la calidad de la cuenta publicitaria hasta llegar a la restricción. Se recomienda formalmente <strong>no promocionar ninguna de esas dos piezas</strong> y reconstruir la biblioteca creativa antes de encender pauta.</p>
+  </div>
+
+  <h3>Cómo mostrar resultados sin violar políticas</h3>
+  <div class="split">
+    <div class="a">
+      <h4 style="color:var(--red)">Evitar</h4>
+      <ul style="margin-bottom:0">
+        <li>Antes/después lado a lado</li>
+        <li>Planos cerrados de abdomen, glúteos o busto</li>
+        <li>"Elimina la grasa", "resultados garantizados"</li>
+        <li>"¿Te da pena tu abdomen?" (atributo personal)</li>
+        <li>Pieles y cuerpos sin consentimiento firmado</li>
+      </ul>
+    </div>
+    <div class="b">
+      <h4 style="color:var(--green)">Usar en su lugar</h4>
+      <ul style="margin-bottom:0">
+        <li>Testimonio en cámara de la paciente contando su experiencia</li>
+        <li>La médica explicando el procedimiento y a quién le sirve</li>
+        <li>Plano del proceso y del equipo, no del cuerpo</li>
+        <li>"Conoce si eres candidata en una valoración"</li>
+        <li>Educación: mitos, cuidados posteriores, cómo elegir clínica</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box win">
+    <h4>El giro que convierte el cumplimiento en ventaja competitiva</h4>
+    <p style="margin:0">En un sector saturado de cabinas sin respaldo sanitario, <strong>mostrar aviso COFEPRIS, cédula y consentimiento no es burocracia: es el argumento de venta más fuerte que tiene una clínica seria.</strong> DM Wellness ya cumple —simplemente no lo está comunicando. Convertir ese cumplimiento en mensaje visible es de las acciones de mayor retorno y menor costo del plan.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 13</span></div>
+</section>
+
+<!-- ============ 12 MAPA COMPETITIVO ============ -->
+<section class="page">
+  <div class="ph"><b>12 · Competencia</b><span>Mapa de la zona Narvarte</span></div>
+  <h2>Contra quién compite realmente DM Wellness</h2>
+  <p class="lead">La competencia no es "todas las clínicas de CDMX". Para un negocio de servicio presencial, el campo de batalla es el radio de 2 a 3 km alrededor de Vértiz 995: Narvarte Poniente, Narvarte Oriente, Vértiz Narvarte, Del Valle y la franja de Portales. Estos son los rivales identificados con evidencia pública.</p>
+
+  <table>
+    <tr><th style="width:34mm">Competidor</th><th style="width:38mm">Ubicación</th><th class="ctr" style="width:15mm">Sitio web</th><th class="ctr" style="width:19mm">Instagram</th><th class="ctr" style="width:21mm">Opiniones</th><th>Señal diferencial</th></tr>
+    <tr><td><strong>Skintopia Dermatología</strong></td><td>Uxmal 381, Narvarte Poniente (03020)</td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><strong>20.9K</strong></td><td class="ctr"><strong>997+</strong></td><td>Equipo de 4 dermatólogas con nombre, cédula visible, aviso COFEPRIS en video, agenda en línea.</td></tr>
+    <tr><td><strong>Clínica Macort</strong></td><td>Priv. Eugenia 4, Narvarte Oriente (03023)</td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr">—</td><td class="ctr">—</td><td>Mismo código postal. Medicina estética + cosmetología + especialidad médica. Web propia.</td></tr>
+    <tr><td><strong>SKINTOPIA / Pauderma</strong></td><td>Narvarte Poniente</td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr">Sí</td><td class="ctr"><strong>997+</strong></td><td>Precio público de referencia: rellenos faciales desde $8,500.</td></tr>
+    <tr><td><strong>DermaWise</strong></td><td>Narvarte Poniente</td><td class="ctr">—</td><td class="ctr">—</td><td class="ctr"><strong>38+</strong></td><td>Precio público: primera visita dermatológica desde $1,600. Tres especialistas nombradas.</td></tr>
+    <tr><td><strong>RossMedical</strong></td><td>Narvarte Poniente</td><td class="ctr">—</td><td class="ctr">—</td><td class="ctr">Sí</td><td>Precio público: botox desde $5,000.</td></tr>
+    <tr><td><strong>Dra. Sofía López</strong></td><td>Av. Cuauhtémoc 1040, Narvarte Pte.</td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr">—</td><td class="ctr">—</td><td>Sitio con páginas por servicio y por zona. Torre de especialidades.</td></tr>
+    <tr><td><strong>Kbapel Medicina Estética</strong></td><td>Anzures, Miguel Hidalgo <em>(fuera de zona)</em></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr">Sí</td><td class="ctr">—</td><td>Páginas creadas específicamente para captar "Narvarte Poniente" y "Narvarte Oriente" desde otra alcaldía.</td></tr>
+    <tr style="background:#FDF6F7"><td><strong>DM WELLNESS</strong></td><td>Vértiz 995, Narvarte (03023)</td><td class="ctr"><span class="tag t-crit">No</span></td><td class="ctr">6.8K</td><td class="ctr"><span class="tag t-crit">0</span></td><td>Única con estética + nutrición + spa integrados. Aviso COFEPRIS vigente. Sin captación.</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>El hallazgo competitivo más incómodo</h4>
+    <p style="margin:0">Existe una clínica <strong>ubicada en Anzures, a unos 8 km de distancia y en otra alcaldía</strong>, que ha construido páginas dedicadas a captar búsquedas de "médico estético cerca de Narvarte Poniente" y "cerca de Narvarte Oriente". Es decir: <strong>un competidor que no está en el barrio está compitiendo por el barrio, y ganando visibilidad que le corresponde a quien sí opera ahí.</strong> Esto demuestra dos cosas al mismo tiempo: que la demanda local existe y es lo bastante valiosa como para que alguien de fuera invierta en capturarla, y que el territorio digital de Narvarte está prácticamente sin defender.</p>
+  </div>
+
+  <h3>La segunda capa de competencia: los agregadores</h3>
+  <p>Por encima de las clínicas hay una capa que gana la mayoría de las búsquedas genéricas de la zona: plataformas de reserva y directorios médicos con páginas construidas por colonia y por tratamiento. Para DM Wellness esto tiene una lectura doble:</p>
+  <ul>
+    <li><strong>Amenaza:</strong> intermedian la relación con el paciente y, en el modelo de marketplace, lo hacen comparando por precio y disponibilidad, no por criterio médico.</li>
+    <li><strong>Oportunidad inmediata:</strong> aparecer en ellos es rápido, barato y da visibilidad en búsquedas donde competir con SEO propio tomaría meses. La estrategia correcta es <strong>estar en los agregadores mientras se construye el activo propio</strong>, y migrar progresivamente la captación hacia la ficha de Google y el sitio, donde el margen no se comparte.</li>
+  </ul>
+
+  <h3>Posicionamiento de precio en la zona (referencias públicas)</h3>
+  <div class="grid4">
+    <div class="kpi"><div class="v" style="font-size:14pt">$500</div><div class="l">Consulta subsecuente de medicina estética (referencia baja de zona)</div></div>
+    <div class="kpi"><div class="v" style="font-size:14pt">$1,600</div><div class="l">Primera visita dermatológica (DermaWise)</div></div>
+    <div class="kpi"><div class="v" style="font-size:14pt">$5,000</div><div class="l">Botox desde (RossMedical)</div></div>
+    <div class="kpi"><div class="v" style="font-size:14pt">$8,500</div><div class="l">Rellenos faciales desde (Skintopia)</div></div>
+  </div>
+  <p class="small" style="margin-top:2mm">Cifras en pesos mexicanos tomadas de fichas públicas de directorio a agosto de 2026. DM Wellness <strong>no publica ningún precio en ningún canal</strong>, lo que impide al paciente ubicarla en este rango y traslada toda la conversación de precio al WhatsApp.</p>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 14</span></div>
+</section>
+
+<!-- ============ 13 BENCHMARK ============ -->
+<section class="page">
+  <div class="ph"><b>13 · Benchmark</b><span>DM Wellness vs. Skintopia</span></div>
+  <h2>Comparación directa con el líder de la zona</h2>
+  <p class="lead">Se eligió @skintopia_mx como referencia por tres razones: opera a menos de 1 km de Vértiz 995, atiende a la misma paciente y sus datos son públicos y medibles con el mismo método. La comparación se hace sobre los 12 reels visibles de cada cuenta al 27/08/2026.</p>
+
+  <table>
+    <tr><th>Métrica</th><th class="num" style="width:26mm">DM Wellness</th><th class="num" style="width:26mm">Skintopia</th><th class="num" style="width:20mm">Brecha</th><th style="width:52mm">Lectura</th></tr>
+    <tr><td>Seguidores</td><td class="num">6,800</td><td class="num">20,900</td><td class="num" style="color:var(--red)">3.1×</td><td>Brecha grande pero recuperable.</td></tr>
+    <tr><td>Publicaciones totales</td><td class="num">168</td><td class="num">~1,000</td><td class="num" style="color:var(--red)">6.0×</td><td>Años de acumulación de activo.</td></tr>
+    <tr><td><strong>Reels en agosto</strong></td><td class="num"><strong>2</strong></td><td class="num"><strong>9</strong></td><td class="num" style="color:var(--red)">4.5×</td><td><strong>La causa raíz del resto.</strong></td></tr>
+    <tr><td>Duración media del reel</td><td class="num">17 s</td><td class="num">56 s</td><td class="num" style="color:var(--red)">3.3×</td><td>Menos tiempo visto = menos distribución.</td></tr>
+    <tr><td>Reproducciones — promedio</td><td class="num">528</td><td class="num">3,109</td><td class="num" style="color:var(--red)">5.9×</td><td>Incluye la pieza viral del rival.</td></tr>
+    <tr><td>Reproducciones — mediana</td><td class="num">362</td><td class="num">1,174</td><td class="num" style="color:var(--red)">3.2×</td><td>Comparación limpia, sin viral.</td></tr>
+    <tr><td>Likes promedio por reel</td><td class="num">5.9</td><td class="num">30.9</td><td class="num" style="color:var(--red)">5.2×</td><td>La audiencia rival responde más.</td></tr>
+    <tr><td>Interacción sobre seguidores</td><td class="num">0.087%</td><td class="num">0.148%</td><td class="num" style="color:var(--red)">1.7×</td><td>Ambas bajas; DM peor.</td></tr>
+    <tr><td>Comentarios en 12 reels</td><td class="num">1</td><td class="num">6</td><td class="num" style="color:var(--red)">6.0×</td><td>Ninguna genera conversación.</td></tr>
+    <tr><td><strong>Reproducciones en agosto</strong></td><td class="num"><strong>739</strong></td><td class="num"><strong>32,735</strong></td><td class="num" style="color:var(--red)"><strong>44×</strong></td><td><strong>El dato que resume el mes.</strong></td></tr>
+    <tr><td>Ídem, excluyendo la pieza viral</td><td class="num">739</td><td class="num">8,405</td><td class="num" style="color:var(--red)">11×</td><td>La brecha persiste sin el viral.</td></tr>
+    <tr><td>Opiniones públicas indexadas</td><td class="num">0</td><td class="num">997+</td><td class="num" style="color:var(--red)">∞</td><td>Foso competitivo real.</td></tr>
+    <tr><td>Sitio web propio</td><td class="ctr">No</td><td class="ctr">Sí</td><td class="ctr">—</td><td>Sin activo, sin medición.</td></tr>
+    <tr><td>Enlace en bio</td><td class="ctr">WhatsApp suelto</td><td class="ctr">Hub multienlace</td><td class="ctr">—</td><td>Una sola ruta vs. varias.</td></tr>
+    <tr><td>Cédula profesional visible</td><td class="ctr">No</td><td class="ctr">Sí (2 cédulas)</td><td class="ctr">—</td><td>Autoridad clínica declarada.</td></tr>
+    <tr><td>Aviso COFEPRIS en creativos</td><td class="ctr">Solo en bio</td><td class="ctr">Quemado en video</td><td class="ctr">—</td><td>Cumplimiento visible.</td></tr>
+  </table>
+
+  <div class="grid2" style="margin-top:4mm">
+    <div class="box win" style="margin:0">
+      <h4>La buena noticia escondida en los datos</h4>
+      <p style="margin:0">El alcance por seguidor en la mediana es prácticamente idéntico: <strong>5.3% en DM contra 5.6% en Skintopia</strong>. Instagram no está castigando la cuenta de DM más que la del líder. La diferencia de resultados <strong>no se explica por el algoritmo, sino por multiplicar tres factores</strong>: 3× menos seguidores × 4.5× menos publicaciones × piezas 3.3× más cortas. Los tres son corregibles con trabajo, no con presupuesto.</p>
+    </div>
+    <div class="box" style="margin:0">
+      <h4>La mala noticia</h4>
+      <p style="margin:0">Las 997+ opiniones del líder <strong>no se recuperan con contenido</strong>. Es el único activo de esta tabla que requiere tiempo obligatorio: pacientes reales dejando reseñas reales, mes a mes. Por eso el motor de reseñas es la <strong>acción número dos</strong> del plan y debe arrancar la misma semana que la ficha de Google. Cada mes de retraso es un mes que la brecha se ensancha.</p>
+    </div>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 15</span></div>
+</section>
+
+<!-- ============ 14 QUÉ HACE LA COMPETENCIA ============ -->
+<section class="page">
+  <div class="ph"><b>14 · Competencia</b><span>La brecha operativa</span></div>
+  <h2>Qué hace la competencia que ustedes no hacen</h2>
+  <p class="lead">Este es el resumen accionable del análisis competitivo: doce prácticas concretas observadas en los rivales de la zona, con lo que implica adoptarlas.</p>
+
+  <table>
+    <tr><th style="width:8mm">#</th><th style="width:52mm">Práctica del competidor</th><th>Qué hace exactamente y por qué funciona</th><th style="width:20mm" class="ctr">Dificultad</th></tr>
+    <tr><td>1</td><td><strong>Presentan a los médicos con nombre y cara</strong></td><td>Serie dedicada a cada especialista: quién es, cómo piensa, cómo trabaja. El paciente elige persona, no clínica.</td><td class="ctr"><span class="tag t-ok">Baja</span></td></tr>
+    <tr><td>2</td><td><strong>Publican la cédula profesional</strong></td><td>En bio y en video. Filtra la competencia informal de un plumazo.</td><td class="ctr"><span class="tag t-ok">Baja</span></td></tr>
+    <tr><td>3</td><td><strong>Queman el aviso COFEPRIS en el video</strong></td><td>Cumplimiento visible en cada pieza. Señal de institución seria.</td><td class="ctr"><span class="tag t-ok">Baja</span></td></tr>
+    <tr><td>4</td><td><strong>Reels educativos de 50 a 90 segundos</strong></td><td>Tiempo de visualización acumulado alto, que es lo que la plataforma premia. Además posicionan autoridad.</td><td class="ctr"><span class="tag t-med">Media</span></td></tr>
+    <tr><td>5</td><td><strong>Ganchos que desmienten creencias</strong></td><td>"La mentira más grande sobre la depilación láser", "¿Funcionan las mascarillas LED?". Frenan el scroll con conflicto, no con estética.</td><td class="ctr"><span class="tag t-ok">Baja</span></td></tr>
+    <tr><td>6</td><td><strong>Diferencian estética de medicina</strong></td><td>"No todo lo que ofrece estética es dermatología". Justifican un precio superior en lugar de competir por el más bajo.</td><td class="ctr"><span class="tag t-ok">Baja</span></td></tr>
+    <tr><td>7</td><td><strong>Crean eventos con nombre propio</strong></td><td>Su pieza más vista del mes fue el anuncio de un evento de marca, no un tratamiento: 24,330 reproducciones, más de 6 veces su mediana. <strong>La oferta supera al catálogo.</strong></td><td class="ctr"><span class="tag t-med">Media</span></td></tr>
+    <tr><td>8</td><td><strong>Preguntan a la audiencia qué quiere ver</strong></td><td>Reel dedicado a pedir temas. Genera comentarios —la señal de distribución más valiosa— y alimenta el calendario.</td><td class="ctr"><span class="tag t-ok">Baja</span></td></tr>
+    <tr><td>9</td><td><strong>Acumulan opiniones sistemáticamente</strong></td><td>997+ frente a 0. No es suerte: es un proceso pedido en cada consulta.</td><td class="ctr"><span class="tag t-med">Media</span></td></tr>
+    <tr><td>10</td><td><strong>Publican precios de referencia</strong></td><td>Desde $1,600 la consulta, desde $5,000 el botox, desde $8,500 los rellenos. Filtra, posiciona y reduce fricción.</td><td class="ctr"><span class="tag t-ok">Baja</span></td></tr>
+    <tr><td>11</td><td><strong>Tienen sitio propio con páginas por servicio</strong></td><td>Captan búsquedas específicas y miden. Uno incluso crea páginas por colonia ajena para invadir zonas.</td><td class="ctr"><span class="tag t-alt">Alta</span></td></tr>
+    <tr><td>12</td><td><strong>Usan hub multienlace en la bio</strong></td><td>Varias rutas de conversión —agenda, servicios, ubicación, WhatsApp— en vez de una sola.</td><td class="ctr"><span class="tag t-ok">Baja</span></td></tr>
+  </table>
+
+  <div class="box">
+    <h4>Observación clave: nueve de las doce son de dificultad baja</h4>
+    <p style="margin:0">Nueve de estas doce prácticas <strong>no requieren presupuesto, tecnología ni contrataciones</strong>: requieren decisión y una plantilla. Son cambios de cómo se produce y se escribe el contenido que ya se está produciendo. Esa es la razón por la que esta auditoría sostiene que la brecha es de <strong>ejecución</strong>, no de recursos.</p>
+  </div>
+
+  <h3>Lo que DM Wellness tiene y la competencia no</h3>
+  <div class="grid3">
+    <div class="kpi" style="text-align:left"><div class="v" style="font-size:11pt">Integralidad</div><div class="l" style="text-transform:none;letter-spacing:0;text-align:left;font-size:7.8pt">Estética + nutrición + spa bajo un mismo techo. Ningún competidor auditado ofrece las tres. Es un territorio de marca vacante.</div></div>
+    <div class="kpi" style="text-align:left"><div class="v" style="font-size:11pt">Tecnología</div><div class="l" style="text-transform:none;letter-spacing:0;text-align:left;font-size:7.8pt">Venus Legacy, Endolift Mónaco y Dermapen son equipos con nombre reconocible que permiten construir páginas y contenido por equipo, no solo por tratamiento.</div></div>
+    <div class="kpi" style="text-align:left"><div class="v" style="font-size:11pt">Recurrencia</div><div class="l" style="text-transform:none;letter-spacing:0;text-align:left;font-size:7.8pt">La nutrición genera consultas mensuales. Una clínica solo estética depende de compras aisladas; DM puede construir suscripción.</div></div>
+  </div>
+
+  <div class="box win">
+    <h4>La estrategia que se desprende del análisis</h4>
+    <p style="margin:0">DM Wellness no debe intentar ganarle a una clínica dermatológica en su propio terreno —lleva años y mil publicaciones de ventaja—. Debe <strong>redefinir la categoría en la que compite</strong>: pasar de "una clínica más de medicina estética en Narvarte" a <strong>"el único lugar en Narvarte donde el tratamiento estético empieza con una valoración nutricional y termina en spa"</strong>. Ese relato no lo puede copiar ningún competidor de la zona sin abrir dos servicios nuevos, y convierte la integralidad —hoy invisible— en la barrera de entrada.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 16</span></div>
+</section>
+
+<!-- ============ 15 QUÉ CONTENIDO GANA ============ -->
+<section class="page">
+  <div class="ph"><b>15 · Contenido</b><span>Evidencia del nicho</span></div>
+  <h2>Qué formatos están ganando en medicina estética</h2>
+  <p class="lead">Se analizaron piezas en español del nicho de medicina estética y belleza en México y Latinoamérica que superaron ampliamente la mediana de su propio creador. El patrón es consistente y contradice directamente lo que hoy publica DM Wellness.</p>
+
+  <table>
+    <tr><th style="width:34mm">Pieza analizada</th><th class="num" style="width:18mm">Vistas</th><th class="num" style="width:18mm">Sobre su mediana</th><th class="num" style="width:18mm">Seguidores</th><th>Qué hizo</th></tr>
+    <tr><td>Efecto <em>facelift</em> sin cirugía</td><td class="num">442,200</td><td class="num"><strong>82×</strong></td><td class="num">23,000</td><td>Pantalla dividida: la médica explica y señala los puntos exactos de aplicación.</td></tr>
+    <tr><td>Cuidados después del botox</td><td class="num">126,900</td><td class="num"><strong>48×</strong></td><td class="num"><strong>4,700</strong></td><td>Profesional a cámara con cortes rápidos y subtítulos dinámicos. <strong>Cuenta más pequeña que DM.</strong></td></tr>
+    <tr><td>Endolifting en 5 zonas inesperadas</td><td class="num">123,000</td><td class="num"><strong>66×</strong></td><td class="num">pequeña</td><td>Listado educativo sobre imágenes del procedimiento con texto guía.</td></tr>
+    <tr><td>Qué es realmente la celulitis</td><td class="num">65,000</td><td class="num"><strong>45×</strong></td><td class="num">47,000</td><td>Explica la causa fisiológica antes de ofrecer el tratamiento.</td></tr>
+    <tr><td>Humor sobre el negocio propio</td><td class="num">226,200</td><td class="num"><strong>29×</strong></td><td class="num">28,000</td><td>Recorrido rápido de la clínica en tono humorístico, con cédulas en el pie.</td></tr>
+    <tr><td>"Ir a consulta no es como ir a la tienda"</td><td class="num">46,900</td><td class="num"><strong>49×</strong></td><td class="num">847,000</td><td>Sketch a dos voces defendiendo la valoración previa.</td></tr>
+  </table>
+
+  <h3>Los cinco patrones que se repiten</h3>
+  <ol>
+    <li><strong>Hay una persona hablando a cámara.</strong> Prácticamente ninguna pieza destacada es solo material de procedimiento. La cara vende; el aparato no.</li>
+    <li><strong>El gancho es un conflicto, no una descripción.</strong> "La mentira más grande sobre…", "Cómo yo te haría un facelift sin cirugía", "Estas son 5 zonas donde no sabías que…". Ninguno empieza con el nombre del tratamiento.</li>
+    <li><strong>Educan antes de vender.</strong> El valor declarado de casi todas las piezas es educativo. La venta va al final, como consecuencia natural de haber explicado bien.</li>
+    <li><strong>Duran entre 45 y 100 segundos.</strong> Muy por encima de los 17 segundos promedio de DM Wellness.</li>
+    <li><strong>El tamaño de la cuenta no determina el resultado.</strong> Una cuenta de 4,700 seguidores —menos que DM— alcanzó 126,900 reproducciones con un reel de cuidados posteriores al botox. <strong>Esto elimina la excusa del tamaño: el formato pesa más que la base.</strong></li>
+  </ol>
+
+  <div class="split">
+    <div class="a">
+      <h4 style="color:var(--red)">Lo que publica DM hoy</h4>
+      <ul style="margin-bottom:0">
+        <li>Planos de procedimiento sin narración</li>
+        <li>17 segundos de duración media</li>
+        <li>Sin rostro ni voz de autoridad</li>
+        <li>Gancho descriptivo: "Venus Legacy…"</li>
+        <li>Objetivo: mostrar el servicio</li>
+        <li>Resultado: 362 reproducciones de mediana</li>
+      </ul>
+    </div>
+    <div class="b">
+      <h4 style="color:var(--green)">Lo que debería publicar</h4>
+      <ul style="margin-bottom:0">
+        <li>La médica explicando a cámara con material de apoyo</li>
+        <li>45 a 90 segundos</li>
+        <li>Nombre, especialidad y cédula visibles</li>
+        <li>Gancho de conflicto: "Lo que nadie te dice antes de…"</li>
+        <li>Objetivo: enseñar y, de paso, demostrar criterio</li>
+        <li>Meta realista a 90 días: 1,500–3,000 de mediana</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box win">
+    <h4>El experimento de mayor retorno para las próximas dos semanas</h4>
+    <p style="margin:0">Grabar <strong>cinco reels de 60 segundos con la médica a cámara</strong>, cada uno respondiendo una pregunta que ya llega por WhatsApp: <em>¿duele?</em>, <em>¿cuánto dura el resultado?</em>, <em>¿puedo trabajar al día siguiente?</em>, <em>¿por qué me sale más caro aquí que en una cabina?</em>, <em>¿soy candidata?</em>. Son las objeciones reales del negocio. Convertirlas en contenido educa, filtra y acorta la conversación de venta al mismo tiempo. Producción estimada: una sesión de dos horas para las cinco piezas.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 17</span></div>
+</section>
+
+<!-- ============ 16 EMBUDO ============ -->
+<section class="page">
+  <div class="ph"><b>16 · Conversión</b><span>Embudo actual vs. propuesto</span></div>
+  <h2>Cómo llega hoy un paciente y cómo debería llegar</h2>
+
+  <h3>Embudo actual — una sola puerta, sin instrumentar</h3>
+  <div style="border:.8pt solid var(--line);border-radius:2mm;padding:4mm;background:var(--bg);margin-bottom:5mm">
+    <div style="display:flex;align-items:center;gap:3mm;flex-wrap:wrap;font-size:8.6pt">
+      <span style="background:var(--pp);color:#fff;padding:2mm 3mm;border-radius:1.5mm">Reel en Instagram</span>
+      <span style="color:var(--pp2);font-size:12pt">→</span>
+      <span style="background:#EFEAF3;padding:2mm 3mm;border-radius:1.5mm">Visita al perfil</span>
+      <span style="color:var(--pp2);font-size:12pt">→</span>
+      <span style="background:#EFEAF3;padding:2mm 3mm;border-radius:1.5mm">Enlace wa.link</span>
+      <span style="color:var(--pp2);font-size:12pt">→</span>
+      <span style="background:#EFEAF3;padding:2mm 3mm;border-radius:1.5mm">Mensaje de WhatsApp</span>
+      <span style="color:var(--pp2);font-size:12pt">→</span>
+      <span style="background:var(--red);color:#fff;padding:2mm 3mm;border-radius:1.5mm">Cita (o silencio)</span>
+    </div>
+    <p class="small" style="margin:3mm 0 0"><strong>Puntos ciegos:</strong> no se sabe cuántas visitas al perfil hubo, ni cuántos tocaron el enlace, ni cuántos escribieron, ni cuántos agendaron, ni cuántos se presentaron, ni cuánto facturó cada uno. <strong>El embudo completo es invisible</strong>, y lo que no se mide no se puede mejorar.</p>
+  </div>
+
+  <h3>Embudo propuesto — múltiples entradas, todo medido</h3>
+  <table>
+    <tr><th style="width:34mm">Etapa</th><th>Entradas y mecanismos</th><th style="width:44mm">Qué se mide</th></tr>
+    <tr><td><strong>1. Descubrimiento</strong></td><td>Ficha de Google (búsqueda + mapas) · Reels y publicaciones · Doctoralia y agregadores · Anuncios de Meta · Anuncios de búsqueda de Google · Recomendación de pacientes</td><td>Impresiones, alcance, búsquedas de descubrimiento vs. de marca</td></tr>
+    <tr><td><strong>2. Consideración</strong></td><td>Página del tratamiento con precio, duración, cuidados y candidatura · Reseñas · Credenciales · Testimonios en video</td><td>Sesiones, tiempo en página, porcentaje que llega al precio</td></tr>
+    <tr><td><strong>3. Contacto</strong></td><td>WhatsApp con parámetros de origen · Formulario corto · Llamada desde la ficha · Mensaje directo de Instagram</td><td>Leads por canal, costo por lead, origen exacto de cada uno</td></tr>
+    <tr><td><strong>4. Calificación</strong></td><td>Guion de 5 preguntas · Respuesta en menos de 5 minutos en horario · Respuesta automática fuera de horario</td><td>Tiempo de primera respuesta, tasa de calificación</td></tr>
+    <tr><td><strong>5. Agenda</strong></td><td>Propuesta de dos horarios concretos · Confirmación 24 h antes · Recordatorio 2 h antes</td><td>Tasa de agendado, tasa de ausencia</td></tr>
+    <tr><td><strong>6. Consulta</strong></td><td>Valoración presencial · Plan de tratamiento por escrito · Oferta de paquete</td><td>Tasa de cierre, ticket promedio</td></tr>
+    <tr><td><strong>7. Postventa</strong></td><td>Solicitud de reseña a las 48 h · Seguimiento clínico · Recordatorio de mantenimiento · Programa de referidos</td><td>Reseñas por mes, tasa de recompra, pacientes referidos</td></tr>
+  </table>
+
+  <h3>Las tres fugas más caras del embudo actual</h3>
+  <table>
+    <tr><th style="width:8mm">#</th><th style="width:46mm">Fuga</th><th>Costo real y corrección</th></tr>
+    <tr><td>1</td><td><strong>Tiempo de primera respuesta</strong></td><td>En servicios de estética la probabilidad de agendar cae de forma pronunciada después de los primeros minutos. Sin un acuerdo de respuesta explícito ni respuestas automáticas fuera de horario, los mensajes de la noche —cuando más se consulta estética— llegan al día siguiente. <strong>Corrección:</strong> respuesta automática inmediata + acuerdo interno de 5 minutos en horario.</td></tr>
+    <tr><td>2</td><td><strong>Ausencia de seguimiento</strong></td><td>Quien pregunta y no agenda desaparece para siempre. No hay segundo, tercer ni cuarto contacto. <strong>Corrección:</strong> secuencia fija de 3 toques a las 24 h, 72 h y 7 días, con un ángulo distinto en cada uno.</td></tr>
+    <tr><td>3</td><td><strong>Cero recuperación de la conversación</strong></td><td>Sin píxel ni sitio, quien vio un tratamiento y no escribió no puede volver a ser impactado. <strong>Corrección:</strong> sitio con píxel y públicos de remarketing por tratamiento visitado.</td></tr>
+  </table>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 18</span></div>
+</section>
+
+<!-- ============ 17 HALLAZGOS 1 ============ -->
+<section class="page">
+  <div class="ph"><b>17 · Hallazgos</b><span>Los 34 puntos, priorizados (1 de 2)</span></div>
+  <h2>Registro completo de hallazgos</h2>
+  <div class="grid4" style="margin-bottom:4mm">
+    <div class="kpi"><div class="v bad">11</div><div class="l">Críticos</div></div>
+    <div class="kpi"><div class="v warn">11</div><div class="l">Altos</div></div>
+    <div class="kpi"><div class="v" style="color:#2A5FA8">9</div><div class="l">Medios</div></div>
+    <div class="kpi"><div class="v good">3</div><div class="l">Bajos</div></div>
+  </div>
+
+  <h4>Severidad crítica — resolver en los primeros 30 días</h4>
+  <table>
+    <tr><th style="width:8mm">#</th><th style="width:52mm">Hallazgo</th><th>Acción correctiva</th><th class="ctr" style="width:16mm">Plazo</th></tr>
+    <tr><td>1</td><td>Sin ficha de Google Business Profile</td><td>Crear, verificar y cargar por completo (fotos, servicios, atributos, descripción, preguntas)</td><td class="ctr">Semana 1</td></tr>
+    <tr><td>2</td><td>Cero reseñas públicas indexadas</td><td>Activar motor de reseñas: QR en recepción, solicitud a las 48 h, meta de 15 el primer mes</td><td class="ctr">Semana 1</td></tr>
+    <tr><td>3</td><td>Sin sitio web propio</td><td>Sitio de 6 páginas con página por servicio y agenda</td><td class="ctr">Semana 4–6</td></tr>
+    <tr><td>4</td><td>Sin píxel de Meta ni etiqueta de Google</td><td>Instalar en el sitio y en todos los enlaces de WhatsApp</td><td class="ctr">Semana 4</td></tr>
+    <tr><td>5</td><td>Colapso de cadencia: 8 reels en julio → 2 en agosto</td><td>Calendario fijo de 4 piezas por semana, con banco de contenido grabado por lotes</td><td class="ctr">Semana 1</td></tr>
+    <tr><td>6</td><td>Enlace único de WhatsApp sin ningún seguimiento</td><td>Hub multienlace con parámetros de origen en cada botón</td><td class="ctr">Semana 1</td></tr>
+    <tr><td>7</td><td>Campo "Nombre" de Instagram sin palabras clave</td><td>Cambiar a "DM Wellness · Medicina Estética Narvarte CDMX"</td><td class="ctr">Día 1</td></tr>
+    <tr><td>8</td><td>Bio sin ubicación</td><td>Añadir calle, colonia, alcaldía y ciudad</td><td class="ctr">Día 1</td></tr>
+    <tr><td>9</td><td>El contenido de mayor alcance viola políticas de publicidad</td><td>Retirar de la biblioteca promocionable; rehacer el enfoque de resultados corporales</td><td class="ctr">Semana 1</td></tr>
+    <tr><td>10</td><td>Ausencia total de Doctoralia</td><td>Alta del perfil de la clínica y de cada especialista</td><td class="ctr">Semana 2</td></tr>
+    <tr><td>11</td><td>Interacción de 0.087%; posible audiencia no local</td><td>Auditar ciudades de la audiencia en Insights y decidir si se reconstruye base con contenido geolocalizado</td><td class="ctr">Semana 2</td></tr>
+  </table>
+
+  <h4>Severidad alta — resolver entre los días 15 y 60</h4>
+  <table>
+    <tr><th style="width:8mm">#</th><th style="width:52mm">Hallazgo</th><th>Acción correctiva</th><th class="ctr" style="width:16mm">Plazo</th></tr>
+    <tr><td>12</td><td>"Wellnes" mal escrito en nombre y bio</td><td>Corregir a "Wellness" en todas las plataformas</td><td class="ctr">Día 1</td></tr>
+    <tr><td>13</td><td>Sin cédula profesional visible</td><td>Publicar en bio, sitio y creativos</td><td class="ctr">Semana 1</td></tr>
+    <tr><td>14</td><td>Aviso COFEPRIS ausente de los creativos</td><td>Incorporar a la plantilla de edición de video e imagen</td><td class="ctr">Semana 2</td></tr>
+    <tr><td>15</td><td>Bio sin lista de servicios</td><td>Nombrar los tres pilares y los tratamientos ancla</td><td class="ctr">Día 1</td></tr>
+    <tr><td>16</td><td>Duración media de 17 s (líder: 56 s)</td><td>Estándar mínimo de 45 s para reels educativos</td><td class="ctr">Semana 2</td></tr>
+    <tr><td>17</td><td>Sin rostro ni voz de autoridad en el contenido</td><td>La médica a cámara en al menos 2 de cada 4 piezas semanales</td><td class="ctr">Semana 2</td></tr>
+    <tr><td>18</td><td>Cero hashtags geográficos</td><td>Mínimo 3 por pieza: colonia, alcaldía y ciudad</td><td class="ctr">Día 1</td></tr>
+    <tr><td>19</td><td>Ningún precio publicado en ningún canal</td><td>Publicar rangos por tratamiento en ficha de Google y sitio</td><td class="ctr">Semana 3</td></tr>
+    <tr><td>20</td><td>Nutrición ausente: 0 de 12 reels</td><td>Una pieza de nutrición por semana; paquete mensual con oferta propia</td><td class="ctr">Semana 2</td></tr>
+    <tr><td>21</td><td>Spa prácticamente invisible</td><td>Menú de spa publicado; usarlo como oferta de entrada de bajo riesgo</td><td class="ctr">Semana 3</td></tr>
+    <tr><td>22</td><td>Inconsistencia de colonia y código postal entre fuentes</td><td>Fijar versión canónica de NAP y replicarla literalmente</td><td class="ctr">Semana 1</td></tr>
+  </table>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 19</span></div>
+</section>
+
+<!-- ============ 17b HALLAZGOS 2 ============ -->
+<section class="page">
+  <div class="ph"><b>17 · Hallazgos</b><span>Los 34 puntos, priorizados (2 de 2)</span></div>
+
+  <h4>Severidad media — resolver entre los días 30 y 90</h4>
+  <table>
+    <tr><th style="width:8mm">#</th><th style="width:52mm">Hallazgo</th><th>Acción correctiva</th><th class="ctr" style="width:16mm">Plazo</th></tr>
+    <tr><td>23</td><td>Ficha de agregador con "Int. 304" y teléfono distinto sin resolver</td><td>Investigar propiedad; reclamar, corregir o solicitar fusión según corresponda</td><td class="ctr">Semana 2</td></tr>
+    <tr><td>24</td><td>Hashtags pegados sin espacio y etiqueta duplicada</td><td>Plantilla fija de hashtags: 8 a 12, separados, sin repeticiones</td><td class="ctr">Día 1</td></tr>
+    <tr><td>25</td><td>Sin horario publicado en ningún canal</td><td>Publicar en bio, ficha de Google, Facebook y sitio</td><td class="ctr">Semana 1</td></tr>
+    <tr><td>26</td><td>Usuario @dm_wbn2 no memorable ni deletreable</td><td>Evaluar cambio a un usuario con marca y zona; ejecutar solo tras asegurar la ficha de Google como canal alterno</td><td class="ctr">Mes 2</td></tr>
+    <tr><td>27</td><td>Solo 214 cuentas seguidas: sin estrategia de comunidad local</td><td>Seguir e interactuar con 20 negocios y cuentas vecinas por semana</td><td class="ctr">Semana 3</td></tr>
+    <tr><td>28</td><td>Sin historias destacadas estructuradas por servicio</td><td>Crear destacadas: Estética · Nutrición · Spa · Equipo · Resultados · Cómo llegar · Precios</td><td class="ctr">Semana 2</td></tr>
+    <tr><td>29</td><td>Errores de puntuación y espaciado en los pies de foto</td><td>Revisión editorial obligatoria antes de publicar</td><td class="ctr">Día 1</td></tr>
+    <tr><td>30</td><td>Llamadas a la acción sin resolver la fricción</td><td>CTA con palabra clave, ubicación y siguiente paso concreto</td><td class="ctr">Semana 1</td></tr>
+    <tr><td>31</td><td>Facebook sin auditar ni verificar</td><td>Completar el protocolo de 12 puntos de la sección 07</td><td class="ctr">Semana 1</td></tr>
+  </table>
+
+  <h4>Severidad baja — mejora continua</h4>
+  <table>
+    <tr><th style="width:8mm">#</th><th style="width:52mm">Hallazgo</th><th>Acción correctiva</th><th class="ctr" style="width:16mm">Plazo</th></tr>
+    <tr><td>32</td><td>Publicaciones sin ubicación etiquetada</td><td>Etiquetar la ubicación del negocio en cada publicación e historia</td><td class="ctr">Continuo</td></tr>
+    <tr><td>33</td><td>Sin alianzas ni colaboraciones locales visibles</td><td>Colaboraciones cruzadas con gimnasios, estudios de pilates, salones y consultorios de la zona</td><td class="ctr">Mes 3</td></tr>
+    <tr><td>34</td><td>Sin contenido de instalaciones ni de equipo humano</td><td>Recorrido de la clínica y presentación del personal: reduce la ansiedad de la primera visita</td><td class="ctr">Mes 2</td></tr>
+  </table>
+
+  <h3>Matriz de priorización — impacto contra esfuerzo</h3>
+  <table>
+    <tr><th style="width:34mm"></th><th>Esfuerzo bajo</th><th>Esfuerzo alto</th></tr>
+    <tr><td style="background:var(--pp);color:#fff"><strong>Impacto alto</strong></td><td style="background:#E1F3EA"><strong>HACER PRIMERO (semana 1–2)</strong><br>Ficha de Google · Motor de reseñas · Reescritura de bio y nombre · Hub multienlace · Hashtags geográficos · Cédula y COFEPRIS visibles · Calendario de 4 piezas semanales · Doctoralia</td><td style="background:#FBEEDC"><strong>PLANIFICAR (semana 3–8)</strong><br>Sitio web con páginas por servicio · Píxel y medición · Biblioteca creativa conforme a políticas · Testimonios en video · Estructura de precios y paquetes</td></tr>
+    <tr><td style="background:var(--pp);color:#fff"><strong>Impacto bajo</strong></td><td style="background:#F5F1F8">RELLENO (cuando haya hueco)<br>Etiquetas de ubicación · Destacadas · Limpieza editorial de pies de foto</td><td style="background:#FBE4E9">EVITAR POR AHORA<br>Cambio de usuario antes de tener ficha de Google · Pauta antes de tener medición · Producción de alto costo antes de validar formatos</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>La regla de secuencia que no debe romperse</h4>
+    <p style="margin:0"><strong>No encender pauta publicitaria hasta cerrar los hallazgos 1, 2, 3, 4, 6 y 9.</strong> Invertir en anuncios hacia un perfil sin ubicación, sin reseñas, sin sitio y sin medición equivale a llenar de agua una cubeta agujereada: se puede medir el gasto, pero no el retorno, y las conclusiones que se saquen serán falsas.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 20</span></div>
+</section>
+
+<!-- ============ 18 FASE 1 ============ -->
+<section class="page t1">
+  <div class="ph"><b>18 · Plan de 90 días</b><span>Fase 1 · Fundación (días 1–30)</span></div>
+  <h2>Fase 1 — Existir donde el paciente busca</h2>
+  <p class="lead">Objetivo de la fase: pasar de invisible a encontrable. <strong>Inversión en medios: $0.</strong> Todo el esfuerzo es de configuración y proceso. Es la fase que más pacientes produce por peso invertido de todo el plan.</p>
+
+  <h4>Semana 1 — Los cimientos</h4>
+  <table>
+    <tr><th style="width:52mm">Tarea</th><th>Detalle de ejecución</th><th style="width:26mm">Responsable</th><th class="ctr" style="width:14mm">Horas</th></tr>
+    <tr><td><strong>Crear ficha de Google</strong></td><td>Alta, elección de categorías, solicitud de verificación (video o postal)</td><td>Dirección + marketing</td><td class="ctr">2</td></tr>
+    <tr><td><strong>Fijar el NAP canónico</strong></td><td>Confirmar colonia y CP oficiales; documento maestro con la versión exacta</td><td>Administración</td><td class="ctr">1</td></tr>
+    <tr><td><strong>Reescribir el perfil de Instagram</strong></td><td>Nombre, bio, corrección de "Wellness", hub multienlace (texto listo en sección 21)</td><td>Marketing</td><td class="ctr">1</td></tr>
+    <tr><td><strong>Auditoría de audiencia</strong></td><td>Insights → Audiencia → Ciudades y edades. Determinar el porcentaje real en CDMX</td><td>Marketing</td><td class="ctr">0.5</td></tr>
+    <tr><td><strong>Protocolo de Facebook</strong></td><td>Los 12 puntos de la sección 07, con capturas de propiedad del Business Manager y calidad de cuenta</td><td>Marketing</td><td class="ctr">1</td></tr>
+    <tr><td><strong>Lanzar el motor de reseñas</strong></td><td>QR impreso en recepción y cabinas, guion de solicitud verbal, plantilla de mensaje a 48 h</td><td>Recepción</td><td class="ctr">2</td></tr>
+    <tr><td><strong>Sesión de fotografía</strong></td><td>30 fotos: fachada, recepción, cada cabina, cada equipo, personal con bata</td><td>Marketing</td><td class="ctr">3</td></tr>
+    <tr><td><strong>Congelar el contenido de riesgo</strong></td><td>Marcar como no promocionables los reels con antes/después y encuadres corporales</td><td>Marketing</td><td class="ctr">0.5</td></tr>
+  </table>
+
+  <h4>Semana 2 — Carga y proceso</h4>
+  <table>
+    <tr><th style="width:52mm">Tarea</th><th>Detalle de ejecución</th><th style="width:26mm">Responsable</th><th class="ctr" style="width:14mm">Horas</th></tr>
+    <tr><td><strong>Cargar la ficha por completo</strong></td><td>25+ fotos, todos los servicios con precio o rango, atributos, descripción de 750 caracteres</td><td>Marketing</td><td class="ctr">4</td></tr>
+    <tr><td><strong>Sembrar preguntas frecuentes</strong></td><td>10 preguntas reales publicadas y respondidas desde la cuenta del negocio</td><td>Marketing</td><td class="ctr">1</td></tr>
+    <tr><td><strong>Alta en Doctoralia</strong></td><td>Perfil de clínica y perfil de cada especialista, con cédula y servicios</td><td>Dirección</td><td class="ctr">2</td></tr>
+    <tr><td><strong>Resolver el caso del Int. 304</strong></td><td>Identificar propiedad de la ficha; reclamar, corregir o solicitar fusión</td><td>Administración</td><td class="ctr">1.5</td></tr>
+    <tr><td><strong>Plantilla de video con COFEPRIS</strong></td><td>Pie fijo con aviso y cédula incrustado en la plantilla de edición</td><td>Marketing</td><td class="ctr">1</td></tr>
+    <tr><td><strong>Grabar el primer lote de contenido</strong></td><td>8 reels en una sesión de 3 horas: 5 de objeciones + 2 de nutrición + 1 de recorrido</td><td>Médica + marketing</td><td class="ctr">3</td></tr>
+    <tr><td><strong>Historias destacadas</strong></td><td>Estética · Nutrición · Spa · Equipo · Resultados · Cómo llegar · Precios</td><td>Marketing</td><td class="ctr">1.5</td></tr>
+  </table>
+
+  <h4>Semanas 3 y 4 — Ritmo y conversión</h4>
+  <table>
+    <tr><th style="width:52mm">Tarea</th><th>Detalle de ejecución</th><th style="width:26mm">Responsable</th><th class="ctr" style="width:14mm">Horas</th></tr>
+    <tr><td><strong>Publicar 4 piezas por semana</strong></td><td>2 educativas con la médica a cámara, 1 de proceso, 1 de comunidad o testimonio</td><td>Marketing</td><td class="ctr">4/sem</td></tr>
+    <tr><td><strong>Guion de WhatsApp</strong></td><td>Mensaje de bienvenida, 5 preguntas de calificación, manejo de las 6 objeciones frecuentes, cierre con dos horarios</td><td>Recepción</td><td class="ctr">2</td></tr>
+    <tr><td><strong>Automatizaciones de WhatsApp</strong></td><td>Respuesta inmediata, mensaje de fuera de horario, menú de servicios</td><td>Marketing</td><td class="ctr">1.5</td></tr>
+    <tr><td><strong>Publicar precios</strong></td><td>Rangos por tratamiento en la ficha de Google y en las historias destacadas</td><td>Dirección</td><td class="ctr">1.5</td></tr>
+    <tr><td><strong>Arrancar el sitio web</strong></td><td>Contratar dominio y desarrollo; entregar textos y fotografías</td><td>Dirección</td><td class="ctr">3</td></tr>
+    <tr><td><strong>Interacción local</strong></td><td>Seguir e interactuar con 20 cuentas de la zona por semana</td><td>Marketing</td><td class="ctr">1/sem</td></tr>
+  </table>
+
+  <div class="grid3" style="margin-top:4mm">
+    <div class="kpi"><div class="v good">$0</div><div class="l">Inversión en medios</div></div>
+    <div class="kpi"><div class="v">≈40 h</div><div class="l">Trabajo total del mes</div></div>
+    <div class="kpi"><div class="v">15+</div><div class="l">Meta de reseñas al día 30</div></div>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 21</span></div>
+</section>
+
+<!-- ============ 19 FASE 2 ============ -->
+<section class="page">
+  <div class="ph"><b>19 · Plan de 90 días</b><span>Fase 2 · Tracción (días 31–60)</span></div>
+  <h2>Fase 2 — Convertir la visibilidad en citas</h2>
+  <p class="lead">Objetivo de la fase: instalar el activo propio, la medición y la primera pauta controlada. Aquí empieza a entrar inversión en medios, pero solo sobre una base ya instrumentada.</p>
+
+  <table>
+    <tr><th style="width:38mm">Bloque</th><th>Entregables concretos</th><th style="width:30mm">Criterio de "hecho"</th></tr>
+    <tr><td><strong>Sitio web en línea</strong></td><td>Seis páginas publicadas: inicio, medicina estética, nutrición, spa, nosotros, contacto. Cada tratamiento con qué es, para quién, número de sesiones, sensaciones, cuidados y rango de precio.</td><td>Carga en móvil por debajo de 3 segundos y botón de WhatsApp fijo en pantalla</td></tr>
+    <tr><td><strong>Medición completa</strong></td><td>Píxel de Meta, etiqueta de Google, eventos de contacto, enlaces de WhatsApp con parámetros por canal y por tratamiento.</td><td>Cada lead identificable por origen exacto</td></tr>
+    <tr><td><strong>Biblioteca creativa conforme</strong></td><td>12 creativos aprobables por políticas: médica a cámara, testimonios en video con consentimiento firmado, educación, recorrido de instalaciones. Cero antes/después.</td><td>12 piezas revisadas contra la lista de políticas</td></tr>
+    <tr><td><strong>Primera campaña de Meta</strong></td><td>Objetivo de mensajes. Tres conjuntos: radio de 5 km alrededor de Vértiz 995, intereses de estética y nutrición, y público similar a quienes escribieron. Presupuesto de prueba.</td><td>Costo por lead calculado y estable durante 14 días</td></tr>
+    <tr><td><strong>Anuncios de búsqueda de Google</strong></td><td>Campaña local sobre términos de alta intención: tratamiento + zona, y "cerca de mí". Extensiones de ubicación y de llamada.</td><td>Primera cita atribuida a búsqueda pagada</td></tr>
+    <tr><td><strong>Programa de reseñas en marcha</strong></td><td>Solicitud sistemática a las 48 horas de cada consulta. Respuesta pública a cada reseña en menos de 48 horas.</td><td>40+ reseñas acumuladas al día 60</td></tr>
+    <tr><td><strong>Oferta de entrada definida</strong></td><td>Una oferta de bajo riesgo y alto valor percibido —valoración integral con diagnóstico de piel y nutricional— como puerta de entrada al resto del catálogo.</td><td>Oferta publicada en los 4 canales</td></tr>
+    <tr><td><strong>Paquete de nutrición</strong></td><td>Plan mensual con consulta, seguimiento y mediciones. Es la línea de ingreso recurrente que hoy no se vende.</td><td>Primeros 5 pacientes inscritos</td></tr>
+  </table>
+
+  <h3>Estructura de campaña recomendada para Meta</h3>
+  <table>
+    <tr><th style="width:34mm">Conjunto</th><th>Segmentación</th><th style="width:44mm">Creativo y mensaje</th></tr>
+    <tr><td><strong>Geográfico cercano</strong></td><td>Radio de 5 km alrededor de Vértiz 995. Mujeres de 28 a 55 años. Sin intereses, para dejar que el sistema aprenda.</td><td>La médica presentando la clínica y la valoración integral. Énfasis en cercanía y credenciales.</td></tr>
+    <tr><td><strong>Intención estética</strong></td><td>Radio de 8 km. Intereses de medicina estética, cuidado de la piel, antienvejecimiento.</td><td>Educativo por tratamiento ancla, cerrando con la oferta de valoración.</td></tr>
+    <tr><td><strong>Remarketing</strong></td><td>Visitantes del sitio en 30 días, personas que interactuaron con el perfil en 90 días, similares a quienes escribieron.</td><td>Testimonio en video + credenciales + urgencia real (agenda limitada, no falsa escasez).</td></tr>
+    <tr><td><strong>Nutrición</strong></td><td>Radio de 6 km. Intereses de nutrición, bienestar y actividad física.</td><td>Nutrióloga a cámara explicando en qué consiste el plan mensual.</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Advertencia de ejecución</h4>
+    <p style="margin:0">No lanzar pauta con creativos que incluyan antes/después ni encuadres corporales, ni siquiera "para probar". Cada rechazo deteriora la calidad de la cuenta publicitaria y una cuenta restringida detiene toda la captación pagada de golpe, justo cuando ya se depende de ella.</p>
+  </div>
+
+  <div class="grid3" style="margin-top:auto">
+    <div class="kpi"><div class="v" style="font-size:13pt">$8k–15k</div><div class="l">Pauta Meta / mes (MXN)</div></div>
+    <div class="kpi"><div class="v" style="font-size:13pt">$5k–10k</div><div class="l">Búsqueda Google / mes (MXN)</div></div>
+    <div class="kpi"><div class="v" style="font-size:13pt">$18k–35k</div><div class="l">Sitio web (única vez)</div></div>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 22</span></div>
+</section>
+
+<!-- ============ 20 FASE 3 ============ -->
+<section class="page">
+  <div class="ph"><b>20 · Plan de 90 días</b><span>Fase 3 · Escala (días 61–90)</span></div>
+  <h2>Fase 3 — Escalar lo que ya demostró funcionar</h2>
+  <p class="lead">Objetivo de la fase: dejar de experimentar y multiplicar. En esta fase ya existen datos propios —costo por lead, tasa de agendado, ticket promedio— y las decisiones dejan de basarse en criterios generales del sector para basarse en el comportamiento real de esta clínica.</p>
+
+  <table>
+    <tr><th style="width:38mm">Bloque</th><th>Acciones</th><th style="width:34mm">Señal para decidir</th></tr>
+    <tr><td><strong>Escalar lo ganador</strong></td><td>Subir 20% semanal el presupuesto de los conjuntos con costo por lead por debajo del objetivo. Apagar el resto sin sentimentalismo.</td><td>Costo por lead estable durante 14 días consecutivos</td></tr>
+    <tr><td><strong>SEO local por tratamiento</strong></td><td>Publicar una página por tratamiento ancla con la zona incluida: endolift, Venus Legacy, maderoterapia, armonización, nutrición clínica.</td><td>Primeras impresiones orgánicas por término de tratamiento</td></tr>
+    <tr><td><strong>Contenido de mayor producción</strong></td><td>Serie de testimonios en video de pacientes reales con consentimiento. Es el activo que más convierte en salud y el más difícil de copiar.</td><td>Al menos 6 testimonios grabados</td></tr>
+    <tr><td><strong>Evento propio de marca</strong></td><td>Replicar la mecánica que mejor funcionó en la zona: una jornada con nombre propio —por ejemplo, un día dedicado a valoración integral de piel y nutrición— con cupo limitado y agenda cerrada por adelantado.</td><td>Agenda del día llena al 80%</td></tr>
+    <tr><td><strong>Alianzas locales</strong></td><td>Acuerdos cruzados con gimnasios, estudios de pilates, salones y consultorios de la zona: beneficio mutuo para sus clientes.</td><td>3 alianzas activas con seguimiento de referidos</td></tr>
+    <tr><td><strong>Programa de referidos</strong></td><td>Beneficio para quien refiere y para el referido. Estructurado, con código y seguimiento.</td><td>10% de las citas del mes provenientes de referidos</td></tr>
+    <tr><td><strong>Reactivación de base</strong></td><td>Campaña sobre la base de contactos construida en los meses previos: recordatorio de mantenimiento y renovación de tratamientos.</td><td>Tasa de recompra medida por primera vez</td></tr>
+    <tr><td><strong>Sistematizar la operación</strong></td><td>Manual de contenido, manual de WhatsApp, calendario trimestral y tablero de KPIs con revisión quincenal fija.</td><td>El sistema funciona sin depender de una sola persona</td></tr>
+  </table>
+
+  <h3>Resumen de la ruta completa</h3>
+  <table>
+    <tr><th style="width:26mm">Fase</th><th style="width:34mm">Foco</th><th>Resultado esperado al cierre de la fase</th><th class="ctr" style="width:26mm">Inversión en medios</th></tr>
+    <tr><td><strong>Fase 1</strong><br><span class="small">Días 1–30</span></td><td>Existir y ser encontrable</td><td>Ficha de Google verificada y completa · Perfil reparado · 15+ reseñas · Cadencia de 4 piezas semanales sostenida · Doctoralia activo</td><td class="ctr">$0</td></tr>
+    <tr><td><strong>Fase 2</strong><br><span class="small">Días 31–60</span></td><td>Convertir y medir</td><td>Sitio en línea con medición · 12 creativos conformes · Primeras campañas con costo por lead conocido · 40+ reseñas · Paquete de nutrición vendiéndose</td><td class="ctr">$13k–25k / mes</td></tr>
+    <tr><td><strong>Fase 3</strong><br><span class="small">Días 61–90</span></td><td>Escalar y sistematizar</td><td>Presupuesto concentrado en lo rentable · SEO local iniciado · Testimonios en video · Evento propio · Alianzas y referidos activos</td><td class="ctr">$20k–40k / mes</td></tr>
+  </table>
+
+  <div class="box win">
+    <h4>Criterio de escalamiento</h4>
+    <p style="margin:0">El presupuesto solo debe subir cuando <strong>el costo por paciente nuevo se mantiene por debajo de un tercio del ticket promedio de primera compra</strong> durante dos semanas seguidas. Si esa condición no se cumple, el problema no está en el presupuesto sino en el creativo, en la segmentación o en el guion de WhatsApp — y aumentar la inversión solo multiplicaría el error.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 23</span></div>
+</section>
+
+<!-- ============ 21 PERFIL OPTIMIZADO ============ -->
+<section class="page t3">
+  <div class="ph"><b>21 · Ejecución</b><span>Perfil de Instagram optimizado</span></div>
+  <h2>Copy listo para copiar y pegar</h2>
+  <p class="lead">Los campos marcados entre corchetes deben completarse con los datos reales de la clínica antes de publicar. Todo lo demás está listo para usarse tal cual.</p>
+
+  <h4>Campo "Nombre" — el más importante, porque Instagram lo indexa en su buscador</h4>
+  <div class="copyblock">DM Wellness · Medicina Estética Narvarte CDMX</div>
+  <p class="small">Contiene la marca, la categoría por la que se busca y la zona. Un usuario que escriba "medicina estética cdmx" o "estética narvarte" en el buscador de Instagram ahora tiene una vía real de encontrar la cuenta. Hoy no la tiene.</p>
+
+  <h4>Biografía</h4>
+  <div class="copyblock">Clínica integral: estética · nutrición · spa 💜
+Botox · Rellenos · Endolift · Venus Legacy · Dermapen · Nutrición clínica
+📍 Dr. José María Vértiz 995, Int. [   ] · Narvarte, Benito Juárez, CDMX
+🩺 Dra. [Nombre] · Céd. Prof. [número]
+📄 Aviso COFEPRIS 2409145036X00027
+🕐 Lun a Sáb [horario] · Valoración con cita
+👇 Agenda hoy</div>
+  <p class="small">Responde en siete segundos las tres preguntas que decide un paciente: dónde están, quién atiende y con qué credencial, y cómo se agenda. Nombra además los tratamientos por los que la gente busca, que hoy no aparecen en ninguna parte del perfil.</p>
+
+  <h4>Enlace de la biografía — reemplazar el wa.link suelto</h4>
+  <table>
+    <tr><th style="width:44mm">Botón del hub</th><th>Destino</th><th style="width:34mm">Para qué sirve</th></tr>
+    <tr><td>📅 Agendar por WhatsApp</td><td>WhatsApp con parámetro de origen "bio"</td><td>Ruta principal, ya medida</td></tr>
+    <tr><td>💉 Ver tratamientos y precios</td><td>Página de medicina estética del sitio</td><td>Filtra y educa antes del contacto</td></tr>
+    <tr><td>🥗 Plan de nutrición mensual</td><td>Página de nutrición</td><td>Activa la línea recurrente</td></tr>
+    <tr><td>💆 Menú de spa</td><td>Página de spa</td><td>Oferta de entrada de bajo riesgo</td></tr>
+    <tr><td>📍 Cómo llegar</td><td>Ficha de Google / Maps</td><td>Refuerza señales locales y genera reseñas</td></tr>
+    <tr><td>⭐ Opiniones de pacientes</td><td>Ficha de Google</td><td>Prueba social en el punto de decisión</td></tr>
+  </table>
+
+  <h4>Plantilla de hashtags — 10 por pieza, siempre separados por espacio</h4>
+  <div class="copyblock">#MedicinaEsteticaCDMX #Narvarte #BenitoJuarez #VertizNarvarte #CDMX
+#[tratamiento] #[tratamiento2] #ClinicaEstetica #SaludYBelleza #DMWellness</div>
+  <p class="small">Cinco fijas de zona y categoría, dos variables según el tratamiento de la pieza, tres de marca y sector. Nunca repetir una etiqueta dentro del mismo pie de foto.</p>
+
+  <h4>Estructura de pie de foto que sí convierte</h4>
+  <div class="copyblock">[GANCHO EN CONFLICTO — una línea que contradiga una creencia común]
+
+[2 a 4 líneas de explicación real: qué es, para quién sirve, qué esperar]
+
+[Quién lo realiza: Dra. [Nombre], Céd. Prof. [número]]
+
+📍 Narvarte, Vértiz 995 · Benito Juárez, CDMX
+📲 Escribe "[PALABRA CLAVE]" al DM y te damos horario hoy mismo
+📄 Aviso COFEPRIS 2409145036X00027
+
+[10 hashtags separados por espacio]</div>
+
+  <div class="box">
+    <h4>Historias destacadas a crear (siete, en este orden)</h4>
+    <p style="margin:0"><strong>1. Cómo llegar</strong> — fachada, referencias, transporte, estacionamiento · <strong>2. Medicina estética</strong> — tratamiento por tratamiento · <strong>3. Nutrición</strong> — metodología y plan mensual · <strong>4. Spa</strong> — menú y duraciones · <strong>5. Equipo</strong> — quién es cada quien, con cédula · <strong>6. Resultados</strong> — testimonios en video, con consentimiento firmado · <strong>7. Precios</strong> — rangos por servicio. Portadas con la misma plantilla de marca.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 24</span></div>
+</section>
+
+<!-- ============ 22 CALENDARIO ============ -->
+<section class="page">
+  <div class="ph"><b>22 · Ejecución</b><span>Calendario editorial de 4 semanas</span></div>
+  <h2>Dieciséis piezas, con su gancho ya escrito</h2>
+  <p class="lead">Cuatro piezas por semana bajo una fórmula fija: <strong>dos educativas con la médica a cámara, una de proceso o resultado conforme a políticas, y una de comunidad, equipo u oferta</strong>. Todas de 45 a 90 segundos, salvo las marcadas como cortas.</p>
+
+  <table>
+    <tr><th class="ctr" style="width:12mm">Sem.</th><th style="width:22mm">Tipo</th><th>Gancho (primeros 3 segundos)</th><th style="width:30mm">Servicio</th><th class="ctr" style="width:14mm">Dur.</th></tr>
+    <tr><td class="ctr" rowspan="4"><strong>1</strong></td><td>Educativa</td><td>"Lo que nadie te dice antes de aplicarte botox por primera vez"</td><td>Medicina estética</td><td class="ctr">60 s</td></tr>
+    <tr><td>Educativa</td><td>"¿Por qué aquí cuesta más que en una cabina? Te lo explico sin adornos"</td><td>Posicionamiento</td><td class="ctr">75 s</td></tr>
+    <tr><td>Proceso</td><td>"Así se ve una valoración completa: piel, cuerpo y nutrición en una sola cita"</td><td>Integral</td><td class="ctr">50 s</td></tr>
+    <tr><td>Comunidad</td><td>"Conoce a la Dra. [Nombre]: por qué decidió dedicarse a esto"</td><td>Equipo</td><td class="ctr">60 s</td></tr>
+
+    <tr><td class="ctr" rowspan="4"><strong>2</strong></td><td>Educativa</td><td>"Tu nutrióloga y tu médica estética deberían hablarse. Aquí sí lo hacen"</td><td>Nutrición</td><td class="ctr">70 s</td></tr>
+    <tr><td>Educativa</td><td>"Endolift no es lo mismo que lipo. Estas son las diferencias reales"</td><td>Endolift</td><td class="ctr">80 s</td></tr>
+    <tr><td>Proceso</td><td>"Recorrido completo por la clínica en 45 segundos"</td><td>Instalaciones</td><td class="ctr">45 s</td></tr>
+    <tr><td>Oferta</td><td>"Valoración integral de piel y nutrición: cupo limitado esta semana"</td><td>Oferta de entrada</td><td class="ctr">30 s</td></tr>
+
+    <tr><td class="ctr" rowspan="4"><strong>3</strong></td><td>Educativa</td><td>"¿Duele? Te muestro exactamente qué se siente, sin filtros"</td><td>Objeciones</td><td class="ctr">60 s</td></tr>
+    <tr><td>Educativa</td><td>"Tres señales de que esa clínica no debería tocarte la cara"</td><td>Autoridad</td><td class="ctr">75 s</td></tr>
+    <tr><td>Testimonio</td><td>"[Paciente] cuenta cómo fue su proceso completo" <span class="small">(con consentimiento firmado)</span></td><td>Prueba social</td><td class="ctr">60 s</td></tr>
+    <tr><td>Comunidad</td><td>"Pregúntanos lo que quieras: respondemos en historias"</td><td>Interacción</td><td class="ctr">20 s</td></tr>
+
+    <tr><td class="ctr" rowspan="4"><strong>4</strong></td><td>Educativa</td><td>"Bajar de peso sin rebote: lo que hacemos distinto en consulta"</td><td>Nutrición</td><td class="ctr">80 s</td></tr>
+    <tr><td>Educativa</td><td>"Cuidados después de un facial: los cinco errores más comunes"</td><td>Faciales</td><td class="ctr">55 s</td></tr>
+    <tr><td>Proceso</td><td>"Qué hace exactamente Venus Legacy sobre la piel" <span class="small">(sin encuadres corporales)</span></td><td>Venus Legacy</td><td class="ctr">65 s</td></tr>
+    <tr><td>Comunidad</td><td>"Somos vecinos de Narvarte: presentamos a los negocios de la cuadra"</td><td>Comunidad local</td><td class="ctr">45 s</td></tr>
+  </table>
+
+  <div class="grid2">
+    <div class="box" style="margin:0">
+      <h4>Cómo producirlo sin morir en el intento</h4>
+      <p style="margin:0">Grabar por lotes: <strong>una sesión de tres horas al mes produce las dieciséis piezas</strong>. Se cambia de bata o de blusa entre bloques para que no parezcan grabadas el mismo día. La edición y la publicación se hacen semana a semana. El error a evitar es intentar grabar el mismo día que se publica: es exactamente lo que provoca los huecos de 18 días detectados en agosto.</p>
+    </div>
+    <div class="box win" style="margin:0">
+      <h4>La regla de los tres segundos</h4>
+      <p style="margin:0">El gancho debe aparecer <strong>hablado y escrito en pantalla</strong> en los primeros tres segundos. Ninguna pieza debe empezar con el logotipo, con música de introducción ni con "hola, bienvenidos a nuestra clínica". Ese arranque es la causa directa del reel de 85 reproducciones del 26 de agosto.</p>
+    </div>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 25</span></div>
+</section>
+
+<!-- ============ 23 RESEÑAS Y WHATSAPP ============ -->
+<section class="page t1">
+  <div class="ph"><b>23 · Ejecución</b><span>Motor de reseñas y guion de WhatsApp</span></div>
+  <h2>Los dos sistemas que más pacientes producen</h2>
+
+  <h3>A. Motor de reseñas — de 0 a 40 en 60 días</h3>
+  <p>La brecha de 997 reseñas frente a 0 no se cierra con contenido: se cierra con proceso. Un proceso que ya funciona con la mitad de los pacientes que hoy salen satisfechos de la clínica.</p>
+  <table>
+    <tr><th style="width:26mm">Momento</th><th>Acción exacta</th><th style="width:34mm">Quién lo hace</th></tr>
+    <tr><td><strong>En la consulta</strong></td><td>Al terminar, mientras el paciente está satisfecho: <em>"Nos ayudaría muchísimo tu opinión en Google. Te mando el enlace ahora mismo y te toma menos de un minuto."</em> Pedirlo en persona multiplica la respuesta frente a pedirlo solo por mensaje.</td><td>Médica o cosmetóloga</td></tr>
+    <tr><td><strong>En recepción</strong></td><td>QR impreso y visible en el mostrador y en cada cabina, con el texto "Cuéntanos cómo te fue".</td><td>Recepción</td></tr>
+    <tr><td><strong>A las 48 horas</strong></td><td>Mensaje de seguimiento clínico —<em>"¿cómo va tu piel?"</em>— y, dentro del mismo mensaje, el enlace directo de reseña. Nunca un mensaje que solo pida la reseña.</td><td>Recepción</td></tr>
+    <tr><td><strong>Al recibirla</strong></td><td>Responder cada reseña en menos de 48 horas, de forma personalizada y sin revelar datos clínicos del paciente.</td><td>Dirección</td></tr>
+    <tr><td><strong>Si es negativa</strong></td><td>Responder públicamente con calma, sin discutir y sin mencionar información médica, ofreciendo resolverlo por un canal privado. Una respuesta bien escrita a una reseña negativa convence más que diez positivas.</td><td>Dirección</td></tr>
+  </table>
+  <div class="box">
+    <p style="margin:0"><strong>Meta realista:</strong> 15 reseñas el primer mes, 40 acumuladas al día 60, 80 al día 120. Con 20 consultas semanales y una tasa de respuesta del 20% —conservadora si se pide en persona— la meta se cumple sin esfuerzo extraordinario. <strong>Regla de oro:</strong> nunca comprar reseñas ni incentivarlas con descuentos. Las plataformas lo detectan, la sanción es la eliminación masiva del histórico y se pierde lo construido.</p>
+  </div>
+
+  <h3>B. Guion de WhatsApp — de mensaje a cita</h3>
+  <table>
+    <tr><th style="width:26mm">Paso</th><th>Contenido</th></tr>
+    <tr><td><strong>Respuesta inmediata</strong><br><span class="small">automática, 0 min</span></td><td><em>"¡Hola! Gracias por escribir a DM Wellness 💜 Somos clínica de medicina estética, nutrición y spa en Narvarte. En un momento te atiende una persona del equipo. Mientras tanto, ¿qué te gustaría mejorar?"</em></td></tr>
+    <tr><td><strong>Calificación</strong><br><span class="small">humano, menos de 5 min</span></td><td>Cinco preguntas, una por mensaje, nunca todas juntas: 1) ¿Qué te gustaría trabajar? · 2) ¿Te has hecho algún tratamiento antes? · 3) ¿Buscas algo para una fecha específica? · 4) ¿Qué días y horarios te acomodan? · 5) ¿Es tu primera vez con nosotros?</td></tr>
+    <tr><td><strong>Encuadre de valor</strong></td><td><em>"Por lo que me cuentas, lo correcto es una valoración: la Dra. [Nombre], céd. prof. [número], revisa tu caso y te dice qué sí y qué no te conviene. No vendemos tratamientos sin valorar."</em> Esto justifica el precio antes de mencionarlo.</td></tr>
+    <tr><td><strong>Cierre</strong></td><td>Nunca preguntar "¿te gustaría agendar?". Siempre ofrecer dos opciones concretas: <em>"Tengo jueves a las 4:00 o viernes a las 11:00. ¿Cuál te queda mejor?"</em></td></tr>
+    <tr><td><strong>Confirmación</strong></td><td>Mensaje 24 horas antes con dirección, referencias para llegar y qué llevar. Recordatorio 2 horas antes. Reduce las ausencias de forma notable.</td></tr>
+    <tr><td><strong>Seguimiento si no cierra</strong></td><td>Tres toques con ángulos distintos: a las <strong>24 h</strong> resolver la duda concreta que quedó abierta; a las <strong>72 h</strong> enviar contenido educativo del tratamiento que preguntó; a los <strong>7 días</strong> avisar de disponibilidad o de la oferta de entrada. Después, dejar de insistir.</td></tr>
+  </table>
+
+  <h4>Las seis objeciones reales y cómo responderlas</h4>
+  <table>
+    <tr><th style="width:44mm">Objeción</th><th>Respuesta recomendada</th></tr>
+    <tr><td>"Está caro"</td><td>Desglosar qué incluye: valoración médica, equipo certificado, seguimiento posterior. Comparar con el costo de corregir un mal procedimiento.</td></tr>
+    <tr><td>"Lo voy a pensar"</td><td>Preguntar qué específicamente quiere pensar. Casi siempre es una duda concreta que se resuelve en un mensaje.</td></tr>
+    <tr><td>"¿Duele?"</td><td>Describir con honestidad la sensación real y las medidas de confort. La exageración se paga con reseñas negativas.</td></tr>
+    <tr><td>"En otro lado me lo hacen más barato"</td><td>Preguntar quién lo realiza y con qué cédula. Ahí está la diferencia, y el paciente casi nunca lo había considerado.</td></tr>
+    <tr><td>"No tengo tiempo"</td><td>Ofrecer horarios de apertura, cierre o sábado. Mencionar la duración real del procedimiento.</td></tr>
+    <tr><td>"Me da miedo quedar rara"</td><td>Explicar la filosofía de resultados naturales y ofrecer empezar con algo reversible o de baja intervención.</td></tr>
+  </table>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 26</span></div>
+</section>
+
+<!-- ============ 24 PRESUPUESTO Y PROYECCIÓN ============ -->
+<section class="page t3">
+  <div class="ph"><b>24 · Números</b><span>Presupuesto y proyección</span></div>
+  <h2>Qué cuesta y qué puede producir</h2>
+  <div class="box crit">
+    <p style="margin:0"><strong>Lectura obligatoria antes de la tabla.</strong> Lo que sigue es un <strong>modelo, no una promesa</strong>. Se construye con los supuestos declarados abajo y con precios públicos de la zona. Los resultados reales dependen de la ejecución, de la capacidad de agenda de la clínica y de la competencia en el momento. Ninguna cifra debe presentarse a terceros como resultado garantizado.</p>
+  </div>
+
+  <h3>Supuestos del modelo</h3>
+  <table>
+    <tr><th style="width:56mm">Variable</th><th class="ctr" style="width:26mm">Valor usado</th><th>Origen del supuesto</th></tr>
+    <tr><td>Ticket promedio de primera compra</td><td class="ctr">$2,500 MXN</td><td>Punto medio entre la valoración ($500–$1,600) y los tratamientos ancla de la zona ($5,000–$8,500)</td></tr>
+    <tr><td>Compras adicionales en 12 meses</td><td class="ctr">2.5</td><td>Comportamiento típico en estética con seguimiento y mantenimiento</td></tr>
+    <tr><td>Valor del paciente a 12 meses</td><td class="ctr">≈ $8,000 MXN</td><td>Derivado de las dos variables anteriores</td></tr>
+    <tr><td>Mensaje → cita agendada</td><td class="ctr">25–35%</td><td>Con guion de calificación y respuesta en menos de 5 minutos</td></tr>
+    <tr><td>Cita agendada → asiste</td><td class="ctr">70–80%</td><td>Con confirmación a 24 h y recordatorio a 2 h</td></tr>
+    <tr><td>Asiste → compra</td><td class="ctr">40–50%</td><td>Con valoración presencial y plan de tratamiento por escrito</td></tr>
+    <tr><td><strong>Mensaje → paciente</strong></td><td class="ctr"><strong>≈ 10%</strong></td><td>Producto de las tres tasas anteriores</td></tr>
+  </table>
+
+  <h3>Proyección de pacientes nuevos al mes 3</h3>
+  <table>
+    <tr><th style="width:46mm">Canal</th><th class="num" style="width:26mm">Conservador</th><th class="num" style="width:26mm">Base</th><th class="num" style="width:26mm">Optimista</th><th>Nota</th></tr>
+    <tr><td>Ficha de Google (búsqueda y mapas)</td><td class="num">4</td><td class="num">8</td><td class="num">12</td><td>Alta intención; crece con las reseñas</td></tr>
+    <tr><td>Instagram orgánico (16 piezas/mes)</td><td class="num">2</td><td class="num">4</td><td class="num">6</td><td>Requiere sostener la cadencia</td></tr>
+    <tr><td>Doctoralia y agregadores</td><td class="num">1</td><td class="num">3</td><td class="num">5</td><td>Depende del número de opiniones</td></tr>
+    <tr><td>Anuncios en Meta</td><td class="num">6</td><td class="num">9</td><td class="num">12</td><td>Con $10,000 MXN de pauta</td></tr>
+    <tr><td>Anuncios de búsqueda en Google</td><td class="num">4</td><td class="num">6</td><td class="num">8</td><td>Con $7,000 MXN de pauta</td></tr>
+    <tr><td>Referidos y reactivación</td><td class="num">1</td><td class="num">3</td><td class="num">5</td><td>Sistema activo desde el mes 2</td></tr>
+    <tr style="background:#F5F1F8"><td><strong>TOTAL PACIENTES NUEVOS / MES</strong></td><td class="num"><strong>18</strong></td><td class="num"><strong>33</strong></td><td class="num"><strong>48</strong></td><td></td></tr>
+    <tr><td>Ingreso de primera compra</td><td class="num">$45,000</td><td class="num">$82,500</td><td class="num">$120,000</td><td>Pesos mexicanos, mensual</td></tr>
+    <tr><td>Valor generado a 12 meses</td><td class="num">$144,000</td><td class="num">$264,000</td><td class="num">$384,000</td><td>Cohorte de un solo mes</td></tr>
+    <tr><td>Inversión en medios</td><td class="num">$17,000</td><td class="num">$17,000</td><td class="num">$17,000</td><td>Solo pauta, sin honorarios</td></tr>
+    <tr style="background:#F5F1F8"><td><strong>Costo por paciente nuevo (medios)</strong></td><td class="num"><strong>$944</strong></td><td class="num"><strong>$515</strong></td><td class="num"><strong>$354</strong></td><td>Objetivo: por debajo de $830 (un tercio del ticket)</td></tr>
+  </table>
+
+  <h3>Presupuesto por fase</h3>
+  <table>
+    <tr><th style="width:34mm">Concepto</th><th class="num" style="width:28mm">Mes 1</th><th class="num" style="width:28mm">Mes 2</th><th class="num" style="width:28mm">Mes 3</th><th>Naturaleza</th></tr>
+    <tr><td>Ficha de Google, directorios y perfiles</td><td class="num">$0</td><td class="num">$0</td><td class="num">$0</td><td>Gratuito</td></tr>
+    <tr><td>Sitio web (6 páginas)</td><td class="num">—</td><td class="num">$18,000–35,000</td><td class="num">—</td><td>Única vez</td></tr>
+    <tr><td>Dominio y hospedaje</td><td class="num">—</td><td class="num">$2,500</td><td class="num">—</td><td>Anual</td></tr>
+    <tr><td>Pauta en Meta</td><td class="num">$0</td><td class="num">$8,000</td><td class="num">$10,000</td><td>Mensual</td></tr>
+    <tr><td>Pauta de búsqueda en Google</td><td class="num">$0</td><td class="num">$5,000</td><td class="num">$7,000</td><td>Mensual</td></tr>
+    <tr><td>Producción de contenido</td><td class="num">Interna</td><td class="num">Interna</td><td class="num">Interna</td><td>3 h de grabación al mes</td></tr>
+    <tr style="background:#F5F1F8"><td><strong>Total del mes</strong></td><td class="num"><strong>$0</strong></td><td class="num"><strong>$33,500–50,500</strong></td><td class="num"><strong>$17,000</strong></td><td>Sin honorarios de agencia</td></tr>
+  </table>
+
+  <div class="box win">
+    <h4>El punto de equilibrio</h4>
+    <p style="margin:0">En el escenario base, la inversión mensual en medios del mes 3 ($17,000) se recupera con <strong>siete pacientes nuevos</strong> de primera compra. El modelo proyecta 33. Incluso el escenario conservador —18 pacientes— cubre la inversión más de dos veces sobre la primera compra, sin contar el valor a doce meses. El riesgo real de este plan <strong>no es financiero: es de ejecución</strong>. Si la cadencia de contenido vuelve a caer o si el WhatsApp no se responde en minutos, ningún presupuesto compensa esa falla.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 27</span></div>
+</section>
+
+<!-- ============ 25 KPIs ============ -->
+<section class="page">
+  <div class="ph"><b>25 · Control</b><span>Tablero de indicadores</span></div>
+  <h2>Qué medir y cada cuánto</h2>
+  <p class="lead">Una regla: si un indicador no se revisa, no existe. Se propone una revisión quincenal fija de treinta minutos con esta tabla en pantalla.</p>
+
+  <h4>Indicadores de captación</h4>
+  <table>
+    <tr><th style="width:52mm">Indicador</th><th class="ctr" style="width:22mm">Hoy</th><th class="ctr" style="width:22mm">Meta día 30</th><th class="ctr" style="width:22mm">Meta día 60</th><th class="ctr" style="width:22mm">Meta día 90</th></tr>
+    <tr><td>Reseñas acumuladas en Google</td><td class="ctr" style="color:var(--red)"><strong>0</strong></td><td class="ctr">15</td><td class="ctr">40</td><td class="ctr">65</td></tr>
+    <tr><td>Calificación promedio</td><td class="ctr">—</td><td class="ctr">4.7+</td><td class="ctr">4.7+</td><td class="ctr">4.8+</td></tr>
+    <tr><td>Acciones desde la ficha de Google (mes)</td><td class="ctr" style="color:var(--red)"><strong>0</strong></td><td class="ctr">50</td><td class="ctr">150</td><td class="ctr">300</td></tr>
+    <tr><td>Reels publicados al mes</td><td class="ctr" style="color:var(--red)"><strong>2</strong></td><td class="ctr">16</td><td class="ctr">16</td><td class="ctr">16</td></tr>
+    <tr><td>Reproducciones mensuales de reels</td><td class="ctr" style="color:var(--red)"><strong>739</strong></td><td class="ctr">8,000</td><td class="ctr">20,000</td><td class="ctr">40,000</td></tr>
+    <tr><td>Mediana de reproducciones por reel</td><td class="ctr" style="color:var(--red)"><strong>362</strong></td><td class="ctr">700</td><td class="ctr">1,500</td><td class="ctr">2,500</td></tr>
+    <tr><td>Interacción sobre seguidores</td><td class="ctr" style="color:var(--red)"><strong>0.087%</strong></td><td class="ctr">0.4%</td><td class="ctr">0.8%</td><td class="ctr">1.2%</td></tr>
+    <tr><td>Seguidores</td><td class="ctr">6,800</td><td class="ctr">7,100</td><td class="ctr">7,800</td><td class="ctr">8,800</td></tr>
+  </table>
+
+  <h4>Indicadores de conversión y negocio</h4>
+  <table>
+    <tr><th style="width:52mm">Indicador</th><th class="ctr" style="width:22mm">Hoy</th><th class="ctr" style="width:22mm">Meta día 30</th><th class="ctr" style="width:22mm">Meta día 60</th><th class="ctr" style="width:22mm">Meta día 90</th></tr>
+    <tr><td>Mensajes entrantes al mes</td><td class="ctr">Sin medir</td><td class="ctr">Medido</td><td class="ctr">120</td><td class="ctr">250</td></tr>
+    <tr><td>Tiempo de primera respuesta</td><td class="ctr">Sin medir</td><td class="ctr">&lt; 15 min</td><td class="ctr">&lt; 5 min</td><td class="ctr">&lt; 5 min</td></tr>
+    <tr><td>Tasa de mensaje a cita</td><td class="ctr">Sin medir</td><td class="ctr">20%</td><td class="ctr">28%</td><td class="ctr">32%</td></tr>
+    <tr><td>Tasa de ausencia a la cita</td><td class="ctr">Sin medir</td><td class="ctr">&lt; 30%</td><td class="ctr">&lt; 25%</td><td class="ctr">&lt; 20%</td></tr>
+    <tr><td>Pacientes nuevos al mes</td><td class="ctr">Sin medir</td><td class="ctr">Medido</td><td class="ctr">20</td><td class="ctr">33</td></tr>
+    <tr><td>Costo por paciente nuevo</td><td class="ctr">—</td><td class="ctr">—</td><td class="ctr">&lt; $900</td><td class="ctr">&lt; $700</td></tr>
+    <tr><td>Ticket promedio de primera compra</td><td class="ctr">Sin medir</td><td class="ctr">Medido</td><td class="ctr">$2,300</td><td class="ctr">$2,500</td></tr>
+    <tr><td>Pacientes de nutrición en plan mensual</td><td class="ctr" style="color:var(--red)"><strong>0</strong></td><td class="ctr">2</td><td class="ctr">8</td><td class="ctr">18</td></tr>
+    <tr><td>Porcentaje de citas por referido</td><td class="ctr">Sin medir</td><td class="ctr">Medido</td><td class="ctr">5%</td><td class="ctr">10%</td></tr>
+  </table>
+
+  <h3>Cadencia de revisión</h3>
+  <table>
+    <tr><th style="width:30mm">Frecuencia</th><th>Qué se revisa</th><th style="width:34mm">Quién</th></tr>
+    <tr><td><strong>Diaria</strong> (5 min)</td><td>Mensajes sin responder, citas del día, confirmaciones pendientes</td><td>Recepción</td></tr>
+    <tr><td><strong>Semanal</strong> (15 min)</td><td>Piezas publicadas contra plan, reseñas nuevas, mensajes entrantes, citas agendadas</td><td>Marketing</td></tr>
+    <tr><td><strong>Quincenal</strong> (30 min)</td><td>Tablero completo, rendimiento por canal, decisiones de presupuesto</td><td>Dirección + marketing</td></tr>
+    <tr><td><strong>Mensual</strong> (60 min)</td><td>Costo por paciente, ticket, valor a 12 meses, calendario del mes siguiente, comparación con la competencia</td><td>Dirección</td></tr>
+  </table>
+
+  <div class="box">
+    <h4>El indicador que manda sobre todos los demás</h4>
+    <p style="margin:0">Si hubiera que elegir uno solo para los próximos 90 días, sería <strong>pacientes nuevos al mes por canal de origen</strong>. Todo lo demás —seguidores, reproducciones, likes— es diagnóstico intermedio. Una cuenta puede duplicar sus reproducciones y no llenar la agenda; eso ya está pasando hoy con el reel de maderoterapia. Lo que se mide, se optimiza: mídase lo que se cobra.</p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 28</span></div>
+</section>
+
+<!-- ============ 26 SUPUESTOS Y FUENTES ============ -->
+<section class="page t2">
+  <div class="ph"><b>26 · Cierre</b><span>Supuestos, riesgos y fuentes</span></div>
+  <h2>Lo que hay que tener presente</h2>
+
+  <h3>Riesgos del plan</h3>
+  <table>
+    <tr><th style="width:44mm">Riesgo</th><th>Cómo se mitiga</th></tr>
+    <tr><td><strong>La cadencia vuelve a caer</strong></td><td>Es el riesgo más probable, porque ya ocurrió en agosto. Se mitiga grabando por lotes y dejando el contenido programado con al menos dos semanas de anticipación.</td></tr>
+    <tr><td><strong>La cuenta publicitaria se restringe</strong></td><td>Se mitiga eliminando por completo los creativos con antes/después y encuadres corporales antes de la primera campaña, y revisando cada pieza contra la lista de la sección 11.</td></tr>
+    <tr><td><strong>La audiencia actual no es local</strong></td><td>Se verifica en la primera semana con Insights. Si menos del 60% está en CDMX, el plan sigue igual: la ficha de Google y la pauta geolocalizada construyen una base nueva y correcta, sin depender de la existente.</td></tr>
+    <tr><td><strong>La agenda no absorbe la demanda</strong></td><td>Se mitiga proyectando capacidad antes de escalar pauta. Generar más mensajes de los que se pueden atender produce malas reseñas, que es peor que no generarlos.</td></tr>
+    <tr><td><strong>La ficha de Google tarda en verificarse</strong></td><td>Iniciar el trámite el primer día. Si la verificación por video falla, solicitar la postal de inmediato. Mientras tanto, avanzar con Doctoralia y agregadores.</td></tr>
+    <tr><td><strong>Dependencia de una sola persona</strong></td><td>Se mitiga documentando manual de contenido y manual de WhatsApp en la fase 3, para que el sistema sobreviva a cualquier cambio de personal.</td></tr>
+  </table>
+
+  <h3>Fuentes consultadas</h3>
+  <table>
+    <tr><th style="width:56mm">Fuente</th><th>Uso en este informe</th></tr>
+    <tr><td>Perfil público de Instagram @dm_wbn2</td><td>Datos de perfil, biografía, enlace, seguidores, publicaciones</td></tr>
+    <tr><td>Pestaña de Reels de @dm_wbn2</td><td>Las 12 piezas analizadas con reproducciones, likes, comentarios, duración y fecha</td></tr>
+    <tr><td>Perfil y Reels de @skintopia_mx</td><td>Todo el benchmark comparativo de la sección 13</td></tr>
+    <tr><td>Fichas públicas de directorios médicos y de reserva</td><td>Competidores de la zona, precios de referencia, número de opiniones, dirección Int. 304</td></tr>
+    <tr><td>Sitios de competidores de la zona</td><td>Estructura de servicios, ubicación y estrategia de captación por colonia</td></tr>
+    <tr><td>Análisis de contenido destacado del nicho en español</td><td>Los patrones de formato de la sección 15</td></tr>
+    <tr><td>Políticas publicitarias de Meta para salud y belleza</td><td>Evaluación de riesgo de la sección 11</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Declaración final de límites</h4>
+    <p style="margin:0">La página de Facebook <strong>no pudo verificarse</strong> y sus doce puntos quedan pendientes de completar internamente. <strong>No se dispuso de datos de volumen de búsqueda</strong>, por lo que este informe no publica ninguna cifra de búsquedas mensuales: la priorización de palabras clave se sustenta en la estructura observada de los resultados, no en volúmenes estimados. Las proyecciones de la sección 24 son modelos con supuestos declarados, no promesas de resultado.</p>
+  </div>
+
+  <h3>Las tres cosas que hay que hacer esta semana</h3>
+  <table>
+    <tr><th class="ctr" style="width:12mm">#</th><th style="width:52mm">Acción</th><th>Por qué esta y no otra</th></tr>
+    <tr><td class="ctr"><strong>1</strong></td><td><strong>Crear la ficha de Google Business Profile</strong></td><td>Cuesta cero pesos, toma quince minutos y desbloquea el canal de mayor intención de compra que existe para una clínica presencial. Es también el requisito para tener reseñas.</td></tr>
+    <tr><td class="ctr"><strong>2</strong></td><td><strong>Encender el motor de reseñas</strong></td><td>Es el único activo de esta auditoría que exige tiempo obligatorio. Cada semana de retraso es una semana en la que la brecha de 997 opiniones se ensancha.</td></tr>
+    <tr><td class="ctr"><strong>3</strong></td><td><strong>Reescribir el perfil de Instagram y grabar el primer lote</strong></td><td>Quince minutos de edición de texto y tres horas de grabación dejan resuelto el contenido del mes completo y cierran la puerta a otro hueco de dieciocho días.</td></tr>
+  </table>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>Conclusión</h4>
+    <p style="margin:0">DM Wellness no tiene un problema de mercado ni de servicio: opera en una de las zonas con mayor demanda de medicina estética de la Ciudad de México, con equipamiento que sus competidores directos no siempre tienen y con un aviso sanitario vigente que la mayoría de la competencia informal no puede exhibir. Tiene un <strong>problema de infraestructura de captación</strong>, y ese problema tiene solución conocida, secuencia clara y un costo inicial de cero pesos. La ventana está abierta: el territorio digital de Narvarte está tan poco defendido que hoy lo está capturando una clínica de otra alcaldía. <strong>Ocuparlo es cuestión de las próximas cuatro semanas.</strong></p>
+  </div>
+  <div class="pf"><span>DM Wellness Beauty and Nutrition · Narvarte, CDMX</span><span>Página 29</span></div>
+</section>
+
+</body>
+</html>
