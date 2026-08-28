@@ -3,18 +3,21 @@
 
 User-agent: *
 Allow: /
+# El contenido del sitio se arma con JavaScript: Google necesita poder leer
+# estos archivos para indexar las páginas. No los bloquees.
+Allow: /teve-config.js
+Allow: /img/
+Disallow: /*?utm_
+Disallow: /*?fbclid
 
-# Archivos internos que no aportan nada a Google
-Disallow: /teve-config.js
-Disallow: /img/originales/
-Disallow: /*?s=
-Disallow: /*?buscar=
-
-# Rastreadores de IA — permitidos: ayudan a que recomienden TEVE
+# --- Buscadores con IA: sí queremos aparecer en sus respuestas ---
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: PerplexityBot
@@ -23,17 +26,27 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
 User-agent: Google-Extended
 Allow: /
 
-# Bots de rastreo agresivo de la competencia
+User-agent: Applebot-Extended
+Allow: /
+
+# --- Rastreadores de análisis: permitidos pero más lentos ---
 User-agent: AhrefsBot
 Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 10
 
+# --- Rastreadores sin valor para el negocio ---
 User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
 Disallow: /
 
 Sitemap: https://www.tevetours.com/sitemap.xml

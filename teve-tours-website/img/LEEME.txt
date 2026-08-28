@@ -50,3 +50,19 @@ NO ES OBLIGATORIO SUBIR TODO DE UNA VEZ
 Cada imagen que dejes vacía ("") en teve-config.js se reemplaza sola por
 un fondo degradado animado con los colores de la marca. El sitio nunca se
 ve roto. Puedes ir agregando fotos poco a poco.
+
+===========================================================================
+LOGOTIPO — YA INCLUIDO
+===========================================================================
+Estos tres archivos ya vienen listos y en uso; no tienes que crearlos:
+
+  logo-teve.svg          logotipo completo, para la barra de navegación
+  logo-teve-blanco.svg   versión clara, para la portada y el pie oscuro
+  favicon.svg            ícono de la pestaña del navegador
+
+Son SVG vectoriales: se ven nítidos en cualquier tamaño y en pantallas
+Retina, y pesan ~2 KB cada uno (mucho menos que un PNG).
+
+¿Prefieres tu archivo PNG original? Súbelo a esta carpeta y cambia las
+rutas en teve-config.js, sección 1 (MARCA Y LOGOTIPO). El PNG debe tener
+fondo transparente y al menos 800 px de ancho.

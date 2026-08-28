@@ -153,6 +153,48 @@
   .nav-drawer { display: none; }
 
   /* ============ PORTADA ============ */
+
+  /* --- logotipo en la portada y sus animaciones --- */
+  .hero-badge { display: flex; justify-content: center; margin-bottom: 18px; }
+  .hero-badge img {
+    width: clamp(110px, 15vw, 168px); height: auto;
+    filter: drop-shadow(0 10px 26px rgba(0,0,0,0.45));
+    animation: badgeEntra 1s cubic-bezier(.22,1,.36,1) both, badgeFlota 6s ease-in-out 1s infinite;
+  }
+  @keyframes badgeEntra { from { opacity: 0; transform: translateY(-26px) scale(0.82); } to { opacity: 1; transform: none; } }
+  @keyframes badgeFlota { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+  /* marca de agua del logotipo girando lentamente detrás de la portada */
+  .hero-marca {
+    position: absolute; z-index: 1; pointer-events: none;
+    width: min(78vh, 640px); aspect-ratio: 1;
+    right: -12%; top: 50%; translate: 0 -50%;
+    opacity: 0.09;
+    animation: marcaGira 90s linear infinite;
+  }
+  .hero-marca img { width: 100%; height: 100%; }
+  @keyframes marcaGira { to { transform: rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-badge img, .hero-marca { animation: none; }
+  }
+  @media (max-width: 860px) { .hero-marca { display: none; } }
+
+  /* --- widgets sociales --- */
+  .social-widgets { max-width: 1250px; margin: 0 auto; padding: 0 20px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+  .social-card { border: 1px solid var(--secondary); border-radius: 12px; padding: 26px;
+    background: #fff; text-align: center; display: flex; flex-direction: column;
+    align-items: center; gap: 12px; transition: transform .25s ease, box-shadow .25s ease; }
+  .social-card:hover { transform: translateY(-6px); box-shadow: 0 14px 34px rgba(2,34,46,0.12); }
+  .social-card .social-ico { width: 46px; height: 46px; color: var(--secondary); }
+  .social-card .social-ico svg { width: 100%; height: 100%; fill: currentColor; }
+  .social-card h3 { font-size: 1.15rem; color: var(--primary); margin: 0; }
+  .social-card p { font-size: 0.9rem; color: #5b6b72; margin: 0; }
+  .social-card .btn-outline { margin-top: 6px; }
+  .ta-badge { min-height: 96px; display: flex; align-items: center; justify-content: center; }
+  .ta-badge img { max-width: 130px; height: auto; }
+
   .hero {
     position: relative; height: 88vh; min-height: 540px;
     display: flex; align-items: center; justify-content: center; text-align: center;
@@ -412,7 +454,9 @@
   <section class="hero" id="heroSection">
     <canvas id="heroCanvas" aria-hidden="true"></canvas>
     <div class="hero-veil"></div>
+    <div class="hero-marca" id="heroMarca" aria-hidden="true"></div>
     <div class="hero-content">
+      <div class="hero-badge" id="heroBadge"></div>
       <div class="hero-eyebrow" id="heroEyebrow"></div>
       <h1 id="heroTitle"></h1>
       <p class="hero-sub" id="heroSub"></p>
@@ -632,6 +676,14 @@
         <div class="contact-direct" id="contactDirect"></div>
       </div>
     </div>
+  </section>
+
+  <section class="section" style="background:var(--fourth);">
+    <div class="section-head">
+      <h3>Lo que dicen de nosotros</h3>
+      <h2>Síguenos y lee nuestras reseñas</h2>
+    </div>
+    <div class="social-widgets" id="socialWidgets"></div>
   </section>
 </div>
 
@@ -913,8 +965,15 @@ function renderMarca() {
 
   if (C.marca.favicon) {
     const l = document.createElement('link');
-    l.rel = 'icon'; l.href = C.marca.favicon;
+    l.rel = 'icon';
+    l.href = C.marca.favicon;
+    if (/\.svg(\?|$)/i.test(C.marca.favicon)) l.type = 'image/svg+xml';
     document.head.appendChild(l);
+
+    const t = document.createElement('link');
+    t.rel = 'apple-touch-icon';
+    t.href = C.marca.favicon;
+    document.head.appendChild(t);
   }
   if (C.marca.imagenRedes) {
     const m = document.createElement('meta');
@@ -960,7 +1019,19 @@ function renderTopbar() {
 /* ---------- portada ---------- */
 function renderPortada() {
   const p = C.portada || {};
-  document.getElementById('heroEyebrow').textContent = (C.marca && C.marca.nombreCompleto) || '';
+  const m = C.marca || {};
+  // En la portada el fondo es oscuro, así que se prefiere la versión clara.
+  const logoPortada = m.logoBlanco || m.logo;
+  const badge = document.getElementById('heroBadge');
+  const marca = document.getElementById('heroMarca');
+  if (logoPortada) {
+    badge.innerHTML = `<img src="${esc(logoPortada)}" alt="${esc(m.nombreCompleto || '')}">`;
+    marca.innerHTML = `<img src="${esc(logoPortada)}" alt="" aria-hidden="true">`;
+  } else {
+    badge.innerHTML = '';
+    marca.innerHTML = '';
+  }
+  document.getElementById('heroEyebrow').textContent = m.nombreCompleto || '';
   document.getElementById('heroTitle').innerHTML = p.titulo || '';
   document.getElementById('heroSub').textContent = p.subtitulo || '';
 
@@ -1132,6 +1203,81 @@ function renderContacto() {
   document.getElementById('waFloat').href = waLink();
 }
 
+/* ---------- widgets sociales (TripAdvisor, Facebook, Instagram) ---------- */
+function renderWidgets() {
+  const cont = document.getElementById('socialWidgets');
+  if (!cont) return;
+  const w = C.widgets || {};
+  const r = C.redes || {};
+  const tarjetas = [];
+
+  // --- TripAdvisor: sello oficial servido por TripAdvisor ---
+  const ta = w.tripadvisor || {};
+  if (ta.activo && r.tripadvisor) {
+    const uniq = esc(ta.uniq || '663');
+    tarjetas.push(`
+      <div class="social-card">
+        <span class="social-ico">${ICONOS_RED.tripadvisor}</span>
+        <h3>TripAdvisor</h3>
+        <p>Reseñas verificadas de viajeros que ya viajaron con nosotros.</p>
+        <div class="ta-badge">
+          <div id="TA_certificateOfExcellence${uniq}" class="TA_certificateOfExcellence">
+            <ul class="TA_links">
+              <li>
+                <a target="_blank" rel="noopener" href="${esc(r.tripadvisor)}">
+                  <img src="https://static.tacdn.com/img2/travelers_choice/widgets/tchotel_${esc(ta.anio || '2026')}_LL.png"
+                       alt="Travelers' Choice ${esc(ta.anio || '2026')} — TripAdvisor"
+                       class="widCOEImg" id="CDSWIDCOELOGO" width="130" height="130" loading="lazy">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a class="btn-outline" href="${esc(r.tripadvisor)}" target="_blank" rel="noopener">Leer reseñas</a>
+      </div>`);
+  }
+
+  // --- Facebook ---
+  if ((w.facebook || {}).activo !== false && r.facebook) {
+    tarjetas.push(`
+      <div class="social-card">
+        <span class="social-ico">${ICONOS_RED.facebook}</span>
+        <h3>Facebook</h3>
+        <p>Novedades, promociones y fotos de nuestros traslados y tours.</p>
+        <a class="btn-outline" href="${esc(r.facebook)}" target="_blank" rel="noopener">Seguir en Facebook</a>
+      </div>`);
+  }
+
+  // --- Instagram ---
+  if ((w.instagram || {}).activo !== false && r.instagram) {
+    tarjetas.push(`
+      <div class="social-card">
+        <span class="social-ico">${ICONOS_RED.instagram}</span>
+        <h3>Instagram</h3>
+        <p>El día a día en Cancún, Tulum, Holbox y la Riviera Maya.</p>
+        <a class="btn-outline" href="${esc(r.instagram)}" target="_blank" rel="noopener">Seguir en Instagram</a>
+      </div>`);
+  }
+
+  cont.innerHTML = tarjetas.join('');
+
+  // El script de TripAdvisor reemplaza el sello estático por el widget vivo.
+  // Se carga una sola vez y de forma diferida: si TripAdvisor no responde,
+  // la tarjeta sigue mostrando el sello y el enlace a las reseñas.
+  if (ta.activo && r.tripadvisor && !document.getElementById('taScript')) {
+    const sc = document.createElement('script');
+    sc.id = 'taScript';
+    sc.async = true;
+    sc.src = 'https://www.jscache.com/wejs?wtype=certificateOfExcellence'
+           + '&uniq=' + encodeURIComponent(ta.uniq || '663')
+           + '&locationId=' + encodeURIComponent(ta.locationId || '')
+           + '&lang=' + encodeURIComponent(ta.idioma || 'en_AU')
+           + '&year=' + encodeURIComponent(ta.anio || '2026')
+           + '&display_version=2';
+    document.body.appendChild(sc);
+  }
+}
+
 /* ---------- datos estructurados sincronizados con el config ---------- */
 function renderSchema() {
   try {
@@ -1261,6 +1407,7 @@ renderDestinos();
 renderTim();
 renderBlog();
 renderContacto();
+renderWidgets();
 renderSchema();
 renderAnalitica();
 

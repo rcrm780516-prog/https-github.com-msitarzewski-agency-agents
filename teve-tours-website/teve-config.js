@@ -64,11 +64,14 @@ window.TEVE_CONFIG = {
     // ---- LOGOTIPO ----
     // Déjalo en "" y se muestra el logotipo de texto "TEVE / Transfers & Tours".
     // Pon la ruta de tu archivo para usar el logotipo real.
-    logo:        "",   // ej. "img/logo.png"       — para la barra de navegación (fondo blanco)
-    logoBlanco:  "",   // ej. "img/logo-blanco.png" — versión clara, para el pie de página oscuro
-    logoAlto:    "44", // altura del logo en píxeles dentro de la barra de navegación
+    // El logotipo oficial de TEVE está incluido como SVG vectorial (nítido en
+    // cualquier tamaño y pantalla). Si prefieres tu archivo PNG original,
+    // súbelo a img/ y cambia la ruta aquí — no hay que tocar nada más.
+    logo:        "img/logo-teve.svg",         // barra de navegación (fondo blanco)
+    logoBlanco:  "img/logo-teve-blanco.svg",  // pie de página oscuro
+    logoAlto:    "56", // altura del logo en píxeles dentro de la barra de navegación
 
-    favicon:     "",   // ej. "img/favicon.png"
+    favicon:     "img/favicon.svg",   // ícono de la pestaña del navegador
     imagenRedes: ""    // ej. "img/og-teve.jpg" — la que se ve al compartir en Facebook/WhatsApp
   },
 
@@ -109,9 +112,9 @@ window.TEVE_CONFIG = {
      Deja en "" las que no uses y desaparecen solas del sitio.
      ====================================================================== */
   redes: {
-    facebook:    "",  // ej. "https://facebook.com/tevetours"
-    instagram:   "",  // ej. "https://instagram.com/tevetours"
-    tripadvisor: "",  // ej. "https://tripadvisor.com/..."
+    facebook:    "https://www.facebook.com/profile.php?id=61550914251672",
+    instagram:   "https://www.instagram.com/tevetransferstours",
+    tripadvisor: "https://www.tripadvisor.com.au/Attraction_Review-g150807-d28028440-Reviews-Teve_Transfers_Tours-Cancun_Yucatan_Peninsula.html",
     youtube:     "",
     tiktok:      ""
   },
@@ -373,7 +376,31 @@ window.TEVE_CONFIG = {
   },
 
   /* ======================================================================
-     13. ANALÍTICA (opcional — déjalo en "" si aún no lo tienes)
+     13. WIDGETS SOCIALES
+     ----------------------------------------------------------------------
+     El sello de TripAdvisor se carga desde los servidores de TripAdvisor y se
+     actualiza solo. Los datos salen del código que TripAdvisor entrega en su
+     panel: locationId es el número que aparece como d######## en tu enlace.
+
+     Para ocultar cualquier widget, pon  activo: false.
+     ====================================================================== */
+  widgets: {
+    tripadvisor: {
+      activo:     true,
+      locationId: "28028440",   // el d28028440 de tu enlace de TripAdvisor
+      uniq:       "663",        // identificador del widget que da TripAdvisor
+      idioma:     "en_AU",      // cámbialo a "es" cuando tengas el sello en español
+      anio:       "2026"        // año del sello Travelers' Choice
+    },
+    // Facebook e Instagram se muestran como tarjetas que enlazan al perfil.
+    // No cargan scripts de terceros ni cookies, así el sitio sigue siendo
+    // rápido y no arrastra problemas de privacidad ni de Core Web Vitals.
+    facebook:  { activo: true },
+    instagram: { activo: true }
+  },
+
+  /* ======================================================================
+     14. ANALÍTICA (opcional — déjalo en "" si aún no lo tienes)
      ====================================================================== */
   analitica: {
     googleAnalytics: "",   // ej. "G-XXXXXXXXXX"
