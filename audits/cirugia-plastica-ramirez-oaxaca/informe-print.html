@@ -1,0 +1,548 @@
+<meta charset="utf-8">
+<title>Informe Ejecutivo — Cirugía Plástica Ramírez</title>
+<style>
+@page { size: Letter; margin: 0; }
+
+:root{
+  --ink:#16201D; --ink2:#47544F; --ink3:#7C8A85;
+  --rule:#D7DEDB; --rule2:#B9C4C0;
+  --tint:#F3F6F5;
+  --acc:#0E5F5A; --accw:#E2EDEA; --accd:#093F3C;
+  --crit:#A4342B; --critw:#F8E7E5;
+  --warn:#87610F; --warnw:#F9F1DE;
+  --good:#2C6740; --goodw:#E4F0E8;
+  --serif:"Charter","Bitstream Charter","Charis SIL",Georgia,serif;
+  --sans:"DejaVu Sans","Liberation Sans",Arial,sans-serif;
+  --mono:"DejaVu Sans Mono","Liberation Mono",monospace;
+}
+*{box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+html,body{margin:0;padding:0;background:#fff;color:var(--ink);}
+body{font-family:var(--serif); font-size:9.6pt; line-height:1.5;}
+
+.page{
+  width:8.5in; height:11in; padding:0.62in 0.72in 0.55in;
+  position:relative; overflow:hidden; page-break-after:always; background:#fff;
+}
+.page:last-child{page-break-after:auto;}
+
+h1,h2,h3,h4{margin:0; font-family:var(--serif); line-height:1.15;}
+h2{font-size:19pt; font-weight:700; letter-spacing:-.2pt;}
+h3{font-size:11.4pt; font-weight:700;}
+h4{font-size:9.8pt; font-weight:700;}
+p{margin:0;}
+strong{font-weight:700;}
+em{font-style:italic;}
+
+.lbl{font-family:var(--sans); font-size:6.4pt; letter-spacing:.13em; text-transform:uppercase; color:var(--ink3); font-weight:700;}
+.mono{font-family:var(--mono);}
+.sans{font-family:var(--sans);}
+.stack{display:flex; flex-direction:column;}
+.g4{gap:4pt}.g6{gap:6pt}.g8{gap:8pt}.g10{gap:10pt}.g12{gap:12pt}.g14{gap:14pt}
+
+/* running head / foot */
+.rhead{display:flex; justify-content:space-between; align-items:baseline;
+  border-bottom:.6pt solid var(--rule); padding-bottom:5pt; margin-bottom:15pt;}
+.rfoot{position:absolute; left:.72in; right:.72in; bottom:.38in;
+  display:flex; justify-content:space-between; align-items:baseline;
+  border-top:.6pt solid var(--rule); padding-top:5pt;
+  font-family:var(--sans); font-size:6.4pt; color:var(--ink3); letter-spacing:.05em;}
+.pno{font-family:var(--mono); font-size:7.2pt; color:var(--ink3);}
+
+.secno{font-family:var(--mono); font-size:7.4pt; font-weight:700; color:var(--acc);
+  border:.6pt solid var(--rule2); padding:1.5pt 4pt; margin-right:7pt;}
+.h2row{display:flex; align-items:center; margin-bottom:9pt;}
+.dek{font-size:9.4pt; color:var(--ink2); max-width:6.1in; margin-bottom:13pt; font-style:italic;}
+
+/* cover */
+.cover{display:flex; flex-direction:column; height:100%;}
+.cv-rule{height:4pt; background:var(--acc); width:1.5in; margin:0 0 24pt;}
+.cv-title{font-size:41pt; font-weight:700; line-height:1.03; letter-spacing:-1pt;}
+.cv-sub{font-size:13pt; color:var(--ink2); margin-top:12pt; max-width:5.4in; line-height:1.4;}
+.cv-meta{display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:.6pt solid var(--rule); margin-top:auto;}
+.cv-meta div{border-bottom:.6pt solid var(--rule); padding:8pt 10pt 8pt 0;}
+.cv-meta dt{font-family:var(--sans); font-size:6.3pt; letter-spacing:.12em; text-transform:uppercase; color:var(--ink3); font-weight:700; margin-bottom:2pt;}
+.cv-meta dd{margin:0; font-size:9.6pt; font-weight:700;}
+.cv-verdict{background:var(--accw); border-left:3pt solid var(--acc); padding:14pt 16pt; margin:26pt 0 0; color:var(--accd); font-size:10pt; line-height:1.45;}
+
+/* cards */
+.cards{display:grid; gap:7pt;}
+.c2{grid-template-columns:1fr 1fr;}
+.c3{grid-template-columns:1fr 1fr 1fr;}
+.card{border:.6pt solid var(--rule); padding:9pt 10pt; background:#fff;}
+.card.tint{background:var(--tint);}
+.card h4{margin-bottom:3pt;}
+.card p{font-size:8.5pt; color:var(--ink2); line-height:1.42;}
+.stripe{border-left:2.5pt solid var(--rule2);}
+.s-crit{border-left-color:var(--crit);} .s-warn{border-left-color:var(--warn);}
+.s-good{border-left-color:var(--good);} .s-acc{border-left-color:var(--acc);}
+
+.chip{font-family:var(--sans); font-size:6pt; letter-spacing:.1em; text-transform:uppercase;
+  font-weight:700; padding:2pt 5pt; border:.6pt solid; white-space:nowrap; display:inline-block;}
+.k-crit{background:var(--critw); color:var(--crit); border-color:var(--crit);}
+.k-warn{background:var(--warnw); color:var(--warn); border-color:var(--warn);}
+.k-good{background:var(--goodw); color:var(--good); border-color:var(--good);}
+.k-acc{background:var(--accw); color:var(--accd); border-color:var(--acc);}
+.k-flat{background:var(--tint); color:var(--ink3); border-color:var(--rule2);}
+
+/* findings compact */
+.fnd{border:.6pt solid var(--rule); margin-bottom:7pt;}
+.fnd-h{display:flex; align-items:center; gap:7pt; padding:6pt 9pt; background:var(--tint); border-bottom:.6pt solid var(--rule);}
+.fnd-h .id{font-family:var(--mono); font-size:7pt; font-weight:700; color:var(--ink3);}
+.fnd-h h4{flex:1; font-size:10pt;}
+.fnd-b{padding:8pt 9pt; font-size:8.5pt; color:var(--ink2); line-height:1.45;}
+.fnd-b strong{color:var(--ink);}
+.fnd-b .fix{margin-top:5pt; padding-top:5pt; border-top:.5pt dotted var(--rule2);}
+.fnd-b .fix b{font-family:var(--sans); font-size:6.4pt; letter-spacing:.12em; text-transform:uppercase; color:var(--acc); font-weight:700;}
+
+/* tables */
+table{border-collapse:collapse; width:100%; font-size:8.1pt;}
+th,td{text-align:left; padding:5pt 6pt; border-bottom:.5pt solid var(--rule); vertical-align:top; line-height:1.38;}
+thead th{background:var(--tint); font-family:var(--sans); font-size:6.2pt; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--ink3); font-weight:700; border-bottom:.8pt solid var(--rule2);}
+tbody th{font-weight:700; color:var(--ink); font-size:8.3pt;}
+td{color:var(--ink2);}
+tr.us{background:var(--accw);}
+tr.us th,tr.us td{color:var(--accd); font-weight:700;}
+.num{font-family:var(--mono); font-size:7.6pt; white-space:nowrap;}
+table.bx{border:.6pt solid var(--rule);}
+table.cmp th,table.cmp td{padding:4pt 5pt; font-size:7.5pt; line-height:1.33;}
+table.cmp tbody th{font-size:7.8pt;}
+table.cmp .num{font-size:6.9pt;}
+table.cmp thead th{font-size:5.9pt;}
+table.cmp .note{font-size:6.7pt;}
+table.cmp .chip{font-size:5.4pt; padding:1.5pt 3.5pt;}
+
+ul,ol{margin:0; padding-left:13pt;}
+li{margin-bottom:3.5pt; line-height:1.42;}
+ul.tight li,ol.tight li{margin-bottom:2.5pt;}
+
+.callout{border:.6pt solid var(--rule2); border-left:3pt solid var(--warn); background:var(--warnw); padding:9pt 11pt;}
+.callout.acc{border-left-color:var(--acc); background:var(--accw);}
+.callout p{font-size:8.6pt; color:var(--ink2); line-height:1.45;}
+.callout.acc p{color:var(--accd);}
+.callout h4{margin-bottom:3pt;}
+
+.note{font-size:7.4pt; color:var(--ink3); line-height:1.4;}
+
+/* funnel */
+.funnel{display:flex; flex-direction:column; gap:4pt;}
+.fstep{display:flex; align-items:stretch; border:.6pt solid var(--rule); background:#fff;}
+.fstep .fn{background:var(--acc); color:#fff; font-family:var(--mono); font-size:9pt; font-weight:700;
+  display:flex; align-items:center; justify-content:center; width:26pt; flex:none;}
+.fstep .fc{padding:6pt 9pt; flex:1;}
+.fstep .fc h4{font-size:9.4pt; margin-bottom:2pt;}
+.fstep .fc p{font-size:8.2pt; color:var(--ink2); line-height:1.4;}
+.fstep .fm{width:112pt; flex:none; border-left:.6pt solid var(--rule); background:var(--tint);
+  padding:6pt 8pt; display:flex; flex-direction:column; justify-content:center;}
+.fstep .fm .v{font-family:var(--mono); font-size:11pt; font-weight:700; color:var(--acc); line-height:1;}
+.fstep .fm .k{font-family:var(--sans); font-size:6pt; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); font-weight:700; margin-top:2pt;}
+
+/* sprint */
+.sp{border:.6pt solid var(--rule); border-top:2.5pt solid var(--acc); padding:9pt 10pt;}
+.sp .top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5pt;}
+.sp h4{font-size:10pt; margin-bottom:5pt;}
+.sp ul{font-size:8.1pt; color:var(--ink2);}
+.sp ul li strong{color:var(--ink);}
+
+.kpi{display:grid; grid-template-columns:repeat(4,1fr); gap:6pt;}
+.kpi .b{border:.6pt solid var(--rule); border-top:2.5pt solid var(--acc); padding:8pt 9pt; text-align:left;}
+.kpi .b .v{font-family:var(--mono); font-size:14pt; font-weight:700; color:var(--acc); line-height:1;}
+.kpi .b .k{font-size:7.6pt; color:var(--ink2); margin-top:4pt; line-height:1.3;}
+</style>
+
+<!-- ============ 1 · PORTADA ============ -->
+<div class="page">
+  <div class="cover">
+    <span class="lbl">Virtuoso Marketing · Auditoría de presencia digital · Agosto 2026</span>
+    <div class="cv-rule" style="margin-top:18pt;"></div>
+    <div class="cv-title">Cirugía Plástica<br>Ramírez</div>
+    <div class="cv-sub">Diagnóstico, comparativo competitivo en la Ciudad de Oaxaca y plan para construir una agenda constante de citas.</div>
+
+    <div class="cv-verdict">
+      <strong>Veredicto en una línea.</strong> El problema no es la calidad clínica ni la falta de esfuerzo: es que no existe un activo digital propio y la identidad está partida en dos cuentas de Instagram que se anulan entre sí. Hay más credenciales que la competencia y menos infraestructura que cualquiera de ellos. Eso se corrige en 90 días.
+    </div>
+
+    <dl class="cv-meta">
+      <div><dt>Especialista</dt><dd>Dr. Rolando R. Ramírez Vargas</dd></div>
+      <div><dt>Cédula profesional</dt><dd class="mono">0031219</dd></div>
+      <div><dt>Trayectoria</dt><dd>+25 años · UMAE IMSS Monterrey</dd></div>
+      <div><dt>Consultorio</dt><dd>Emiliano Zapata 313‑A, Oaxaca</dd></div>
+      <div><dt>Activos auditados</dt><dd>2 Instagram · 1 Facebook · 1 Google · Doctoralia</dd></div>
+      <div><dt>Sitio web propio</dt><dd style="color:#A4342B">Ninguno</dd></div>
+    </dl>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">01 / 12</span></div>
+</div>
+
+<!-- ============ 2 · RESUMEN EJECUTIVO ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Resumen</span></div>
+  <div class="h2row"><span class="secno">01</span><h2>Resumen ejecutivo</h2></div>
+  <p class="dek">Todo el informe cabe en esta página. Las siguientes la sustentan.</p>
+
+  <div class="stack g10">
+    <div class="cards c3">
+      <div class="card stripe s-good"><h4>Lo que ya está bien</h4><p>Credenciales de primer nivel: recertificado, formación en unidad de alta especialidad del IMSS, más de 25 años operando. Perfil vivo en Doctoralia y ficha de Google existente. La materia prima es superior al promedio del mercado local.</p></div>
+      <div class="card stripe s-crit"><h4>Lo que está frenando</h4><p>Sin sitio web propio. Identidad dividida en dos cuentas de Instagram. El activo de Facebook parece perfil personal, no Página. Google Business a media máquina. Sin embudo ni medición: hoy es imposible saber de dónde viene un paciente.</p></div>
+      <div class="card stripe s-acc"><h4>La oportunidad</h4><p>El líder digital de Oaxaca tiene 6 219 seguidores y 62 publicaciones. Nadie ha construido todavía una máquina de contenido seria en esta plaza. El lugar está vacante y el argumento para ocuparlo ya existe.</p></div>
+    </div>
+
+    <div>
+      <h3 style="margin-bottom:6pt;">Los tres movimientos que concentran el resultado</h3>
+      <div class="funnel">
+        <div class="fstep"><div class="fn">1</div><div class="fc"><h4>Una sola cuenta de Instagram</h4><p>Elegir la principal, migrar contenido, convertir la otra en redirección. Duplica la base efectiva sin publicar nada nuevo.</p></div><div class="fm"><span class="v">Semana 1</span><span class="k">Costo cero</span></div></div>
+        <div class="fstep"><div class="fn">2</div><div class="fc"><h4>Google Business Profile trabajado en serio</h4><p>Es donde está el paciente que ya decidió operarse y solo falta que elija a quién. Categorías, servicios, fotos, reseñas y mensajería.</p></div><div class="fm"><span class="v">Semanas 1‑3</span><span class="k">Costo cero</span></div></div>
+        <div class="fstep"><div class="fn">3</div><div class="fc"><h4>Un sitio propio, aunque sea pequeño</h4><p>Sin él no hay medición, y sin medición cada peso de pauta es una apuesta. Ocho páginas bien hechas bastan para empezar.</p></div><div class="fm"><span class="v">Mes 1</span><span class="k">Única inversión</span></div></div>
+      </div>
+    </div>
+
+    <div class="callout acc">
+      <h4>Por qué esto genera agenda constante y no picos</h4>
+      <p>Una agenda llena no se consigue con un buen mes de contenido: se consigue cuando tres flujos independientes alimentan el consultorio al mismo tiempo — <strong>búsqueda</strong> (Google, para quien ya decidió), <strong>contenido</strong> (Instagram, para quien todavía lo está pensando) y <strong>reputación</strong> (reseñas y referidos, que convierten a los dos anteriores). Hoy solo existe el segundo, a medias. El plan construye los tres.</p>
+    </div>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">02 / 12</span></div>
+</div>
+
+<!-- ============ 3 · MÉTODO + POSITIVOS ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Método y fortalezas</span></div>
+  <div class="h2row"><span class="secno">02</span><h2>Método y puntos positivos</h2></div>
+
+  <div class="callout" style="margin-bottom:13pt;">
+    <h4>Transparencia sobre los datos</h4>
+    <p>La política de red del entorno de trabajo bloqueó el acceso directo a Instagram, Facebook, Google Maps y Doctoralia. <strong>No fue posible verificar seguidores, interacción, frecuencia de publicación ni reseñas de los perfiles del doctor.</strong> Todo lo cuantitativo de este informe proviene de fuentes públicas indexadas y es verificable. Lo que no se pudo medir aparece marcado <span class="chip k-flat">Por capturar</span> y está listado en la página 11 como un checklist de quince minutos. Se prefirió declararlo antes que estimar cifras.</p>
+  </div>
+
+  <h3 style="margin-bottom:7pt;">Puntos positivos — el capital que ya existe</h3>
+  <div class="cards c2" style="margin-bottom:12pt;">
+    <div class="card stripe s-good"><h4>Credencial superior al mercado</h4><p>Recertificado, egresado de la Unidad Médica de Alta Especialidad del IMSS en Monterrey, cédula 0031219. En un sector donde el miedo número uno del paciente es caer con alguien no certificado, esto es el activo comercial más valioso que tiene.</p></div>
+    <div class="card stripe s-good"><h4>Más de 25 años de ejercicio</h4><p>Supera en trayectoria a la mayoría de sus competidores directos en Oaxaca. Es un argumento que no se puede comprar ni acelerar, y que hoy no aparece en ningún punto de contacto digital.</p></div>
+    <div class="card stripe s-good"><h4>Presencia en Doctoralia establecida</h4><p>Perfil activo con datos, servicios y precios que ya indexa su nombre en buscadores. Es una base sobre la que construir, no un punto de partida en cero.</p></div>
+    <div class="card stripe s-good"><h4>Ficha de Google ya existente</h4><p>El canal de mayor intención de compra ya está creado y verificado. Optimizarlo es mucho más rápido y barato que crearlo desde cero.</p></div>
+    <div class="card stripe s-good"><h4>Hay actividad y voluntad digital</h4><p>Dos cuentas de Instagram, Facebook y código QR impreso indican que ya se invierte esfuerzo. El problema no es de disposición sino de estructura: el mismo trabajo, bien dirigido, rinde el doble.</p></div>
+    <div class="card stripe s-good"><h4>Mercado local inmaduro y abarcable</h4><p>Alrededor de veinte especialistas listados y un solo competidor con ecosistema digital completo. La ventana para tomar el primer lugar sigue abierta.</p></div>
+  </div>
+
+  <div class="callout acc">
+    <p>La lectura correcta de esta página: <strong>no hay que construir una reputación, hay que hacerla visible.</strong> Es un problema de infraestructura y foco, no de mérito profesional — y esa es una categoría de problema mucho más barata y rápida de resolver.</p>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">03 / 12</span></div>
+</div>
+
+<!-- ============ 4 · NEGATIVOS CRÍTICOS ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Hallazgos críticos</span></div>
+  <div class="h2row"><span class="secno">03</span><h2>Puntos negativos — críticos</h2></div>
+  <p class="dek">Estos tres explican la mayor parte del techo comercial actual.</p>
+
+  <div class="fnd">
+    <div class="fnd-h"><span class="id">H‑01</span><h4>La identidad está partida en dos cuentas de Instagram</h4><span class="chip k-crit">Crítico</span></div>
+    <div class="fnd-b">
+      Operan en paralelo <span class="mono">@cirugiaplasticaramirezmx</span> y <span class="mono">@dr.rolandoram.cirujanoplastico</span>, del mismo cirujano y hacia el mismo público. Esto <strong>divide la audiencia</strong> (dos cuentas de dos mil pesan mucho menos que una de cuatro mil: ninguna alcanza el umbral que hace que el algoritmo la recomiende), <strong>divide la señal de aprendizaje</strong> del algoritmo, <strong>divide los datos de pauta</strong> —dos píxeles a la mitad significan campañas que nunca salen de fase de aprendizaje y costo por lead permanentemente inflado—, <strong>duplica el trabajo</strong> de producción y <strong>confunde al paciente</strong>, que en una decisión de alto riesgo se pregunta cuál es el verdadero.
+      <div class="fix"><b>Corrección</b> — Elegir principal: se recomienda <span class="mono">@dr.rolandoram.cirujanoplastico</span>, porque en cirugía estética el paciente elige a un cirujano con nombre y cara, no a una razón social. Migrar el mejor contenido, convertir la secundaria en redirección con biografía y publicación fija, y <strong>nunca eliminarla</strong> — el QR impreso sigue apuntando ahí. Actualizar QR, Google, Facebook, Doctoralia y recetario.</div>
+    </div>
+  </div>
+
+  <div class="fnd">
+    <div class="fnd-h"><span class="id">H‑02</span><h4>Cero activos propios: toda la práctica vive en terreno rentado</h4><span class="chip k-crit">Crítico</span></div>
+    <div class="fnd-b">
+      No hay sitio web. Consecuencias: <strong>los directorios se quedan con su nombre</strong> —quien busca «Dr. Rolando Ramírez Vargas» aterriza en Doctoralia, que cobra por destacar y muestra a su competencia en la misma página—; <strong>la pauta se vuelve cara o imposible</strong>, porque sin landing no hay píxel, ni eventos de conversión, ni públicos similares; <strong>no hay medición</strong> de qué procedimiento genera consultas ni cuánto cuesta un paciente; <strong>hay riesgo de plataforma</strong>, y no es teórico: un competidor local ya tiene su Instagram caído; y <strong>no hay captura</strong> del noventa por ciento que mira y no agenda.
+      <div class="fix"><b>Corrección</b> — No hace falta un sitio grande, hace falta uno que convierta: inicio con la credencial al frente, una página por procedimiento principal, trayectoria y certificación, contacto con mapa y WhatsApp rastreado, aviso de privacidad y un blog mínimo. Dominio propio, nunca subdominio de constructor.</div>
+    </div>
+  </div>
+
+  <div class="fnd">
+    <div class="fnd-h"><span class="id">H‑03</span><h4>El activo de Facebook parece perfil personal, no Página</h4><span class="chip k-crit">Alto</span></div>
+    <div class="fnd-b">
+      La URL indexada es <span class="mono">facebook.com/people/…/100063508990818/</span>. Ese patrón corresponde históricamente a perfiles personales. <em>No es concluyente</em> —Meta reasignó formatos con la Nueva Experiencia de Páginas— y por eso es lo primero a verificar. Si se confirma: <strong>no se puede hacer publicidad en absoluto</strong>, no hay estadísticas ni píxel ni catálogo, no hay botón de WhatsApp nativo, hay tope de cinco mil amigos, y operar un negocio desde un perfil personal contraviene las condiciones de Meta, con riesgo de inhabilitación sin aviso.
+      <div class="fix"><b>Corrección</b> — Verificar en Meta Business Suite. Si es perfil, usar la conversión asistida que conserva nombre y seguidores. Si existen varios activos —el enlace <span class="mono">/share/</span> entregado podría ser un tercero—, fusionar duplicados antes de invertir un peso. Dejar todo bajo un Business Manager con el doctor como propietario, no la agencia ni un empleado.</div>
+    </div>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">04 / 12</span></div>
+</div>
+
+<!-- ============ 5 · NEGATIVOS ALTOS Y MEDIOS ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Hallazgos altos y medios</span></div>
+  <div class="h2row"><span class="secno">04</span><h2>Puntos negativos — altos y medios</h2></div>
+
+  <div class="fnd">
+    <div class="fnd-h"><span class="id">H‑04</span><h4>Google Business Profile es el canal de mayor intención y está a media máquina</h4><span class="chip k-crit">Alto</span></div>
+    <div class="fnd-b">
+      Quien busca en Instagram está entretenido. Quien busca «cirujano plástico cerca de mí» <strong>ya decidió operarse y está eligiendo a quién</strong>. Es el canal con mejor costo por paciente de la categoría y el único donde una práctica pequeña vence a una grande sin presupuesto.
+      <div class="fix"><b>Corrección</b> — Categoría principal «Cirujano plástico» (es el factor de posicionamiento local más determinante); servicios cargados uno por procedimiento con descripción propia —la mayoría de competidores deja esto vacío, es ranking gratis—; mínimo veinte fotos y tres a cinco nuevas por semana; una publicación semanal; diez preguntas frecuentes sembradas y respondidas desde el negocio; mensajería activa con respuesta en menos de una hora; enlace al sitio con etiquetas UTM; horarios siempre vigentes.</div>
+    </div>
+  </div>
+
+  <div class="fnd">
+    <div class="fnd-h"><span class="id">H‑05</span><h4>La credencial más fuerte del mercado está desaprovechada</h4><span class="chip k-crit">Alto</span></div>
+    <div class="fnd-b">
+      Sus competidores lideran su comunicación con «certificado por el Consejo Mexicano». Aquí la credencial no aparece al frente en ningún punto de contacto, pese a ser objetivamente más sólida que la de la mayoría.
+      <div class="fix"><b>Corrección</b> — Confirmar y actualizar la ficha en el directorio del CMCPER y de la AMCPER. Reescribir la biografía de Instagram con la estructura que convierte: qué es · dónde · prueba · acción. Primera historia destacada «Certificación»; segunda, «Cómo verificar a tu cirujano», que educa y de paso lo valida. Misma credencial en Google, sitio y firma de WhatsApp.</div>
+    </div>
+  </div>
+
+  <div class="fnd">
+    <div class="fnd-h"><span class="id">H‑06</span><h4>Cobertura incompleta en directorios médicos</h4><span class="chip k-warn">Medio</span></div>
+    <div class="fnd-b">
+      Presente en Doctoralia; ausente o incompleto en Top Doctors, Doctoranytime, Multiestética, Bodyclinics, Mend y Docfav. Cada ficha es una página que posiciona su nombre sin costo.
+      <div class="fix"><b>Corrección</b> — Reclamar las siete con <strong>datos idénticos carácter por carácter</strong>. La consistencia de nombre, dirección y teléfono es señal directa de posicionamiento local; escrita de tres formas distintas, se diluye.</div>
+    </div>
+  </div>
+
+  <div class="fnd">
+    <div class="fnd-h"><span class="id">H‑07</span><h4>No hay sistema de reseñas</h4><span class="chip k-warn">Medio</span></div>
+    <div class="fnd-b">
+      En una decisión irreversible y cara, la reseña reciente vale más que cualquier anuncio. Lo que convierte no es tener muchas: es tener <strong>flujo constante</strong> — veinte del año pasado pesan menos que ocho de los últimos tres meses.
+      <div class="fix"><b>Corrección</b> — Pedirla en la consulta de seguimiento donde el paciente expresa satisfacción, nunca por envío masivo. Enlace corto impreso y por WhatsApp el mismo día. Meta de cuatro a seis mensuales. Responder el cien por ciento en menos de 48 horas; en las negativas, agradecer sin discutir y <strong>jamás confirmar ni negar públicamente que la persona fue paciente</strong>: eso es una filtración de dato sensible.</div>
+    </div>
+  </div>
+
+  <div class="fnd">
+    <div class="fnd-h"><span class="id">H‑08</span><h4>El embudo no existe como sistema medible</h4><span class="chip k-warn">Medio</span></div>
+    <div class="fnd-b">
+      Contenido → perfil → hueco → consulta. Sin enlace rastreado, sin respuesta estructurada y sin registro de origen, no hay forma de decidir dónde invertir.
+      <div class="fix"><b>Corrección</b> — Ver la máquina de citas en la página 8.</div>
+    </div>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">05 / 12</span></div>
+</div>
+
+<!-- ============ 6 · COMPETENCIA ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Competencia</span></div>
+  <div class="h2row"><span class="secno">05</span><h2>La competencia en Oaxaca</h2></div>
+  <p class="dek">Datos públicos verificables. Esto es lo que hay que superar — y muestra que la plaza sigue siendo vencible.</p>
+
+  <table class="bx cmp" style="margin-bottom:11pt;">
+    <thead><tr><th style="width:15%">Especialista</th><th style="width:17%">Credenciales</th><th style="width:13%">Instagram</th><th style="width:8%">Web</th><th style="width:14%">Directorios</th><th style="width:33%">Lectura</th></tr></thead>
+    <tbody>
+      <tr><th>Dr. Enrique Ortiz Villalobos<br><span class="note">Corpora Clinic</span></th><td>Certificado CMCPER · AMCPER · Escuela Ortiz Monasterio</td><td class="num">@corpora.clinic<br>≈6 219 seg.<br>62 publicaciones</td><td><span class="chip k-good">Dos dominios</span></td><td>Doctoralia, Top Doctors, TikTok, Mimédico</td><td><strong>Líder digital.</strong> Ecosistema completo. Su debilidad: solo 62 publicaciones — poca profundidad de contenido.</td></tr>
+      <tr><th>Dr. Filiberto Fajardo Núñez</th><td>Certificado CMCPER · +20 años · UANL 1995 / 2000</td><td class="num">@dr.filibertofajardo<br>aparece suspendido</td><td><span class="chip k-crit">No</span></td><td>Doctoralia, Doctoranytime, Multiestética, Bodyclinics, Mend</td><td><strong>Autoridad alta, digital frágil.</strong> Su cuenta caída es la advertencia de por qué hace falta un activo propio.</td></tr>
+      <tr><th>Allende &amp; Marenco<br><span class="note">Pérez Novelo · Marenco</span></th><td>Dos cirujanos plásticos · +20 años</td><td class="num">Por capturar</td><td class="num">Por capturar</td><td>Top Doctors</td><td><strong>Modelo de sociedad.</strong> Doble capacidad quirúrgica y de producción.</td></tr>
+      <tr><th>Dr. Allen Mejía</th><td>Cirujano plástico · Médica 2002</td><td class="num">Por capturar</td><td class="num">Por capturar</td><td>Doctoralia, Multiestética</td><td>Compite fuerte en lipoescultura.</td></tr>
+      <tr class="us"><th>Dr. Rolando R. Ramírez Vargas</th><td>Recertificado · UMAE IMSS Monterrey · +25 años · cédula 0031219</td><td>Dos cuentas divididas</td><td>Ninguno</td><td>Solo Doctoralia</td><td><strong>Credenciales de primer nivel, infraestructura de último.</strong> La brecha es de sistema, no de mérito.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-bottom:6pt;">Contexto del mercado</h3>
+  <table class="bx cmp">
+    <thead><tr><th style="width:19%">Indicador</th><th style="width:31%">Dato</th><th style="width:50%">Implicación operativa</th></tr></thead>
+    <tbody>
+      <tr><th>Densidad de oferta</th><td class="num">≈20 en Doctoralia · 11 verificados en Doctoranytime · ≈33 centros listados</td><td>Mercado concentrado y abarcable. Ser el más visible es meta realista, no aspiración.</td></tr>
+      <tr><th>Precio de consulta</th><td class="num">$500 – $2 000 MXN · mayoría desde $1 000</td><td>La consulta no es el negocio, es el filtro. Optimizar por citas de calidad, no por su precio.</td></tr>
+      <tr><th>Concentración geográfica</th><td>Colonia Reforma y Centro</td><td>Competencia por las mismas búsquedas locales: Google Business decide quién aparece primero.</td></tr>
+      <tr><th>Madurez digital</th><td>Un competidor con ecosistema completo; el resto depende de directorios</td><td>Ventana abierta. Quien construya primero un sistema propio se queda con la categoría.</td></tr>
+    </tbody>
+  </table>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">06 / 12</span></div>
+</div>
+
+<!-- ============ 7 · BRECHA ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Brecha competitiva</span></div>
+  <div class="h2row"><span class="secno">06</span><h2>Qué tienen ellos que él no</h2></div>
+  <p class="dek">Y, más importante, qué tiene él que ellos no pueden copiar.</p>
+
+  <table class="bx" style="margin-bottom:13pt;">
+    <thead><tr><th style="width:26%">Lo que ellos tienen</th><th style="width:37%">Por qué les funciona</th><th>Cómo se cierra la brecha</th></tr></thead>
+    <tbody>
+      <tr><th>Dominio propio</th><td>Controlan el resultado de búsqueda de su nombre, pueden anunciarse con píxel y medir cada peso invertido.</td><td>Sitio de ocho páginas en el Sprint 1. Es la única inversión estructural del plan.</td></tr>
+      <tr><th>Una sola cuenta consolidada</th><td>Toda la audiencia, la señal algorítmica y los datos de pauta concentrados en un solo lugar.</td><td>Unificación en la semana 1. Costo cero y efecto inmediato.</td></tr>
+      <tr><th>Certificación exhibida al frente</th><td>Responden de entrada al miedo número uno del paciente, antes de que lo pregunte.</td><td>Reescritura de biografías, historia destacada y ficha CMCPER verificada. Costo cero.</td></tr>
+      <tr><th>Presencia en 5‑6 directorios</th><td>Ocupan varios resultados de la primera página para las mismas búsquedas.</td><td>Reclamar y completar las siete fichas con datos idénticos. Costo cero.</td></tr>
+      <tr><th>Marca de clínica</th><td>Transferible, escalable y separable de la agenda de un solo médico.</td><td>Decisión estratégica del doctor. No urge, pero hay que definirla antes de invertir en identidad.</td></tr>
+      <tr><th>Video vertical constante</th><td>Es el formato que Instagram distribuye a no seguidores: es el único que trae público nuevo.</td><td>Sesión mensual de banco de contenido. Cuatro reels semanales a partir del Sprint 2.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="h2row" style="margin-top:4pt;"><h2 style="font-size:15pt;">Qué tiene él que ellos no</h2></div>
+  <div class="cards c3" style="margin-bottom:12pt;">
+    <div class="card stripe s-acc"><h4>Más años operando</h4><p>+25 años frente a los ~20 de sus competidores directos documentados. En cirugía, la experiencia es el argumento que más pesa y el único imposible de acelerar.</p></div>
+    <div class="card stripe s-acc"><h4>Formación en alta especialidad IMSS</h4><p>Una historia de origen que casi nadie más en la plaza puede contar, y que además conecta con el paciente oaxaqueño que confía en la medicina institucional.</p></div>
+    <div class="card stripe s-acc"><h4>Terreno digital libre</h4><p>Ningún competidor domina el contenido educativo. El líder lleva 62 publicaciones en total: seis semanas de trabajo constante empatan ese volumen.</p></div>
+  </div>
+
+  <div class="callout acc">
+    <h4>La conclusión competitiva</h4>
+    <p>De las seis ventajas que tiene la competencia, <strong>cinco se cierran con trabajo y sin inversión</strong>; solo el sitio web cuesta dinero, y una sola vez. De las tres que tiene el doctor, <strong>ninguna se puede comprar.</strong> Esa asimetría es la tesis completa de este informe: la posición de salida es mejor de lo que parece, y la distancia se cierra con sistema y constancia en dos trimestres, no con presupuesto.</p>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">07 / 12</span></div>
+</div>
+
+<!-- ============ 8 · MÁQUINA DE CITAS ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Agenda constante</span></div>
+  <div class="h2row"><span class="secno">07</span><h2>La máquina de citas</h2></div>
+  <p class="dek">Cómo se construye una agenda que no dependa del mes que tuvo el contenido.</p>
+
+  <div class="funnel" style="margin-bottom:11pt;">
+    <div class="fstep"><div class="fn">1</div><div class="fc"><h4>Atracción — tres flujos, no uno</h4><p>Google para quien ya decidió · Instagram para quien lo está pensando · reseñas y referidos que validan a los dos. Depender de un solo flujo es lo que produce meses buenos y meses vacíos.</p></div><div class="fm"><span class="v">3 fuentes</span><span class="k">Independientes</span></div></div>
+    <div class="fstep"><div class="fn">2</div><div class="fc"><h4>Un solo destino rastreado</h4><p>Un enlace en biografía hacia página propia con UTMs por canal. Cada clic queda atribuido a su origen. Sin esto, todo lo demás es intuición.</p></div><div class="fm"><span class="v">1 enlace</span><span class="k">Con atribución</span></div></div>
+    <div class="fstep"><div class="fn">3</div><div class="fc"><h4>WhatsApp Business estructurado</h4><p>Mensaje de bienvenida, respuestas rápidas a las diez preguntas frecuentes y etiquetas de estado: nuevo · agendado · valorado · operado. El seguimiento deja de depender de la memoria.</p></div><div class="fm"><span class="v">&lt; 1 hora</span><span class="k">Tiempo de respuesta</span></div></div>
+    <div class="fstep"><div class="fn">4</div><div class="fc"><h4>Calificación en cuatro preguntas</h4><p>Procedimiento de interés · tiempo considerándolo · disponibilidad para consulta presencial · expectativa de fecha. Filtra curiosos y protege la agenda del doctor.</p></div><div class="fm"><span class="v">4 preguntas</span><span class="k">Antes de agendar</span></div></div>
+    <div class="fstep"><div class="fn">5</div><div class="fc"><h4>Consulta presencial y cierre</h4><p>Aquí decide el doctor, no el marketing. Pero el registro de origen en recepción —«¿cómo nos encontró?»— es la fuente de verdad contra la que se contrasta todo lo digital.</p></div><div class="fm"><span class="v">Registro</span><span class="k">Obligatorio</span></div></div>
+    <div class="fstep"><div class="fn">6</div><div class="fc"><h4>Reseña y referido</h4><p>Solicitud en la consulta de seguimiento. Cada paciente satisfecho alimenta de vuelta el flujo 1. Es lo que convierte el embudo en un ciclo que se sostiene solo.</p></div><div class="fm"><span class="v">4 – 6 / mes</span><span class="k">Reseñas nuevas</span></div></div>
+  </div>
+
+  <div class="callout">
+    <h4>Sobre las proyecciones numéricas</h4>
+    <p>Deliberadamente <strong>no se incluyen proyecciones de citas ni de retorno de inversión</strong>. Sin la línea base real —consultas mensuales actuales, tasa de cierre, seguidores y reseñas verificados— cualquier número sería una invención con apariencia de rigor. Esa línea base se levanta en el Sprint 2 y en el primer reporte se sustituye este recuadro por el modelo real, con metas defendibles. Es preferible entregar un plan honesto que una proyección cómoda.</p>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">08 / 12</span></div>
+</div>
+
+<!-- ============ 9 · PLAN 90 DÍAS ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Plan de ejecución</span></div>
+  <div class="h2row"><span class="secno">08</span><h2>Plan de 90 días</h2></div>
+  <p class="dek">Tres sprints en secuencia obligada: cada uno es requisito del siguiente. No se adelanta pauta antes de tener medición.</p>
+
+  <div class="stack g8">
+    <div class="sp">
+      <div class="top"><span class="lbl">Sprint 1 · Días 1 – 30</span><span class="chip k-crit">Cimientos</span></div>
+      <h4>Consolidar la identidad y construir el activo propio</h4>
+      <ul class="tight">
+        <li><strong>Decidir la cuenta única</strong> de Instagram y ejecutar la migración con redirección, sin borrar la secundaria.</li>
+        <li><strong>Auditar Facebook</strong> en Business Suite: confirmar perfil o Página, convertir o fusionar duplicados, y dejar todo bajo un Business Manager con el doctor como propietario.</li>
+        <li><strong>Publicar el sitio</strong>: inicio, cinco páginas de procedimiento, trayectoria, contacto y aviso de privacidad. Dominio propio.</li>
+        <li><strong>Instalar la medición</strong>: píxel de Meta, analítica, eventos de WhatsApp y etiquetas UTM por canal.</li>
+        <li><strong>Optimizar Google Business</strong>: categorías, servicios, veinte fotos, horarios, mensajería y diez preguntas sembradas.</li>
+        <li><strong>Reclamar los siete directorios</strong> con datos idénticos, y verificar la ficha del CMCPER.</li>
+        <li><strong>Sesión de producción</strong>: retrato profesional, consultorio y banco de treinta piezas de video vertical.</li>
+      </ul>
+    </div>
+
+    <div class="sp">
+      <div class="top"><span class="lbl">Sprint 2 · Días 31 – 60</span><span class="chip k-warn">Autoridad</span></div>
+      <h4>Contenido constante, reputación y línea base real</h4>
+      <ul class="tight">
+        <li><strong>Ritmo fijo:</strong> cuatro reels y dos carruseles por semana, más historias diarias. La constancia importa más que la perfección.</li>
+        <li><strong>Cuatro líneas editoriales:</strong> educación que resuelve dudas reales · autoridad y certificación · proceso y acompañamiento · humanización del cirujano.</li>
+        <li><strong>Historias destacadas:</strong> Certificación · Procedimientos · Proceso · Preguntas frecuentes · Ubicación.</li>
+        <li><strong>Motor de reseñas</strong> en marcha, con protocolo de solicitud y de respuesta. Meta de cuatro a seis mensuales.</li>
+        <li><strong>WhatsApp Business</strong> con guion de calificación y etiquetas de estado activas.</li>
+        <li><strong>Registro de origen</strong> obligatorio en recepción desde el primer día del sprint.</li>
+        <li><strong>Primer reporte</strong> con la línea base real de todos los indicadores y metas numéricas sustituyendo los rangos.</li>
+      </ul>
+    </div>
+
+    <div class="sp">
+      <div class="top"><span class="lbl">Sprint 3 · Días 61 – 90</span><span class="chip k-good">Escala</span></div>
+      <h4>Pauta medida y optimización</h4>
+      <ul class="tight">
+        <li><strong>Campañas de mensajes</strong> hacia WhatsApp, segmentadas por procedimiento y radio geográfico de la Ciudad de Oaxaca.</li>
+        <li><strong>Remarketing</strong> a quienes vieron una página de procedimiento sin agendar.</li>
+        <li><strong>Creativos cumplidos:</strong> autoridad, proceso y educación. Nunca antes y después en pauta — ver página 10.</li>
+        <li><strong>Presupuesto de prueba contenido</strong>, con la regla de escalar solo lo que baje el costo por consulta agendada.</li>
+        <li><strong>Público similar</strong> construido a partir de los pacientes ya registrados.</li>
+        <li><strong>Contenido para búsqueda:</strong> dos artículos mensuales sobre las dudas de mayor volumen.</li>
+        <li><strong>Revisión de tablero</strong> y decisión explícita de qué se escala, qué se corrige y qué se apaga.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">09 / 12</span></div>
+</div>
+
+<!-- ============ 10 · CUMPLIMIENTO ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Cumplimiento</span></div>
+  <div class="h2row"><span class="secno">09</span><h2>Guardarraíles de cumplimiento</h2></div>
+  <p class="dek">En salud, un error de cumplimiento no cuesta una campaña: cuesta la reputación que tardó 25 años en construirse. Estas reglas son previas a cualquier idea creativa.</p>
+
+  <table class="bx" style="margin-bottom:12pt;">
+    <thead><tr><th style="width:20%">Frente</th><th style="width:47%">Regla operativa</th><th>Riesgo si se ignora</th></tr></thead>
+    <tbody>
+      <tr><th>Antes y después</th><td>Solo con <strong>consentimiento escrito, específico, informado y revocable</strong>, firmado y archivado por caso. Sin rasgos identificables salvo autorización expresa. Siempre con la leyenda de que los resultados varían por paciente.</td><td>Exposición de dato sensible y publicidad potencialmente engañosa.</td></tr>
+      <tr><th>Antes y después <em>en pauta</em></th><td><strong>No usarlos en anuncios.</strong> Las políticas de Meta restringen imágenes de antes y después y el enfoque en partes del cuerpo para procedimientos estéticos. Reservarlos para orgánico con consentimiento.</td><td>Rechazo de anuncios, restricción y eventual inhabilitación de la cuenta publicitaria.</td></tr>
+      <tr><th>Testimonios</th><td>Reales, verificables y con consentimiento documentado. Que hablen de <strong>trato, acompañamiento y experiencia</strong>, no de resultados clínicos garantizados ni de diagnósticos.</td><td>Publicidad con atribución de propiedades no comprobables.</td></tr>
+      <tr><th>Promesas</th><td>Prohibido «garantizado», «sin riesgos», «resultados permanentes», «el mejor de Oaxaca». Se comunica <strong>experiencia, certificación, técnica y proceso</strong> — todo comprobable.</td><td>Publicidad engañosa conforme a la normativa sanitaria.</td></tr>
+      <tr><th>Datos de pacientes</th><td><strong>Aviso de privacidad publicado y enlazado</strong> en cada punto de captura: sitio, formulario, WhatsApp y biografía. Los datos de salud son sensibles y exigen consentimiento expreso conforme a la LFPDPPP.</td><td>Sanción administrativa y pérdida de confianza.</td></tr>
+      <tr><th>Consultas por mensaje</th><td>Nunca diagnosticar, indicar tratamiento ni cotizar cirugía por mensaje directo. Respuesta estándar: información general e invitación a valoración presencial.</td><td>Ejercicio indebido y expectativas de precio insostenibles.</td></tr>
+      <tr><th>Identidad profesional</th><td>Cédula y certificación visibles y verificables en todos los canales. Nunca usar «cirujano estético» como sinónimo de cirujano plástico certificado.</td><td>Confusión con oferta no certificada — precisamente lo que se busca evitar.</td></tr>
+      <tr><th>Contenido de quirófano</th><td>Sin rostros de pacientes, sin expedientes en cuadro, sin monitores con datos visibles. Consentimiento del personal que aparezca.</td><td>Filtración de datos sensibles de terceros.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <p>Estos guardarraíles son <strong>operativos</strong>, redactados para el equipo de marketing. La publicidad de servicios médicos en México está regulada por la Ley General de Salud, su reglamento en materia de publicidad y los criterios de COFEPRIS; determinados mensajes requieren permiso o aviso. <strong>Antes de lanzar la primera campaña pagada, validar el material con asesoría legal sanitaria.</strong> El plan está diseñado para que nada dependa de una zona gris.</p>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">10 / 12</span></div>
+</div>
+
+<!-- ============ 11 · KPIs ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Indicadores</span></div>
+  <div class="h2row"><span class="secno">10</span><h2>Indicadores y datos por capturar</h2></div>
+
+  <div class="kpi" style="margin-bottom:12pt;">
+    <div class="b"><div class="v">+40%</div><div class="k">Consultas agendadas sobre línea base, a 90 días</div></div>
+    <div class="b"><div class="v">4 – 6</div><div class="k">Reseñas nuevas por mes, sostenidas</div></div>
+    <div class="b"><div class="v">+60%</div><div class="k">Acciones en Google Business: llamadas, rutas y clics</div></div>
+    <div class="b"><div class="v">&gt;60%</div><div class="k">Del alcance proveniente de no seguidores</div></div>
+  </div>
+
+  <h3 style="margin-bottom:6pt;">Lo que se mide a partir de ahora</h3>
+  <table class="bx" style="margin-bottom:13pt;">
+    <thead><tr><th style="width:30%">Indicador</th><th>Por qué este y no otro</th></tr></thead>
+    <tbody>
+      <tr><th>Consultas agendadas por canal</th><td>El único número que representa dinero. Todo lo demás es intermedio y solo sirve para explicarlo.</td></tr>
+      <tr><th>Costo por consulta agendada</th><td>Define qué canal se escala y cuál se apaga. Es la métrica que gobierna el presupuesto del Sprint 3.</td></tr>
+      <tr><th>Conversaciones iniciadas en WhatsApp</th><td>Primer indicio real de intención, y el punto donde más leads se pierden por lentitud de respuesta.</td></tr>
+      <tr><th>Reseñas nuevas por mes</th><td>Interés compuesto: mejora conversión y posicionamiento local al mismo tiempo.</td></tr>
+      <tr><th>Alcance de no seguidores</th><td>Mide si el contenido capta público nuevo o solo entretiene al que ya está.</td></tr>
+      <tr><th>Tasa de consulta a cirugía</th><td>Diagnostica si el problema es de marketing o de cierre en consultorio. Sin este dato se optimiza a ciegas.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="margin-bottom:4pt;">Checklist de captura — quince minutos</h3>
+  <p class="note" style="margin-bottom:6pt;">Estos son los datos que la política de red impidió leer. Con ellos se completa el diagnóstico cuantitativo y se fijan metas numéricas en lugar de rangos.</p>
+  <table class="bx">
+    <thead><tr><th style="width:40%">Dato</th><th style="width:26%">Dónde se obtiene</th><th>Para qué</th></tr></thead>
+    <tbody>
+      <tr><th>Seguidores y publicaciones de ambas cuentas</th><td>Perfil de cada Instagram</td><td>Decidir cuál sobrevive y calcular la base consolidada</td></tr>
+      <tr><th>Alcance, interacción y seguidores nuevos (90 días)</th><td>Instagram → Estadísticas</td><td>Línea base real de desempeño</td></tr>
+      <tr><th>Calificación y número de reseñas</th><td>Google Business Profile</td><td>Meta de reputación y brecha contra competencia</td></tr>
+      <tr><th>Categorías, servicios y número de fotos</th><td>Google Business Profile</td><td>Cerrar la optimización local</td></tr>
+      <tr><th>¿Perfil o Página? ¿Cuántos activos hay?</th><td>Meta Business Suite</td><td>Determina si se puede hacer pauta y qué fusionar</td></tr>
+      <tr><th>Consultas y cirugías mensuales actuales</th><td>Agenda del consultorio</td><td>Punto de partida del retorno de inversión</td></tr>
+      <tr><th>Procedimientos más solicitados y rentables</th><td>Registro del consultorio</td><td>Prioriza páginas del sitio y campañas</td></tr>
+      <tr><th>Presupuesto mensual disponible para pauta</th><td>Decisión del doctor</td><td>Dimensiona el Sprint 3</td></tr>
+    </tbody>
+  </table>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">11 / 12</span></div>
+</div>
+
+<!-- ============ 12 · CIERRE ============ -->
+<div class="page">
+  <div class="rhead"><span class="lbl">Cirugía Plástica Ramírez · Informe ejecutivo</span><span class="lbl">Cierre</span></div>
+  <div class="h2row"><span class="secno">11</span><h2>Lo esencial y próximos pasos</h2></div>
+
+  <div class="stack g10" style="max-width:6.3in;">
+    <p style="font-size:10.6pt; line-height:1.5;">Esta práctica no tiene un problema de calidad ni de mérito profesional. Tiene un problema de <strong>infraestructura y de foco</strong>: la autoridad clínica existe pero no es visible, y el esfuerzo digital que ya se hace se reparte entre dos cuentas que se anulan.</p>
+    <p style="font-size:10.6pt; line-height:1.5;">El mercado de Oaxaca todavía no tiene un dueño digital: el líder actual acumula sesenta y dos publicaciones. Ese lugar está vacante, y el argumento para ocuparlo —veinticinco años de ejercicio, formación en alta especialidad y recertificación vigente— ya está en la mano. Solo falta ponerlo donde la gente lo vea.</p>
+  </div>
+
+  <div class="cards c3" style="margin-top:16pt; margin-bottom:16pt;">
+    <div class="card stripe s-acc"><h4>Esta semana</h4><p>Decidir la cuenta única de Instagram. Verificar si Facebook es perfil o Página. Enviar el checklist de captura de la página 11.</p></div>
+    <div class="card stripe s-acc"><h4>Este mes</h4><p>Sitio propio publicado con medición instalada. Google Business optimizado. Siete directorios reclamados. Banco de contenido grabado.</p></div>
+    <div class="card stripe s-acc"><h4>Este trimestre</h4><p>Ritmo de contenido sostenido, motor de reseñas girando y la primera campaña medida con costo por consulta conocido.</p></div>
+  </div>
+
+  <div class="callout acc" style="margin-bottom:14pt;">
+    <h4>Una decisión que corresponde al doctor</h4>
+    <p>Antes del Sprint 1 hay que resolver una sola pregunta estratégica: <strong>¿marca personal o marca de clínica?</strong> Si el horizonte es él operando, gana <span class="mono">@dr.rolandoram.cirujanoplastico</span>. Si el horizonte a cinco años es una clínica con varios cirujanos, gana la cuenta de marca. Ambas son válidas; lo que no es viable es seguir sosteniendo las dos.</p>
+  </div>
+
+  <div style="border-top:.6pt solid var(--rule); padding-top:10pt;">
+    <span class="lbl">Fuentes consultadas</span>
+    <p class="note" style="margin-top:5pt; line-height:1.5;">
+      Doctoralia — fichas del Dr. Rolando Román Ramírez Vargas, Dr. Enrique Ortiz Villalobos y Dr. Filiberto Fajardo Núñez · Facebook — perfil Dr. Rolando R. Ramírez Vargas · Instagram — @corpora.clinic y @dr.filibertofajardo · corporaclinic.com y drortizvillalobos.com · Directorio CMCPER, sección Oaxaca · AMCPER, directorio Oaxaca · Top Doctors Oaxaca · Doctoranytime Oaxaca de Juárez · Multiestética Oaxaca · Bodyclinics y Mend.
+    </p>
+    <p class="note" style="margin-top:9pt; line-height:1.5;">
+      Informe preparado por <strong>Virtuoso Marketing</strong> · agosto de 2026. Las cifras marcadas «Por capturar» requieren acceso directo a las plataformas y se completan con el checklist de la página 11. Los guardarraíles de cumplimiento son operativos y no sustituyen asesoría legal sanitaria. Este documento es confidencial y de uso exclusivo del destinatario.
+    </p>
+  </div>
+  <div class="rfoot"><span>Virtuoso Marketing — Confidencial</span><span class="pno">12 / 12</span></div>
+</div>
