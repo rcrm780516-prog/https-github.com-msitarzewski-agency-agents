@@ -8,7 +8,7 @@ Benito Juárez, CDMX (C.P. 03023).
 
 | Archivo | Descripción |
 |---|---|
-| `Auditoria-DM-Wellness-Narvarte.pdf` | Informe final, 29 páginas, listo para descargar y compartir |
+| `Auditoria-DM-Wellness-Narvarte.pdf` | Informe final consolidado, 31 páginas, listo para descargar y compartir |
 | `auditoria.html` | Fuente del informe (A4, se imprime a PDF con Chromium headless) |
 
 ## Regenerar el PDF
@@ -30,7 +30,12 @@ por lo que la numeración manual del pie coincide con la paginación del PDF. La
 - **Sitio web** — inexistente
 - **Google Business Profile** — inexistente
 - **Competencia** — benchmark cuantitativo contra `@skintopia_mx` y mapa competitivo
-  de la zona Narvarte / Vértiz Narvarte / Benito Juárez
+  unificado de la zona Narvarte / Vértiz Narvarte / Benito Juárez, con reseñas de Google
+  de once competidores y los negocios de estética del propio inmueble
+
+La edición actual consolida **tres auditorías independientes** hechas sobre los mismos
+perfiles (sección 02): las convergencias, las dos contradicciones resueltas y las
+afirmaciones que se descartan por falta de sustento.
 
 Las cifras del informe están etiquetadas como **medidas**, **inferidas** o
 **proyectadas**; las proyecciones incluyen sus supuestos y no son promesas de resultado.
