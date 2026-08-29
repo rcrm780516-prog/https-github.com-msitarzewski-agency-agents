@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Transportación Privada y Tours en Cancún | TEVE Transfers &amp; Tours</title>
-<meta name="description" content="Transfers privados del aeropuerto de Cancún, chofer privado por día y tours a la medida en Riviera Maya. Reserva directo por WhatsApp con Tim.">
+<title>Cancun Airport Transfers &amp; Private Riviera Maya Tours</title>
+<meta name="description" content="Private Cancun airport transfers and custom Riviera Maya tours for travellers from the UK, Australia, the US and Canada. Book direct on WhatsApp.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="TEVE Transfers &amp; Tours">
 <link rel="canonical" href="https://www.tevetours.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TEVE Transfers &amp; Tours">
-<meta property="og:title" content="Transportación Privada y Tours en Cancún | TEVE Transfers &amp; Tours">
-<meta property="og:description" content="Transfers privados del aeropuerto de Cancún, chofer privado por día y tours a la medida en Riviera Maya.">
+<meta property="og:title" content="Cancun Airport Transfers &amp; Private Riviera Maya Tours">
+<meta property="og:description" content="Private Cancun airport transfers and custom Riviera Maya tours across Cancun, Tulum and the Riviera Maya.">
 <meta property="og:url" content="https://www.tevetours.com/">
-<meta property="og:locale" content="es_MX">
+<meta property="og:locale" content="en_US">
+<!-- Las etiquetas hreflang de cada idioma se inyectan solas al cargar. -->
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +29,7 @@
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "name": "TEVE Transfers & Tours",
-  "description": "Transportación privada, chofer privado y tours privados en Cancún y Riviera Maya.",
+  "description": "Private transport, private drivers and private tours in Cancun and the Riviera Maya.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Zona Hotelera",
@@ -46,8 +47,10 @@
 }
 </script>
 
-<!-- ARCHIVO DE PERSONALIZACIÓN: logo, imágenes, teléfonos, precios y textos -->
-<script src="teve-config.js"></script>
+<!-- ARCHIVO DE PERSONALIZACIÓN: logo, imágenes, teléfonos, precios y textos.
+     La ruta empieza con "/" a propósito: así también carga bien desde las
+     direcciones con idioma, como /es/destinos o /pt/passeios. -->
+<script src="/teve-config.js"></script>
 
 <style>
   :root {
@@ -153,6 +156,24 @@
   .nav-drawer { display: none; }
 
   /* ============ PORTADA ============ */
+
+
+  /* --- selector de idioma --- */
+  .lang-switch { display: flex; align-items: center; gap: 4px; margin-left: 18px; }
+  .lang-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 10px; border-radius: 100px;
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--primary); background: transparent;
+    border: 1px solid transparent; transition: all 0.2s;
+  }
+  .lang-btn:hover { background: var(--fourth); border-color: #dbe7ec; }
+  .lang-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .lang-flag { font-size: 0.95rem; line-height: 1; }
+  @media (max-width: 880px) {
+    .lang-switch { margin-left: auto; margin-right: 12px; }
+    .lang-btn { padding: 6px 8px; }
+  }
 
   /* --- logotipo en la portada y sus animaciones --- */
   .hero-badge { display: flex; justify-content: center; margin-bottom: 18px; }
@@ -442,9 +463,10 @@
 <!-- ============ NAVEGACIÓN ============ -->
 <nav class="nav" id="mainNav">
   <div class="nav-inner">
-    <a class="logo" href="/" data-page="home" id="navLogo" aria-label="Inicio TEVE Transfers &amp; Tours"></a>
+    <a class="logo" href="/" data-page="home" id="navLogo" aria-label="TEVE Transfers &amp; Tours home"></a>
     <div class="nav-links" id="navLinks"></div>
-    <button class="nav-ham" id="hamBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="lang-switch" id="langSwitch"></div>
+    <button class="nav-ham" id="hamBtn" data-i18n-aria="navAbrirMenu" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
   <div class="nav-drawer" id="navDrawer"></div>
 </nav>
@@ -461,8 +483,8 @@
       <h1 id="heroTitle"></h1>
       <p class="hero-sub" id="heroSub"></p>
       <div class="hero-cta">
-        <a class="btn-secondary" href="/servicios" data-page="servicios">Ver Servicios</a>
-        <button class="btn-wa" onclick="waMsg('¡Hola! Quiero cotizar un servicio privado en Cancún.')">Cotizar por WhatsApp</button>
+        <a class="btn-secondary" href="/services" data-page="servicios" data-i18n="heroBotonServicios">View Services</a>
+        <button class="btn-wa" onclick="waMsg(T('waPortada'))" data-i18n="heroBotonWhatsapp">Quote on WhatsApp</button>
       </div>
     </div>
   </section>
@@ -470,57 +492,57 @@
   <div class="search-wrap">
     <div class="search-box">
       <div class="search-tabs">
-        <button class="search-tab active" data-tab="transfer">🚐 Traslados</button>
-        <button class="search-tab" data-tab="tour">📍 Tours</button>
+        <button class="search-tab active" data-tab="transfer" data-i18n="buscadorTraslado">🚐 Transfers</button>
+        <button class="search-tab" data-tab="tour" data-i18n="buscadorTour">📍 Tours</button>
       </div>
       <div class="search-panel active" id="panel-transfer">
         <div class="search-fields">
           <div class="search-field">
-            <label for="f-tipo">Tipo de servicio</label>
+            <label for="f-tipo" data-i18n="buscadorTipo">Service type</label>
             <select id="f-tipo">
-              <option>Aeropuerto → Hotel</option>
-              <option>Hotel → Aeropuerto</option>
-              <option>Aeropuerto → Hotel → Aeropuerto (redondo)</option>
+              <option data-i18n="buscadorOpcion1">Airport → Hotel</option>
+              <option data-i18n="buscadorOpcion2">Hotel → Airport</option>
+              <option data-i18n="buscadorOpcion3">Airport → Hotel → Airport (round trip)</option>
             </select>
           </div>
           <div class="search-field">
-            <label for="f-desde">Desde</label>
-            <input id="f-desde" type="text" value="Aeropuerto Internacional de Cancún">
+            <label for="f-desde" data-i18n="buscadorDesde">From</label>
+            <input id="f-desde" type="text" data-i18n-val="buscadorDesdeEjemplo" value="Cancun Airport (CUN)">
           </div>
           <div class="search-field">
-            <label for="f-hacia">Hacia</label>
-            <input id="f-hacia" type="text" placeholder="Nombre de tu hotel">
+            <label for="f-hacia" data-i18n="buscadorHacia">To</label>
+            <input id="f-hacia" type="text" data-i18n-ph="buscadorHaciaEjemplo" placeholder="Hotel, Airbnb or address">
           </div>
           <div class="search-field">
-            <label for="f-fecha">Fecha de llegada</label>
+            <label for="f-fecha" data-i18n="buscadorFecha">Arrival date</label>
             <input id="f-fecha" type="date">
           </div>
           <div class="search-field">
-            <label for="f-pax">Pasajeros</label>
+            <label for="f-pax" data-i18n="buscadorPasajeros">Passengers</label>
             <input id="f-pax" type="number" min="1" value="2">
           </div>
         </div>
         <div class="search-btn-wrap">
-          <button class="btn-secondary" onclick="buscarTraslado()">Cotizar Traslado</button>
+          <button class="btn-secondary" onclick="buscarTraslado()" data-i18n="buscadorCotizarTraslado">Quote My Transfer</button>
         </div>
       </div>
       <div class="search-panel" id="panel-tour">
         <div class="search-fields">
           <div class="search-field">
-            <label for="t-destino">Destino o experiencia</label>
-            <input id="t-destino" type="text" placeholder="Chichén Itzá, Tulum, Isla Mujeres...">
+            <label for="t-destino" data-i18n="buscadorDestino">Destination or experience</label>
+            <input id="t-destino" type="text" data-i18n-ph="buscadorDestinoEjemplo" placeholder="Chichen Itza, Tulum, Isla Mujeres…">
           </div>
           <div class="search-field">
-            <label for="t-fecha">Fecha</label>
+            <label for="t-fecha" data-i18n="buscadorFechaTour">Date</label>
             <input id="t-fecha" type="date">
           </div>
           <div class="search-field">
-            <label for="t-pax">Pasajeros</label>
+            <label for="t-pax" data-i18n="buscadorPasajeros">Passengers</label>
             <input id="t-pax" type="number" min="1" value="2">
           </div>
         </div>
         <div class="search-btn-wrap">
-          <button class="btn-secondary" onclick="buscarTour()">Cotizar Tour</button>
+          <button class="btn-secondary" onclick="buscarTour()" data-i18n="buscadorCotizarTour">Quote My Tour</button>
         </div>
       </div>
     </div>
@@ -533,8 +555,8 @@
   <section class="section">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Lo que ofrecemos</div>
-        <h2 class="sec-title">Nuestros Servicios de Transportación</h2>
+        <div class="sec-eyebrow" data-i18n="homeServiciosEyebrow">What We Offer</div>
+        <h2 class="sec-title" data-i18n="homeServiciosTitulo">Our Transport Services</h2>
       </div>
       <div class="services-grid" id="homeServicesGrid"></div>
     </div>
@@ -543,12 +565,12 @@
   <section class="section section-alt">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Los Mejores</div>
-        <h2 class="sec-title dark">Tours Privados Destacados</h2>
+        <div class="sec-eyebrow" data-i18n="homeToursEyebrow">The Best Of</div>
+        <h2 class="sec-title dark" data-i18n="homeToursTitulo">Featured Private Tours</h2>
       </div>
       <div class="tours-grid" id="homeToursGrid"></div>
       <div style="text-align:center; margin-top:34px;">
-        <a class="btn-outline" href="/tours" data-page="tours">Ver Todos los Tours</a>
+        <a class="btn-outline" href="/tours" data-page="tours" data-i18n="homeToursBoton">See All Tours</a>
       </div>
     </div>
   </section>
@@ -557,10 +579,10 @@
     <canvas id="whyCanvasHome" aria-hidden="true"></canvas>
     <div class="why-veil"></div>
     <div class="why-inner">
-      <h4>¿Por qué TEVE?</h4>
-      <h2>¿Qué nos hace diferentes?</h2>
-      <p>TEVE Transfers &amp; Tours es la opción líder en transportación privada y tours a la medida en Cancún, Tulum y la Riviera Maya. Un solo chofer de confianza que te acompaña desde el aeropuerto hasta tu último día de vacaciones. Sin sorpresas, sin shuttles compartidos: tu experiencia, diseñada para ti.</p>
-      <a class="btn-white" href="/contacto" data-page="contacto">Permítenos Planear Tu Viaje</a>
+      <h4 data-i18n="porQueEyebrow">Why TEVE?</h4>
+      <h2 data-i18n="porQueTitulo">What Makes Us Different</h2>
+      <p data-i18n-html="porQueTexto">TEVE Transfers &amp; Tours is the trusted choice for private transport and custom tours in Cancun, Tulum and the Riviera Maya.</p>
+      <a class="btn-white" href="/contact" data-page="contacto" data-i18n="porQueBoton">Let Us Plan Your Trip</a>
     </div>
   </section>
 </div>
@@ -570,8 +592,8 @@
   <section class="section section-top">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Transportación en Cancún</div>
-        <h2 class="sec-title">Servicios Privados TEVE</h2>
+        <div class="sec-eyebrow" data-i18n="serviciosEyebrow">Transport in Cancun</div>
+        <h2 class="sec-title" data-i18n="serviciosTitulo">TEVE Private Services</h2>
       </div>
       <div class="services-grid" id="servicesGridFull"></div>
     </div>
@@ -583,8 +605,8 @@
   <section class="section section-top">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Los Mejores</div>
-        <h2 class="sec-title">Top Tours Privados</h2>
+        <div class="sec-eyebrow" data-i18n="toursEyebrow">The Best Of</div>
+        <h2 class="sec-title" data-i18n="toursTitulo">Top Private Tours</h2>
       </div>
       <div class="tours-grid" id="toursGridFull"></div>
     </div>
@@ -596,8 +618,8 @@
   <section class="section section-top">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">A Donde Te Llevamos</div>
-        <h2 class="sec-title">Destinos Privados</h2>
+        <div class="sec-eyebrow" data-i18n="destinosEyebrow">Where We Take You</div>
+        <h2 class="sec-title" data-i18n="destinosTitulo">Private Destinations</h2>
       </div>
       <div class="dest-grid" id="destGrid"></div>
     </div>
@@ -610,8 +632,8 @@
     <canvas id="whyCanvasTim" aria-hidden="true"></canvas>
     <div class="why-veil"></div>
     <div class="why-inner">
-      <h4>Conoce a tu Guía</h4>
-      <img class="tim-photo" id="timPhoto" alt="Tim, chofer y guía privado en Cancún" style="display:none;">
+      <h4 data-i18n="timEyebrow">Meet Your Driver</h4>
+      <img class="tim-photo" id="timPhoto" alt="Tim, private driver and guide in Cancun" style="display:none;">
       <h2 id="timTitulo"></h2>
       <p class="tim-quote" id="timCita"></p>
       <p id="timBio"></p>
@@ -622,8 +644,8 @@
   <section class="section">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Reseñas Reales</div>
-        <h2 class="sec-title dark">Lo Que Dicen Nuestros Viajeros</h2>
+        <div class="sec-eyebrow" data-i18n="resenasEyebrow">Real Reviews</div>
+        <h2 class="sec-title dark" data-i18n="resenasTitulo">What Our Travellers Say</h2>
       </div>
       <div class="reviews-grid" id="reviewsGrid"></div>
     </div>
@@ -635,8 +657,8 @@
   <section class="section section-top">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Guía de Viaje</div>
-        <h2 class="sec-title">Planea tu Viaje a Cancún</h2>
+        <div class="sec-eyebrow" data-i18n="blogEyebrow">Travel Guide</div>
+        <h2 class="sec-title" data-i18n="blogTitulo">Plan Your Trip to Cancun</h2>
       </div>
       <div class="blog-grid" id="blogGrid"></div>
     </div>
@@ -649,27 +671,27 @@
     <div class="container">
       <div class="contact-wrap">
         <div class="contact-head">
-          <h3>¿Planeas un viaje a Cancún?</h3>
-          <h2>Nuestro equipo está listo para ayudarte</h2>
+          <h3 data-i18n="contactoEyebrow">Planning a trip to Cancun?</h3>
+          <h2 data-i18n="contactoTitulo">Our team is ready to help</h2>
         </div>
         <form class="contact-form" onsubmit="enviarContacto(event)">
-          <div class="form-item"><label for="c-nombre">Nombre(s)*</label><input id="c-nombre" type="text" required></div>
-          <div class="form-item"><label for="c-apellido">Apellido(s)*</label><input id="c-apellido" type="text" required></div>
-          <div class="form-item"><label for="c-email">Correo electrónico*</label><input id="c-email" type="email" required></div>
-          <div class="form-item"><label for="c-tel">Teléfono*</label><input id="c-tel" type="tel" required></div>
-          <div class="form-item"><label for="c-llegada">Fecha de llegada</label><input id="c-llegada" type="date"></div>
-          <div class="form-item"><label for="c-salida">Fecha de salida</label><input id="c-salida" type="date"></div>
-          <div class="form-item"><label for="c-adultos">Adultos</label><input id="c-adultos" type="number" min="1" value="2"></div>
-          <div class="form-item"><label for="c-menores">Menores</label><input id="c-menores" type="number" min="0" value="0"></div>
-          <div class="form-item full"><label for="c-msg">Servicio de interés / comentarios</label><textarea id="c-msg" rows="4"></textarea></div>
+          <div class="form-item"><label for="c-nombre" data-i18n="formNombre">First name*</label><input id="c-nombre" type="text" required></div>
+          <div class="form-item"><label for="c-apellido" data-i18n="formApellido">Last name*</label><input id="c-apellido" type="text" required></div>
+          <div class="form-item"><label for="c-email" data-i18n="formEmail">Email address*</label><input id="c-email" type="email" required></div>
+          <div class="form-item"><label for="c-tel" data-i18n="formTelefono">Phone*</label><input id="c-tel" type="tel" required></div>
+          <div class="form-item"><label for="c-llegada" data-i18n="formLlegada">Arrival date</label><input id="c-llegada" type="date"></div>
+          <div class="form-item"><label for="c-salida" data-i18n="formSalida">Departure date</label><input id="c-salida" type="date"></div>
+          <div class="form-item"><label for="c-adultos" data-i18n="formAdultos">Adults</label><input id="c-adultos" type="number" min="1" value="2"></div>
+          <div class="form-item"><label for="c-menores" data-i18n="formMenores">Children</label><input id="c-menores" type="number" min="0" value="0"></div>
+          <div class="form-item full"><label for="c-msg" data-i18n="formMensaje">Service you need / comments</label><textarea id="c-msg" rows="4"></textarea></div>
           <div class="form-item full" style="flex-direction:row; gap:20px; justify-content:center; flex-wrap:wrap;">
-            <label class="opt-row"><input type="checkbox" checked> Recibir alertas por SMS</label>
-            <label class="opt-row"><input type="checkbox" checked> Recibir alertas por email</label>
+            <label class="opt-row"><input type="checkbox" checked> <span data-i18n="formSms">Send me SMS updates</span></label>
+            <label class="opt-row"><input type="checkbox" checked> <span data-i18n="formEmailOpt">Send me email updates</span></label>
           </div>
           <div class="form-submit">
             <button type="submit" class="btn-wa">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
-              Enviar por WhatsApp
+              <span data-i18n="formEnviar">Send on WhatsApp</span>
             </button>
           </div>
         </form>
@@ -680,47 +702,47 @@
 
   <section class="section" style="background:var(--fourth);">
     <div class="section-head">
-      <h3>Lo que dicen de nosotros</h3>
-      <h2>Síguenos y lee nuestras reseñas</h2>
+      <h3 data-i18n="socialEyebrow">What people say about us</h3>
+      <h2 data-i18n="socialTitulo">Follow us and read our reviews</h2>
     </div>
     <div class="social-widgets" id="socialWidgets"></div>
   </section>
 </div>
 
 <!-- ============ BOTÓN FLOTANTE WHATSAPP ============ -->
-<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
 </a>
 
 <!-- ============ PIE DE PÁGINA ============ -->
 <footer>
   <div class="footer-newsletter">
-    <h4>Tu próxima aventura empieza aquí</h4>
-    <h2>Recibe inspiración en tu correo</h2>
+    <h4 data-i18n="newsletterEyebrow">Your next adventure starts here</h4>
+    <h2 data-i18n="newsletterTitulo">Get travel inspiration by email</h2>
     <form class="nl-form" onsubmit="suscribir(event)">
-      <input type="email" id="nlEmail" placeholder="Tu correo electrónico" required aria-label="Tu correo electrónico">
-      <button class="btn-white" type="submit">Suscribirme</button>
+      <input type="email" id="nlEmail" data-i18n-ph="newsletterEjemplo" data-i18n-aria="newsletterEjemplo" placeholder="Your email address" required aria-label="Your email address">
+      <button class="btn-white" type="submit" data-i18n="newsletterBoton">Subscribe</button>
     </form>
   </div>
 
   <div class="footer-main">
     <div class="footer-logo" id="footerLogo"></div>
     <div class="footer-tabs">
-      <button id="ftab-contact" class="active" data-ftab="contact">Contacto</button>
-      <button id="ftab-discover" data-ftab="discover">Descubrir</button>
+      <button id="ftab-contact" class="active" data-ftab="contact" data-i18n="pieContacto">Contact</button>
+      <button id="ftab-discover" data-ftab="discover" data-i18n="pieDescubrir">Discover</button>
     </div>
 
     <div class="footer-panel active" id="fpanel-contact">
       <div class="footer-block">
-        <h4>Llámanos</h4>
+        <h4 data-i18n="pieLlamanos">Call us</h4>
         <div class="phone-pills" id="footerPhones"></div>
       </div>
       <div class="footer-block">
-        <h4>Envíanos un correo</h4>
+        <h4 data-i18n="pieCorreo">Email us</h4>
         <a id="footerEmail" href="#" style="color:#fff; text-decoration:underline;"></a>
       </div>
       <div class="footer-block" id="footerSocialBlock">
-        <h4>Redes Sociales</h4>
+        <h4 data-i18n="pieRedes">Social Media</h4>
         <div class="social-row" id="footerSocial"></div>
       </div>
       <div class="footer-block">
@@ -731,39 +753,39 @@
     <div class="footer-panel" id="fpanel-discover">
       <div class="discover-cols">
         <div>
-          <h5>Cancún</h5>
-          <a href="/destinos" data-page="destinos">¿Qué ver?</a>
-          <a href="/servicios" data-page="servicios">Traslados y transportación</a>
-          <a href="/tours" data-page="tours">Tours privados</a>
-          <a href="/blog" data-page="blog">Blog de viajes</a>
+          <h5 data-i18n="pieCancun">Cancun</h5>
+          <a href="/destinations" data-page="destinos" data-i18n="pieQueVer">What to see</a>
+          <a href="/services" data-page="servicios" data-i18n-html="pieTraslados">Transfers &amp; transport</a>
+          <a href="/tours" data-page="tours" data-i18n="pieToursPrivados">Private tours</a>
+          <a href="/blog" data-page="blog" data-i18n="pieBlog">Travel blog</a>
         </div>
         <div>
-          <h5>Riviera Maya</h5>
-          <a href="/destinos" data-page="destinos">Tulum</a>
-          <a href="/destinos" data-page="destinos">Isla Mujeres</a>
-          <a href="/destinos" data-page="destinos">Bacalar y Holbox</a>
-          <a href="/destinos" data-page="destinos">Chichén Itzá</a>
+          <h5 data-i18n="pieRiviera">Riviera Maya</h5>
+          <a href="/destinations" data-page="destinos">Tulum</a>
+          <a href="/destinations" data-page="destinos">Isla Mujeres</a>
+          <a href="/destinations" data-page="destinos" data-i18n-html="pieBacalar">Bacalar &amp; Holbox</a>
+          <a href="/destinations" data-page="destinos">Chichén Itzá</a>
         </div>
         <div>
-          <h5>Servicios</h5>
-          <a href="/servicios" data-page="servicios">Chofer privado</a>
-          <a href="/servicios" data-page="servicios">Grupos y eventos</a>
-          <a href="/servicios" data-page="servicios">Renta de yates</a>
-          <a href="/servicios" data-page="servicios">Travel concierge</a>
+          <h5 data-i18n="pieServicios">Services</h5>
+          <a href="/services" data-page="servicios" data-i18n="pieChofer">Private driver</a>
+          <a href="/services" data-page="servicios" data-i18n-html="pieGrupos">Groups &amp; events</a>
+          <a href="/services" data-page="servicios" data-i18n="pieYates">Yacht charters</a>
+          <a href="/services" data-page="servicios" data-i18n="pieConcierge">Travel concierge</a>
         </div>
         <div>
-          <h5>Compañía</h5>
-          <a href="/tim" data-page="tim">Conoce a Tim</a>
-          <a href="/contacto" data-page="contacto">Contáctanos</a>
+          <h5 data-i18n="pieCompania">Company</h5>
+          <a href="/about-tim" data-page="tim" data-i18n="pieConoceTim">Meet Tim</a>
+          <a href="/contact" data-page="contacto" data-i18n="pieContactanos">Contact us</a>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="footer-links">
-        <a href="/aviso-de-privacidad">Aviso de Privacidad</a>
-        <a href="/terminos">Términos y Condiciones</a>
-        <a href="/cookies">Política de Cookies</a>
+        <a href="/privacy" data-i18n="piePrivacidad">Privacy Policy</a>
+        <a href="/terms" data-i18n-html="pieTerminos">Terms &amp; Conditions</a>
+        <a href="/cookies" data-i18n="pieCookies">Cookie Policy</a>
       </div>
       <div class="footer-copy" id="footerCopy"></div>
     </div>
@@ -778,15 +800,182 @@
 
 const C = window.TEVE_CONFIG || {};
 const PAGES = ['home', 'servicios', 'tours', 'destinos', 'tim', 'blog', 'contacto'];
-const RUTAS = {
-  home: '/', servicios: '/servicios', tours: '/tours',
-  destinos: '/destinos', tim: '/tim', blog: '/blog', contacto: '/contacto'
-};
+
+/* ==========================================================================
+   IDIOMAS
+   --------------------------------------------------------------------------
+   El inglés vive en la raíz (/tours) y los demás idiomas bajo su prefijo
+   (/es/tours, /pt/passeios). Cada idioma trae sus propios slugs, así que
+   Google indexa direcciones que el visitante entiende en su idioma.
+   ========================================================================== */
+const TEXTOS = C.textos || {};
+const IDIOMAS = (C.idiomasActivos || Object.keys(TEXTOS)).filter(k => TEXTOS[k]);
+const IDIOMA_DEF = TEXTOS[C.idiomaPorDefecto] ? C.idiomaPorDefecto : (IDIOMAS[0] || 'en');
+const MEMORIA = 'teve_idioma';
+
+let LANG = IDIOMA_DEF;
+let L = TEXTOS[LANG] || {};
+
+// Traduce una clave de interfaz. Si falta en un idioma, cae al idioma por
+// defecto en vez de dejar el hueco vacío.
+function T(clave) {
+  const propio = (L.ui || {})[clave];
+  if (propio != null) return propio;
+  return ((TEXTOS[IDIOMA_DEF] || {}).ui || {})[clave] || '';
+}
+
+function metaDe(lang) { return (TEXTOS[lang] || {}).meta || {}; }
+
+// Dirección de una página en un idioma concreto: '/', '/tours', '/es/destinos'…
+function ruta(pagina, lang) {
+  const m = metaDe(lang || LANG);
+  const partes = [];
+  if (m.prefijo) partes.push(m.prefijo);
+  const slug = (m.rutas || {})[pagina];
+  if (slug) partes.push(slug);
+  return '/' + partes.join('/');
+}
+function urlAbsoluta(pagina, lang) {
+  const dominio = ((C.marca && C.marca.dominio) || '').replace(/\/+$/, '');
+  return dominio + ruta(pagina, lang);
+}
+
+/* ---------- de dónde sale el idioma y la página al cargar ---------- */
+function leerURL() {
+  const segmentos = window.location.pathname.split('/').filter(Boolean);
+  let lang = null;
+
+  const primero = (segmentos[0] || '').toLowerCase();
+  const porPrefijo = IDIOMAS.find(k => metaDe(k).prefijo && metaDe(k).prefijo === primero);
+  if (porPrefijo) { lang = porPrefijo; segmentos.shift(); }
+
+  // ?lang=es y #es/tours sirven para abrir el sitio desde un archivo local,
+  // donde no existen carpetas ni rutas reales.
+  const busca = new URLSearchParams(window.location.search).get('lang');
+  if (!lang && busca && IDIOMAS.includes(busca)) lang = busca;
+
+  let resto = (segmentos[0] || '').toLowerCase();
+  const hash = (window.location.hash || '').replace(/^#\/?/, '');
+  if (hash) {
+    const trozos = hash.split('/');
+    if (IDIOMAS.includes(trozos[0])) { lang = lang || trozos[0]; trozos.shift(); }
+    if (trozos[0]) resto = trozos[0].toLowerCase();
+  }
+
+  const idioma = lang || null;
+  const rutas = (metaDe(idioma || IDIOMA_DEF).rutas) || {};
+  let pagina = Object.keys(rutas).find(k => rutas[k] && rutas[k] === resto);
+
+  // Un enlace viejo o un slug de otro idioma también debe resolver.
+  if (!pagina && resto) {
+    for (const k of IDIOMAS) {
+      const r = metaDe(k).rutas || {};
+      const hit = Object.keys(r).find(x => r[x] && r[x] === resto);
+      if (hit) { pagina = hit; break; }
+    }
+  }
+  return { idioma: idioma, pagina: PAGES.includes(pagina) ? pagina : 'home' };
+}
+
+function detectarIdioma(idiomaURL) {
+  if (idiomaURL && IDIOMAS.includes(idiomaURL)) return idiomaURL;
+
+  let guardado = null;
+  try { guardado = localStorage.getItem(MEMORIA); } catch (err) { /* modo privado */ }
+  if (guardado && IDIOMAS.includes(guardado)) return guardado;
+
+  if (C.detectarIdiomaDelNavegador) {
+    const preferidos = navigator.languages || [navigator.language || ''];
+    for (const p of preferidos) {
+      const base = String(p).toLowerCase().split('-')[0];
+      if (IDIOMAS.includes(base)) return base;
+    }
+  }
+  return IDIOMA_DEF;
+}
+
+/* ---------- aplicar el idioma a todo el marcado ---------- */
+function aplicarI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = T(el.dataset.i18n);
+  });
+  // Claves que contienen entidades HTML (&amp;) o saltos de línea.
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    el.innerHTML = T(el.dataset.i18nHtml);
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    el.setAttribute('placeholder', T(el.dataset.i18nPh));
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    el.setAttribute('aria-label', T(el.dataset.i18nAria));
+  });
+  document.querySelectorAll('[data-i18n-val]').forEach(el => {
+    el.value = T(el.dataset.i18nVal);
+  });
+}
+
+function renderSelectorIdioma() {
+  const cont = document.getElementById('langSwitch');
+  if (!cont || IDIOMAS.length < 2) return;
+  cont.innerHTML = IDIOMAS.map(k => {
+    const m = metaDe(k);
+    const activo = k === LANG ? ' active' : '';
+    return `<button class="lang-btn${activo}" data-lang="${k}" lang="${m.htmlLang || k}"
+              aria-label="${esc(m.nombre || k)}"${k === LANG ? ' aria-current="true"' : ''}>
+              <span class="lang-flag" aria-hidden="true">${m.bandera || ''}</span>${k.toUpperCase()}</button>`;
+  }).join('');
+}
+
+/* ---------- hreflang: le dice a Google qué versión servir a cada país ---------- */
+function inyectarHreflang(pagina) {
+  document.querySelectorAll('link[data-hreflang]').forEach(el => el.remove());
+  const cabeza = document.head;
+  IDIOMAS.forEach(k => {
+    (metaDe(k).hreflang || [k]).forEach(codigo => {
+      const l = document.createElement('link');
+      l.rel = 'alternate';
+      l.hreflang = codigo;
+      l.href = urlAbsoluta(pagina, k);
+      l.setAttribute('data-hreflang', '');
+      cabeza.appendChild(l);
+    });
+  });
+  // x-default = la versión que se sirve a quien no encaja en ningún idioma.
+  const x = document.createElement('link');
+  x.rel = 'alternate';
+  x.hreflang = 'x-default';
+  x.href = urlAbsoluta(pagina, IDIOMA_DEF);
+  x.setAttribute('data-hreflang', '');
+  cabeza.appendChild(x);
+}
+
+function cambiarIdioma(lang, pagina) {
+  if (!IDIOMAS.includes(lang)) return;
+  LANG = lang;
+  L = TEXTOS[lang];
+  try { localStorage.setItem(MEMORIA, lang); } catch (err) { /* modo privado */ }
+
+  const m = metaDe(lang);
+  document.documentElement.lang = m.htmlLang || lang;
+  const ogl = document.querySelector('meta[property="og:locale"]');
+  if (ogl && m.ogLocale) ogl.setAttribute('content', m.ogLocale);
+
+  aplicarI18n();
+  renderSelectorIdioma();
+  renderTodo();
+  showPage(pagina || paginaActual, true);
+}
 
 /* ---------- utilidades ---------- */
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+// Toma un campo que puede venir traducido ({en,es,pt}) o como texto simple.
+function trad(valor) {
+  if (valor && typeof valor === 'object') return valor[LANG] || valor[IDIOMA_DEF] || '';
+  return valor || '';
+}
 
 // Devuelve el CSS de fondo: la imagen del config, o un degradado de marca si está vacía.
 const DEGRADADOS = [
@@ -806,47 +995,50 @@ function fondo(src, i) {
 /* ---------- WhatsApp ---------- */
 function waLink(texto) {
   const num = (C.contacto && C.contacto.whatsapp) || '';
-  return 'https://wa.me/' + num + '?text=' + encodeURIComponent(texto || (C.contacto && C.contacto.whatsappTexto) || '');
+  return 'https://wa.me/' + num + '?text=' + encodeURIComponent(texto || T('waGeneral'));
 }
 function waMsg(texto) { window.open(waLink(texto), '_blank', 'noopener'); }
 
 function buscarTraslado() {
   const v = id => (document.getElementById(id) || {}).value || '';
-  waMsg(`¡Hola! Quiero cotizar un traslado privado.
-Tipo: ${v('f-tipo')}
-Desde: ${v('f-desde')}
-Hacia: ${v('f-hacia')}
-Fecha: ${v('f-fecha') || 'por definir'}
-Pasajeros: ${v('f-pax')}`);
+  waMsg(`${T('waTraslado')}
+${T('buscadorTipo')}: ${v('f-tipo')}
+${T('buscadorDesde')}: ${v('f-desde')}
+${T('buscadorHacia')}: ${v('f-hacia')}
+${T('buscadorFecha')}: ${v('f-fecha') || '—'}
+${T('buscadorPasajeros')}: ${v('f-pax')}`);
 }
 function buscarTour() {
   const v = id => (document.getElementById(id) || {}).value || '';
-  waMsg(`¡Hola! Quiero cotizar un tour privado.
-Destino: ${v('t-destino') || 'por definir'}
-Fecha: ${v('t-fecha') || 'por definir'}
-Pasajeros: ${v('t-pax')}`);
+  waMsg(`${T('waTourBusqueda')}
+${T('buscadorDestino')}: ${v('t-destino') || '—'}
+${T('buscadorFechaTour')}: ${v('t-fecha') || '—'}
+${T('buscadorPasajeros')}: ${v('t-pax')}`);
 }
 function enviarContacto(e) {
   e.preventDefault();
   const v = id => (document.getElementById(id) || {}).value || '';
-  waMsg(`¡Hola! Solicito una cotización desde el sitio web.
-Nombre: ${v('c-nombre')} ${v('c-apellido')}
-Email: ${v('c-email')}
-Teléfono: ${v('c-tel')}
-Llegada: ${v('c-llegada') || 'por definir'} · Salida: ${v('c-salida') || 'por definir'}
-Adultos: ${v('c-adultos')} · Menores: ${v('c-menores')}
-Comentarios: ${v('c-msg') || '—'}`);
+  waMsg(`${T('waPortada')}
+${T('formNombre').replace('*', '')}: ${v('c-nombre')} ${v('c-apellido')}
+${T('formEmail').replace('*', '')}: ${v('c-email')}
+${T('formTelefono').replace('*', '')}: ${v('c-tel')}
+${T('formLlegada')}: ${v('c-llegada') || '—'} · ${T('formSalida')}: ${v('c-salida') || '—'}
+${T('formAdultos')}: ${v('c-adultos')} · ${T('formMenores')}: ${v('c-menores')}
+${T('formMensaje')}: ${v('c-msg') || '—'}`);
 }
 function suscribir(e) {
   e.preventDefault();
   const email = (document.getElementById('nlEmail') || {}).value || '';
-  waMsg(`¡Hola! Quiero suscribirme al boletín de viajes. Mi correo es: ${email}`);
+  waMsg(`${T('newsletterTitulo')}: ${email}`);
   e.target.reset();
 }
 
 /* ---------- navegación (páginas ocultas hasta hacer clic) ---------- */
+let paginaActual = 'home';
+
 function showPage(id, push) {
   if (!PAGES.includes(id)) id = 'home';
+  paginaActual = id;
 
   PAGES.forEach(p => {
     const el = document.getElementById('page-' + p);
@@ -861,14 +1053,13 @@ function showPage(id, push) {
 
   if (push !== false && window.history && history.pushState) {
     // En file:// el navegador bloquea pushState; el sitio sigue funcionando igual.
-    try { history.pushState({ page: id }, '', RUTAS[id]); } catch (err) { /* sin ruta */ }
+    try { history.pushState({ page: id, lang: LANG }, '', ruta(id)); } catch (err) { /* sin ruta */ }
   }
   window.scrollTo(0, 0);
 }
 
 function actualizarSEO(id) {
-  const seo = (C.seo && C.seo[id]) || {};
-  const dominio = (C.marca && C.marca.dominio) || '';
+  const seo = (L.seo && L.seo[id]) || {};
   if (seo.titulo) document.title = seo.titulo;
   if (seo.descripcion) {
     const m = document.querySelector('meta[name="description"]');
@@ -878,18 +1069,13 @@ function actualizarSEO(id) {
   }
   const ogt = document.querySelector('meta[property="og:title"]');
   if (ogt && seo.titulo) ogt.setAttribute('content', seo.titulo);
-  const canon = document.querySelector('link[rel="canonical"]');
-  if (canon && dominio) canon.setAttribute('href', dominio + RUTAS[id]);
-  const ogu = document.querySelector('meta[property="og:url"]');
-  if (ogu && dominio) ogu.setAttribute('content', dominio + RUTAS[id]);
-}
 
-function paginaDesdeURL() {
-  const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  const hit = Object.keys(RUTAS).find(k => RUTAS[k] === path);
-  if (hit) return hit;
-  const hash = (window.location.hash || '').replace(/^#\/?/, '');
-  return PAGES.includes(hash) ? hash : 'home';
+  const canon = document.querySelector('link[rel="canonical"]');
+  if (canon) canon.setAttribute('href', urlAbsoluta(id, LANG));
+  const ogu = document.querySelector('meta[property="og:url"]');
+  if (ogu) ogu.setAttribute('content', urlAbsoluta(id, LANG));
+
+  inyectarHreflang(id);
 }
 
 function cerrarMenu() {
@@ -899,15 +1085,22 @@ function cerrarMenu() {
   if (h) { h.classList.remove('open'); h.setAttribute('aria-expanded', 'false'); }
 }
 
-// Un solo listener captura todos los enlaces internos del sitio.
+// Un solo listener captura todos los enlaces internos y el cambio de idioma.
 document.addEventListener('click', e => {
+  const idioma = e.target.closest('[data-lang]');
+  if (idioma) { e.preventDefault(); cambiarIdioma(idioma.dataset.lang); return; }
+
   const link = e.target.closest('[data-page]');
   if (!link) return;
   e.preventDefault();
   showPage(link.dataset.page);
 });
 
-window.addEventListener('popstate', () => showPage(paginaDesdeURL(), false));
+window.addEventListener('popstate', () => {
+  const u = leerURL();
+  if (u.idioma && u.idioma !== LANG) { cambiarIdioma(u.idioma, u.pagina); return; }
+  showPage(u.pagina, false);
+});
 
 document.getElementById('hamBtn').addEventListener('click', function () {
   const d = document.getElementById('navDrawer');
@@ -987,21 +1180,26 @@ function renderMarca() {
 
 /* ---------- menú ---------- */
 const MENU = [
-  { id: 'home', texto: 'Inicio' },
-  { id: 'servicios', texto: 'Servicios' },
-  { id: 'tours', texto: 'Tours Privados' },
-  { id: 'destinos', texto: 'Destinos' },
-  { id: 'tim', texto: 'Conoce a Tim' },
-  { id: 'blog', texto: 'Blog de Viajes' }
+  { id: 'home',      clave: 'navHome' },
+  { id: 'servicios', clave: 'navServicios' },
+  { id: 'tours',     clave: 'navTours' },
+  { id: 'destinos',  clave: 'navDestinos' },
+  { id: 'tim',       clave: 'navTim' },
+  { id: 'blog',      clave: 'navBlog' }
 ];
 
 function renderMenu() {
   const enlaces = MENU.map(m =>
-    `<a class="nav-link" href="${RUTAS[m.id]}" data-page="${m.id}">${esc(m.texto)}</a>`
+    `<a class="nav-link" href="${ruta(m.id)}" data-page="${m.id}">${esc(T(m.clave))}</a>`
   ).join('');
-  const cta = `<a class="btn-secondary" style="padding:10px 24px;font-size:0.82rem;" href="/contacto" data-page="contacto">Contáctanos</a>`;
+  const cta = `<a class="btn-secondary" style="padding:10px 24px;font-size:0.82rem;" href="${ruta('contacto')}" data-page="contacto">${esc(T('navContacto'))}</a>`;
   document.getElementById('navLinks').innerHTML = enlaces + cta;
   document.getElementById('navDrawer').innerHTML = enlaces + cta;
+
+  // Los enlaces fijos del pie y de la portada también cambian de idioma.
+  document.querySelectorAll('[data-page]').forEach(el => {
+    if (el.tagName === 'A' && el.dataset.page) el.setAttribute('href', ruta(el.dataset.page));
+  });
 }
 
 /* ---------- barra superior ---------- */
@@ -1012,13 +1210,13 @@ function renderTopbar() {
     partes.push(`<a href="tel:${esc(c.telefonos[0].marcar)}">📞 ${esc(c.telefonos[0].numero)}</a>`);
   }
   if (c.email) partes.push(`<a href="mailto:${esc(c.email)}">✉️ ${esc(c.email)}</a>`);
-  if (c.horario) partes.push(`<span>🕑 ${esc(c.horario)}</span>`);
+  partes.push(`<span>🕑 ${esc(T('pieHorario'))}</span>`);
   document.getElementById('topbarInner').innerHTML = partes.join('');
 }
 
 /* ---------- portada ---------- */
 function renderPortada() {
-  const p = C.portada || {};
+  const p = L.portada || {};
   const m = C.marca || {};
   // En la portada el fondo es oscuro, así que se prefiere la versión clara.
   const logoPortada = m.logoBlanco || m.logo;
@@ -1063,14 +1261,18 @@ function renderPortada() {
 }
 
 /* ---------- servicios ---------- */
+// Une el bloque de la PARTE A (foto, precio) con su texto traducido.
 function tarjetaServicio(s, i) {
+  const t = (L.servicios || {})[s.id] || {};
+  const desde = trad(s.desde);
+  const wa = `${T('waServicio')} ${t.titulo || ''}`.replace(/'/g, "\\'");
   return `
     <div class="svc-card">
       <div class="svc-img" style="${fondo(s.imagen, i)}"></div>
-      <h3>${esc(s.titulo)}</h3>
-      <p>${esc(s.texto)}</p>
-      ${s.desde ? `<div class="svc-desde">${esc(s.desde)}</div>` : ''}
-      <button class="btn-secondary" onclick="waMsg('¡Hola! Quiero información sobre: ${esc(s.titulo).replace(/'/g, '&#39;')}')">Cotizar Ahora</button>
+      <h3>${esc(t.titulo)}</h3>
+      <p>${esc(t.texto)}</p>
+      ${desde ? `<div class="svc-desde">${esc(desde)}</div>` : ''}
+      <button class="btn-secondary" onclick="waMsg('${esc(wa)}')">${esc(T('tarjetaCotizar'))}</button>
     </div>`;
 }
 function renderServicios() {
@@ -1083,18 +1285,21 @@ function renderServicios() {
 
 /* ---------- tours ---------- */
 function tarjetaTour(t, i) {
+  const x = (L.tours || {})[t.id] || {};
+  const dur = trad(t.duracion);
+  const wa = `${T('waTour')} ${x.titulo || ''}`.replace(/'/g, "\\'");
   return `
     <div class="tour-card">
       <div class="tour-img" style="${fondo(t.imagen, i)}">
-        ${t.duracion ? `<span class="tour-badge">${esc(t.duracion)}</span>` : ''}
+        ${dur ? `<span class="tour-badge">${esc(dur)}</span>` : ''}
       </div>
       <div class="tour-body">
-        <h3>${esc(t.titulo)}</h3>
-        <p>${esc(t.texto)}</p>
-        <div class="tour-price-row"><span>Desde</span><span class="tour-price">${esc(t.precio)}</span></div>
+        <h3>${esc(x.titulo)}</h3>
+        <p>${esc(x.texto)}</p>
+        <div class="tour-price-row"><span>${esc(T('tarjetaDesde'))}</span><span class="tour-price">${esc(t.precio)}</span></div>
       </div>
       <div class="tour-footer">
-        <button class="btn-outline" onclick="waMsg('¡Hola! Quiero reservar el tour: ${esc(t.titulo).replace(/'/g, '&#39;')}')">Reservar</button>
+        <button class="btn-outline" onclick="waMsg('${esc(wa)}')">${esc(T('tarjetaReservar'))}</button>
       </div>
     </div>`;
 }
@@ -1106,37 +1311,40 @@ function renderTours() {
 
 /* ---------- destinos ---------- */
 function renderDestinos() {
-  document.getElementById('destGrid').innerHTML = (C.destinos || []).map(d => `
+  document.getElementById('destGrid').innerHTML = (C.destinos || []).map(d => {
+    const x = (L.destinos || {})[d.id] || {};
+    const wa = `${T('waDestino')} ${d.nombre}`.replace(/'/g, "\\'");
+    return `
     <div class="dest-card" style="${d.imagen ? `background-image:url('${esc(d.imagen)}')` : ''}">
       ${d.imagen ? '' : `<canvas class="dest-canvas" data-palette="${esc(d.paleta || 'ocean')}" aria-hidden="true"></canvas>`}
       <div class="dest-veil"></div>
       <div class="dest-info">
-        <div class="dest-days">${esc(d.duracion)}</div>
+        <div class="dest-days">${esc(x.duracion)}</div>
         <h3>${esc(d.nombre)}</h3>
-        <p>${esc(d.texto)}</p>
-        <button class="btn-white" onclick="waMsg('¡Hola! Quiero cotizar un tour privado a ${esc(d.nombre).replace(/'/g, '&#39;')}')">Descubrir Más</button>
+        <p>${esc(x.texto)}</p>
+        <button class="btn-white" onclick="waMsg('${esc(wa)}')">${esc(T('tarjetaDescubrir'))}</button>
       </div>
-    </div>`).join('');
+    </div>`; }).join('');
   initDestCanvas();
 }
 
 /* ---------- Tim ---------- */
 function renderTim() {
-  const t = C.tim || {};
+  const t = L.tim || {};
   document.getElementById('timTitulo').textContent = t.titulo || '';
   document.getElementById('timBio').textContent = t.biografia || '';
   document.getElementById('timCita').innerHTML =
     `"${esc(t.citaDestacada)}"<span>— ${esc(t.citaAutor)}</span>`;
 
   const btn = document.getElementById('timBoton');
-  btn.textContent = t.botonTexto || 'Escríbenos por WhatsApp';
-  btn.onclick = () => waMsg('¡Hola Tim! Quiero reservar un servicio privado contigo.');
+  btn.textContent = T('waTim');
+  btn.onclick = () => waMsg(T('waGeneral'));
 
   const foto = C.imagenes && C.imagenes.timFoto;
   const el = document.getElementById('timPhoto');
   if (foto) { el.src = foto; el.style.display = 'block'; }
 
-  document.getElementById('reviewsGrid').innerHTML = (C.resenas || []).map(r => `
+  document.getElementById('reviewsGrid').innerHTML = (L.resenas || []).map(r => `
     <div class="review-card">
       <div class="stars">★★★★★</div>
       <p class="txt">"${esc(r.texto)}"</p>
@@ -1147,18 +1355,20 @@ function renderTim() {
 
 /* ---------- blog ---------- */
 function renderBlog() {
-  document.getElementById('blogGrid').innerHTML = (C.blog || []).map((b, i) => `
+  document.getElementById('blogGrid').innerHTML = (C.blog || []).map((b, i) => {
+    const x = (L.blog || {})[b.id] || {};
+    return `
     <div class="blog-card">
       <div class="blog-img" style="${fondo(b.imagen, i)}"></div>
       <div class="blog-body">
-        <div class="blog-cat">${esc(b.categoria)}</div>
-        <h5>${esc(b.titulo)}</h5>
-        <p>${esc(b.texto)}</p>
+        <div class="blog-cat">${esc(x.categoria)}</div>
+        <h5>${esc(x.titulo)}</h5>
+        <p>${esc(x.texto)}</p>
         ${b.enlace
-          ? `<a class="blog-more" href="${esc(b.enlace)}">Leer artículo →</a>`
-          : `<span class="blog-more" style="opacity:0.55;cursor:default;">Próximamente</span>`}
+          ? `<a class="blog-more" href="${esc(b.enlace)}">${esc(T('blogLeerMas'))}</a>`
+          : `<span class="blog-more" style="opacity:0.55;cursor:default;">${esc(T('blogEyebrow'))}</span>`}
       </div>
-    </div>`).join('');
+    </div>`; }).join('');
 }
 
 /* ---------- contacto y pie de página ---------- */
@@ -1174,14 +1384,14 @@ function renderContacto() {
   const c = C.contacto || {};
 
   document.getElementById('footerPhones').innerHTML = (c.telefonos || []).map(t =>
-    `<a class="phone-pill" href="tel:${esc(t.marcar)}">${esc(t.etiqueta)}: ${esc(t.numero)}</a>`
+    `<a class="phone-pill" href="tel:${esc(t.marcar)}">${esc(trad(t.etiqueta))}: ${esc(t.numero)}</a>`
   ).join('');
 
   const em = document.getElementById('footerEmail');
   em.href = 'mailto:' + (c.email || '');
   em.textContent = c.email || '';
 
-  document.getElementById('footerHorario').textContent = c.horario || '';
+  document.getElementById('footerHorario').textContent = T('pieHorario');
 
   const redes = C.redes || {};
   const activas = Object.keys(redes).filter(k => redes[k]);
@@ -1193,10 +1403,10 @@ function renderContacto() {
     </a>`;
 
   const chips = [];
-  if (c.whatsapp) chips.push(`<a class="contact-chip" href="${esc(waLink())}" target="_blank" rel="noopener"><strong>WhatsApp</strong> Respuesta inmediata</a>`);
+  if (c.whatsapp) chips.push(`<a class="contact-chip" href="${esc(waLink())}" target="_blank" rel="noopener"><strong>WhatsApp</strong> ${esc(T('contactoWhatsappTexto'))}</a>`);
   if (c.email) chips.push(`<a class="contact-chip" href="mailto:${esc(c.email)}"><strong>Email</strong> ${esc(c.email)}</a>`);
   (c.telefonos || []).forEach(t => {
-    chips.push(`<a class="contact-chip" href="tel:${esc(t.marcar)}"><strong>${esc(t.etiqueta)}</strong> ${esc(t.numero)}</a>`);
+    chips.push(`<a class="contact-chip" href="tel:${esc(t.marcar)}"><strong>${esc(trad(t.etiqueta))}</strong> ${esc(t.numero)}</a>`);
   });
   document.getElementById('contactDirect').innerHTML = chips.join('');
 
@@ -1219,7 +1429,7 @@ function renderWidgets() {
       <div class="social-card">
         <span class="social-ico">${ICONOS_RED.tripadvisor}</span>
         <h3>TripAdvisor</h3>
-        <p>Reseñas verificadas de viajeros que ya viajaron con nosotros.</p>
+        <p>${esc(T('socialTaTexto'))}</p>
         <div class="ta-badge">
           <div id="TA_certificateOfExcellence${uniq}" class="TA_certificateOfExcellence">
             <ul class="TA_links">
@@ -1233,7 +1443,7 @@ function renderWidgets() {
             </ul>
           </div>
         </div>
-        <a class="btn-outline" href="${esc(r.tripadvisor)}" target="_blank" rel="noopener">Leer reseñas</a>
+        <a class="btn-outline" href="${esc(r.tripadvisor)}" target="_blank" rel="noopener">${esc(T('socialTaBoton'))}</a>
       </div>`);
   }
 
@@ -1243,8 +1453,8 @@ function renderWidgets() {
       <div class="social-card">
         <span class="social-ico">${ICONOS_RED.facebook}</span>
         <h3>Facebook</h3>
-        <p>Novedades, promociones y fotos de nuestros traslados y tours.</p>
-        <a class="btn-outline" href="${esc(r.facebook)}" target="_blank" rel="noopener">Seguir en Facebook</a>
+        <p>${esc(T('socialFbTexto'))}</p>
+        <a class="btn-outline" href="${esc(r.facebook)}" target="_blank" rel="noopener">${esc(T('socialFbBoton'))}</a>
       </div>`);
   }
 
@@ -1254,8 +1464,8 @@ function renderWidgets() {
       <div class="social-card">
         <span class="social-ico">${ICONOS_RED.instagram}</span>
         <h3>Instagram</h3>
-        <p>El día a día en Cancún, Tulum, Holbox y la Riviera Maya.</p>
-        <a class="btn-outline" href="${esc(r.instagram)}" target="_blank" rel="noopener">Seguir en Instagram</a>
+        <p>${esc(T('socialIgTexto'))}</p>
+        <a class="btn-outline" href="${esc(r.instagram)}" target="_blank" rel="noopener">${esc(T('socialIgBoton'))}</a>
       </div>`);
   }
 
@@ -1264,14 +1474,16 @@ function renderWidgets() {
   // El script de TripAdvisor reemplaza el sello estático por el widget vivo.
   // Se carga una sola vez y de forma diferida: si TripAdvisor no responde,
   // la tarjeta sigue mostrando el sello y el enlace a las reseñas.
-  if (ta.activo && r.tripadvisor && !document.getElementById('taScript')) {
+  const viejo = document.getElementById('taScript');
+  if (viejo) viejo.remove();
+  if (ta.activo && r.tripadvisor) {
     const sc = document.createElement('script');
     sc.id = 'taScript';
     sc.async = true;
     sc.src = 'https://www.jscache.com/wejs?wtype=certificateOfExcellence'
            + '&uniq=' + encodeURIComponent(ta.uniq || '663')
            + '&locationId=' + encodeURIComponent(ta.locationId || '')
-           + '&lang=' + encodeURIComponent(ta.idioma || 'en_AU')
+           + '&lang=' + encodeURIComponent(trad(ta.idioma) || 'en_AU')
            + '&year=' + encodeURIComponent(ta.anio || '2026')
            + '&display_version=2';
     document.body.appendChild(sc);
@@ -1285,6 +1497,9 @@ function renderSchema() {
     const data = JSON.parse(el.textContent);
     const c = C.contacto || {}, m = C.marca || {};
     if (m.nombreCompleto) data.name = m.nombreCompleto;
+    const seoHome = (L.seo && L.seo.home) || {};
+    if (seoHome.descripcion) data.description = seoHome.descripcion;
+    data.inLanguage = (metaDe(LANG).htmlLang) || LANG;
     if (m.dominio) data.url = m.dominio;
     if (c.email) data.email = c.email;
     if (c.telefonos && c.telefonos[0]) data.telephone = c.telefonos[0].marcar;
@@ -1397,25 +1612,41 @@ if (!window.TEVE_CONFIG) {
   console.error('TEVE: no se encontró teve-config.js. Súbelo junto a index.html.');
 }
 
-renderMarca();
-renderMenu();
-renderTopbar();
-renderPortada();
-renderServicios();
-renderTours();
-renderDestinos();
-renderTim();
-renderBlog();
-renderContacto();
-renderWidgets();
-renderSchema();
+// Todo lo que depende del idioma se repinta de golpe al cambiarlo.
+function renderTodo() {
+  renderMarca();
+  renderMenu();
+  renderTopbar();
+  renderPortada();
+  renderServicios();
+  renderTours();
+  renderDestinos();
+  renderTim();
+  renderBlog();
+  renderContacto();
+  renderWidgets();
+  renderSchema();
+}
+
+const inicio = leerURL();
+LANG = detectarIdioma(inicio.idioma);
+L = TEXTOS[LANG] || {};
+document.documentElement.lang = metaDe(LANG).htmlLang || LANG;
+const ogLocaleEl = document.querySelector('meta[property="og:locale"]');
+if (ogLocaleEl && metaDe(LANG).ogLocale) ogLocaleEl.setAttribute('content', metaDe(LANG).ogLocale);
+
+aplicarI18n();
+renderSelectorIdioma();
+renderTodo();
 renderAnalitica();
 
 initCanvasSuave(document.getElementById('heroCanvas'));
 initCanvasSuave(document.getElementById('whyCanvasHome'));
 initCanvasSuave(document.getElementById('whyCanvasTim'));
 
-showPage(paginaDesdeURL(), false);
+// Si el idioma detectado no es el de la dirección, se corrige la barra
+// del navegador para que la dirección y el contenido siempre coincidan.
+showPage(inicio.pagina, LANG !== IDIOMA_DEF || inicio.idioma != null);
 </script>
 
 </body>

@@ -16,11 +16,11 @@ import base64
 import pathlib
 
 RAIZ = pathlib.Path(__file__).parent
-IMAGENES = ('img/logo-teve.svg', 'img/logo-teve-blanco.svg', 'img/favicon.svg')
+IMAGENES = ('/img/logo-teve.svg', '/img/logo-teve-blanco.svg', '/img/favicon.svg')
 
 
 def a_data_uri(ruta):
-    datos = (RAIZ / ruta).read_bytes()
+    datos = (RAIZ / ruta.lstrip('/')).read_bytes()
     return 'data:image/svg+xml;base64,' + base64.b64encode(datos).decode()
 
 
@@ -30,7 +30,7 @@ def main():
         config = config.replace('"%s"' % ruta, '"%s"' % a_data_uri(ruta))
 
     html = (RAIZ / 'index.html').read_text(encoding='utf-8')
-    etiqueta = '<script src="teve-config.js"></script>'
+    etiqueta = '<script src="/teve-config.js"></script>'
     if etiqueta not in html:
         raise SystemExit('No se encontró la etiqueta del config en index.html')
 

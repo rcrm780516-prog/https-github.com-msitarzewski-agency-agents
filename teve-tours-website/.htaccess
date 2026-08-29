@@ -19,12 +19,32 @@
   RewriteRule ^(.*)$ https://www.tevetours.com/$1 [R=301,L]
 
   # ------------------------------------------------------------------------
-  # 2. Rutas internas del sitio (/servicios, /tours, ...) sirven index.html
-  #    Sin esto, entrar directo a www.tevetours.com/tours daría error 404.
+  # 2. Rutas internas del sitio: todas sirven index.html conservando la
+  #    dirección en la barra del navegador. Sin esto, entrar directo a
+  #    www.tevetours.com/tours daría error 404.
+  #
+  #    Inglés (raíz):   /services /tours /destinations /about-tim /blog /contact
+  #    Español:         /es/ y /es/servicios /es/tours /es/destinos ...
+  #    Portugués:       /pt/ y /pt/servicos /pt/passeios /pt/destinos ...
+  #
+  #    Los slugs viejos en español que estaban en la raíz se redirigen a su
+  #    nueva dirección con 301, para no perder los enlaces ya publicados.
   # ------------------------------------------------------------------------
+  RewriteRule ^servicios/?$   /es/servicios [R=301,L]
+  RewriteRule ^destinos/?$    /es/destinos  [R=301,L]
+  RewriteRule ^contacto/?$    /es/contacto  [R=301,L]
+
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(servicios|tours|destinos|tim|blog|contacto)/?$ /index.html [L]
+  RewriteRule ^(services|tours|destinations|about-tim|blog|contact)/?$ /index.html [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^es(/(servicios|tours|destinos|tim|blog|contacto))?/?$ /index.html [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^pt(/(servicos|passeios|destinos|tim|blog|contato))?/?$ /index.html [L]
 </IfModule>
 
 # --------------------------------------------------------------------------

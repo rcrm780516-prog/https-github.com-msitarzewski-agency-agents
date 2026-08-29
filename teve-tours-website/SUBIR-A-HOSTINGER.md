@@ -167,3 +167,37 @@ Para encontrar el error exacto: abre la página, presiona **F12**, pestaña
 - [ ] SSL activo (candado verde en el navegador)
 - [ ] `sitemap.xml` enviado a Google Search Console
 - [ ] Probado en el celular
+
+---
+
+## El sitio en tres idiomas
+
+La versión original es el **inglés** y vive en la raíz. El español y el
+portugués viven bajo su propio prefijo:
+
+| Idioma | Portada | Ejemplo de página interna |
+|---|---|---|
+| Inglés (original) | `tevetours.com/` | `tevetours.com/tours` |
+| Español | `tevetours.com/es/` | `tevetours.com/es/tours` |
+| Portugués | `tevetours.com/pt/` | `tevetours.com/pt/passeios` |
+
+**No hay que crear carpetas `es/` ni `pt/` en el servidor.** El `.htaccess`
+se encarga de que esas direcciones sirvan el mismo `index.html`, y el sitio
+detecta el idioma solo. Por eso el `.htaccess` es obligatorio.
+
+Un visitante de Brasil que entre a `tevetours.com` ve el portugués
+automáticamente; uno de Reino Unido ve el inglés. Quien cambie de idioma a
+mano queda recordado en su navegador.
+
+Para editar un texto, búscalo dentro de `textos:` en `teve-config.js` y
+cámbialo en los tres bloques (`en:`, `es:`, `pt:`). Las fotos y los precios
+NO se repiten: viven una sola vez en la PARTE A del archivo.
+
+### Después de subir, en Google Search Console
+
+1. Manda el sitemap: `https://www.tevetours.com/sitemap.xml`
+   Trae las 21 direcciones (7 páginas × 3 idiomas) con sus etiquetas
+   `hreflang`, que es como Google sabe qué versión servir a cada país.
+2. En **Configuración → Segmentación internacional** no fijes un país:
+   el sitio apunta a Reino Unido, Australia, Estados Unidos y Canadá a la
+   vez, y fijar México los perjudicaría.

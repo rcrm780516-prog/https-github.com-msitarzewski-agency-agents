@@ -1,8 +1,17 @@
 # robots.txt — TEVE Transfers & Tours
 # https://www.tevetours.com
 
+# El sitio existe en tres idiomas y los tres deben indexarse:
+#   Inglés (original)  /            /services  /tours  /destinations …
+#   Español            /es/         /es/servicios  /es/tours …
+#   Portugués          /pt/         /pt/servicos   /pt/passeios …
+# El idioma que Google sirve a cada país lo deciden las etiquetas hreflang
+# del sitemap y del <head>, no este archivo.
+
 User-agent: *
 Allow: /
+Allow: /es/
+Allow: /pt/
 # El contenido del sitio se arma con JavaScript: Google necesita poder leer
 # estos archivos para indexar las páginas. No los bloquees.
 Allow: /teve-config.js

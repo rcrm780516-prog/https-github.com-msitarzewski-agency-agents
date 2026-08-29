@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Transportación Privada y Tours en Cancún | TEVE Transfers &amp; Tours</title>
-<meta name="description" content="Transfers privados del aeropuerto de Cancún, chofer privado por día y tours a la medida en Riviera Maya. Reserva directo por WhatsApp con Tim.">
+<title>Cancun Airport Transfers &amp; Private Riviera Maya Tours</title>
+<meta name="description" content="Private Cancun airport transfers and custom Riviera Maya tours for travellers from the UK, Australia, the US and Canada. Book direct on WhatsApp.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="TEVE Transfers &amp; Tours">
 <link rel="canonical" href="https://www.tevetours.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TEVE Transfers &amp; Tours">
-<meta property="og:title" content="Transportación Privada y Tours en Cancún | TEVE Transfers &amp; Tours">
-<meta property="og:description" content="Transfers privados del aeropuerto de Cancún, chofer privado por día y tours a la medida en Riviera Maya.">
+<meta property="og:title" content="Cancun Airport Transfers &amp; Private Riviera Maya Tours">
+<meta property="og:description" content="Private Cancun airport transfers and custom Riviera Maya tours across Cancun, Tulum and the Riviera Maya.">
 <meta property="og:url" content="https://www.tevetours.com/">
-<meta property="og:locale" content="es_MX">
+<meta property="og:locale" content="en_US">
+<!-- Las etiquetas hreflang de cada idioma se inyectan solas al cargar. -->
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +29,7 @@
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   "name": "TEVE Transfers & Tours",
-  "description": "Transportación privada, chofer privado y tours privados en Cancún y Riviera Maya.",
+  "description": "Private transport, private drivers and private tours in Cancun and the Riviera Maya.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Zona Hotelera",
@@ -46,62 +47,91 @@
 }
 </script>
 
-<!-- ARCHIVO DE PERSONALIZACIÓN: logo, imágenes, teléfonos, precios y textos -->
+<!-- ARCHIVO DE PERSONALIZACIÓN: logo, imágenes, teléfonos, precios y textos.
+     La ruta empieza con "/" a propósito: así también carga bien desde las
+     direcciones con idioma, como /es/destinos o /pt/passeios. -->
 <!-- DEMO: el config y el logotipo viajan dentro de este archivo -->
 <script>
 /* ==========================================================================
-   TEVE TRANSFERS & TOURS — ARCHIVO DE PERSONALIZACIÓN (EMBEBEDOR)
+   TEVE TRANSFERS & TOURS — ARCHIVO DE PERSONALIZACIÓN (EL "EMBEBEDOR")
    ==========================================================================
 
-   ESTE ES EL ÚNICO ARCHIVO QUE NECESITAS EDITAR.
+   Este es el ÚNICO archivo que necesitas editar. No toques index.html.
 
    Aquí se cambian: el logotipo, TODAS las imágenes, los teléfonos,
-   el WhatsApp, los correos, las redes sociales, los precios,
-   los tours, los destinos, las reseñas y los artículos del blog.
-
-   NO necesitas tocar index.html para nada.
+   los precios, los textos y el SEO — en los TRES IDIOMAS.
 
    --------------------------------------------------------------------------
-   CÓMO PONER UNA IMAGEN O EL LOGOTIPO — 3 FORMAS, todas válidas:
+   CÓMO ESTÁ ORGANIZADO
    --------------------------------------------------------------------------
+   PARTE A — Datos que NO cambian entre idiomas:
+             logotipo, teléfonos, correo, redes sociales, imágenes,
+             widgets y analítica. Se editan una sola vez.
 
-   FORMA 1 (RECOMENDADA) — Subir el archivo a Hostinger:
-       Sube tus fotos a la carpeta  public_html/img/
-       y aquí escribes la ruta:      "img/logo.png"
-                                     "img/hero-cancun.jpg"
-
-   FORMA 2 — Usar una imagen que ya está en internet:
-       "https://www.tevetours.com/wp-content/uploads/foto.jpg"
-       (también sirve un enlace de Google Drive público, Cloudinary, etc.)
-
-   FORMA 3 — Incrustar la imagen dentro de este mismo archivo (base64):
-       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg..."
-       Útil para el logo, así viaja dentro del código y nunca se rompe.
-       Convierte tu archivo en: https://www.base64-image.de/
-
-   DEJAR EN BLANCO ("") ES VÁLIDO:
-       Si dejas una imagen vacía, la página muestra automáticamente un
-       fondo degradado animado con los colores de la marca. El sitio nunca
-       se ve roto ni con imágenes rotas. Puedes ir subiendo fotos poco a poco.
+   PARTE B — Textos, uno por idioma, dentro de  textos: { en, es, pt }.
+             El inglés (en) es la versión original: es el idioma del
+             mercado principal (Reino Unido, Australia, Estados Unidos y
+             Canadá). El español y el portugués son traducciones.
 
    --------------------------------------------------------------------------
-   MEDIDAS RECOMENDADAS DE LAS IMÁGENES
+   CÓMO PONER UNA IMAGEN — hay tres formas, todas válidas
    --------------------------------------------------------------------------
-       Logo (fondo claro).......... PNG transparente   400 x 120 px
-       Logo (fondo oscuro/blanco).. PNG transparente   400 x 120 px
-       Favicon..................... PNG                 32 x  32 px
-       Hero (portada).............. JPG               1920 x 1080 px
-       Servicios................... JPG                800 x  500 px
-       Tours....................... JPG                800 x  500 px
-       Destinos.................... JPG                800 x 1000 px (vertical)
-       Foto de Tim................. JPG                800 x  800 px
-       Imagen para redes (OG)...... JPG               1200 x  630 px
+   1) ARCHIVO SUBIDO (lo normal)
+      Sube la foto a la carpeta  img/  de tu hosting y escribe la ruta
+      empezando con una barra, para que también funcione en /es/ y /pt/:
+          "/img/hero-cancun.jpg"
 
-   Comprime las fotos antes de subirlas en https://squoosh.app
-   (bajo 300 KB cada una) para que la página cargue rápido en Google.
+   2) DIRECCIÓN DE INTERNET
+      Si la foto ya está publicada en otro lado:
+          "https://misitio.com/foto.jpg"
+
+   3) INCRUSTADA (base64)
+      Conviértela en https://www.base64-image.de y pega el resultado:
+          "data:image/jpeg;base64,/9j/4AAQSkZJRg..."
+      Así viaja dentro del código y nunca se rompe. Ideal para el logo.
+
+   Si dejas una imagen en "" el sitio muestra un degradado animado con los
+   colores de la marca. Nunca se ve rota ni con el ícono de imagen perdida.
+   Las medidas recomendadas están en  img/LEEME.txt
+
+   --------------------------------------------------------------------------
+   REGLA DE ORO PARA EDITAR
+   --------------------------------------------------------------------------
+   El texto va SIEMPRE entre comillas dobles y cada línea termina en coma.
+   Si borras una comilla o una coma, la página sale en blanco. Si eso pasa:
+   abre la página, presiona F12, pestaña Console, y ahí te dice la línea.
    ========================================================================== */
 
 window.TEVE_CONFIG = {
+
+  /* ==========================================================================
+     PARTE A — DATOS COMUNES A LOS TRES IDIOMAS
+     ========================================================================== */
+
+  /* ======================================================================
+     0. IDIOMAS
+     ----------------------------------------------------------------------
+     El idioma por defecto es el que ve quien entra a tevetours.com sin
+     indicar nada, y el que Google usa como versión principal del sitio.
+
+     Está en inglés a propósito: tus clientes vienen de Reino Unido,
+     Australia, Estados Unidos y Canadá.
+
+     Direcciones que genera el sitio:
+         Inglés     tevetours.com/            tevetours.com/tours
+         Español    tevetours.com/es/         tevetours.com/es/tours
+         Portugués  tevetours.com/pt/         tevetours.com/pt/tours
+
+     Para quitar un idioma, bórralo de idiomasActivos y desaparece del
+     selector, del mapa del sitio y de las etiquetas hreflang.
+     ====================================================================== */
+  idiomaPorDefecto: "en",
+  idiomasActivos: ["en", "es", "pt"],
+
+  // Detectar el idioma del navegador y redirigir la primera visita.
+  // true  = un visitante de Brasil que entra a tevetours.com ve el portugués.
+  // false = todos ven inglés hasta que cambian de idioma a mano.
+  detectarIdiomaDelNavegador: true,
 
   /* ======================================================================
      1. MARCA Y LOGOTIPO
@@ -109,21 +139,17 @@ window.TEVE_CONFIG = {
   marca: {
     nombre: "TEVE",
     nombreCompleto: "TEVE Transfers & Tours",
-    tagline: "Transfers & Tours",
     dominio: "https://www.tevetours.com",
 
-    // ---- LOGOTIPO ----
-    // Déjalo en "" y se muestra el logotipo de texto "TEVE / Transfers & Tours".
-    // Pon la ruta de tu archivo para usar el logotipo real.
     // El logotipo oficial de TEVE está incluido como SVG vectorial (nítido en
     // cualquier tamaño y pantalla). Si prefieres tu archivo PNG original,
     // súbelo a img/ y cambia la ruta aquí — no hay que tocar nada más.
     logo:        "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRFVkUgVHJhbnNmZXJzICZhbXA7IFRvdXJzIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icGx1bWFqZSIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzZkY2ZkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjYTNjNmZiIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdhYWNmNSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icGx1bWFqZUhvbmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4ZmJhZjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNWY5N2VmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHBhdGggaWQ9ImFyY29TdXBlcmlvciIgZD0iTSA1Mi45IDI3MyBBIDE5MCAxOTAgMCAxIDEgNDI3LjEgMjczIiBmaWxsPSJub25lIi8+CiAgICA8cGF0aCBpZD0iYXJjb0luZmVyaW9yIiBkPSJNIDcyLjMgMzE4LjIgQSAxODUgMTg1IDAgMCAwIDQwNy43IDMxOC4yIiBmaWxsPSJub25lIi8+CiAgPC9kZWZzPgoKICA8IS0tIGFuaWxsbyBleHRlcmlvciAtLT4KICA8Y2lyY2xlIGN4PSIyNDAiIGN5PSIyNDAiIHI9IjIyOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGQwZDBkIiBzdHJva2Utd2lkdGg9IjciLz4KCiAgPCEtLSBhbmlsbG9zIGludGVyaW9yZXMgcGFydGlkb3MgLS0+CiAgPHBhdGggZD0iTSAxMDQuMSAxNzYuNiBBIDE1MCAxNTAgMCAwIDEgMzc1LjkgMTc2LjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzBkMGQwZCIgc3Ryb2tlLXdpZHRoPSIyLjQiLz4KICA8cGF0aCBkPSJNIDEwNC4xIDMwMy40IEEgMTUwIDE1MCAwIDAgMCAzNzUuOSAzMDMuNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMGQwZDBkIiBzdHJva2Utd2lkdGg9IjIuNCIvPgoKICA8IS0tIGd1YWNhbWF5YSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMiw2KSBzY2FsZSgwLjg0KSI+CiAgICA8IS0tIGNvbGEgbGFyZ2EgaW5mZXJpb3IgLS0+CiAgICA8cGF0aCBkPSJNMjcyIDI1NmMxNCA0NiA2IDg5LTIyIDEyOC0xMSAxNS0yNSAyOC00MiAzOCAyNC0zNSAzOC02NyA0NC05NyA2LTMwIDUtNTMtNi02OXoiIGZpbGw9InVybCgjcGx1bWFqZUhvbmRvKSIvPgogICAgPCEtLSBiYXJyaWRvIHByaW5jaXBhbCBkZWwgY3VlcnBvIC0tPgogICAgPHBhdGggZD0iTTMwNSAxOThjNCA3NC00NCAxMjgtMTY3IDEzOCA4NC0zMCAxMzQtNzIgMTQ5LTE0MHoiIGZpbGw9InVybCgjcGx1bWFqZSkiLz4KICAgIDwhLS0gYWxhIHN1cGVyaW9yIC0tPgogICAgPHBhdGggZD0iTTI5MyAyMTBjLTQgNDgtNDIgODQtMTEwIDEwMiA1NS0zMiA4OS02NiAxMDItMTA0eiIgZmlsbD0idXJsKCNwbHVtYWplSG9uZG8pIi8+CiAgICA8IS0tIHBsdW1hcyBtZWRpYXMgLS0+CiAgICA8cGF0aCBkPSJNMjc4IDI2NmMtMiAzMi0yNiA1OC02OCA3NiAzNC0yNyA1Ni01MiA2NC03OHoiIGZpbGw9InVybCgjcGx1bWFqZSkiLz4KICAgIDwhLS0gY2FiZXphIGNvbiBwZW5hY2hvIC0tPgogICAgPHBhdGggZD0iTTI1NiAxOThjLTEwLTQzIDE1LTc0IDUyLTc0IDM0IDAgNTkgMjYgNTcgNTktMSAyMi0xNSA0MC0zNSA0OC02LTE3LTE5LTI5LTM3LTMxLTE1LTItMjggMS0zNyAxMHoiIGZpbGw9InVybCgjcGx1bWFqZSkiLz4KICAgIDwhLS0gcGljbyBnYW5jaHVkbyAtLT4KICAgIDxwYXRoIGQ9Ik0zNTIgMTU1YzE5LTEgMzMgMTIgMzMgMjkgMCAxNi0xMiAyOC0yOCAyOSA4LTkgMTItMTkgMTEtMzAtMS0xMS03LTIxLTE2LTI4eiIgZmlsbD0idXJsKCNwbHVtYWplSG9uZG8pIi8+CiAgICA8cGF0aCBkPSJNMzYyIDE2OGM5IDEgMTUgOCAxNCAxNy0xIDgtNyAxNC0xNSAxNSA0LTUgNi0xMCA2LTE2IDAtNi0yLTExLTUtMTZ6IiBmaWxsPSIjNWY5N2VmIi8+CiAgICA8IS0tIG9qbyAtLT4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjE2MCIgcj0iNy41IiBmaWxsPSIjMGQwZDBkIi8+CiAgPC9nPgoKICA8IS0tIHRpcG9ncmFmw61hIGNpcmN1bGFyIC0tPgogIDxnIGZpbGw9IiMwZDBkMGQiIGZvbnQtZmFtaWx5PSJSb2JvdG8sICdIZWx2ZXRpY2EgTmV1ZScsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIj4KICAgIDx0ZXh0IGZvbnQtc2l6ZT0iMzciIGxldHRlci1zcGFjaW5nPSI3LjUiPgogICAgICA8dGV4dFBhdGggaHJlZj0iI2FyY29TdXBlcmlvciIgc3RhcnRPZmZzZXQ9IjUwJSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VFJBTlNGRVJTICZhbXA7IFRPVVJTPC90ZXh0UGF0aD4KICAgIDwvdGV4dD4KICAgIDx0ZXh0IGZvbnQtc2l6ZT0iNTIiIGxldHRlci1zcGFjaW5nPSIxNyI+CiAgICAgIDx0ZXh0UGF0aCBocmVmPSIjYXJjb0luZmVyaW9yIiBzdGFydE9mZnNldD0iNTAlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5URVZFPC90ZXh0UGF0aD4KICAgIDwvdGV4dD4KICA8L2c+Cjwvc3ZnPgo=",         // barra de navegación (fondo blanco)
-    logoBlanco:  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRFVkUgVHJhbnNmZXJzICZhbXA7IFRvdXJzIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icGx1bWFqZSIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzZkY2ZkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjYTNjNmZiIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdhYWNmNSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icGx1bWFqZUhvbmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4ZmJhZjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNWY5N2VmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHBhdGggaWQ9ImFyY29TdXBlcmlvciIgZD0iTSA1Mi45IDI3MyBBIDE5MCAxOTAgMCAxIDEgNDI3LjEgMjczIiBmaWxsPSJub25lIi8+CiAgICA8cGF0aCBpZD0iYXJjb0luZmVyaW9yIiBkPSJNIDcyLjMgMzE4LjIgQSAxODUgMTg1IDAgMCAwIDQwNy43IDMxOC4yIiBmaWxsPSJub25lIi8+CiAgPC9kZWZzPgoKICA8IS0tIGFuaWxsbyBleHRlcmlvciAtLT4KICA8Y2lyY2xlIGN4PSIyNDAiIGN5PSIyNDAiIHI9IjIyOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjciLz4KCiAgPCEtLSBhbmlsbG9zIGludGVyaW9yZXMgcGFydGlkb3MgLS0+CiAgPHBhdGggZD0iTSAxMDQuMSAxNzYuNiBBIDE1MCAxNTAgMCAwIDEgMzc1LjkgMTc2LjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyLjQiLz4KICA8cGF0aCBkPSJNIDEwNC4xIDMwMy40IEEgMTUwIDE1MCAwIDAgMCAzNzUuOSAzMDMuNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjIuNCIvPgoKICA8IS0tIGd1YWNhbWF5YSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMiw2KSBzY2FsZSgwLjg0KSI+CiAgICA8IS0tIGNvbGEgbGFyZ2EgaW5mZXJpb3IgLS0+CiAgICA8cGF0aCBkPSJNMjcyIDI1NmMxNCA0NiA2IDg5LTIyIDEyOC0xMSAxNS0yNSAyOC00MiAzOCAyNC0zNSAzOC02NyA0NC05NyA2LTMwIDUtNTMtNi02OXoiIGZpbGw9InVybCgjcGx1bWFqZUhvbmRvKSIvPgogICAgPCEtLSBiYXJyaWRvIHByaW5jaXBhbCBkZWwgY3VlcnBvIC0tPgogICAgPHBhdGggZD0iTTMwNSAxOThjNCA3NC00NCAxMjgtMTY3IDEzOCA4NC0zMCAxMzQtNzIgMTQ5LTE0MHoiIGZpbGw9InVybCgjcGx1bWFqZSkiLz4KICAgIDwhLS0gYWxhIHN1cGVyaW9yIC0tPgogICAgPHBhdGggZD0iTTI5MyAyMTBjLTQgNDgtNDIgODQtMTEwIDEwMiA1NS0zMiA4OS02NiAxMDItMTA0eiIgZmlsbD0idXJsKCNwbHVtYWplSG9uZG8pIi8+CiAgICA8IS0tIHBsdW1hcyBtZWRpYXMgLS0+CiAgICA8cGF0aCBkPSJNMjc4IDI2NmMtMiAzMi0yNiA1OC02OCA3NiAzNC0yNyA1Ni01MiA2NC03OHoiIGZpbGw9InVybCgjcGx1bWFqZSkiLz4KICAgIDwhLS0gY2FiZXphIGNvbiBwZW5hY2hvIC0tPgogICAgPHBhdGggZD0iTTI1NiAxOThjLTEwLTQzIDE1LTc0IDUyLTc0IDM0IDAgNTkgMjYgNTcgNTktMSAyMi0xNSA0MC0zNSA0OC02LTE3LTE5LTI5LTM3LTMxLTE1LTItMjggMS0zNyAxMHoiIGZpbGw9InVybCgjcGx1bWFqZSkiLz4KICAgIDwhLS0gcGljbyBnYW5jaHVkbyAtLT4KICAgIDxwYXRoIGQ9Ik0zNTIgMTU1YzE5LTEgMzMgMTIgMzMgMjkgMCAxNi0xMiAyOC0yOCAyOSA4LTkgMTItMTkgMTEtMzAtMS0xMS03LTIxLTE2LTI4eiIgZmlsbD0idXJsKCNwbHVtYWplSG9uZG8pIi8+CiAgICA8cGF0aCBkPSJNMzYyIDE2OGM5IDEgMTUgOCAxNCAxNy0xIDgtNyAxNC0xNSAxNSA0LTUgNi0xMCA2LTE2IDAtNi0yLTExLTUtMTZ6IiBmaWxsPSIjNWY5N2VmIi8+CiAgICA8IS0tIG9qbyAtLT4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjE2MCIgcj0iNy41IiBmaWxsPSIjMDIyMjJlIi8+CiAgPC9nPgoKICA8IS0tIHRpcG9ncmFmw61hIGNpcmN1bGFyIC0tPgogIDxnIGZpbGw9IiNmZmZmZmYiIGZvbnQtZmFtaWx5PSJSb2JvdG8sICdIZWx2ZXRpY2EgTmV1ZScsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIj4KICAgIDx0ZXh0IGZvbnQtc2l6ZT0iMzciIGxldHRlci1zcGFjaW5nPSI3LjUiPgogICAgICA8dGV4dFBhdGggaHJlZj0iI2FyY29TdXBlcmlvciIgc3RhcnRPZmZzZXQ9IjUwJSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VFJBTlNGRVJTICZhbXA7IFRPVVJTPC90ZXh0UGF0aD4KICAgIDwvdGV4dD4KICAgIDx0ZXh0IGZvbnQtc2l6ZT0iNTIiIGxldHRlci1zcGFjaW5nPSIxNyI+CiAgICAgIDx0ZXh0UGF0aCBocmVmPSIjYXJjb0luZmVyaW9yIiBzdGFydE9mZnNldD0iNTAlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5URVZFPC90ZXh0UGF0aD4KICAgIDwvdGV4dD4KICA8L2c+Cjwvc3ZnPgo=",  // pie de página oscuro
-    logoAlto:    "56", // altura del logo en píxeles dentro de la barra de navegación
+    logoBlanco:  "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRFVkUgVHJhbnNmZXJzICZhbXA7IFRvdXJzIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icGx1bWFqZSIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjYzZkY2ZkIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNTUlIiBzdG9wLWNvbG9yPSIjYTNjNmZiIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdhYWNmNSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icGx1bWFqZUhvbmRvIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM4ZmJhZjgiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNWY5N2VmIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPHBhdGggaWQ9ImFyY29TdXBlcmlvciIgZD0iTSA1Mi45IDI3MyBBIDE5MCAxOTAgMCAxIDEgNDI3LjEgMjczIiBmaWxsPSJub25lIi8+CiAgICA8cGF0aCBpZD0iYXJjb0luZmVyaW9yIiBkPSJNIDcyLjMgMzE4LjIgQSAxODUgMTg1IDAgMCAwIDQwNy43IDMxOC4yIiBmaWxsPSJub25lIi8+CiAgPC9kZWZzPgoKICA8IS0tIGFuaWxsbyBleHRlcmlvciAtLT4KICA8Y2lyY2xlIGN4PSIyNDAiIGN5PSIyNDAiIHI9IjIyOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjciLz4KCiAgPCEtLSBhbmlsbG9zIGludGVyaW9yZXMgcGFydGlkb3MgLS0+CiAgPHBhdGggZD0iTSAxMDQuMSAxNzYuNiBBIDE1MCAxNTAgMCAwIDEgMzc1LjkgMTc2LjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyLjQiLz4KICA8cGF0aCBkPSJNIDEwNC4xIDMwMy40IEEgMTUwIDE1MCAwIDAgMCAzNzUuOSAzMDMuNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjIuNCIvPgoKICA8IS0tIGd1YWNhbWF5YSAtLT4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMiw2KSBzY2FsZSgwLjg0KSI+CiAgICA8IS0tIGNvbGEgbGFyZ2EgaW5mZXJpb3IgLS0+CiAgICA8cGF0aCBkPSJNMjcyIDI1NmMxNCA0NiA2IDg5LTIyIDEyOC0xMSAxNS0yNSAyOC00MiAzOCAyNC0zNSAzOC02NyA0NC05NyA2LTMwIDUtNTMtNi02OXoiIGZpbGw9InVybCgjcGx1bWFqZUhvbmRvKSIvPgogICAgPCEtLSBiYXJyaWRvIHByaW5jaXBhbCBkZWwgY3VlcnBvIC0tPgogICAgPHBhdGggZD0iTTMwNSAxOThjNCA3NC00NCAxMjgtMTY3IDEzOCA4NC0zMCAxMzQtNzIgMTQ5LTE0MHoiIGZpbGw9InVybCgjcGx1bWFqZSkiLz4KICAgIDwhLS0gYWxhIHN1cGVyaW9yIC0tPgogICAgPHBhdGggZD0iTTI5MyAyMTBjLTQgNDgtNDIgODQtMTEwIDEwMiA1NS0zMiA4OS02NiAxMDItMTA0eiIgZmlsbD0idXJsKCNwbHVtYWplSG9uZG8pIi8+CiAgICA8IS0tIHBsdW1hcyBtZWRpYXMgLS0+CiAgICA8cGF0aCBkPSJNMjc4IDI2NmMtMiAzMi0yNiA1OC02OCA3NiAzNC0yNyA1Ni01MiA2NC03OHoiIGZpbGw9InVybCgjcGx1bWFqZSkiLz4KICAgIDwhLS0gY2FiZXphIGNvbiBwZW5hY2hvIC0tPgogICAgPHBhdGggZD0iTTI1NiAxOThjLTEwLTQzIDE1LTc0IDUyLTc0IDM0IDAgNTkgMjYgNTcgNTktMSAyMi0xNSA0MC0zNSA0OC02LTE3LTE5LTI5LTM3LTMxLTE1LTItMjggMS0zNyAxMHoiIGZpbGw9InVybCgjcGx1bWFqZSkiLz4KICAgIDwhLS0gcGljbyBnYW5jaHVkbyAtLT4KICAgIDxwYXRoIGQ9Ik0zNTIgMTU1YzE5LTEgMzMgMTIgMzMgMjkgMCAxNi0xMiAyOC0yOCAyOSA4LTkgMTItMTkgMTEtMzAtMS0xMS03LTIxLTE2LTI4eiIgZmlsbD0idXJsKCNwbHVtYWplSG9uZG8pIi8+CiAgICA8cGF0aCBkPSJNMzYyIDE2OGM5IDEgMTUgOCAxNCAxNy0xIDgtNyAxNC0xNSAxNSA0LTUgNi0xMCA2LTE2IDAtNi0yLTExLTUtMTZ6IiBmaWxsPSIjNWY5N2VmIi8+CiAgICA8IS0tIG9qbyAtLT4KICAgIDxjaXJjbGUgY3g9IjMwMCIgY3k9IjE2MCIgcj0iNy41IiBmaWxsPSIjMDIyMjJlIi8+CiAgPC9nPgoKICA8IS0tIHRpcG9ncmFmw61hIGNpcmN1bGFyIC0tPgogIDxnIGZpbGw9IiNmZmZmZmYiIGZvbnQtZmFtaWx5PSJSb2JvdG8sICdIZWx2ZXRpY2EgTmV1ZScsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iNzAwIj4KICAgIDx0ZXh0IGZvbnQtc2l6ZT0iMzciIGxldHRlci1zcGFjaW5nPSI3LjUiPgogICAgICA8dGV4dFBhdGggaHJlZj0iI2FyY29TdXBlcmlvciIgc3RhcnRPZmZzZXQ9IjUwJSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VFJBTlNGRVJTICZhbXA7IFRPVVJTPC90ZXh0UGF0aD4KICAgIDwvdGV4dD4KICAgIDx0ZXh0IGZvbnQtc2l6ZT0iNTIiIGxldHRlci1zcGFjaW5nPSIxNyI+CiAgICAgIDx0ZXh0UGF0aCBocmVmPSIjYXJjb0luZmVyaW9yIiBzdGFydE9mZnNldD0iNTAlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5URVZFPC90ZXh0UGF0aD4KICAgIDwvdGV4dD4KICA8L2c+Cjwvc3ZnPgo=",  // portada y pie de página oscuro
+    logoAlto:    "56", // altura del logo en píxeles dentro de la barra
 
     favicon:     "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0ODAgNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlRFVkUiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwbHVtYWplIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNjNmRjZmQiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSI1NSUiIHN0b3AtY29sb3I9IiNhM2M2ZmIiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjN2FhY2Y1Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJwbHVtYWplSG9uZG8iIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzhmYmFmOCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1Zjk3ZWYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxjaXJjbGUgY3g9IjI0MCIgY3k9IjI0MCIgcj0iMjQwIiBmaWxsPSIjMDIyMjJlIi8+CiAgPCEtLSBndWFjYW1heWEgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3LC0zNikiPgogICAgPCEtLSBjb2xhIGxhcmdhIGluZmVyaW9yIC0tPgogICAgPHBhdGggZD0iTTI3MiAyNTZjMTQgNDYgNiA4OS0yMiAxMjgtMTEgMTUtMjUgMjgtNDIgMzggMjQtMzUgMzgtNjcgNDQtOTcgNi0zMCA1LTUzLTYtNjl6IiBmaWxsPSJ1cmwoI3BsdW1hamVIb25kbykiLz4KICAgIDwhLS0gYmFycmlkbyBwcmluY2lwYWwgZGVsIGN1ZXJwbyAtLT4KICAgIDxwYXRoIGQ9Ik0zMDUgMTk4YzQgNzQtNDQgMTI4LTE2NyAxMzggODQtMzAgMTM0LTcyIDE0OS0xNDB6IiBmaWxsPSJ1cmwoI3BsdW1hamUpIi8+CiAgICA8IS0tIGFsYSBzdXBlcmlvciAtLT4KICAgIDxwYXRoIGQ9Ik0yOTMgMjEwYy00IDQ4LTQyIDg0LTExMCAxMDIgNTUtMzIgODktNjYgMTAyLTEwNHoiIGZpbGw9InVybCgjcGx1bWFqZUhvbmRvKSIvPgogICAgPCEtLSBwbHVtYXMgbWVkaWFzIC0tPgogICAgPHBhdGggZD0iTTI3OCAyNjZjLTIgMzItMjYgNTgtNjggNzYgMzQtMjcgNTYtNTIgNjQtNzh6IiBmaWxsPSJ1cmwoI3BsdW1hamUpIi8+CiAgICA8IS0tIGNhYmV6YSBjb24gcGVuYWNobyAtLT4KICAgIDxwYXRoIGQ9Ik0yNTYgMTk4Yy0xMC00MyAxNS03NCA1Mi03NCAzNCAwIDU5IDI2IDU3IDU5LTEgMjItMTUgNDAtMzUgNDgtNi0xNy0xOS0yOS0zNy0zMS0xNS0yLTI4IDEtMzcgMTB6IiBmaWxsPSJ1cmwoI3BsdW1hamUpIi8+CiAgICA8IS0tIHBpY28gZ2FuY2h1ZG8gLS0+CiAgICA8cGF0aCBkPSJNMzUyIDE1NWMxOS0xIDMzIDEyIDMzIDI5IDAgMTYtMTIgMjgtMjggMjkgOC05IDEyLTE5IDExLTMwLTEtMTEtNy0yMS0xNi0yOHoiIGZpbGw9InVybCgjcGx1bWFqZUhvbmRvKSIvPgogICAgPHBhdGggZD0iTTM2MiAxNjhjOSAxIDE1IDggMTQgMTctMSA4LTcgMTQtMTUgMTUgNC01IDYtMTAgNi0xNiAwLTYtMi0xMS01LTE2eiIgZmlsbD0iIzVmOTdlZiIvPgogICAgPCEtLSBvam8gLS0+CiAgICA8Y2lyY2xlIGN4PSIzMDAiIGN5PSIxNjAiIHI9IjcuNSIgZmlsbD0iIzAyMjIyZSIvPgogIDwvZz4KPC9zdmc+Cg==",   // ícono de la pestaña del navegador
-    imagenRedes: ""    // ej. "img/og-teve.jpg" — la que se ve al compartir en Facebook/WhatsApp
+    imagenRedes: ""    // ej. "/img/og-teve.jpg" (1200x630) — al compartir en redes
   },
 
   /* ======================================================================
@@ -134,17 +160,13 @@ window.TEVE_CONFIG = {
     // México: 52 + 1 + LADA + número.  Ejemplo real: "5219981234567"
     whatsapp: "529980000000",
 
-    // Mensaje que aparece ya escrito cuando el visitante abre WhatsApp.
-    whatsappTexto: "¡Hola! Quiero información de un servicio privado en Cancún.",
-
     email: "reservas@tevetours.com",
 
-    // Teléfonos que se muestran en el pie de página.
-    // Puedes agregar o quitar los que quieras.
+    // Teléfonos del pie de página. La etiqueta se traduce sola.
     telefonos: [
-      { etiqueta: "México",   numero: "+52 998 000 0000", marcar: "+529980000000" },
-      { etiqueta: "USA",      numero: "(786) 409-0545",   marcar: "+17864090545"  },
-      { etiqueta: "Sin costo", numero: "(800) 704-5202",  marcar: "+18007045202"  }
+      { etiqueta: { en: "Mexico",    es: "México",    pt: "México"       }, numero: "+52 998 000 0000", marcar: "+529980000000" },
+      { etiqueta: { en: "USA",       es: "EE. UU.",   pt: "EUA"          }, numero: "(786) 409-0545",   marcar: "+17864090545"  },
+      { etiqueta: { en: "Toll free", es: "Sin costo", pt: "Grátis"       }, numero: "(800) 704-5202",   marcar: "+18007045202"  }
     ],
 
     direccion: {
@@ -153,9 +175,7 @@ window.TEVE_CONFIG = {
       estado: "Quintana Roo",
       cp: "77500",
       pais: "MX"
-    },
-
-    horario: "Disponibles 24/7, los 365 días del año"
+    }
   },
 
   /* ======================================================================
@@ -174,264 +194,60 @@ window.TEVE_CONFIG = {
      4. IMÁGENES PRINCIPALES
      ====================================================================== */
   imagenes: {
-    hero:    "",  // Portada. ej. "img/hero-cancun.jpg"  (1920x1080)
-    timFoto: "",  // Foto de Tim. ej. "img/tim.jpg"      (800x800)
-    porQue:  "",  // Fondo de la sección "¿Por qué TEVE?" (1920x800)
+    hero:    "",  // Portada. ej. "/img/hero-cancun.jpg" (1920x1080)
+    timFoto: "",  // Foto de Tim. ej. "/img/tim.jpg"      (800x800)
+    porQue:  "",  // Fondo de la sección "Why TEVE?"      (1920x800)
     contacto:""   // Fondo de la sección de contacto (opcional)
   },
 
   /* ======================================================================
-     5. TEXTOS DE LA PORTADA
-     ====================================================================== */
-  portada: {
-    titulo: "Vive Cancún<br>a tu Manera",
-    subtitulo: "Transportación privada y tours a la medida en Cancún y Riviera Maya. Un solo chofer de confianza, del aeropuerto a tus recuerdos.",
+     5. IMÁGENES Y PRECIOS DE SERVICIOS, TOURS Y DESTINOS
+     ----------------------------------------------------------------------
+     Las fotos y los precios son los mismos en los tres idiomas, así que
+     viven aquí y NO se repiten en cada traducción. Cada bloque se une con
+     su texto por el campo  id  (los ids deben coincidir exactamente).
 
-    // Las 4 cifras de confianza que aparecen bajo el buscador.
-    metricas: [
-      { numero: "500+", texto: "Viajeros Felices" },
-      { numero: "5.0★", texto: "TripAdvisor" },
-      { numero: "8+",   texto: "Años en Cancún" },
-      { numero: "USD",  texto: "CAD y AUD aceptados" }
-    ]
-  },
-
-  /* ======================================================================
-     6. SERVICIOS
-     Agrega, quita o reordena bloques libremente.
-     "imagen" acepta ruta, URL o "" (degradado automático).
+     El orden de esta lista es el orden en que aparecen en el sitio.
      ====================================================================== */
   servicios: [
-    {
-      titulo: "Transfer Privado Aeropuerto ↔ Hotel",
-      texto: "Recepción con letrero en el aeropuerto, ayuda con equipaje y vehículo con aire acondicionado. Tu conductor te espera aunque tu vuelo se retrase.",
-      desde: "Desde $45 USD por trayecto",
-      imagen: "",
-      destacado: true   // true = también aparece en la portada
-    },
-    {
-      titulo: "Chofer Privado por Día",
-      texto: "Van de lujo y chofer bilingüe a tu disposición por horas o el día completo. Playas, restaurantes y compras a tu ritmo.",
-      desde: "Desde $180 USD por día",
-      imagen: "",
-      destacado: true
-    },
-    {
-      titulo: "Transportación para Grupos",
-      texto: "¿Planeas una conferencia, boda o evento corporativo? Contamos con flotilla y logística a la medida para grupos grandes.",
-      desde: "Desde $650 USD",
-      imagen: "",
-      destacado: true
-    },
-    {
-      titulo: "Catamarán a Isla Mujeres",
-      texto: "Zarpa hacia Isla Mujeres con snorkel incluido y tiempo libre en la isla. Todo coordinado por tu chofer TEVE.",
-      desde: "Desde $95 USD",
-      imagen: "",
-      destacado: false
-    },
-    {
-      titulo: "Renta de Yate Privado",
-      texto: "Desde una lancha deportiva hasta un catamarán de lujo. Día de pesca, atardecer o isla privada, tú decides.",
-      desde: "Desde $650 USD medio día",
-      imagen: "",
-      destacado: false
-    },
-    {
-      titulo: "Travel Concierge",
-      texto: "Planeación completa de tu itinerario: reservaciones, actividades y recomendaciones locales de quien realmente vive aquí.",
-      desde: "Cotización personalizada",
-      imagen: "",
-      destacado: false
-    }
+    { id: "transfer",  imagen: "", destacado: true,  desde: { en: "From $45 USD each way",  es: "Desde $45 USD por trayecto", pt: "A partir de US$ 45 por trecho" } },
+    { id: "chofer",    imagen: "", destacado: true,  desde: { en: "From $180 USD per day",  es: "Desde $180 USD por día",     pt: "A partir de US$ 180 por dia"   } },
+    { id: "grupos",    imagen: "", destacado: true,  desde: { en: "From $650 USD",          es: "Desde $650 USD",             pt: "A partir de US$ 650"           } },
+    { id: "catamaran", imagen: "", destacado: false, desde: { en: "From $95 USD",           es: "Desde $95 USD",              pt: "A partir de US$ 95"            } },
+    { id: "yate",      imagen: "", destacado: false, desde: { en: "From $650 USD half day", es: "Desde $650 USD medio día",   pt: "A partir de US$ 650 meio dia"  } },
+    { id: "concierge", imagen: "", destacado: false, desde: { en: "Custom quote",           es: "Cotización personalizada",   pt: "Orçamento personalizado"       } }
   ],
 
-  /* ======================================================================
-     7. TOURS PRIVADOS
-     Los 3 primeros se muestran también en la portada.
-     ====================================================================== */
   tours: [
-    {
-      titulo: "Chichén Itzá y Cenote con Experiencia Maya",
-      texto: "Vive una aventura visitando una de las 7 maravillas del mundo, un cenote y aprende sobre la cocina maya.",
-      precio: "$2,197 MXN",
-      duracion: "Día completo",
-      imagen: ""
-    },
-    {
-      titulo: "Tulum, Cenote y Playa del Carmen",
-      texto: "Conoce Tulum, una de las ciudades mayas frente al mar más impresionantes, además de un cenote y la 5ta Avenida.",
-      precio: "$1,723 MXN",
-      duracion: "Día completo",
-      imagen: ""
-    },
-    {
-      titulo: "Catamarán de Lujo a Isla Mujeres",
-      texto: "Navega entre Cancún e Isla Mujeres, con snorkel y tiempo libre en la isla.",
-      precio: "$2,039 MXN",
-      duracion: "6 horas",
-      imagen: ""
-    },
-    {
-      titulo: "Visita a Cenote y Snorkel en Laguna",
-      texto: "Sumérgete en agua cristalina de cenote y conoce una laguna espectacular lejos de las multitudes.",
-      precio: "$1,407 MXN",
-      duracion: "Medio día",
-      imagen: ""
-    },
-    {
-      titulo: "Akumal: Snorkel con Tortugas y Cenotes",
-      texto: "Nada junto a tortugas marinas en Akumal y explora un cenote con estalactitas impresionantes.",
-      precio: "$1,953 MXN",
-      duracion: "Día completo",
-      imagen: ""
-    },
-    {
-      titulo: "Observación de Monos y Visita a Cobá",
-      texto: "Descubre la selva maya, observa monos araña y visita la enigmática ciudad de Cobá.",
-      precio: "$9,322 MXN",
-      duracion: "Día completo",
-      imagen: ""
-    }
+    { id: "chichen",  imagen: "", precio: "$2,197 MXN", duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
+    { id: "tulum",    imagen: "", precio: "$1,723 MXN", duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
+    { id: "isla",     imagen: "", precio: "$2,039 MXN", duracion: { en: "6 hours",  es: "6 horas",      pt: "6 horas"     } },
+    { id: "cenote",   imagen: "", precio: "$1,407 MXN", duracion: { en: "Half day", es: "Medio día",    pt: "Meio dia"    } },
+    { id: "akumal",   imagen: "", precio: "$1,953 MXN", duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
+    { id: "coba",     imagen: "", precio: "$9,322 MXN", duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } }
   ],
 
-  /* ======================================================================
-     8. DESTINOS
-     Estas tarjetas son verticales (fotos 800x1000 se ven mejor).
-     ====================================================================== */
+  // Las tarjetas de destino son verticales: las fotos de 800x1000 se ven mejor.
+  // paleta = degradado automático si no hay foto: jungle / coastal / ocean / lagoon
   destinos: [
-    {
-      nombre: "Chichén Itzá",
-      duracion: "Medio día o día completo",
-      texto: "2.5 hrs desde Cancún · Guía privado incluido",
-      imagen: "",
-      paleta: "jungle"    // fondo automático si no hay imagen: jungle / coastal / ocean / lagoon
-    },
-    {
-      nombre: "Tulum",
-      duracion: "Excursión de un día",
-      texto: "1.5 hrs desde Cancún · Ruinas frente al mar y cenotes",
-      imagen: "",
-      paleta: "coastal"
-    },
-    {
-      nombre: "Isla Mujeres",
-      duracion: "Día completo",
-      texto: "30 min en ferry · Catamarán privado disponible",
-      imagen: "",
-      paleta: "ocean"
-    },
-    {
-      nombre: "Bacalar y Holbox",
-      duracion: "Con opción de noche",
-      texto: "3-4 hrs · La magia fuera del camino turístico",
-      imagen: "",
-      paleta: "lagoon"
-    }
+    { id: "chichen", nombre: "Chichén Itzá",     imagen: "", paleta: "jungle"  },
+    { id: "tulum",   nombre: "Tulum",            imagen: "", paleta: "coastal" },
+    { id: "isla",    nombre: "Isla Mujeres",     imagen: "", paleta: "ocean"   },
+    { id: "bacalar", nombre: "Bacalar & Holbox", imagen: "", paleta: "lagoon"  }
   ],
 
-  /* ======================================================================
-     9. PÁGINA DE TIM (marca personal)
-     ====================================================================== */
-  tim: {
-    titulo: "Tim — Tu Persona de Confianza en Cancún",
-    citaDestacada: "Tim fue mucho más que un chofer, se volvió parte de nuestras vacaciones. Sabía exactamente a dónde llevarnos y todo fluyó sin esfuerzo.",
-    citaAutor: "Sarah M., Toronto · TripAdvisor",
-    biografia: "Tim lleva más de 8 años guiando viajeros por Cancún y la Riviera Maya. Bilingüe, conectado con la cultura local y genuinamente comprometido con hacer inolvidable tu viaje — por eso su nombre aparece de forma espontánea en cientos de reseñas de cinco estrellas.",
-    botonTexto: "Escríbele a Tim por WhatsApp"
-  },
-
-  /* ======================================================================
-     10. RESEÑAS
-     ====================================================================== */
-  resenas: [
-    {
-      texto: "Tim se encargó de todo: aeropuerto, Chichén Itzá, cenote, comida. Nunca sentimos prisa y sabía cada rincón para evitar las multitudes.",
-      nombre: "Jennifer K.",
-      lugar: "Houston, Texas 🇺🇸"
-    },
-    {
-      texto: "Como canadienses que pasamos 6 semanas cada invierno en Cancún, encontrar transportación confiable era nuestra mayor preocupación. Tim la resolvió por completo.",
-      nombre: "Robert & Linda S.",
-      lugar: "Vancouver, BC 🇨🇦"
-    },
-    {
-      texto: "Llegamos desde Sydney sin saber nada de la zona. Tim se volvió nuestro concierge no oficial. Ya lo recomendé a cuatro amigos.",
-      nombre: "Michael P.",
-      lugar: "Sydney, Australia 🇦🇺"
-    }
-  ],
-
-  /* ======================================================================
-     11. BLOG
-     Cuando escribas el artículo completo, pon la dirección en "enlace".
-     Mientras esté en "", el botón no lleva a ningún lado.
-     ====================================================================== */
   blog: [
-    {
-      categoria: "Aeropuerto y Traslados",
-      titulo: "Transfer Privado vs Compartido: ¿Cuál te conviene?",
-      texto: "Comparamos ambas opciones con datos reales para que decidas antes de reservar tu próximo viaje.",
-      imagen: "",
-      enlace: ""
-    },
-    {
-      categoria: "Tours Privados",
-      titulo: "Chichén Itzá Privado desde Cancún: Guía Completa 2026",
-      texto: "Hora ideal de llegada, qué llevar, la mejor parada para comer y por qué un guía privado cambia la experiencia.",
-      imagen: "",
-      enlace: ""
-    },
-    {
-      categoria: "Para Viajeros Canadienses",
-      titulo: "Estadías de Invierno en Cancún: Guía de Transporte",
-      texto: "Todo sobre transportación privada recurrente para estadías largas de 4 a 8 semanas.",
-      imagen: "",
-      enlace: ""
-    }
+    { id: "transfer-vs-shared", imagen: "", enlace: "" },
+    { id: "chichen-guide",      imagen: "", enlace: "" },
+    { id: "snowbirds",          imagen: "", enlace: "" }
   ],
 
   /* ======================================================================
-     12. SEO — títulos y descripciones de cada sección
-     Google lee esto. Máximo 60 caracteres en título, 155 en descripción.
-     ====================================================================== */
-  seo: {
-    home: {
-      titulo: "Transportación Privada y Tours en Cancún | TEVE Transfers & Tours",
-      descripcion: "Transfers privados del aeropuerto de Cancún, chofer privado por día y tours a la medida en Riviera Maya. Reserva directo por WhatsApp con Tim."
-    },
-    servicios: {
-      titulo: "Servicios de Transportación Privada en Cancún | TEVE",
-      descripcion: "Transfer aeropuerto-hotel, chofer privado por día, transportación para grupos, catamarán y renta de yates en Cancún y Riviera Maya."
-    },
-    tours: {
-      titulo: "Tours Privados desde Cancún | Chichén Itzá, Tulum, Isla Mujeres",
-      descripcion: "Tours privados a Chichén Itzá, Tulum, Cobá, Akumal e Isla Mujeres. Vehículo privado, guía bilingüe y horarios flexibles a tu ritmo."
-    },
-    destinos: {
-      titulo: "Destinos desde Cancún: Tulum, Chichén Itzá, Bacalar | TEVE",
-      descripcion: "Descubre a dónde te llevamos desde Cancún: Chichén Itzá, Tulum, Isla Mujeres, Bacalar y Holbox con transporte privado puerta a puerta."
-    },
-    tim: {
-      titulo: "Conoce a Tim, tu Chofer Privado de Confianza en Cancún",
-      descripcion: "Más de 8 años guiando viajeros por Cancún y Riviera Maya. Bilingüe, local y con cientos de reseñas de cinco estrellas a su nombre."
-    },
-    blog: {
-      titulo: "Blog de Viajes: Guías de Cancún y Riviera Maya | TEVE",
-      descripcion: "Guías prácticas para planear tu viaje a Cancún: traslados, tours privados, estadías largas y consejos de un local."
-    },
-    contacto: {
-      titulo: "Contacto y Cotizaciones | TEVE Transfers & Tours Cancún",
-      descripcion: "Cotiza tu traslado o tour privado en Cancún. Respuesta rápida por WhatsApp, correo o teléfono. Atendemos todo el año."
-    }
-  },
-
-  /* ======================================================================
-     13. WIDGETS SOCIALES
+     6. WIDGETS SOCIALES
      ----------------------------------------------------------------------
-     El sello de TripAdvisor se carga desde los servidores de TripAdvisor y se
-     actualiza solo. Los datos salen del código que TripAdvisor entrega en su
-     panel: locationId es el número que aparece como d######## en tu enlace.
+     El sello de TripAdvisor se carga desde los servidores de TripAdvisor y
+     se actualiza solo. locationId es el número que aparece como d########
+     en tu enlace de TripAdvisor.
 
      Para ocultar cualquier widget, pon  activo: false.
      ====================================================================== */
@@ -440,8 +256,9 @@ window.TEVE_CONFIG = {
       activo:     true,
       locationId: "28028440",   // el d28028440 de tu enlace de TripAdvisor
       uniq:       "663",        // identificador del widget que da TripAdvisor
-      idioma:     "en_AU",      // cámbialo a "es" cuando tengas el sello en español
-      anio:       "2026"        // año del sello Travelers' Choice
+      anio:       "2026",       // año del sello Travelers' Choice
+      // Idioma del sello según el idioma que esté viendo el visitante.
+      idioma: { en: "en_AU", es: "es", pt: "pt" }
     },
     // Facebook e Instagram se muestran como tarjetas que enlazan al perfil.
     // No cargan scripts de terceros ni cookies, así el sitio sigue siendo
@@ -451,12 +268,831 @@ window.TEVE_CONFIG = {
   },
 
   /* ======================================================================
-     14. ANALÍTICA (opcional — déjalo en "" si aún no lo tienes)
+     7. ANALÍTICA (opcional — déjalo en "" si aún no lo tienes)
      ====================================================================== */
   analitica: {
     googleAnalytics: "",   // ej. "G-XXXXXXXXXX"
     googleTagManager: "",  // ej. "GTM-XXXXXXX"
     facebookPixel: ""      // ej. "123456789012345"
+  },
+
+  /* ==========================================================================
+     PARTE B — TEXTOS POR IDIOMA
+     --------------------------------------------------------------------------
+     Cada idioma es un bloque completo e independiente. Para traducir algo,
+     busca la misma clave en los tres bloques y cámbiala en cada uno.
+
+     Los  id  de servicios, tours, destinos y blog TIENEN QUE COINCIDIR con
+     los de la PARTE A. Si cambias un id, cámbialo en los cuatro lugares.
+     ========================================================================== */
+  textos: {
+
+    /* ======================================================================
+       INGLÉS — VERSIÓN ORIGINAL
+       ----------------------------------------------------------------------
+       Este es el idioma principal del sitio y el que Google indexa como
+       versión canónica. El SEO está escrito para el viajero que planea sus
+       vacaciones desde Reino Unido, Australia, Estados Unidos y Canadá:
+       busca en inglés, reserva con meses de anticipación y compara
+       "private transfer" contra "shared shuttle" antes de decidir.
+       ====================================================================== */
+    en: {
+      meta: {
+        nombre: "English",
+        bandera: "🇬🇧",
+        htmlLang: "en",
+        ogLocale: "en_US",
+        // Variantes regionales que se declaran a Google con hreflang. Así la
+        // misma página en inglés se ofrece a los cuatro mercados objetivo.
+        hreflang: ["en", "en-GB", "en-AU", "en-US", "en-CA"],
+        // Trozo de dirección de cada página. El inglés vive en la raíz.
+        prefijo: "",
+        rutas: {
+          home: "", servicios: "services", tours: "tours",
+          destinos: "destinations", tim: "about-tim",
+          blog: "blog", contacto: "contact"
+        }
+      },
+
+      ui: {
+        navHome: "Home", navServicios: "Services", navTours: "Private Tours",
+        navDestinos: "Destinations", navTim: "Meet Tim", navBlog: "Travel Blog",
+        navContacto: "Contact Us", navAbrirMenu: "Open menu",
+        selectorIdioma: "Language",
+
+        heroBotonServicios: "View Services",
+        heroBotonWhatsapp: "Quote on WhatsApp",
+
+        buscadorTraslado: "🚐 Transfers", buscadorTour: "📍 Tours",
+        buscadorTipo: "Service type",
+        buscadorOpcion1: "Airport → Hotel",
+        buscadorOpcion2: "Hotel → Airport",
+        buscadorOpcion3: "Airport → Hotel → Airport (round trip)",
+        buscadorDesde: "From", buscadorDesdeEjemplo: "Cancun Airport (CUN)",
+        buscadorHacia: "To", buscadorHaciaEjemplo: "Hotel, Airbnb or address",
+        buscadorFecha: "Arrival date", buscadorPasajeros: "Passengers",
+        buscadorCotizarTraslado: "Quote My Transfer",
+        buscadorDestino: "Destination or experience",
+        buscadorDestinoEjemplo: "Chichen Itza, Tulum, Isla Mujeres…",
+        buscadorFechaTour: "Date", buscadorCotizarTour: "Quote My Tour",
+
+        homeServiciosEyebrow: "What We Offer",
+        homeServiciosTitulo: "Our Transport Services",
+        homeToursEyebrow: "The Best Of",
+        homeToursTitulo: "Featured Private Tours",
+        homeToursBoton: "See All Tours",
+
+        porQueEyebrow: "Why TEVE?",
+        porQueTitulo: "What Makes Us Different",
+        porQueTexto: "TEVE Transfers &amp; Tours is the trusted choice for private transport and custom tours in Cancun, Tulum and the Riviera Maya. One driver who stays with you from the airport arrival hall to your last day of holiday. No shared shuttles, no waiting for strangers, no surprises — just your trip, built around you.",
+        porQueBoton: "Let Us Plan Your Trip",
+
+        serviciosEyebrow: "Transport in Cancun",
+        serviciosTitulo: "TEVE Private Services",
+        toursEyebrow: "The Best Of", toursTitulo: "Top Private Tours",
+        destinosEyebrow: "Where We Take You", destinosTitulo: "Private Destinations",
+        timEyebrow: "Meet Your Driver",
+        resenasEyebrow: "Real Reviews", resenasTitulo: "What Our Travellers Say",
+        blogEyebrow: "Travel Guide", blogTitulo: "Plan Your Trip to Cancun",
+        blogLeerMas: "Read article →",
+
+        tarjetaCotizar: "Get a Quote", tarjetaReservar: "Book Now",
+        tarjetaDesde: "From", tarjetaDescubrir: "Discover More",
+
+        contactoEyebrow: "Planning a trip to Cancun?",
+        contactoTitulo: "Our team is ready to help",
+        formNombre: "First name*", formApellido: "Last name*",
+        formEmail: "Email address*", formTelefono: "Phone*",
+        formLlegada: "Arrival date", formSalida: "Departure date",
+        formAdultos: "Adults", formMenores: "Children",
+        formMensaje: "Service you need / comments",
+        formSms: "Send me SMS updates", formEmailOpt: "Send me email updates",
+        formEnviar: "Send on WhatsApp",
+        contactoWhatsappTexto: "Instant reply",
+
+        socialEyebrow: "What people say about us",
+        socialTitulo: "Follow us and read our reviews",
+        socialTaTexto: "Verified reviews from travellers who have already ridden with us.",
+        socialTaBoton: "Read reviews",
+        socialFbTexto: "News, offers and photos from our transfers and tours.",
+        socialFbBoton: "Follow on Facebook",
+        socialIgTexto: "Day to day in Cancun, Tulum, Holbox and the Riviera Maya.",
+        socialIgBoton: "Follow on Instagram",
+
+        newsletterEyebrow: "Your next adventure starts here",
+        newsletterTitulo: "Get travel inspiration by email",
+        newsletterEjemplo: "Your email address",
+        newsletterBoton: "Subscribe",
+
+        pieContacto: "Contact", pieDescubrir: "Discover",
+        pieLlamanos: "Call us", pieCorreo: "Email us", pieRedes: "Social Media",
+        pieHorario: "Available 24/7, 365 days a year",
+        pieCancun: "Cancun", pieQueVer: "What to see",
+        pieTraslados: "Transfers &amp; transport", pieToursPrivados: "Private tours",
+        pieBlog: "Travel blog", pieRiviera: "Riviera Maya",
+        pieBacalar: "Bacalar &amp; Holbox", pieServicios: "Services",
+        pieChofer: "Private driver", pieGrupos: "Groups &amp; events",
+        pieYates: "Yacht charters", pieConcierge: "Travel concierge",
+        pieCompania: "Company", pieConoceTim: "Meet Tim", pieContactanos: "Contact us",
+        piePrivacidad: "Privacy Policy", pieTerminos: "Terms &amp; Conditions",
+        pieCookies: "Cookie Policy", pieDerechos: "All rights reserved.",
+
+        // Mensajes que se escriben solos en WhatsApp.
+        waGeneral: "Hi! I'd like information about a private service in Cancun.",
+        waPortada: "Hi! I'd like a quote for a private service in Cancun.",
+        waServicio: "Hi! I'd like information about:",
+        waTour: "Hi! I'd like to book the tour:",
+        waDestino: "Hi! I'd like a quote for a private tour to",
+        waTraslado: "Hi! I'd like to quote a transfer.",
+        waTourBusqueda: "Hi! I'd like to quote a private tour.",
+        waTim: "Message Tim on WhatsApp",
+
+        avisoSuscrito: "Thank you! We'll send you travel ideas for the Riviera Maya.",
+        avisoFaltanCampos: "Please fill in the required fields."
+      },
+
+      portada: {
+        titulo: "Experience Cancun<br>Your Way",
+        subtitulo: "Private transport and custom tours across Cancun and the Riviera Maya. One trusted driver, from the arrivals hall to the memories.",
+        metricas: [
+          { numero: "500+", texto: "Happy Travellers" },
+          { numero: "5.0★", texto: "TripAdvisor" },
+          { numero: "8+",   texto: "Years in Cancun" },
+          { numero: "USD",  texto: "CAD, AUD & GBP welcome" }
+        ]
+      },
+
+      servicios: {
+        transfer: {
+          titulo: "Private Airport ↔ Hotel Transfer",
+          texto: "Name-board greeting in the arrivals hall, help with your luggage and an air-conditioned vehicle. Your driver waits even if your flight is delayed."
+        },
+        chofer: {
+          titulo: "Private Driver by the Day",
+          texto: "A comfortable van and an English-speaking driver at your disposal by the hour or for the full day. Beaches, restaurants and shopping at your own pace."
+        },
+        grupos: {
+          titulo: "Group Transport",
+          texto: "Planning a conference, wedding or corporate event? We have the fleet and the logistics to move large groups without anyone waiting around."
+        },
+        catamaran: {
+          titulo: "Catamaran to Isla Mujeres",
+          texto: "Sail across to Isla Mujeres with snorkelling included and free time on the island. Every detail coordinated by your TEVE driver."
+        },
+        yate: {
+          titulo: "Private Yacht Charter",
+          texto: "From a sport boat to a luxury catamaran. A day of fishing, a sunset cruise or your own private island — you choose."
+        },
+        concierge: {
+          titulo: "Travel Concierge",
+          texto: "Full itinerary planning: reservations, activities and local recommendations from someone who actually lives here."
+        }
+      },
+
+      tours: {
+        chichen: {
+          titulo: "Chichen Itza & Cenote with Mayan Experience",
+          texto: "Visit one of the New Seven Wonders of the World, swim in a cenote and learn how Mayan cooking really works."
+        },
+        tulum: {
+          titulo: "Tulum, Cenote & Playa del Carmen",
+          texto: "See Tulum, the most striking clifftop Mayan city on the Caribbean, plus a cenote and Fifth Avenue."
+        },
+        isla: {
+          titulo: "Luxury Catamaran to Isla Mujeres",
+          texto: "Sail between Cancun and Isla Mujeres, with snorkelling and free time on the island."
+        },
+        cenote: {
+          titulo: "Cenote Visit & Lagoon Snorkelling",
+          texto: "Sink into the clear water of a cenote and discover a spectacular lagoon far from the crowds."
+        },
+        akumal: {
+          titulo: "Akumal: Snorkel with Turtles & Cenotes",
+          texto: "Swim alongside sea turtles in Akumal and explore a cenote full of extraordinary stalactites."
+        },
+        coba: {
+          titulo: "Monkey Watching & Coba Ruins",
+          texto: "Head into the Mayan jungle, watch spider monkeys in the wild and visit the enigmatic city of Coba."
+        }
+      },
+
+      destinos: {
+        chichen: { duracion: "Half day or full day", texto: "2.5 hrs from Cancun · Private guide included" },
+        tulum:   { duracion: "Day trip",             texto: "1.5 hrs from Cancun · Clifftop ruins and cenotes" },
+        isla:    { duracion: "Full day",             texto: "30 min by ferry · Private catamaran available" },
+        bacalar: { duracion: "Overnight optional",   texto: "3-4 hrs · The magic well off the tourist trail" }
+      },
+
+      tim: {
+        titulo: "Tim — Your Trusted Person in Cancun",
+        citaDestacada: "Tim was far more than a driver, he became part of our holiday. He knew exactly where to take us and everything just flowed.",
+        citaAutor: "Sarah M., Toronto · TripAdvisor",
+        biografia: "Tim has spent more than eight years guiding visitors around Cancun and the Riviera Maya. Bilingual, plugged into the local culture and genuinely invested in making your trip memorable — which is why his name turns up, unprompted, in hundreds of five-star reviews."
+      },
+
+      resenas: [
+        {
+          texto: "Tim handled everything: airport, Chichen Itza, cenote, lunch. We never felt rushed and he knew every trick for dodging the crowds.",
+          nombre: "Jennifer K.",
+          lugar: "Houston, Texas 🇺🇸"
+        },
+        {
+          texto: "As Canadians who spend six weeks in Cancun every winter, reliable transport was our biggest worry. Tim solved it completely.",
+          nombre: "Robert & Linda S.",
+          lugar: "Vancouver, BC 🇨🇦"
+        },
+        {
+          texto: "We flew in from Sydney knowing nothing about the area. Tim became our unofficial concierge. I've already recommended him to four friends.",
+          nombre: "Michael P.",
+          lugar: "Sydney, Australia 🇦🇺"
+        }
+      ],
+
+      blog: {
+        "transfer-vs-shared": {
+          categoria: "Airport & Transfers",
+          titulo: "Private vs Shared Transfer: Which One Suits You?",
+          texto: "We compare both options with real numbers so you can decide before you book your next trip."
+        },
+        "chichen-guide": {
+          categoria: "Private Tours",
+          titulo: "Private Chichen Itza from Cancun: Complete 2026 Guide",
+          texto: "The best arrival time, what to bring, where to stop for lunch and why a private guide changes the whole day."
+        },
+        "snowbirds": {
+          categoria: "For Canadian Travellers",
+          titulo: "Winter Stays in Cancun: A Transport Guide",
+          texto: "Everything about recurring private transport for long stays of four to eight weeks."
+        }
+      },
+
+      /* --------------------------------------------------------------------
+         SEO EN INGLÉS
+         --------------------------------------------------------------------
+         Máximo recomendado: 60 caracteres en el título, 155 en la descripción.
+         Las descripciones nombran a los cuatro mercados objetivo porque es
+         literalmente lo que el viajero escribe en Google antes de reservar.
+         -------------------------------------------------------------------- */
+      seo: {
+        home: {
+          titulo: "Cancun Airport Transfers & Private Riviera Maya Tours",
+          descripcion: "Private Cancun airport transfers and custom Riviera Maya tours for travellers from the UK, Australia, the US and Canada. Book direct on WhatsApp."
+        },
+        servicios: {
+          titulo: "Cancun Airport Transfer & Private Driver Services | TEVE",
+          descripcion: "Airport transfers, private drivers by the day, group transport, catamarans and yacht charters across Cancun, Tulum and the Riviera Maya."
+        },
+        tours: {
+          titulo: "Private Tours from Cancun: Chichen Itza, Tulum, Isla Mujeres",
+          descripcion: "Private day tours from Cancun to Chichen Itza, Tulum, Coba, Akumal and Isla Mujeres. Private vehicle, English-speaking guide, your own pace."
+        },
+        destinos: {
+          titulo: "Riviera Maya Destinations from Cancun | TEVE Tours",
+          descripcion: "Where we take you from Cancun: Chichen Itza, Tulum, Isla Mujeres, Bacalar and Holbox. Door-to-door private transport, never a crowded coach."
+        },
+        tim: {
+          titulo: "Meet Tim — Your English-Speaking Driver in Cancun",
+          descripcion: "Eight years driving visitors around Cancun and the Riviera Maya. Bilingual, local, and named personally in hundreds of five-star reviews."
+        },
+        blog: {
+          titulo: "Cancun & Riviera Maya Travel Guides | TEVE Transfers",
+          descripcion: "Practical guides for planning a Cancun trip: airport transfers, private tours, long winter stays and honest advice from a local driver."
+        },
+        contacto: {
+          titulo: "Get a Quote — Cancun Transfers & Tours | TEVE",
+          descripcion: "Get a quote for your Cancun transfer or private tour. Fast replies on WhatsApp, email or phone, across UK, Australian and North American hours."
+        }
+      }
+    },
+
+    /* ======================================================================
+       ESPAÑOL — TRADUCCIÓN
+       ----------------------------------------------------------------------
+       Dirigido al viajero mexicano y latinoamericano, y a quien ya está en
+       Cancún y busca transporte de última hora.
+       ====================================================================== */
+    es: {
+      meta: {
+        nombre: "Español",
+        bandera: "🇲🇽",
+        htmlLang: "es",
+        ogLocale: "es_MX",
+        hreflang: ["es", "es-MX"],
+        prefijo: "es",
+        rutas: {
+          home: "", servicios: "servicios", tours: "tours",
+          destinos: "destinos", tim: "tim",
+          blog: "blog", contacto: "contacto"
+        }
+      },
+
+      ui: {
+        navHome: "Inicio", navServicios: "Servicios", navTours: "Tours Privados",
+        navDestinos: "Destinos", navTim: "Conoce a Tim", navBlog: "Blog de Viajes",
+        navContacto: "Contáctanos", navAbrirMenu: "Abrir menú",
+        selectorIdioma: "Idioma",
+
+        heroBotonServicios: "Ver Servicios",
+        heroBotonWhatsapp: "Cotizar por WhatsApp",
+
+        buscadorTraslado: "🚐 Traslados", buscadorTour: "📍 Tours",
+        buscadorTipo: "Tipo de servicio",
+        buscadorOpcion1: "Aeropuerto → Hotel",
+        buscadorOpcion2: "Hotel → Aeropuerto",
+        buscadorOpcion3: "Aeropuerto → Hotel → Aeropuerto (redondo)",
+        buscadorDesde: "Desde", buscadorDesdeEjemplo: "Aeropuerto de Cancún (CUN)",
+        buscadorHacia: "Hacia", buscadorHaciaEjemplo: "Hotel, Airbnb o dirección",
+        buscadorFecha: "Fecha de llegada", buscadorPasajeros: "Pasajeros",
+        buscadorCotizarTraslado: "Cotizar Traslado",
+        buscadorDestino: "Destino o experiencia",
+        buscadorDestinoEjemplo: "Chichén Itzá, Tulum, Isla Mujeres…",
+        buscadorFechaTour: "Fecha", buscadorCotizarTour: "Cotizar Tour",
+
+        homeServiciosEyebrow: "Lo que ofrecemos",
+        homeServiciosTitulo: "Nuestros Servicios de Transportación",
+        homeToursEyebrow: "Los Mejores",
+        homeToursTitulo: "Tours Privados Destacados",
+        homeToursBoton: "Ver Todos los Tours",
+
+        porQueEyebrow: "¿Por qué TEVE?",
+        porQueTitulo: "¿Qué nos hace diferentes?",
+        porQueTexto: "TEVE Transfers &amp; Tours es la opción de confianza en transportación privada y tours a la medida en Cancún, Tulum y la Riviera Maya. Un solo chofer que te acompaña desde la sala de llegadas hasta tu último día de vacaciones. Sin shuttles compartidos, sin esperar a desconocidos, sin sorpresas: tu viaje, diseñado para ti.",
+        porQueBoton: "Permítenos Planear Tu Viaje",
+
+        serviciosEyebrow: "Transportación en Cancún",
+        serviciosTitulo: "Servicios Privados TEVE",
+        toursEyebrow: "Los Mejores", toursTitulo: "Top Tours Privados",
+        destinosEyebrow: "A Dónde Te Llevamos", destinosTitulo: "Destinos Privados",
+        timEyebrow: "Conoce a tu Guía",
+        resenasEyebrow: "Reseñas Reales", resenasTitulo: "Lo Que Dicen Nuestros Viajeros",
+        blogEyebrow: "Guía de Viaje", blogTitulo: "Planea tu Viaje a Cancún",
+        blogLeerMas: "Leer artículo →",
+
+        tarjetaCotizar: "Cotizar Ahora", tarjetaReservar: "Reservar",
+        tarjetaDesde: "Desde", tarjetaDescubrir: "Descubrir Más",
+
+        contactoEyebrow: "¿Planeas un viaje a Cancún?",
+        contactoTitulo: "Nuestro equipo está listo para ayudarte",
+        formNombre: "Nombre(s)*", formApellido: "Apellido(s)*",
+        formEmail: "Correo electrónico*", formTelefono: "Teléfono*",
+        formLlegada: "Fecha de llegada", formSalida: "Fecha de salida",
+        formAdultos: "Adultos", formMenores: "Menores",
+        formMensaje: "Servicio de interés / comentarios",
+        formSms: "Recibir alertas por SMS", formEmailOpt: "Recibir alertas por email",
+        formEnviar: "Enviar por WhatsApp",
+        contactoWhatsappTexto: "Respuesta inmediata",
+
+        socialEyebrow: "Lo que dicen de nosotros",
+        socialTitulo: "Síguenos y lee nuestras reseñas",
+        socialTaTexto: "Reseñas verificadas de viajeros que ya viajaron con nosotros.",
+        socialTaBoton: "Leer reseñas",
+        socialFbTexto: "Novedades, promociones y fotos de nuestros traslados y tours.",
+        socialFbBoton: "Seguir en Facebook",
+        socialIgTexto: "El día a día en Cancún, Tulum, Holbox y la Riviera Maya.",
+        socialIgBoton: "Seguir en Instagram",
+
+        newsletterEyebrow: "Tu próxima aventura empieza aquí",
+        newsletterTitulo: "Recibe inspiración en tu correo",
+        newsletterEjemplo: "Tu correo electrónico",
+        newsletterBoton: "Suscribirme",
+
+        pieContacto: "Contacto", pieDescubrir: "Descubrir",
+        pieLlamanos: "Llámanos", pieCorreo: "Envíanos un correo", pieRedes: "Redes Sociales",
+        pieHorario: "Disponibles 24/7, los 365 días del año",
+        pieCancun: "Cancún", pieQueVer: "¿Qué ver?",
+        pieTraslados: "Traslados y transportación", pieToursPrivados: "Tours privados",
+        pieBlog: "Blog de viajes", pieRiviera: "Riviera Maya",
+        pieBacalar: "Bacalar y Holbox", pieServicios: "Servicios",
+        pieChofer: "Chofer privado", pieGrupos: "Grupos y eventos",
+        pieYates: "Renta de yates", pieConcierge: "Travel concierge",
+        pieCompania: "Compañía", pieConoceTim: "Conoce a Tim", pieContactanos: "Contáctanos",
+        piePrivacidad: "Aviso de Privacidad", pieTerminos: "Términos y Condiciones",
+        pieCookies: "Política de Cookies", pieDerechos: "Todos los derechos reservados.",
+
+        waGeneral: "¡Hola! Quiero información de un servicio privado en Cancún.",
+        waPortada: "¡Hola! Quiero cotizar un servicio privado en Cancún.",
+        waServicio: "¡Hola! Quiero información sobre:",
+        waTour: "¡Hola! Quiero reservar el tour:",
+        waDestino: "¡Hola! Quiero cotizar un tour privado a",
+        waTraslado: "¡Hola! Quiero cotizar un traslado.",
+        waTourBusqueda: "¡Hola! Quiero cotizar un tour privado.",
+        waTim: "Escríbele a Tim por WhatsApp",
+
+        avisoSuscrito: "¡Gracias! Te enviaremos ideas de viaje para la Riviera Maya.",
+        avisoFaltanCampos: "Por favor completa los campos obligatorios."
+      },
+
+      portada: {
+        titulo: "Vive Cancún<br>a tu Manera",
+        subtitulo: "Transportación privada y tours a la medida en Cancún y Riviera Maya. Un solo chofer de confianza, de la sala de llegadas a tus recuerdos.",
+        metricas: [
+          { numero: "500+", texto: "Viajeros Felices" },
+          { numero: "5.0★", texto: "TripAdvisor" },
+          { numero: "8+",   texto: "Años en Cancún" },
+          { numero: "USD",  texto: "CAD, AUD y GBP aceptados" }
+        ]
+      },
+
+      servicios: {
+        transfer: {
+          titulo: "Transfer Privado Aeropuerto ↔ Hotel",
+          texto: "Recepción con letrero en la sala de llegadas, ayuda con el equipaje y vehículo con aire acondicionado. Tu conductor te espera aunque tu vuelo se retrase."
+        },
+        chofer: {
+          titulo: "Chofer Privado por Día",
+          texto: "Van cómoda y chofer bilingüe a tu disposición por horas o el día completo. Playas, restaurantes y compras a tu propio ritmo."
+        },
+        grupos: {
+          titulo: "Transportación para Grupos",
+          texto: "¿Planeas una conferencia, boda o evento corporativo? Contamos con flotilla y logística para mover grupos grandes sin que nadie espere."
+        },
+        catamaran: {
+          titulo: "Catamarán a Isla Mujeres",
+          texto: "Zarpa hacia Isla Mujeres con snorkel incluido y tiempo libre en la isla. Cada detalle coordinado por tu chofer TEVE."
+        },
+        yate: {
+          titulo: "Renta de Yate Privado",
+          texto: "Desde una lancha deportiva hasta un catamarán de lujo. Día de pesca, atardecer o isla privada, tú decides."
+        },
+        concierge: {
+          titulo: "Travel Concierge",
+          texto: "Planeación completa de tu itinerario: reservaciones, actividades y recomendaciones locales de quien realmente vive aquí."
+        }
+      },
+
+      tours: {
+        chichen: {
+          titulo: "Chichén Itzá y Cenote con Experiencia Maya",
+          texto: "Visita una de las nuevas siete maravillas del mundo, nada en un cenote y aprende cómo funciona de verdad la cocina maya."
+        },
+        tulum: {
+          titulo: "Tulum, Cenote y Playa del Carmen",
+          texto: "Conoce Tulum, la ciudad maya frente al mar más impresionante del Caribe, además de un cenote y la Quinta Avenida."
+        },
+        isla: {
+          titulo: "Catamarán de Lujo a Isla Mujeres",
+          texto: "Navega entre Cancún e Isla Mujeres, con snorkel y tiempo libre en la isla."
+        },
+        cenote: {
+          titulo: "Visita a Cenote y Snorkel en Laguna",
+          texto: "Sumérgete en el agua cristalina de un cenote y conoce una laguna espectacular lejos de las multitudes."
+        },
+        akumal: {
+          titulo: "Akumal: Snorkel con Tortugas y Cenotes",
+          texto: "Nada junto a tortugas marinas en Akumal y explora un cenote lleno de estalactitas extraordinarias."
+        },
+        coba: {
+          titulo: "Observación de Monos y Ruinas de Cobá",
+          texto: "Adéntrate en la selva maya, observa monos araña en libertad y visita la enigmática ciudad de Cobá."
+        }
+      },
+
+      destinos: {
+        chichen: { duracion: "Medio día o día completo", texto: "2.5 hrs desde Cancún · Guía privado incluido" },
+        tulum:   { duracion: "Excursión de un día",      texto: "1.5 hrs desde Cancún · Ruinas frente al mar y cenotes" },
+        isla:    { duracion: "Día completo",             texto: "30 min en ferry · Catamarán privado disponible" },
+        bacalar: { duracion: "Con opción de noche",      texto: "3-4 hrs · La magia fuera del camino turístico" }
+      },
+
+      tim: {
+        titulo: "Tim — Tu Persona de Confianza en Cancún",
+        citaDestacada: "Tim fue mucho más que un chofer, se volvió parte de nuestras vacaciones. Sabía exactamente a dónde llevarnos y todo fluyó sin esfuerzo.",
+        citaAutor: "Sarah M., Toronto · TripAdvisor",
+        biografia: "Tim lleva más de ocho años guiando viajeros por Cancún y la Riviera Maya. Bilingüe, conectado con la cultura local y genuinamente comprometido con hacer memorable tu viaje — por eso su nombre aparece, sin que nadie se lo pida, en cientos de reseñas de cinco estrellas."
+      },
+
+      resenas: [
+        {
+          texto: "Tim se encargó de todo: aeropuerto, Chichén Itzá, cenote, comida. Nunca sentimos prisa y conocía cada truco para esquivar a las multitudes.",
+          nombre: "Jennifer K.",
+          lugar: "Houston, Texas 🇺🇸"
+        },
+        {
+          texto: "Como canadienses que pasamos seis semanas en Cancún cada invierno, la transportación confiable era nuestra mayor preocupación. Tim la resolvió por completo.",
+          nombre: "Robert & Linda S.",
+          lugar: "Vancouver, BC 🇨🇦"
+        },
+        {
+          texto: "Llegamos desde Sídney sin saber nada de la zona. Tim se volvió nuestro concierge no oficial. Ya lo recomendé a cuatro amigos.",
+          nombre: "Michael P.",
+          lugar: "Sídney, Australia 🇦🇺"
+        }
+      ],
+
+      blog: {
+        "transfer-vs-shared": {
+          categoria: "Aeropuerto y Traslados",
+          titulo: "Transfer Privado vs Compartido: ¿Cuál te conviene?",
+          texto: "Comparamos ambas opciones con números reales para que decidas antes de reservar tu próximo viaje."
+        },
+        "chichen-guide": {
+          categoria: "Tours Privados",
+          titulo: "Chichén Itzá Privado desde Cancún: Guía Completa 2026",
+          texto: "La mejor hora de llegada, qué llevar, dónde parar a comer y por qué un guía privado cambia el día entero."
+        },
+        "snowbirds": {
+          categoria: "Para Viajeros Canadienses",
+          titulo: "Estadías de Invierno en Cancún: Guía de Transporte",
+          texto: "Todo sobre transportación privada recurrente para estadías largas de cuatro a ocho semanas."
+        }
+      },
+
+      seo: {
+        home: {
+          titulo: "Transporte Privado y Tours en Cancún | TEVE Transfers",
+          descripcion: "Traslados privados del aeropuerto de Cancún y tours a la medida en la Riviera Maya. Chofer bilingüe y reserva directa por WhatsApp con Tim."
+        },
+        servicios: {
+          titulo: "Traslados y Chofer Privado en Cancún | TEVE",
+          descripcion: "Transfer aeropuerto-hotel, chofer privado por día, transportación para grupos, catamarán y renta de yates en Cancún y Riviera Maya."
+        },
+        tours: {
+          titulo: "Tours Privados desde Cancún: Chichén Itzá y Tulum",
+          descripcion: "Tours privados a Chichén Itzá, Tulum, Cobá, Akumal e Isla Mujeres. Vehículo privado, guía bilingüe y horarios flexibles a tu ritmo."
+        },
+        destinos: {
+          titulo: "Destinos desde Cancún: Tulum, Chichén Itzá, Bacalar",
+          descripcion: "A dónde te llevamos desde Cancún: Chichén Itzá, Tulum, Isla Mujeres, Bacalar y Holbox con transporte privado puerta a puerta."
+        },
+        tim: {
+          titulo: "Conoce a Tim, tu Chofer Privado en Cancún | TEVE",
+          descripcion: "Más de ocho años guiando viajeros por Cancún y la Riviera Maya. Bilingüe, local y con cientos de reseñas de cinco estrellas a su nombre."
+        },
+        blog: {
+          titulo: "Blog de Viajes: Guías de Cancún y Riviera Maya | TEVE",
+          descripcion: "Guías prácticas para planear tu viaje a Cancún: traslados, tours privados, estadías largas y consejos honestos de un chofer local."
+        },
+        contacto: {
+          titulo: "Contacto y Cotizaciones | TEVE Transfers & Tours",
+          descripcion: "Cotiza tu traslado o tour privado en Cancún. Respuesta rápida por WhatsApp, correo o teléfono. Atendemos todo el año."
+        }
+      }
+    },
+
+    /* ======================================================================
+       PORTUGUÉS — TRADUCCIÓN
+       ----------------------------------------------------------------------
+       Portugués de Brasil. Brasil es el mercado latinoamericano que más
+       crece hacia Cancún y la Riviera Maya, y casi ningún competidor local
+       tiene el sitio traducido.
+       ====================================================================== */
+    pt: {
+      meta: {
+        nombre: "Português",
+        bandera: "🇧🇷",
+        htmlLang: "pt-BR",
+        ogLocale: "pt_BR",
+        hreflang: ["pt", "pt-BR", "pt-PT"],
+        prefijo: "pt",
+        rutas: {
+          home: "", servicios: "servicos", tours: "passeios",
+          destinos: "destinos", tim: "tim",
+          blog: "blog", contacto: "contato"
+        }
+      },
+
+      ui: {
+        navHome: "Início", navServicios: "Serviços", navTours: "Passeios Privativos",
+        navDestinos: "Destinos", navTim: "Conheça o Tim", navBlog: "Blog de Viagem",
+        navContacto: "Fale Conosco", navAbrirMenu: "Abrir menu",
+        selectorIdioma: "Idioma",
+
+        heroBotonServicios: "Ver Serviços",
+        heroBotonWhatsapp: "Orçamento no WhatsApp",
+
+        buscadorTraslado: "🚐 Transfers", buscadorTour: "📍 Passeios",
+        buscadorTipo: "Tipo de serviço",
+        buscadorOpcion1: "Aeroporto → Hotel",
+        buscadorOpcion2: "Hotel → Aeroporto",
+        buscadorOpcion3: "Aeroporto → Hotel → Aeroporto (ida e volta)",
+        buscadorDesde: "De", buscadorDesdeEjemplo: "Aeroporto de Cancún (CUN)",
+        buscadorHacia: "Para", buscadorHaciaEjemplo: "Hotel, Airbnb ou endereço",
+        buscadorFecha: "Data de chegada", buscadorPasajeros: "Passageiros",
+        buscadorCotizarTraslado: "Orçar Meu Transfer",
+        buscadorDestino: "Destino ou experiência",
+        buscadorDestinoEjemplo: "Chichén Itzá, Tulum, Isla Mujeres…",
+        buscadorFechaTour: "Data", buscadorCotizarTour: "Orçar Meu Passeio",
+
+        homeServiciosEyebrow: "O que oferecemos",
+        homeServiciosTitulo: "Nossos Serviços de Transporte",
+        homeToursEyebrow: "Os Melhores",
+        homeToursTitulo: "Passeios Privativos em Destaque",
+        homeToursBoton: "Ver Todos os Passeios",
+
+        porQueEyebrow: "Por que a TEVE?",
+        porQueTitulo: "O que nos torna diferentes",
+        porQueTexto: "A TEVE Transfers &amp; Tours é a escolha de confiança em transporte privativo e passeios sob medida em Cancún, Tulum e na Riviera Maya. Um único motorista que acompanha você do saguão de desembarque até o último dia de férias. Sem vans compartilhadas, sem esperar por estranhos, sem surpresas: sua viagem, feita para você.",
+        porQueBoton: "Deixe-nos Planejar Sua Viagem",
+
+        serviciosEyebrow: "Transporte em Cancún",
+        serviciosTitulo: "Serviços Privativos TEVE",
+        toursEyebrow: "Os Melhores", toursTitulo: "Top Passeios Privativos",
+        destinosEyebrow: "Para Onde Levamos Você", destinosTitulo: "Destinos Privativos",
+        timEyebrow: "Conheça seu Guia",
+        resenasEyebrow: "Avaliações Reais", resenasTitulo: "O Que Dizem Nossos Viajantes",
+        blogEyebrow: "Guia de Viagem", blogTitulo: "Planeje sua Viagem a Cancún",
+        blogLeerMas: "Ler artigo →",
+
+        tarjetaCotizar: "Solicitar Orçamento", tarjetaReservar: "Reservar",
+        tarjetaDesde: "A partir de", tarjetaDescubrir: "Descobrir Mais",
+
+        contactoEyebrow: "Planejando uma viagem a Cancún?",
+        contactoTitulo: "Nossa equipe está pronta para ajudar",
+        formNombre: "Nome*", formApellido: "Sobrenome*",
+        formEmail: "E-mail*", formTelefono: "Telefone*",
+        formLlegada: "Data de chegada", formSalida: "Data de saída",
+        formAdultos: "Adultos", formMenores: "Crianças",
+        formMensaje: "Serviço de interesse / comentários",
+        formSms: "Quero receber avisos por SMS", formEmailOpt: "Quero receber avisos por e-mail",
+        formEnviar: "Enviar pelo WhatsApp",
+        contactoWhatsappTexto: "Resposta imediata",
+
+        socialEyebrow: "O que dizem sobre nós",
+        socialTitulo: "Siga-nos e leia nossas avaliações",
+        socialTaTexto: "Avaliações verificadas de viajantes que já viajaram conosco.",
+        socialTaBoton: "Ler avaliações",
+        socialFbTexto: "Novidades, promoções e fotos dos nossos transfers e passeios.",
+        socialFbBoton: "Seguir no Facebook",
+        socialIgTexto: "O dia a dia em Cancún, Tulum, Holbox e na Riviera Maya.",
+        socialIgBoton: "Seguir no Instagram",
+
+        newsletterEyebrow: "Sua próxima aventura começa aqui",
+        newsletterTitulo: "Receba inspiração por e-mail",
+        newsletterEjemplo: "Seu e-mail",
+        newsletterBoton: "Inscrever-me",
+
+        pieContacto: "Contato", pieDescubrir: "Descobrir",
+        pieLlamanos: "Ligue para nós", pieCorreo: "Envie um e-mail", pieRedes: "Redes Sociais",
+        pieHorario: "Disponíveis 24/7, 365 dias por ano",
+        pieCancun: "Cancún", pieQueVer: "O que ver",
+        pieTraslados: "Transfers e transporte", pieToursPrivados: "Passeios privativos",
+        pieBlog: "Blog de viagem", pieRiviera: "Riviera Maya",
+        pieBacalar: "Bacalar e Holbox", pieServicios: "Serviços",
+        pieChofer: "Motorista privativo", pieGrupos: "Grupos e eventos",
+        pieYates: "Aluguel de iates", pieConcierge: "Travel concierge",
+        pieCompania: "Empresa", pieConoceTim: "Conheça o Tim", pieContactanos: "Fale conosco",
+        piePrivacidad: "Política de Privacidade", pieTerminos: "Termos e Condições",
+        pieCookies: "Política de Cookies", pieDerechos: "Todos os direitos reservados.",
+
+        waGeneral: "Olá! Quero informações sobre um serviço privativo em Cancún.",
+        waPortada: "Olá! Quero um orçamento de serviço privativo em Cancún.",
+        waServicio: "Olá! Quero informações sobre:",
+        waTour: "Olá! Quero reservar o passeio:",
+        waDestino: "Olá! Quero um orçamento de passeio privativo para",
+        waTraslado: "Olá! Quero um orçamento de transfer.",
+        waTourBusqueda: "Olá! Quero um orçamento de passeio privativo.",
+        waTim: "Fale com o Tim no WhatsApp",
+
+        avisoSuscrito: "Obrigado! Enviaremos ideias de viagem para a Riviera Maya.",
+        avisoFaltanCampos: "Por favor, preencha os campos obrigatórios."
+      },
+
+      portada: {
+        titulo: "Viva Cancún<br>do Seu Jeito",
+        subtitulo: "Transporte privativo e passeios sob medida em Cancún e na Riviera Maya. Um único motorista de confiança, do desembarque às suas memórias.",
+        metricas: [
+          { numero: "500+", texto: "Viajantes Felizes" },
+          { numero: "5.0★", texto: "TripAdvisor" },
+          { numero: "8+",   texto: "Anos em Cancún" },
+          { numero: "USD",  texto: "CAD, AUD e GBP aceitos" }
+        ]
+      },
+
+      servicios: {
+        transfer: {
+          titulo: "Transfer Privativo Aeroporto ↔ Hotel",
+          texto: "Recepção com placa no saguão de desembarque, ajuda com as malas e veículo com ar-condicionado. Seu motorista espera mesmo se o voo atrasar."
+        },
+        chofer: {
+          titulo: "Motorista Privativo por Dia",
+          texto: "Van confortável e motorista bilíngue à sua disposição por hora ou o dia inteiro. Praias, restaurantes e compras no seu ritmo."
+        },
+        grupos: {
+          titulo: "Transporte para Grupos",
+          texto: "Planejando um congresso, casamento ou evento corporativo? Temos frota e logística para mover grupos grandes sem ninguém esperando."
+        },
+        catamaran: {
+          titulo: "Catamarã para Isla Mujeres",
+          texto: "Navegue até Isla Mujeres com mergulho de snorkel incluído e tempo livre na ilha. Cada detalhe coordenado pelo seu motorista TEVE."
+        },
+        yate: {
+          titulo: "Aluguel de Iate Privativo",
+          texto: "De uma lancha esportiva a um catamarã de luxo. Dia de pesca, pôr do sol ou ilha privativa, você decide."
+        },
+        concierge: {
+          titulo: "Travel Concierge",
+          texto: "Planejamento completo do roteiro: reservas, atividades e recomendações locais de quem realmente mora aqui."
+        }
+      },
+
+      tours: {
+        chichen: {
+          titulo: "Chichén Itzá e Cenote com Experiência Maia",
+          texto: "Visite uma das novas sete maravilhas do mundo, nade em um cenote e aprenda como funciona de verdade a cozinha maia."
+        },
+        tulum: {
+          titulo: "Tulum, Cenote e Playa del Carmen",
+          texto: "Conheça Tulum, a mais impressionante cidade maia à beira-mar do Caribe, além de um cenote e a Quinta Avenida."
+        },
+        isla: {
+          titulo: "Catamarã de Luxo para Isla Mujeres",
+          texto: "Navegue entre Cancún e Isla Mujeres, com snorkel e tempo livre na ilha."
+        },
+        cenote: {
+          titulo: "Visita a Cenote e Snorkel na Lagoa",
+          texto: "Mergulhe na água cristalina de um cenote e conheça uma lagoa espetacular longe das multidões."
+        },
+        akumal: {
+          titulo: "Akumal: Snorkel com Tartarugas e Cenotes",
+          texto: "Nade ao lado de tartarugas marinhas em Akumal e explore um cenote cheio de estalactites extraordinárias."
+        },
+        coba: {
+          titulo: "Observação de Macacos e Ruínas de Cobá",
+          texto: "Entre na selva maia, observe macacos-aranha em liberdade e visite a enigmática cidade de Cobá."
+        }
+      },
+
+      destinos: {
+        chichen: { duracion: "Meio dia ou dia inteiro", texto: "2,5 h de Cancún · Guia privativo incluído" },
+        tulum:   { duracion: "Bate-volta de um dia",    texto: "1,5 h de Cancún · Ruínas à beira-mar e cenotes" },
+        isla:    { duracion: "Dia inteiro",             texto: "30 min de ferry · Catamarã privativo disponível" },
+        bacalar: { duracion: "Com opção de pernoite",   texto: "3-4 h · A mágica fora da rota turística" }
+      },
+
+      tim: {
+        titulo: "Tim — Sua Pessoa de Confiança em Cancún",
+        citaDestacada: "O Tim foi muito mais que um motorista, virou parte das nossas férias. Sabia exatamente para onde nos levar e tudo fluiu sem esforço.",
+        citaAutor: "Sarah M., Toronto · TripAdvisor",
+        biografia: "O Tim tem mais de oito anos guiando visitantes por Cancún e pela Riviera Maya. Bilíngue, conectado à cultura local e genuinamente comprometido em tornar sua viagem memorável — por isso o nome dele aparece, sem que ninguém peça, em centenas de avaliações cinco estrelas."
+      },
+
+      resenas: [
+        {
+          texto: "O Tim cuidou de tudo: aeroporto, Chichén Itzá, cenote, almoço. Nunca nos sentimos apressados e ele conhecia cada truque para fugir das multidões.",
+          nombre: "Jennifer K.",
+          lugar: "Houston, Texas 🇺🇸"
+        },
+        {
+          texto: "Como canadenses que passam seis semanas em Cancún todo inverno, transporte confiável era nossa maior preocupação. O Tim resolveu por completo.",
+          nombre: "Robert & Linda S.",
+          lugar: "Vancouver, BC 🇨🇦"
+        },
+        {
+          texto: "Chegamos de Sydney sem saber nada da região. O Tim virou nosso concierge não oficial. Já o recomendei para quatro amigos.",
+          nombre: "Michael P.",
+          lugar: "Sydney, Austrália 🇦🇺"
+        }
+      ],
+
+      blog: {
+        "transfer-vs-shared": {
+          categoria: "Aeroporto e Transfers",
+          titulo: "Transfer Privativo vs Compartilhado: Qual Escolher?",
+          texto: "Comparamos as duas opções com números reais para você decidir antes de reservar sua próxima viagem."
+        },
+        "chichen-guide": {
+          categoria: "Passeios Privativos",
+          titulo: "Chichén Itzá Privativo saindo de Cancún: Guia 2026",
+          texto: "O melhor horário de chegada, o que levar, onde parar para almoçar e por que um guia privativo muda o dia inteiro."
+        },
+        "snowbirds": {
+          categoria: "Para Viajantes Canadenses",
+          titulo: "Temporadas de Inverno em Cancún: Guia de Transporte",
+          texto: "Tudo sobre transporte privativo recorrente para estadias longas de quatro a oito semanas."
+        }
+      },
+
+      seo: {
+        home: {
+          titulo: "Transfer e Passeios Privativos em Cancún | TEVE",
+          descripcion: "Transfers privativos do aeroporto de Cancún e passeios sob medida na Riviera Maya. Motorista bilíngue e reserva direta pelo WhatsApp."
+        },
+        servicios: {
+          titulo: "Transfer do Aeroporto e Motorista em Cancún | TEVE",
+          descripcion: "Transfer aeroporto-hotel, motorista privativo por dia, transporte para grupos, catamarã e aluguel de iates em Cancún e Riviera Maya."
+        },
+        tours: {
+          titulo: "Passeios Privativos de Cancún: Chichén Itzá e Tulum",
+          descripcion: "Passeios privativos para Chichén Itzá, Tulum, Cobá, Akumal e Isla Mujeres. Veículo privativo, guia bilíngue e horários flexíveis."
+        },
+        destinos: {
+          titulo: "Destinos saindo de Cancún: Tulum, Chichén Itzá, Bacalar",
+          descripcion: "Para onde levamos você saindo de Cancún: Chichén Itzá, Tulum, Isla Mujeres, Bacalar e Holbox com transporte privativo porta a porta."
+        },
+        tim: {
+          titulo: "Conheça o Tim, seu Motorista Privativo em Cancún",
+          descripcion: "Mais de oito anos guiando viajantes por Cancún e pela Riviera Maya. Bilíngue, local e citado em centenas de avaliações cinco estrelas."
+        },
+        blog: {
+          titulo: "Blog de Viagem: Guias de Cancún e Riviera Maya | TEVE",
+          descripcion: "Guias práticos para planejar sua viagem a Cancún: transfers, passeios privativos, estadias longas e conselhos honestos de um local."
+        },
+        contacto: {
+          titulo: "Contato e Orçamentos | TEVE Transfers & Tours Cancún",
+          descripcion: "Solicite um orçamento do seu transfer ou passeio privativo em Cancún. Resposta rápida pelo WhatsApp, e-mail ou telefone, o ano todo."
+        }
+      }
+    }
   }
 };
 
@@ -566,6 +1202,24 @@ window.TEVE_CONFIG = {
   .nav-drawer { display: none; }
 
   /* ============ PORTADA ============ */
+
+
+  /* --- selector de idioma --- */
+  .lang-switch { display: flex; align-items: center; gap: 4px; margin-left: 18px; }
+  .lang-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 6px 10px; border-radius: 100px;
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--primary); background: transparent;
+    border: 1px solid transparent; transition: all 0.2s;
+  }
+  .lang-btn:hover { background: var(--fourth); border-color: #dbe7ec; }
+  .lang-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .lang-flag { font-size: 0.95rem; line-height: 1; }
+  @media (max-width: 880px) {
+    .lang-switch { margin-left: auto; margin-right: 12px; }
+    .lang-btn { padding: 6px 8px; }
+  }
 
   /* --- logotipo en la portada y sus animaciones --- */
   .hero-badge { display: flex; justify-content: center; margin-bottom: 18px; }
@@ -855,9 +1509,10 @@ window.TEVE_CONFIG = {
 <!-- ============ NAVEGACIÓN ============ -->
 <nav class="nav" id="mainNav">
   <div class="nav-inner">
-    <a class="logo" href="/" data-page="home" id="navLogo" aria-label="Inicio TEVE Transfers &amp; Tours"></a>
+    <a class="logo" href="/" data-page="home" id="navLogo" aria-label="TEVE Transfers &amp; Tours home"></a>
     <div class="nav-links" id="navLinks"></div>
-    <button class="nav-ham" id="hamBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    <div class="lang-switch" id="langSwitch"></div>
+    <button class="nav-ham" id="hamBtn" data-i18n-aria="navAbrirMenu" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
   <div class="nav-drawer" id="navDrawer"></div>
 </nav>
@@ -874,8 +1529,8 @@ window.TEVE_CONFIG = {
       <h1 id="heroTitle"></h1>
       <p class="hero-sub" id="heroSub"></p>
       <div class="hero-cta">
-        <a class="btn-secondary" href="/servicios" data-page="servicios">Ver Servicios</a>
-        <button class="btn-wa" onclick="waMsg('¡Hola! Quiero cotizar un servicio privado en Cancún.')">Cotizar por WhatsApp</button>
+        <a class="btn-secondary" href="/services" data-page="servicios" data-i18n="heroBotonServicios">View Services</a>
+        <button class="btn-wa" onclick="waMsg(T('waPortada'))" data-i18n="heroBotonWhatsapp">Quote on WhatsApp</button>
       </div>
     </div>
   </section>
@@ -883,57 +1538,57 @@ window.TEVE_CONFIG = {
   <div class="search-wrap">
     <div class="search-box">
       <div class="search-tabs">
-        <button class="search-tab active" data-tab="transfer">🚐 Traslados</button>
-        <button class="search-tab" data-tab="tour">📍 Tours</button>
+        <button class="search-tab active" data-tab="transfer" data-i18n="buscadorTraslado">🚐 Transfers</button>
+        <button class="search-tab" data-tab="tour" data-i18n="buscadorTour">📍 Tours</button>
       </div>
       <div class="search-panel active" id="panel-transfer">
         <div class="search-fields">
           <div class="search-field">
-            <label for="f-tipo">Tipo de servicio</label>
+            <label for="f-tipo" data-i18n="buscadorTipo">Service type</label>
             <select id="f-tipo">
-              <option>Aeropuerto → Hotel</option>
-              <option>Hotel → Aeropuerto</option>
-              <option>Aeropuerto → Hotel → Aeropuerto (redondo)</option>
+              <option data-i18n="buscadorOpcion1">Airport → Hotel</option>
+              <option data-i18n="buscadorOpcion2">Hotel → Airport</option>
+              <option data-i18n="buscadorOpcion3">Airport → Hotel → Airport (round trip)</option>
             </select>
           </div>
           <div class="search-field">
-            <label for="f-desde">Desde</label>
-            <input id="f-desde" type="text" value="Aeropuerto Internacional de Cancún">
+            <label for="f-desde" data-i18n="buscadorDesde">From</label>
+            <input id="f-desde" type="text" data-i18n-val="buscadorDesdeEjemplo" value="Cancun Airport (CUN)">
           </div>
           <div class="search-field">
-            <label for="f-hacia">Hacia</label>
-            <input id="f-hacia" type="text" placeholder="Nombre de tu hotel">
+            <label for="f-hacia" data-i18n="buscadorHacia">To</label>
+            <input id="f-hacia" type="text" data-i18n-ph="buscadorHaciaEjemplo" placeholder="Hotel, Airbnb or address">
           </div>
           <div class="search-field">
-            <label for="f-fecha">Fecha de llegada</label>
+            <label for="f-fecha" data-i18n="buscadorFecha">Arrival date</label>
             <input id="f-fecha" type="date">
           </div>
           <div class="search-field">
-            <label for="f-pax">Pasajeros</label>
+            <label for="f-pax" data-i18n="buscadorPasajeros">Passengers</label>
             <input id="f-pax" type="number" min="1" value="2">
           </div>
         </div>
         <div class="search-btn-wrap">
-          <button class="btn-secondary" onclick="buscarTraslado()">Cotizar Traslado</button>
+          <button class="btn-secondary" onclick="buscarTraslado()" data-i18n="buscadorCotizarTraslado">Quote My Transfer</button>
         </div>
       </div>
       <div class="search-panel" id="panel-tour">
         <div class="search-fields">
           <div class="search-field">
-            <label for="t-destino">Destino o experiencia</label>
-            <input id="t-destino" type="text" placeholder="Chichén Itzá, Tulum, Isla Mujeres...">
+            <label for="t-destino" data-i18n="buscadorDestino">Destination or experience</label>
+            <input id="t-destino" type="text" data-i18n-ph="buscadorDestinoEjemplo" placeholder="Chichen Itza, Tulum, Isla Mujeres…">
           </div>
           <div class="search-field">
-            <label for="t-fecha">Fecha</label>
+            <label for="t-fecha" data-i18n="buscadorFechaTour">Date</label>
             <input id="t-fecha" type="date">
           </div>
           <div class="search-field">
-            <label for="t-pax">Pasajeros</label>
+            <label for="t-pax" data-i18n="buscadorPasajeros">Passengers</label>
             <input id="t-pax" type="number" min="1" value="2">
           </div>
         </div>
         <div class="search-btn-wrap">
-          <button class="btn-secondary" onclick="buscarTour()">Cotizar Tour</button>
+          <button class="btn-secondary" onclick="buscarTour()" data-i18n="buscadorCotizarTour">Quote My Tour</button>
         </div>
       </div>
     </div>
@@ -946,8 +1601,8 @@ window.TEVE_CONFIG = {
   <section class="section">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Lo que ofrecemos</div>
-        <h2 class="sec-title">Nuestros Servicios de Transportación</h2>
+        <div class="sec-eyebrow" data-i18n="homeServiciosEyebrow">What We Offer</div>
+        <h2 class="sec-title" data-i18n="homeServiciosTitulo">Our Transport Services</h2>
       </div>
       <div class="services-grid" id="homeServicesGrid"></div>
     </div>
@@ -956,12 +1611,12 @@ window.TEVE_CONFIG = {
   <section class="section section-alt">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Los Mejores</div>
-        <h2 class="sec-title dark">Tours Privados Destacados</h2>
+        <div class="sec-eyebrow" data-i18n="homeToursEyebrow">The Best Of</div>
+        <h2 class="sec-title dark" data-i18n="homeToursTitulo">Featured Private Tours</h2>
       </div>
       <div class="tours-grid" id="homeToursGrid"></div>
       <div style="text-align:center; margin-top:34px;">
-        <a class="btn-outline" href="/tours" data-page="tours">Ver Todos los Tours</a>
+        <a class="btn-outline" href="/tours" data-page="tours" data-i18n="homeToursBoton">See All Tours</a>
       </div>
     </div>
   </section>
@@ -970,10 +1625,10 @@ window.TEVE_CONFIG = {
     <canvas id="whyCanvasHome" aria-hidden="true"></canvas>
     <div class="why-veil"></div>
     <div class="why-inner">
-      <h4>¿Por qué TEVE?</h4>
-      <h2>¿Qué nos hace diferentes?</h2>
-      <p>TEVE Transfers &amp; Tours es la opción líder en transportación privada y tours a la medida en Cancún, Tulum y la Riviera Maya. Un solo chofer de confianza que te acompaña desde el aeropuerto hasta tu último día de vacaciones. Sin sorpresas, sin shuttles compartidos: tu experiencia, diseñada para ti.</p>
-      <a class="btn-white" href="/contacto" data-page="contacto">Permítenos Planear Tu Viaje</a>
+      <h4 data-i18n="porQueEyebrow">Why TEVE?</h4>
+      <h2 data-i18n="porQueTitulo">What Makes Us Different</h2>
+      <p data-i18n-html="porQueTexto">TEVE Transfers &amp; Tours is the trusted choice for private transport and custom tours in Cancun, Tulum and the Riviera Maya.</p>
+      <a class="btn-white" href="/contact" data-page="contacto" data-i18n="porQueBoton">Let Us Plan Your Trip</a>
     </div>
   </section>
 </div>
@@ -983,8 +1638,8 @@ window.TEVE_CONFIG = {
   <section class="section section-top">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Transportación en Cancún</div>
-        <h2 class="sec-title">Servicios Privados TEVE</h2>
+        <div class="sec-eyebrow" data-i18n="serviciosEyebrow">Transport in Cancun</div>
+        <h2 class="sec-title" data-i18n="serviciosTitulo">TEVE Private Services</h2>
       </div>
       <div class="services-grid" id="servicesGridFull"></div>
     </div>
@@ -996,8 +1651,8 @@ window.TEVE_CONFIG = {
   <section class="section section-top">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Los Mejores</div>
-        <h2 class="sec-title">Top Tours Privados</h2>
+        <div class="sec-eyebrow" data-i18n="toursEyebrow">The Best Of</div>
+        <h2 class="sec-title" data-i18n="toursTitulo">Top Private Tours</h2>
       </div>
       <div class="tours-grid" id="toursGridFull"></div>
     </div>
@@ -1009,8 +1664,8 @@ window.TEVE_CONFIG = {
   <section class="section section-top">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">A Donde Te Llevamos</div>
-        <h2 class="sec-title">Destinos Privados</h2>
+        <div class="sec-eyebrow" data-i18n="destinosEyebrow">Where We Take You</div>
+        <h2 class="sec-title" data-i18n="destinosTitulo">Private Destinations</h2>
       </div>
       <div class="dest-grid" id="destGrid"></div>
     </div>
@@ -1023,8 +1678,8 @@ window.TEVE_CONFIG = {
     <canvas id="whyCanvasTim" aria-hidden="true"></canvas>
     <div class="why-veil"></div>
     <div class="why-inner">
-      <h4>Conoce a tu Guía</h4>
-      <img class="tim-photo" id="timPhoto" alt="Tim, chofer y guía privado en Cancún" style="display:none;">
+      <h4 data-i18n="timEyebrow">Meet Your Driver</h4>
+      <img class="tim-photo" id="timPhoto" alt="Tim, private driver and guide in Cancun" style="display:none;">
       <h2 id="timTitulo"></h2>
       <p class="tim-quote" id="timCita"></p>
       <p id="timBio"></p>
@@ -1035,8 +1690,8 @@ window.TEVE_CONFIG = {
   <section class="section">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Reseñas Reales</div>
-        <h2 class="sec-title dark">Lo Que Dicen Nuestros Viajeros</h2>
+        <div class="sec-eyebrow" data-i18n="resenasEyebrow">Real Reviews</div>
+        <h2 class="sec-title dark" data-i18n="resenasTitulo">What Our Travellers Say</h2>
       </div>
       <div class="reviews-grid" id="reviewsGrid"></div>
     </div>
@@ -1048,8 +1703,8 @@ window.TEVE_CONFIG = {
   <section class="section section-top">
     <div class="container">
       <div class="sec-head">
-        <div class="sec-eyebrow">Guía de Viaje</div>
-        <h2 class="sec-title">Planea tu Viaje a Cancún</h2>
+        <div class="sec-eyebrow" data-i18n="blogEyebrow">Travel Guide</div>
+        <h2 class="sec-title" data-i18n="blogTitulo">Plan Your Trip to Cancun</h2>
       </div>
       <div class="blog-grid" id="blogGrid"></div>
     </div>
@@ -1062,27 +1717,27 @@ window.TEVE_CONFIG = {
     <div class="container">
       <div class="contact-wrap">
         <div class="contact-head">
-          <h3>¿Planeas un viaje a Cancún?</h3>
-          <h2>Nuestro equipo está listo para ayudarte</h2>
+          <h3 data-i18n="contactoEyebrow">Planning a trip to Cancun?</h3>
+          <h2 data-i18n="contactoTitulo">Our team is ready to help</h2>
         </div>
         <form class="contact-form" onsubmit="enviarContacto(event)">
-          <div class="form-item"><label for="c-nombre">Nombre(s)*</label><input id="c-nombre" type="text" required></div>
-          <div class="form-item"><label for="c-apellido">Apellido(s)*</label><input id="c-apellido" type="text" required></div>
-          <div class="form-item"><label for="c-email">Correo electrónico*</label><input id="c-email" type="email" required></div>
-          <div class="form-item"><label for="c-tel">Teléfono*</label><input id="c-tel" type="tel" required></div>
-          <div class="form-item"><label for="c-llegada">Fecha de llegada</label><input id="c-llegada" type="date"></div>
-          <div class="form-item"><label for="c-salida">Fecha de salida</label><input id="c-salida" type="date"></div>
-          <div class="form-item"><label for="c-adultos">Adultos</label><input id="c-adultos" type="number" min="1" value="2"></div>
-          <div class="form-item"><label for="c-menores">Menores</label><input id="c-menores" type="number" min="0" value="0"></div>
-          <div class="form-item full"><label for="c-msg">Servicio de interés / comentarios</label><textarea id="c-msg" rows="4"></textarea></div>
+          <div class="form-item"><label for="c-nombre" data-i18n="formNombre">First name*</label><input id="c-nombre" type="text" required></div>
+          <div class="form-item"><label for="c-apellido" data-i18n="formApellido">Last name*</label><input id="c-apellido" type="text" required></div>
+          <div class="form-item"><label for="c-email" data-i18n="formEmail">Email address*</label><input id="c-email" type="email" required></div>
+          <div class="form-item"><label for="c-tel" data-i18n="formTelefono">Phone*</label><input id="c-tel" type="tel" required></div>
+          <div class="form-item"><label for="c-llegada" data-i18n="formLlegada">Arrival date</label><input id="c-llegada" type="date"></div>
+          <div class="form-item"><label for="c-salida" data-i18n="formSalida">Departure date</label><input id="c-salida" type="date"></div>
+          <div class="form-item"><label for="c-adultos" data-i18n="formAdultos">Adults</label><input id="c-adultos" type="number" min="1" value="2"></div>
+          <div class="form-item"><label for="c-menores" data-i18n="formMenores">Children</label><input id="c-menores" type="number" min="0" value="0"></div>
+          <div class="form-item full"><label for="c-msg" data-i18n="formMensaje">Service you need / comments</label><textarea id="c-msg" rows="4"></textarea></div>
           <div class="form-item full" style="flex-direction:row; gap:20px; justify-content:center; flex-wrap:wrap;">
-            <label class="opt-row"><input type="checkbox" checked> Recibir alertas por SMS</label>
-            <label class="opt-row"><input type="checkbox" checked> Recibir alertas por email</label>
+            <label class="opt-row"><input type="checkbox" checked> <span data-i18n="formSms">Send me SMS updates</span></label>
+            <label class="opt-row"><input type="checkbox" checked> <span data-i18n="formEmailOpt">Send me email updates</span></label>
           </div>
           <div class="form-submit">
             <button type="submit" class="btn-wa">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
-              Enviar por WhatsApp
+              <span data-i18n="formEnviar">Send on WhatsApp</span>
             </button>
           </div>
         </form>
@@ -1093,47 +1748,47 @@ window.TEVE_CONFIG = {
 
   <section class="section" style="background:var(--fourth);">
     <div class="section-head">
-      <h3>Lo que dicen de nosotros</h3>
-      <h2>Síguenos y lee nuestras reseñas</h2>
+      <h3 data-i18n="socialEyebrow">What people say about us</h3>
+      <h2 data-i18n="socialTitulo">Follow us and read our reviews</h2>
     </div>
     <div class="social-widgets" id="socialWidgets"></div>
   </section>
 </div>
 
 <!-- ============ BOTÓN FLOTANTE WHATSAPP ============ -->
-<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg>
 </a>
 
 <!-- ============ PIE DE PÁGINA ============ -->
 <footer>
   <div class="footer-newsletter">
-    <h4>Tu próxima aventura empieza aquí</h4>
-    <h2>Recibe inspiración en tu correo</h2>
+    <h4 data-i18n="newsletterEyebrow">Your next adventure starts here</h4>
+    <h2 data-i18n="newsletterTitulo">Get travel inspiration by email</h2>
     <form class="nl-form" onsubmit="suscribir(event)">
-      <input type="email" id="nlEmail" placeholder="Tu correo electrónico" required aria-label="Tu correo electrónico">
-      <button class="btn-white" type="submit">Suscribirme</button>
+      <input type="email" id="nlEmail" data-i18n-ph="newsletterEjemplo" data-i18n-aria="newsletterEjemplo" placeholder="Your email address" required aria-label="Your email address">
+      <button class="btn-white" type="submit" data-i18n="newsletterBoton">Subscribe</button>
     </form>
   </div>
 
   <div class="footer-main">
     <div class="footer-logo" id="footerLogo"></div>
     <div class="footer-tabs">
-      <button id="ftab-contact" class="active" data-ftab="contact">Contacto</button>
-      <button id="ftab-discover" data-ftab="discover">Descubrir</button>
+      <button id="ftab-contact" class="active" data-ftab="contact" data-i18n="pieContacto">Contact</button>
+      <button id="ftab-discover" data-ftab="discover" data-i18n="pieDescubrir">Discover</button>
     </div>
 
     <div class="footer-panel active" id="fpanel-contact">
       <div class="footer-block">
-        <h4>Llámanos</h4>
+        <h4 data-i18n="pieLlamanos">Call us</h4>
         <div class="phone-pills" id="footerPhones"></div>
       </div>
       <div class="footer-block">
-        <h4>Envíanos un correo</h4>
+        <h4 data-i18n="pieCorreo">Email us</h4>
         <a id="footerEmail" href="#" style="color:#fff; text-decoration:underline;"></a>
       </div>
       <div class="footer-block" id="footerSocialBlock">
-        <h4>Redes Sociales</h4>
+        <h4 data-i18n="pieRedes">Social Media</h4>
         <div class="social-row" id="footerSocial"></div>
       </div>
       <div class="footer-block">
@@ -1144,39 +1799,39 @@ window.TEVE_CONFIG = {
     <div class="footer-panel" id="fpanel-discover">
       <div class="discover-cols">
         <div>
-          <h5>Cancún</h5>
-          <a href="/destinos" data-page="destinos">¿Qué ver?</a>
-          <a href="/servicios" data-page="servicios">Traslados y transportación</a>
-          <a href="/tours" data-page="tours">Tours privados</a>
-          <a href="/blog" data-page="blog">Blog de viajes</a>
+          <h5 data-i18n="pieCancun">Cancun</h5>
+          <a href="/destinations" data-page="destinos" data-i18n="pieQueVer">What to see</a>
+          <a href="/services" data-page="servicios" data-i18n-html="pieTraslados">Transfers &amp; transport</a>
+          <a href="/tours" data-page="tours" data-i18n="pieToursPrivados">Private tours</a>
+          <a href="/blog" data-page="blog" data-i18n="pieBlog">Travel blog</a>
         </div>
         <div>
-          <h5>Riviera Maya</h5>
-          <a href="/destinos" data-page="destinos">Tulum</a>
-          <a href="/destinos" data-page="destinos">Isla Mujeres</a>
-          <a href="/destinos" data-page="destinos">Bacalar y Holbox</a>
-          <a href="/destinos" data-page="destinos">Chichén Itzá</a>
+          <h5 data-i18n="pieRiviera">Riviera Maya</h5>
+          <a href="/destinations" data-page="destinos">Tulum</a>
+          <a href="/destinations" data-page="destinos">Isla Mujeres</a>
+          <a href="/destinations" data-page="destinos" data-i18n-html="pieBacalar">Bacalar &amp; Holbox</a>
+          <a href="/destinations" data-page="destinos">Chichén Itzá</a>
         </div>
         <div>
-          <h5>Servicios</h5>
-          <a href="/servicios" data-page="servicios">Chofer privado</a>
-          <a href="/servicios" data-page="servicios">Grupos y eventos</a>
-          <a href="/servicios" data-page="servicios">Renta de yates</a>
-          <a href="/servicios" data-page="servicios">Travel concierge</a>
+          <h5 data-i18n="pieServicios">Services</h5>
+          <a href="/services" data-page="servicios" data-i18n="pieChofer">Private driver</a>
+          <a href="/services" data-page="servicios" data-i18n-html="pieGrupos">Groups &amp; events</a>
+          <a href="/services" data-page="servicios" data-i18n="pieYates">Yacht charters</a>
+          <a href="/services" data-page="servicios" data-i18n="pieConcierge">Travel concierge</a>
         </div>
         <div>
-          <h5>Compañía</h5>
-          <a href="/tim" data-page="tim">Conoce a Tim</a>
-          <a href="/contacto" data-page="contacto">Contáctanos</a>
+          <h5 data-i18n="pieCompania">Company</h5>
+          <a href="/about-tim" data-page="tim" data-i18n="pieConoceTim">Meet Tim</a>
+          <a href="/contact" data-page="contacto" data-i18n="pieContactanos">Contact us</a>
         </div>
       </div>
     </div>
 
     <div class="footer-bottom">
       <div class="footer-links">
-        <a href="/aviso-de-privacidad">Aviso de Privacidad</a>
-        <a href="/terminos">Términos y Condiciones</a>
-        <a href="/cookies">Política de Cookies</a>
+        <a href="/privacy" data-i18n="piePrivacidad">Privacy Policy</a>
+        <a href="/terms" data-i18n-html="pieTerminos">Terms &amp; Conditions</a>
+        <a href="/cookies" data-i18n="pieCookies">Cookie Policy</a>
       </div>
       <div class="footer-copy" id="footerCopy"></div>
     </div>
@@ -1191,15 +1846,182 @@ window.TEVE_CONFIG = {
 
 const C = window.TEVE_CONFIG || {};
 const PAGES = ['home', 'servicios', 'tours', 'destinos', 'tim', 'blog', 'contacto'];
-const RUTAS = {
-  home: '/', servicios: '/servicios', tours: '/tours',
-  destinos: '/destinos', tim: '/tim', blog: '/blog', contacto: '/contacto'
-};
+
+/* ==========================================================================
+   IDIOMAS
+   --------------------------------------------------------------------------
+   El inglés vive en la raíz (/tours) y los demás idiomas bajo su prefijo
+   (/es/tours, /pt/passeios). Cada idioma trae sus propios slugs, así que
+   Google indexa direcciones que el visitante entiende en su idioma.
+   ========================================================================== */
+const TEXTOS = C.textos || {};
+const IDIOMAS = (C.idiomasActivos || Object.keys(TEXTOS)).filter(k => TEXTOS[k]);
+const IDIOMA_DEF = TEXTOS[C.idiomaPorDefecto] ? C.idiomaPorDefecto : (IDIOMAS[0] || 'en');
+const MEMORIA = 'teve_idioma';
+
+let LANG = IDIOMA_DEF;
+let L = TEXTOS[LANG] || {};
+
+// Traduce una clave de interfaz. Si falta en un idioma, cae al idioma por
+// defecto en vez de dejar el hueco vacío.
+function T(clave) {
+  const propio = (L.ui || {})[clave];
+  if (propio != null) return propio;
+  return ((TEXTOS[IDIOMA_DEF] || {}).ui || {})[clave] || '';
+}
+
+function metaDe(lang) { return (TEXTOS[lang] || {}).meta || {}; }
+
+// Dirección de una página en un idioma concreto: '/', '/tours', '/es/destinos'…
+function ruta(pagina, lang) {
+  const m = metaDe(lang || LANG);
+  const partes = [];
+  if (m.prefijo) partes.push(m.prefijo);
+  const slug = (m.rutas || {})[pagina];
+  if (slug) partes.push(slug);
+  return '/' + partes.join('/');
+}
+function urlAbsoluta(pagina, lang) {
+  const dominio = ((C.marca && C.marca.dominio) || '').replace(/\/+$/, '');
+  return dominio + ruta(pagina, lang);
+}
+
+/* ---------- de dónde sale el idioma y la página al cargar ---------- */
+function leerURL() {
+  const segmentos = window.location.pathname.split('/').filter(Boolean);
+  let lang = null;
+
+  const primero = (segmentos[0] || '').toLowerCase();
+  const porPrefijo = IDIOMAS.find(k => metaDe(k).prefijo && metaDe(k).prefijo === primero);
+  if (porPrefijo) { lang = porPrefijo; segmentos.shift(); }
+
+  // ?lang=es y #es/tours sirven para abrir el sitio desde un archivo local,
+  // donde no existen carpetas ni rutas reales.
+  const busca = new URLSearchParams(window.location.search).get('lang');
+  if (!lang && busca && IDIOMAS.includes(busca)) lang = busca;
+
+  let resto = (segmentos[0] || '').toLowerCase();
+  const hash = (window.location.hash || '').replace(/^#\/?/, '');
+  if (hash) {
+    const trozos = hash.split('/');
+    if (IDIOMAS.includes(trozos[0])) { lang = lang || trozos[0]; trozos.shift(); }
+    if (trozos[0]) resto = trozos[0].toLowerCase();
+  }
+
+  const idioma = lang || null;
+  const rutas = (metaDe(idioma || IDIOMA_DEF).rutas) || {};
+  let pagina = Object.keys(rutas).find(k => rutas[k] && rutas[k] === resto);
+
+  // Un enlace viejo o un slug de otro idioma también debe resolver.
+  if (!pagina && resto) {
+    for (const k of IDIOMAS) {
+      const r = metaDe(k).rutas || {};
+      const hit = Object.keys(r).find(x => r[x] && r[x] === resto);
+      if (hit) { pagina = hit; break; }
+    }
+  }
+  return { idioma: idioma, pagina: PAGES.includes(pagina) ? pagina : 'home' };
+}
+
+function detectarIdioma(idiomaURL) {
+  if (idiomaURL && IDIOMAS.includes(idiomaURL)) return idiomaURL;
+
+  let guardado = null;
+  try { guardado = localStorage.getItem(MEMORIA); } catch (err) { /* modo privado */ }
+  if (guardado && IDIOMAS.includes(guardado)) return guardado;
+
+  if (C.detectarIdiomaDelNavegador) {
+    const preferidos = navigator.languages || [navigator.language || ''];
+    for (const p of preferidos) {
+      const base = String(p).toLowerCase().split('-')[0];
+      if (IDIOMAS.includes(base)) return base;
+    }
+  }
+  return IDIOMA_DEF;
+}
+
+/* ---------- aplicar el idioma a todo el marcado ---------- */
+function aplicarI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = T(el.dataset.i18n);
+  });
+  // Claves que contienen entidades HTML (&amp;) o saltos de línea.
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    el.innerHTML = T(el.dataset.i18nHtml);
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    el.setAttribute('placeholder', T(el.dataset.i18nPh));
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    el.setAttribute('aria-label', T(el.dataset.i18nAria));
+  });
+  document.querySelectorAll('[data-i18n-val]').forEach(el => {
+    el.value = T(el.dataset.i18nVal);
+  });
+}
+
+function renderSelectorIdioma() {
+  const cont = document.getElementById('langSwitch');
+  if (!cont || IDIOMAS.length < 2) return;
+  cont.innerHTML = IDIOMAS.map(k => {
+    const m = metaDe(k);
+    const activo = k === LANG ? ' active' : '';
+    return `<button class="lang-btn${activo}" data-lang="${k}" lang="${m.htmlLang || k}"
+              aria-label="${esc(m.nombre || k)}"${k === LANG ? ' aria-current="true"' : ''}>
+              <span class="lang-flag" aria-hidden="true">${m.bandera || ''}</span>${k.toUpperCase()}</button>`;
+  }).join('');
+}
+
+/* ---------- hreflang: le dice a Google qué versión servir a cada país ---------- */
+function inyectarHreflang(pagina) {
+  document.querySelectorAll('link[data-hreflang]').forEach(el => el.remove());
+  const cabeza = document.head;
+  IDIOMAS.forEach(k => {
+    (metaDe(k).hreflang || [k]).forEach(codigo => {
+      const l = document.createElement('link');
+      l.rel = 'alternate';
+      l.hreflang = codigo;
+      l.href = urlAbsoluta(pagina, k);
+      l.setAttribute('data-hreflang', '');
+      cabeza.appendChild(l);
+    });
+  });
+  // x-default = la versión que se sirve a quien no encaja en ningún idioma.
+  const x = document.createElement('link');
+  x.rel = 'alternate';
+  x.hreflang = 'x-default';
+  x.href = urlAbsoluta(pagina, IDIOMA_DEF);
+  x.setAttribute('data-hreflang', '');
+  cabeza.appendChild(x);
+}
+
+function cambiarIdioma(lang, pagina) {
+  if (!IDIOMAS.includes(lang)) return;
+  LANG = lang;
+  L = TEXTOS[lang];
+  try { localStorage.setItem(MEMORIA, lang); } catch (err) { /* modo privado */ }
+
+  const m = metaDe(lang);
+  document.documentElement.lang = m.htmlLang || lang;
+  const ogl = document.querySelector('meta[property="og:locale"]');
+  if (ogl && m.ogLocale) ogl.setAttribute('content', m.ogLocale);
+
+  aplicarI18n();
+  renderSelectorIdioma();
+  renderTodo();
+  showPage(pagina || paginaActual, true);
+}
 
 /* ---------- utilidades ---------- */
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+// Toma un campo que puede venir traducido ({en,es,pt}) o como texto simple.
+function trad(valor) {
+  if (valor && typeof valor === 'object') return valor[LANG] || valor[IDIOMA_DEF] || '';
+  return valor || '';
+}
 
 // Devuelve el CSS de fondo: la imagen del config, o un degradado de marca si está vacía.
 const DEGRADADOS = [
@@ -1219,47 +2041,50 @@ function fondo(src, i) {
 /* ---------- WhatsApp ---------- */
 function waLink(texto) {
   const num = (C.contacto && C.contacto.whatsapp) || '';
-  return 'https://wa.me/' + num + '?text=' + encodeURIComponent(texto || (C.contacto && C.contacto.whatsappTexto) || '');
+  return 'https://wa.me/' + num + '?text=' + encodeURIComponent(texto || T('waGeneral'));
 }
 function waMsg(texto) { window.open(waLink(texto), '_blank', 'noopener'); }
 
 function buscarTraslado() {
   const v = id => (document.getElementById(id) || {}).value || '';
-  waMsg(`¡Hola! Quiero cotizar un traslado privado.
-Tipo: ${v('f-tipo')}
-Desde: ${v('f-desde')}
-Hacia: ${v('f-hacia')}
-Fecha: ${v('f-fecha') || 'por definir'}
-Pasajeros: ${v('f-pax')}`);
+  waMsg(`${T('waTraslado')}
+${T('buscadorTipo')}: ${v('f-tipo')}
+${T('buscadorDesde')}: ${v('f-desde')}
+${T('buscadorHacia')}: ${v('f-hacia')}
+${T('buscadorFecha')}: ${v('f-fecha') || '—'}
+${T('buscadorPasajeros')}: ${v('f-pax')}`);
 }
 function buscarTour() {
   const v = id => (document.getElementById(id) || {}).value || '';
-  waMsg(`¡Hola! Quiero cotizar un tour privado.
-Destino: ${v('t-destino') || 'por definir'}
-Fecha: ${v('t-fecha') || 'por definir'}
-Pasajeros: ${v('t-pax')}`);
+  waMsg(`${T('waTourBusqueda')}
+${T('buscadorDestino')}: ${v('t-destino') || '—'}
+${T('buscadorFechaTour')}: ${v('t-fecha') || '—'}
+${T('buscadorPasajeros')}: ${v('t-pax')}`);
 }
 function enviarContacto(e) {
   e.preventDefault();
   const v = id => (document.getElementById(id) || {}).value || '';
-  waMsg(`¡Hola! Solicito una cotización desde el sitio web.
-Nombre: ${v('c-nombre')} ${v('c-apellido')}
-Email: ${v('c-email')}
-Teléfono: ${v('c-tel')}
-Llegada: ${v('c-llegada') || 'por definir'} · Salida: ${v('c-salida') || 'por definir'}
-Adultos: ${v('c-adultos')} · Menores: ${v('c-menores')}
-Comentarios: ${v('c-msg') || '—'}`);
+  waMsg(`${T('waPortada')}
+${T('formNombre').replace('*', '')}: ${v('c-nombre')} ${v('c-apellido')}
+${T('formEmail').replace('*', '')}: ${v('c-email')}
+${T('formTelefono').replace('*', '')}: ${v('c-tel')}
+${T('formLlegada')}: ${v('c-llegada') || '—'} · ${T('formSalida')}: ${v('c-salida') || '—'}
+${T('formAdultos')}: ${v('c-adultos')} · ${T('formMenores')}: ${v('c-menores')}
+${T('formMensaje')}: ${v('c-msg') || '—'}`);
 }
 function suscribir(e) {
   e.preventDefault();
   const email = (document.getElementById('nlEmail') || {}).value || '';
-  waMsg(`¡Hola! Quiero suscribirme al boletín de viajes. Mi correo es: ${email}`);
+  waMsg(`${T('newsletterTitulo')}: ${email}`);
   e.target.reset();
 }
 
 /* ---------- navegación (páginas ocultas hasta hacer clic) ---------- */
+let paginaActual = 'home';
+
 function showPage(id, push) {
   if (!PAGES.includes(id)) id = 'home';
+  paginaActual = id;
 
   PAGES.forEach(p => {
     const el = document.getElementById('page-' + p);
@@ -1274,14 +2099,13 @@ function showPage(id, push) {
 
   if (push !== false && window.history && history.pushState) {
     // En file:// el navegador bloquea pushState; el sitio sigue funcionando igual.
-    try { history.pushState({ page: id }, '', RUTAS[id]); } catch (err) { /* sin ruta */ }
+    try { history.pushState({ page: id, lang: LANG }, '', ruta(id)); } catch (err) { /* sin ruta */ }
   }
   window.scrollTo(0, 0);
 }
 
 function actualizarSEO(id) {
-  const seo = (C.seo && C.seo[id]) || {};
-  const dominio = (C.marca && C.marca.dominio) || '';
+  const seo = (L.seo && L.seo[id]) || {};
   if (seo.titulo) document.title = seo.titulo;
   if (seo.descripcion) {
     const m = document.querySelector('meta[name="description"]');
@@ -1291,18 +2115,13 @@ function actualizarSEO(id) {
   }
   const ogt = document.querySelector('meta[property="og:title"]');
   if (ogt && seo.titulo) ogt.setAttribute('content', seo.titulo);
-  const canon = document.querySelector('link[rel="canonical"]');
-  if (canon && dominio) canon.setAttribute('href', dominio + RUTAS[id]);
-  const ogu = document.querySelector('meta[property="og:url"]');
-  if (ogu && dominio) ogu.setAttribute('content', dominio + RUTAS[id]);
-}
 
-function paginaDesdeURL() {
-  const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  const hit = Object.keys(RUTAS).find(k => RUTAS[k] === path);
-  if (hit) return hit;
-  const hash = (window.location.hash || '').replace(/^#\/?/, '');
-  return PAGES.includes(hash) ? hash : 'home';
+  const canon = document.querySelector('link[rel="canonical"]');
+  if (canon) canon.setAttribute('href', urlAbsoluta(id, LANG));
+  const ogu = document.querySelector('meta[property="og:url"]');
+  if (ogu) ogu.setAttribute('content', urlAbsoluta(id, LANG));
+
+  inyectarHreflang(id);
 }
 
 function cerrarMenu() {
@@ -1312,15 +2131,22 @@ function cerrarMenu() {
   if (h) { h.classList.remove('open'); h.setAttribute('aria-expanded', 'false'); }
 }
 
-// Un solo listener captura todos los enlaces internos del sitio.
+// Un solo listener captura todos los enlaces internos y el cambio de idioma.
 document.addEventListener('click', e => {
+  const idioma = e.target.closest('[data-lang]');
+  if (idioma) { e.preventDefault(); cambiarIdioma(idioma.dataset.lang); return; }
+
   const link = e.target.closest('[data-page]');
   if (!link) return;
   e.preventDefault();
   showPage(link.dataset.page);
 });
 
-window.addEventListener('popstate', () => showPage(paginaDesdeURL(), false));
+window.addEventListener('popstate', () => {
+  const u = leerURL();
+  if (u.idioma && u.idioma !== LANG) { cambiarIdioma(u.idioma, u.pagina); return; }
+  showPage(u.pagina, false);
+});
 
 document.getElementById('hamBtn').addEventListener('click', function () {
   const d = document.getElementById('navDrawer');
@@ -1400,21 +2226,26 @@ function renderMarca() {
 
 /* ---------- menú ---------- */
 const MENU = [
-  { id: 'home', texto: 'Inicio' },
-  { id: 'servicios', texto: 'Servicios' },
-  { id: 'tours', texto: 'Tours Privados' },
-  { id: 'destinos', texto: 'Destinos' },
-  { id: 'tim', texto: 'Conoce a Tim' },
-  { id: 'blog', texto: 'Blog de Viajes' }
+  { id: 'home',      clave: 'navHome' },
+  { id: 'servicios', clave: 'navServicios' },
+  { id: 'tours',     clave: 'navTours' },
+  { id: 'destinos',  clave: 'navDestinos' },
+  { id: 'tim',       clave: 'navTim' },
+  { id: 'blog',      clave: 'navBlog' }
 ];
 
 function renderMenu() {
   const enlaces = MENU.map(m =>
-    `<a class="nav-link" href="${RUTAS[m.id]}" data-page="${m.id}">${esc(m.texto)}</a>`
+    `<a class="nav-link" href="${ruta(m.id)}" data-page="${m.id}">${esc(T(m.clave))}</a>`
   ).join('');
-  const cta = `<a class="btn-secondary" style="padding:10px 24px;font-size:0.82rem;" href="/contacto" data-page="contacto">Contáctanos</a>`;
+  const cta = `<a class="btn-secondary" style="padding:10px 24px;font-size:0.82rem;" href="${ruta('contacto')}" data-page="contacto">${esc(T('navContacto'))}</a>`;
   document.getElementById('navLinks').innerHTML = enlaces + cta;
   document.getElementById('navDrawer').innerHTML = enlaces + cta;
+
+  // Los enlaces fijos del pie y de la portada también cambian de idioma.
+  document.querySelectorAll('[data-page]').forEach(el => {
+    if (el.tagName === 'A' && el.dataset.page) el.setAttribute('href', ruta(el.dataset.page));
+  });
 }
 
 /* ---------- barra superior ---------- */
@@ -1425,13 +2256,13 @@ function renderTopbar() {
     partes.push(`<a href="tel:${esc(c.telefonos[0].marcar)}">📞 ${esc(c.telefonos[0].numero)}</a>`);
   }
   if (c.email) partes.push(`<a href="mailto:${esc(c.email)}">✉️ ${esc(c.email)}</a>`);
-  if (c.horario) partes.push(`<span>🕑 ${esc(c.horario)}</span>`);
+  partes.push(`<span>🕑 ${esc(T('pieHorario'))}</span>`);
   document.getElementById('topbarInner').innerHTML = partes.join('');
 }
 
 /* ---------- portada ---------- */
 function renderPortada() {
-  const p = C.portada || {};
+  const p = L.portada || {};
   const m = C.marca || {};
   // En la portada el fondo es oscuro, así que se prefiere la versión clara.
   const logoPortada = m.logoBlanco || m.logo;
@@ -1476,14 +2307,18 @@ function renderPortada() {
 }
 
 /* ---------- servicios ---------- */
+// Une el bloque de la PARTE A (foto, precio) con su texto traducido.
 function tarjetaServicio(s, i) {
+  const t = (L.servicios || {})[s.id] || {};
+  const desde = trad(s.desde);
+  const wa = `${T('waServicio')} ${t.titulo || ''}`.replace(/'/g, "\\'");
   return `
     <div class="svc-card">
       <div class="svc-img" style="${fondo(s.imagen, i)}"></div>
-      <h3>${esc(s.titulo)}</h3>
-      <p>${esc(s.texto)}</p>
-      ${s.desde ? `<div class="svc-desde">${esc(s.desde)}</div>` : ''}
-      <button class="btn-secondary" onclick="waMsg('¡Hola! Quiero información sobre: ${esc(s.titulo).replace(/'/g, '&#39;')}')">Cotizar Ahora</button>
+      <h3>${esc(t.titulo)}</h3>
+      <p>${esc(t.texto)}</p>
+      ${desde ? `<div class="svc-desde">${esc(desde)}</div>` : ''}
+      <button class="btn-secondary" onclick="waMsg('${esc(wa)}')">${esc(T('tarjetaCotizar'))}</button>
     </div>`;
 }
 function renderServicios() {
@@ -1496,18 +2331,21 @@ function renderServicios() {
 
 /* ---------- tours ---------- */
 function tarjetaTour(t, i) {
+  const x = (L.tours || {})[t.id] || {};
+  const dur = trad(t.duracion);
+  const wa = `${T('waTour')} ${x.titulo || ''}`.replace(/'/g, "\\'");
   return `
     <div class="tour-card">
       <div class="tour-img" style="${fondo(t.imagen, i)}">
-        ${t.duracion ? `<span class="tour-badge">${esc(t.duracion)}</span>` : ''}
+        ${dur ? `<span class="tour-badge">${esc(dur)}</span>` : ''}
       </div>
       <div class="tour-body">
-        <h3>${esc(t.titulo)}</h3>
-        <p>${esc(t.texto)}</p>
-        <div class="tour-price-row"><span>Desde</span><span class="tour-price">${esc(t.precio)}</span></div>
+        <h3>${esc(x.titulo)}</h3>
+        <p>${esc(x.texto)}</p>
+        <div class="tour-price-row"><span>${esc(T('tarjetaDesde'))}</span><span class="tour-price">${esc(t.precio)}</span></div>
       </div>
       <div class="tour-footer">
-        <button class="btn-outline" onclick="waMsg('¡Hola! Quiero reservar el tour: ${esc(t.titulo).replace(/'/g, '&#39;')}')">Reservar</button>
+        <button class="btn-outline" onclick="waMsg('${esc(wa)}')">${esc(T('tarjetaReservar'))}</button>
       </div>
     </div>`;
 }
@@ -1519,37 +2357,40 @@ function renderTours() {
 
 /* ---------- destinos ---------- */
 function renderDestinos() {
-  document.getElementById('destGrid').innerHTML = (C.destinos || []).map(d => `
+  document.getElementById('destGrid').innerHTML = (C.destinos || []).map(d => {
+    const x = (L.destinos || {})[d.id] || {};
+    const wa = `${T('waDestino')} ${d.nombre}`.replace(/'/g, "\\'");
+    return `
     <div class="dest-card" style="${d.imagen ? `background-image:url('${esc(d.imagen)}')` : ''}">
       ${d.imagen ? '' : `<canvas class="dest-canvas" data-palette="${esc(d.paleta || 'ocean')}" aria-hidden="true"></canvas>`}
       <div class="dest-veil"></div>
       <div class="dest-info">
-        <div class="dest-days">${esc(d.duracion)}</div>
+        <div class="dest-days">${esc(x.duracion)}</div>
         <h3>${esc(d.nombre)}</h3>
-        <p>${esc(d.texto)}</p>
-        <button class="btn-white" onclick="waMsg('¡Hola! Quiero cotizar un tour privado a ${esc(d.nombre).replace(/'/g, '&#39;')}')">Descubrir Más</button>
+        <p>${esc(x.texto)}</p>
+        <button class="btn-white" onclick="waMsg('${esc(wa)}')">${esc(T('tarjetaDescubrir'))}</button>
       </div>
-    </div>`).join('');
+    </div>`; }).join('');
   initDestCanvas();
 }
 
 /* ---------- Tim ---------- */
 function renderTim() {
-  const t = C.tim || {};
+  const t = L.tim || {};
   document.getElementById('timTitulo').textContent = t.titulo || '';
   document.getElementById('timBio').textContent = t.biografia || '';
   document.getElementById('timCita').innerHTML =
     `"${esc(t.citaDestacada)}"<span>— ${esc(t.citaAutor)}</span>`;
 
   const btn = document.getElementById('timBoton');
-  btn.textContent = t.botonTexto || 'Escríbenos por WhatsApp';
-  btn.onclick = () => waMsg('¡Hola Tim! Quiero reservar un servicio privado contigo.');
+  btn.textContent = T('waTim');
+  btn.onclick = () => waMsg(T('waGeneral'));
 
   const foto = C.imagenes && C.imagenes.timFoto;
   const el = document.getElementById('timPhoto');
   if (foto) { el.src = foto; el.style.display = 'block'; }
 
-  document.getElementById('reviewsGrid').innerHTML = (C.resenas || []).map(r => `
+  document.getElementById('reviewsGrid').innerHTML = (L.resenas || []).map(r => `
     <div class="review-card">
       <div class="stars">★★★★★</div>
       <p class="txt">"${esc(r.texto)}"</p>
@@ -1560,18 +2401,20 @@ function renderTim() {
 
 /* ---------- blog ---------- */
 function renderBlog() {
-  document.getElementById('blogGrid').innerHTML = (C.blog || []).map((b, i) => `
+  document.getElementById('blogGrid').innerHTML = (C.blog || []).map((b, i) => {
+    const x = (L.blog || {})[b.id] || {};
+    return `
     <div class="blog-card">
       <div class="blog-img" style="${fondo(b.imagen, i)}"></div>
       <div class="blog-body">
-        <div class="blog-cat">${esc(b.categoria)}</div>
-        <h5>${esc(b.titulo)}</h5>
-        <p>${esc(b.texto)}</p>
+        <div class="blog-cat">${esc(x.categoria)}</div>
+        <h5>${esc(x.titulo)}</h5>
+        <p>${esc(x.texto)}</p>
         ${b.enlace
-          ? `<a class="blog-more" href="${esc(b.enlace)}">Leer artículo →</a>`
-          : `<span class="blog-more" style="opacity:0.55;cursor:default;">Próximamente</span>`}
+          ? `<a class="blog-more" href="${esc(b.enlace)}">${esc(T('blogLeerMas'))}</a>`
+          : `<span class="blog-more" style="opacity:0.55;cursor:default;">${esc(T('blogEyebrow'))}</span>`}
       </div>
-    </div>`).join('');
+    </div>`; }).join('');
 }
 
 /* ---------- contacto y pie de página ---------- */
@@ -1587,14 +2430,14 @@ function renderContacto() {
   const c = C.contacto || {};
 
   document.getElementById('footerPhones').innerHTML = (c.telefonos || []).map(t =>
-    `<a class="phone-pill" href="tel:${esc(t.marcar)}">${esc(t.etiqueta)}: ${esc(t.numero)}</a>`
+    `<a class="phone-pill" href="tel:${esc(t.marcar)}">${esc(trad(t.etiqueta))}: ${esc(t.numero)}</a>`
   ).join('');
 
   const em = document.getElementById('footerEmail');
   em.href = 'mailto:' + (c.email || '');
   em.textContent = c.email || '';
 
-  document.getElementById('footerHorario').textContent = c.horario || '';
+  document.getElementById('footerHorario').textContent = T('pieHorario');
 
   const redes = C.redes || {};
   const activas = Object.keys(redes).filter(k => redes[k]);
@@ -1606,10 +2449,10 @@ function renderContacto() {
     </a>`;
 
   const chips = [];
-  if (c.whatsapp) chips.push(`<a class="contact-chip" href="${esc(waLink())}" target="_blank" rel="noopener"><strong>WhatsApp</strong> Respuesta inmediata</a>`);
+  if (c.whatsapp) chips.push(`<a class="contact-chip" href="${esc(waLink())}" target="_blank" rel="noopener"><strong>WhatsApp</strong> ${esc(T('contactoWhatsappTexto'))}</a>`);
   if (c.email) chips.push(`<a class="contact-chip" href="mailto:${esc(c.email)}"><strong>Email</strong> ${esc(c.email)}</a>`);
   (c.telefonos || []).forEach(t => {
-    chips.push(`<a class="contact-chip" href="tel:${esc(t.marcar)}"><strong>${esc(t.etiqueta)}</strong> ${esc(t.numero)}</a>`);
+    chips.push(`<a class="contact-chip" href="tel:${esc(t.marcar)}"><strong>${esc(trad(t.etiqueta))}</strong> ${esc(t.numero)}</a>`);
   });
   document.getElementById('contactDirect').innerHTML = chips.join('');
 
@@ -1632,7 +2475,7 @@ function renderWidgets() {
       <div class="social-card">
         <span class="social-ico">${ICONOS_RED.tripadvisor}</span>
         <h3>TripAdvisor</h3>
-        <p>Reseñas verificadas de viajeros que ya viajaron con nosotros.</p>
+        <p>${esc(T('socialTaTexto'))}</p>
         <div class="ta-badge">
           <div id="TA_certificateOfExcellence${uniq}" class="TA_certificateOfExcellence">
             <ul class="TA_links">
@@ -1646,7 +2489,7 @@ function renderWidgets() {
             </ul>
           </div>
         </div>
-        <a class="btn-outline" href="${esc(r.tripadvisor)}" target="_blank" rel="noopener">Leer reseñas</a>
+        <a class="btn-outline" href="${esc(r.tripadvisor)}" target="_blank" rel="noopener">${esc(T('socialTaBoton'))}</a>
       </div>`);
   }
 
@@ -1656,8 +2499,8 @@ function renderWidgets() {
       <div class="social-card">
         <span class="social-ico">${ICONOS_RED.facebook}</span>
         <h3>Facebook</h3>
-        <p>Novedades, promociones y fotos de nuestros traslados y tours.</p>
-        <a class="btn-outline" href="${esc(r.facebook)}" target="_blank" rel="noopener">Seguir en Facebook</a>
+        <p>${esc(T('socialFbTexto'))}</p>
+        <a class="btn-outline" href="${esc(r.facebook)}" target="_blank" rel="noopener">${esc(T('socialFbBoton'))}</a>
       </div>`);
   }
 
@@ -1667,8 +2510,8 @@ function renderWidgets() {
       <div class="social-card">
         <span class="social-ico">${ICONOS_RED.instagram}</span>
         <h3>Instagram</h3>
-        <p>El día a día en Cancún, Tulum, Holbox y la Riviera Maya.</p>
-        <a class="btn-outline" href="${esc(r.instagram)}" target="_blank" rel="noopener">Seguir en Instagram</a>
+        <p>${esc(T('socialIgTexto'))}</p>
+        <a class="btn-outline" href="${esc(r.instagram)}" target="_blank" rel="noopener">${esc(T('socialIgBoton'))}</a>
       </div>`);
   }
 
@@ -1677,14 +2520,16 @@ function renderWidgets() {
   // El script de TripAdvisor reemplaza el sello estático por el widget vivo.
   // Se carga una sola vez y de forma diferida: si TripAdvisor no responde,
   // la tarjeta sigue mostrando el sello y el enlace a las reseñas.
-  if (ta.activo && r.tripadvisor && !document.getElementById('taScript')) {
+  const viejo = document.getElementById('taScript');
+  if (viejo) viejo.remove();
+  if (ta.activo && r.tripadvisor) {
     const sc = document.createElement('script');
     sc.id = 'taScript';
     sc.async = true;
     sc.src = 'https://www.jscache.com/wejs?wtype=certificateOfExcellence'
            + '&uniq=' + encodeURIComponent(ta.uniq || '663')
            + '&locationId=' + encodeURIComponent(ta.locationId || '')
-           + '&lang=' + encodeURIComponent(ta.idioma || 'en_AU')
+           + '&lang=' + encodeURIComponent(trad(ta.idioma) || 'en_AU')
            + '&year=' + encodeURIComponent(ta.anio || '2026')
            + '&display_version=2';
     document.body.appendChild(sc);
@@ -1698,6 +2543,9 @@ function renderSchema() {
     const data = JSON.parse(el.textContent);
     const c = C.contacto || {}, m = C.marca || {};
     if (m.nombreCompleto) data.name = m.nombreCompleto;
+    const seoHome = (L.seo && L.seo.home) || {};
+    if (seoHome.descripcion) data.description = seoHome.descripcion;
+    data.inLanguage = (metaDe(LANG).htmlLang) || LANG;
     if (m.dominio) data.url = m.dominio;
     if (c.email) data.email = c.email;
     if (c.telefonos && c.telefonos[0]) data.telephone = c.telefonos[0].marcar;
@@ -1810,25 +2658,41 @@ if (!window.TEVE_CONFIG) {
   console.error('TEVE: no se encontró teve-config.js. Súbelo junto a index.html.');
 }
 
-renderMarca();
-renderMenu();
-renderTopbar();
-renderPortada();
-renderServicios();
-renderTours();
-renderDestinos();
-renderTim();
-renderBlog();
-renderContacto();
-renderWidgets();
-renderSchema();
+// Todo lo que depende del idioma se repinta de golpe al cambiarlo.
+function renderTodo() {
+  renderMarca();
+  renderMenu();
+  renderTopbar();
+  renderPortada();
+  renderServicios();
+  renderTours();
+  renderDestinos();
+  renderTim();
+  renderBlog();
+  renderContacto();
+  renderWidgets();
+  renderSchema();
+}
+
+const inicio = leerURL();
+LANG = detectarIdioma(inicio.idioma);
+L = TEXTOS[LANG] || {};
+document.documentElement.lang = metaDe(LANG).htmlLang || LANG;
+const ogLocaleEl = document.querySelector('meta[property="og:locale"]');
+if (ogLocaleEl && metaDe(LANG).ogLocale) ogLocaleEl.setAttribute('content', metaDe(LANG).ogLocale);
+
+aplicarI18n();
+renderSelectorIdioma();
+renderTodo();
 renderAnalitica();
 
 initCanvasSuave(document.getElementById('heroCanvas'));
 initCanvasSuave(document.getElementById('whyCanvasHome'));
 initCanvasSuave(document.getElementById('whyCanvasTim'));
 
-showPage(paginaDesdeURL(), false);
+// Si el idioma detectado no es el de la dirección, se corrige la barra
+// del navegador para que la dirección y el contenido siempre coincidan.
+showPage(inicio.pagina, LANG !== IDIOMA_DEF || inicio.idioma != null);
 </script>
 
 </body>
