@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Mapa del sitio de TEVE Transfers & Tours.
+     Cada página se declara en los tres idiomas con xhtml:link, que es
+     como Google sabe que /tours, /es/tours y /pt/passeios son la misma
+     página y debe servir la correcta según el país del visitante. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://www.tevetours.com/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/"/>
     <image:image>
       <image:loc>https://www.tevetours.com/img/logo-teve.svg</image:loc>
       <image:title>TEVE Transfers &amp; Tours</image:title>
@@ -14,45 +30,363 @@
   </url>
 
   <url>
-    <loc>https://www.tevetours.com/servicios</loc>
-    <lastmod>2026-08-28</lastmod>
+    <loc>https://www.tevetours.com/es</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/pt</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/services</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/servicios"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/servicios"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/servicos"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/servicos"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/servicos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/services"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/es/servicios</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/servicios"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/servicios"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/servicos"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/servicos"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/servicos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/services"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/pt/servicos</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/servicios"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/servicios"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/servicos"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/servicos"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/servicos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/services"/>
   </url>
 
   <url>
     <loc>https://www.tevetours.com/tours</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/tours"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/tours"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/passeios"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/passeios"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/passeios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/tours"/>
   </url>
 
   <url>
-    <loc>https://www.tevetours.com/destinos</loc>
-    <lastmod>2026-08-28</lastmod>
+    <loc>https://www.tevetours.com/es/tours</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/tours"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/tours"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/passeios"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/passeios"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/passeios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/tours"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/pt/passeios</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/tours"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/tours"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/tours"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/passeios"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/passeios"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/passeios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/tours"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/destinations</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/destinos"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/destinos"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/destinos"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/destinos"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/destinos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/destinations"/>
   </url>
 
   <url>
-    <loc>https://www.tevetours.com/tim</loc>
-    <lastmod>2026-08-28</lastmod>
+    <loc>https://www.tevetours.com/es/destinos</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/destinos"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/destinos"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/destinos"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/destinos"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/destinos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/destinations"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/pt/destinos</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/destinations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/destinos"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/destinos"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/destinos"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/destinos"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/destinos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/destinations"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/about-tim</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/tim"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/tim"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/tim"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/tim"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/tim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/about-tim"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/es/tim</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/tim"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/tim"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/tim"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/tim"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/tim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/about-tim"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/pt/tim</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/about-tim"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/tim"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/tim"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/tim"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/tim"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/tim"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/about-tim"/>
   </url>
 
   <url>
     <loc>https://www.tevetours.com/blog</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/blog"/>
   </url>
 
   <url>
-    <loc>https://www.tevetours.com/contacto</loc>
-    <lastmod>2026-08-28</lastmod>
+    <loc>https://www.tevetours.com/es/blog</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/blog"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/pt/blog</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/blog"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/blog"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/blog"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/contact</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/contato"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/contato"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/contato"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/contact"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/es/contacto</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/contato"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/contato"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/contato"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/contact"/>
+  </url>
+
+  <url>
+    <loc>https://www.tevetours.com/pt/contato</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en-CA" href="https://www.tevetours.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.tevetours.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.tevetours.com/es/contacto"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.tevetours.com/pt/contato"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.tevetours.com/pt/contato"/>
+    <xhtml:link rel="alternate" hreflang="pt-PT" href="https://www.tevetours.com/pt/contato"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.tevetours.com/contact"/>
   </url>
 
 </urlset>
