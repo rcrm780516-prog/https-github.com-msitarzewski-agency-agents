@@ -48,7 +48,7 @@ const pilares = [
       </p>
     </div>
 
-    <div class="grid grid--2">
+    <div class="grid grid--pair" style="gap:var(--space-2xl) var(--space-xl)">
       {pilares.map((p, i) => (
         <div data-reveal data-reveal-delay={String((i % 4) + 1)}>
           <span class="service-card__icon" aria-hidden="true"><Icon name={p.icon} size={20} /></span>
