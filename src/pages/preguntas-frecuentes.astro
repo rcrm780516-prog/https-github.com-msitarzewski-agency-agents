@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import { getCollection } from 'astro:content';
+import { getServicios } from '../lib/content';
+import { routes } from '../lib/urls';
+import { faqSchema } from '../lib/schema';
+
+const [faqs, servicios] = await Promise.all([getCollection('faqs'), getServicios()]);
+const ordenadas = faqs.sort((a, b) => a.data.order - b.data.order);
+const temas = [...new Set(ordenadas.map((f) => f.data.topic))];
+
+// Las FAQ de servicio se listan enlazadas a su pagina: evitan duplicar
+// contenido y refuerzan la red interna.
+const porServicio = servicios.filter((s) => s.data.faq.length > 0);
+
+const items = ordenadas.map((f) => ({ q: f.data.q, a: f.data.a }));
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Preguntas frecuentes', href: routes.faq },
+];
+---
+<BaseLayout
+  title="Preguntas frecuentes | GEMMAE Ginecólogos"
+  description="Dudas frecuentes sobre citas, sedes, costos, estudios y primera consulta en GEMMAE Ginecólogos, en Toluca, Metepec y Zinacantepec."
+  canonical={routes.faq}
+  crumbs={crumbs}
+  schemas={[faqSchema(items)]}
+>
+  <PageHeader
+    eyebrow="Preguntas frecuentes"
+    title="Resolvemos tus dudas antes de la consulta"
+    lead="Lo que más nos preguntan sobre citas, sedes, estudios y primera consulta."
+    crumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      {temas.map((tema) => (
+        <div style="margin-bottom:var(--space-2xl)">
+          <h2 style="margin-bottom:1rem">{tema}</h2>
+          <FAQ items={ordenadas.filter((f) => f.data.topic === tema).map((f) => ({ q: f.data.q, a: f.data.a }))} />
+        </div>
+      ))}
+
+      <div style="margin-top:var(--space-2xl)">
+        <h2>Preguntas por servicio</h2>
+        <p class="text-muted" style="margin-top:.5rem">
+          Cada servicio tiene sus propias preguntas frecuentes, con el detalle clínico correspondiente.
+        </p>
+        <ul class="chip-row" style="margin-top:1rem">
+          {porServicio.map((s) => (
+            <li><a class="chip" href={routes.servicio(s.id)}>{s.data.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <MedicalDisclaimer class="mt-2xl" />
+    </div>
+  </section>
+
+  <CTASection title="¿Tu pregunta no está aquí?" text="Escríbenos por WhatsApp: te respondemos dudas administrativas y te orientamos sobre qué consulta agendar." />
+</BaseLayout>

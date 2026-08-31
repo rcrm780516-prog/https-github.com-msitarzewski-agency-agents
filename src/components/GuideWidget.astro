@@ -1,0 +1,64 @@
+---
+/**
+ * "¿Cuándo debería consultar?" — orientacion, NO diagnostico.
+ * No hay logica de triage ni resultados clinicos: cada opcion muestra un texto
+ * general revisable por el equipo medico y deriva a la consulta.
+ */
+import opciones from '../data/orientacion.json';
+import Icon from './Icon.astro';
+import WhatsAppButton from './WhatsAppButton.astro';
+import AppointmentCTA from './AppointmentCTA.astro';
+import { routes } from '../lib/urls';
+
+type Opcion = { id: string; label: string; text: string; service: string };
+const items = opciones as Opcion[];
+---
+<section class="section" id="orientacion">
+  <div class="container container--narrow">
+    <div class="section-head section-head--center">
+      <span class="eyebrow">Orientación</span>
+      <h2>¿Cuándo debería consultar?</h2>
+      <p class="lead mx-auto">
+        Elige lo que más se parece a tu situación. Te damos una orientación general
+        y te decimos con qué servicio continuar.
+      </p>
+    </div>
+
+    <div class="guide-widget" data-guide>
+      <div class="guide-widget__options" role="group" aria-label="Motivos de consulta">
+        {items.map((o) => (
+          <button
+            type="button"
+            class="guide-option"
+            data-guide-option={o.id}
+            aria-pressed="false"
+            aria-controls="guide-panel"
+          >{o.label}</button>
+        ))}
+      </div>
+
+      <div class="guide-widget__panel" id="guide-panel" role="status" aria-live="polite" hidden>
+        <div class="disclaimer" style="margin-bottom:1.25rem">
+          <Icon name="info" size={18} />
+          <p>Esta información es general y no sustituye una valoración médica. No realizamos diagnósticos por este medio.</p>
+        </div>
+        <p data-guide-text style="font-size:var(--step-1);line-height:1.55;color:var(--ink-800)"></p>
+        <div class="btn-row" style="margin-top:1.5rem">
+          <AppointmentCTA label="Agenda tu consulta" />
+          <WhatsAppButton variant="secondary" label="Hablar con GEMMAE" />
+          <a class="btn btn--ghost" href="#" data-guide-service hidden>Ver información del servicio</a>
+        </div>
+      </div>
+
+      <script is:inline type="application/json" data-guide-data set:html={JSON.stringify(items)}></script>
+    </div>
+
+    <p class="text-center text-muted" style="margin-top:1.5rem;font-size:.85rem">
+      ¿Tu caso no aparece aquí? <a href={routes.contacto}>Escríbenos</a> y te orientamos.
+    </p>
+  </div>
+</section>
+
+<script>
+  import '../scripts/guide';
+</script>

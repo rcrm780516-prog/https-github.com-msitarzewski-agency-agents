@@ -1,0 +1,137 @@
+---
+/**
+ * Formulario de contacto / solicitud de cita.
+ * - Funciona sin JS (POST normal al endpoint PHP, redirige a /gracias/).
+ * - Con JS envia por fetch, dispara eventos de analitica y conserva la pagina.
+ * - No solicita informacion clinica sensible: solo el motivo general.
+ * - Anti-spam sin servicios externos: honeypot + tiempo minimo de llenado,
+ *   validados tambien del lado servidor (public/api/lead.php).
+ */
+import { forms, contact } from '../config/site';
+import { routes } from '../lib/urls';
+import Icon from './Icon.astro';
+import type { Servicio, Ubicacion } from '../lib/content';
+
+export interface Props {
+  servicios: Servicio[];
+  ubicaciones: Ubicacion[];
+  compact?: boolean;
+}
+const { servicios, ubicaciones } = Astro.props;
+---
+<form
+  class="form"
+  id="contact-form"
+  method="post"
+  action={forms.endpoint}
+  data-lead-form
+  data-min-seconds={String(forms.minFillSeconds)}
+  novalidate
+>
+  <div class="field">
+    <label class="field__label" for="name">Nombre <span aria-hidden="true">*</span></label>
+    <input class="input" type="text" id="name" name="name" required autocomplete="name"
+      maxlength="80" aria-describedby="name-error" />
+    <p class="field__error" id="name-error" data-error-for="name"></p>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="phone">WhatsApp <span aria-hidden="true">*</span></label>
+    <input class="input" type="tel" id="phone" name="phone" required inputmode="tel"
+      autocomplete="tel" placeholder="10 dígitos" maxlength="20" aria-describedby="phone-hint phone-error" />
+    <p class="field__hint" id="phone-hint">Solo se usa para contactarte sobre tu solicitud.</p>
+    <p class="field__error" id="phone-error" data-error-for="phone"></p>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="service">Motivo de consulta</label>
+    <select class="select" id="service" name="service">
+      <option value="">Selecciona una opción</option>
+      {servicios.map((s) => <option value={s.id}>{s.data.name}</option>)}
+      <option value="otro">Otro / no estoy segura</option>
+    </select>
+  </div>
+
+  <fieldset class="field" style="border:0;padding:0;margin:0">
+    <legend class="field__label" style="padding:0">Ubicación preferida</legend>
+    <div class="radio-row" style="margin-top:.5rem">
+      {ubicaciones.map((u) => (
+        <label class="radio-pill">
+          <input type="radio" name="location" value={u.id} />
+          {u.data.city}
+        </label>
+      ))}
+      <label class="radio-pill">
+        <input type="radio" name="location" value="" checked />
+        Sin preferencia
+      </label>
+    </div>
+  </fieldset>
+
+  <fieldset class="field" style="border:0;padding:0;margin:0">
+    <legend class="field__label" style="padding:0">¿Cómo prefieres que te contactemos?</legend>
+    <div class="radio-row" style="margin-top:.5rem">
+      <label class="radio-pill">
+        <input type="radio" name="contact_preference" value="whatsapp" checked />
+        WhatsApp
+      </label>
+      <label class="radio-pill">
+        <input type="radio" name="contact_preference" value="llamada" />
+        Llamada
+      </label>
+    </div>
+  </fieldset>
+
+  <div class="field">
+    <label class="field__label" for="message">¿Algo que quieras agregar? (opcional)</label>
+    <textarea class="textarea" id="message" name="message" maxlength="600"
+      aria-describedby="message-hint" placeholder="Por ejemplo: días u horarios que te funcionan mejor."></textarea>
+    <p class="field__hint" id="message-hint">
+      No incluyas información médica sensible ni resultados de estudios: eso se revisa en consulta.
+    </p>
+  </div>
+
+  <label class="checkbox-row">
+    <input type="checkbox" name="consent" required value="1" aria-describedby="consent-error" />
+    <span>
+      Acepto que GEMMAE me contacte por este medio y he leído el
+      <a href={routes.privacidad}>aviso de privacidad</a>. <span aria-hidden="true">*</span>
+    </span>
+  </label>
+  <p class="field__error" id="consent-error" data-error-for="consent"></p>
+
+  {/* Honeypot: los bots lo llenan, las personas no lo ven */}
+  <div class="hp-field" aria-hidden="true">
+    <label for="website">No llenar este campo</label>
+    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+  </div>
+
+  {/* Contexto de atribucion: lo completa el script de atribucion */}
+  <input type="hidden" name="utm_source" />
+  <input type="hidden" name="utm_medium" />
+  <input type="hidden" name="utm_campaign" />
+  <input type="hidden" name="utm_content" />
+  <input type="hidden" name="utm_term" />
+  <input type="hidden" name="landing_page" />
+  <input type="hidden" name="page" />
+  <input type="hidden" name="referrer" />
+  <input type="hidden" name="doctor" />
+  <input type="hidden" name="ts" />
+
+  <div class="form__status" role="alert" data-form-status hidden></div>
+
+  <button class="btn btn--lg btn--block" type="submit" data-form-submit>
+    <Icon name="calendar" size={18} />
+    Solicitar mi cita
+  </button>
+
+  <p class="text-muted" style="font-size:.8rem;text-align:center">
+    ¿Prefieres escribir directo? Contáctanos por
+    <a href="#" data-wa-inline>WhatsApp</a>.
+    Tiempo de respuesta: [POR CONFIRMAR].
+  </p>
+</form>
+
+<script>
+  import '../scripts/form';
+</script>

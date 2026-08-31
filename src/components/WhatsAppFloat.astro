@@ -1,0 +1,24 @@
+---
+/** Boton flotante de WhatsApp (solo desktop; en movil manda la barra fija). */
+import { whatsappHref } from '../lib/whatsapp';
+import Icon from './Icon.astro';
+
+export interface Props { service?: string; location?: string; doctor?: string }
+const { service, location, doctor } = Astro.props;
+const href = whatsappHref({ service, location, doctor });
+---
+<a
+  class="wa-float"
+  href={href}
+  target="_blank"
+  rel="noopener"
+  data-wa
+  data-service={service}
+  data-location={location}
+  data-doctor={doctor}
+  data-event="click_whatsapp"
+  data-source="float"
+>
+  <Icon name="whatsapp" size={20} />
+  <span>Escríbenos</span>
+</a>

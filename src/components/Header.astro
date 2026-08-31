@@ -1,0 +1,102 @@
+---
+import { mainNav, footerNav } from '../config/site';
+import { isActive, routes } from '../lib/urls';
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import AppointmentCTA from './AppointmentCTA.astro';
+import WhatsAppButton from './WhatsAppButton.astro';
+
+const current = Astro.url.pathname;
+---
+<header class="header" id="site-header">
+  <div class="container header__inner">
+    <Logo />
+
+    <nav class="nav" aria-label="Navegación principal">
+      <ul class="nav__list">
+        {mainNav.map((item) => (
+          <li>
+            <a
+              class="nav__link"
+              href={item.href}
+              aria-current={isActive(current, item.href) ? 'page' : undefined}
+            >{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a
+        href={routes.buscar}
+        class="icon-btn"
+        data-search-open
+        aria-label="Buscar en el sitio"
+      >
+        <Icon name="search" size={20} />
+      </a>
+      <AppointmentCTA class="header__cta" size="sm" label="Agendar consulta" />
+      <button
+        type="button"
+        class="icon-btn nav-toggle"
+        data-menu-open
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <Icon name="menu" size={22} />
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <div class="container">
+    <div class="mobile-menu__head">
+      <Logo />
+      <button type="button" class="icon-btn" data-menu-close aria-label="Cerrar menú">
+        <Icon name="close" size={22} />
+      </button>
+    </div>
+
+    <nav aria-label="Navegación móvil">
+      <ul class="mobile-menu__list">
+        {mainNav.map((item) => (
+          <li>
+            <a class="mobile-menu__link" href={item.href}>
+              {item.label}
+              <Icon name="chevron" size={18} />
+            </a>
+          </li>
+        ))}
+        <li>
+          <a class="mobile-menu__link" href={routes.servicios}>
+            Todos los servicios
+            <Icon name="chevron" size={18} />
+          </a>
+        </li>
+        <li>
+          <a class="mobile-menu__link" href={routes.faq}>
+            Preguntas frecuentes
+            <Icon name="chevron" size={18} />
+          </a>
+        </li>
+        <li>
+          <a class="mobile-menu__link" href={routes.contacto}>
+            Contacto
+            <Icon name="chevron" size={18} />
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="mobile-menu__actions">
+      <AppointmentCTA block label="Agenda tu consulta" />
+      <WhatsAppButton block variant="secondary" />
+    </div>
+
+    <ul class="footer__list" style="margin-top:2rem;font-size:0.8rem">
+      {footerNav.legal.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+---
+/**
+ * Hero de Home. Sin slider: una sola propuesta de valor, dos CTA y
+ * el bloque de confianza. LCP = el titulo (texto), no una imagen pesada.
+ */
+import AppointmentCTA from './AppointmentCTA.astro';
+import WhatsAppButton from './WhatsAppButton.astro';
+import Icon from './Icon.astro';
+
+export interface Props {
+  trust?: string[];
+  image?: string;
+  imageAlt?: string;
+}
+const {
+  trust = [],
+  image,
+  imageAlt = 'Consulta de ginecología en GEMMAE',
+} = Astro.props;
+---
+<section class="hero">
+  <div class="container hero__grid">
+    <div>
+      <span class="eyebrow">Toluca · Metepec · Zinacantepec</span>
+      <h1 class="hero__title" style="margin-top:1rem">
+        Salud integral de la mujer, <em>en cada etapa de tu vida.</em>
+      </h1>
+      <p class="hero__sub">
+        Ginecología, obstetricia, embarazo, fertilidad y atención especializada
+        para acompañarte con experiencia, empatía y confianza.
+      </p>
+      <div class="hero__actions btn-row">
+        <AppointmentCTA size="lg" label="Agenda tu consulta" />
+        <WhatsAppButton size="lg" variant="secondary" label="Hablar por WhatsApp" />
+      </div>
+      {trust.length > 0 && (
+        <ul class="hero__trust">
+          {trust.map((t) => (
+            <li><Icon name="check" size={16} /> {t}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    <div class="hero__media" data-reveal>
+      {image ? (
+        <img src={image} alt={imageAlt} width="720" height="900" fetchpriority="high" decoding="async" />
+      ) : (
+        <div style="height:100%;display:grid;place-content:center;gap:.75rem;text-align:center;padding:2rem;color:var(--brand-700)">
+          <Icon name="heart" size={44} class="mx-auto" />
+          <p style="font-family:var(--font-display);font-size:1.35rem;max-width:22ch;margin-inline:auto">
+            Espacio reservado para fotografía original de GEMMAE
+          </p>
+          <p style="font-size:.8rem;color:var(--ink-500)">[POR CONFIRMAR] · ver CONTENT_NEEDED.md</p>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

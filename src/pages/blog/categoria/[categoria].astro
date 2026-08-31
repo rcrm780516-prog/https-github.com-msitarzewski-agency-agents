@@ -1,0 +1,55 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import CTASection from '../../../components/CTASection.astro';
+import { getArticulos, blogCategorias, categoriaLabel } from '../../../lib/content';
+import { routes } from '../../../lib/urls';
+
+export const getStaticPaths = (async () => {
+  const articulos = await getArticulos();
+  return blogCategorias
+    .filter((c) => articulos.some((a) => a.data.category === c.slug))
+    .map((c) => ({
+      params: { categoria: c.slug },
+      props: { categoria: c.slug, articulos: articulos.filter((a) => a.data.category === c.slug) },
+    }));
+}) satisfies GetStaticPaths;
+
+const { categoria, articulos } = Astro.props;
+const label = categoriaLabel(categoria);
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Blog', href: routes.blog },
+  { label, href: routes.blogCategoria(categoria) },
+];
+---
+<BaseLayout
+  title={`${label} — GEMMAE Contigo`}
+  description={`Artículos sobre ${label.toLowerCase()} escritos con criterio médico por GEMMAE Ginecólogos: qué significa cada hallazgo, cuándo consultar y qué esperar.`}
+  canonical={routes.blogCategoria(categoria)}
+  crumbs={crumbs}
+>
+  <PageHeader eyebrow="GEMMAE Contigo" title={label} crumbs={crumbs} />
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--3">
+        {articulos.map((a) => (
+          <ArticleCard
+            slug={a.id}
+            title={a.data.title}
+            excerpt={a.data.excerpt}
+            category={a.data.category}
+            publishedAt={a.data.publishedAt}
+            readingMinutes={a.data.readingMinutes}
+          />
+        ))}
+      </div>
+      <p class="mt-2xl"><a class="link-arrow" href={routes.blog}>Ver todas las categorías</a></p>
+    </div>
+  </section>
+
+  <CTASection showLocations={false} />
+</BaseLayout>

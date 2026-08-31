@@ -1,0 +1,34 @@
+/* ============================================================
+   TIPOGRAFÍAS AUTOALOJADAS (opcional)
+   ------------------------------------------------------------
+   Este archivo solo se carga si PUBLIC_SELF_HOSTED_FONTS=true.
+   Sin él, el sitio usa una pila de sistema con carácter editorial:
+   funciona, no rompe nada y no genera peticiones 404.
+
+   Para activarlo:
+   1. Descarga las variables .woff2 (licencia SIL Open Font License):
+      - Fraunces  (serif editorial)  → títulos
+      - Inter     (sans UI)          → interfaz y cuerpo
+      Fuente recomendada: https://fonts.google.com  o  https://github.com/google/fonts
+   2. Copia los archivos a /public/fonts/ con estos nombres.
+   3. Define PUBLIC_SELF_HOSTED_FONTS=true en .env y vuelve a compilar.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-variable.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  /* Subconjunto latino: evita descargar glifos que el sitio nunca usa */
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2122;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-variable.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2122;
+}

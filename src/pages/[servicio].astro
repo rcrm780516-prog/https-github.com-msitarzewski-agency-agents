@@ -1,0 +1,285 @@
+---
+/**
+ * Plantilla de servicio. Vive en la raiz (/ginecologia/, /vph/…) porque son las
+ * URLs con intencion de busqueda directa; /servicios/ funciona como hub.
+ * Las rutas estaticas del sitio tienen prioridad sobre esta ruta dinamica.
+ */
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import AppointmentCTA from '../components/AppointmentCTA.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import FAQ from '../components/FAQ.astro';
+import Timeline from '../components/Timeline.astro';
+import CTASection from '../components/CTASection.astro';
+import LocationCard from '../components/LocationCard.astro';
+import DoctorCard from '../components/DoctorCard.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import RelatedLinks from '../components/RelatedLinks.astro';
+import Icon from '../components/Icon.astro';
+
+import {
+  getServicios,
+  getUbicacionesPorServicio,
+  getMedicosPorServicio,
+  getArticulosPorServicio,
+  getServiciosPorIds,
+} from '../lib/content';
+import { routes, absolute } from '../lib/urls';
+import { faqSchema, medicalWebPageSchema } from '../lib/schema';
+
+export const getStaticPaths = (async () => {
+  const servicios = await getServicios();
+  return servicios.map((servicio) => ({
+    params: { servicio: servicio.id },
+    props: { servicio },
+  }));
+}) satisfies GetStaticPaths;
+
+const { servicio } = Astro.props;
+const d = servicio.data;
+const { Content } = await render(servicio);
+
+const [ubicaciones, medicos, articulos, relacionados] = await Promise.all([
+  getUbicacionesPorServicio(servicio),
+  getMedicosPorServicio(servicio.id),
+  getArticulosPorServicio(servicio.id),
+  getServiciosPorIds(d.related.map((r) => r.id)),
+]);
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: routes.servicios },
+  { label: d.shortName ?? d.name, href: routes.servicio(servicio.id) },
+];
+
+const url = absolute(routes.servicio(servicio.id));
+const schemas = [
+  medicalWebPageSchema({
+    url,
+    name: d.h1,
+    description: d.seo.description,
+    entityType: d.schemaType,
+    entityName: d.name,
+    lastReviewed: d.updatedAt ? d.updatedAt.toISOString().split('T')[0] : undefined,
+  }),
+  faqSchema(d.faq),
+];
+---
+<BaseLayout
+  title={d.seo.title}
+  description={d.seo.description}
+  canonical={routes.servicio(servicio.id)}
+  crumbs={crumbs}
+  schemas={schemas}
+  service={servicio.id}
+  noindex={d.seo.noindex}
+>
+  <PageHeader eyebrow="Servicio" title={d.h1} lead={d.excerpt} crumbs={crumbs}>
+    <Fragment slot="actions">
+      <AppointmentCTA label={d.ctaPrimary} service={servicio.id} />
+      <WhatsAppButton variant="secondary" service={servicio.id} />
+    </Fragment>
+  </PageHeader>
+
+  <section class="section">
+    <div class="container">
+      <div class="location-panel__grid">
+        <div class="measure">
+          <p class="lead">{d.intro}</p>
+
+          <h2 style="margin-top:var(--space-2xl)">{d.whatIsTitle}</h2>
+          <p style="margin-top:1rem">{d.whatIs}</p>
+
+          {d.whenToConsult.length > 0 && (
+            <div style="margin-top:var(--space-2xl)">
+              <h2>¿Cuándo conviene consultar?</h2>
+              <ul class="data-list" style="margin-top:1.25rem">
+                {d.whenToConsult.map((item) => (
+                  <li class="data-list__row"><Icon name="check" size={18} /><span>{item}</span></li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {d.whatToExpect.length > 0 && (
+            <div style="margin-top:var(--space-2xl)">
+              <h2>Qué esperar de la consulta</h2>
+              <ul class="data-list" style="margin-top:1.25rem">
+                {d.whatToExpect.map((item) => (
+                  <li class="data-list__row"><Icon name="chevron" size={16} /><span>{item}</span></li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {d.preparation.length > 0 && (
+            <div style="margin-top:var(--space-2xl)">
+              <h2>Cómo prepararte</h2>
+              <ul class="data-list" style="margin-top:1.25rem">
+                {d.preparation.map((item) => (
+                  <li class="data-list__row"><Icon name="check" size={18} /><span>{item}</span></li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {d.journey.length > 0 && (
+            <div style="margin-top:var(--space-3xl)">
+              <Timeline
+                items={d.journey}
+                title={d.journeyTitle ?? 'Cómo es el acompañamiento'}
+                note="Esta secuencia es orientativa. El seguimiento puede variar según cada paciente y se define en tu valoración."
+              />
+            </div>
+          )}
+
+          <div class="prose" style="margin-top:var(--space-2xl)">
+            <Content />
+          </div>
+
+          <MedicalDisclaimer class="mt-2xl" />
+        </div>
+
+        <!-- Columna de conversión: el CTA acompaña toda la lectura -->
+        <aside>
+          <div class="guide-widget" style="position:sticky;top:calc(var(--header-h) + 1.5rem)">
+            <h2 style="font-size:var(--step-1)">¿Quieres agendar?</h2>
+            <p class="text-muted" style="margin-top:.5rem;font-size:var(--step--1)">
+              Te confirmamos el primer horario disponible en la sede que elijas.
+            </p>
+            <div class="btn-row" style="margin-top:1.25rem;flex-direction:column">
+              <AppointmentCTA block label={d.ctaPrimary} service={servicio.id} />
+              <WhatsAppButton block variant="secondary" label="Hablar por WhatsApp" service={servicio.id} />
+            </div>
+
+            {ubicaciones.length > 0 && (
+              <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border)">
+                <h3 class="footer__title" style="color:var(--ink-500)">Disponible en</h3>
+                <ul class="data-list" style="margin-top:.75rem">
+                  {ubicaciones.map((u) => (
+                    <li class="data-list__row">
+                      <Icon name="map-pin" size={16} />
+                      <a href={routes.ubicacion(u.id)} data-event="view_location" data-location={u.id}>{u.data.city}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {relacionados.length > 0 && (
+              <div style="margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border)">
+                <h3 class="footer__title" style="color:var(--ink-500)">Servicios relacionados</h3>
+                <ul class="chip-row" style="margin-top:.75rem">
+                  {relacionados.slice(0, 4).map((r) => (
+                    <li><a class="chip" href={routes.servicio(r.id)}>{r.data.shortName ?? r.data.name}</a></li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {d.faq.length > 0 && (
+    <section class="section section--alt">
+      <div class="container container--narrow">
+        <FAQ items={d.faq} title={`Preguntas frecuentes sobre ${d.name.toLowerCase()}`} />
+      </div>
+    </section>
+  )}
+
+  {medicos.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Equipo</span>
+          <h2>Especialistas que atienden {d.name.toLowerCase()}</h2>
+        </div>
+        <div class="grid grid--3">
+          {medicos.map((m) => (
+            <DoctorCard
+              slug={m.id}
+              name={m.data.name}
+              honorific={m.data.honorific}
+              specialty={m.data.specialty}
+              photo={m.data.photo}
+              photoAlt={m.data.photoAlt}
+              draft={m.data.draft}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {ubicaciones.length > 0 && (
+    <section class="section section--deep">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Dónde</span>
+          <h2>Sedes donde ofrecemos {d.name.toLowerCase()}</h2>
+        </div>
+        <div class="grid grid--3">
+          {ubicaciones.map((u) => (
+            <LocationCard
+              slug={u.id}
+              city={u.data.city}
+              name={u.data.name}
+              excerpt={u.data.excerpt}
+              phone={u.data.phone}
+              hours={u.data.hours}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {articulos.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="split-head">
+          <div class="section-head" style="margin-bottom:0">
+            <span class="eyebrow">GEMMAE Contigo</span>
+            <h2>Artículos relacionados</h2>
+          </div>
+          <a class="link-arrow" href={routes.blog}>Ver blog</a>
+        </div>
+        <div class="grid grid--3">
+          {articulos.map((a) => (
+            <ArticleCard
+              slug={a.id}
+              title={a.data.title}
+              excerpt={a.data.excerpt}
+              category={a.data.category}
+              publishedAt={a.data.publishedAt}
+              readingMinutes={a.data.readingMinutes}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {relacionados.length > 0 && (
+    <section class="section--tight">
+      <div class="container">
+        <RelatedLinks
+          title="Continúa explorando"
+          items={relacionados.map((r) => ({ label: r.data.name, href: routes.servicio(r.id) }))}
+        />
+      </div>
+    </section>
+  )}
+
+  <CTASection
+    service={servicio.id}
+    title={`¿Necesitas una consulta de ${d.name.toLowerCase()}?`}
+    ctaLabel={d.ctaPrimary}
+  />
+</BaseLayout>

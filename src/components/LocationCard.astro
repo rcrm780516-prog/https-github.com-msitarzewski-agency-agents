@@ -1,0 +1,48 @@
+---
+import { routes } from '../lib/urls';
+import { isTBC } from '../config/site';
+import Icon from './Icon.astro';
+
+export interface Props {
+  slug: string;
+  city: string;
+  name: string;
+  excerpt: string;
+  address?: string;
+  phone?: string;
+  hours?: { days: string; time: string }[];
+}
+const { slug, city, name, excerpt, address, phone, hours = [] } = Astro.props;
+---
+<article class="card">
+  <div class="card__body">
+    <span class="chip chip--neutral"><Icon name="map-pin" size={14} /> {city}</span>
+    <h3 class="card__title" style="margin-top:.35rem">
+      <a href={routes.ubicacion(slug)} data-event="view_location" data-location={slug}>{name}</a>
+    </h3>
+    <p class="card__text">{excerpt}</p>
+    <ul class="data-list" style="margin-top:1rem">
+      {address && (
+        <li class="data-list__row">
+          <Icon name="map-pin" size={16} />
+          <span class={isTBC(address) ? 'text-muted' : ''}>{address}</span>
+        </li>
+      )}
+      {phone && (
+        <li class="data-list__row">
+          <Icon name="phone" size={16} />
+          <span class={isTBC(phone) ? 'text-muted' : ''}>{phone}</span>
+        </li>
+      )}
+      {hours.length > 0 && (
+        <li class="data-list__row">
+          <Icon name="clock" size={16} />
+          <span class={isTBC(hours[0]!.time) ? 'text-muted' : ''}>{hours[0]!.days}: {hours[0]!.time}</span>
+        </li>
+      )}
+    </ul>
+    <div class="card__foot btn-row">
+      <span class="link-arrow">Ver sede</span>
+    </div>
+  </div>
+</article>

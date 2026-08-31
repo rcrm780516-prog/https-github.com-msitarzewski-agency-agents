@@ -1,0 +1,94 @@
+---
+import { footerNav, contact, social, compliance, site, isTBC } from '../config/site';
+import { telHref, whatsappHref } from '../lib/whatsapp';
+import { getUbicaciones } from '../lib/content';
+import { routes } from '../lib/urls';
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+
+const ubicaciones = await getUbicaciones();
+const year = new Date().getFullYear();
+const tel = telHref(contact.phoneHref || contact.phone);
+const redes = [
+  { href: social.instagram, icon: 'instagram', label: 'Instagram' },
+  { href: social.facebook, icon: 'facebook', label: 'Facebook' },
+  { href: social.tiktok, icon: 'tiktok', label: 'TikTok' },
+  { href: social.youtube, icon: 'youtube', label: 'YouTube' },
+].filter((r) => r.href);
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <Logo />
+        <p style="margin-top:1rem;max-width:34ch;font-size:0.92rem">
+          Salud integral de la mujer en Toluca, Metepec y Zinacantepec.
+          Ginecología, obstetricia, embarazo, fertilidad y menopausia.
+        </p>
+        {redes.length > 0 && (
+          <div class="social-row" style="margin-top:1.5rem">
+            {redes.map((r) => (
+              <a href={r.href} target="_blank" rel="noopener" aria-label={r.label}>
+                <Icon name={r.icon} size={18} />
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <h2 class="footer__title">Servicios</h2>
+        <ul class="footer__list">
+          {footerNav.servicios.slice(0, 8).map((l) => (
+            <li><a href={l.href}>{l.label}</a></li>
+          ))}
+          <li><a href={routes.servicios}>Ver todos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__title">GEMMAE</h2>
+        <ul class="footer__list">
+          {footerNav.clinica.map((l) => (
+            <li><a href={l.href}>{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__title">Contacto y sedes</h2>
+        <ul class="footer__list">
+          {ubicaciones.map((u) => (
+            <li>
+              <a href={routes.ubicacion(u.id)}>
+                {u.data.city}{!isTBC(u.data.phone) && ` · ${u.data.phone}`}
+              </a>
+            </li>
+          ))}
+          {tel && <li><a href={tel} data-event="click_call" data-source="footer">Teléfono: {contact.phone}</a></li>}
+          <li>
+            <a href={whatsappHref()} target="_blank" rel="noopener" data-wa data-event="click_whatsapp" data-source="footer">
+              WhatsApp
+            </a>
+          </li>
+          {!isTBC(contact.email) && <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© {year} {site.name}. Todos los derechos reservados.</p>
+      <ul class="footer__list" style="display:flex;gap:1.25rem;flex-wrap:wrap">
+        {footerNav.legal.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+
+    <p style="margin-top:1.5rem;font-size:0.74rem;line-height:1.6;color:#8FA595;max-width:80ch">
+      Información profesional: Responsable sanitario {compliance.responsableSanitario}.
+      {' '}Aviso de funcionamiento / permiso de publicidad: {compliance.cofeprisAviso}.
+      {' '}El contenido de este sitio es de carácter informativo y no sustituye una
+      consulta ni una valoración médica presencial. Ante una emergencia médica,
+      acude al servicio de urgencias más cercano o llama al 911.
+    </p>
+  </div>
+</footer>

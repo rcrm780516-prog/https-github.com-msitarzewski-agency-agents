@@ -1,0 +1,128 @@
+/* ============================================================
+   GEMMAE — DESIGN TOKENS
+   Premium Medical Editorial: marfil calido, salvia, tipografia editorial.
+   Todos los colores de texto cumplen WCAG AA sobre su fondo previsto.
+   ============================================================ */
+
+:root {
+  /* ---------- Color: base calida ---------- */
+  --sand-50:  #FDFCFA;  /* blanco calido - fondo por defecto */
+  --sand-100: #F8F5F0;  /* marfil */
+  --sand-200: #F1ECE4;  /* beige muy suave */
+  --sand-300: #E5DDD1;  /* beige medio */
+  --sand-400: #D3C8B8;  /* bordes decorativos */
+
+  /* ---------- Color: tinta ---------- */
+  --ink-900: #1C1F21;   /* titulos          — 15.8:1 sobre sand-50 */
+  --ink-800: #2B2F32;
+  --ink-700: #3A4044;   /* cuerpo           — 10.2:1 sobre sand-50 */
+  --ink-500: #5C6469;   /* secundario       —  5.9:1 sobre sand-50 */
+  --ink-400: #7A8287;   /* solo decorativo / iconos grandes */
+
+  /* ---------- Color: marca (verde salvia) ---------- */
+  --brand-50:  #F2F6F3;
+  --brand-100: #E3EDE6;
+  --brand-200: #C9DACF;
+  --brand-300: #A6C1B0;
+  --brand-500: #5F8871;
+  --brand-600: #3F6350;  /* CTA principal — blanco encima 7.3:1 */
+  --brand-700: #33513F;
+  --brand-900: #1F3228;
+
+  /* ---------- Color: acento azul verdoso ---------- */
+  --teal-100: #E2EDED;
+  --teal-600: #2F5D5D;   /* enlaces sobre fondo claro — 8.1:1 */
+  --teal-700: #244A4A;
+
+  /* ---------- Semanticos ---------- */
+  --bg:            var(--sand-50);
+  --bg-alt:        var(--sand-100);
+  --bg-deep:       var(--sand-200);
+  --bg-brand:      var(--brand-900);
+  --surface:       #FFFFFF;
+  --text:          var(--ink-700);
+  --text-strong:   var(--ink-900);
+  --text-muted:    var(--ink-500);
+  --text-on-dark:  #F4F1EC;
+  --link:          var(--teal-600);
+  --border:        #E7E0D5;
+  --border-strong: #D6CCBD;
+  --focus:         #2F5D5D;
+
+  /* Estados de formulario */
+  --danger-600: #9B2C2C;   /* 6.6:1 sobre blanco */
+  --success-600: #2F6B4F;
+
+  /* ---------- Tipografia ---------- */
+  /* Las familias reales se cargan opcionalmente desde /fonts/fonts.css.
+     Sin ellas el sitio usa una pila de sistema con caracter editorial. */
+  --font-display: 'Fraunces', 'Cormorant Garamond', ui-serif, 'Iowan Old Style',
+                  'Palatino Linotype', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Escala fluida 375px -> 1440px (clamp evita media queries de tipografia) */
+  --step--1: clamp(0.83rem, 0.80rem + 0.13vw, 0.90rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.18vw, 1.10rem);
+  --step-1:  clamp(1.20rem, 1.12rem + 0.35vw, 1.42rem);
+  --step-2:  clamp(1.44rem, 1.29rem + 0.64vw, 1.84rem);
+  --step-3:  clamp(1.73rem, 1.48rem + 1.07vw, 2.39rem);
+  --step-4:  clamp(2.07rem, 1.68rem + 1.68vw, 3.10rem);
+  --step-5:  clamp(2.49rem, 1.87rem + 2.63vw, 4.03rem);
+
+  --leading-tight: 1.12;
+  --leading-snug: 1.3;
+  --leading-normal: 1.65;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.16em;
+
+  /* ---------- Espaciado (escala 4px) ---------- */
+  --space-2xs: 0.25rem;
+  --space-xs:  0.5rem;
+  --space-sm:  0.75rem;
+  --space-md:  1rem;
+  --space-lg:  1.5rem;
+  --space-xl:  2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  /* Ritmo vertical de seccion: generoso en desktop, contenido en movil */
+  --section-y: clamp(3rem, 2rem + 5vw, 7rem);
+
+  /* ---------- Layout ---------- */
+  --container: 76rem;      /* 1216px */
+  --container-narrow: 46rem;
+  --container-wide: 90rem;
+  --gutter: clamp(1.15rem, 0.9rem + 1.2vw, 2.5rem);
+
+  /* ---------- Formas y sombras ---------- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(28, 31, 33, 0.05);
+  --shadow-md: 0 4px 16px -6px rgba(28, 31, 33, 0.12);
+  --shadow-lg: 0 18px 48px -20px rgba(28, 31, 33, 0.22);
+
+  /* ---------- Movimiento ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 140ms;
+  --dur: 240ms;
+  --dur-slow: 620ms;
+
+  /* ---------- Capas ---------- */
+  --z-sticky: 40;
+  --z-header: 50;
+  --z-float: 60;
+  --z-modal: 70;
+
+  /* Altura del header y de la barra movil, usadas por scroll-margin y padding */
+  --header-h: 68px;
+  --mobilebar-h: 62px;
+}
+
+@media (min-width: 1024px) {
+  :root { --header-h: 84px; --mobilebar-h: 0px; }
+}

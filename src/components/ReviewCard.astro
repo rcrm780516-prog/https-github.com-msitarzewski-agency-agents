@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  quote: string;
+  author: string;
+  source?: string;
+  rating?: number;
+  date?: string;
+}
+const { quote, author, source, rating, date } = Astro.props;
+---
+<article class="review-card">
+  {rating && (
+    <span class="stars" aria-label={`${rating} de 5 estrellas`}>
+      {Array.from({ length: rating }).map(() => <Icon name="star" size={16} />)}
+    </span>
+  )}
+  <blockquote class="review-card__quote">“{quote}”</blockquote>
+  <p class="review-card__meta">
+    {author}{source && ` · ${source}`}{date && ` · ${date}`}
+  </p>
+</article>

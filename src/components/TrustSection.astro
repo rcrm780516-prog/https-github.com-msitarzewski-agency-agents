@@ -1,0 +1,67 @@
+---
+/**
+ * Bloque de confianza. Solo afirma lo verificable a partir de los datos del
+ * propio sitio (sedes y servicios publicados); el resto queda marcado como
+ * pendiente de confirmar en lugar de rellenarse con cifras inventadas.
+ */
+import Icon from './Icon.astro';
+import { routes } from '../lib/urls';
+
+export interface Props {
+  sedes: number;
+  servicios: number;
+  medicos: number;
+}
+const { sedes, servicios, medicos } = Astro.props;
+
+const pilares = [
+  {
+    icon: 'users',
+    title: 'Un equipo, no un consultorio suelto',
+    text: 'Especialistas en ginecología y obstetricia que comparten expediente y criterio, para que tu seguimiento no dependa de repetir tu historia en cada consulta.',
+  },
+  {
+    icon: 'map-pin',
+    title: `${sedes} sedes en el Valle de Toluca`,
+    text: 'Toluca, Metepec y Zinacantepec. Puedes agendar en la sede que te quede más cerca y continuar tu seguimiento en otra si lo necesitas.',
+  },
+  {
+    icon: 'stethoscope',
+    title: `${servicios} servicios en un mismo lugar`,
+    text: 'Consulta, seguimiento de embarazo y estudios como colposcopia y ultrasonido, sin trasladarte entre distintos consultorios para cada paso.',
+  },
+  {
+    icon: 'shield',
+    title: 'Información clara, sin promesas',
+    text: 'Te explicamos qué se va a hacer, por qué y qué esperar. No prometemos resultados: la valoración médica siempre es individual.',
+  },
+];
+---
+<section class="section section--deep">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Por qué GEMMAE</span>
+      <h2>Atención médica con experiencia y empatía</h2>
+      <p class="lead">
+        Buscar atención ginecológica no debería significar elegir entre cercanía y
+        calidad. Así trabajamos.
+      </p>
+    </div>
+
+    <div class="grid grid--2">
+      {pilares.map((p, i) => (
+        <div data-reveal data-reveal-delay={String((i % 4) + 1)}>
+          <span class="service-card__icon" aria-hidden="true"><Icon name={p.icon} size={20} /></span>
+          <h3 style="margin-top:.75rem;font-size:var(--step-1)">{p.title}</h3>
+          <p class="text-muted" style="margin-top:.5rem;max-width:46ch">{p.text}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-muted" style="margin-top:2.5rem;font-size:.85rem;max-width:70ch">
+      Certificaciones, cédulas profesionales y datos del equipo médico se publican
+      en cada <a href={routes.medicos}>perfil de especialista</a> conforme GEMMAE
+      confirma la información. {medicos === 0 && '[POR CONFIRMAR] — ver CONTENT_NEEDED.md'}
+    </p>
+  </div>
+</section>

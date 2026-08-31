@@ -1,0 +1,254 @@
+---
+/**
+ * Landing SEO local por sede. Cada sede es una pagina independiente con
+ * contenido propio, NAP visible y schema MedicalClinic ligado a la matriz.
+ */
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import AppointmentCTA from '../../components/AppointmentCTA.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import DoctorCard from '../../components/DoctorCard.astro';
+import FAQ from '../../components/FAQ.astro';
+import Reviews from '../../components/Reviews.astro';
+import CTASection from '../../components/CTASection.astro';
+import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+import Icon from '../../components/Icon.astro';
+
+import {
+  getUbicaciones,
+  getServiciosPorUbicacion,
+  getMedicosPorUbicacion,
+} from '../../lib/content';
+import { routes } from '../../lib/urls';
+import { clinicSchema, faqSchema } from '../../lib/schema';
+import { isTBC } from '../../config/site';
+import { telHref } from '../../lib/whatsapp';
+
+export const getStaticPaths = (async () => {
+  const ubicaciones = await getUbicaciones();
+  return ubicaciones.map((ubicacion) => ({
+    params: { ubicacion: ubicacion.id },
+    props: { ubicacion },
+  }));
+}) satisfies GetStaticPaths;
+
+const { ubicacion } = Astro.props;
+const d = ubicacion.data;
+const { Content } = await render(ubicacion);
+
+const [servicios, medicos, todas] = await Promise.all([
+  getServiciosPorUbicacion(ubicacion),
+  getMedicosPorUbicacion(ubicacion.id),
+  getUbicaciones(),
+]);
+
+const otras = todas.filter((u) => u.id !== ubicacion.id);
+const tel = telHref(d.phone);
+const direccion = [d.address.street, d.address.neighborhood, d.address.city, d.address.state, d.address.postalCode]
+  .filter(Boolean)
+  .join(', ');
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Ubicaciones', href: routes.ubicaciones },
+  { label: d.city, href: routes.ubicacion(ubicacion.id) },
+];
+
+const schemas = [
+  clinicSchema({
+    slug: ubicacion.id,
+    name: d.name,
+    description: d.excerpt,
+    address: d.address,
+    phone: d.phone,
+    email: d.email,
+    geo: d.geo,
+    hoursSchema: d.hoursSchema,
+    mapLink: d.mapLink,
+    googleBusinessUrl: d.googleBusinessUrl,
+    services: servicios.map((s) => s.data.name),
+    coverage: d.coverage,
+  }),
+  faqSchema(d.faq),
+];
+---
+<BaseLayout
+  title={d.seo.title}
+  description={d.seo.description}
+  canonical={routes.ubicacion(ubicacion.id)}
+  crumbs={crumbs}
+  schemas={schemas}
+  location={ubicacion.id}
+  phone={d.phone}
+>
+  <PageHeader eyebrow={`Sede ${d.city}`} title={d.h1} lead={d.excerpt} crumbs={crumbs}>
+    <Fragment slot="actions">
+      <AppointmentCTA label="Agendar en esta sede" location={ubicacion.id} />
+      <WhatsAppButton variant="secondary" location={ubicacion.id} phone={d.whatsapp || undefined} />
+    </Fragment>
+  </PageHeader>
+
+  <section class="section">
+    <div class="container">
+      <div class="location-panel__grid">
+        <div class="measure">
+          <p class="lead">{d.intro}</p>
+          <div class="prose" style="margin-top:1.5rem"><Content /></div>
+
+          <h2 style="margin-top:var(--space-2xl)">Datos de contacto</h2>
+          <ul class="data-list" style="margin-top:1.25rem">
+            <li class="data-list__row">
+              <Icon name="map-pin" size={18} />
+              <span>
+                <span class="data-list__label">Dirección</span>
+                <span class={isTBC(direccion) ? 'text-muted' : ''}>{direccion}</span>
+              </span>
+            </li>
+            <li class="data-list__row">
+              <Icon name="phone" size={18} />
+              <span>
+                <span class="data-list__label">Teléfono</span>
+                {tel
+                  ? <a href={tel} data-event="click_call" data-location={ubicacion.id}>{d.phone}</a>
+                  : <span class="text-muted">{d.phone}</span>}
+              </span>
+            </li>
+            <li class="data-list__row">
+              <Icon name="clock" size={18} />
+              <span>
+                <span class="data-list__label">Horario</span>
+                {d.hours.map((h) => (
+                  <span style="display:block" class={isTBC(h.time) ? 'text-muted' : ''}>{h.days}: {h.time}</span>
+                ))}
+              </span>
+            </li>
+            {d.coverage.length > 0 && (
+              <li class="data-list__row">
+                <Icon name="users" size={18} />
+                <span>
+                  <span class="data-list__label">Zonas que atendemos con frecuencia</span>
+                  <span>{d.coverage.join(' · ')}</span>
+                </span>
+              </li>
+            )}
+          </ul>
+
+          <h2 style="margin-top:var(--space-2xl)">Cómo llegar</h2>
+          <ul class="data-list" style="margin-top:1.25rem">
+            {d.directions.map((dir) => (
+              <li class="data-list__row">
+                <Icon name="chevron" size={16} />
+                <span class={isTBC(dir) ? 'text-muted' : ''}>{dir}</span>
+              </li>
+            ))}
+            {d.parking && (
+              <li class="data-list__row">
+                <Icon name="info" size={16} />
+                <span class={isTBC(d.parking) ? 'text-muted' : ''}>{d.parking}</span>
+              </li>
+            )}
+          </ul>
+
+          <MedicalDisclaimer class="mt-2xl" />
+        </div>
+
+        <div>
+          <div class="map-frame">
+            {d.mapEmbed ? (
+              <iframe src={d.mapEmbed} title={`Mapa de ${d.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            ) : (
+              <div class="map-frame__placeholder">
+                <Icon name="map-pin" size={28} class="mx-auto" />
+                <p><strong>Mapa pendiente</strong></p>
+                <p>[POR CONFIRMAR] dirección exacta y enlace de Google Maps.</p>
+              </div>
+            )}
+          </div>
+          {d.mapLink && (
+            <p style="margin-top:.75rem">
+              <a class="link-arrow" href={d.mapLink} target="_blank" rel="noopener" data-event="click_map" data-location={ubicacion.id}>
+                Abrir en Google Maps
+              </a>
+            </p>
+          )}
+          <div class="btn-row" style="margin-top:1.5rem">
+            <AppointmentCTA block label="Agendar en esta sede" location={ubicacion.id} />
+            <WhatsAppButton block variant="secondary" location={ubicacion.id} phone={d.whatsapp || undefined} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {servicios.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Servicios disponibles en {d.city}</h2>
+          <p class="text-muted">Si un estudio se programa en otra sede, te lo indicamos al agendar para evitarte un traslado innecesario.</p>
+        </div>
+        <div class="grid grid--3">
+          {servicios.map((s) => (
+            <ServiceCard slug={s.id} name={s.data.name} excerpt={s.data.excerpt} icon={s.data.icon} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {medicos.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Especialistas en la sede {d.city}</h2>
+        </div>
+        <div class="grid grid--3">
+          {medicos.map((m) => (
+            <DoctorCard
+              slug={m.id}
+              name={m.data.name}
+              honorific={m.data.honorific}
+              specialty={m.data.specialty}
+              photo={m.data.photo}
+              photoAlt={m.data.photoAlt}
+              draft={m.data.draft}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {d.faq.length > 0 && (
+    <section class="section section--deep">
+      <div class="container container--narrow">
+        <FAQ items={d.faq} title={`Preguntas frecuentes — sede ${d.city}`} />
+      </div>
+    </section>
+  )}
+
+  <Reviews title={`Experiencias de pacientes en ${d.city}`} />
+
+  {otras.length > 0 && (
+    <section class="section--tight">
+      <div class="container">
+        <RelatedLinks
+          title="Otras sedes GEMMAE"
+          items={otras.map((u) => ({ label: u.data.city, href: routes.ubicacion(u.id) }))}
+        />
+      </div>
+    </section>
+  )}
+
+  <CTASection
+    location={ubicacion.id}
+    title={`Agenda tu consulta en ${d.city}`}
+    text="Escríbenos por WhatsApp o déjanos tus datos y te confirmamos el primer horario disponible en esta sede."
+    ctaLabel="Agendar en esta sede"
+    showLocations={false}
+  />
+</BaseLayout>

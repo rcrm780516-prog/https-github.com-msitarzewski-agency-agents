@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import DoctorCard from '../../components/DoctorCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
+import Icon from '../../components/Icon.astro';
+import { getMedicos, getUbicaciones } from '../../lib/content';
+import { routes } from '../../lib/urls';
+
+const [medicos, ubicaciones] = await Promise.all([getMedicos(), getUbicaciones()]);
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Médicos', href: routes.medicos },
+];
+
+const ciudadDe = (ids: string[]) =>
+  ids.map((id) => ubicaciones.find((u) => u.id === id)?.data.city).filter(Boolean) as string[];
+---
+<BaseLayout
+  title="Médicos ginecólogos en Toluca y Metepec | GEMMAE"
+  description="Conoce al equipo médico de GEMMAE Ginecólogos: especialidad, formación, certificaciones, servicios que atiende cada especialista y sedes donde consulta."
+  canonical={routes.medicos}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Equipo médico"
+    title="Nuestros especialistas"
+    lead="Un equipo que comparte expediente y criterio, para que tu seguimiento no dependa de repetir tu historia en cada consulta."
+    crumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container">
+      {medicos.length > 0 ? (
+        <div class="grid grid--3">
+          {medicos.map((m) => (
+            <DoctorCard
+              slug={m.id}
+              name={m.data.name}
+              honorific={m.data.honorific}
+              specialty={m.data.specialty}
+              photo={m.data.photo}
+              photoAlt={m.data.photoAlt}
+              locations={ciudadDe(m.data.locations.map((l) => l.id))}
+              draft={m.data.draft}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="guide-widget" style="max-width:46rem">
+          <span class="chip chip--tbc"><Icon name="info" size={14} /> Contenido pendiente</span>
+          <h2 style="margin-top:1rem">Perfiles en preparación</h2>
+          <p class="text-muted" style="margin-top:.75rem">
+            La estructura de perfiles médicos está construida y lista para publicarse.
+            Se activará en cuanto GEMMAE proporcione la información verificable de cada
+            especialista: nombre, especialidad, cédula profesional, formación,
+            certificaciones vigentes, sedes y fotografía.
+          </p>
+          <p class="text-muted" style="margin-top:.75rem">
+            No se publican perfiles con datos supuestos. Ver
+            <code>CONTENT_NEEDED.md</code> para la lista completa de información requerida.
+          </p>
+        </div>
+      )}
+
+      <div class="mt-2xl" style="max-width:52rem">
+        <MedicalDisclaimer text="Cada perfil publica cédula profesional y certificaciones conforme GEMMAE confirma la información. La atención médica siempre requiere valoración individual." />
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="¿Quieres agendar con un especialista en particular?"
+    text="Indícanos el nombre y la sede de tu preferencia y te confirmamos la disponibilidad más cercana."
+  />
+</BaseLayout>

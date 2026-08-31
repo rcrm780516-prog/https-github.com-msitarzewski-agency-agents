@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import SearchWidget from '../../components/SearchWidget.astro';
+import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
+import { getServicios } from '../../lib/content';
+import { routes } from '../../lib/urls';
+
+const servicios = await getServicios();
+
+const grupos = [
+  { id: 'ginecologia', title: 'Ginecología', text: 'Consulta, revisión preventiva y atención por etapa de vida.' },
+  { id: 'obstetricia', title: 'Obstetricia', text: 'Atención médica del embarazo, el nacimiento y el puerperio.' },
+  { id: 'etapas', title: 'Etapas de vida', text: 'Embarazo, fertilidad y menopausia con acompañamiento continuo.' },
+  { id: 'diagnostico', title: 'Estudios y diagnóstico', text: 'Estudios que se realizan e interpretan dentro de la misma consulta.' },
+] as const;
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: routes.servicios },
+];
+---
+<BaseLayout
+  title="Servicios de ginecología y obstetricia | GEMMAE"
+  description="Servicios de GEMMAE en Toluca, Metepec y Zinacantepec: ginecología, obstetricia, embarazo, fertilidad, menopausia, colposcopia, VPH y ultrasonido."
+  canonical={routes.servicios}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Servicios"
+    title="Atención especializada para cada etapa"
+    lead="Consulta ginecológica, seguimiento de embarazo y estudios diagnósticos con el mismo equipo médico y en tres sedes del Valle de Toluca."
+    crumbs={crumbs}
+  />
+
+  <section class="section--tight" style="padding-block:2rem">
+    <div class="container container--narrow">
+      <SearchWidget id="search-servicios" placeholder="¿Qué necesitas? VPH, embarazo, ultrasonido…" />
+    </div>
+  </section>
+
+  {grupos.map((g) => {
+    const items = servicios.filter((s) => s.data.category === g.id);
+    return items.length > 0 && (
+      <section class="section--tight" style="padding-block:var(--space-xl)">
+        <div class="container">
+          <div class="section-head">
+            <h2>{g.title}</h2>
+            <p class="text-muted">{g.text}</p>
+          </div>
+          <div class="grid grid--3">
+            {items.map((s) => (
+              <ServiceCard
+                slug={s.id}
+                name={s.data.name}
+                excerpt={s.data.excerpt}
+                icon={s.data.icon}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+
+  <section class="section--tight">
+    <div class="container container--narrow">
+      <MedicalDisclaimer />
+    </div>
+  </section>
+
+  <CTASection title="¿No sabes qué servicio necesitas?" text="Escríbenos y te orientamos sobre el tipo de consulta que corresponde a tu caso." />
+</BaseLayout>

@@ -1,0 +1,147 @@
+---
+/**
+ * "Encuentra tu sede GEMMAE": tabs accesibles (patron ARIA tabs) con la ficha
+ * completa de cada sede. Sin JS muestra la primera y el resto por enlace.
+ */
+import Icon from './Icon.astro';
+import WhatsAppButton from './WhatsAppButton.astro';
+import AppointmentCTA from './AppointmentCTA.astro';
+import { routes } from '../lib/urls';
+import { isTBC } from '../config/site';
+import { telHref } from '../lib/whatsapp';
+import type { Ubicacion } from '../lib/content';
+
+export interface Props {
+  ubicaciones: Ubicacion[];
+  title?: string;
+  lead?: string;
+}
+const {
+  ubicaciones,
+  title = 'Encuentra tu sede GEMMAE',
+  lead = 'Tres sedes en el Valle de Toluca. Elige la que te quede más cerca y agenda directamente ahí.',
+} = Astro.props;
+---
+<section class="section section--alt" id="ubicaciones">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Ubicaciones</span>
+      <h2>{title}</h2>
+      <p class="lead">{lead}</p>
+    </div>
+
+    <div class="location-finder" data-location-finder>
+      <div class="location-finder__tabs" role="tablist" aria-label="Sedes GEMMAE">
+        {ubicaciones.map((u, i) => (
+          <button
+            type="button"
+            class="location-tab"
+            role="tab"
+            id={`tab-${u.id}`}
+            aria-controls={`panel-${u.id}`}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            tabindex={i === 0 ? 0 : -1}
+            data-location-tab={u.id}
+          >
+            <Icon name="map-pin" size={16} /> {u.data.city}
+          </button>
+        ))}
+      </div>
+
+      {ubicaciones.map((u, i) => {
+        const tel = telHref(u.data.phone);
+        const dir = [u.data.address.street, u.data.address.neighborhood, u.data.address.city, u.data.address.postalCode]
+          .filter(Boolean)
+          .join(', ');
+        return (
+          <div
+            class="location-panel"
+            role="tabpanel"
+            id={`panel-${u.id}`}
+            aria-labelledby={`tab-${u.id}`}
+            hidden={i !== 0}
+            data-location-panel={u.id}
+          >
+            <div class="location-panel__grid">
+              <div>
+                <h3>{u.data.name}</h3>
+                <p class="text-muted" style="margin-top:.5rem">{u.data.excerpt}</p>
+
+                <ul class="data-list" style="margin-top:1.5rem">
+                  <li class="data-list__row">
+                    <Icon name="map-pin" size={18} />
+                    <span>
+                      <span class="data-list__label">Dirección</span>
+                      <span class={isTBC(dir) ? 'text-muted' : ''}>{dir}</span>
+                    </span>
+                  </li>
+                  <li class="data-list__row">
+                    <Icon name="phone" size={18} />
+                    <span>
+                      <span class="data-list__label">Teléfono</span>
+                      {tel ? (
+                        <a href={tel} data-event="click_call" data-location={u.id}>{u.data.phone}</a>
+                      ) : (
+                        <span class="text-muted">{u.data.phone}</span>
+                      )}
+                    </span>
+                  </li>
+                  <li class="data-list__row">
+                    <Icon name="clock" size={18} />
+                    <span>
+                      <span class="data-list__label">Horario</span>
+                      {u.data.hours.map((h) => (
+                        <span class={isTBC(h.time) ? 'text-muted' : ''} style="display:block">{h.days}: {h.time}</span>
+                      ))}
+                    </span>
+                  </li>
+                </ul>
+
+                <div class="btn-row" style="margin-top:1.75rem">
+                  <AppointmentCTA label="Agendar en esta sede" location={u.id} />
+                  <WhatsAppButton variant="secondary" label="WhatsApp" location={u.id} />
+                </div>
+                <p style="margin-top:1rem">
+                  <a class="link-arrow" href={routes.ubicacion(u.id)} data-event="view_location" data-location={u.id}>
+                    Ver todo sobre la sede {u.data.city}
+                  </a>
+                </p>
+              </div>
+
+              <div>
+                <div class="map-frame">
+                  {u.data.mapEmbed ? (
+                    <iframe
+                      src={u.data.mapEmbed}
+                      title={`Mapa de ${u.data.name}`}
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      allowfullscreen
+                    ></iframe>
+                  ) : (
+                    <div class="map-frame__placeholder">
+                      <Icon name="map-pin" size={28} class="mx-auto" />
+                      <p><strong>Mapa pendiente</strong></p>
+                      <p>[POR CONFIRMAR] dirección exacta y enlace de Google Maps de la sede {u.data.city}.</p>
+                    </div>
+                  )}
+                </div>
+                {u.data.mapLink && (
+                  <p style="margin-top:.75rem">
+                    <a class="link-arrow" href={u.data.mapLink} target="_blank" rel="noopener" data-event="click_map" data-location={u.id}>
+                      Cómo llegar
+                    </a>
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../scripts/tabs';
+</script>

@@ -1,0 +1,113 @@
+---
+/**
+ * Placeholder profesional. La estructura corresponde a los elementos que exige
+ * la LFPDPPP mexicana para un aviso de privacidad integral, pero el contenido
+ * especifico debe redactarlo o validarlo el area legal de GEMMAE.
+ * No se inventa razon social, domicilio, finalidades ni plazos de conservacion.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+import { routes } from '../lib/urls';
+import { site, compliance } from '../config/site';
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Aviso de privacidad', href: routes.privacidad },
+];
+
+const secciones = [
+  {
+    title: '1. Identidad y domicilio del responsable',
+    text: 'Razón social completa, domicilio fiscal y datos de contacto del responsable del tratamiento de los datos personales.',
+    pending: 'Razón social, RFC, domicilio fiscal y correo de contacto del responsable.',
+  },
+  {
+    title: '2. Datos personales que se recaban',
+    text: 'Enumeración de los datos que se solicitan a través del sitio, del formulario de contacto, de WhatsApp y en la propia consulta, distinguiendo los datos personales sensibles (datos de salud).',
+    pending: 'Listado definitivo de datos recabados en consulta y en expediente clínico.',
+  },
+  {
+    title: '3. Finalidades del tratamiento',
+    text: 'Finalidades primarias (agendar y brindar la atención médica solicitada, integrar el expediente clínico, contacto de seguimiento) y finalidades secundarias que requieren consentimiento (envío de contenidos, encuestas de satisfacción, promociones).',
+    pending: 'Confirmación de finalidades secundarias que GEMMAE desea incluir.',
+  },
+  {
+    title: '4. Consentimiento para datos sensibles',
+    text: 'Mecanismo de consentimiento expreso y por escrito para el tratamiento de datos personales sensibles, conforme a la normativa aplicable.',
+    pending: 'Formato de consentimiento utilizado en consulta.',
+  },
+  {
+    title: '5. Transferencias de datos',
+    text: 'Terceros con quienes se comparten datos (laboratorios, hospitales, aseguradoras, proveedores tecnológicos) y finalidad de cada transferencia.',
+    pending: 'Listado de laboratorios, hospitales, aseguradoras y proveedores.',
+  },
+  {
+    title: '6. Derechos ARCO',
+    text: 'Procedimiento para ejercer los derechos de Acceso, Rectificación, Cancelación y Oposición, medio de contacto, requisitos de la solicitud y plazos de respuesta.',
+    pending: 'Correo o domicilio para solicitudes ARCO y responsable designado.',
+  },
+  {
+    title: '7. Revocación del consentimiento',
+    text: 'Procedimiento para revocar el consentimiento otorgado y limitar el uso o divulgación de los datos personales.',
+    pending: 'Medio designado para revocación.',
+  },
+  {
+    title: '8. Uso de cookies y tecnologías de rastreo',
+    text: 'Cookies y tecnologías utilizadas en el sitio (analítica y publicidad), datos que obtienen y cómo deshabilitarlas.',
+    pending: 'Confirmación de herramientas activas: Google Analytics 4, Google Tag Manager, Google Ads, Meta Pixel.',
+  },
+  {
+    title: '9. Conservación de los datos',
+    text: 'Plazos de conservación del expediente clínico y de los datos de contacto, conforme a la normativa sanitaria aplicable.',
+    pending: 'Plazos aplicados por GEMMAE.',
+  },
+  {
+    title: '10. Cambios al aviso de privacidad',
+    text: 'Medio por el que se comunicarán las modificaciones al aviso y fecha de la última actualización.',
+    pending: 'Fecha de la versión vigente.',
+  },
+];
+---
+<BaseLayout
+  title="Aviso de privacidad | GEMMAE Ginecólogos"
+  description="Aviso de privacidad de GEMMAE Ginecólogos: tratamiento de datos personales, finalidades, transferencias, derechos ARCO y uso de cookies en el sitio."
+  canonical={routes.privacidad}
+  crumbs={crumbs}
+  noindex
+>
+  <PageHeader eyebrow="Legal" title="Aviso de privacidad" crumbs={crumbs} />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="disclaimer" style="margin-bottom:2rem">
+        <Icon name="info" size={18} />
+        <p>
+          <strong>Documento pendiente de redacción legal.</strong> Esta página contiene
+          la estructura que debe cubrir el aviso de privacidad integral conforme a la
+          Ley Federal de Protección de Datos Personales en Posesión de los Particulares.
+          El texto definitivo debe ser redactado o validado por el área legal de
+          {' '}{site.name} antes de publicar el sitio. No se ha inventado ninguna
+          información legal específica.
+        </p>
+      </div>
+
+      <div class="prose">
+        {secciones.map((s) => (
+          <section>
+            <h2>{s.title}</h2>
+            <p>{s.text}</p>
+            <p class="text-muted" style="font-size:.85rem">
+              <strong>[POR CONFIRMAR]</strong> {s.pending}
+            </p>
+          </section>
+        ))}
+
+        <h2>Contacto para asuntos de privacidad</h2>
+        <p>
+          Correo de contacto del responsable: <strong>{compliance.privacyContactEmail}</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

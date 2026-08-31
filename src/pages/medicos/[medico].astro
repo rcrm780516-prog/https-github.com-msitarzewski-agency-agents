@@ -1,0 +1,244 @@
+---
+/**
+ * Perfil de especialista. Los perfiles marcados como draft se construyen para
+ * revision interna pero salen con noindex y fuera del sitemap: publicar un
+ * perfil medico con datos placeholder danaria la autoridad del dominio.
+ */
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import AppointmentCTA from '../../components/AppointmentCTA.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
+import RelatedLinks from '../../components/RelatedLinks.astro';
+import Icon from '../../components/Icon.astro';
+
+import { getMedicosAll, getServiciosPorIds, getUbicacionesPorIds } from '../../lib/content';
+import { routes, absolute } from '../../lib/urls';
+import { physicianSchema, faqSchema } from '../../lib/schema';
+import { isTBC } from '../../config/site';
+
+export const getStaticPaths = (async () => {
+  const medicos = await getMedicosAll();
+  return medicos.map((medico) => ({ params: { medico: medico.id }, props: { medico } }));
+}) satisfies GetStaticPaths;
+
+const { medico } = Astro.props;
+const d = medico.data;
+const { Content } = await render(medico);
+
+const [servicios, ubicaciones] = await Promise.all([
+  getServiciosPorIds(d.services.map((s) => s.id)),
+  getUbicacionesPorIds(d.locations.map((l) => l.id)),
+]);
+
+const fullName = [d.honorific, d.name].filter(Boolean).join(' ');
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Médicos', href: routes.medicos },
+  { label: d.name, href: routes.medico(medico.id) },
+];
+
+const url = absolute(routes.medico(medico.id));
+const schemas = [
+  physicianSchema({
+    slug: medico.id,
+    name: d.name,
+    honorific: d.honorific,
+    specialty: d.specialty,
+    description: d.bio,
+    photo: d.photo,
+    url,
+    locations: ubicaciones.map((u) => ({ name: u.data.name, slug: u.id })),
+    languages: d.languages,
+    doctoraliaUrl: d.doctoraliaUrl,
+  }),
+  faqSchema(d.faq),
+];
+---
+<BaseLayout
+  title={d.seo.title}
+  description={d.seo.description}
+  canonical={routes.medico(medico.id)}
+  crumbs={crumbs}
+  schemas={schemas}
+  noindex={d.draft || d.seo.noindex}
+  doctor={medico.id}
+>
+  <PageHeader eyebrow={d.specialty} title={fullName} crumbs={crumbs}>
+    <Fragment slot="actions">
+      <AppointmentCTA label="Agendar consulta" doctor={medico.id} />
+      <WhatsAppButton variant="secondary" doctor={medico.id} />
+    </Fragment>
+  </PageHeader>
+
+  <section class="section">
+    <div class="container">
+      {d.draft && (
+        <div class="disclaimer" style="margin-bottom:2rem">
+          <Icon name="info" size={18} />
+          <p>
+            <strong>Perfil en preparación (no indexado).</strong> Esta página es la
+            plantilla lista para recibir la información verificable del especialista.
+            Todos los campos marcados con [POR CONFIRMAR] deben completarse antes de
+            publicar; ver <code>CONTENT_NEEDED.md</code>.
+          </p>
+        </div>
+      )}
+
+      <div class="location-panel__grid">
+        <div class="measure">
+          <h2>Semblanza</h2>
+          <p class={`lead ${isTBC(d.bio) ? 'text-muted' : ''}`} style="margin-top:1rem">{d.bio}</p>
+
+          <div class="prose" style="margin-top:1.5rem"><Content /></div>
+
+          {d.education.length > 0 && (
+            <div style="margin-top:var(--space-2xl)">
+              <h2>Formación</h2>
+              <ul class="data-list" style="margin-top:1.25rem">
+                {d.education.map((e) => (
+                  <li class="data-list__row">
+                    <Icon name="check" size={18} />
+                    <span class={isTBC(e) ? 'text-muted' : ''}>{e}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {d.certifications.length > 0 && (
+            <div style="margin-top:var(--space-2xl)">
+              <h2>Certificaciones</h2>
+              <ul class="data-list" style="margin-top:1.25rem">
+                {d.certifications.map((c) => (
+                  <li class="data-list__row">
+                    <Icon name="shield" size={18} />
+                    <span class={isTBC(c) ? 'text-muted' : ''}>{c}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {d.publications.length > 0 && (
+            <div style="margin-top:var(--space-2xl)">
+              <h2>Publicaciones</h2>
+              <ul class="data-list" style="margin-top:1.25rem">
+                {d.publications.map((p) => (
+                  <li class="data-list__row">
+                    <Icon name="chevron" size={16} />
+                    <span>{p.url ? <a href={p.url} target="_blank" rel="noopener">{p.title}</a> : p.title}{p.source && ` — ${p.source}`}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <MedicalDisclaimer class="mt-2xl" />
+        </div>
+
+        <aside>
+          <div class="guide-widget">
+            <h2 style="font-size:var(--step-1)">Información profesional</h2>
+            <ul class="data-list" style="margin-top:1.25rem">
+              <li class="data-list__row">
+                <Icon name="stethoscope" size={18} />
+                <span>
+                  <span class="data-list__label">Especialidad</span>
+                  <span class={isTBC(d.specialty) ? 'text-muted' : ''}>{d.specialty}</span>
+                </span>
+              </li>
+              {d.licenses.map((l) => (
+                <li class="data-list__row">
+                  <Icon name="shield" size={18} />
+                  <span>
+                    <span class="data-list__label">{l.label}</span>
+                    <span class={isTBC(l.value) ? 'text-muted' : ''}>{l.value}</span>
+                  </span>
+                </li>
+              ))}
+              {d.experience && (
+                <li class="data-list__row">
+                  <Icon name="clock" size={18} />
+                  <span>
+                    <span class="data-list__label">Experiencia</span>
+                    <span class={isTBC(d.experience) ? 'text-muted' : ''}>{d.experience}</span>
+                  </span>
+                </li>
+              )}
+              <li class="data-list__row">
+                <Icon name="users" size={18} />
+                <span>
+                  <span class="data-list__label">Idiomas</span>
+                  <span>{d.languages.join(', ')}</span>
+                </span>
+              </li>
+              {ubicaciones.length > 0 && (
+                <li class="data-list__row">
+                  <Icon name="map-pin" size={18} />
+                  <span>
+                    <span class="data-list__label">Sedes</span>
+                    {ubicaciones.map((u) => (
+                      <a style="display:block" href={routes.ubicacion(u.id)}>{u.data.city}</a>
+                    ))}
+                  </span>
+                </li>
+              )}
+            </ul>
+            <div class="btn-row" style="margin-top:1.5rem">
+              <AppointmentCTA block label="Agendar consulta" doctor={medico.id} />
+              <WhatsAppButton block variant="secondary" doctor={medico.id} />
+            </div>
+            {d.doctoraliaUrl && (
+              <p style="margin-top:1rem;font-size:.85rem">
+                <a class="link-arrow" href={d.doctoraliaUrl} target="_blank" rel="noopener">Ver perfil en Doctoralia</a>
+              </p>
+            )}
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {servicios.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>Servicios que atiende</h2>
+        </div>
+        <div class="grid grid--3">
+          {servicios.map((s) => (
+            <ServiceCard slug={s.id} name={s.data.name} excerpt={s.data.excerpt} icon={s.data.icon} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {d.faq.length > 0 && (
+    <section class="section">
+      <div class="container container--narrow">
+        <FAQ items={d.faq} title="Preguntas frecuentes" />
+      </div>
+    </section>
+  )}
+
+  <section class="section--tight">
+    <div class="container">
+      <RelatedLinks
+        title="Explora también"
+        items={[
+          { label: 'Todo el equipo médico', href: routes.medicos },
+          ...ubicaciones.map((u) => ({ label: `Sede ${u.data.city}`, href: routes.ubicacion(u.id) })),
+        ]}
+      />
+    </div>
+  </section>
+
+  <CTASection doctor={medico.id} title={`Agenda con ${fullName}`} showLocations={false} />
+</BaseLayout>

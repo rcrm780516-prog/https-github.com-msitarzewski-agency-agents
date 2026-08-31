@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SearchWidget from '../components/SearchWidget.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { getServiciosDestacados } from '../lib/content';
+import { routes } from '../lib/urls';
+
+const destacados = await getServiciosDestacados();
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Buscar', href: routes.buscar },
+];
+---
+<BaseLayout
+  title="Buscar en GEMMAE"
+  description="Busca servicios, médicos, sedes y artículos de GEMMAE Ginecólogos en Toluca, Metepec y Zinacantepec."
+  canonical={routes.buscar}
+  noindex
+  crumbs={crumbs}
+>
+  <PageHeader eyebrow="Buscador" title="Encuentra lo que necesitas" crumbs={crumbs} />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <SearchWidget id="search-page" autofill autofocus placeholder="VPH, embarazo, colposcopia, Metepec…" />
+      <p class="text-muted" style="margin-top:1rem;font-size:.85rem">
+        Busca por síntoma, estudio, especialidad, médico o sede.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+      <div class="section-head"><h2>Servicios más consultados</h2></div>
+      <div class="grid grid--3">
+        {destacados.map((s) => (
+          <ServiceCard slug={s.id} name={s.data.name} excerpt={s.data.excerpt} icon={s.data.icon} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

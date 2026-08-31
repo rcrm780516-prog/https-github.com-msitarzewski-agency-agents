@@ -1,0 +1,57 @@
+---
+/**
+ * CTA de WhatsApp con contexto de atribucion.
+ * El href se renderiza completo en el HTML (funciona sin JS); el script de
+ * atribucion le anade los UTM de la sesion al hacer clic.
+ */
+import { whatsappHref } from '../lib/whatsapp';
+import Icon from './Icon.astro';
+
+export interface Props {
+  service?: string;
+  location?: string;
+  doctor?: string;
+  message?: string;
+  phone?: string;
+  label?: string;
+  variant?: 'solid' | 'secondary' | 'light' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  block?: boolean;
+  class?: string;
+}
+
+const {
+  service,
+  location,
+  doctor,
+  message,
+  phone,
+  label = 'Hablar por WhatsApp',
+  variant = 'solid',
+  size = 'md',
+  block = false,
+  class: className = '',
+} = Astro.props;
+
+const href = whatsappHref({ service, location, doctor, message, phone });
+const variantClass =
+  variant === 'solid' ? 'btn--whatsapp'
+  : variant === 'secondary' ? 'btn--secondary'
+  : variant === 'light' ? 'btn--light'
+  : 'btn--ghost';
+const sizeClass = size === 'sm' ? 'btn--sm' : size === 'lg' ? 'btn--lg' : '';
+---
+<a
+  href={href}
+  class:list={['btn', variantClass, sizeClass, block && 'btn--block', className]}
+  target="_blank"
+  rel="noopener"
+  data-wa
+  data-service={service}
+  data-location={location}
+  data-doctor={doctor}
+  data-event="click_whatsapp"
+>
+  <Icon name="whatsapp" size={18} />
+  {label}
+</a>

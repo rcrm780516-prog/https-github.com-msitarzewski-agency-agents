@@ -1,0 +1,56 @@
+---
+/**
+ * Medicion. Cada script se inyecta SOLO si su ID esta configurado:
+ * un sitio sin IDs no carga un solo byte de terceros ni deja cookies.
+ * GTM es el contenedor preferido; GA4 directo es el respaldo si no hay GTM.
+ */
+import { analytics } from '../config/site';
+
+const { gtmId, ga4Id, metaPixelId, googleAdsId } = analytics;
+const useGa4Direct = !gtmId && !!ga4Id;
+const gtagId = ga4Id || googleAdsId;
+---
+{gtmId && (
+  <script is:inline define:vars={{ gtmId }}>
+    window.dataLayer = window.dataLayer || [];
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', gtmId);
+  </script>
+)}
+
+{(useGa4Direct || (!gtmId && googleAdsId)) && gtagId && (
+  <Fragment>
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gtagId}`}></script>
+    <script is:inline define:vars={{ ga4Id, googleAdsId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      if (ga4Id) gtag('config', ga4Id, { send_page_view: true });
+      if (googleAdsId) gtag('config', googleAdsId);
+    </script>
+  </Fragment>
+)}
+
+{metaPixelId && (
+  <script is:inline define:vars={{ metaPixelId }}>
+    !(function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+      t = b.createElement(e); t.async = !0; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', metaPixelId);
+    fbq('track', 'PageView');
+  </script>
+)}

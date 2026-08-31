@@ -1,0 +1,52 @@
+---
+/**
+ * CTA principal de agenda. Lleva al formulario con el contexto precargado
+ * (servicio / sede / medico) para reducir friccion y conservar la atribucion.
+ */
+import { routes } from '../lib/urls';
+import Icon from './Icon.astro';
+
+export interface Props {
+  service?: string;
+  location?: string;
+  doctor?: string;
+  label?: string;
+  variant?: 'solid' | 'secondary' | 'light';
+  size?: 'sm' | 'md' | 'lg';
+  block?: boolean;
+  class?: string;
+}
+
+const {
+  service,
+  location,
+  doctor,
+  label = 'Agenda tu consulta',
+  variant = 'solid',
+  size = 'md',
+  block = false,
+  class: className = '',
+} = Astro.props;
+
+const params = new URLSearchParams();
+if (service) params.set('servicio', service);
+if (location) params.set('sede', location);
+if (doctor) params.set('medico', doctor);
+const query = params.toString();
+const href = `${routes.contacto}${query ? `?${query}` : ''}`;
+
+const variantClass =
+  variant === 'secondary' ? 'btn--secondary' : variant === 'light' ? 'btn--light' : '';
+const sizeClass = size === 'sm' ? 'btn--sm' : size === 'lg' ? 'btn--lg' : '';
+---
+<a
+  href={href}
+  class:list={['btn', variantClass, sizeClass, block && 'btn--block', className]}
+  data-event="appointment_start"
+  data-service={service}
+  data-location={location}
+  data-doctor={doctor}
+>
+  <Icon name="calendar" size={18} />
+  {label}
+</a>

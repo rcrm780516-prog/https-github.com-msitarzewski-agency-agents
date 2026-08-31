@@ -1,0 +1,51 @@
+---
+/**
+ * "Lo que dicen nuestras pacientes".
+ * El componente NO inventa testimonios: si no hay reseñas reales cargadas en
+ * src/data/reviews.json muestra el estado vacío con la instruccion de carga.
+ * Tampoco emite schema AggregateRating: publicar estrellas sin origen
+ * verificable viola las politicas de Google y las de publicidad medica.
+ */
+import reviews from '../data/reviews.json';
+import ReviewCard from './ReviewCard.astro';
+import Icon from './Icon.astro';
+import { social } from '../config/site';
+
+export interface Props { limit?: number; title?: string }
+const { limit = 3, title = 'Lo que dicen nuestras pacientes' } = Astro.props;
+
+type Review = { quote: string; author: string; source?: string; rating?: number; date?: string };
+const items = (reviews as Review[]).slice(0, limit);
+---
+<section class="section">
+  <div class="container">
+    <div class="split-head">
+      <div class="section-head" style="margin-bottom:0">
+        <span class="eyebrow">Experiencias</span>
+        <h2>{title}</h2>
+      </div>
+      {social.googleBusiness && (
+        <a class="link-arrow" href={social.googleBusiness} target="_blank" rel="noopener">
+          Ver reseñas en Google
+        </a>
+      )}
+    </div>
+
+    {items.length > 0 ? (
+      <div class="grid grid--3">
+        {items.map((r) => <ReviewCard {...r} />)}
+      </div>
+    ) : (
+      <div class="disclaimer" style="align-items:flex-start">
+        <Icon name="info" size={18} />
+        <p>
+          <strong>Componente listo, contenido pendiente.</strong> Este bloque muestra
+          únicamente reseñas reales y testimonios autorizados. Carga las reseñas
+          verificadas en <code>src/data/reviews.json</code> (texto, autora o iniciales,
+          fuente y fecha) o conecta el perfil de Google Business.
+          No se publican testimonios inventados ni calificaciones sin origen verificable.
+        </p>
+      </div>
+    )}
+  </div>
+</section>

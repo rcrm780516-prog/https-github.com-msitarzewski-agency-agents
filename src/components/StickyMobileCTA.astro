@@ -1,0 +1,66 @@
+---
+/**
+ * Barra fija inferior en movil: WhatsApp / Agendar / Llamar.
+ * Es el patron de conversion principal por debajo de 1024px.
+ */
+import { contact } from '../config/site';
+import { telHref, whatsappHref } from '../lib/whatsapp';
+import { routes } from '../lib/urls';
+import Icon from './Icon.astro';
+
+export interface Props { service?: string; location?: string; doctor?: string; phone?: string }
+const { service, location, doctor, phone } = Astro.props;
+
+const tel = telHref(phone || contact.phoneHref || contact.phone);
+const wa = whatsappHref({ service, location, doctor, phone });
+const params = new URLSearchParams();
+if (service) params.set('servicio', service);
+if (location) params.set('sede', location);
+if (doctor) params.set('medico', doctor);
+const agendaHref = `${routes.contacto}${params.toString() ? `?${params}` : ''}`;
+---
+<nav class="mobile-bar" aria-label="Acciones rápidas">
+  <a
+    class="mobile-bar__btn mobile-bar__btn--wa"
+    href={wa}
+    target="_blank"
+    rel="noopener"
+    data-wa
+    data-service={service}
+    data-location={location}
+    data-doctor={doctor}
+    data-event="click_whatsapp"
+    data-source="sticky_bar"
+  >
+    <Icon name="whatsapp" size={20} />
+    WhatsApp
+  </a>
+  <a
+    class="mobile-bar__btn mobile-bar__btn--primary"
+    href={agendaHref}
+    data-event="appointment_start"
+    data-service={service}
+    data-location={location}
+    data-source="sticky_bar"
+  >
+    <Icon name="calendar" size={20} />
+    Agendar
+  </a>
+  {tel ? (
+    <a
+      class="mobile-bar__btn"
+      href={tel}
+      data-event="click_call"
+      data-location={location}
+      data-source="sticky_bar"
+    >
+      <Icon name="phone" size={20} />
+      Llamar
+    </a>
+  ) : (
+    <a class="mobile-bar__btn" href={routes.contacto} data-event="click_call">
+      <Icon name="phone" size={20} />
+      Contacto
+    </a>
+  )}
+</nav>

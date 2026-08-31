@@ -1,0 +1,23 @@
+---
+/**
+ * Breadcrumbs visuales. El JSON-LD BreadcrumbList lo emite BaseLayout a partir
+ * de la misma lista, para que no puedan desincronizarse.
+ */
+export interface Crumb { label: string; href: string }
+export interface Props { items: Crumb[]; class?: string }
+
+const { items, class: className = '' } = Astro.props;
+---
+<nav class:list={['breadcrumb', className]} aria-label="Ruta de navegación">
+  <ol>
+    {items.map((item, i) => (
+      <li>
+        {i === items.length - 1 ? (
+          <span aria-current="page">{item.label}</span>
+        ) : (
+          <a href={item.href}>{item.label}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

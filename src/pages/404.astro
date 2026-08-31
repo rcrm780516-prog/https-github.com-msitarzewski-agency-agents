@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import SearchWidget from '../components/SearchWidget.astro';
+import { routes } from '../lib/urls';
+---
+<BaseLayout
+  title="Página no encontrada | GEMMAE"
+  description="La página que buscas no está disponible. Encuentra aquí nuestros servicios, sedes y contacto."
+  canonical="/404/"
+  noindex
+>
+  <section class="container error-page">
+    <span class="error-page__code" aria-hidden="true">404</span>
+    <h1>Esta página tomó otro camino.</h1>
+    <p class="lead mx-auto">
+      El enlace que seguiste ya no existe o cambió de dirección. Podemos ayudarte
+      a encontrar lo que buscas.
+    </p>
+    <div class="btn-row" style="justify-content:center">
+      <a class="btn" href={routes.home}>Volver al inicio</a>
+      <a class="btn btn--secondary" href={routes.ubicaciones}>Encontrar una sede</a>
+      <WhatsAppButton label="Hablar por WhatsApp" variant="secondary" />
+    </div>
+    <div style="max-width:34rem;margin-inline:auto;width:100%">
+      <SearchWidget id="search-404" placeholder="Busca un servicio, sede o artículo…" />
+    </div>
+  </section>
+</BaseLayout>

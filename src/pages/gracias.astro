@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import Icon from '../components/Icon.astro';
+import { getArticulos } from '../lib/content';
+import { routes } from '../lib/urls';
+import ArticleCard from '../components/ArticleCard.astro';
+
+const articulos = (await getArticulos()).slice(0, 3);
+---
+<BaseLayout
+  title="Solicitud recibida | GEMMAE Ginecólogos"
+  description="Hemos recibido tu solicitud de cita. En breve te contactamos para confirmar horario y sede."
+  canonical="/gracias/"
+  noindex
+>
+  <section class="section">
+    <div class="container container--narrow text-center">
+      <span class="service-card__icon mx-auto" aria-hidden="true"><Icon name="check" size={24} /></span>
+      <h1 style="margin-top:1.25rem">Recibimos tu solicitud</h1>
+      <p class="lead mx-auto" style="margin-top:1rem">
+        Gracias por escribirnos. Te contactaremos por el medio que elegiste para
+        confirmar el horario y la sede de tu consulta.
+      </p>
+      <div class="btn-row" style="justify-content:center;margin-top:2rem">
+        <WhatsAppButton label="Adelantar la conversación por WhatsApp" />
+        <a class="btn btn--secondary" href={routes.home}>Volver al inicio</a>
+      </div>
+      <p class="text-muted" style="margin-top:1.5rem;font-size:.85rem">
+        Tiempo estimado de respuesta: [POR CONFIRMAR]. Si tu situación requiere
+        atención inmediata, acude al servicio de urgencias más cercano o llama al 911.
+      </p>
+    </div>
+  </section>
+
+  {articulos.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <h2>Mientras tanto, quizá te interese</h2>
+        </div>
+        <div class="grid grid--3">
+          {articulos.map((a) => (
+            <ArticleCard
+              slug={a.id}
+              title={a.data.title}
+              excerpt={a.data.excerpt}
+              category={a.data.category}
+              publishedAt={a.data.publishedAt}
+              readingMinutes={a.data.readingMinutes}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

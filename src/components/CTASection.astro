@@ -1,0 +1,44 @@
+---
+/**
+ * Bloque de cierre. Ninguna pagina importante termina sin siguiente paso.
+ */
+import AppointmentCTA from './AppointmentCTA.astro';
+import WhatsAppButton from './WhatsAppButton.astro';
+import { routes } from '../lib/urls';
+
+export interface Props {
+  title?: string;
+  text?: string;
+  service?: string;
+  location?: string;
+  doctor?: string;
+  ctaLabel?: string;
+  showLocations?: boolean;
+  class?: string;
+}
+const {
+  title = 'Agenda tu consulta en GEMMAE',
+  text = 'Escríbenos y te confirmamos el primer horario disponible en la sede que te quede más cerca.',
+  service,
+  location,
+  doctor,
+  ctaLabel = 'Agenda tu consulta',
+  showLocations = true,
+  class: className = '',
+} = Astro.props;
+---
+<section class:list={['section', className]}>
+  <div class="container">
+    <div class="cta-block" data-reveal>
+      <h2>{title}</h2>
+      <p>{text}</p>
+      <div class="btn-row">
+        <AppointmentCTA variant="light" size="lg" label={ctaLabel} service={service} location={location} doctor={doctor} />
+        <WhatsAppButton size="lg" label="Hablar por WhatsApp" service={service} location={location} doctor={doctor} />
+        {showLocations && (
+          <a class="btn btn--ghost btn--lg" href={routes.ubicaciones} style="color:#D9E2DB">Ver ubicaciones</a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>

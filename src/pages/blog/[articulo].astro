@@ -1,0 +1,212 @@
+---
+/**
+ * Articulo del blog. Estructura preparada para autoridad medica (E-E-A-T):
+ * autor, revisor y especialidad se muestran SOLO cuando existen datos reales.
+ * Mientras no existan, la pagina lo declara explicitamente en lugar de
+ * atribuir el contenido a una persona inventada.
+ */
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import FAQ from '../../components/FAQ.astro';
+import CTASection from '../../components/CTASection.astro';
+import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
+import AppointmentCTA from '../../components/AppointmentCTA.astro';
+import WhatsAppButton from '../../components/WhatsAppButton.astro';
+import Icon from '../../components/Icon.astro';
+
+import {
+  getArticulos,
+  getServiciosPorIds,
+  getMedicosAll,
+  categoriaLabel,
+  formatDate,
+  isoDate,
+} from '../../lib/content';
+import { routes, absolute } from '../../lib/urls';
+import { articleSchema, faqSchema } from '../../lib/schema';
+
+export const getStaticPaths = (async () => {
+  const articulos = await getArticulos();
+  return articulos.map((articulo) => ({ params: { articulo: articulo.id }, props: { articulo } }));
+}) satisfies GetStaticPaths;
+
+const { articulo } = Astro.props;
+const d = articulo.data;
+const { Content } = await render(articulo);
+
+const [servicios, medicos, todos] = await Promise.all([
+  getServiciosPorIds(d.relatedServices.map((s) => s.id)),
+  getMedicosAll(),
+  getArticulos(),
+]);
+
+const autor = d.author ? medicos.find((m) => m.id === d.author!.id) : undefined;
+const revisor = d.reviewedBy ? medicos.find((m) => m.id === d.reviewedBy!.id) : undefined;
+const autorNombre = d.authorName || (autor && !autor.data.draft ? [autor.data.honorific, autor.data.name].filter(Boolean).join(' ') : '');
+const revisorNombre = d.reviewedByName || (revisor && !revisor.data.draft ? [revisor.data.honorific, revisor.data.name].filter(Boolean).join(' ') : '');
+
+const relacionados = (d.relatedArticles.length
+  ? todos.filter((a) => d.relatedArticles.some((r) => r.id === a.id))
+  : todos.filter((a) => a.id !== articulo.id && a.data.category === d.category)
+).slice(0, 3);
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Blog', href: routes.blog },
+  { label: categoriaLabel(d.category), href: routes.blogCategoria(d.category) },
+  { label: d.title, href: routes.articulo(articulo.id) },
+];
+
+const url = absolute(routes.articulo(articulo.id));
+const schemas = [
+  articleSchema({
+    url,
+    headline: d.title,
+    description: d.seo.description,
+    image: d.cover || undefined,
+    datePublished: isoDate(d.publishedAt),
+    dateModified: isoDate(d.updatedAt ?? d.publishedAt),
+    authorName: autorNombre || undefined,
+    reviewerName: revisorNombre || undefined,
+    medicalSpecialty: d.medicalSpecialty,
+  }),
+  faqSchema(d.faq),
+];
+---
+<BaseLayout
+  title={d.seo.title}
+  description={d.seo.description}
+  canonical={routes.articulo(articulo.id)}
+  ogType="article"
+  ogImage={d.cover || undefined}
+  crumbs={crumbs}
+  schemas={schemas}
+>
+  <article class="section">
+    <div class="container container--narrow">
+      <Breadcrumb items={crumbs} />
+
+      <header class="article-head">
+        <a class="chip" href={routes.blogCategoria(d.category)}>{categoriaLabel(d.category)}</a>
+        <h1 style="margin-top:1rem">{d.h1 ?? d.title}</h1>
+        <p class="lead" style="margin-top:1rem">{d.excerpt}</p>
+
+        <div class="byline">
+          <div class="byline__block">
+            <span class="byline__role">Publicado</span>
+            <time class="byline__name" datetime={d.publishedAt.toISOString()}>{formatDate(d.publishedAt)}</time>
+          </div>
+          {d.updatedAt && (
+            <div class="byline__block">
+              <span class="byline__role">Actualizado</span>
+              <time class="byline__name" datetime={d.updatedAt.toISOString()}>{formatDate(d.updatedAt)}</time>
+            </div>
+          )}
+          <div class="byline__block">
+            <span class="byline__role">Lectura</span>
+            <span class="byline__name">{d.readingMinutes} min</span>
+          </div>
+          <div class="byline__block">
+            <span class="byline__role">Autoría</span>
+            <span class="byline__name">
+              {autorNombre
+                ? (autor ? <a href={routes.medico(autor.id)}>{autorNombre}</a> : autorNombre)
+                : 'Equipo editorial GEMMAE'}
+            </span>
+          </div>
+          <div class="byline__block">
+            <span class="byline__role">Revisión médica</span>
+            <span class="byline__name">
+              {revisorNombre
+                ? (revisor ? <a href={routes.medico(revisor.id)}>{revisorNombre}</a> : revisorNombre)
+                : '[POR CONFIRMAR]'}
+            </span>
+          </div>
+        </div>
+
+        {!revisorNombre && (
+          <p class="text-muted" style="margin-top:1rem;font-size:.82rem">
+            Este artículo está preparado para mostrar “Contenido revisado por profesionales
+            de la salud” en cuanto GEMMAE asigne autor y revisor con datos verificables.
+          </p>
+        )}
+      </header>
+
+      <div class="prose" style="margin-top:var(--space-xl)">
+        <Content />
+      </div>
+
+      {d.sources.length > 0 && (
+        <section style="margin-top:var(--space-2xl)">
+          <h2 style="font-size:var(--step-1)">Fuentes consultadas</h2>
+          <ul class="data-list" style="margin-top:1rem">
+            {d.sources.map((s) => (
+              <li class="data-list__row">
+                <Icon name="chevron" size={16} />
+                <span>{s.url ? <a href={s.url} target="_blank" rel="noopener nofollow">{s.label}</a> : s.label}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <MedicalDisclaimer class="mt-2xl" />
+
+      <div class="cta-block" style="margin-top:var(--space-2xl)">
+        <h2 style="font-size:var(--step-3)">¿Quieres resolver tu caso en consulta?</h2>
+        <p>La información general orienta, pero no sustituye una valoración. Agenda con el equipo GEMMAE.</p>
+        <div class="btn-row">
+          <AppointmentCTA variant="light" label="Agenda tu consulta" service={servicios[0]?.id} />
+          <WhatsAppButton label="Hablar por WhatsApp" service={servicios[0]?.id} />
+        </div>
+      </div>
+    </div>
+  </article>
+
+  {d.faq.length > 0 && (
+    <section class="section--tight">
+      <div class="container container--narrow">
+        <FAQ items={d.faq} title="Preguntas frecuentes" />
+      </div>
+    </section>
+  )}
+
+  {servicios.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section-head"><h2>Servicios relacionados</h2></div>
+        <div class="grid grid--3">
+          {servicios.map((s) => (
+            <ServiceCard slug={s.id} name={s.data.name} excerpt={s.data.excerpt} icon={s.data.icon} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {relacionados.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head"><h2>Sigue leyendo</h2></div>
+        <div class="grid grid--3">
+          {relacionados.map((a) => (
+            <ArticleCard
+              slug={a.id}
+              title={a.data.title}
+              excerpt={a.data.excerpt}
+              category={a.data.category}
+              publishedAt={a.data.publishedAt}
+              readingMinutes={a.data.readingMinutes}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <CTASection showLocations={true} />
+</BaseLayout>

@@ -1,0 +1,43 @@
+---
+/**
+ * "¿Qué necesitas hoy?" — entrada directa por intencion, el patron con mejor
+ * conversion en sitios clinicos: evita que el usuario navegue por el menu.
+ */
+import Icon from './Icon.astro';
+import { routes } from '../lib/urls';
+
+export interface Props {
+  items: { slug: string; label: string; hint?: string; icon?: string }[];
+  title?: string;
+  class?: string;
+}
+const { items, title = '¿Qué necesitas hoy?', class: className = '' } = Astro.props;
+---
+<section class:list={['section section--alt', className]} id="que-necesitas">
+  <div class="container">
+    <div class="split-head">
+      <div class="section-head" style="margin-bottom:0">
+        <h2>{title}</h2>
+        <p class="lead">Entra directo al tema que te trajo aquí. Cada opción te lleva a información específica y a cómo agendar.</p>
+      </div>
+      <a class="link-arrow" href={routes.servicios}>Ver todos los servicios</a>
+    </div>
+
+    <div class="needs">
+      {items.map((item, i) => (
+        <a
+          class="need-card"
+          href={routes.servicio(item.slug)}
+          data-reveal
+          data-reveal-delay={String((i % 4) + 1)}
+          data-event="view_service"
+          data-service={item.slug}
+        >
+          <span class="need-card__icon" aria-hidden="true"><Icon name={item.icon || 'stethoscope'} size={22} /></span>
+          <span class="need-card__label">{item.label}</span>
+          {item.hint && <span class="need-card__hint">{item.hint}</span>}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

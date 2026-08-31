@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContactForm from '../components/ContactForm.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import MedicalDisclaimer from '../components/MedicalDisclaimer.astro';
+import Icon from '../components/Icon.astro';
+import { getServicios, getUbicaciones } from '../lib/content';
+import { routes } from '../lib/urls';
+import { contact, isTBC } from '../config/site';
+import { telHref } from '../lib/whatsapp';
+
+const [servicios, ubicaciones] = await Promise.all([getServicios(), getUbicaciones()]);
+const tel = telHref(contact.phoneHref || contact.phone);
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Contacto', href: routes.contacto },
+];
+---
+<BaseLayout
+  title="Contacto y citas | GEMMAE Ginecólogos"
+  description="Agenda tu consulta en GEMMAE Ginecólogos. Escríbenos por WhatsApp, llámanos o déjanos tus datos y te confirmamos horario en Toluca, Metepec o Zinacantepec."
+  canonical={routes.contacto}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="Contacto"
+    title="Agenda tu consulta"
+    lead="Déjanos tus datos y te contactamos para confirmar horario, o escríbenos directo por WhatsApp si prefieres resolver dudas primero."
+    crumbs={crumbs}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="location-panel__grid">
+        <div>
+          <h2>Solicita tu cita</h2>
+          <p class="text-muted" style="margin-top:.5rem;margin-bottom:2rem">
+            Los campos marcados con <span aria-hidden="true">*</span> son necesarios para poder contactarte.
+          </p>
+          <ContactForm servicios={servicios} ubicaciones={ubicaciones} />
+        </div>
+
+        <aside>
+          <div class="guide-widget">
+            <h2 style="font-size:var(--step-1)">Contacto directo</h2>
+            <ul class="data-list" style="margin-top:1.25rem">
+              <li class="data-list__row">
+                <Icon name="whatsapp" size={18} />
+                <span>
+                  <span class="data-list__label">WhatsApp</span>
+                  <span class={isTBC(contact.whatsappDisplay) ? 'text-muted' : ''}>{contact.whatsappDisplay}</span>
+                </span>
+              </li>
+              <li class="data-list__row">
+                <Icon name="phone" size={18} />
+                <span>
+                  <span class="data-list__label">Teléfono</span>
+                  {tel ? <a href={tel} data-event="click_call" data-source="contacto">{contact.phone}</a> : <span class="text-muted">{contact.phone}</span>}
+                </span>
+              </li>
+              <li class="data-list__row">
+                <Icon name="mail" size={18} />
+                <span>
+                  <span class="data-list__label">Correo</span>
+                  <span class={isTBC(contact.email) ? 'text-muted' : ''}>{contact.email}</span>
+                </span>
+              </li>
+            </ul>
+            <div style="margin-top:1.5rem">
+              <WhatsAppButton block label="Escribir por WhatsApp" />
+            </div>
+          </div>
+
+          <div class="guide-widget" style="margin-top:1.5rem">
+            <h2 style="font-size:var(--step-1)">Nuestras sedes</h2>
+            <ul class="data-list" style="margin-top:1.25rem">
+              {ubicaciones.map((u) => (
+                <li class="data-list__row">
+                  <Icon name="map-pin" size={18} />
+                  <span>
+                    <a class="data-list__label" href={routes.ubicacion(u.id)}>{u.data.name}</a>
+                    <span class={isTBC(u.data.phone) ? 'text-muted' : ''}>{u.data.phone}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div style="margin-top:1.5rem">
+            <MedicalDisclaimer text="Este formulario es para agendar y resolver dudas administrativas. No realizamos diagnósticos ni indicamos tratamientos por este medio. Ante una emergencia médica, acude al servicio de urgencias más cercano o llama al 911." />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

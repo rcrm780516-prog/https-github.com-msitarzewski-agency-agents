@@ -1,0 +1,86 @@
+[
+  {
+    "id": "como-agendar",
+    "topic": "Citas",
+    "order": 1,
+    "q": "¿Cómo agendo una consulta en GEMMAE?",
+    "a": "Puedes agendar por WhatsApp, por teléfono o dejando tus datos en el formulario de contacto. Indícanos el servicio que necesitas y la sede que te queda más cerca, y te confirmamos el primer horario disponible."
+  },
+  {
+    "id": "sedes",
+    "topic": "Citas",
+    "order": 2,
+    "q": "¿En qué sedes atienden?",
+    "a": "Contamos con sedes en Toluca, Metepec y Zinacantepec. Algunos estudios se programan en sedes específicas; al agendar te indicamos dónde está disponible el que necesitas."
+  },
+  {
+    "id": "primera-consulta",
+    "topic": "Citas",
+    "order": 3,
+    "q": "¿Qué debo llevar a mi primera consulta?",
+    "a": "Una identificación y, si los tienes, estudios previos: laboratorios, ultrasonidos o resultados de citología. También ayuda anotar la fecha de tu última menstruación y los medicamentos que tomas. Nada de esto es indispensable para poder atenderte."
+  },
+  {
+    "id": "costos",
+    "topic": "Costos y pagos",
+    "order": 4,
+    "q": "¿Cuánto cuesta la consulta?",
+    "a": "[POR CONFIRMAR] Indicar si se publican precios de consulta y estudios, o si se informan al agendar."
+  },
+  {
+    "id": "pagos",
+    "topic": "Costos y pagos",
+    "order": 5,
+    "q": "¿Qué formas de pago aceptan?",
+    "a": "[POR CONFIRMAR] Indicar métodos de pago aceptados y si se emite factura."
+  },
+  {
+    "id": "seguros",
+    "topic": "Costos y pagos",
+    "order": 6,
+    "q": "¿Trabajan con aseguradoras?",
+    "a": "[POR CONFIRMAR] Indicar si se atiende con seguros de gastos médicos mayores y con cuáles."
+  },
+  {
+    "id": "cancelar",
+    "topic": "Citas",
+    "order": 7,
+    "q": "¿Puedo cambiar o cancelar mi cita?",
+    "a": "Sí. Te pedimos avisarnos con la mayor anticipación posible por WhatsApp o teléfono para reasignar el horario a otra paciente."
+  },
+  {
+    "id": "acompanante",
+    "topic": "Consulta",
+    "order": 8,
+    "q": "¿Puedo ir acompañada a la consulta?",
+    "a": "Sí. Puedes acudir con la persona que te dé confianza. En consultas de adolescentes se recomienda acudir con madre, padre o tutor."
+  },
+  {
+    "id": "menstruacion",
+    "topic": "Consulta",
+    "order": 9,
+    "q": "¿Puedo acudir si estoy menstruando?",
+    "a": "Puedes acudir a consulta. Si el motivo incluye citología, colposcopia o toma de muestras, conviene reprogramar para un día fuera de la menstruación; consúltanos al agendar."
+  },
+  {
+    "id": "urgencia",
+    "topic": "Consulta",
+    "order": 10,
+    "q": "¿Atienden urgencias?",
+    "a": "[POR CONFIRMAR] Indicar el procedimiento ante una urgencia y los datos de contacto correspondientes. Ante una emergencia médica, acude al servicio de urgencias más cercano o llama al 911."
+  },
+  {
+    "id": "resultados",
+    "topic": "Estudios",
+    "order": 11,
+    "q": "¿Cómo entregan los resultados de estudios?",
+    "a": "[POR CONFIRMAR] Indicar el medio de entrega (en consulta, digital) y los tiempos estimados por tipo de estudio."
+  },
+  {
+    "id": "diagnostico-online",
+    "topic": "Consulta",
+    "order": 12,
+    "q": "¿Pueden decirme por WhatsApp qué tengo?",
+    "a": "No. Por WhatsApp podemos orientarte sobre servicios, sedes y disponibilidad, pero un diagnóstico requiere valoración médica. La información de este sitio y de nuestros canales es de carácter general y no sustituye una consulta."
+  }
+]

@@ -1,0 +1,57 @@
+---
+/** Placeholder profesional: estructura sin contenido legal inventado. */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+import { routes } from '../lib/urls';
+import { site } from '../config/site';
+
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Términos y condiciones', href: routes.terminos },
+];
+
+const secciones = [
+  { title: '1. Objeto y aceptación', text: 'Alcance del sitio, servicios que se ofrecen a través de él y aceptación de los términos por parte del usuario.', pending: 'Razón social y datos de identificación del titular del sitio.' },
+  { title: '2. Naturaleza informativa del contenido', text: 'El contenido publicado tiene carácter informativo y educativo. No constituye diagnóstico, tratamiento ni relación médico-paciente, y no sustituye una valoración presencial.', pending: 'Validación del texto por el área médica y legal.' },
+  { title: '3. Solicitudes de cita', text: 'El envío del formulario o un mensaje por WhatsApp constituye una solicitud de contacto y no confirma una cita hasta que GEMMAE responde.', pending: 'Política de confirmación, reprogramación y cancelación de citas.' },
+  { title: '4. Precios y formas de pago', text: 'Información sobre costos de consulta y estudios, vigencia y formas de pago aceptadas.', pending: 'Definir si se publican precios y con qué vigencia.' },
+  { title: '5. Propiedad intelectual', text: 'Titularidad de marcas, logotipos, textos, fotografías y demás contenidos del sitio.', pending: 'Registro de marca y titularidad de fotografías.' },
+  { title: '6. Enlaces a terceros', text: 'Responsabilidad respecto de sitios externos enlazados (Google Maps, Doctoralia, redes sociales).', pending: 'Listado de plataformas enlazadas.' },
+  { title: '7. Limitación de responsabilidad', text: 'Alcance de la responsabilidad por el uso de la información publicada en el sitio.', pending: 'Redacción por el área legal.' },
+  { title: '8. Modificaciones', text: 'Facultad de modificar los términos y medio de comunicación de los cambios.', pending: 'Fecha de la versión vigente.' },
+  { title: '9. Legislación aplicable y jurisdicción', text: 'Legislación que rige los términos y jurisdicción competente para su interpretación.', pending: 'Jurisdicción designada.' },
+];
+---
+<BaseLayout
+  title="Términos y condiciones | GEMMAE Ginecólogos"
+  description="Términos y condiciones de uso del sitio de GEMMAE Ginecólogos: naturaleza informativa del contenido, solicitudes de cita y limitaciones de responsabilidad."
+  canonical={routes.terminos}
+  crumbs={crumbs}
+  noindex
+>
+  <PageHeader eyebrow="Legal" title="Términos y condiciones" crumbs={crumbs} />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="disclaimer" style="margin-bottom:2rem">
+        <Icon name="info" size={18} />
+        <p>
+          <strong>Documento pendiente de redacción legal.</strong> Estructura de referencia
+          para los términos y condiciones de {site.name}. El texto definitivo debe ser
+          redactado o validado por el área legal antes de la publicación del sitio.
+        </p>
+      </div>
+
+      <div class="prose">
+        {secciones.map((s) => (
+          <section>
+            <h2>{s.title}</h2>
+            <p>{s.text}</p>
+            <p class="text-muted" style="font-size:.85rem"><strong>[POR CONFIRMAR]</strong> {s.pending}</p>
+          </section>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

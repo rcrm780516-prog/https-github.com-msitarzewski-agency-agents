@@ -1,0 +1,217 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceFinder from '../components/ServiceFinder.astro';
+import SearchWidget from '../components/SearchWidget.astro';
+import TrustSection from '../components/TrustSection.astro';
+import LocationFinder from '../components/LocationFinder.astro';
+import GuideWidget from '../components/GuideWidget.astro';
+import Reviews from '../components/Reviews.astro';
+import FAQ from '../components/FAQ.astro';
+import CTASection from '../components/CTASection.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import DoctorCard from '../components/DoctorCard.astro';
+import Icon from '../components/Icon.astro';
+import AppointmentCTA from '../components/AppointmentCTA.astro';
+
+import { getCollection } from 'astro:content';
+import {
+  getServicios,
+  getUbicaciones,
+  getMedicos,
+  getArticulos,
+} from '../lib/content';
+import { routes } from '../lib/urls';
+import { faqSchema } from '../lib/schema';
+import { site } from '../config/site';
+
+const [servicios, ubicaciones, medicos, articulos, faqsAll] = await Promise.all([
+  getServicios(),
+  getUbicaciones(),
+  getMedicos(),
+  getArticulos(),
+  getCollection('faqs'),
+]);
+
+// Cards del hero interactivo: intenciones de entrada mas frecuentes.
+const needs = [
+  { slug: 'ginecologia', label: 'Ginecología', hint: 'Consulta y revisión', icon: 'heart' },
+  { slug: 'embarazo', label: 'Embarazo', hint: 'Control prenatal', icon: 'baby' },
+  { slug: 'fertilidad', label: 'Fertilidad', hint: 'Valoración', icon: 'sprout' },
+  { slug: 'menopausia', label: 'Menopausia', hint: 'Acompañamiento', icon: 'sun' },
+  { slug: 'vph', label: 'VPH', hint: 'Detección y seguimiento', icon: 'microscope' },
+  { slug: 'colposcopia', label: 'Colposcopia', hint: 'Estudio especializado', icon: 'microscope' },
+  { slug: 'ultrasonido', label: 'Ultrasonido', hint: 'Ginecológico y obstétrico', icon: 'waves' },
+];
+
+const faqsHome = faqsAll
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 6)
+  .map((f) => ({ q: f.data.q, a: f.data.a }));
+
+const ultimos = articulos.slice(0, 3);
+const embarazo = servicios.find((s) => s.id === 'embarazo');
+const menopausia = servicios.find((s) => s.id === 'menopausia');
+---
+<BaseLayout
+  title="GEMMAE Ginecólogos | Salud integral de la mujer"
+  description={site.description}
+  canonical="/"
+  crumbs={[{ label: 'Inicio', href: '/' }]}
+  schemas={[faqSchema(faqsHome)]}
+>
+  <Hero
+    trust={[
+      'Toluca, Metepec y Zinacantepec',
+      'Consulta, embarazo y estudios en un mismo lugar',
+      'Agenda por WhatsApp',
+    ]}
+  />
+
+  <!-- Buscador global: resuelve la intencion sin obligar a navegar el menu -->
+  <section class="section--tight" style="padding-block:2rem;background:var(--sand-50)">
+    <div class="container container--narrow">
+      <SearchWidget id="search-home" />
+      <p class="text-muted text-center" style="margin-top:.75rem;font-size:.82rem">
+        Busca por síntoma, estudio, especialidad o sede. Por ejemplo: <em>VPH</em>, <em>control prenatal</em>, <em>Metepec</em>.
+      </p>
+    </div>
+  </section>
+
+  <ServiceFinder items={needs} />
+
+  <TrustSection sedes={ubicaciones.length} servicios={servicios.length} medicos={medicos.length} />
+
+  <!-- Pilares editoriales: embarazo y menopausia -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--2" style="gap:var(--space-2xl)">
+        {embarazo && (
+          <article data-reveal>
+            <span class="eyebrow">Acompañamiento</span>
+            <h2 style="margin-top:.75rem">{embarazo.data.h1}</h2>
+            <p class="lead" style="margin-top:1rem">{embarazo.data.excerpt}</p>
+            <ol class="timeline" style="margin-top:1.75rem">
+              {embarazo.data.journey.slice(0, 4).map((j, i) => (
+                <li class="timeline__item">
+                  <span class="timeline__dot" aria-hidden="true">{i + 1}</span>
+                  <div>
+                    <h3 class="timeline__title">{j.title}</h3>
+                    <p class="timeline__text">{j.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div class="btn-row" style="margin-top:1.75rem">
+              <AppointmentCTA label="Quiero agendar mi control prenatal" service="embarazo" />
+              <a class="btn btn--secondary" href={routes.servicio('embarazo')}>Ver acompañamiento completo</a>
+            </div>
+            <p class="text-muted" style="margin-top:1rem;font-size:.82rem">
+              El seguimiento puede variar según cada paciente.
+            </p>
+          </article>
+        )}
+
+        {menopausia && (
+          <article data-reveal data-reveal-delay="2">
+            <span class="eyebrow">Nueva etapa</span>
+            <h2 style="margin-top:.75rem">Una nueva etapa también merece atención</h2>
+            <p class="lead" style="margin-top:1rem">
+              Bochornos, cambios en el sueño, ciclos irregulares o resequedad no tienen
+              por qué vivirse en silencio. La mayoría son manejables.
+            </p>
+            <ul class="data-list" style="margin-top:1.75rem">
+              {['Valoración de síntomas y de en qué punto de la transición estás',
+                'Salud ósea y cardiovascular como parte del seguimiento',
+                'Opciones hormonales y no hormonales, con beneficios y riesgos sobre la mesa',
+                'Revisión preventiva que continúa después de la menopausia',
+              ].map((t) => (
+                <li class="data-list__row"><Icon name="check" size={18} /><span>{t}</span></li>
+              ))}
+            </ul>
+            <div class="btn-row" style="margin-top:1.75rem">
+              <AppointmentCTA label="Agenda una valoración" service="menopausia" />
+              <a class="btn btn--secondary" href={routes.servicio('menopausia')}>Más sobre menopausia</a>
+            </div>
+          </article>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <LocationFinder ubicaciones={ubicaciones} />
+
+  <GuideWidget />
+
+  {medicos.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="split-head">
+          <div class="section-head" style="margin-bottom:0">
+            <span class="eyebrow">Equipo</span>
+            <h2>Nuestros especialistas</h2>
+          </div>
+          <a class="link-arrow" href={routes.medicos}>Ver todo el equipo</a>
+        </div>
+        <div class="grid grid--3">
+          {medicos.slice(0, 3).map((m) => (
+            <DoctorCard
+              slug={m.id}
+              name={m.data.name}
+              honorific={m.data.honorific}
+              specialty={m.data.specialty}
+              photo={m.data.photo}
+              photoAlt={m.data.photoAlt}
+              draft={m.data.draft}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <Reviews />
+
+  {ultimos.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <div class="split-head">
+          <div class="section-head" style="margin-bottom:0">
+            <span class="eyebrow">GEMMAE Contigo</span>
+            <h2>Información que sí resuelve dudas</h2>
+          </div>
+          <a class="link-arrow" href={routes.blog}>Ver todos los artículos</a>
+        </div>
+        <div class="grid grid--3">
+          {ultimos.map((a) => (
+            <ArticleCard
+              slug={a.id}
+              title={a.data.title}
+              excerpt={a.data.excerpt}
+              category={a.data.category}
+              publishedAt={a.data.publishedAt}
+              readingMinutes={a.data.readingMinutes}
+              cover={a.data.cover}
+              coverAlt={a.data.coverAlt}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="section-head section-head--center">
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2>Lo que más nos preguntan</h2>
+      </div>
+      <FAQ items={faqsHome} />
+      <p class="text-center" style="margin-top:1.5rem">
+        <a class="link-arrow" href={routes.faq}>Ver todas las preguntas</a>
+      </p>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

@@ -1,0 +1,22 @@
+---
+/**
+ * Red de enlaces internos: servicio ↔ medico ↔ sede ↔ articulo.
+ * Se usa en todas las plantillas para que la red semantica sea sistematica.
+ */
+export interface Props {
+  title: string;
+  items: { label: string; href: string; note?: string }[];
+  class?: string;
+}
+const { title, items, class: className = '' } = Astro.props;
+---
+{items.length > 0 && (
+  <nav class:list={[className]} aria-label={title}>
+    <h2 class="footer__title" style="color:var(--ink-500)">{title}</h2>
+    <ul class="chip-row" style="margin-top:.75rem">
+      {items.map((i) => (
+        <li><a class="chip" href={i.href}>{i.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+)}

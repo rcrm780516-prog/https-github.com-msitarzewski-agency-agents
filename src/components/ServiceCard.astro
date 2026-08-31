@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+import { routes } from '../lib/urls';
+
+export interface Props {
+  slug: string;
+  name: string;
+  excerpt?: string;
+  icon?: string;
+  class?: string;
+}
+const { slug, name, excerpt, icon = 'stethoscope', class: className = '' } = Astro.props;
+---
+<article class:list={['card service-card', className]}>
+  <div class="card__body">
+    <span class="service-card__icon" aria-hidden="true"><Icon name={icon} size={20} /></span>
+    <h3 class="card__title"><a href={routes.servicio(slug)} data-event="view_service" data-service={slug}>{name}</a></h3>
+    {excerpt && <p class="card__text">{excerpt}</p>}
+    <div class="card__foot"><span class="link-arrow">Conocer más</span></div>
+  </div>
+</article>

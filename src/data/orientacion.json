@@ -1,0 +1,50 @@
+[
+  {
+    "id": "embarazo",
+    "label": "Creo que estoy embarazada",
+    "text": "Una prueba positiva o un atraso menstrual con síntomas son motivo suficiente para agendar una primera valoración. En esa consulta se confirma el embarazo, se calculan las semanas y se define el esquema de seguimiento, que puede variar según cada paciente.",
+    "service": "embarazo"
+  },
+  {
+    "id": "menstruacion",
+    "label": "Mi menstruación cambió",
+    "text": "Los cambios sostenidos en el ritmo, la duración o la cantidad del sangrado ameritan valoración, sobre todo si el sangrado es muy abundante, si aparece entre periodos o después de las relaciones. La causa se estudia en consulta y puede requerir estudios complementarios.",
+    "service": "ginecologia"
+  },
+  {
+    "id": "vph",
+    "label": "Tengo un resultado de VPH o citología alterada",
+    "text": "Un resultado positivo de VPH o una citología alterada no significan cáncer. El siguiente paso depende del tipo de resultado: puede ser repetir la prueba en un plazo determinado o realizar una colposcopia para observar el cuello uterino con detalle.",
+    "service": "vph"
+  },
+  {
+    "id": "menopausia",
+    "label": "Creo que estoy entrando a la menopausia",
+    "text": "Ciclos irregulares, bochornos, alteraciones del sueño o resequedad son frecuentes en la perimenopausia y en su mayoría son manejables. Una valoración permite revisar síntomas, salud ósea y cardiovascular, y conversar las opciones que correspondan a tu caso.",
+    "service": "menopausia"
+  },
+  {
+    "id": "fertilidad",
+    "label": "Llevo tiempo buscando embarazo",
+    "text": "Como referencia general se sugiere consultar tras un año de búsqueda sin lograrlo, o a los seis meses a partir de los 35 años. Si tus ciclos son irregulares o existe un antecedente relevante, conviene consultar antes. La valoración estudia ambos lados cuando aplica.",
+    "service": "fertilidad"
+  },
+  {
+    "id": "dolor",
+    "label": "Tengo dolor pélvico o menstrual intenso",
+    "text": "El dolor que te obliga a faltar al trabajo o la escuela, que no cede con analgésicos comunes o que empeora con los meses no es simplemente un cólico fuerte. También amerita valoración el dolor durante las relaciones o fuera de la menstruación.",
+    "service": "ginecologia"
+  },
+  {
+    "id": "sangrado",
+    "label": "Tengo sangrado fuera de lo habitual",
+    "text": "El sangrado entre periodos, después de las relaciones o cualquier sangrado tras doce meses sin menstruar amerita revisión sin posponerla. Ante un sangrado abundante y súbito, acude a valoración médica de inmediato.",
+    "service": "ginecologia"
+  },
+  {
+    "id": "revision",
+    "label": "Quiero una revisión preventiva",
+    "text": "Si ha pasado más de un año desde tu última revisión, o no recuerdas cuándo fue tu última citología o prueba de VPH, ese es motivo suficiente para agendar. El esquema de detección que te corresponde depende de tu edad y de tus resultados previos.",
+    "service": "salud-femenina"
+  }
+]

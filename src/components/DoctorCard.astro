@@ -1,0 +1,40 @@
+---
+import { routes } from '../lib/urls';
+import { isTBC } from '../config/site';
+import Icon from './Icon.astro';
+
+export interface Props {
+  slug: string;
+  name: string;
+  honorific?: string;
+  specialty: string;
+  photo?: string;
+  photoAlt?: string;
+  locations?: string[];
+  draft?: boolean;
+}
+const { slug, name, honorific = '', specialty, photo, photoAlt, locations = [], draft = false } = Astro.props;
+const fullName = [honorific, name].filter(Boolean).join(' ');
+---
+<article class="card doctor-card">
+  <div class="card__media doctor-card__media">
+    {photo ? (
+      <img src={photo} alt={photoAlt || `Fotografía de ${fullName}`} width="400" height="500" loading="lazy" decoding="async" />
+    ) : (
+      <div style="height:100%;display:grid;place-items:center;background:linear-gradient(160deg,var(--brand-100),var(--sand-200));color:var(--brand-600)">
+        <Icon name="users" size={40} />
+      </div>
+    )}
+  </div>
+  <div class="card__body">
+    {draft && <span class="chip chip--tbc">Perfil por completar</span>}
+    <h3 class="card__title">
+      <a href={routes.medico(slug)} data-event="view_doctor" data-doctor={slug}>{fullName}</a>
+    </h3>
+    <p class="doctor-card__meta">{specialty}</p>
+    {locations.length > 0 && !isTBC(locations.join('')) && (
+      <p class="card__text">{locations.join(' · ')}</p>
+    )}
+    <div class="card__foot"><span class="link-arrow">Ver perfil</span></div>
+  </div>
+</article>

@@ -1,0 +1,49 @@
+---
+/**
+ * Buscador global de servicios, medicos, sedes y articulos.
+ * Client-side sobre un indice estatico: sin backend, resultados instantaneos.
+ */
+import Icon from './Icon.astro';
+
+export interface Props {
+  placeholder?: string;
+  label?: string;
+  autofill?: boolean;
+  autofocus?: boolean;
+  id?: string;
+  class?: string;
+}
+const {
+  placeholder = 'Busca: VPH, embarazo, colposcopia, Toluca…',
+  label = 'Buscar en GEMMAE',
+  autofill = false,
+  autofocus = false,
+  id = 'search',
+  class: className = '',
+} = Astro.props;
+---
+<div class:list={['search', className]} data-search data-search-autofill={autofill || undefined}>
+  <label class="visually-hidden" for={id}>{label}</label>
+  <div class="search__field">
+    <Icon name="search" size={18} class="text-muted" />
+    <input
+      class="search__input"
+      type="search"
+      id={id}
+      name="q"
+      placeholder={placeholder}
+      autocomplete="off"
+      role="combobox"
+      aria-autocomplete="list"
+      aria-expanded="false"
+      aria-controls={`${id}-results`}
+      data-search-input
+      autofocus={autofocus || undefined}
+    />
+  </div>
+  <div class="search__results" id={`${id}-results`} role="listbox" aria-label="Resultados de búsqueda" data-search-results hidden></div>
+</div>
+
+<script>
+  import '../scripts/search';
+</script>

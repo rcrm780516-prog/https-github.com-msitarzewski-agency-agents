@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="GEMMAE">
+  <rect width="64" height="64" rx="14" fill="#1F3228"/>
+  <path d="M32 47c-1.1 0-11.5-6.9-11.5-16.4a7.6 7.6 0 0 1 11.5-6.5 7.6 7.6 0 0 1 11.5 6.5C43.5 40.1 33.1 47 32 47Z" fill="none" stroke="#A6C1B0" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="32" cy="30" r="3" fill="#A6C1B0"/>
+</svg>

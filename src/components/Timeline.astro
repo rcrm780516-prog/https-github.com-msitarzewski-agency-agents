@@ -1,0 +1,25 @@
+---
+export interface Props {
+  items: { title: string; text: string }[];
+  title?: string;
+  note?: string;
+}
+const { items, title, note } = Astro.props;
+---
+{items.length > 0 && (
+  <div>
+    {title && <h2 style="margin-bottom:1.5rem">{title}</h2>}
+    <ol class="timeline">
+      {items.map((item, i) => (
+        <li class="timeline__item" data-reveal>
+          <span class="timeline__dot" aria-hidden="true">{i + 1}</span>
+          <div>
+            <h3 class="timeline__title">{item.title}</h3>
+            <p class="timeline__text">{item.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    {note && <p class="text-muted" style="margin-top:1.5rem;font-size:.85rem">{note}</p>}
+  </div>
+)}

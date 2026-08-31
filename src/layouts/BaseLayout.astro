@@ -1,0 +1,157 @@
+---
+/**
+ * Layout base: <head> completo (SEO, OG, JSON-LD), header, footer y CTAs
+ * persistentes. Toda pagina del sitio pasa por aqui, de modo que ninguna
+ * puede quedarse sin title, canonical o schema.
+ */
+import '../styles/global.css';
+import { site, analytics } from '../config/site';
+import { absolute } from '../lib/urls';
+import { graph, organizationSchema, websiteSchema, breadcrumbSchema } from '../lib/schema';
+import type { Crumb } from '../components/Breadcrumb.astro';
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StickyMobileCTA from '../components/StickyMobileCTA.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import SearchOverlay from '../components/SearchOverlay.astro';
+import Analytics from '../components/Analytics.astro';
+import AnalyticsNoscript from '../components/AnalyticsNoscript.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  /** Ruta canonica; por defecto la URL actual */
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  crumbs?: Crumb[];
+  /** Nodos JSON-LD adicionales de la pagina */
+  schemas?: unknown[];
+  /** Contexto de conversion que heredan los CTA persistentes */
+  service?: string;
+  location?: string;
+  doctor?: string;
+  phone?: string;
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = site.defaultOgImage,
+  ogType = 'website',
+  noindex = false,
+  crumbs = [],
+  schemas = [],
+  service,
+  location,
+  doctor,
+  phone,
+  bodyClass = '',
+} = Astro.props;
+
+const canonicalUrl = absolute(canonical ?? Astro.url.pathname);
+const ogUrl = absolute(ogImage);
+const fullTitle = title.includes('GEMMAE') ? title : `${title} | ${site.name}`;
+
+// Un solo bloque JSON-LD por pagina, con @graph: evita nodos huerfanos
+// y permite que Organization se referencie por @id desde el resto.
+// En páginas noindex solo se declara la organización: los nodos de página
+// (breadcrumbs, artículo, médico) describirían contenido que no debe indexarse
+// y pueden arrastrar marcadores [POR CONFIRMAR].
+const jsonLd = graph(
+  noindex
+    ? [organizationSchema()]
+    : [
+        organizationSchema(),
+        websiteSchema(),
+        crumbs.length > 1 ? breadcrumbSchema(crumbs) : undefined,
+        ...schemas,
+      ]
+);
+
+const selfHostedFonts = import.meta.env.PUBLIC_SELF_HOSTED_FONTS === 'true';
+---
+<!doctype html>
+<html lang={site.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Marca de JS disponible: activa las animaciones de entrada. Sin JS el
+         contenido se muestra completo (nunca oculto tras opacity: 0). -->
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta
+      name="robots"
+      content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
+    />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogUrl} />
+
+    <meta name="theme-color" content={site.themeColor} />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {selfHostedFonts && (
+      <Fragment>
+        <link rel="preconnect" href="/" />
+        <link rel="stylesheet" href="/fonts/fonts.css" />
+      </Fragment>
+    )}
+
+    {(analytics.gtmId || analytics.ga4Id || analytics.metaPixelId) && (
+      <Fragment>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </Fragment>
+    )}
+
+    <slot name="head" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+
+    <Analytics />
+  </head>
+
+  <body class={bodyClass}>
+    <AnalyticsNoscript />
+    <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+    <Header />
+    <SearchOverlay />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+    <StickyMobileCTA service={service} location={location} doctor={doctor} phone={phone} />
+    <WhatsAppFloat service={service} location={location} doctor={doctor} />
+
+    <script>
+      import '../scripts/attribution';
+      import '../scripts/ui';
+    </script>
+  </body>
+</html>

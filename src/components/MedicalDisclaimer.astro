@@ -1,0 +1,17 @@
+---
+/**
+ * Aviso obligatorio en todo contenido de salud (cumplimiento publicidad medica).
+ */
+import Icon from './Icon.astro';
+import { compliance } from '../config/site';
+
+export interface Props {
+  text?: string;
+  class?: string;
+}
+const { text = compliance.disclaimer, class: className = '' } = Astro.props;
+---
+<aside class:list={['disclaimer', className]} aria-label="Aviso médico">
+  <Icon name="info" size={18} />
+  <p><strong>Aviso:</strong> {text}</p>
+</aside>

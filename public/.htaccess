@@ -1,0 +1,120 @@
+# ============================================================
+# GEMMAE — Configuración Apache para Hostinger (hosting compartido)
+# Este archivo se copia tal cual a la raíz del sitio (public_html) en el build.
+# ============================================================
+
+# ---------- 1. HTTPS y dominio canónico ----------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Forzar HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # Forzar versión SIN www (si se prefiere con www, invertir esta regla
+  # y actualizar PUBLIC_SITE_URL en .env antes de compilar)
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  # Quitar index.html de las URLs (evita contenido duplicado)
+  RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+</IfModule>
+
+# Añadir la barra final a los directorios (URLs canónicas con /)
+<IfModule mod_dir.c>
+  DirectorySlash On
+  DirectoryIndex index.html index.php
+</IfModule>
+
+# ---------- 2. Página 404 ----------
+ErrorDocument 404 /404.html
+
+# ---------- 3. Compresión ----------
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/xml image/svg+xml
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml image/svg+xml application/rss+xml
+</IfModule>
+
+# ---------- 4. Caché ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Assets con hash en el nombre: cache inmutable de un año
+  <FilesMatch "\.(js|css|woff2|woff|ttf|otf)$">
+    ExpiresDefault "access plus 1 year"
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Imágenes
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/avif "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+
+  # HTML: siempre revalidar para que un deploy se vea de inmediato
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType application/json "access plus 1 hour"
+  ExpiresByType application/xml "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # ---------- 5. Cabeceras de seguridad ----------
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), interest-cohort=()"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+
+  # CSP: permite Google Tag Manager / GA4 / Meta Pixel y los mapas de Google.
+  # Si se añade otra herramienta, agregar su dominio AQUÍ y en ningún otro sitio.
+  Header always set Content-Security-Policy "default-src 'self'; \
+script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://www.googleadservices.com https://googleads.g.doubleclick.net; \
+style-src 'self' 'unsafe-inline'; \
+img-src 'self' data: https: blob:; \
+font-src 'self' data:; \
+connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://connect.facebook.net; \
+frame-src https://www.google.com https://maps.google.com https://www.googletagmanager.com; \
+form-action 'self'; \
+base-uri 'self'; \
+object-src 'none'; \
+upgrade-insecure-requests"
+
+  # No cachear la respuesta del endpoint de leads
+  <FilesMatch "\.php$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---------- 6. Tipos MIME ----------
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+  AddType application/manifest+json .webmanifest
+</IfModule>
+
+# ---------- 7. Protección de archivos ----------
+<FilesMatch "^(\.env|\.git|composer\.(json|lock)|package(-lock)?\.json|astro\.config\.mjs|config\.php)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteRule ^(\.git|node_modules|src)/ - [F,L]
+</IfModule>
+
+# Desactivar listado de directorios
+Options -Indexes

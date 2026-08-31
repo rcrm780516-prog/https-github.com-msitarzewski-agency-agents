@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import CTASection from '../../components/CTASection.astro';
+import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
+import { getArticulos, blogCategorias } from '../../lib/content';
+import { routes } from '../../lib/urls';
+
+const articulos = await getArticulos();
+const usadas = blogCategorias.filter((c) => articulos.some((a) => a.data.category === c.slug));
+const crumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Blog', href: routes.blog },
+];
+---
+<BaseLayout
+  title="GEMMAE Contigo — Blog de salud femenina"
+  description="Artículos de salud femenina escritos con criterio médico: ginecología, embarazo, fertilidad, menopausia, VPH y prevención. Información clara, sin alarmismo."
+  canonical={routes.blog}
+  crumbs={crumbs}
+>
+  <PageHeader
+    eyebrow="GEMMAE Contigo"
+    title="Información que sí resuelve dudas"
+    lead="Contenido de salud femenina explicado con claridad: qué significa un resultado, cuándo consultar y qué esperar de cada estudio."
+    crumbs={crumbs}
+  />
+
+  <section class="section--tight" style="padding-block:1.5rem">
+    <div class="container">
+      <nav aria-label="Categorías del blog">
+        <ul class="chip-row">
+          <li><a class="chip" href={routes.blog} aria-current="page">Todos</a></li>
+          {usadas.map((c) => (
+            <li><a class="chip chip--neutral" href={routes.blogCategoria(c.slug)}>{c.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="container">
+      <div class="grid grid--3">
+        {articulos.map((a) => (
+          <ArticleCard
+            slug={a.id}
+            title={a.data.title}
+            excerpt={a.data.excerpt}
+            category={a.data.category}
+            publishedAt={a.data.publishedAt}
+            readingMinutes={a.data.readingMinutes}
+            cover={a.data.cover}
+            coverAlt={a.data.coverAlt}
+          />
+        ))}
+      </div>
+
+      <div class="mt-2xl" style="max-width:52rem">
+        <MedicalDisclaimer />
+      </div>
+    </div>
+  </section>
+
+  <CTASection title="¿Tu duda no está resuelta?" text="Escríbenos por WhatsApp o agenda una consulta: resolver dudas concretas requiere una valoración individual." />
+</BaseLayout>
