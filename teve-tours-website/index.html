@@ -1332,7 +1332,10 @@ function tarjetaTour(t, i) {
       <div class="tour-body">
         <h3>${esc(x.titulo)}</h3>
         <p>${esc(x.texto)}</p>
-        <div class="tour-price-row"><span>${esc(T('tarjetaDesde'))}</span><span class="tour-price">${esc(t.precio)}</span></div>
+        <div class="tour-price-row">
+          <span>${esc(T('tarjetaDesde'))}</span>
+          <span class="tour-price">${esc(money(t.precio, t.moneda))}${t.porPersona ? `<small style="display:block;font-size:0.66rem;font-weight:500;color:#7b8b92;text-transform:none;letter-spacing:0;">${esc(T('cotizaPorPersonaUnidad'))}</small>` : ''}</span>
+        </div>
       </div>
       <div class="tour-footer">
         <button class="btn-outline" onclick="waMsg('${esc(wa)}')">${esc(T('tarjetaReservar'))}</button>
@@ -1415,6 +1418,13 @@ function renderBlog() {
    prospecto llega ya sabiendo cuánto cuesta.
    ========================================================================== */
 
+// "2197" + "MXN"  ->  "$2,197 MXN"
+function money(n, moneda) {
+  const num = Number(n);
+  if (!isFinite(num)) return '';
+  return '$' + num.toLocaleString('en-US') + ' ' + (moneda || 'USD');
+}
+
 // Todas las filas del tarifario con un id estable para poder buscarlas.
 function tarifasTodas() {
   const t = C.tarifas || {};
@@ -1462,8 +1472,11 @@ function renderSelectoresTraslado() {
     desde.innerHTML = `<option value="aeropuerto">${esc(T('cotizaAeropuerto'))}</option>` + lista;
     desde.value = previoDesde || 'aeropuerto';
   }
+  // El aeropuerto va en los dos lados: el viajero también regresa a volar.
   if (hacia) {
-    hacia.innerHTML = `<option value="">${esc(T('cotizaElige'))}</option>` + lista;
+    hacia.innerHTML = `<option value="">${esc(T('cotizaElige'))}</option>`
+                    + `<option value="aeropuerto">${esc(T('cotizaAeropuerto'))}</option>`
+                    + lista;
     hacia.value = previoHacia || '';
   }
 
@@ -1480,13 +1493,17 @@ function renderSelectoresTraslado() {
   }
 }
 
-// El destino que manda el precio es el que no sea el aeropuerto.
+/* El tarifario cotiza el trayecto entre el aeropuerto y una zona. Si el
+   visitante arma una combinación que no está en la tabla (zona a zona, o
+   el mismo punto de los dos lados) se lo decimos en vez de inventar. */
 function tarifaElegida() {
   const v = id => (document.getElementById(id) || {}).value || '';
-  const hacia = v('f-hacia'), desde = v('f-desde');
-  if (hacia && hacia !== 'aeropuerto') return buscarTarifa(hacia);
-  if (desde && desde !== 'aeropuerto') return buscarTarifa(desde);
-  return null;
+  const desde = v('f-desde'), hacia = v('f-hacia');
+  if (!hacia) return { estado: 'incompleto' };
+  if (desde === hacia) return { estado: 'mismo' };
+  if (desde === 'aeropuerto') return { estado: 'ok', tarifa: buscarTarifa(hacia) };
+  if (hacia === 'aeropuerto') return { estado: 'ok', tarifa: buscarTarifa(desde) };
+  return { estado: 'zonaAzona' };
 }
 
 function pintarCaja(caja, etiqueta, detalle, precio, pie, esConsulta) {
@@ -1501,10 +1518,24 @@ function pintarCaja(caja, etiqueta, detalle, precio, pie, esConsulta) {
 function calcularTraslado() {
   const caja = document.getElementById('quoteTransfer');
   const v = id => (document.getElementById(id) || {}).value || '';
-  const tarifa = tarifaElegida();
   if (!caja) return null;
-  if (!tarifa) { caja.hidden = true; return null; }
 
+  const r = tarifaElegida();
+  if (r.estado === 'incompleto') { caja.hidden = true; return null; }
+
+  // Solo el nombre de la zona, sin el listado de hoteles: cabe en una línea.
+  const nombre = id => id === 'aeropuerto' ? T('cotizaAeropuerto') : ((buscarTarifa(id) || {}).zona || '');
+  const ruta = nombre(v('f-desde')) + ' → ' + nombre(v('f-hacia'));
+  if (r.estado === 'mismo') {
+    pintarCaja(caja, T('cotizaEtiqueta'), '', T('cotizaMismoPunto'), '', true);
+    return null;
+  }
+  if (r.estado === 'zonaAzona' || !r.tarifa) {
+    pintarCaja(caja, T('cotizaEtiqueta'), ruta, T('cotizaZonaAZona'), '', true);
+    return { texto: T('cotizaZonaAZona'), zona: ruta };
+  }
+
+  const tarifa = r.tarifa;
   const pax = Math.max(1, parseInt(v('f-pax'), 10) || 1);
   const p = precioDe(tarifa, pax);
   const moneda = (C.tarifas && C.tarifas.moneda) || 'USD';
@@ -1517,7 +1548,7 @@ function calcularTraslado() {
 
   const monto = redondo ? p.monto * 2 : p.monto;
   const pie = redondo ? T('cotizaRedondo') : T('cotizaPorVehiculo').replace('{pax}', p.tope);
-  const importe = '$' + monto + ' ' + moneda;
+  const importe = money(monto, moneda);
   pintarCaja(caja, T('cotizaEtiqueta'), tarifa.zona, importe, pie, false);
   return { texto: importe + ' (' + pie + ')', zona: tarifa.zona, pax: pax };
 }
@@ -1536,8 +1567,26 @@ function calcularTour() {
     pintarCaja(caja, T('cotizaEtiqueta'), nombre, T('cotizaSinPrecio'), '', true);
     return { texto: T('cotizaSinPrecio'), zona: nombre };
   }
-  pintarCaja(caja, T('cotizaEtiqueta'), x.titulo, tour.precio, trad(tour.duracion), false);
-  return { texto: tour.precio, zona: x.titulo };
+
+  const pax = Math.max(1, parseInt(v('t-pax'), 10) || 1);
+  const min = Number(tour.minPax) || 1;
+  if (pax < min) {
+    pintarCaja(caja, T('cotizaEtiqueta'), x.titulo,
+               T('cotizaMinimo').replace('{min}', min), '', true);
+    return { texto: T('cotizaMinimo').replace('{min}', min), zona: x.titulo };
+  }
+
+  // Por persona se multiplica; por grupo el precio es cerrado.
+  const unidad = Number(tour.precio);
+  const total = tour.porPersona ? unidad * pax : unidad;
+  const importe = money(total, tour.moneda);
+  const pie = tour.porPersona
+    ? money(unidad, tour.moneda) + ' ' + T('cotizaPorPersonaUnidad')
+      + ' · ' + T('cotizaTotalPax').replace('{pax}', pax)
+    : trad(tour.duracion);
+
+  pintarCaja(caja, T('cotizaEtiqueta'), x.titulo, importe, pie, false);
+  return { texto: importe + ' (' + pie + ')', zona: x.titulo, pax: pax };
 }
 
 // Cualquier cambio en el buscador recalcula el precio al instante.
@@ -1545,9 +1594,9 @@ function calcularTour() {
   const el = document.getElementById(id);
   if (el) { el.addEventListener('change', calcularTraslado); el.addEventListener('input', calcularTraslado); }
 });
-['t-destino'].forEach(id => {
+['t-destino', 't-pax'].forEach(id => {
   const el = document.getElementById(id);
-  if (el) el.addEventListener('change', calcularTour);
+  if (el) { el.addEventListener('change', calcularTour); el.addEventListener('input', calcularTour); }
 });
 
 /* ---------- contacto y pie de página ---------- */

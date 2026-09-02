@@ -166,13 +166,26 @@ window.TEVE_CONFIG = {
     { id: "concierge", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } }
   ],
 
+  /* --------------------------------------------------------------------
+     TOURS
+     --------------------------------------------------------------------
+     precio      = solo el número, sin signos ni comas. El sitio le pone
+                   el formato y la moneda solo.
+     moneda      = "MXN" o "USD"
+     porPersona  = true  -> el precio se multiplica por los pasajeros
+                   false -> es precio cerrado por grupo, no se multiplica
+     minPax      = mínimo de personas para que salga el tour (opcional)
+
+     ⚠ ESTOS PRECIOS TODAVÍA SON DE EJEMPLO. El tarifario que nos pasaste
+       solo traía traslados. Cámbialos por los reales antes de publicar.
+     -------------------------------------------------------------------- */
   tours: [
-    { id: "chichen",  imagen: "", precio: "$2,197 MXN", duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
-    { id: "tulum",    imagen: "", precio: "$1,723 MXN", duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
-    { id: "isla",     imagen: "", precio: "$2,039 MXN", duracion: { en: "6 hours",  es: "6 horas",      pt: "6 horas"     } },
-    { id: "cenote",   imagen: "", precio: "$1,407 MXN", duracion: { en: "Half day", es: "Medio día",    pt: "Meio dia"    } },
-    { id: "akumal",   imagen: "", precio: "$1,953 MXN", duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
-    { id: "coba",     imagen: "", precio: "$9,322 MXN", duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } }
+    { id: "chichen",  imagen: "", precio: "2197", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
+    { id: "tulum",    imagen: "", precio: "1723", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
+    { id: "isla",     imagen: "", precio: "2039", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "6 hours",  es: "6 horas",      pt: "6 horas"     } },
+    { id: "cenote",   imagen: "", precio: "1407", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "Half day", es: "Medio día",    pt: "Meio dia"    } },
+    { id: "akumal",   imagen: "", precio: "1953", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
+    { id: "coba",     imagen: "", precio: "9322", moneda: "MXN", porPersona: false, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } }
   ],
 
   // Las tarjetas de destino son verticales: las fotos de 800x1000 se ven mejor.
@@ -375,6 +388,11 @@ window.TEVE_CONFIG = {
         cotizaGrupoGrande: "For groups over 18 we build a custom quote — send it over and we reply within the hour.",
         cotizaSinPrecio: "Tell us your dates and we will confirm the price by WhatsApp.",
         cotizaIncluye: "Meet and greet inside the terminal, luggage help and free waiting time if your flight is delayed.",
+        cotizaPorPersonaUnidad: "per person",
+        cotizaTotalPax: "total for {pax}",
+        cotizaMinimo: "Minimum {min} passengers for this tour",
+        cotizaZonaAZona: "We only publish rates between the airport and a hotel zone. Tell us both points and we quote it by WhatsApp.",
+        cotizaMismoPunto: "Pick a different pick-up and drop-off point.",
 
         blogEyebrow: "Travel Guide", blogTitulo: "Plan Your Trip to Cancun",
         blogLeerMas: "Read article →",
@@ -661,6 +679,11 @@ window.TEVE_CONFIG = {
         cotizaGrupoGrande: "Para grupos de más de 18 armamos una cotización a la medida — mándala y respondemos en menos de una hora.",
         cotizaSinPrecio: "Cuéntanos tus fechas y te confirmamos el precio por WhatsApp.",
         cotizaIncluye: "Recepción dentro de la terminal, ayuda con el equipaje y espera sin costo si tu vuelo se retrasa.",
+        cotizaPorPersonaUnidad: "por persona",
+        cotizaTotalPax: "total para {pax}",
+        cotizaMinimo: "Mínimo {min} pasajeros para este tour",
+        cotizaZonaAZona: "Solo publicamos tarifas entre el aeropuerto y una zona hotelera. Dinos los dos puntos y te cotizamos por WhatsApp.",
+        cotizaMismoPunto: "Elige un punto de salida y uno de llegada distintos.",
 
         blogEyebrow: "Guía de Viaje", blogTitulo: "Planea tu Viaje a Cancún",
         blogLeerMas: "Leer artículo →",
@@ -940,6 +963,11 @@ window.TEVE_CONFIG = {
         cotizaGrupoGrande: "Para grupos acima de 18 fazemos um orçamento sob medida — envie e respondemos em menos de uma hora.",
         cotizaSinPrecio: "Conte-nos suas datas e confirmamos o preço pelo WhatsApp.",
         cotizaIncluye: "Recepção dentro do terminal, ajuda com as malas e espera sem custo se o voo atrasar.",
+        cotizaPorPersonaUnidad: "por pessoa",
+        cotizaTotalPax: "total para {pax}",
+        cotizaMinimo: "Mínimo de {min} passageiros para este passeio",
+        cotizaZonaAZona: "Só publicamos tarifas entre o aeroporto e uma zona hoteleira. Diga-nos os dois pontos e orçamos pelo WhatsApp.",
+        cotizaMismoPunto: "Escolha um ponto de saída e um de chegada diferentes.",
 
         blogEyebrow: "Guia de Viagem", blogTitulo: "Planeje sua Viagem a Cancún",
         blogLeerMas: "Ler artigo →",
