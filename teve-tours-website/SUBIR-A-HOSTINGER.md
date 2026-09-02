@@ -27,7 +27,7 @@ Es el único archivo que necesitas tocar.
 **Lo mínimo indispensable — cambia estas 3 cosas:**
 
 ```javascript
-whatsapp: "529980000000",          // ← tu número real de WhatsApp
+whatsapp: "5219987351905",         // ← ya está el número real de TEVE
 email: "reservas@tevetours.com",   // ← tu correo real
 telefonos: [ ... ]                 // ← tus teléfonos reales
 ```
