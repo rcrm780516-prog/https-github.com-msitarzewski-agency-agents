@@ -158,6 +158,29 @@
   /* ============ PORTADA ============ */
 
 
+  /* --- precio calculado en el buscador --- */
+  .quote-box {
+    margin: 4px 20px 0; padding: 16px 20px; border-radius: 12px;
+    background: var(--fourth); border: 1px solid #dbe7ec;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    animation: quoteIn 0.28s ease;
+  }
+  /* display:flex ganaría sobre el atributo hidden, así que se declara aparte. */
+  .quote-box[hidden] { display: none; }
+  @keyframes quoteIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .quote-box .q-label { font-size: 0.8rem; color: #5b6b72; }
+  .quote-box .q-label strong { display: block; color: var(--primary); font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
+  .quote-box .q-price { font-size: 1.75rem; font-weight: 900; color: var(--secondary); line-height: 1; white-space: nowrap; }
+  .quote-box .q-price small { display: block; font-size: 0.7rem; font-weight: 500; color: #7b8b92;
+    letter-spacing: 0.02em; margin-top: 5px; text-transform: none; }
+  .quote-box.q-ask .q-price { font-size: 1.05rem; font-weight: 700; color: var(--primary);
+    white-space: normal; max-width: 320px; text-align: right; }
+  @media (max-width: 620px) {
+    .quote-box { flex-direction: column; align-items: flex-start; }
+    .quote-box.q-ask .q-price { text-align: left; }
+  }
+
   /* --- selector de idioma --- */
   .lang-switch { display: flex; align-items: center; gap: 4px; margin-left: 18px; }
   .lang-btn {
@@ -507,11 +530,11 @@
           </div>
           <div class="search-field">
             <label for="f-desde" data-i18n="buscadorDesde">From</label>
-            <input id="f-desde" type="text" data-i18n-val="buscadorDesdeEjemplo" value="Cancun Airport (CUN)">
+            <select id="f-desde"></select>
           </div>
           <div class="search-field">
             <label for="f-hacia" data-i18n="buscadorHacia">To</label>
-            <input id="f-hacia" type="text" data-i18n-ph="buscadorHaciaEjemplo" placeholder="Hotel, Airbnb or address">
+            <select id="f-hacia"></select>
           </div>
           <div class="search-field">
             <label for="f-fecha" data-i18n="buscadorFecha">Arrival date</label>
@@ -522,6 +545,7 @@
             <input id="f-pax" type="number" min="1" value="2">
           </div>
         </div>
+        <div class="quote-box" id="quoteTransfer" hidden></div>
         <div class="search-btn-wrap">
           <button class="btn-secondary" onclick="buscarTraslado()" data-i18n="buscadorCotizarTraslado">Quote My Transfer</button>
         </div>
@@ -530,7 +554,7 @@
         <div class="search-fields">
           <div class="search-field">
             <label for="t-destino" data-i18n="buscadorDestino">Destination or experience</label>
-            <input id="t-destino" type="text" data-i18n-ph="buscadorDestinoEjemplo" placeholder="Chichen Itza, Tulum, Isla Mujeres…">
+            <select id="t-destino"></select>
           </div>
           <div class="search-field">
             <label for="t-fecha" data-i18n="buscadorFechaTour">Date</label>
@@ -541,6 +565,7 @@
             <input id="t-pax" type="number" min="1" value="2">
           </div>
         </div>
+        <div class="quote-box" id="quoteTour" hidden></div>
         <div class="search-btn-wrap">
           <button class="btn-secondary" onclick="buscarTour()" data-i18n="buscadorCotizarTour">Quote My Tour</button>
         </div>
@@ -598,6 +623,7 @@
       <div class="services-grid" id="servicesGridFull"></div>
     </div>
   </section>
+
 </div>
 
 <!-- ============ TOURS ============ -->
@@ -999,21 +1025,31 @@ function waLink(texto) {
 }
 function waMsg(texto) { window.open(waLink(texto), '_blank', 'noopener'); }
 
+function textoSelect(id) {
+  const el = document.getElementById(id);
+  if (!el || el.selectedIndex < 0) return '';
+  return el.options[el.selectedIndex].textContent.trim();
+}
+
 function buscarTraslado() {
   const v = id => (document.getElementById(id) || {}).value || '';
+  const cotiza = calcularTraslado();
   waMsg(`${T('waTraslado')}
-${T('buscadorTipo')}: ${v('f-tipo')}
-${T('buscadorDesde')}: ${v('f-desde')}
-${T('buscadorHacia')}: ${v('f-hacia')}
+${T('buscadorTipo')}: ${textoSelect('f-tipo')}
+${T('buscadorDesde')}: ${textoSelect('f-desde')}
+${T('buscadorHacia')}: ${textoSelect('f-hacia') || '—'}
 ${T('buscadorFecha')}: ${v('f-fecha') || '—'}
-${T('buscadorPasajeros')}: ${v('f-pax')}`);
+${T('buscadorPasajeros')}: ${v('f-pax')}${cotiza ? `
+${T('cotizaEtiqueta')}: ${cotiza.texto}` : ''}`);
 }
 function buscarTour() {
   const v = id => (document.getElementById(id) || {}).value || '';
+  const cotiza = calcularTour();
   waMsg(`${T('waTourBusqueda')}
-${T('buscadorDestino')}: ${v('t-destino') || '—'}
+${T('buscadorDestino')}: ${textoSelect('t-destino') || '—'}
 ${T('buscadorFechaTour')}: ${v('t-fecha') || '—'}
-${T('buscadorPasajeros')}: ${v('t-pax')}`);
+${T('buscadorPasajeros')}: ${v('t-pax')}${cotiza ? `
+${T('cotizaEtiqueta')}: ${cotiza.texto}` : ''}`);
 }
 function enviarContacto(e) {
   e.preventDefault();
@@ -1371,6 +1407,149 @@ function renderBlog() {
     </div>`; }).join('');
 }
 
+/* ==========================================================================
+   COTIZADOR — usa el tarifario de la sección 6 del config
+   --------------------------------------------------------------------------
+   El visitante elige de dónde sale, a dónde va y cuántos son; el precio
+   aparece al instante y viaja dentro del mensaje de WhatsApp, así el
+   prospecto llega ya sabiendo cuánto cuesta.
+   ========================================================================== */
+
+// Todas las filas del tarifario con un id estable para poder buscarlas.
+function tarifasTodas() {
+  const t = C.tarifas || {};
+  const marca = (lista, grupo) => (lista || []).map((x, i) => ({
+    id: grupo + i,
+    grupo: grupo,
+    zona: trad(x.zona) || x.zona,
+    rango: trad(x.rango),
+    hasta10: x.hasta10,
+    hasta18: x.hasta18
+  }));
+  return marca(t.zonas, 'z').concat(marca(t.otros, 'o'));
+}
+
+function buscarTarifa(id) {
+  return tarifasTodas().find(x => x.id === id) || null;
+}
+
+// Precio según el número de pasajeros. null = fuera de tabla (grupo grande).
+function precioDe(tarifa, pax) {
+  if (!tarifa) return null;
+  if (pax <= 10) return { monto: Number(tarifa.hasta10), tope: 10 };
+  if (pax <= 18) return { monto: Number(tarifa.hasta18), tope: 18 };
+  return null;
+}
+
+function renderSelectoresTraslado() {
+  const filas = tarifasTodas();
+  if (!filas.length) return;
+
+  const opciones = grupo => filas.filter(f => f.grupo === grupo).map(f =>
+    `<option value="${esc(f.id)}">${esc(f.zona)}${f.rango ? ' — ' + esc(f.rango) : ''}</option>`
+  ).join('');
+
+  const lista = `<optgroup label="${esc(T('cotizaGrupoZonas'))}">${opciones('z')}</optgroup>`
+              + `<optgroup label="${esc(T('cotizaGrupoPunto'))}">${opciones('o')}</optgroup>`;
+
+  const desde = document.getElementById('f-desde');
+  const hacia = document.getElementById('f-hacia');
+  const previoDesde = desde && desde.value;
+  const previoHacia = hacia && hacia.value;
+
+  // El origen habitual es el aeropuerto; también se puede salir de una zona.
+  if (desde) {
+    desde.innerHTML = `<option value="aeropuerto">${esc(T('cotizaAeropuerto'))}</option>` + lista;
+    desde.value = previoDesde || 'aeropuerto';
+  }
+  if (hacia) {
+    hacia.innerHTML = `<option value="">${esc(T('cotizaElige'))}</option>` + lista;
+    hacia.value = previoHacia || '';
+  }
+
+  const tours = document.getElementById('t-destino');
+  if (tours) {
+    const previo = tours.value;
+    tours.innerHTML = `<option value="">${esc(T('cotizaEligeTour'))}</option>`
+      + (C.tours || []).map(t => {
+          const x = (L.tours || {})[t.id] || {};
+          return `<option value="${esc(t.id)}">${esc(x.titulo)}</option>`;
+        }).join('')
+      + `<option value="otro">${esc(T('cotizaOtroTour'))}</option>`;
+    tours.value = previo || '';
+  }
+}
+
+// El destino que manda el precio es el que no sea el aeropuerto.
+function tarifaElegida() {
+  const v = id => (document.getElementById(id) || {}).value || '';
+  const hacia = v('f-hacia'), desde = v('f-desde');
+  if (hacia && hacia !== 'aeropuerto') return buscarTarifa(hacia);
+  if (desde && desde !== 'aeropuerto') return buscarTarifa(desde);
+  return null;
+}
+
+function pintarCaja(caja, etiqueta, detalle, precio, pie, esConsulta) {
+  if (!caja) return;
+  caja.className = 'quote-box' + (esConsulta ? ' q-ask' : '');
+  caja.hidden = false;
+  caja.innerHTML = `
+    <div class="q-label"><strong>${esc(etiqueta)}</strong>${esc(detalle)}</div>
+    <div class="q-price">${esc(precio)}${pie ? `<small>${esc(pie)}</small>` : ''}</div>`;
+}
+
+function calcularTraslado() {
+  const caja = document.getElementById('quoteTransfer');
+  const v = id => (document.getElementById(id) || {}).value || '';
+  const tarifa = tarifaElegida();
+  if (!caja) return null;
+  if (!tarifa) { caja.hidden = true; return null; }
+
+  const pax = Math.max(1, parseInt(v('f-pax'), 10) || 1);
+  const p = precioDe(tarifa, pax);
+  const moneda = (C.tarifas && C.tarifas.moneda) || 'USD';
+  const redondo = document.getElementById('f-tipo').selectedIndex === 2;
+
+  if (!p) {
+    pintarCaja(caja, T('cotizaEtiqueta'), tarifa.zona, T('cotizaGrupoGrande'), '', true);
+    return { texto: T('cotizaGrupoGrande'), zona: tarifa.zona, pax: pax };
+  }
+
+  const monto = redondo ? p.monto * 2 : p.monto;
+  const pie = redondo ? T('cotizaRedondo') : T('cotizaPorVehiculo').replace('{pax}', p.tope);
+  const importe = '$' + monto + ' ' + moneda;
+  pintarCaja(caja, T('cotizaEtiqueta'), tarifa.zona, importe, pie, false);
+  return { texto: importe + ' (' + pie + ')', zona: tarifa.zona, pax: pax };
+}
+
+function calcularTour() {
+  const caja = document.getElementById('quoteTour');
+  const v = id => (document.getElementById(id) || {}).value || '';
+  const id = v('t-destino');
+  if (!caja) return null;
+  if (!id) { caja.hidden = true; return null; }
+
+  const tour = (C.tours || []).find(t => t.id === id);
+  const x = tour ? ((L.tours || {})[tour.id] || {}) : {};
+  if (!tour || !tour.precio) {
+    const nombre = tour ? x.titulo : T('cotizaOtroTour');
+    pintarCaja(caja, T('cotizaEtiqueta'), nombre, T('cotizaSinPrecio'), '', true);
+    return { texto: T('cotizaSinPrecio'), zona: nombre };
+  }
+  pintarCaja(caja, T('cotizaEtiqueta'), x.titulo, tour.precio, trad(tour.duracion), false);
+  return { texto: tour.precio, zona: x.titulo };
+}
+
+// Cualquier cambio en el buscador recalcula el precio al instante.
+['f-desde', 'f-hacia', 'f-pax', 'f-tipo'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) { el.addEventListener('change', calcularTraslado); el.addEventListener('input', calcularTraslado); }
+});
+['t-destino'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('change', calcularTour);
+});
+
 /* ---------- contacto y pie de página ---------- */
 const ICONOS_RED = {
   facebook: '<svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>',
@@ -1623,6 +1802,10 @@ function renderTodo() {
   renderDestinos();
   renderTim();
   renderBlog();
+  renderSelectoresTraslado();
+  // Si ya había un precio en pantalla, se vuelve a escribir en el nuevo idioma.
+  calcularTraslado();
+  calcularTour();
   renderContacto();
   renderWidgets();
   renderSchema();

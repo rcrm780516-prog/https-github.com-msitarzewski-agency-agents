@@ -87,14 +87,14 @@ window.TEVE_CONFIG = {
     nombreCompleto: "TEVE Transfers & Tours",
     dominio: "https://www.tevetours.com",
 
-    // El logotipo oficial de TEVE está incluido como SVG vectorial (nítido en
-    // cualquier tamaño y pantalla). Si prefieres tu archivo PNG original,
-    // súbelo a img/ y cambia la ruta aquí — no hay que tocar nada más.
-    logo:        "/img/logo-teve.svg",         // barra de navegación (fondo blanco)
-    logoBlanco:  "/img/logo-teve-blanco.svg",  // portada y pie de página oscuro
+    // Logotipo oficial de TEVE, extraído del tarifario original a 834x840 px.
+    // La versión "blanca" lleva el anillo y la tipografía en blanco para que
+    // se lea sobre el fondo oscuro de la portada y del pie de página.
+    logo:        "/img/logo-teve.png",         // barra de navegación (fondo blanco)
+    logoBlanco:  "/img/logo-teve-blanco.png",  // portada y pie de página oscuro
     logoAlto:    "56", // altura del logo en píxeles dentro de la barra
 
-    favicon:     "/img/favicon.svg",   // ícono de la pestaña del navegador
+    favicon:     "/img/favicon.png",   // ícono de la pestaña del navegador
     imagenRedes: ""    // ej. "/img/og-teve.jpg" (1200x630) — al compartir en redes
   },
 
@@ -156,12 +156,15 @@ window.TEVE_CONFIG = {
      El orden de esta lista es el orden en que aparecen en el sitio.
      ====================================================================== */
   servicios: [
-    { id: "transfer",  imagen: "", destacado: true,  desde: { en: "From $45 USD each way",  es: "Desde $45 USD por trayecto", pt: "A partir de US$ 45 por trecho" } },
-    { id: "chofer",    imagen: "", destacado: true,  desde: { en: "From $180 USD per day",  es: "Desde $180 USD por día",     pt: "A partir de US$ 180 por dia"   } },
-    { id: "grupos",    imagen: "", destacado: true,  desde: { en: "From $650 USD",          es: "Desde $650 USD",             pt: "A partir de US$ 650"           } },
-    { id: "catamaran", imagen: "", destacado: false, desde: { en: "From $95 USD",           es: "Desde $95 USD",              pt: "A partir de US$ 95"            } },
-    { id: "yate",      imagen: "", destacado: false, desde: { en: "From $650 USD half day", es: "Desde $650 USD medio día",   pt: "A partir de US$ 650 meio dia"  } },
-    { id: "concierge", imagen: "", destacado: false, desde: { en: "Custom quote",           es: "Cotización personalizada",   pt: "Orçamento personalizado"       } }
+    // El precio del transfer sale del tarifario oficial (sección 6).
+    // Los demás dicen "cotización personalizada" hasta que nos pases el
+    // precio real: es preferible eso a publicar una cifra inventada.
+    { id: "transfer",  imagen: "", destacado: true,  desde: { en: "From $50 USD per vehicle", es: "Desde $50 USD por vehículo", pt: "A partir de US$ 50 por veículo" } },
+    { id: "chofer",    imagen: "", destacado: true,  desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
+    { id: "grupos",    imagen: "", destacado: true,  desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
+    { id: "catamaran", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
+    { id: "yate",      imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
+    { id: "concierge", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } }
   ],
 
   tours: [
@@ -189,7 +192,67 @@ window.TEVE_CONFIG = {
   ],
 
   /* ======================================================================
-     6. WIDGETS SOCIALES
+     6. TARIFARIO DE TRASLADOS  (Price Chart)
+     ----------------------------------------------------------------------
+     Precios en dólares, POR VEHÍCULO (no por persona), tomados del
+     tarifario oficial de TEVE. Dos columnas según el tamaño del grupo.
+
+     Para cambiar un precio solo cambias el número: se actualiza solo en
+     los tres idiomas. Para agregar una zona, copia un bloque completo.
+
+     zona   = nombre de la zona (no se traduce, son nombres propios)
+     rango  = los hoteles que abarca, en los tres idiomas
+     ====================================================================== */
+  tarifas: {
+    moneda: "USD",
+
+    zonas: [
+      { zona: "Cancún", hasta10: "50", hasta18: "90",
+        rango: { en: "Downtown & Hotel Zone", es: "Centro y Zona Hotelera", pt: "Centro e Zona Hoteleira" } },
+      { zona: "Punta Sam", hasta10: "60", hasta18: "100",
+        rango: { en: "Puerto Juárez to Villas del Palmar", es: "Puerto Juárez hasta Villas del Palmar", pt: "Puerto Juárez até Villas del Palmar" } },
+      { zona: "Riviera Cancún", hasta10: "60", hasta18: "100",
+        rango: { en: "Moon Palace to Bahía Petempich", es: "Moon Palace hasta Bahía Petempich", pt: "Moon Palace até Bahía Petempich" } },
+      { zona: "Playa Mujeres", hasta10: "70", hasta18: "110",
+        rango: { en: "Marina V&V to Dreams Playa Mujeres", es: "Marina V&V hasta Dreams Playa Mujeres", pt: "Marina V&V até Dreams Playa Mujeres" } },
+      { zona: "Costa Mujeres", hasta10: "80", hasta18: "120",
+        rango: { en: "Palladium Costa Mujeres to RIU Dunamar", es: "Palladium Costa Mujeres hasta RIU Dunamar", pt: "Palladium Costa Mujeres até RIU Dunamar" } },
+      { zona: "Puerto Morelos", hasta10: "60", hasta18: "110",
+        rango: { en: "Crococun to Grand Residences", es: "Crococún hasta Grand Residences", pt: "Crococún até Grand Residences" } },
+      { zona: "Playa del Carmen Norte", hasta10: "70", hasta18: "120",
+        rango: { en: "Nickelodeon to Punta Maroma", es: "Nickelodeon hasta Punta Maroma", pt: "Nickelodeon até Punta Maroma" } },
+      { zona: "Playa del Carmen", hasta10: "80", hasta18: "125",
+        rango: { en: "Hacienda Tres Ríos to Xcaret", es: "Hacienda Tres Ríos hasta Xcaret", pt: "Hacienda Tres Ríos até Xcaret" } },
+      { zona: "Puerto Aventuras", hasta10: "90", hasta18: "135",
+        rango: { en: "Punta Venado to Catalonia Royal Tulum", es: "Punta Venado hasta Catalonia Royal Tulum", pt: "Punta Venado até Catalonia Royal Tulum" } },
+      { zona: "Akumal", hasta10: "100", hasta18: "160",
+        rango: { en: "El Dorado Seaside to Bahía Príncipe", es: "El Dorado Seaside hasta Bahía Príncipe", pt: "El Dorado Seaside até Bahía Príncipe" } },
+      { zona: "Riviera Maya Tulum", hasta10: "120", hasta18: "180",
+        rango: { en: "Chemuyil to Dreams Tulum", es: "Chemuyil hasta Dreams Tulum", pt: "Chemuyil até Dreams Tulum" } },
+      { zona: "Tulum Centro", hasta10: "130", hasta18: "200",
+        rango: { en: "Tulum Centro, Aldea Zamá & La Veleta", es: "Tulum Centro, Aldea Zamá y La Veleta", pt: "Tulum Centro, Aldea Zamá e La Veleta" } },
+      { zona: "Tulum Hotel Zone", hasta10: "140", hasta18: "210",
+        rango: { en: "Boca Paila coast road to Arco Maya", es: "Zona costera de Boca Paila hasta Arco Maya", pt: "Zona costeira de Boca Paila até Arco Maya" } },
+      { zona: "Chiquilá (Holbox)", hasta10: "220", hasta18: "340",
+        rango: { en: "From / to Cancun or the Riviera Maya", es: "Desde / a Cancún o Riviera Maya", pt: "De / para Cancún ou Riviera Maya" } }
+    ],
+
+    // Segunda tabla del tarifario: traslados entre puntos, marinas y parques.
+    otros: [
+      { hasta10: "50", hasta18: "100",
+        zona:  { en: "Transfers within Cancun", es: "Traslados dentro de Cancún", pt: "Transfers dentro de Cancún" },
+        rango: { en: "Downtown & Hotel Zone", es: "Centro y Zona Hotelera", pt: "Centro e Zona Hoteleira" } },
+      { hasta10: "100", hasta18: "150",
+        zona:  { en: "Playa del Carmen ↔ Cancun", es: "Playa del Carmen ↔ Cancún", pt: "Playa del Carmen ↔ Cancún" },
+        rango: { en: "Marinas, hotel changes, theme parks", es: "Marinas, cambios de hotel, parques", pt: "Marinas, trocas de hotel, parques" } },
+      { hasta10: "160", hasta18: "250",
+        zona:  { en: "Tulum Hotel Zone ↔ Cancun", es: "Zona Hotelera Tulum ↔ Cancún", pt: "Zona Hoteleira Tulum ↔ Cancún" },
+        rango: { en: "Marinas, hotel changes and more", es: "Marinas, cambios de hotel y más", pt: "Marinas, trocas de hotel e mais" } }
+    ]
+  },
+
+  /* ======================================================================
+     7. WIDGETS SOCIALES
      ----------------------------------------------------------------------
      El sello de TripAdvisor se carga desde los servidores de TripAdvisor y
      se actualiza solo. locationId es el número que aparece como d########
@@ -214,7 +277,7 @@ window.TEVE_CONFIG = {
   },
 
   /* ======================================================================
-     7. ANALÍTICA (opcional — déjalo en "" si aún no lo tienes)
+     8. ANALÍTICA (opcional — déjalo en "" si aún no lo tienes)
      ====================================================================== */
   analitica: {
     googleAnalytics: "",   // ej. "G-XXXXXXXXXX"
@@ -299,6 +362,21 @@ window.TEVE_CONFIG = {
         destinosEyebrow: "Where We Take You", destinosTitulo: "Private Destinations",
         timEyebrow: "Meet Your Driver",
         resenasEyebrow: "Real Reviews", resenasTitulo: "What Our Travellers Say",
+        // Textos del precio que se calcula solo en el buscador.
+        cotizaAeropuerto: "Cancun International Airport (CUN)",
+        cotizaGrupoZonas: "Hotel zones",
+        cotizaGrupoPunto: "Point to point, marinas & parks",
+        cotizaElige: "Choose a destination…",
+        cotizaEligeTour: "Choose a tour…",
+        cotizaOtroTour: "Something else / not sure yet",
+        cotizaEtiqueta: "Your estimate",
+        cotizaPorVehiculo: "per vehicle · up to {pax} passengers",
+        cotizaRedondo: "round trip · per vehicle",
+        cotizaPorPersona: "per person",
+        cotizaGrupoGrande: "For groups over 18 we build a custom quote — send it over and we reply within the hour.",
+        cotizaSinPrecio: "Tell us your dates and we will confirm the price by WhatsApp.",
+        cotizaIncluye: "Meet and greet inside the terminal, luggage help and free waiting time if your flight is delayed.",
+
         blogEyebrow: "Travel Guide", blogTitulo: "Plan Your Trip to Cancun",
         blogLeerMas: "Read article →",
 
@@ -571,6 +649,20 @@ window.TEVE_CONFIG = {
         destinosEyebrow: "A Dónde Te Llevamos", destinosTitulo: "Destinos Privados",
         timEyebrow: "Conoce a tu Guía",
         resenasEyebrow: "Reseñas Reales", resenasTitulo: "Lo Que Dicen Nuestros Viajeros",
+        cotizaAeropuerto: "Aeropuerto Internacional de Cancún (CUN)",
+        cotizaGrupoZonas: "Zonas hoteleras",
+        cotizaGrupoPunto: "Punto a punto, marinas y parques",
+        cotizaElige: "Elige un destino…",
+        cotizaEligeTour: "Elige un tour…",
+        cotizaOtroTour: "Otra cosa / aún no lo sé",
+        cotizaEtiqueta: "Tu estimado",
+        cotizaPorVehiculo: "por vehículo · hasta {pax} pasajeros",
+        cotizaRedondo: "viaje redondo · por vehículo",
+        cotizaPorPersona: "por persona",
+        cotizaGrupoGrande: "Para grupos de más de 18 armamos una cotización a la medida — mándala y respondemos en menos de una hora.",
+        cotizaSinPrecio: "Cuéntanos tus fechas y te confirmamos el precio por WhatsApp.",
+        cotizaIncluye: "Recepción dentro de la terminal, ayuda con el equipaje y espera sin costo si tu vuelo se retrasa.",
+
         blogEyebrow: "Guía de Viaje", blogTitulo: "Planea tu Viaje a Cancún",
         blogLeerMas: "Leer artículo →",
 
@@ -836,6 +928,20 @@ window.TEVE_CONFIG = {
         destinosEyebrow: "Para Onde Levamos Você", destinosTitulo: "Destinos Privativos",
         timEyebrow: "Conheça seu Guia",
         resenasEyebrow: "Avaliações Reais", resenasTitulo: "O Que Dizem Nossos Viajantes",
+        cotizaAeropuerto: "Aeroporto Internacional de Cancún (CUN)",
+        cotizaGrupoZonas: "Zonas hoteleiras",
+        cotizaGrupoPunto: "Ponto a ponto, marinas e parques",
+        cotizaElige: "Escolha um destino…",
+        cotizaEligeTour: "Escolha um passeio…",
+        cotizaOtroTour: "Outra coisa / ainda não sei",
+        cotizaEtiqueta: "Sua estimativa",
+        cotizaPorVehiculo: "por veículo · até {pax} passageiros",
+        cotizaRedondo: "ida e volta · por veículo",
+        cotizaPorPersona: "por pessoa",
+        cotizaGrupoGrande: "Para grupos acima de 18 fazemos um orçamento sob medida — envie e respondemos em menos de uma hora.",
+        cotizaSinPrecio: "Conte-nos suas datas e confirmamos o preço pelo WhatsApp.",
+        cotizaIncluye: "Recepção dentro do terminal, ajuda com as malas e espera sem custo se o voo atrasar.",
+
         blogEyebrow: "Guia de Viagem", blogTitulo: "Planeje sua Viagem a Cancún",
         blogLeerMas: "Ler artigo →",
 

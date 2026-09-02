@@ -54,16 +54,14 @@ ve roto. Puedes ir agregando fotos poco a poco.
 ===========================================================================
 LOGOTIPO — YA INCLUIDO
 ===========================================================================
-Estos tres archivos ya vienen listos y en uso; no tienes que crearlos:
+Estos tres archivos son el logotipo oficial de TEVE, extraído del tarifario
+original a 834x840 px. Ya están en uso; no tienes que crearlos:
 
-  logo-teve.svg          logotipo completo, para la barra de navegación
-  logo-teve-blanco.svg   versión clara, para la portada y el pie oscuro
-  favicon.svg            ícono de la pestaña del navegador
+  logo-teve.png          logotipo completo, fondo transparente
+  logo-teve-blanco.png   anillo y tipografía en blanco, para fondos oscuros
+  favicon.png            la guacamaya sobre el azul de la marca (pestaña)
 
-Son SVG vectoriales: se ven nítidos en cualquier tamaño y en pantallas
-Retina, y pesan ~2 KB cada uno (mucho menos que un PNG).
-
-¿Prefieres tu archivo PNG original? Súbelo a esta carpeta y cambia las
-rutas en teve-config.js, sección 1 (MARCA Y LOGOTIPO), empezando con
-una barra: "/img/logo.png". El PNG debe tener
-fondo transparente y al menos 800 px de ancho.
+Si el diseñador te entrega el logotipo en vectorial (.svg, .ai o .eps),
+mándalo: pesa menos y se ve más nítido en pantallas grandes. Súbelo a esta
+carpeta y cambia las rutas en teve-config.js, sección 1 (MARCA Y LOGOTIPO),
+empezando con una barra: "/img/logo.svg".

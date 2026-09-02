@@ -16,12 +16,13 @@ import base64
 import pathlib
 
 RAIZ = pathlib.Path(__file__).parent
-IMAGENES = ('/img/logo-teve.svg', '/img/logo-teve-blanco.svg', '/img/favicon.svg')
+IMAGENES = ('/img/logo-teve.png', '/img/logo-teve-blanco.png', '/img/favicon.png')
 
 
 def a_data_uri(ruta):
     datos = (RAIZ / ruta.lstrip('/')).read_bytes()
-    return 'data:image/svg+xml;base64,' + base64.b64encode(datos).decode()
+    tipo = 'image/png' if ruta.lower().endswith('.png') else 'image/svg+xml'
+    return 'data:%s;base64,%s' % (tipo, base64.b64encode(datos).decode())
 
 
 def main():
