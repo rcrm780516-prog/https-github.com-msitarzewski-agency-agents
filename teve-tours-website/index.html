@@ -1333,8 +1333,12 @@ function tarjetaTour(t, i) {
         <h3>${esc(x.titulo)}</h3>
         <p>${esc(x.texto)}</p>
         <div class="tour-price-row">
-          <span>${esc(T('tarjetaDesde'))}</span>
-          <span class="tour-price">${esc(money(t.precio, t.moneda))}${t.porPersona ? `<small style="display:block;font-size:0.66rem;font-weight:500;color:#7b8b92;text-transform:none;letter-spacing:0;">${esc(T('cotizaPorPersonaUnidad'))}</small>` : ''}</span>
+          ${t.precio
+            ? `<span>${esc(T('tarjetaDesde'))}</span>
+               <span class="tour-price">${esc(money(t.precio, t.moneda))}${t.porPersona
+                 ? `<small style="display:block;font-size:0.66rem;font-weight:500;color:#7b8b92;text-transform:none;letter-spacing:0;">${esc(T('cotizaPorPersonaUnidad'))}</small>`
+                 : ''}</span>`
+            : `<span class="tour-price" style="font-size:0.92rem;font-weight:700;color:var(--primary);">${esc(T('tarjetaSinPrecio'))}</span>`}
         </div>
       </div>
       <div class="tour-footer">
@@ -1546,7 +1550,8 @@ function calcularTraslado() {
     return { texto: T('cotizaGrupoGrande'), zona: tarifa.zona, pax: pax };
   }
 
-  const monto = redondo ? p.monto * 2 : p.monto;
+  const factor = Number((C.tarifas || {}).redondoMultiplicador) || 2;
+  const monto = redondo ? p.monto * factor : p.monto;
   const pie = redondo ? T('cotizaRedondo') : T('cotizaPorVehiculo').replace('{pax}', p.tope);
   const importe = money(monto, moneda);
   pintarCaja(caja, T('cotizaEtiqueta'), tarifa.zona, importe, pie, false);

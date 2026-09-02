@@ -169,23 +169,31 @@ window.TEVE_CONFIG = {
   /* --------------------------------------------------------------------
      TOURS
      --------------------------------------------------------------------
-     precio      = solo el número, sin signos ni comas. El sitio le pone
-                   el formato y la moneda solo.
-     moneda      = "MXN" o "USD"
-     porPersona  = true  -> el precio se multiplica por los pasajeros
-                   false -> es precio cerrado por grupo, no se multiplica
-     minPax      = mínimo de personas para que salga el tour (opcional)
+     El tarifario que nos diste solo cubre TRASLADOS, así que los tours
+     salen sin precio a propósito: la tarjeta y el buscador dicen
+     "cotización personalizada" y mandan al visitante a WhatsApp. Es
+     preferible eso a publicar una cifra que no es tuya.
 
-     ⚠ ESTOS PRECIOS TODAVÍA SON DE EJEMPLO. El tarifario que nos pasaste
-       solo traía traslados. Cámbialos por los reales antes de publicar.
+     CUANDO TENGAS LOS PRECIOS REALES, llena estos cuatro campos:
+
+       precio      solo el número, sin signo ni comas: "2197"
+                   déjalo en "" y sigue pidiendo cotización
+       moneda      "MXN" o "USD"
+       porPersona  true  -> el precio se multiplica por los pasajeros
+                   false -> precio cerrado por grupo, no se multiplica
+       minPax      mínimo de personas para que salga el tour
+
+     Ejemplo ya listo para copiar:
+       { id: "chichen", imagen: "", precio: "2197", moneda: "MXN",
+         porPersona: true, minPax: 2, duracion: {...} },
      -------------------------------------------------------------------- */
   tours: [
-    { id: "chichen",  imagen: "", precio: "2197", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
-    { id: "tulum",    imagen: "", precio: "1723", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
-    { id: "isla",     imagen: "", precio: "2039", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "6 hours",  es: "6 horas",      pt: "6 horas"     } },
-    { id: "cenote",   imagen: "", precio: "1407", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "Half day", es: "Medio día",    pt: "Meio dia"    } },
-    { id: "akumal",   imagen: "", precio: "1953", moneda: "MXN", porPersona: true, minPax: 2, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
-    { id: "coba",     imagen: "", precio: "9322", moneda: "MXN", porPersona: false, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } }
+    { id: "chichen",  imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
+    { id: "tulum",    imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
+    { id: "isla",     imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "6 hours",  es: "6 horas",      pt: "6 horas"     } },
+    { id: "cenote",   imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Half day", es: "Medio día",    pt: "Meio dia"    } },
+    { id: "akumal",   imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
+    { id: "coba",     imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } }
   ],
 
   // Las tarjetas de destino son verticales: las fotos de 800x1000 se ven mejor.
@@ -217,6 +225,11 @@ window.TEVE_CONFIG = {
      ====================================================================== */
   tarifas: {
     moneda: "USD",
+
+    // El tarifario da UN precio por zona. Asumimos que es por trayecto y que
+    // el viaje redondo cuesta el doble. Si tus precios ya fueran redondos,
+    // pon 1 aquí y la opción "redondo" dejará de multiplicar.
+    redondoMultiplicador: 2,
 
     zonas: [
       { zona: "Cancún", hasta10: "50", hasta18: "90",
@@ -399,6 +412,7 @@ window.TEVE_CONFIG = {
 
         tarjetaCotizar: "Get a Quote", tarjetaReservar: "Book Now",
         tarjetaDesde: "From", tarjetaDescubrir: "Discover More",
+        tarjetaSinPrecio: "Custom quote",
 
         contactoEyebrow: "Planning a trip to Cancun?",
         contactoTitulo: "Our team is ready to help",
@@ -690,6 +704,7 @@ window.TEVE_CONFIG = {
 
         tarjetaCotizar: "Cotizar Ahora", tarjetaReservar: "Reservar",
         tarjetaDesde: "Desde", tarjetaDescubrir: "Descubrir Más",
+        tarjetaSinPrecio: "Cotización personalizada",
 
         contactoEyebrow: "¿Planeas un viaje a Cancún?",
         contactoTitulo: "Nuestro equipo está listo para ayudarte",
@@ -974,6 +989,7 @@ window.TEVE_CONFIG = {
 
         tarjetaCotizar: "Solicitar Orçamento", tarjetaReservar: "Reservar",
         tarjetaDesde: "A partir de", tarjetaDescubrir: "Descobrir Mais",
+        tarjetaSinPrecio: "Orçamento personalizado",
 
         contactoEyebrow: "Planejando uma viagem a Cancún?",
         contactoTitulo: "Nossa equipe está pronta para ajudar",
