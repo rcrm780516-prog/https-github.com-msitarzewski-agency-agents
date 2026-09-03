@@ -1,0 +1,604 @@
+<style>
+  @page { size: Letter; margin: 0; }
+  *{box-sizing:border-box; margin:0; padding:0}
+  :root{
+    --ink:#14191B; --ink2:#414D50; --ink3:#6E7C7E;
+    --rule:#D3DBD9; --rule2:#AAB6B4; --tint:#F0F5F3; --tint2:#E2ECE9;
+    --teal:#0B5F55; --teal2:#0E7A6D;
+    --crit:#A4301B; --critbg:#F8E7E2;
+    --warn:#8A6207; --warnbg:#F7EED8;
+    --good:#276444; --goodbg:#E0EEE6;
+  }
+  html{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  body{background:#fff; color:var(--ink);
+    font-family:'Source Serif 4',Charter,Georgia,serif; font-size:9.6pt; line-height:1.5;}
+  .page{
+    width:8.5in; height:11in; padding:0.62in 0.72in 0.5in; position:relative;
+    page-break-after:always; break-after:page; overflow:hidden; background:#fff;
+  }
+  .page:last-child{page-break-after:auto; break-after:auto}
+  .ui,h1,h2,h3,h4,th,.chip,.num{font-family:'Archivo',Helvetica,Arial,sans-serif}
+  .mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+
+  /* running header / footer */
+  .rh{display:flex; justify-content:space-between; align-items:baseline;
+    border-bottom:0.7pt solid var(--rule2); padding-bottom:5pt; margin-bottom:16pt;
+    font-family:'IBM Plex Mono',monospace; font-size:6.6pt; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--ink3);}
+  .rh b{color:var(--teal); font-weight:500}
+  .rf{position:absolute; left:0.72in; right:0.72in; bottom:0.34in;
+    display:flex; justify-content:space-between;
+    border-top:0.5pt solid var(--rule); padding-top:4pt;
+    font-family:'IBM Plex Mono',monospace; font-size:6.4pt; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink3);}
+
+  /* section heads */
+  .sec{display:flex; gap:9pt; align-items:baseline; margin-bottom:9pt}
+  .sec .n{font-family:'IBM Plex Mono',monospace; font-size:8pt; font-weight:500;
+    color:var(--teal); letter-spacing:.06em; padding-top:1pt}
+  .sec h2{font-size:17pt; font-weight:600; letter-spacing:-.02em; line-height:1.1}
+  .sec .sub{font-size:9pt; color:var(--ink3); font-family:'Archivo',sans-serif; margin-top:2pt}
+  .lede{font-size:10.2pt; color:var(--ink2); margin-bottom:12pt; max-width:64em}
+
+  h3{font-size:10.5pt; font-weight:600; letter-spacing:-.01em; margin-bottom:4pt}
+  h4{font-family:'IBM Plex Mono',monospace; font-size:6.8pt; letter-spacing:.13em;
+     text-transform:uppercase; color:var(--ink3); font-weight:500; margin-bottom:6pt}
+  p{margin-bottom:6pt}
+  p:last-child{margin-bottom:0}
+  b,strong{font-weight:600}
+  .teal{color:var(--teal)}
+
+  /* cover */
+  .cover-top{border-bottom:1.6pt solid var(--ink); padding-bottom:12pt; margin-bottom:16pt}
+  .kicker{font-family:'IBM Plex Mono',monospace; font-size:7pt; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--teal); margin-bottom:10pt}
+  h1{font-size:29pt; line-height:1.03; letter-spacing:-.028em; font-weight:600; margin-bottom:8pt}
+  .h1sub{font-size:11.5pt; color:var(--ink2); font-family:'Archivo',sans-serif; font-weight:400}
+
+  /* boxes */
+  .box{border:0.7pt solid var(--rule); background:var(--tint); padding:11pt 13pt; margin-bottom:10pt}
+  .box.crit{border-left:2.6pt solid var(--crit); background:var(--critbg); border-color:#E7CFC8}
+  .box.warn{border-left:2.6pt solid var(--warn); background:var(--warnbg); border-color:#E7DCC0}
+  .box.good{border-left:2.6pt solid var(--good); background:var(--goodbg); border-color:#CBE0D3}
+  .box.tealb{border-left:2.6pt solid var(--teal); background:var(--tint2); border-color:#C6DAD5}
+  .box p{font-size:9.2pt; color:var(--ink2)}
+  .box h3{color:var(--ink)}
+
+  /* tables */
+  table{border-collapse:collapse; width:100%; font-family:'Archivo',sans-serif}
+  th{background:var(--ink); color:#fff; font-size:6.7pt; letter-spacing:.11em;
+     text-transform:uppercase; font-weight:600; text-align:left; padding:5pt 6pt; line-height:1.25}
+  td{padding:5pt 6pt; border-bottom:0.5pt solid var(--rule); font-size:8.1pt;
+     line-height:1.35; vertical-align:top; color:var(--ink2)}
+  td.k{font-weight:600; color:var(--ink)}
+  tbody tr:nth-child(even) td{background:#FAFCFB}
+  .tnum{font-family:'IBM Plex Mono',monospace; font-variant-numeric:tabular-nums; text-align:right}
+
+  table.dense td{font-size:7.2pt; padding:3.4pt 5pt; line-height:1.28}
+  table.dense th{font-size:6.2pt; padding:4pt 5pt}
+  table.dense .mono{font-size:5.8pt !important}
+  table.dense .chip{font-size:5.5pt; padding:1pt 3pt}
+  .chip{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:6pt;
+    letter-spacing:.09em; text-transform:uppercase; font-weight:500; padding:1.5pt 4pt; white-space:nowrap}
+  .chip.c{background:var(--critbg); color:var(--crit)}
+  .chip.w{background:var(--warnbg); color:var(--warn)}
+  .chip.g{background:var(--goodbg); color:var(--good)}
+  .chip.n{background:var(--tint2); color:var(--ink3)}
+  .chip.t{background:var(--teal); color:#fff}
+
+  /* score rows */
+  .scores{display:flex; flex-direction:column; gap:3.5pt}
+  .srow{display:grid; grid-template-columns:1fr 96pt 22pt; gap:8pt; align-items:center}
+  .srow .nm{font-family:'Archivo',sans-serif; font-size:8.2pt; font-weight:500}
+  .trk{height:5pt; background:var(--tint2)}
+  .fil{height:100%; display:block}
+  .srow .vl{font-family:'IBM Plex Mono',monospace; font-size:7.6pt; text-align:right;
+    font-variant-numeric:tabular-nums; color:var(--ink2)}
+
+  /* two col */
+  .cols2{display:grid; grid-template-columns:1fr 1fr; gap:12pt}
+  .cols2.tight{gap:10pt}
+
+  /* numbered list blocks */
+  ol.pts{list-style:none; counter-reset:p; display:flex; flex-direction:column; gap:7pt}
+  ol.pts li{counter-increment:p; display:grid; grid-template-columns:15pt 1fr; gap:7pt}
+  ol.pts li::before{content:counter(p,decimal-leading-zero);
+    font-family:'IBM Plex Mono',monospace; font-size:7pt; color:var(--teal); padding-top:1.5pt}
+  ol.pts li .t{font-size:9pt}
+  ol.pts li .t b{display:block; font-family:'Archivo',sans-serif; font-size:9pt; margin-bottom:1pt; color:var(--ink)}
+  ol.pts li .t span{color:var(--ink2); font-size:8.6pt; line-height:1.4}
+
+  ul.bul{list-style:none; display:flex; flex-direction:column; gap:4.5pt}
+  ul.bul li{padding-left:9pt; position:relative; font-size:8.8pt; color:var(--ink2); line-height:1.42}
+  ul.bul li::before{content:''; position:absolute; left:0; top:5.5pt; width:3.5pt; height:1.4pt; background:var(--teal)}
+  ul.bul li b{color:var(--ink)}
+
+  /* funnel */
+  .fun{display:flex; flex-direction:column; gap:0}
+  .fstep{display:grid; grid-template-columns:20pt 78pt 1fr; gap:9pt; align-items:start;
+    padding:7pt 0; border-top:0.5pt solid var(--rule)}
+  .fstep:last-child{border-bottom:0.5pt solid var(--rule)}
+  .fstep .sn{font-family:'IBM Plex Mono',monospace; font-size:8.5pt; color:var(--teal)}
+  .fstep .sl{font-family:'Archivo',sans-serif; font-weight:600; font-size:8.8pt}
+  .fstep .sd{font-size:8.4pt; color:var(--ink2); line-height:1.4}
+  .fstep .sd em{font-style:normal; font-family:'IBM Plex Mono',monospace;
+    font-size:6.6pt; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); display:block; margin-top:2pt}
+
+  .kv{display:grid; grid-template-columns:repeat(4,1fr); gap:10pt; margin-bottom:12pt}
+  .kv .c{border-top:1.4pt solid var(--ink); padding-top:6pt}
+  .kv .c .lab{font-family:'IBM Plex Mono',monospace; font-size:6.3pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink3); margin-bottom:3pt}
+  .kv .c .val{font-family:'Archivo',sans-serif; font-size:9pt; font-weight:600; line-height:1.25}
+
+  .bignum{font-family:'Archivo',sans-serif; font-weight:600; letter-spacing:-.04em;
+    font-size:40pt; line-height:.9; color:var(--crit)}
+  .bignum small{font-size:15pt; color:var(--ink3)}
+</style>
+
+<!-- ================= P1 ================= -->
+<div class="page">
+  <div class="rh"><span>Virtuoso Marketing Estratégico · Alquimia Digital</span><span><b>Confidencial</b> · 3 sep 2026</span></div>
+
+  <div class="cover-top">
+    <div class="kicker">Informe unificado de auditoría digital y competitiva</div>
+    <h1>PediPie Podólogos frente al mercado podológico de Monterrey</h1>
+    <p class="h1sub">Síntesis de tres auditorías independientes, verificación de campo y plan para construir una agenda constante de citas.</p>
+  </div>
+
+  <div class="kv">
+    <div class="c"><div class="lab">Sujeto</div><div class="val">PediPie · Monterrey y AMM</div></div>
+    <div class="c"><div class="lab">Objetivo del cliente</div><div class="val">Agenda constante de citas</div></div>
+    <div class="c"><div class="lab">Fuentes</div><div class="val">3 auditorías + verificación</div></div>
+    <div class="c"><div class="lab">Corte</div><div class="val">3 de septiembre de 2026</div></div>
+  </div>
+
+  <div class="sec"><span class="n">01</span><div><h2>Veredicto unificado</h2></div></div>
+
+  <div class="cols2" style="align-items:start; margin-bottom:11pt">
+    <div>
+      <div class="bignum">4.5<small>/10</small></div>
+      <p style="font-family:'Archivo',sans-serif; font-size:9pt; font-weight:600; color:var(--ink2); margin-top:5pt; line-height:1.3">
+        Calificación conciliada de madurez digital para captación de pacientes.</p>
+      <table style="margin-top:9pt">
+        <thead><tr><th>Auditoría</th><th class="tnum" style="text-align:right">Calif.</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Auditoría A (competitiva)</td><td class="tnum">s/c</td></tr>
+          <tr><td class="k">Auditoría B (SEO local)</td><td class="tnum">5.4</td></tr>
+          <tr><td class="k">Auditoría C (marca/producto)</td><td class="tnum">3.6</td></tr>
+          <tr><td class="k">Conciliada</td><td class="tnum"><b>4.5</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h4>Dónde coinciden las tres</h4>
+      <ul class="bul">
+        <li><b>PediPie no es una clínica.</b> Es un fabricante farmacéutico del cuidado del pie con laboratorio propio (GOGA), fundado en Monterrey en 1966.</li>
+        <li><b>La demanda clínica local no se está capturando.</b> Cero infraestructura de captación de pacientes: sin ficha de negocio optimizada, sin landings por patología, sin agenda.</li>
+        <li><b>La narrativa histórica se contradice</b> entre 1966, «50 años», «más de 25 años» y una referencia a 1988.</li>
+        <li><b>Las redes son escaparate de producto</b>, no motor de autoridad clínica ni de citas.</li>
+        <li><b>La taxonomía por patología del e-commerce ya existe</b> y es una base SEO desaprovechada.</li>
+        <li><b>Google Business Profile es la prioridad operativa nº 1</b> en las tres lecturas.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box tealb">
+    <h3>La lectura que ninguna de las tres auditorías dice con suficiente claridad</h3>
+    <p>PediPie no tiene un problema de marketing: tiene <b>un negocio clínico que aún no existe digitalmente</b>. Todo lo que sigue no es una reparación, es un lanzamiento. Eso es una buena noticia —no hay reputación negativa que revertir ni activos mal construidos que desmontar— pero exige tratarlo como tal: primero existir en el mapa, después competir en él.</p>
+  </div>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 1 de 12</span></div>
+</div>
+
+<!-- ================= P2 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 02 · Punto de partida</span><span><b>PediPie</b> · Monterrey</span></div>
+
+  <div class="sec"><span class="n">02</span><div><h2>Qué es PediPie hoy, y la pregunta que debe responder la doctora</h2></div></div>
+
+  <p class="lede">Las tres auditorías llegaron por caminos distintos a la misma conclusión. Es el hallazgo más sólido del expediente y condiciona todo lo demás.</p>
+
+  <div class="cols2 tight" style="margin-bottom:11pt">
+    <div class="box" style="margin:0">
+      <h4>Lo que sí está construido</h4>
+      <ul class="bul">
+        <li><b>Laboratorio GOGA Farmacéutica</b> en Monterrey, con metodología Six Sigma.</li>
+        <li><b>Catálogo de 30+ SKUs</b> organizados por patología.</li>
+        <li><b>E-commerce funcional</b> con envío a toda la República.</li>
+        <li><b>Distribución en autoservicio</b> (Soriana, con SKUs comprables en línea).</li>
+        <li><b>Red B2B</b> de podólogos, estéticas y spas como distribuidores.</li>
+        <li><b>Audiencia social</b> de aproximadamente 11.7 K en Facebook.</li>
+      </ul>
+    </div>
+    <div class="box crit" style="margin:0">
+      <h4>Lo que no existe públicamente</h4>
+      <ul class="bul">
+        <li>Ficha de Google Business configurada como <b>clínica podológica</b>.</li>
+        <li>Página de <b>servicios clínicos</b>, tarifario de consulta o agenda.</li>
+        <li>Presencia en <b>Doctoralia, DoctorAnytime, Top Doctors, Booksy o Fresha</b>.</li>
+        <li><b>Nombre y credenciales de la especialista</b> visibles en cualquier canal.</li>
+        <li>Una sola <b>reseña de paciente</b> localizable.</li>
+        <li><b>Dirección de consultorio</b> verificable y consistente.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box warn">
+    <h3>Dato que debe confirmarse antes de ejecutar</h3>
+    <p>Mencionas «la doctora» y el objetivo de llenar su agenda, pero <b>no existe ningún registro público de «PediPie Podólogos» operando como consultorio</b>, ni de una especialista asociada a la marca. Lo verifiqué en Doctoralia, DoctorAnytime, Top Doctors, StarOfService, infoisinfo, Yelp y búsqueda abierta: cero resultados.</p>
+    <p><b>Este informe se construyó sobre este supuesto:</b> existe (o está por abrirse) un servicio de consulta podológica bajo la marca PediPie, encabezado por una especialista, cuya huella digital clínica es hoy inexistente. Si el supuesto es correcto, el plan aplica tal cual. Si la doctora ya atiende en un domicilio, con otro nombre comercial o dentro de otra clínica, necesito ese dato: <b>cambia la dirección de la ficha, el nombre de la entidad y la estrategia de reseñas</b>, que son las tres primeras acciones del plan.</p>
+  </div>
+
+  <h4 style="margin-top:12pt">Las tres líneas de negocio y su peso digital actual</h4>
+  <table>
+    <thead><tr><th style="width:20%">Línea</th><th style="width:32%">Qué vende</th><th style="width:24%">Madurez digital</th><th>Consecuencia</th></tr></thead>
+    <tbody>
+      <tr><td class="k">B2C producto</td><td>Cremas, ureas, fungicidas, plantillas, desodorantes</td><td><span class="chip g">Construida</span> e-commerce + retail</td><td>Genera ingreso hoy; es el activo que financia el resto.</td></tr>
+      <tr><td class="k">B2B distribución</td><td>Mayoreo a podólogos, estéticas y spas</td><td><span class="chip w">Parcial</span> invitación sin embudo</td><td>Demanda existente sin sistema de captura ni seguimiento.</td></tr>
+      <tr><td class="k">Clínica / consulta</td><td>Valoración, tratamiento, plantillas, pie diabético</td><td><span class="chip c">Inexistente</span></td><td>Es el objetivo declarado del cliente y hoy vale cero digitalmente.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 2 de 12</span></div>
+</div>
+
+<!-- ================= P3 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 03 · Diagnóstico</span><span><b>Positivos</b></span></div>
+
+  <div class="sec"><span class="n">03</span><div><h2>Puntos positivos: lo que ya está ganado</h2></div></div>
+
+  <p class="lede">Ninguna clínica de Monterrey puede replicar esta lista en menos de una década. Es el capital con el que se entra a la pelea.</p>
+
+  <ol class="pts">
+    <li><div class="t"><b>Laboratorio farmacéutico propio — la única ventaja verdaderamente irreplicable</b>
+      <span>GOGA Farmacéutica permite algo que ningún competidor puede ofrecer: que el tratamiento recetado en consulta sea fabricado por la misma casa. Convierte cada cita en un ingreso recurrente y cada paciente en cliente de producto. Es el foso competitivo real, y hoy no se comunica.</span></div></li>
+
+    <li><div class="t"><b>Herencia de 1966: seis décadas de categoría</b>
+      <span>Es una barrera de credibilidad enorme. Advertencia verificada: <b>Experfeet reclama públicamente «+50 años»</b>, así que la antigüedad ya no es un territorio exclusivo. PediPie es anterior, pero solo gana esa comparación si deja de contradecirse.</span></div></li>
+
+    <li><div class="t"><b>Arquitectura SEO ya construida sin saberlo</b>
+      <span>La tienda está organizada por patología —pie de atleta, uñas, resequedad, pies cansados, diabéticos, mal olor, callos y juanetes—. Esa es exactamente la estructura que exige el SEO clínico. El esqueleto ya existe; falta la capa local.</span></div></li>
+
+    <li><div class="t"><b>Distribución física en autoservicio</b>
+      <span>Presencia de anaquel en Soriana. Es publicidad de marca permanente que los competidores clínicos no tienen: ningún podólogo de Monterrey aparece en un supermercado.</span></div></li>
+
+    <li><div class="t"><b>Audiencia social preexistente</b>
+      <span>~11.7 K seguidores en Facebook, más Instagram y YouTube activos. Experfeet, el competidor más fuerte, ronda 11 K en Instagram. La audiencia no hay que construirla: hay que reconvertirla.</span></div></li>
+
+    <li><div class="t"><b>Red B2B de podólogos como canal de referidos</b>
+      <span>Los consultorios que ya compran producto son una red de recomendación preinstalada y una fuente natural de aval clínico verificable.</span></div></li>
+
+    <li><div class="t"><b>Contenido educativo ya producido</b>
+      <span>Existen videos en Facebook y un canal de YouTube con material sobre patologías. No hay que empezar de cero: hay que redistribuir y reformatear.</span></div></li>
+
+    <li><div class="t"><b>Cero pasivo reputacional</b>
+      <span>No hay reseñas negativas, ni crisis, ni fichas duplicadas con calificaciones bajas. Se parte de página en blanco, que es más barato que corregir.</span></div></li>
+  </ol>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 3 de 12</span></div>
+</div>
+
+<!-- ================= P4 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 04 · Diagnóstico</span><span><b>Negativos</b></span></div>
+
+  <div class="sec"><span class="n">04</span><div><h2>Puntos negativos, ordenados por lo que cuesta cada día</h2></div></div>
+
+  <table style="margin-bottom:10pt">
+    <thead><tr><th style="width:4%">#</th><th style="width:30%">Brecha</th><th style="width:11%">Severidad</th><th>Qué está costando</th></tr></thead>
+    <tbody>
+      <tr><td class="tnum">1</td><td class="k">Sin ficha de Google Business como clínica</td><td><span class="chip c">Crítico</span></td><td>El 100 % de las búsquedas «podólogo cerca de mí» en la zona son invisibles para la marca. Es la puerta principal del negocio y está tapiada.</td></tr>
+      <tr><td class="tnum">2</td><td class="k">Sin reseñas de pacientes</td><td><span class="chip c">Crítico</span></td><td>En salud, la reseña es el argumento de venta. Los competidores acumulan; PediPie parte de cero y cada mes de retraso amplía la distancia.</td></tr>
+      <tr><td class="tnum">3</td><td class="k">Sin agenda ni CTA a WhatsApp</td><td><span class="chip c">Crítico</span></td><td>Aunque llegue tráfico, no hay dónde convertirlo. The Foot Clinic reserva por Fresha; Feetsy por Booksy; PediPie no tiene ruta a la cita.</td></tr>
+      <tr><td class="tnum">4</td><td class="k">Sin landings por patología con intención local</td><td><span class="chip c">Crítico</span></td><td>«Uña encarnada Monterrey», «hongos en uñas Monterrey», «pie diabético Monterrey» son consultas de alta urgencia sin una sola página que las reciba.</td></tr>
+      <tr><td class="tnum">5</td><td class="k">Narrativa histórica contradictoria</td><td><span class="chip c">Crítico</span></td><td>1966, «50 años», «más de 25 años» y 1988 conviven en la comunicación. Erosiona el activo más valioso justo cuando Experfeet reclama el mismo territorio.</td></tr>
+      <tr><td class="tnum">6</td><td class="k">Ausencia en agregadores médicos</td><td><span class="chip w">Alto</span></td><td>Doctoralia, DoctorAnytime y Top Doctors dominan la primera página para búsquedas de especialista. Estar fuera equivale a no existir para ese comprador.</td></tr>
+      <tr><td class="tnum">7</td><td class="k">Especialista invisible</td><td><span class="chip w">Alto</span></td><td>La competencia pone nombre y cara (Dra. Silvia García en Gar_Sa). La confianza médica se deposita en personas, no en logotipos.</td></tr>
+      <tr><td class="tnum">8</td><td class="k">Redes como escaparate estático</td><td><span class="chip w">Alto</span></td><td>Sin video vertical ni casos clínicos. Pie Picazza ya opera TikTok; el formato de mayor alcance orgánico de la categoría está desatendido.</td></tr>
+      <tr><td class="tnum">9</td><td class="k">Sin medición instalada</td><td><span class="chip w">Alto</span></td><td>No hay línea base de tráfico, conversiones ni origen de citas. Sin eso, ninguna inversión posterior es evaluable.</td></tr>
+      <tr><td class="tnum">10</td><td class="k">Nombre fragmentado</td><td><span class="chip w">Alto</span></td><td>«PediPie», «Pedi Pie» (Soriana), «GOGA» y las colisiones con PodiPie y PediFix reparten la búsqueda de marca entre cinco destinos.</td></tr>
+      <tr><td class="tnum">11</td><td class="k">Sin servicios de alto ticket comunicados</td><td><span class="chip n">Medio</span></td><td>Estudio de pisada, biomecánica, plantillas a medida y ortonixia son la fuente de margen de los competidores. PediPie no los ofrece públicamente.</td></tr>
+      <tr><td class="tnum">12</td><td class="k">Canal B2B sin embudo</td><td><span class="chip n">Medio</span></td><td>La página de distribuidores invita pero no califica, no cotiza ni da seguimiento. Demanda que entra y se pierde.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box crit">
+    <p><b>Lectura conjunta.</b> Los cinco primeros puntos no son cinco problemas: son un solo problema con cinco caras. No existe ninguna ruta desde «paciente con dolor en Monterrey» hasta «cita agendada con la doctora». Construir esa ruta —ficha, reseñas, landings, agenda— es literalmente todo el trabajo de los primeros 90 días.</p>
+  </div>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 4 de 12</span></div>
+</div>
+
+<!-- ================= P5 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 05 · Competencia</span><span><b>Mapa verificado</b></span></div>
+
+  <div class="sec"><span class="n">05</span><div><h2>El mapa competitivo real de Monterrey</h2>
+    <div class="sub">Todos verificados de forma independiente en esta revisión.</div></div></div>
+
+  <table class="dense">
+    <thead><tr><th style="width:19%">Competidor</th><th style="width:13%">Modelo</th><th style="width:34%">Fortaleza verificada</th><th style="width:22%">Brecha explotable</th><th style="width:12%">Amenaza</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Experfeet<br><span class="mono" style="font-size:6.4pt; color:var(--ink3)">experfeet.com</span></td><td>Cadena en plazas</td><td>Sucursales en Plaza Kali (Cumbres), Paseo La Fe (San Nicolás), Plaza UMA (San Pedro) y Galerías Valle Oriente. ~11 K en Instagram. Reclama «+50 años».</td><td>Modelo de plaza comercial: alto costo fijo y servicio estandarizado, sin laboratorio ni producto propio.</td><td><span class="chip c">Muy alta</span></td></tr>
+      <tr><td class="k">Podólogos Pie Picazza<br><span class="mono" style="font-size:6.4pt; color:var(--ink3)">podologospiepicazza.com.mx</span></td><td>Clínica multi-sucursal</td><td>Contry, Santiago y Allende. Web, Instagram, Facebook y <b>TikTok</b>. Servicio a domicilio, hospitales y asilos. Copy de dolor y CTA a WhatsApp. Se declara «nº 1 en Monterrey».</td><td>Depende casi por completo del orgánico; vulnerable a pauta con video vertical y a una propuesta de mayor especialización.</td><td><span class="chip c">Muy alta</span></td></tr>
+      <tr><td class="k">Centro Médico del Pie y Pie Diabético<br><span class="mono" style="font-size:6.4pt; color:var(--ink3)">hospitalpiediabetico.com</span></td><td>Nicho de urgencia</td><td>Dominio exacto y mensaje de máxima urgencia («evite amputaciones»). Reputación fuerte en el nicho de mayor valor clínico.</td><td>Enfoque estrecho: no cubre podología general, estética del pie ni prevención.</td><td><span class="chip c">Muy alta en su nicho</span></td></tr>
+      <tr><td class="k">The Foot Clinic<br><span class="mono" style="font-size:6.4pt; color:var(--ink3)">thefootclinic.com.mx</span></td><td>Clínica premium</td><td>Podología + fisioterapia + biomecánica. Estudio digital de pisada y plantillas a medida. <b>Agenda en línea vía Fresha.</b> Deportivo Obispado.</td><td>Una sola ubicación y marca joven, sin herencia ni producto propio.</td><td><span class="chip w">Alta</span></td></tr>
+      <tr><td class="k">Podólogos Segovia<br><span class="mono" style="font-size:6.4pt; color:var(--ink3)">podologosegovia.com.mx</span></td><td>Clínica establecida</td><td>Paseo de los Leones, Cumbres. Embudo claro problema → tratamiento → cita. Higiene certificada y enfoque preventivo.</td><td>Sin diferenciador tecnológico ni de producto.</td><td><span class="chip w">Alta</span></td></tr>
+      <tr><td class="k">Podólogos Gar_Sa / Dra. Silvia García<br><span class="mono" style="font-size:6.4pt; color:var(--ink3)">podologasilviagarcia.com</span></td><td>Clínica de especialista</td><td>Micro-servicios indexados: ortonixia Onifix, fototerapia, reconstrucción ungueal, examen biomecánico y plantillas.</td><td>UX móvil deficiente y sin automatización de seguimiento.</td><td><span class="chip w">Alta</span></td></tr>
+      <tr><td class="k">Foot Anatomy<br><span class="mono" style="font-size:6.4pt; color:var(--ink3)">footanatomy.com.mx</span></td><td>Clínica boutique</td><td>Reclama +33 años. Posicionamiento de marca, confort y estética.</td><td>Menor tracción de respuesta directa frente a los líderes orgánicos.</td><td><span class="chip n">Media</span></td></tr>
+      <tr><td class="k">Podólogos Corpus · Solo Pies · Feetsy</td><td>Consultorios</td><td>Presencia en Doctoralia con precios y reseñas; Feetsy reserva por Booksy.</td><td>Escala limitada; dependen de la plataforma que los lista.</td><td><span class="chip n">Media</span></td></tr>
+      <tr><td class="k">Atención Médica del Pie · Centro Integral del Pie · Dr. E. Garza Vázquez</td><td>Médico-quirúrgico</td><td>Cirugía mínimamente invasiva, plantigrafía, podoscopía. Cobertura Monterrey + Saltillo.</td><td>Comunicación técnica poco accesible al paciente general.</td><td><span class="chip n">Media</span></td></tr>
+      <tr><td class="k">Doctoralia · DoctorAnytime · Top Doctors · Booksy · Fresha</td><td>Agregadores</td><td>Controlan la puerta de entrada: dominan las primeras posiciones y concentran la prueba social.</td><td>Comoditizan al especialista y empujan la competencia hacia el precio de consulta.</td><td><span class="chip w">Estructural</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 5 de 12</span></div>
+</div>
+
+<!-- ================= P6 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 06 · Competencia</span><span><b>Brecha en contra</b></span></div>
+
+  <div class="sec"><span class="n">06</span><div><h2>Qué tienen ellos que PediPie no tiene</h2>
+    <div class="sub">Diez ventajas concretas, con el competidor que la demuestra y el costo real de cerrarla.</div></div></div>
+
+  <table>
+    <thead><tr><th style="width:26%">Ventaja que ellos tienen</th><th style="width:22%">Quién la demuestra</th><th style="width:34%">Por qué gana citas</th><th style="width:18%">Dificultad de cerrarla</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Ficha de Google optimizada como clínica</td><td>Todos los de la tabla anterior</td><td>Es el primer resultado de «podólogo cerca de mí» y el único con botón de llamada, ruta y horario.</td><td><span class="chip g">Baja</span> · días, sin costo</td></tr>
+      <tr><td class="k">Reseñas de pacientes acumuladas</td><td>Experfeet, Pie Picazza, Corpus</td><td>Es el filtro de decisión en salud; también aporta relevancia contextual por patología.</td><td><span class="chip w">Media</span> · meses de constancia</td></tr>
+      <tr><td class="k">Agenda en línea real</td><td>The Foot Clinic (Fresha), Feetsy (Booksy)</td><td>Elimina fricción: el paciente reserva a las 11 de la noche sin esperar respuesta.</td><td><span class="chip g">Baja</span> · configuración</td></tr>
+      <tr><td class="k">Cobertura metropolitana física</td><td>Experfeet (4+ plazas), Pie Picazza (3)</td><td>Cercanía es el criterio nº 1 de elección en podología.</td><td><span class="chip c">Alta</span> · inversión real</td></tr>
+      <tr><td class="k">Landings por patología con copy de dolor</td><td>Pie Picazza, Segovia</td><td>Capturan la búsqueda urgente y la convierten en el mismo clic.</td><td><span class="chip g">Baja</span> · producción de contenido</td></tr>
+      <tr><td class="k">Presencia en agregadores médicos</td><td>Corpus, Solo Pies, Segovia</td><td>Toman posiciones orgánicas que la marca no puede ganar sola en el corto plazo.</td><td><span class="chip g">Baja</span> · alta y perfil</td></tr>
+      <tr><td class="k">Especialista con nombre y cara</td><td>Dra. Silvia García (Gar_Sa)</td><td>La confianza médica se deposita en una persona identificable, no en una marca.</td><td><span class="chip g">Baja</span> · decisión del cliente</td></tr>
+      <tr><td class="k">Video vertical y TikTok</td><td>Pie Picazza</td><td>La podología tiene altísimo rendimiento orgánico en video corto de casos.</td><td><span class="chip w">Media</span> · producción constante</td></tr>
+      <tr><td class="k">Servicios de alto ticket</td><td>The Foot Clinic, Gar_Sa</td><td>Estudio de pisada, biomecánica, plantillas a medida y ortonixia elevan el ticket y la percepción de especialidad.</td><td><span class="chip w">Media</span> · equipo y capacitación</td></tr>
+      <tr><td class="k">Precio de consulta público</td><td>Corpus, Feetsy, agregadores</td><td>Reduce la fricción de la primera llamada y filtra al paciente adecuado.</td><td><span class="chip g">Baja</span> · decisión comercial</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box warn" style="margin-top:11pt">
+    <p><b>Siete de las diez son de dificultad baja.</b> La brecha competitiva de PediPie no es estructural ni de inversión: es de ejecución pendiente. Solo la cobertura física metropolitana exige capital significativo, y es la única que puede sustituirse —por ahora— con radio de servicio a domicilio, tal como ya hace Pie Picazza.</p>
+  </div>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 6 de 12</span></div>
+</div>
+
+<!-- ================= P7 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 07 · Competencia</span><span><b>Brecha a favor</b></span></div>
+
+  <div class="sec"><span class="n">07</span><div><h2>Qué tiene PediPie que ellos no tienen</h2>
+    <div class="sub">Aquí está la propuesta de valor que nadie en Monterrey puede copiar.</div></div></div>
+
+  <table style="margin-bottom:11pt">
+    <thead><tr><th style="width:28%">Ventaja exclusiva</th><th style="width:40%">Por qué ningún competidor la iguala</th><th style="width:32%">Cómo se convierte en citas</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Laboratorio farmacéutico propio</td><td>Ninguna clínica de Monterrey fabrica lo que receta. Experfeet, Pie Picazza, The Foot Clinic y Gar_Sa revenden marcas de terceros.</td><td>«Te atendemos y fabricamos tu tratamiento.» Es un argumento de consulta, no de producto.</td></tr>
+      <tr><td class="k">Catálogo de 30+ SKUs por patología</td><td>Cubre el post-tratamiento completo sin depender de proveedores.</td><td>Cada cita genera venta de producto y una razón natural de seguimiento y recompra.</td></tr>
+      <tr><td class="k">Herencia de 1966</td><td>Es anterior a todos los verificados. Experfeet reclama «+50 años»; PediPie tiene ~60.</td><td>Autoridad de categoría, siempre que la cifra se unifique y se sostenga.</td></tr>
+      <tr><td class="k">Presencia en anaquel de autoservicio</td><td>Ningún podólogo de la ciudad aparece en un supermercado.</td><td>Reconocimiento previo: el paciente ya vio la marca antes de buscarla.</td></tr>
+      <tr><td class="k">E-commerce con envío nacional</td><td>La competencia clínica vende producto solo en mostrador.</td><td>Permite atender al paciente fuera del radio geográfico y monetizar contenido nacional.</td></tr>
+      <tr><td class="k">Red B2B de podólogos</td><td>Los competidores <em>son</em> consultorios; no tienen red de consultorios.</td><td>Canal de referidos y de aval clínico verificable ya instalado.</td></tr>
+      <tr><td class="k">Audiencia social preexistente</td><td>~11.7 K en Facebook, comparable al líder del sector clínico.</td><td>Base de reconversión inmediata hacia contenido de captación.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box tealb">
+    <h3>El posicionamiento que se desprende de esto</h3>
+    <p style="font-size:11pt; font-family:'Archivo',sans-serif; font-weight:600; color:var(--teal); margin-bottom:5pt">
+      «La única clínica de Monterrey con laboratorio propio: te diagnosticamos, te tratamos y fabricamos tu tratamiento.»</p>
+    <p>No competir como «otro podólogo más» —esa pelea la ganan Experfeet por cobertura y Pie Picazza por SEO—. Competir en una <b>categoría superior</b> que integra consulta, biomecánica, pie diabético, producto propio y laboratorio. Es defendible porque está anclada en un activo físico que ningún competidor puede construir en el corto plazo.</p>
+  </div>
+
+  <div class="box good">
+    <h3>El modelo económico que esto habilita</h3>
+    <p>Los competidores monetizan una sola vez: la consulta. PediPie puede monetizar tres: <b>consulta → producto propio → recompra recurrente</b>. Eso significa que puede pagar un costo de adquisición de paciente más alto que cualquiera de ellos y seguir siendo rentable. Es la ventaja decisiva a la hora de pujar en Google Ads.</p>
+  </div>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 7 de 12</span></div>
+</div>
+
+<!-- ================= P8 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 08 · Estrategia</span><span><b>Cierre de brecha</b></span></div>
+
+  <div class="sec"><span class="n">08</span><div><h2>Cómo ponerse a su nivel, y luego pasarlos</h2>
+    <div class="sub">Tres movimientos, en este orden. No se pueden invertir.</div></div></div>
+
+  <div class="box" style="border-left:2.6pt solid var(--teal)">
+    <h3>Movimiento 1 · Existir (0–30 días) — «igualar el piso»</h3>
+    <p>Hoy la marca no aparece en el mapa. Sin esto, cualquier inversión en contenido o pauta se desperdicia porque no hay dónde aterrizar al paciente.</p>
+    <ul class="bul" style="margin-top:6pt">
+      <li><b>Google Business Profile</b> con categoría primaria «Podólogo», categorías secundarias, servicios, fotos reales del consultorio y de la doctora, horario, WhatsApp y URL de conversión.</li>
+      <li><b>Agenda en línea</b> con enlace directo desde ficha, web y biografías sociales.</li>
+      <li><b>Alta en Doctoralia y DoctorAnytime</b> con perfil completo de la especialista.</li>
+      <li><b>Medición</b>: GA4, Search Console, eventos de conversión y WhatsApp con etiquetado de origen.</li>
+      <li><b>Unificar la narrativa histórica</b> en una sola cifra verificable, en todos los canales.</li>
+    </ul>
+  </div>
+
+  <div class="box" style="border-left:2.6pt solid var(--teal)">
+    <h3>Movimiento 2 · Competir (30–90 días) — «disputar la demanda»</h3>
+    <p>Con el piso igualado, se entra a pelear por las búsquedas que hoy se llevan Pie Picazza y Experfeet.</p>
+    <ul class="bul" style="margin-top:6pt">
+      <li><b>Seis landings de patología</b> con intención local: uña encarnada, onicomicosis, pie diabético, fascitis/espolón, callos y juanetes, plantillas y estudio de pisada. Cada una con evidencia, precio orientativo y CTA a WhatsApp.</li>
+      <li><b>Campañas de Google Ads separadas</b>, una por patología, cada una a su landing —nunca a la página de inicio—. Es la vía rápida para robar cuota sin esperar al orgánico.</li>
+      <li><b>Motor de reseñas</b>: solicitud sistemática al cierre de cada consulta, orientada a que el paciente describa su problema real.</li>
+      <li><b>Video vertical</b> en Instagram, TikTok y YouTube Shorts con casos y educación.</li>
+      <li><b>Publicar a la especialista</b>: nombre, formación, cédula y trayectoria en ficha, web y perfiles.</li>
+    </ul>
+  </div>
+
+  <div class="box tealb">
+    <h3>Movimiento 3 · Separarse (90–180 días) — «cambiar de categoría»</h3>
+    <p>Aquí se deja de imitar a la competencia y se explota lo que ellos no tienen.</p>
+    <ul class="bul" style="margin-top:6pt">
+      <li><b>Integrar consulta y producto</b>: protocolo de tratamiento con SKU propio, kit de alta al paciente y recompra programada.</li>
+      <li><b>Biblioteca de autoridad en YouTube</b> por patología, enlazada desde landings y fichas de producto.</li>
+      <li><b>Activar la red B2B como canal de referidos</b>: los podólogos que compran producto derivan casos complejos.</li>
+      <li><b>Servicios de alto ticket</b>: estudio de pisada y plantillas a medida, donde The Foot Clinic y Gar_Sa ya están cobrando más.</li>
+      <li><b>Comunicar el laboratorio</b> como sello de garantía en todos los puntos de contacto.</li>
+    </ul>
+  </div>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 8 de 12</span></div>
+</div>
+
+<!-- ================= P9 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 09 · Estrategia</span><span><b>Sistema de citas</b></span></div>
+
+  <div class="sec"><span class="n">09</span><div><h2>El sistema que produce una agenda constante</h2>
+    <div class="sub">Una agenda llena no es consecuencia de publicar: es consecuencia de un circuito cerrado.</div></div></div>
+
+  <p class="lede">El error que comete la mayoría de los consultorios es tratar el marketing como una fuente de atención. Una agenda constante requiere un circuito de seis etapas donde cada una alimenta a la siguiente y la última reinicia la primera.</p>
+
+  <div class="fun">
+    <div class="fstep"><span class="sn">1</span><span class="sl">Captación</span><span class="sd">Google Ads por patología, ficha de Google en el Local Pack, SEO local y video vertical. El paciente llega con un problema concreto, no buscando una marca.<em>Métrica: sesiones por patología</em></span></div>
+    <div class="fstep"><span class="sn">2</span><span class="sl">Landing</span><span class="sd">Una página por problema: síntoma, causa, tratamiento, evidencia visual, credenciales de la doctora, precio orientativo y un solo botón.<em>Métrica: tasa de clic a WhatsApp</em></span></div>
+    <div class="fstep"><span class="sn">3</span><span class="sl">Conversación</span><span class="sd">WhatsApp con respuesta en menos de cinco minutos en horario hábil, guion de calificación y cierre. Aquí se pierde la mayoría de las citas de los consultorios que sí generan tráfico.<em>Métrica: conversación → cita agendada</em></span></div>
+    <div class="fstep"><span class="sn">4</span><span class="sl">Cita</span><span class="sd">Confirmación automática, recordatorio 24 h y 2 h antes. Reduce el ausentismo, que es la fuga silenciosa de toda agenda clínica.<em>Métrica: tasa de asistencia</em></span></div>
+    <div class="fstep"><span class="sn">5</span><span class="sl">Consulta y producto</span><span class="sd">Diagnóstico, tratamiento y entrega del producto PediPie correspondiente. Aquí es donde el laboratorio propio convierte una consulta en dos ingresos.<em>Métrica: ticket promedio y % con producto</em></span></div>
+    <div class="fstep"><span class="sn">6</span><span class="sl">Retorno</span><span class="sd">Solicitud de reseña al cierre, seguimiento de evolución, recordatorio de recompra y recordatorio de revisión. La reseña alimenta la etapa 1: el circuito se cierra.<em>Métrica: reseñas/mes y recompra</em></span></div>
+  </div>
+
+  <div class="box good" style="margin-top:11pt">
+    <h3>Los tres puntos donde se rompe (y cómo blindarlos)</h3>
+    <ul class="bul">
+      <li><b>Etapa 3 — tiempo de respuesta.</b> Un paciente con dolor escribe a tres clínicas. Contesta primero el que se queda la cita. Requiere responsable asignado y respuesta automática fuera de horario.</li>
+      <li><b>Etapa 4 — ausentismo.</b> Sin recordatorios, una parte relevante de las citas agendadas no se presenta. Es la corrección más barata de todo el sistema.</li>
+      <li><b>Etapa 6 — la reseña.</b> Si no se pide en el momento de mayor satisfacción, no llega nunca. Debe ser parte del protocolo de cierre, no una campaña ocasional.</li>
+    </ul>
+  </div>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 9 de 12</span></div>
+</div>
+
+<!-- ================= P10 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 10 · Ejecución</span><span><b>Plan 180 días</b></span></div>
+
+  <div class="sec"><span class="n">10</span><div><h2>Plan de implementación</h2>
+    <div class="sub">Ordenado por dependencia, no por facilidad. Cada fase habilita la siguiente.</div></div></div>
+
+  <table>
+    <thead><tr><th style="width:15%">Fase</th><th style="width:38%">Entregables</th><th style="width:25%">Responsable sugerido</th><th style="width:22%">Condición de cierre</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="k">Fase 1<br>Blindaje<br><span class="mono" style="font-size:6.4pt;color:var(--teal)">0–30 días</span></td>
+        <td>Google Business Profile verificado y completo · agenda en línea · alta en Doctoralia y DoctorAnytime · GA4, Search Console y eventos · WhatsApp Business con etiquetado · narrativa histórica unificada · auditoría técnica del sitio</td>
+        <td>Virtuoso (implementación) · cliente (fotos, datos de la doctora, verificación postal)</td>
+        <td>La marca aparece en el Local Pack y existe una ruta completa hasta la cita.</td>
+      </tr>
+      <tr>
+        <td class="k">Fase 2<br>Dominación local<br><span class="mono" style="font-size:6.4pt;color:var(--teal)">30–90 días</span></td>
+        <td>Seis landings de patología · seis campañas de Google Ads segmentadas · protocolo de reseñas activo · sesión fotográfica y de video · 12 piezas de video vertical/mes · publicación de la especialista</td>
+        <td>Virtuoso (contenido, pauta, SEO) · doctora (validación clínica de cada texto)</td>
+        <td>Flujo medible y atribuible de citas de origen digital.</td>
+      </tr>
+      <tr>
+        <td class="k">Fase 3<br>Autoridad<br><span class="mono" style="font-size:6.4pt;color:var(--teal)">90–180 días</span></td>
+        <td>Biblioteca de YouTube por patología · blog clínico enlazado al e-commerce · casos documentados · alianzas y enlaces locales · activación de la red B2B como canal de referidos</td>
+        <td>Virtuoso (producción y SEO) · doctora (casos y guion clínico)</td>
+        <td>Tráfico orgánico sostenido que reduce la dependencia de pauta.</td>
+      </tr>
+      <tr>
+        <td class="k">Fase 4<br>Ecosistema<br><span class="mono" style="font-size:6.4pt;color:var(--teal)">Continuo</span></td>
+        <td>Integración consulta + producto + e-commerce · CRM y automatización de seguimiento · embudo B2B con calificación y cotización · servicios de alto ticket</td>
+        <td>Virtuoso (arquitectura) · cliente (operación)</td>
+        <td>Cada paciente genera consulta, producto y recompra.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box crit" style="margin-top:11pt">
+    <h3>Tres bloqueos que dependen del cliente, no de la agencia</h3>
+    <ul class="bul">
+      <li><b>Dirección física verificable del consultorio.</b> Sin ella no hay ficha de Google, y sin ficha no hay Fase 1. Es el requisito de entrada de todo el plan.</li>
+      <li><b>Datos y consentimiento de la doctora</b> para publicar nombre, cédula, formación y fotografía.</li>
+      <li><b>Un responsable de WhatsApp en horario hábil.</b> Sin esto, la pauta de la Fase 2 compra conversaciones que nadie contesta y el presupuesto se pierde.</li>
+    </ul>
+  </div>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 10 de 12</span></div>
+</div>
+
+<!-- ================= P11 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 11 · Medición</span><span><b>KPIs</b></span></div>
+
+  <div class="sec"><span class="n">11</span><div><h2>Cómo se mide una agenda constante</h2>
+    <div class="sub">Métricas de negocio, no de vanidad. Los seguidores no llenan una agenda.</div></div></div>
+
+  <div class="box warn">
+    <p><b>Advertencia sobre las metas.</b> No existe línea base: no hay analítica instalada, ni histórico de citas por origen, ni datos de plataforma. Las cifras siguientes son <b>metas propuestas para calibrar en el día 30</b>, cuando la medición de la Fase 1 devuelva números reales. Presentarlas hoy como pronóstico sería inventar. Su función es fijar el orden de magnitud y la dirección, no comprometer un resultado.</p>
+  </div>
+
+  <table style="margin-top:10pt">
+    <thead><tr><th style="width:30%">Indicador</th><th style="width:17%">Día 30</th><th style="width:17%">Día 90</th><th style="width:17%">Día 180</th><th style="width:19%">Por qué importa</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Ficha de Google verificada</td><td>Sí</td><td>Optimizada</td><td>Top 3 local</td><td>Puerta principal del negocio</td></tr>
+      <tr><td class="k">Reseñas acumuladas</td><td>15–25</td><td>60–80</td><td>150+</td><td>Filtro de decisión en salud</td></tr>
+      <tr><td class="k">Calificación promedio</td><td>≥ 4.7</td><td>≥ 4.8</td><td>≥ 4.8</td><td>Por debajo de 4.5 el paciente descarta</td></tr>
+      <tr><td class="k">Landings publicadas</td><td>1–2</td><td>6</td><td>10+</td><td>Una por patología con intención local</td></tr>
+      <tr><td class="k">Conversaciones de WhatsApp/mes</td><td>Línea base</td><td>Crecimiento sostenido</td><td>Volumen estable</td><td>Antesala directa de la cita</td></tr>
+      <tr><td class="k">Tasa conversación → cita</td><td>Medir</td><td>≥ 35 %</td><td>≥ 45 %</td><td>Donde más citas se pierden</td></tr>
+      <tr><td class="k">Tasa de asistencia a cita</td><td>Medir</td><td>≥ 80 %</td><td>≥ 88 %</td><td>El ausentismo vacía la agenda ya vendida</td></tr>
+      <tr><td class="k">% de citas de origen digital</td><td>Medir</td><td>≥ 40 %</td><td>≥ 60 %</td><td>Mide si el sistema realmente funciona</td></tr>
+      <tr><td class="k">% de consultas con venta de producto</td><td>Medir</td><td>≥ 45 %</td><td>≥ 60 %</td><td>Es la ventaja exclusiva del laboratorio</td></tr>
+      <tr><td class="k">Costo por cita agendada</td><td>Medir</td><td>Calibrar</td><td>Reducir 25 %</td><td>Determina cuánto se puede escalar</td></tr>
+      <tr><td class="k">Ocupación de agenda</td><td>Línea base</td><td>+30 pts</td><td>≥ 80 %</td><td>Es el objetivo final del encargo</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box tealb" style="margin-top:11pt">
+    <h3>La métrica que decide si el proyecto funciona</h3>
+    <p><b>Ocupación de agenda</b> y <b>costo por cita agendada</b>, leídas juntas. Si la ocupación sube pero el costo por cita también, se está comprando crecimiento. Si la ocupación sube mientras el costo baja, el sistema orgánico —reseñas, landings, autoridad— está haciendo el trabajo y el negocio se vuelve escalable. Ese cruce, no el alcance en redes, es el reporte mensual que debe recibir la doctora.</p>
+  </div>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 11 de 12</span></div>
+</div>
+
+<!-- ================= P12 ================= -->
+<div class="page">
+  <div class="rh"><span>Sección 12 · Método</span><span><b>Transparencia</b></span></div>
+
+  <div class="sec"><span class="n">12</span><div><h2>Método, discrepancias y qué falta verificar</h2></div></div>
+
+  <h4>Cómo se construyó este informe</h4>
+  <p style="color:var(--ink2); margin-bottom:8pt; font-size:9pt">Se unificaron tres auditorías independientes producidas por sistemas distintos —una competitiva, una de SEO local y una de marca y producto— y se <b>verificó de forma directa cada competidor y cada afirmación estructural</b> mediante búsqueda pública. Los competidores que aparecían en un solo informe fueron comprobados uno por uno antes de incluirlos; todos resultaron reales y todos están en la tabla de la sección 05.</p>
+
+  <h4>Dónde se contradecían las tres auditorías</h4>
+  <table class="dense" style="margin-bottom:8pt">
+    <thead><tr><th style="width:24%">Punto</th><th style="width:50%">Discrepancia</th><th style="width:26%">Resolución adoptada</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Calificación global</td><td>Una da 5.4/10, otra 3.6/10, la tercera no califica. La diferencia nace del criterio de evaluación: marca de producto vs. aspirante a clínica.</td><td>Se concilió en 4.5/10 evaluando explícitamente la <b>captación de pacientes</b>, que es el objetivo declarado.</td></tr>
+      <tr><td class="k">Competidor principal</td><td>Una señala a Pie Picazza como dominante; otra a Experfeet como amenaza máxima; la tercera no los jerarquiza igual.</td><td>Verificados ambos: Experfeet gana en cobertura, Pie Picazza en SEO. Los dos se listan como amenaza muy alta.</td></tr>
+      <tr><td class="k">Antigüedad de la marca</td><td>Se citan 1966, «50 años», «más de 25 años» y una referencia a 1988.</td><td>Se registra como hallazgo crítico. La cifra correcta debe confirmarla el cliente.</td></tr>
+      <tr><td class="k">Primera prioridad</td><td>Una propone Google Ads como vía rápida; otra, Google Business Profile.</td><td>GBP primero: la pauta sin destino de conversión desperdicia presupuesto. Ads en Fase 2.</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Límites de esta auditoría</h4>
+  <p style="color:var(--ink2); margin-bottom:8pt; font-size:9pt">Se trabajó únicamente con información pública. <b>No hay datos de plataforma verificados de primera mano</b>: sin tráfico, volúmenes de búsqueda, autoridad de dominio, campañas activas ni conteos de seguidores confirmados. El acceso directo a varios sitios estuvo bloqueado por la red y no hubo cuota en la herramienta de análisis SEO. Los hallazgos estructurales se sostienen; las estimaciones cuantitativas requieren acceso a las cuentas.</p>
+
+  <div class="box crit" style="padding:9pt 11pt">
+    <h3>Lo que necesito del cliente para pasar de diagnóstico a ejecución</h3>
+    <ol class="pts" style="margin-top:5pt; gap:4.5pt">
+      <li><div class="t"><b>Confirmación del modelo clínico</b><span>¿Existe hoy un consultorio operando? ¿Con qué nombre comercial, en qué dirección y con qué horario?</span></div></li>
+      <li><div class="t"><b>Identidad y credenciales de la doctora</b><span>Nombre, cédula, formación y autorización para publicarlos.</span></div></li>
+      <li><div class="t"><b>Accesos</b><span>Google Business, Analytics, Search Console, administrador de Meta, hosting y dominio.</span></div></li>
+      <li><div class="t"><b>Histórico de citas</b><span>Volumen mensual actual y origen conocido, aunque sea aproximado. Es la línea base que hoy falta.</span></div></li>
+      <li><div class="t"><b>Fecha real de fundación</b><span>Para cerrar de una vez la contradicción histórica.</span></div></li>
+      <li><div class="t"><b>Capacidad de atención</b><span>Cuántas citas por día puede absorber la agenda. Determina cuánta demanda tiene sentido generar.</span></div></li>
+    </ol>
+  </div>
+
+  <p style="margin-top:8pt; font-size:7.4pt; color:var(--ink3); border-top:0.5pt solid var(--rule); padding-top:6pt">
+    Documento de trabajo interno preparado para Virtuoso Marketing Estratégico · Alquimia Digital. Síntesis de tres auditorías independientes con verificación de campo al 3 de septiembre de 2026. Direcciones, cifras de seguidores y catálogos citados provienen de fuentes públicas y deben reconfirmarse antes de su uso en una propuesta comercial.</p>
+
+  <div class="rf"><span>Informe unificado · PediPie Podólogos</span><span>Página 12 de 12</span></div>
+</div>
