@@ -30,16 +30,16 @@ def main():
     for ruta in IMAGENES:
         config = config.replace('"%s"' % ruta, '"%s"' % a_data_uri(ruta))
 
-    html = (RAIZ / 'index.html').read_text(encoding='utf-8')
-    etiqueta = '<script src="/teve-config.js"></script>'
-    if etiqueta not in html:
-        raise SystemExit('No se encontró la etiqueta del config en index.html')
+    fotos = (RAIZ / 'teve-fotos.js').read_text(encoding='utf-8')
+    for ruta in IMAGENES:
+        fotos = fotos.replace('"%s"' % ruta, '"%s"' % a_data_uri(ruta))
 
-    html = html.replace(
-        etiqueta,
-        '<!-- DEMO: el config y el logotipo viajan dentro de este archivo -->\n'
-        '<script>\n' + config + '\n</script>'
-    )
+    html = (RAIZ / 'index.html').read_text(encoding='utf-8')
+    for etiqueta, contenido in (('<script src="/teve-config.js"></script>', config),
+                                ('<script src="/teve-fotos.js"></script>', fotos)):
+        if etiqueta not in html:
+            raise SystemExit('No se encontró %s en index.html' % etiqueta)
+        html = html.replace(etiqueta, '<script>\n' + contenido + '\n</script>')
 
     salida = RAIZ / 'index-demo.html'
     salida.write_text(html, encoding='utf-8')

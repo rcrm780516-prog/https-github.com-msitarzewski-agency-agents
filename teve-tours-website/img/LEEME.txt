@@ -51,6 +51,9 @@ Cada imagen que dejes vacía ("") en teve-config.js se reemplaza sola por
 un fondo degradado animado con los colores de la marca. El sitio nunca se
 ve roto. Puedes ir agregando fotos poco a poco.
 
+Las rutas de TODAS las fotos se escriben en el archivo teve-fotos.js,
+que está en la raíz del sitio y trae cada espacio con su nombre.
+
 ===========================================================================
 LOGOTIPO — YA INCLUIDO
 ===========================================================================

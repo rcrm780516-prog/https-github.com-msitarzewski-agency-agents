@@ -52,6 +52,10 @@
      direcciones con idioma, como /es/destinos o /pt/passeios. -->
 <script src="/teve-config.js"></script>
 
+<!-- ARCHIVO DE FOTOGRAFÍAS: aquí se pegan todas las imágenes del sitio.
+     Va después del config para poder sobrescribir sus rutas. -->
+<script src="/teve-fotos.js"></script>
+
 <style>
   :root {
     --primary: #02222e;
@@ -825,6 +829,35 @@
    ========================================================================== */
 
 const C = window.TEVE_CONFIG || {};
+
+/* --------------------------------------------------------------------------
+   FOTOGRAFÍAS (teve-fotos.js)
+   --------------------------------------------------------------------------
+   Ese archivo trae las rutas de las imágenes ordenadas por sección y con el
+   nombre de cada espacio. Aquí se vuelcan sobre el config: solo pisan lo que
+   traiga contenido, así un espacio vacío nunca borra una imagen ya puesta.
+   -------------------------------------------------------------------------- */
+(function volcarFotos() {
+  const F = window.TEVE_FOTOS;
+  if (!F) return;
+
+  // marca e imagenes son objetos planos: clave -> ruta
+  ['marca', 'imagenes'].forEach(grupo => {
+    if (!F[grupo] || !C[grupo]) return;
+    Object.keys(F[grupo]).forEach(clave => {
+      if (F[grupo][clave]) C[grupo][clave] = F[grupo][clave];
+    });
+  });
+
+  // servicios, tours, destinos y blog son listas: se busca por id
+  ['servicios', 'tours', 'destinos', 'blog'].forEach(grupo => {
+    if (!F[grupo] || !Array.isArray(C[grupo])) return;
+    C[grupo].forEach(item => {
+      const ruta = F[grupo][item.id];
+      if (ruta) item.imagen = ruta;
+    });
+  });
+})();
 const PAGES = ['home', 'servicios', 'tours', 'destinos', 'tim', 'blog', 'contacto'];
 
 /* ==========================================================================

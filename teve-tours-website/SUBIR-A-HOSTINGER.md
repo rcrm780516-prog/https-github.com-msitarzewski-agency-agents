@@ -201,3 +201,34 @@ NO se repiten: viven una sola vez en la PARTE A del archivo.
 2. En **Configuración → Segmentación internacional** no fijes un país:
    el sitio apunta a Reino Unido, Australia, Estados Unidos y Canadá a la
    vez, y fijar México los perjudicaría.
+
+---
+
+## Dónde va cada cosa
+
+| Quiero cambiar… | Archivo |
+|---|---|
+| Una fotografía o el logotipo | `teve-fotos.js` |
+| Teléfonos, WhatsApp, correo | `teve-config.js` → sección 2 |
+| Tarifas de traslado | `teve-config.js` → sección 6 |
+| Precios de tours | `teve-config.js` → bloque `tours:` |
+| Textos y SEO de cada idioma | `teve-config.js` → `textos: { en, es, pt }` |
+
+`index.html` no se toca nunca.
+
+### Cómo subir una foto
+
+1. Súbela a `public_html/img/` (Administrador de archivos o FTP).
+2. Abre `teve-fotos.js`, busca el renglón por su nombre y escribe la ruta
+   **empezando con barra**:
+
+   ```javascript
+   hero: "/img/portada-cancun.jpg",
+   ```
+
+   La barra del inicio es obligatoria: sin ella la foto no carga en las
+   páginas de `/es/` ni de `/pt/`.
+3. Sube `teve-fotos.js` actualizado. Listo.
+
+Un espacio vacío (`""`) no rompe nada: muestra un degradado de la marca.
+Puedes ir subiendo fotos de a poco.
