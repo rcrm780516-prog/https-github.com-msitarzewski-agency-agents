@@ -208,7 +208,7 @@ NO se repiten: viven una sola vez en la PARTE A del archivo.
 
 | Quiero cambiar… | Archivo |
 |---|---|
-| Una fotografía o el logotipo | `teve-fotos.js` |
+| Una fotografía o el logotipo | `incrustar-fotos.html` (o `teve-fotos.js` a mano) |
 | Teléfonos, WhatsApp, correo | `teve-config.js` → sección 2 |
 | Tarifas de traslado | `teve-config.js` → sección 6 |
 | Precios de tours | `teve-config.js` → bloque `tours:` |
@@ -216,19 +216,36 @@ NO se repiten: viven una sola vez en la PARTE A del archivo.
 
 `index.html` no se toca nunca.
 
-### Cómo subir una foto
+### Cómo subir las fotos (la forma fácil)
 
-1. Súbela a `public_html/img/` (Administrador de archivos o FTP).
-2. Abre `teve-fotos.js`, busca el renglón por su nombre y escribe la ruta
-   **empezando con barra**:
+Abre **`incrustar-fotos.html`** con doble clic. Es una herramienta que corre
+en tu computadora, sin internet y sin instalar nada.
 
-   ```javascript
-   hero: "/img/portada-cancun.jpg",
-   ```
+1. Elige cada fotografía en su recuadro. Están agrupadas y con el nombre de
+   la tarjeta donde salen, así que no hay que adivinar.
+2. La herramienta recorta cada foto a su medida y la comprime sola. Puedes
+   usar fotos pesadas directas de la cámara o del celular.
+3. Presiona **"Generar teve-fotos.js"** y sube ese archivo a `public_html/`.
 
-   La barra del inicio es obligatoria: sin ella la foto no carga en las
-   páginas de `/es/` ni de `/pt/`.
-3. Sube `teve-fotos.js` actualizado. Listo.
+Para cambiar una foto después: vuelve a abrir la herramienta, carga tu
+`teve-fotos.js` actual (así conserva lo que ya tenías), cambia lo que
+quieras y genera uno nuevo.
+
+**Si prefieres un sitio más ligero,** usa el botón *"Descargar fotos
+sueltas"*: te da las fotos ya optimizadas como archivos `.jpg` para subir a
+`public_html/img/`, más un `teve-fotos.js` que apunta a ellas.
+
+### Cómo subir una foto a mano
+
+También puedes editar `teve-fotos.js` directamente. Sube la foto a
+`public_html/img/` y escribe la ruta **empezando con barra**:
+
+```javascript
+hero: "/img/portada-cancun.jpg",
+```
+
+La barra del inicio es obligatoria: sin ella la foto no carga en las
+páginas de `/es/` ni de `/pt/`.
 
 Un espacio vacío (`""`) no rompe nada: muestra un degradado de la marca.
 Puedes ir subiendo fotos de a poco.
