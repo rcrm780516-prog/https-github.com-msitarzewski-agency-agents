@@ -28,7 +28,7 @@ Es el único archivo que necesitas tocar.
 
 ```javascript
 whatsapp: "5219987351905",         // ← ya está el número real de TEVE
-email: "reservas@tevetours.com",   // ← tu correo real
+email: "reservas@tevetransferstours.com",   // ← ya está el correo real
 telefonos: [ ... ]                 // ← tus teléfonos reales
 ```
 
