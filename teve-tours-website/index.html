@@ -571,8 +571,12 @@
             <input id="t-fecha" type="date">
           </div>
           <div class="search-field">
-            <label for="t-pax" data-i18n="buscadorPasajeros">Passengers</label>
-            <input id="t-pax" type="number" min="1" value="2">
+            <label for="t-adultos" data-i18n="buscadorAdultos">Adults</label>
+            <input id="t-adultos" type="number" min="1" value="2">
+          </div>
+          <div class="search-field">
+            <label for="t-menores" data-i18n="buscadorMenores">Children</label>
+            <input id="t-menores" type="number" min="0" value="0">
           </div>
         </div>
         <div class="quote-box" id="quoteTour" hidden></div>
@@ -1089,7 +1093,7 @@ function buscarTour() {
   waMsg(`${T('waTourBusqueda')}
 ${T('buscadorDestino')}: ${textoSelect('t-destino') || '—'}
 ${T('buscadorFechaTour')}: ${v('t-fecha') || '—'}
-${T('buscadorPasajeros')}: ${v('t-pax')}${cotiza ? `
+${T('buscadorAdultos')}: ${v('t-adultos')} · ${T('buscadorMenores')}: ${v('t-menores')}${cotiza ? `
 ${T('cotizaEtiqueta')}: ${cotiza.texto}` : ''}`);
 }
 function enviarContacto(e) {
@@ -1367,21 +1371,21 @@ function renderServicios() {
 function tarjetaTour(t, i) {
   const x = (L.tours || {})[t.id] || {};
   const dur = trad(t.duracion);
-  const wa = `${T('waTour')} ${x.titulo || ''}`.replace(/'/g, "\\'");
+  const moneda = C.monedaTours || 'USD';
+  const nombre = trad(t.nombre);
+  const wa = `${T('waTour')} ${nombre}`.replace(/'/g, "\\'");
   return `
     <div class="tour-card">
       <div class="tour-img" style="${fondo(t.imagen, i)}">
         ${dur ? `<span class="tour-badge">${esc(dur)}</span>` : ''}
       </div>
       <div class="tour-body">
-        <h3>${esc(x.titulo)}</h3>
+        <h3>${esc(nombre)}</h3>
         <p>${esc(x.texto)}</p>
         <div class="tour-price-row">
-          ${t.precio
-            ? `<span>${esc(T('tarjetaDesde'))}</span>
-               <span class="tour-price">${esc(money(t.precio, t.moneda))}${t.porPersona
-                 ? `<small style="display:block;font-size:0.66rem;font-weight:500;color:#7b8b92;text-transform:none;letter-spacing:0;">${esc(T('cotizaPorPersonaUnidad'))}</small>`
-                 : ''}</span>`
+          ${t.adulto
+            ? `<span>${esc(T(t.desde ? 'tarjetaDesde' : 'tarjetaDesde'))}</span>
+               <span class="tour-price">${esc(money(t.adulto, moneda))}<small style="display:block;font-size:0.66rem;font-weight:500;color:#7b8b92;text-transform:none;letter-spacing:0;">${esc(T(t.porPersona === false ? 'cotizaPorEmbarcacion' : 'tarjetaPorAdulto'))}</small></span>`
             : `<span class="tour-price" style="font-size:0.92rem;font-weight:700;color:var(--primary);">${esc(T('tarjetaSinPrecio'))}</span>`}
         </div>
       </div>
@@ -1391,9 +1395,11 @@ function tarjetaTour(t, i) {
     </div>`;
 }
 function renderTours() {
-  const todos = C.tours || [];
-  document.getElementById('toursGridFull').innerHTML = todos.map(tarjetaTour).join('');
-  document.getElementById('homeToursGrid').innerHTML = todos.slice(0, 3).map(tarjetaTour).join('');
+  // El catálogo completo vive en el buscador; en tarjetas solo los destacados,
+  // que si no la página se vuelve una lista interminable.
+  const destacados = (C.tours || []).filter(t => t.destacado);
+  document.getElementById('toursGridFull').innerHTML = destacados.map(tarjetaTour).join('');
+  document.getElementById('homeToursGrid').innerHTML = destacados.slice(0, 3).map(tarjetaTour).join('');
 }
 
 /* ---------- destinos ---------- */
@@ -1531,12 +1537,17 @@ function renderSelectoresTraslado() {
   const tours = document.getElementById('t-destino');
   if (tours) {
     const previo = tours.value;
+    const cats = L.categorias || {};
+    // Un optgroup por categoría, en el orden en que vienen en el config.
+    const orden = [];
+    (C.tours || []).forEach(t => { if (!orden.includes(t.categoria)) orden.push(t.categoria); });
+    const grupos = orden.map(cat => {
+      const items = (C.tours || []).filter(t => t.categoria === cat).map(t =>
+        `<option value="${esc(t.id)}">${esc(trad(t.nombre))}</option>`).join('');
+      return `<optgroup label="${esc(cats[cat] || cat)}">${items}</optgroup>`;
+    }).join('');
     tours.innerHTML = `<option value="">${esc(T('cotizaEligeTour'))}</option>`
-      + (C.tours || []).map(t => {
-          const x = (L.tours || {})[t.id] || {};
-          return `<option value="${esc(t.id)}">${esc(x.titulo)}</option>`;
-        }).join('')
-      + `<option value="otro">${esc(T('cotizaOtroTour'))}</option>`;
+      + grupos + `<option value="otro">${esc(T('cotizaOtroTour'))}</option>`;
     tours.value = previo || '';
   }
 }
@@ -1602,6 +1613,8 @@ function calcularTraslado() {
   return { texto: importe + ' (' + pie + ')', zona: tarifa.zona, pax: pax };
 }
 
+function plural(n, clave) { return n + ' ' + T(n === 1 ? clave : clave + 'Pl'); }
+
 function calcularTour() {
   const caja = document.getElementById('quoteTour');
   const v = id => (document.getElementById(id) || {}).value || '';
@@ -1609,33 +1622,46 @@ function calcularTour() {
   if (!caja) return null;
   if (!id) { caja.hidden = true; return null; }
 
+  const moneda = C.monedaTours || 'USD';
   const tour = (C.tours || []).find(t => t.id === id);
-  const x = tour ? ((L.tours || {})[tour.id] || {}) : {};
-  if (!tour || !tour.precio) {
-    const nombre = tour ? x.titulo : T('cotizaOtroTour');
+  const nombre = tour ? trad(tour.nombre) : T('cotizaOtroTour');
+
+  if (!tour || !tour.adulto) {
     pintarCaja(caja, T('cotizaEtiqueta'), nombre, T('cotizaSinPrecio'), '', true);
     return { texto: T('cotizaSinPrecio'), zona: nombre };
   }
 
-  const pax = Math.max(1, parseInt(v('t-pax'), 10) || 1);
-  const min = Number(tour.minPax) || 1;
-  if (pax < min) {
-    pintarCaja(caja, T('cotizaEtiqueta'), x.titulo,
-               T('cotizaMinimo').replace('{min}', min), '', true);
-    return { texto: T('cotizaMinimo').replace('{min}', min), zona: x.titulo };
+  const adultos = Math.max(1, parseInt(v('t-adultos'), 10) || 1);
+  const menores = Math.max(0, parseInt(v('t-menores'), 10) || 0);
+
+  // Coco Bongo y los yates no admiten menores.
+  if (menores > 0 && tour.menor === 'NA') {
+    pintarCaja(caja, T('cotizaEtiqueta'), nombre, T('cotizaSoloAdultos'), '', true);
+    return { texto: T('cotizaSoloAdultos'), zona: nombre };
+  }
+  // Hay actividades cuyo precio de menor no está en la lista.
+  if (menores > 0 && tour.menor === '') {
+    pintarCaja(caja, T('cotizaEtiqueta'), nombre, T('cotizaSinPrecioMenor'), '', true);
+    return { texto: T('cotizaSinPrecioMenor'), zona: nombre };
   }
 
-  // Por persona se multiplica; por grupo el precio es cerrado.
-  const unidad = Number(tour.precio);
-  const total = tour.porPersona ? unidad * pax : unidad;
-  const importe = money(total, tour.moneda);
-  const pie = tour.porPersona
-    ? money(unidad, tour.moneda) + ' ' + T('cotizaPorPersonaUnidad')
-      + ' · ' + T('cotizaTotalPax').replace('{pax}', pax)
-    : trad(tour.duracion);
+  const pAdulto = Number(tour.adulto);
+  const pMenor = Number(tour.menor) || 0;
 
-  pintarCaja(caja, T('cotizaEtiqueta'), x.titulo, importe, pie, false);
-  return { texto: importe + ' (' + pie + ')', zona: x.titulo, pax: pax };
+  // Los yates se cobran por embarcación: el precio no se multiplica.
+  if (tour.porPersona === false) {
+    const importe = (tour.desde ? T('cotizaDesdePrecio') + ' ' : '') + money(pAdulto, moneda);
+    pintarCaja(caja, T('cotizaEtiqueta'), nombre, importe, T('cotizaPorEmbarcacion'), false);
+    return { texto: importe + ' (' + T('cotizaPorEmbarcacion') + ')', zona: nombre };
+  }
+
+  const total = pAdulto * adultos + pMenor * menores;
+  const detalle = [plural(adultos, 'cotizaAdultos') + ' × ' + money(pAdulto, moneda)];
+  if (menores > 0) detalle.push(plural(menores, 'cotizaMenores') + ' × ' + money(pMenor, moneda));
+
+  const importe = money(total, moneda);
+  pintarCaja(caja, T('cotizaEtiqueta'), nombre, importe, detalle.join(' · '), false);
+  return { texto: importe + ' (' + detalle.join(' · ') + ')', zona: nombre, pax: adultos + menores };
 }
 
 // Cualquier cambio en el buscador recalcula el precio al instante.
@@ -1643,7 +1669,7 @@ function calcularTour() {
   const el = document.getElementById(id);
   if (el) { el.addEventListener('change', calcularTraslado); el.addEventListener('input', calcularTraslado); }
 });
-['t-destino', 't-pax'].forEach(id => {
+['t-destino', 't-adultos', 't-menores'].forEach(id => {
   const el = document.getElementById(id);
   if (el) { el.addEventListener('change', calcularTour); el.addEventListener('input', calcularTour); }
 });

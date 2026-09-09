@@ -174,41 +174,82 @@ window.TEVE_CONFIG = {
     // Los demás dicen "cotización personalizada" hasta que nos pases el
     // precio real: es preferible eso a publicar una cifra inventada.
     { id: "transfer",  imagen: "", destacado: true,  desde: { en: "From $50 USD per vehicle", es: "Desde $50 USD por vehículo", pt: "A partir de US$ 50 por veículo" } },
-    { id: "chofer",    imagen: "", destacado: true,  desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
+    { id: "chofer",    imagen: "", destacado: true,  desde: { en: "From $200 USD · 4 hours, up to 8 people", es: "Desde $200 USD · 4 horas, hasta 8 personas", pt: "A partir de US$ 200 · 4 horas, até 8 pessoas" } },
     { id: "grupos",    imagen: "", destacado: true,  desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
     { id: "catamaran", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
-    { id: "yate",      imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
+    { id: "yate",      imagen: "", destacado: false, desde: { en: "From $700 USD · up to 8 people", es: "Desde $700 USD · hasta 8 personas", pt: "A partir de US$ 700 · até 8 pessoas" } },
     { id: "concierge", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } }
   ],
 
   /* --------------------------------------------------------------------
-     TOURS
+     TOURS  —  catálogo real de TEVE
      --------------------------------------------------------------------
-     El tarifario que nos diste solo cubre TRASLADOS, así que los tours
-     salen sin precio a propósito: la tarjeta y el buscador dicen
-     "cotización personalizada" y mandan al visitante a WhatsApp. Es
-     preferible eso a publicar una cifra que no es tuya.
+     ⚠ LOS PRECIOS SON LOS "PUBLIC PRICE" DE TU LISTA.
+       El "TEVE PRICE" es tu costo y NO se publica: revelaría tu margen a
+       cualquiera que entre al sitio, incluida tu competencia.
 
-     CUANDO TENGAS LOS PRECIOS REALES, llena estos cuatro campos:
+     adulto / menor  solo el número, sin signos ni comas
+                     ""    = no tenemos el precio → pide cotización
+                     "NA"  = solo adultos (Coco Bongo, yates)
+     porPersona      true  -> se multiplica por adultos y menores
+                     false -> precio cerrado por embarcación o grupo
+     destacado       true  -> además sale como tarjeta en la página Tours
+     categoria       agrupa el menú del buscador (ver textos → categorias)
 
-       precio      solo el número, sin signo ni comas: "2197"
-                   déjalo en "" y sigue pidiendo cotización
-       moneda      "MXN" o "USD"
-       porPersona  true  -> el precio se multiplica por los pasajeros
-                   false -> precio cerrado por grupo, no se multiplica
-       minPax      mínimo de personas para que salga el tour
-
-     Ejemplo ya listo para copiar:
-       { id: "chichen", imagen: "", precio: "2197", moneda: "MXN",
-         porPersona: true, minPax: 2, duracion: {...} },
+     Todos aparecen en el buscador. Solo los "destacado" tienen tarjeta.
      -------------------------------------------------------------------- */
   tours: [
-    { id: "chichen",  imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
-    { id: "tulum",    imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
-    { id: "isla",     imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "6 hours",  es: "6 horas",      pt: "6 horas"     } },
-    { id: "cenote",   imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Half day", es: "Medio día",    pt: "Meio dia"    } },
-    { id: "akumal",   imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } },
-    { id: "coba",     imagen: "", precio: "", moneda: "MXN", porPersona: true, minPax: 1, duracion: { en: "Full day", es: "Día completo", pt: "Dia inteiro" } }
+    /* --- Parques Xcaret --- */
+    { id: "xcaret-plus",     nombre: "Xcaret Plus",                    categoria: "parques", adulto: "215", menor: "161", destacado: true },
+    { id: "xelha",           nombre: "Xel-Há All Inclusive",           categoria: "parques", adulto: "165", menor: "123", destacado: true },
+    { id: "xplor",           nombre: { en: "Xplor (Day)", es: "Xplor (día)", pt: "Xplor (dia)" },                    categoria: "parques", adulto: "195", menor: "146", destacado: true },
+    { id: "xplor-fuego",     nombre: "Xplor Fuego",                    categoria: "parques", adulto: "175", menor: "131" },
+    { id: "xoximilco",       nombre: "Xoximilco",                      categoria: "parques", adulto: "145", menor: "108" },
+    { id: "xenses",          nombre: "Xenses",                         categoria: "parques", adulto: "125", menor: "93"  },
+    { id: "xenotes",         nombre: "Xenotes",                        categoria: "parques", adulto: "159", menor: "119", destacado: true },
+    { id: "xichen-deluxe-x", nombre: { en: "Xichén Deluxe (Xcaret)",  es: "Xichén Deluxe (Xcaret)",  pt: "Xichén Deluxe (Xcaret)" },         categoria: "parques", adulto: "185", menor: "138" },
+    { id: "xichen-clasico-x",nombre: { en: "Xichén Classic (Xcaret)", es: "Xichén Clásico (Xcaret)", pt: "Xichén Clássico (Xcaret)" },        categoria: "parques", adulto: "165", menor: "123" },
+    { id: "ferry-isla",      nombre: { en: "Isla Mujeres Ferry (round trip)", es: "Ferry a Isla Mujeres (redondo)", pt: "Ferry para Isla Mujeres (ida e volta)" }, categoria: "parques", adulto: "38",  menor: "30"  },
+
+    /* --- Dolphin Discovery --- */
+    { id: "dolphin-royal",     nombre: "Dolphin Royal Connection", categoria: "delfines", adulto: "179", menor: "109", destacado: true },
+    { id: "dolphin-connection",nombre: "Dolphin Connection",       categoria: "delfines", adulto: "149", menor: "109" },
+    { id: "dolphin-encounter", nombre: "Dolphin Encounter",        categoria: "delfines", adulto: "119", menor: "109" },
+
+    /* --- Chichén Itzá --- */
+    { id: "xichen-clasico",  nombre: { en: "Chichén Itzá Classic", es: "Chichén Itzá Clásico", pt: "Chichén Itzá Clássico" },        categoria: "chichen", adulto: "90",  menor: "80", destacado: true },
+    { id: "xichen-plus",     nombre: "Chichén Itzá Plus",           categoria: "chichen", adulto: "95",  menor: "85" },
+    { id: "xichen-deluxe",   nombre: "Chichén Itzá Deluxe",         categoria: "chichen", adulto: "105", menor: "95" },
+    { id: "xichen-2cenotes", nombre: { en: "Chichén Itzá + 2 Cenotes", es: "Chichén Itzá + 2 Cenotes", pt: "Chichén Itzá + 2 Cenotes" },    categoria: "chichen", adulto: "120", menor: "110" },
+
+    /* --- Actividades cortas en Cancún --- */
+    { id: "atv",         nombre: { en: "ATV, Zipline & Cenote", es: "ATV, Tirolesa y Cenote", pt: "ATV, Tirolesa e Cenote" }, categoria: "cancun", adulto: "90", menor: "" },
+    { id: "parasailing", nombre: "Parasailing",            categoria: "cancun", adulto: "80", menor: "" },
+    { id: "jungle",      nombre: "Jungle Tour",            categoria: "cancun", adulto: "70", menor: "60" },
+    { id: "jetski",      nombre: { en: "Jet Ski (per ski)", es: "Jet Ski (por moto)", pt: "Jet Ski (por moto)" },     categoria: "cancun", adulto: "80", menor: "", porPersona: false },
+    { id: "glassboat",   nombre: { en: "Glass Bottom Boat", es: "Barco con fondo de cristal", pt: "Barco com fundo de vidro" }, categoria: "cancun", adulto: "70", menor: "60" },
+    { id: "taco",        nombre: "Taco Tour",              categoria: "cancun", adulto: "80", menor: "70" },
+
+    /* --- Coco Bongo (solo adultos) --- */
+    { id: "cb-drink",       nombre: { en: "Coco Bongo · Drink Pack (Mon-Wed)", es: "Coco Bongo · Drink Pack (lun-mié)", pt: "Coco Bongo · Drink Pack (seg-qua)" },  categoria: "cocobongo", adulto: "80",  menor: "NA" },
+    { id: "cb-reg-lm",      nombre: { en: "Coco Bongo · Regular (Mon-Wed)", es: "Coco Bongo · Regular (lun-mié)", pt: "Coco Bongo · Regular (seg-qua)" },     categoria: "cocobongo", adulto: "90",  menor: "NA" },
+    { id: "cb-reg-jd",      nombre: { en: "Coco Bongo · Regular (Thu-Sun)", es: "Coco Bongo · Regular (jue-dom)", pt: "Coco Bongo · Regular (qui-dom)" },     categoria: "cocobongo", adulto: "100", menor: "NA" },
+    { id: "cb-reg-v",       nombre: { en: "Coco Bongo · Regular (Friday)", es: "Coco Bongo · Regular (viernes)", pt: "Coco Bongo · Regular (sexta)" },     categoria: "cocobongo", adulto: "125", menor: "NA" },
+    { id: "cb-prem-js",     nombre: { en: "Coco Bongo · Premium (Thu-Sat)", es: "Coco Bongo · Premium (jue-sáb)", pt: "Coco Bongo · Premium (qui-sáb)" },     categoria: "cocobongo", adulto: "125", menor: "NA" },
+    { id: "cb-prem-dm",     nombre: { en: "Coco Bongo · Premium (Sun-Wed)", es: "Coco Bongo · Premium (dom-mié)", pt: "Coco Bongo · Premium (dom-qua)" },     categoria: "cocobongo", adulto: "140", menor: "NA" },
+    { id: "cb-gold-dm",     nombre: { en: "Coco Bongo · Gold Member (Sun-Wed)", es: "Coco Bongo · Gold Member (dom-mié)", pt: "Coco Bongo · Gold Member (dom-qua)" }, categoria: "cocobongo", adulto: "160", menor: "NA" },
+    { id: "cb-gold-js",     nombre: { en: "Coco Bongo · Gold Member (Thu-Sat)", es: "Coco Bongo · Gold Member (jue-sáb)", pt: "Coco Bongo · Gold Member (qui-sáb)" }, categoria: "cocobongo", adulto: "170", menor: "NA" },
+    { id: "cb-royal",       nombre: { en: "Coco Bongo · Royal Service (Sun-Wed)", es: "Coco Bongo · Royal Service (dom-mié)", pt: "Coco Bongo · Royal Service (dom-qua)" }, categoria: "cocobongo", adulto: "175", menor: "NA" },
+    { id: "cb-front-js",    nombre: { en: "Coco Bongo · Front Row (Thu-Sat)", es: "Coco Bongo · Front Row (jue-sáb)", pt: "Coco Bongo · Front Row (qui-sáb)" },   categoria: "cocobongo", adulto: "210", menor: "NA" },
+    { id: "cb-front-dm",    nombre: { en: "Coco Bongo · Front Row (Sun-Wed)", es: "Coco Bongo · Front Row (dom-mié)", pt: "Coco Bongo · Front Row (dom-qua)" },   categoria: "cocobongo", adulto: "195", menor: "NA" },
+
+    /* --- Yates y catamaranes ---
+       Los yates se cobran por embarcación, no por persona. */
+    { id: "yate-8",   nombre: { en: "Yacht · up to 8 people",  es: "Yate hasta 8 personas",  pt: "Iate até 8 pessoas" },  categoria: "nautico", adulto: "700",  menor: "NA", porPersona: false, desde: true },
+    { id: "yate-10",  nombre: { en: "Yacht · up to 10 people", es: "Yate hasta 10 personas", pt: "Iate até 10 pessoas" }, categoria: "nautico", adulto: "850",  menor: "NA", porPersona: false, desde: true },
+    { id: "yate-15",  nombre: { en: "Yacht · up to 15 people", es: "Yate hasta 15 personas", pt: "Iate até 15 pessoas" }, categoria: "nautico", adulto: "1100", menor: "NA", porPersona: false, desde: true },
+    { id: "cat-plus",    nombre: { en: "Catamaran Plus to Isla Mujeres",    es: "Catamarán Plus a Isla Mujeres",    pt: "Catamarã Plus para Isla Mujeres" },    categoria: "nautico", adulto: "80",  menor: "70", destacado: true },
+    { id: "cat-premium", nombre: { en: "Catamaran Premium to Isla Mujeres", es: "Catamarán Premium a Isla Mujeres", pt: "Catamarã Premium para Isla Mujeres" }, categoria: "nautico", adulto: "130", menor: "" }
   ],
 
   // Las tarjetas de destino son verticales: las fotos de 800x1000 se ven mejor.
@@ -238,6 +279,9 @@ window.TEVE_CONFIG = {
      zona   = nombre de la zona (no se traduce, son nombres propios)
      rango  = los hoteles que abarca, en los tres idiomas
      ====================================================================== */
+  // Moneda de los precios de tours (los traslados llevan la suya abajo).
+  monedaTours: "USD",
+
   tarifas: {
     moneda: "USD",
 
@@ -421,6 +465,15 @@ window.TEVE_CONFIG = {
         cotizaMinimo: "Minimum {min} passengers for this tour",
         cotizaZonaAZona: "We only publish rates between the airport and a hotel zone. Tell us both points and we quote it by WhatsApp.",
         cotizaMismoPunto: "Pick a different pick-up and drop-off point.",
+        buscadorAdultos: "Adults",
+        buscadorMenores: "Children",
+        cotizaAdultos: "adult", cotizaAdultosPl: "adults",
+        cotizaMenores: "child", cotizaMenoresPl: "children",
+        cotizaSoloAdultos: "Adults only — this experience does not admit children.",
+        cotizaSinPrecioMenor: "We confirm the child price by WhatsApp — tell us their ages.",
+        cotizaPorEmbarcacion: "per boat, not per person",
+        cotizaDesdePrecio: "from",
+        tarjetaPorAdulto: "per adult",
 
         blogEyebrow: "Travel Guide", blogTitulo: "Plan Your Trip to Cancun",
         blogLeerMas: "Read article →",
@@ -519,31 +572,23 @@ window.TEVE_CONFIG = {
         }
       },
 
+      categorias: {
+        parques:   "Xcaret parks",
+        delfines:  "Swim with dolphins",
+        chichen:   "Chichén Itzá",
+        cancun:    "Short activities in Cancun",
+        cocobongo: "Coco Bongo (adults only)",
+        nautico:   "Yachts & catamarans"
+      },
+
       tours: {
-        chichen: {
-          titulo: "Chichen Itza & Cenote with Mayan Experience",
-          texto: "Visit one of the New Seven Wonders of the World, swim in a cenote and learn how Mayan cooking really works."
-        },
-        tulum: {
-          titulo: "Tulum, Cenote & Playa del Carmen",
-          texto: "See Tulum, the most striking clifftop Mayan city on the Caribbean, plus a cenote and Fifth Avenue."
-        },
-        isla: {
-          titulo: "Luxury Catamaran to Isla Mujeres",
-          texto: "Sail between Cancun and Isla Mujeres, with snorkelling and free time on the island."
-        },
-        cenote: {
-          titulo: "Cenote Visit & Lagoon Snorkelling",
-          texto: "Sink into the clear water of a cenote and discover a spectacular lagoon far from the crowds."
-        },
-        akumal: {
-          titulo: "Akumal: Snorkel with Turtles & Cenotes",
-          texto: "Swim alongside sea turtles in Akumal and explore a cenote full of extraordinary stalactites."
-        },
-        coba: {
-          titulo: "Monkey Watching & Coba Ruins",
-          texto: "Head into the Mayan jungle, watch spider monkeys in the wild and visit the enigmatic city of Coba."
-        }
+        "xcaret-plus": { texto: "The flagship park: underground rivers, the Mexico Espectacular show, and the Plus buffet and locker included." },
+        "xelha":       { texto: "All-inclusive natural inlet. Snorkelling, cliff jumping, food and drinks included all day." },
+        "xplor":       { texto: "Zip-lines over the jungle, amphibious vehicles and swimming through underground rivers." },
+        "xenotes":     { texto: "Four cenotes in one day — swim, abseil, zip-line and kayak, with a Mayan lunch." },
+        "dolphin-royal": { texto: "The most complete dolphin programme: foot push, dorsal tow and the belly ride." },
+        "xichen-clasico": { texto: "One of the New Seven Wonders of the World, with a certified guide and time to explore." },
+        "cat-plus":    { texto: "Sail from Cancun to Isla Mujeres with snorkelling, open bar and free time on the island." }
       },
 
       destinos: {
@@ -713,6 +758,15 @@ window.TEVE_CONFIG = {
         cotizaMinimo: "Mínimo {min} pasajeros para este tour",
         cotizaZonaAZona: "Solo publicamos tarifas entre el aeropuerto y una zona hotelera. Dinos los dos puntos y te cotizamos por WhatsApp.",
         cotizaMismoPunto: "Elige un punto de salida y uno de llegada distintos.",
+        buscadorAdultos: "Adultos",
+        buscadorMenores: "Menores",
+        cotizaAdultos: "adulto", cotizaAdultosPl: "adultos",
+        cotizaMenores: "menor", cotizaMenoresPl: "menores",
+        cotizaSoloAdultos: "Solo adultos — esta experiencia no admite menores.",
+        cotizaSinPrecioMenor: "El precio de menores lo confirmamos por WhatsApp — dinos sus edades.",
+        cotizaPorEmbarcacion: "por embarcación, no por persona",
+        cotizaDesdePrecio: "desde",
+        tarjetaPorAdulto: "por adulto",
 
         blogEyebrow: "Guía de Viaje", blogTitulo: "Planea tu Viaje a Cancún",
         blogLeerMas: "Leer artículo →",
@@ -810,31 +864,23 @@ window.TEVE_CONFIG = {
         }
       },
 
+      categorias: {
+        parques:   "Parques Xcaret",
+        delfines:  "Nado con delfines",
+        chichen:   "Chichén Itzá",
+        cancun:    "Actividades cortas en Cancún",
+        cocobongo: "Coco Bongo (solo adultos)",
+        nautico:   "Yates y catamaranes"
+      },
+
       tours: {
-        chichen: {
-          titulo: "Chichén Itzá y Cenote con Experiencia Maya",
-          texto: "Visita una de las nuevas siete maravillas del mundo, nada en un cenote y aprende cómo funciona de verdad la cocina maya."
-        },
-        tulum: {
-          titulo: "Tulum, Cenote y Playa del Carmen",
-          texto: "Conoce Tulum, la ciudad maya frente al mar más impresionante del Caribe, además de un cenote y la Quinta Avenida."
-        },
-        isla: {
-          titulo: "Catamarán de Lujo a Isla Mujeres",
-          texto: "Navega entre Cancún e Isla Mujeres, con snorkel y tiempo libre en la isla."
-        },
-        cenote: {
-          titulo: "Visita a Cenote y Snorkel en Laguna",
-          texto: "Sumérgete en el agua cristalina de un cenote y conoce una laguna espectacular lejos de las multitudes."
-        },
-        akumal: {
-          titulo: "Akumal: Snorkel con Tortugas y Cenotes",
-          texto: "Nada junto a tortugas marinas en Akumal y explora un cenote lleno de estalactitas extraordinarias."
-        },
-        coba: {
-          titulo: "Observación de Monos y Ruinas de Cobá",
-          texto: "Adéntrate en la selva maya, observa monos araña en libertad y visita la enigmática ciudad de Cobá."
-        }
+        "xcaret-plus": { texto: "El parque insignia: ríos subterráneos, el espectáculo México Espectacular y el bufet y casillero del Plus incluidos." },
+        "xelha":       { texto: "Caleta natural todo incluido. Snorkel, salto del acantilado, comida y bebidas todo el día." },
+        "xplor":       { texto: "Tirolesas sobre la selva, vehículos anfibios y nado en ríos subterráneos." },
+        "xenotes":     { texto: "Cuatro cenotes en un día: nadas, rapeleas, vuelas en tirolesa y remas, con comida maya." },
+        "dolphin-royal": { texto: "El programa de delfines más completo: foot push, dorsal tow y el paseo en la panza." },
+        "xichen-clasico": { texto: "Una de las nuevas siete maravillas del mundo, con guía certificado y tiempo para recorrerla." },
+        "cat-plus":    { texto: "Navega de Cancún a Isla Mujeres con snorkel, barra libre y tiempo libre en la isla." }
       },
 
       destinos: {
@@ -998,6 +1044,15 @@ window.TEVE_CONFIG = {
         cotizaMinimo: "Mínimo de {min} passageiros para este passeio",
         cotizaZonaAZona: "Só publicamos tarifas entre o aeroporto e uma zona hoteleira. Diga-nos os dois pontos e orçamos pelo WhatsApp.",
         cotizaMismoPunto: "Escolha um ponto de saída e um de chegada diferentes.",
+        buscadorAdultos: "Adultos",
+        buscadorMenores: "Crianças",
+        cotizaAdultos: "adulto", cotizaAdultosPl: "adultos",
+        cotizaMenores: "criança", cotizaMenoresPl: "crianças",
+        cotizaSoloAdultos: "Apenas adultos — esta experiência não admite crianças.",
+        cotizaSinPrecioMenor: "O preço de crianças confirmamos pelo WhatsApp — diga-nos as idades.",
+        cotizaPorEmbarcacion: "por embarcação, não por pessoa",
+        cotizaDesdePrecio: "a partir de",
+        tarjetaPorAdulto: "por adulto",
 
         blogEyebrow: "Guia de Viagem", blogTitulo: "Planeje sua Viagem a Cancún",
         blogLeerMas: "Ler artigo →",
@@ -1095,31 +1150,23 @@ window.TEVE_CONFIG = {
         }
       },
 
+      categorias: {
+        parques:   "Parques Xcaret",
+        delfines:  "Nado com golfinhos",
+        chichen:   "Chichén Itzá",
+        cancun:    "Atividades curtas em Cancún",
+        cocobongo: "Coco Bongo (apenas adultos)",
+        nautico:   "Iates e catamarãs"
+      },
+
       tours: {
-        chichen: {
-          titulo: "Chichén Itzá e Cenote com Experiência Maia",
-          texto: "Visite uma das novas sete maravilhas do mundo, nade em um cenote e aprenda como funciona de verdade a cozinha maia."
-        },
-        tulum: {
-          titulo: "Tulum, Cenote e Playa del Carmen",
-          texto: "Conheça Tulum, a mais impressionante cidade maia à beira-mar do Caribe, além de um cenote e a Quinta Avenida."
-        },
-        isla: {
-          titulo: "Catamarã de Luxo para Isla Mujeres",
-          texto: "Navegue entre Cancún e Isla Mujeres, com snorkel e tempo livre na ilha."
-        },
-        cenote: {
-          titulo: "Visita a Cenote e Snorkel na Lagoa",
-          texto: "Mergulhe na água cristalina de um cenote e conheça uma lagoa espetacular longe das multidões."
-        },
-        akumal: {
-          titulo: "Akumal: Snorkel com Tartarugas e Cenotes",
-          texto: "Nade ao lado de tartarugas marinhas em Akumal e explore um cenote cheio de estalactites extraordinárias."
-        },
-        coba: {
-          titulo: "Observação de Macacos e Ruínas de Cobá",
-          texto: "Entre na selva maia, observe macacos-aranha em liberdade e visite a enigmática cidade de Cobá."
-        }
+        "xcaret-plus": { texto: "O parque principal: rios subterrâneos, o show México Espectacular e o bufê e armário do Plus inclusos." },
+        "xelha":       { texto: "Enseada natural all inclusive. Snorkel, salto do penhasco, comida e bebidas o dia inteiro." },
+        "xplor":       { texto: "Tirolesas sobre a selva, veículos anfíbios e nado em rios subterrâneos." },
+        "xenotes":     { texto: "Quatro cenotes em um dia: nado, rapel, tirolesa e caiaque, com almoço maia." },
+        "dolphin-royal": { texto: "O programa de golfinhos mais completo: foot push, dorsal tow e o passeio na barriga." },
+        "xichen-clasico": { texto: "Uma das novas sete maravilhas do mundo, com guia certificado e tempo para explorar." },
+        "cat-plus":    { texto: "Navegue de Cancún a Isla Mujeres com snorkel, open bar e tempo livre na ilha." }
       },
 
       destinos: {
