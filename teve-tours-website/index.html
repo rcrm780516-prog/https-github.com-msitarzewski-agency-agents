@@ -38,7 +38,7 @@
     "postalCode": "77500",
     "addressCountry": "MX"
   },
-  "email": "reservas@tevetours.com",
+  "email": "reservas@tevetransferstours.com",
   "telephone": "+52-998-735-1905",
   "url": "https://www.tevetours.com",
   "areaServed": ["Cancún", "Riviera Maya", "Tulum", "Playa del Carmen", "Isla Mujeres"],
@@ -124,6 +124,8 @@
   }
   .topbar a { display: inline-flex; align-items: center; gap: 6px; }
   .topbar a:hover { color: #fff; }
+  .topbar .tel-etiqueta { color: #7fa8b8; }
+  .topbar .tel-numero { color: #fff; font-weight: 500; }
 
   /* ============ NAVEGACIÓN ============ */
   .nav {
@@ -471,7 +473,11 @@
     .nav-drawer .btn-secondary { margin-top: 18px; }
     .search-wrap { margin-top: -35px; }
     .footer-tabs { max-width: 100%; }
-    .topbar-inner { justify-content: center; }
+    /* En móvil los teléfonos son lo importante: se centran y el horario,
+       que ocupa mucho, se guarda para no empujarlos a otra línea. */
+    .topbar { font-size: 0.74rem; }
+    .topbar-inner { justify-content: center; gap: 6px 14px; }
+    .topbar-horario { display: none; }
     .hero { height: auto; padding: 90px 0; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -1053,7 +1059,9 @@ function fondo(src, i) {
 
 /* ---------- WhatsApp ---------- */
 function waLink(texto) {
-  const num = (C.contacto && C.contacto.whatsapp) || '';
+  const c = C.contacto || {};
+  // Si hay un WhatsApp propio para este idioma se usa ese; si no, el general.
+  const num = ((c.whatsappPorIdioma || {})[LANG] || c.whatsapp || '');
   return 'https://wa.me/' + num + '?text=' + encodeURIComponent(texto || T('waGeneral'));
 }
 function waMsg(texto) { window.open(waLink(texto), '_blank', 'noopener'); }
@@ -1274,12 +1282,15 @@ function renderMenu() {
 /* ---------- barra superior ---------- */
 function renderTopbar() {
   const c = C.contacto || {};
-  const partes = [];
-  if (c.telefonos && c.telefonos[0]) {
-    partes.push(`<a href="tel:${esc(c.telefonos[0].marcar)}">📞 ${esc(c.telefonos[0].numero)}</a>`);
-  }
-  if (c.email) partes.push(`<a href="mailto:${esc(c.email)}">✉️ ${esc(c.email)}</a>`);
-  partes.push(`<span>🕑 ${esc(T('pieHorario'))}</span>`);
+  // Salen los dos teléfonos, cada uno con el idioma en que se atiende, para
+  // que el visitante sepa a cuál llamar antes de marcar.
+  const partes = (c.telefonos || []).map(t =>
+    `<a href="tel:${esc(t.marcar)}"><span aria-hidden="true">📞</span>
+       <span class="tel-etiqueta">${esc(trad(t.etiqueta))}:</span>
+       <span class="tel-numero">${esc(t.numero)}</span></a>`
+  );
+  if (c.email) partes.push(`<a href="mailto:${esc(c.email)}"><span aria-hidden="true">✉️</span> ${esc(c.email)}</a>`);
+  partes.push(`<span class="topbar-horario"><span aria-hidden="true">🕑</span> ${esc(T('pieHorario'))}</span>`);
   document.getElementById('topbarInner').innerHTML = partes.join('');
 }
 

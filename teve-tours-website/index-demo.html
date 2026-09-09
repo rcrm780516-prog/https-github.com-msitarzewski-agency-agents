@@ -38,7 +38,7 @@
     "postalCode": "77500",
     "addressCountry": "MX"
   },
-  "email": "reservas@tevetours.com",
+  "email": "reservas@tevetransferstours.com",
   "telephone": "+52-998-735-1905",
   "url": "https://www.tevetours.com",
   "areaServed": ["Cancún", "Riviera Maya", "Tulum", "Playa del Carmen", "Isla Mujeres"],
@@ -160,11 +160,26 @@ window.TEVE_CONFIG = {
     // Si algún día WhatsApp deja de abrir, prueba quitando el 1: "529987351905".
     whatsapp: "5219987351905",
 
-    email: "reservas@tevetours.com",
+    // WhatsApp distinto según el idioma en que esté navegando el visitante.
+    // Déjalo en "" y usa el de arriba.
+    //   Si el número de atención en español (228 210 7684) tiene WhatsApp,
+    //   escríbelo aquí como "5212282107684" y los visitantes que naveguen
+    //   en español escribirán directo a esa línea.
+    whatsappPorIdioma: {
+      en: "",
+      es: "",
+      pt: ""
+    },
 
-    // Teléfonos del pie de página. La etiqueta se traduce sola.
+    email: "reservas@tevetransferstours.com",
+
+    // Teléfonos. Salen en la barra superior, en el pie y en la página de
+    // contacto, tanto en escritorio como en móvil. La etiqueta se traduce sola.
     telefonos: [
-      { etiqueta: { en: "Cancun", es: "Cancún", pt: "Cancún" }, numero: "+52 998 735 1905", marcar: "+529987351905" }
+      { etiqueta: { en: "English", es: "Atención en inglés",  pt: "Atendimento em inglês"   },
+        numero: "+52 998 735 1905", marcar: "+529987351905" },
+      { etiqueta: { en: "Español", es: "Atención en español", pt: "Atendimento em espanhol" },
+        numero: "+52 228 210 7684", marcar: "+522282107684" }
     ],
 
     direccion: {
@@ -536,8 +551,8 @@ window.TEVE_CONFIG = {
           texto: "Name-board greeting in the arrivals hall, help with your luggage and an air-conditioned vehicle. Your driver waits even if your flight is delayed."
         },
         chofer: {
-          titulo: "Private Driver by the Day",
-          texto: "A comfortable van and an English-speaking driver at your disposal by the hour or for the full day. Beaches, restaurants and shopping at your own pace."
+          titulo: "Private Driver for the Day",
+          texto: "Beaches, Archaeological Sites, Cenotes, markets and shopping at your own pace."
         },
         grupos: {
           titulo: "Group Transport",
@@ -828,7 +843,7 @@ window.TEVE_CONFIG = {
         },
         chofer: {
           titulo: "Chofer Privado por Día",
-          texto: "Van cómoda y chofer bilingüe a tu disposición por horas o el día completo. Playas, restaurantes y compras a tu propio ritmo."
+          texto: "Playas, zonas arqueológicas, cenotes, mercados y compras a tu propio ritmo."
         },
         grupos: {
           titulo: "Transportación para Grupos",
@@ -1113,7 +1128,7 @@ window.TEVE_CONFIG = {
         },
         chofer: {
           titulo: "Motorista Privativo por Dia",
-          texto: "Van confortável e motorista bilíngue à sua disposição por hora ou o dia inteiro. Praias, restaurantes e compras no seu ritmo."
+          texto: "Praias, sítios arqueológicos, cenotes, mercados e compras no seu ritmo."
         },
         grupos: {
           titulo: "Transporte para Grupos",
@@ -1544,6 +1559,8 @@ window.TEVE_FOTOS = {
   }
   .topbar a { display: inline-flex; align-items: center; gap: 6px; }
   .topbar a:hover { color: #fff; }
+  .topbar .tel-etiqueta { color: #7fa8b8; }
+  .topbar .tel-numero { color: #fff; font-weight: 500; }
 
   /* ============ NAVEGACIÓN ============ */
   .nav {
@@ -1891,7 +1908,11 @@ window.TEVE_FOTOS = {
     .nav-drawer .btn-secondary { margin-top: 18px; }
     .search-wrap { margin-top: -35px; }
     .footer-tabs { max-width: 100%; }
-    .topbar-inner { justify-content: center; }
+    /* En móvil los teléfonos son lo importante: se centran y el horario,
+       que ocupa mucho, se guarda para no empujarlos a otra línea. */
+    .topbar { font-size: 0.74rem; }
+    .topbar-inner { justify-content: center; gap: 6px 14px; }
+    .topbar-horario { display: none; }
     .hero { height: auto; padding: 90px 0; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -2473,7 +2494,9 @@ function fondo(src, i) {
 
 /* ---------- WhatsApp ---------- */
 function waLink(texto) {
-  const num = (C.contacto && C.contacto.whatsapp) || '';
+  const c = C.contacto || {};
+  // Si hay un WhatsApp propio para este idioma se usa ese; si no, el general.
+  const num = ((c.whatsappPorIdioma || {})[LANG] || c.whatsapp || '');
   return 'https://wa.me/' + num + '?text=' + encodeURIComponent(texto || T('waGeneral'));
 }
 function waMsg(texto) { window.open(waLink(texto), '_blank', 'noopener'); }
@@ -2694,12 +2717,15 @@ function renderMenu() {
 /* ---------- barra superior ---------- */
 function renderTopbar() {
   const c = C.contacto || {};
-  const partes = [];
-  if (c.telefonos && c.telefonos[0]) {
-    partes.push(`<a href="tel:${esc(c.telefonos[0].marcar)}">📞 ${esc(c.telefonos[0].numero)}</a>`);
-  }
-  if (c.email) partes.push(`<a href="mailto:${esc(c.email)}">✉️ ${esc(c.email)}</a>`);
-  partes.push(`<span>🕑 ${esc(T('pieHorario'))}</span>`);
+  // Salen los dos teléfonos, cada uno con el idioma en que se atiende, para
+  // que el visitante sepa a cuál llamar antes de marcar.
+  const partes = (c.telefonos || []).map(t =>
+    `<a href="tel:${esc(t.marcar)}"><span aria-hidden="true">📞</span>
+       <span class="tel-etiqueta">${esc(trad(t.etiqueta))}:</span>
+       <span class="tel-numero">${esc(t.numero)}</span></a>`
+  );
+  if (c.email) partes.push(`<a href="mailto:${esc(c.email)}"><span aria-hidden="true">✉️</span> ${esc(c.email)}</a>`);
+  partes.push(`<span class="topbar-horario"><span aria-hidden="true">🕑</span> ${esc(T('pieHorario'))}</span>`);
   document.getElementById('topbarInner').innerHTML = partes.join('');
 }
 

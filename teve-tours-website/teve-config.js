@@ -107,11 +107,26 @@ window.TEVE_CONFIG = {
     // Si algún día WhatsApp deja de abrir, prueba quitando el 1: "529987351905".
     whatsapp: "5219987351905",
 
-    email: "reservas@tevetours.com",
+    // WhatsApp distinto según el idioma en que esté navegando el visitante.
+    // Déjalo en "" y usa el de arriba.
+    //   Si el número de atención en español (228 210 7684) tiene WhatsApp,
+    //   escríbelo aquí como "5212282107684" y los visitantes que naveguen
+    //   en español escribirán directo a esa línea.
+    whatsappPorIdioma: {
+      en: "",
+      es: "",
+      pt: ""
+    },
 
-    // Teléfonos del pie de página. La etiqueta se traduce sola.
+    email: "reservas@tevetransferstours.com",
+
+    // Teléfonos. Salen en la barra superior, en el pie y en la página de
+    // contacto, tanto en escritorio como en móvil. La etiqueta se traduce sola.
     telefonos: [
-      { etiqueta: { en: "Cancun", es: "Cancún", pt: "Cancún" }, numero: "+52 998 735 1905", marcar: "+529987351905" }
+      { etiqueta: { en: "English", es: "Atención en inglés",  pt: "Atendimento em inglês"   },
+        numero: "+52 998 735 1905", marcar: "+529987351905" },
+      { etiqueta: { en: "Español", es: "Atención en español", pt: "Atendimento em espanhol" },
+        numero: "+52 228 210 7684", marcar: "+522282107684" }
     ],
 
     direccion: {
@@ -483,8 +498,8 @@ window.TEVE_CONFIG = {
           texto: "Name-board greeting in the arrivals hall, help with your luggage and an air-conditioned vehicle. Your driver waits even if your flight is delayed."
         },
         chofer: {
-          titulo: "Private Driver by the Day",
-          texto: "A comfortable van and an English-speaking driver at your disposal by the hour or for the full day. Beaches, restaurants and shopping at your own pace."
+          titulo: "Private Driver for the Day",
+          texto: "Beaches, Archaeological Sites, Cenotes, markets and shopping at your own pace."
         },
         grupos: {
           titulo: "Group Transport",
@@ -775,7 +790,7 @@ window.TEVE_CONFIG = {
         },
         chofer: {
           titulo: "Chofer Privado por Día",
-          texto: "Van cómoda y chofer bilingüe a tu disposición por horas o el día completo. Playas, restaurantes y compras a tu propio ritmo."
+          texto: "Playas, zonas arqueológicas, cenotes, mercados y compras a tu propio ritmo."
         },
         grupos: {
           titulo: "Transportación para Grupos",
@@ -1060,7 +1075,7 @@ window.TEVE_CONFIG = {
         },
         chofer: {
           titulo: "Motorista Privativo por Dia",
-          texto: "Van confortável e motorista bilíngue à sua disposição por hora ou o dia inteiro. Praias, restaurantes e compras no seu ritmo."
+          texto: "Praias, sítios arqueológicos, cenotes, mercados e compras no seu ritmo."
         },
         grupos: {
           titulo: "Transporte para Grupos",
