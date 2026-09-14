@@ -57,16 +57,16 @@ window.TEVE_CONFIG = {
   /* ======================================================================
      0. IDIOMAS
      ----------------------------------------------------------------------
-     El idioma por defecto es el que ve quien entra a tevetours.com sin
+     El idioma por defecto es el que ve quien entra a tevetransferstours.com sin
      indicar nada, y el que Google usa como versión principal del sitio.
 
      Está en inglés a propósito: tus clientes vienen de Reino Unido,
      Australia, Estados Unidos y Canadá.
 
      Direcciones que genera el sitio:
-         Inglés     tevetours.com/            tevetours.com/tours
-         Español    tevetours.com/es/         tevetours.com/es/tours
-         Portugués  tevetours.com/pt/         tevetours.com/pt/tours
+         Inglés     tevetransferstours.com/            tevetransferstours.com/tours
+         Español    tevetransferstours.com/es/         tevetransferstours.com/es/tours
+         Portugués  tevetransferstours.com/pt/         tevetransferstours.com/pt/tours
 
      Para quitar un idioma, bórralo de idiomasActivos y desaparece del
      selector, del mapa del sitio y de las etiquetas hreflang.
@@ -75,7 +75,7 @@ window.TEVE_CONFIG = {
   idiomasActivos: ["en", "es", "pt"],
 
   // Detectar el idioma del navegador y redirigir la primera visita.
-  // true  = un visitante de Brasil que entra a tevetours.com ve el portugués.
+  // true  = un visitante de Brasil que entra a tevetransferstours.com ve el portugués.
   // false = todos ven inglés hasta que cambian de idioma a mano.
   detectarIdiomaDelNavegador: true,
 
@@ -85,7 +85,7 @@ window.TEVE_CONFIG = {
   marca: {
     nombre: "TEVE",
     nombreCompleto: "TEVE Transfers & Tours",
-    dominio: "https://www.tevetours.com",
+    dominio: "https://www.tevetransferstours.com",
 
     // Logotipo oficial de TEVE, extraído del tarifario original a 834x840 px.
     // La versión "blanca" lleva el anillo y la tipografía en blanco para que

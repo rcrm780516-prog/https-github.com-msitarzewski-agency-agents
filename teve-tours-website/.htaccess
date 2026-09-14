@@ -15,13 +15,18 @@
   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
 
   # sin www -> con www
-  RewriteCond %{HTTP_HOST} ^tevetours\.com [NC]
-  RewriteRule ^(.*)$ https://www.tevetours.com/$1 [R=301,L]
+  RewriteCond %{HTTP_HOST} ^tevetransferstours\.com [NC]
+  RewriteRule ^(.*)$ https://www.tevetransferstours.com/$1 [R=301,L]
+
+  # El dominio anterior manda a este, con o sin www. Si tevetours.com ya no es
+  # tuyo, esta regla simplemente nunca se activa: no estorba.
+  RewriteCond %{HTTP_HOST} ^(www\.)?tevetours\.com [NC]
+  RewriteRule ^(.*)$ https://www.tevetransferstours.com/$1 [R=301,L]
 
   # ------------------------------------------------------------------------
   # 2. Rutas internas del sitio: todas sirven index.html conservando la
   #    dirección en la barra del navegador. Sin esto, entrar directo a
-  #    www.tevetours.com/tours daría error 404.
+  #    www.tevetransferstours.com/tours daría error 404.
   #
   #    Inglés (raíz):   /services /tours /destinations /about-tim /blog /contact
   #    Español:         /es/ y /es/servicios /es/tours /es/destinos ...
