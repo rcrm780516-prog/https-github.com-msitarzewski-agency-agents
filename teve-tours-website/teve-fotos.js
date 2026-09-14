@@ -83,7 +83,7 @@ window.TEVE_FOTOS = {
     // comparte tevetours.com por WhatsApp, Facebook o Instagram.
     // Si está vacía, el enlace se ve gris y sin gancho.
     // 1200x630 px HORIZONTAL · pon una foto atractiva con el logo encima
-    imagenRedes: ""
+    imagenRedes: "/img/compartir-redes.jpg"
   },
 
   /* ======================================================================
@@ -99,23 +99,23 @@ window.TEVE_FOTOS = {
     // Se le pone un velo oscuro encima, así que funciona mejor una foto
     // luminosa: playa, mar turquesa, la camioneta con el hotel de fondo.
     // 1920x1080 px HORIZONTAL
-    hero: "",
+    hero: "/img/hero.jpg",
 
     // Franja "¿Qué nos hace diferentes?" (sale en Inicio y en Conoce a Tim).
     // Es una banda ancha y baja: la parte de arriba y de abajo se recortan.
     // Deja el motivo principal al centro.
     // 1920x800 px HORIZONTAL Y BAJA
-    porQue: "",
+    porQue: "/img/por-que.jpg",
 
     // Foto de Tim. Se recorta en CÍRCULO, así que debe ser cuadrada y con
     // la cara centrada, ni muy pegada al borde ni muy lejos.
     // Retrato sonriendo, de día, junto a la camioneta funciona muy bien.
     // 800x800 px CUADRADA
-    timFoto: "",
+    timFoto: "/img/tim.jpg",
 
     // Fondo de la página de Contacto (opcional).
     // 1920x800 px HORIZONTAL
-    contacto: ""
+    contacto: "/img/contacto.jpg"
   },
 
   /* ======================================================================
@@ -130,28 +130,28 @@ window.TEVE_FOTOS = {
     // "Transfer Privado Aeropuerto ↔ Hotel"
     // Ideal: recepción con letrero en la sala de llegadas, o la camioneta
     // en la puerta del hotel con las maletas.
-    transfer: "",
+    transfer: "/img/servicios/transfer.jpg",
 
     // "Chofer Privado por Día"
     // Ideal: interior de la van limpia, o el chofer abriendo la puerta.
-    chofer: "",
+    chofer: "/img/servicios/chofer.jpg",
 
     // "Transportación para Grupos"
     // Ideal: la unidad grande, o un grupo subiendo a la camioneta.
-    grupos: "",
+    grupos: "/img/servicios/grupos.jpg",
 
     // "Catamarán a Isla Mujeres"
     // Ideal: el catamarán navegando, agua turquesa.
-    catamaran: "",
+    catamaran: "/img/servicios/catamaran.jpg",
 
     // "Renta de Yate Privado"
     // Ideal: el yate desde afuera, o la cubierta al atardecer.
-    yate: "",
+    yate: "/img/servicios/yate.jpg",
 
     // "Travel Concierge"
     // Ideal: algo que hable de planeación a la medida: un itinerario, una
     // mesa en restaurante, un atardecer reservado.
-    concierge: ""
+    concierge: "/img/servicios/concierge.jpg"
   },
 
   /* ======================================================================
@@ -184,11 +184,11 @@ window.TEVE_FOTOS = {
 
     // "Chichén Itzá Clásico"
     // La pirámide de Kukulkán, de preferencia con cielo despejado.
-    "xichen-clasico": "",
+    "xichen-clasico": "/img/tours/xichen-clasico.jpg",
 
     // "Catamarán Plus a Isla Mujeres"
     // El catamarán navegando o la Playa Norte de Isla Mujeres.
-    "cat-plus": ""
+    "cat-plus": "/img/tours/cat-plus.jpg"
   },
 
   /* ======================================================================
@@ -202,16 +202,16 @@ window.TEVE_FOTOS = {
   destinos: {
 
     // Tarjeta "Chichén Itzá"
-    chichen: "",
+    chichen: "/img/destinos/chichen.jpg",
 
     // Tarjeta "Tulum"
-    tulum: "",
+    tulum: "/img/destinos/tulum.jpg",
 
     // Tarjeta "Isla Mujeres"
-    isla: "",
+    isla: "/img/destinos/isla.jpg",
 
     // Tarjeta "Bacalar & Holbox"
-    bacalar: ""
+    bacalar: "/img/destinos/bacalar.jpg"
   },
 
   /* ======================================================================
@@ -223,12 +223,12 @@ window.TEVE_FOTOS = {
   blog: {
 
     // "Transfer Privado vs Compartido: ¿Cuál te conviene?"
-    "transfer-vs-shared": "",
+    "transfer-vs-shared": "/img/blog/transfer-vs-shared.jpg",
 
     // "Chichén Itzá Privado desde Cancún: Guía Completa 2026"
-    "chichen-guide": "",
+    "chichen-guide": "/img/blog/chichen-guide.jpg",
 
     // "Estadías de Invierno en Cancún: Guía de Transporte"
-    "snowbirds": ""
+    "snowbirds": "/img/blog/snowbirds.jpg"
   }
 };
