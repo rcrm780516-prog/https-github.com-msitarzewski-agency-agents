@@ -2384,11 +2384,25 @@ const C = window.TEVE_CONFIG || {};
     });
   });
 
+  // Nombres anteriores: el catálogo de tours cambió de los seis tours
+  // inventados a los productos reales, así que un teve-fotos.js generado antes
+  // trae claves que ya no existen. Solo se reaprovechan las fotos cuyo tema es
+  // el mismo; las demás se quedan vacías a propósito, porque una foto de otro
+  // lugar puesta bajo el nombre de un producto sería publicidad engañosa.
+  const ANTES = {
+    tours: {
+      'xichen-clasico': 'chichen',  // pirámide de Chichén Itzá
+      'cat-plus':       'isla',     // catamarán a Isla Mujeres
+      'xenotes':        'cenote'    // cenote
+    }
+  };
+
   // servicios, tours, destinos y blog son listas: se busca por id
   ['servicios', 'tours', 'destinos', 'blog'].forEach(grupo => {
     if (!F[grupo] || !Array.isArray(C[grupo])) return;
+    const antes = ANTES[grupo] || {};
     C[grupo].forEach(item => {
-      const ruta = F[grupo][item.id];
+      const ruta = F[grupo][item.id] || F[grupo][antes[item.id]];
       if (ruta) item.imagen = ruta;
     });
   });

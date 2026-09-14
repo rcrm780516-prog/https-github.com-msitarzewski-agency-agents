@@ -308,6 +308,15 @@ function actualizarResumen() {
   document.getElementById('btn-img').disabled = !hay;
 }
 
+/* ---------- nombres que usaban los tours antes del catálogo real ---------- */
+const ANTES = {
+  tours: {
+    'xichen-clasico': 'chichen',  // pirámide de Chichén Itzá
+    'cat-plus':       'isla',     // catamarán a Isla Mujeres
+    'xenotes':        'cenote'    // cenote
+  }
+};
+
 /* ---------- recuperar las fotos de un teve-fotos.js anterior ---------- */
 function cargarPrevio(input) {
   const file = input.files[0];
@@ -322,8 +331,13 @@ function cargarPrevio(input) {
       if (ini < 0) return;
       const bloque = texto.slice(ini, texto.indexOf('\n  }', ini));
       sec.campos.forEach(c => {
-        const re = new RegExp('["\\s]' + c.id.replace(/[-]/g, '\\-') + '"?\\s*:\\s*"(data:[^"]+|\\/img\\/[^"]+)"');
-        const m = bloque.match(re);
+        // Un archivo anterior puede traer el nombre viejo del tour. Se busca
+        // primero el nombre actual y, si no está, el que se usaba antes.
+        const buscar = id => {
+          const re = new RegExp('["\\s]' + id.replace(/[-]/g, '\\-') + '"?\\s*:\\s*"(data:[^"]+|\\/img\\/[^"]+)"');
+          return bloque.match(re);
+        };
+        const m = buscar(c.id) || (ANTES[sec.grupo] && ANTES[sec.grupo][c.id] ? buscar(ANTES[sec.grupo][c.id]) : null);
         if (!m) return;
         const k = claveDe(sec.grupo, c.id);
         fotos[sec.grupo][c.id] = m[1];
