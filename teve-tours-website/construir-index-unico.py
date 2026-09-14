@@ -32,16 +32,19 @@ def main():
         fotos = fotos.replace('"%s"' % ruta, '"%s"' % uri)
 
     html = (RAIZ / 'index.html').read_text(encoding='utf-8')
-    # Se INCRUSTA el contenido y ADEMÁS se conserva la etiqueta original.
-    # Así el archivo funciona solo, pero si subes un teve-config.js o un
-    # teve-fotos.js al servidor, esos ganan y el sitio los usa.
-    # (Si no existen, el navegador simplemente no carga nada y quedan los
-    #  valores incrustados: el sitio nunca se queda sin datos.)
+    # La etiqueta original se SUSTITUYE por el contenido, no se conserva.
+    #
+    # Antes se dejaban las dos cosas, para poder cambiar textos o fotos en el
+    # servidor sin volver a generar el archivo. Salió caro: si en public_html
+    # quedaba un teve-config.js de una versión anterior, ese ganaba y el sitio
+    # mostraba el contenido viejo sobre el diseño nuevo, sin ningún aviso.
+    # Un archivo único tiene que ser exactamente lo que dice ser: lo que está
+    # adentro es lo que se ve, sin importar qué más haya en la carpeta.
     for etiqueta, contenido in (('<script src="/teve-config.js"></script>', config),
                                 ('<script src="/teve-fotos.js"></script>', fotos)):
         if etiqueta not in html:
             raise SystemExit('No se encontró %s en index.html' % etiqueta)
-        html = html.replace(etiqueta, '<script>\n' + contenido + '\n</script>\n' + etiqueta)
+        html = html.replace(etiqueta, '<script>\n' + contenido + '\n</script>')
 
     destino = RAIZ / 'dist'
     destino.mkdir(exist_ok=True)
