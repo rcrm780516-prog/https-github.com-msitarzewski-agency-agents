@@ -1,0 +1,29 @@
+TEVE TRANSFERS & TOURS — VERSION DEL SITIO
+==========================================
+
+Version:  2026-09-15-c
+Subida:   (escribe aqui la fecha en que la subiste)
+
+QUE TRAE ESTA VERSION
+---------------------
+- Private Driver for the Day destacado y PRIMERO, tambien en celular
+- Sello Travellers' Choice 2026 grande, esquina superior izquierda del hero
+- Los 7 tours con su fotografia propia
+- Texto completo de Tim en la seccion Meet Tim
+- Dominio tevetransferstours.com en todo el sitio
+- index.html de 104 KB, fotos aparte en img/
+
+
+PARA QUE SIRVE ESTE ARCHIVO
+---------------------------
+Para saber QUE version esta viva en tu servidor sin adivinar.
+
+Abre en el navegador:
+
+    tevetransferstours.com/version.txt
+
+Si ves "2026-09-15-c", tu sitio esta actualizado.
+Si no aparece este archivo, o dice otra version, es que el index.html
+que esta arriba no es el nuevo: la subida no se completo.
+
+Cada vez que te pase una version nueva, este archivo cambia.
