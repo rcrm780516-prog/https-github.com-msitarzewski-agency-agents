@@ -8,14 +8,25 @@ Guía paso a paso. No necesitas saber programar.
 
 ```
 public_html/
-├── index.html          ← el sitio completo
-├── teve-config.js      ← EL EMBEBEDOR: logo, imágenes, teléfonos, precios
+├── index.html          ← el sitio COMPLETO: textos, precios, logo y fotos
 ├── robots.txt          ← indica a Google qué rastrear
 ├── sitemap.xml         ← mapa del sitio para Google
-├── .htaccess           ← HTTPS, www y las rutas /tours, /servicios...
-└── img/                ← aquí van tu logotipo y tus fotos
-    └── LEEME.txt          (medidas y nombres recomendados)
+└── .htaccess           ← HTTPS, www y las rutas /tours, /servicios...
 ```
+
+Son cuatro archivos. Nada más.
+
+> ### ⚠️ No dejes un `teve-config.js` ni un `teve-fotos.js` en la carpeta
+>
+> El `index.html` ya lleva todo adentro: los textos, los precios, el logotipo
+> y las fotografías. No necesita ningún archivo al lado.
+>
+> Si alguna vez subiste un `teve-config.js` o un `teve-fotos.js`, **bórralos**.
+> No hacen daño, pero tampoco sirven ya, y tenerlos ahí confunde: parece que
+> el sitio se edita desde ahí y no es así.
+>
+> Para cambiar textos, precios o fotos se genera un `index.html` nuevo. Es un
+> solo archivo: lo subes, lo sobreescribes, y recargas con `Ctrl+F5`.
 
 ---
 
