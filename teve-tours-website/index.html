@@ -235,6 +235,27 @@
   .hero-marca img { width: 100%; height: 100%; }
   @keyframes marcaGira { to { transform: rotate(360deg); } }
 
+  /* --- sello Travelers' Choice en la portada --- */
+  .hero-premio { display: flex; justify-content: center; margin-top: 26px; }
+  .hero-premio a {
+    display: inline-flex; align-items: center; gap: 13px;
+    background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    padding: 9px 20px 9px 12px; border-radius: 100px; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .hero-premio a:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.5); }
+  .hero-premio img { height: 46px; width: auto; display: block; }
+  /* El respaldo: si la imagen de TripAdvisor no carga, queda el texto solo y
+     el sello sigue comunicando el premio en vez de dejar un hueco roto. */
+  .hero-premio .premio-txt { text-align: left; line-height: 1.25; color: #fff; }
+  .hero-premio .premio-txt b { display: block; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.01em; }
+  .hero-premio .premio-txt span { display: block; font-size: 0.68rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.1em; }
+  @media (max-width: 480px) {
+    .hero-premio img { height: 38px; }
+    .hero-premio a { padding: 8px 16px 8px 10px; gap: 10px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .hero-badge img, .hero-marca { animation: none; }
   }
@@ -599,6 +620,7 @@
         <a class="btn-secondary" href="/services" data-page="servicios" data-i18n="heroBotonServicios">View Services</a>
         <button class="btn-wa" onclick="waMsg(T('waPortada'))" data-i18n="heroBotonWhatsapp">Quote on WhatsApp</button>
       </div>
+      <div class="hero-premio" id="heroPremio"></div>
     </div>
   </section>
 
@@ -948,16 +970,16 @@ const C = window.TEVE_CONFIG || {};
   // lugar puesta bajo el nombre de un producto sería publicidad engañosa.
   const ANTES = {
     tours: {
-      'xichen-clasico': 'chichen',  // pirámide de Chichén Itzá — foto exacta
-      'cat-plus':       'isla',     // catamarán a Isla Mujeres — foto exacta
-      'xenotes':        'cenote',   // cenote — foto exacta
-      // Los cuatro parques no tenían foto propia en el archivo anterior. Se
-      // usa la foto del archivo que más se le parece para que ninguna tarjeta
-      // salga vacía. Son provisionales: cámbialas por fotos del parque.
-      'xcaret-plus':    'tulum',
-      'xelha':          'akumal',
-      'xplor':          'coba',
-      'dolphin-royal':  'isla'
+      'xichen-clasico': 'chichen',  // pirámide de Chichén Itzá
+      'cat-plus':       'isla',     // catamarán a Isla Mujeres
+      'xenotes':        'cenote'    // cenote
+      //
+      // Aquí había cuatro más: Xcaret Plus con una foto de Tulum, Xel-Há con
+      // una de Akumal, Xplor con una de Cobá y el Dolphin Royal con la del
+      // catamarán. Se pusieron para que ninguna tarjeta saliera vacía y fue un
+      // error: son parques con nombre propio, y enseñar otro lugar bajo su
+      // nombre le promete al visitante algo que no va a comprar. Prefieren
+      // verse sin foto, con el sello de la casa, hasta que existan las suyas.
     }
   };
 
@@ -1159,9 +1181,20 @@ const DEGRADADOS = [
   'linear-gradient(135deg,#02222e,#04a4e3)'
 ];
 function fondo(src, i) {
-  return src
-    ? `background-image:url('${esc(src)}')`
-    : `background:${DEGRADADOS[i % DEGRADADOS.length]}`;
+  if (src) return `background-image:url('${esc(src)}')`;
+  // Sin fotografía se pone el degradado de la casa con el sello encima, en
+  // marca de agua. Un degradado a secas se lee como una imagen que no cargó;
+  // con el sello se lee como una decisión, que es lo que es: preferimos el
+  // hueco antes que enseñar la foto de otro lugar.
+  const grad = DEGRADADOS[i % DEGRADADOS.length];
+  const sello = (C.marca || {}).logoBlanco || (C.marca || {}).logo;
+  if (!sello) return `background:${grad}`;
+  // Las dos capas van en UNA sola declaración. Separadas, el
+  // background-image del sello pisaba el degradado y la tarjeta salía blanca.
+  return `background-image:url('${esc(sello)}'), ${grad};`
+       + ` background-repeat:no-repeat, no-repeat;`
+       + ` background-position:center, center;`
+       + ` background-size:46% auto, cover;`;
 }
 
 /* ---------- WhatsApp ---------- */
@@ -1431,6 +1464,27 @@ function renderPortada() {
     badge.innerHTML = '';
     marca.innerHTML = '';
   }
+  // Sello Travelers' Choice en la portada. Usa la imagen oficial servida por
+  // TripAdvisor, que es la forma que ellos autorizan para mostrar el premio.
+  // Si esa imagen no carga -- TripAdvisor caído, red del visitante, un
+  // bloqueador -- se esconde y queda el texto, que dice lo mismo y enlaza a la
+  // ficha real. Nunca se queda el icono roto.
+  const premio = document.getElementById('heroPremio');
+  const ta = ((C.widgets || {}).tripadvisor) || {};
+  const fichaTA = (C.redes || {}).tripadvisor;
+  if (ta.activo && fichaTA) {
+    const anio = esc(ta.anio || '2026');
+    premio.innerHTML = `
+      <a href="${esc(fichaTA)}" target="_blank" rel="noopener"
+         aria-label="${esc(T('taPremio'))} ${anio} — Tripadvisor">
+        <img src="https://static.tacdn.com/img2/travelers_choice/widgets/tchotel_${anio}_LL.png"
+             alt="" loading="lazy" onerror="this.remove()">
+        <span class="premio-txt"><b>${esc(T('taPremio'))} ${anio}</b><span>Tripadvisor</span></span>
+      </a>`;
+  } else {
+    premio.innerHTML = '';
+  }
+
   document.getElementById('heroEyebrow').textContent = m.nombreCompleto || '';
   document.getElementById('heroTitle').innerHTML = p.titulo || '';
   document.getElementById('heroSub').textContent = p.subtitulo || '';

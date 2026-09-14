@@ -532,7 +532,7 @@ window.TEVE_CONFIG = {
         waDestino: "Hi! I'd like a quote for a private tour to",
         waTraslado: "Hi! I'd like to quote a transfer.",
         waTourBusqueda: "Hi! I'd like to quote a private tour.",
-        waTim: "MESSAGE ME ON WHATSAPP", svcEstrella: "Our most booked service",
+        waTim: "MESSAGE ME ON WHATSAPP", svcEstrella: "Our most booked service", taPremio: "Travellers' Choice",
 
         avisoSuscrito: "Thank you! We'll send you travel ideas for the Riviera Maya.",
         avisoFaltanCampos: "Please fill in the required fields."
@@ -828,7 +828,7 @@ window.TEVE_CONFIG = {
         waDestino: "¡Hola! Quiero cotizar un tour privado a",
         waTraslado: "¡Hola! Quiero cotizar un traslado.",
         waTourBusqueda: "¡Hola! Quiero cotizar un tour privado.",
-        waTim: "ESCRÍBEME POR WHATSAPP", svcEstrella: "Nuestro servicio más vendido",
+        waTim: "ESCRÍBEME POR WHATSAPP", svcEstrella: "Nuestro servicio más vendido", taPremio: "Travellers' Choice",
 
         avisoSuscrito: "¡Gracias! Te enviaremos ideas de viaje para la Riviera Maya.",
         avisoFaltanCampos: "Por favor completa los campos obligatorios."
@@ -1118,7 +1118,7 @@ window.TEVE_CONFIG = {
         waDestino: "Olá! Quero um orçamento de passeio privativo para",
         waTraslado: "Olá! Quero um orçamento de transfer.",
         waTourBusqueda: "Olá! Quero um orçamento de passeio privativo.",
-        waTim: "FALE COMIGO NO WHATSAPP", svcEstrella: "Nosso serviço mais vendido",
+        waTim: "FALE COMIGO NO WHATSAPP", svcEstrella: "Nosso serviço mais vendido", taPremio: "Travellers' Choice",
 
         avisoSuscrito: "Obrigado! Enviaremos ideias de viagem para a Riviera Maya.",
         avisoFaltanCampos: "Por favor, preencha os campos obrigatórios."
