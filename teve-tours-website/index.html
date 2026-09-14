@@ -885,9 +885,16 @@ const C = window.TEVE_CONFIG || {};
   // lugar puesta bajo el nombre de un producto sería publicidad engañosa.
   const ANTES = {
     tours: {
-      'xichen-clasico': 'chichen',  // pirámide de Chichén Itzá
-      'cat-plus':       'isla',     // catamarán a Isla Mujeres
-      'xenotes':        'cenote'    // cenote
+      'xichen-clasico': 'chichen',  // pirámide de Chichén Itzá — foto exacta
+      'cat-plus':       'isla',     // catamarán a Isla Mujeres — foto exacta
+      'xenotes':        'cenote',   // cenote — foto exacta
+      // Los cuatro parques no tenían foto propia en el archivo anterior. Se
+      // usa la foto del archivo que más se le parece para que ninguna tarjeta
+      // salga vacía. Son provisionales: cámbialas por fotos del parque.
+      'xcaret-plus':    'tulum',
+      'xelha':          'akumal',
+      'xplor':          'coba',
+      'dolphin-royal':  'isla'
     }
   };
 
