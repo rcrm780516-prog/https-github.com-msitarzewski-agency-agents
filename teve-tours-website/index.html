@@ -321,6 +321,40 @@
   .svc-desde { text-align: center; font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
   .svc-card .btn-secondary { width: 100%; }
 
+  /* La tarjeta estrella: el servicio más vendido, a todo lo ancho y arriba.
+     Ocupa la fila completa de la rejilla y se lee como una pieza distinta,
+     no como una tarjeta más grande, que es lo que la haría verse descuadrada. */
+  .svc-estrella {
+    grid-column: 1 / -1; display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: 0; padding: 0; overflow: hidden; border: 2px solid var(--secondary);
+    border-radius: 14px; box-shadow: 0 16px 38px rgba(2,34,46,0.13);
+  }
+  .svc-estrella:hover { transform: none; box-shadow: 0 20px 44px rgba(2,34,46,0.17); }
+  .svc-estrella .svc-img {
+    margin: 0; border-radius: 0; aspect-ratio: auto; min-height: 340px; position: relative;
+  }
+  .svc-estrella-cuerpo { padding: 38px 40px; display: flex; flex-direction: column; justify-content: center; }
+  .svc-insignia {
+    display: inline-flex; align-items: center; gap: 7px; align-self: flex-start;
+    background: var(--secondary); color: #fff; font-size: 0.7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em; padding: 7px 15px;
+    border-radius: 100px; margin-bottom: 16px;
+  }
+  .svc-estrella h3 {
+    text-align: left; color: var(--primary); font-size: clamp(1.45rem, 2.6vw, 2rem);
+    line-height: 1.2; margin-bottom: 14px;
+  }
+  .svc-estrella p { text-align: left; font-size: 1.02rem; line-height: 1.65; flex: none; margin-bottom: 18px; }
+  .svc-estrella .svc-desde {
+    text-align: left; font-size: 1.05rem; color: var(--secondary); margin-bottom: 24px;
+  }
+  .svc-estrella .btn-secondary { width: auto; align-self: flex-start; padding-left: 34px; padding-right: 34px; }
+  @media (max-width: 800px) {
+    .svc-estrella { grid-template-columns: 1fr; }
+    .svc-estrella .svc-img { min-height: 220px; }
+    .svc-estrella-cuerpo { padding: 28px 24px; }
+  }
+
   /* ============ TARJETAS DE TOUR ============ */
   .tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
   .tour-card {
@@ -1291,32 +1325,20 @@ document.querySelectorAll('[data-ftab]').forEach(btn => {
    pantalla. Sin esto, pasar de 834 px a 56 lo deja lavado: el navegador
    usa un filtro rápido para reducciones tan grandes. Se recalcula sobre el
    logotipo que esté configurado, así que sigue funcionando si lo cambias. */
-function nitido(img, alturaCSS) {
-  const aplicar = () => {
-    if (!img.naturalWidth) return;
-    const dpr = Math.min(window.devicePixelRatio || 1, 3);
-    const h = Math.round(alturaCSS * dpr * 2);          // 2x extra de margen
-    if (img.naturalHeight <= h * 1.2) return;           // ya es del tamaño justo
-    const w = Math.round(img.naturalWidth * h / img.naturalHeight);
-    try {
-      const lienzo = document.createElement('canvas');
-      lienzo.width = w; lienzo.height = h;
-      const ctx = lienzo.getContext('2d');
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.drawImage(img, 0, 0, w, h);
-      img.style.width = (alturaCSS * w / h) + 'px';
-      img.src = lienzo.toDataURL('image/png');
-    } catch (err) { /* si algo falla se queda la imagen original */ }
-  };
-  if (img.complete) aplicar(); else img.addEventListener('load', aplicar, { once: true });
-}
+/* El logotipo se deja tal cual y lo escala el navegador.
+   Aquí vivía una función "nitido" que redibujaba el logo en un canvas a menor
+   resolución, con la idea de afinarlo. Hacía lo contrario: en una pantalla de
+   densidad 2 -- la mayoría de los Android y los iPhone que no son Pro -- bajaba
+   el logo de 500 a 296 píxeles reales y lo volvía a comprimir. El sello de TEVE
+   lleva el texto "TRANSFERS & TOURS" en el aro, en trazo fino, y ese remuestreo
+   en un solo paso lo deshacía: por eso se veía borroso en el móvil y nítido en
+   el escritorio. El navegador reduce la imagen mucho mejor que ese canvas. */
 
 function bloqueLogo(fuente, alto) {
   if (fuente) {
     const h = Number(alto) || 44;
     return `<img src="${esc(fuente)}" alt="${esc(C.marca.nombreCompleto)}"
-                 style="height:${h}px;width:auto;" onload="nitido(this, ${h})">`;
+                 style="height:${h}px;width:auto;">`;
   }
   return `<span class="logo-word">${esc(C.marca.nombre)}</span>
           <span class="logo-sub">${esc(C.marca.tagline)}</span>`;
@@ -1329,7 +1351,7 @@ function renderMarca() {
   const fLogo = document.getElementById('footerLogo');
   const fuente = C.marca.logoBlanco || C.marca.logo;
   fLogo.innerHTML = fuente
-    ? `<img src="${esc(fuente)}" alt="${esc(C.marca.nombreCompleto)}" style="height:58px;width:auto;" onload="nitido(this, 58)">`
+    ? `<img src="${esc(fuente)}" alt="${esc(C.marca.nombreCompleto)}" style="height:58px;width:auto;">`
     : `<span class="logo-word" style="color:#fff;">${esc(C.marca.nombre)}</span>
        <span class="logo-sub" style="display:block;">${esc(C.marca.tagline)}</span>`;
 
@@ -1447,6 +1469,23 @@ function tarjetaServicio(s, i) {
   const t = (L.servicios || {})[s.id] || {};
   const desde = trad(s.desde);
   const wa = `${T('waServicio')} ${t.titulo || ''}`.replace(/'/g, "\\'");
+
+  // El servicio estrella lleva otra composición: foto a un lado, el argumento
+  // de venta al otro y espacio para que el texto respire.
+  if (s.estrella) {
+    return `
+    <div class="svc-card svc-estrella">
+      <div class="svc-img" style="${fondo(s.imagen, i)}"></div>
+      <div class="svc-estrella-cuerpo">
+        <span class="svc-insignia">★ ${esc(T('svcEstrella'))}</span>
+        <h3>${esc(t.titulo)}</h3>
+        <p>${esc(t.texto)}</p>
+        ${desde ? `<div class="svc-desde">${esc(desde)}</div>` : ''}
+        <button class="btn-secondary" onclick="waMsg('${esc(wa)}')">${esc(T('tarjetaCotizar'))}</button>
+      </div>
+    </div>`;
+  }
+
   return `
     <div class="svc-card">
       <div class="svc-img" style="${fondo(s.imagen, i)}"></div>
@@ -1458,10 +1497,16 @@ function tarjetaServicio(s, i) {
 }
 function renderServicios() {
   const todos = C.servicios || [];
-  document.getElementById('servicesGridFull').innerHTML = todos.map(tarjetaServicio).join('');
+  // La estrella encabeza la sección: de nada sirve destacarla si aparece
+  // en medio o al final, como salga del orden del catálogo.
+  const primeroLaEstrella = lista => [...lista].sort((a, b) => (b.estrella ? 1 : 0) - (a.estrella ? 1 : 0));
+
+  document.getElementById('servicesGridFull').innerHTML =
+    primeroLaEstrella(todos).map(tarjetaServicio).join('');
+
   const destacados = todos.filter(s => s.destacado);
   document.getElementById('homeServicesGrid').innerHTML =
-    (destacados.length ? destacados : todos.slice(0, 3)).map(tarjetaServicio).join('');
+    primeroLaEstrella(destacados.length ? destacados : todos.slice(0, 3)).map(tarjetaServicio).join('');
 }
 
 /* ---------- tours ---------- */

@@ -175,7 +175,9 @@ window.TEVE_CONFIG = {
     // Los demás dicen "cotización personalizada" hasta que nos pases el
     // precio real: es preferible eso a publicar una cifra inventada.
     { id: "transfer",  imagen: "", destacado: true,  desde: { en: "From $50 USD per vehicle", es: "Desde $50 USD por vehículo", pt: "A partir de US$ 50 por veículo" } },
-    { id: "chofer",    imagen: "", destacado: true,  desde: { en: "From $200 USD · 4 hours, up to 8 people", es: "Desde $200 USD · 4 horas, hasta 8 personas", pt: "A partir de US$ 200 · 4 horas, até 8 pessoas" } },
+    // "estrella" saca este servicio de la rejilla y lo pone arriba, a todo lo
+    // ancho. Solo uno debe llevarla: si se marcan dos, dejan de destacar.
+    { id: "chofer",    imagen: "", destacado: true,  estrella: true, desde: { en: "From $200 USD · 4 hours, up to 8 people", es: "Desde $200 USD · 4 horas, hasta 8 personas", pt: "A partir de US$ 200 · 4 horas, até 8 pessoas" } },
     { id: "grupos",    imagen: "", destacado: true,  desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
     { id: "catamaran", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
     { id: "yate",      imagen: "", destacado: false, desde: { en: "From $700 USD · up to 8 people", es: "Desde $700 USD · hasta 8 personas", pt: "A partir de US$ 700 · até 8 pessoas" } },
@@ -530,7 +532,7 @@ window.TEVE_CONFIG = {
         waDestino: "Hi! I'd like a quote for a private tour to",
         waTraslado: "Hi! I'd like to quote a transfer.",
         waTourBusqueda: "Hi! I'd like to quote a private tour.",
-        waTim: "MESSAGE ME ON WHATSAPP",
+        waTim: "MESSAGE ME ON WHATSAPP", svcEstrella: "Our most booked service",
 
         avisoSuscrito: "Thank you! We'll send you travel ideas for the Riviera Maya.",
         avisoFaltanCampos: "Please fill in the required fields."
@@ -826,7 +828,7 @@ window.TEVE_CONFIG = {
         waDestino: "¡Hola! Quiero cotizar un tour privado a",
         waTraslado: "¡Hola! Quiero cotizar un traslado.",
         waTourBusqueda: "¡Hola! Quiero cotizar un tour privado.",
-        waTim: "ESCRÍBEME POR WHATSAPP",
+        waTim: "ESCRÍBEME POR WHATSAPP", svcEstrella: "Nuestro servicio más vendido",
 
         avisoSuscrito: "¡Gracias! Te enviaremos ideas de viaje para la Riviera Maya.",
         avisoFaltanCampos: "Por favor completa los campos obligatorios."
@@ -1116,7 +1118,7 @@ window.TEVE_CONFIG = {
         waDestino: "Olá! Quero um orçamento de passeio privativo para",
         waTraslado: "Olá! Quero um orçamento de transfer.",
         waTourBusqueda: "Olá! Quero um orçamento de passeio privativo.",
-        waTim: "FALE COMIGO NO WHATSAPP",
+        waTim: "FALE COMIGO NO WHATSAPP", svcEstrella: "Nosso serviço mais vendido",
 
         avisoSuscrito: "Obrigado! Enviaremos ideias de viagem para a Riviera Maya.",
         avisoFaltanCampos: "Por favor, preencha os campos obrigatórios."
