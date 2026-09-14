@@ -1321,6 +1321,7 @@ window.TEVE_CONFIG = {
 };
 
 </script>
+<script src="/teve-config.js"></script>
 
 <!-- ARCHIVO DE FOTOGRAFÍAS: aquí se pegan todas las imágenes del sitio.
      Va después del config para poder sobrescribir sus rutas. -->
@@ -1484,28 +1485,38 @@ window.TEVE_FOTOS = {
   /* ======================================================================
      4. TOURS  —  6 fotos
      ----------------------------------------------------------------------
-     Salen en "Tours Privados Destacados" (portada) y en la página Tours.
+     Son los 7 tours destacados, los únicos que llevan tarjeta. El resto
+     del catálogo solo se cotiza desde el buscador y no necesita foto.
      TODAS: 800x500 px HORIZONTAL
      ====================================================================== */
   tours: {
+    // "Xcaret Plus"
+    // Ríos subterráneos, el espectáculo México Espectacular, la playa del parque.
+    "xcaret-plus": "",
 
-    // "Chichén Itzá y Cenote con Experiencia Maya"
-    chichen: "",
+    // "Xel-Há All Inclusive"
+    // La caleta natural, gente haciendo snorkel, el salto del acantilado.
+    "xelha": "",
 
-    // "Tulum, Cenote y Playa del Carmen"
-    tulum: "",
+    // "Xplor (día)"
+    // Tirolesa sobre la selva o los vehículos anfibios en el lodo.
+    "xplor": "",
 
-    // "Catamarán de Lujo a Isla Mujeres"
-    isla: "",
+    // "Xenotes"
+    // Un cenote abierto con el rayo de luz entrando, o el kayak.
+    "xenotes": "",
 
-    // "Visita a Cenote y Snorkel en Laguna"
-    cenote: "",
+    // "Dolphin Royal Connection"
+    // Delfín saltando con una persona, o el foot push.
+    "dolphin-royal": "",
 
-    // "Akumal: Snorkel con Tortugas y Cenotes"
-    akumal: "",
+    // "Chichén Itzá Clásico"
+    // La pirámide de Kukulkán, de preferencia con cielo despejado.
+    "xichen-clasico": "",
 
-    // "Observación de Monos y Ruinas de Cobá"
-    coba: ""
+    // "Catamarán Plus a Isla Mujeres"
+    // El catamarán navegando o la Playa Norte de Isla Mujeres.
+    "cat-plus": ""
   },
 
   /* ======================================================================
@@ -1551,6 +1562,7 @@ window.TEVE_FOTOS = {
 };
 
 </script>
+<script src="/teve-fotos.js"></script>
 
 <style>
   :root {

@@ -32,11 +32,16 @@ def main():
         fotos = fotos.replace('"%s"' % ruta, '"%s"' % uri)
 
     html = (RAIZ / 'index.html').read_text(encoding='utf-8')
+    # Se INCRUSTA el contenido y ADEMÁS se conserva la etiqueta original.
+    # Así el archivo funciona solo, pero si subes un teve-config.js o un
+    # teve-fotos.js al servidor, esos ganan y el sitio los usa.
+    # (Si no existen, el navegador simplemente no carga nada y quedan los
+    #  valores incrustados: el sitio nunca se queda sin datos.)
     for etiqueta, contenido in (('<script src="/teve-config.js"></script>', config),
                                 ('<script src="/teve-fotos.js"></script>', fotos)):
         if etiqueta not in html:
             raise SystemExit('No se encontró %s en index.html' % etiqueta)
-        html = html.replace(etiqueta, '<script>\n' + contenido + '\n</script>')
+        html = html.replace(etiqueta, '<script>\n' + contenido + '\n</script>\n' + etiqueta)
 
     destino = RAIZ / 'dist'
     destino.mkdir(exist_ok=True)
