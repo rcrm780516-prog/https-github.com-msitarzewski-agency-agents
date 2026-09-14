@@ -12,24 +12,48 @@ Vuelve a ejecutarlo cada vez que cambies cualquiera de esos archivos.
 """
 import base64
 import pathlib
+import re
 
 RAIZ = pathlib.Path(__file__).parent
-IMAGENES = ('/img/logo-teve.png', '/img/logo-teve-blanco.png', '/img/favicon.png')
+
+TIPOS = {'.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+         '.webp': 'image/webp', '.svg': 'image/svg+xml', '.gif': 'image/gif'}
 
 
 def a_data_uri(ruta):
     datos = (RAIZ / ruta.lstrip('/')).read_bytes()
-    tipo = 'image/png' if ruta.lower().endswith('.png') else 'image/svg+xml'
+    tipo = TIPOS.get(pathlib.Path(ruta).suffix.lower(), 'application/octet-stream')
     return 'data:%s;base64,%s' % (tipo, base64.b64encode(datos).decode())
 
 
+def incrustar_rutas(texto):
+    """Cambia cada "/img/..." por la imagen misma, en base64.
+
+    Antes solo se incrustaban tres rutas escritas a mano, así que una foto
+    nueva en img/ salía como ruta rota en el archivo único. Ahora se busca
+    cualquier ruta de img/ que aparezca entre comillas. Así las fotografías
+    pueden vivir como archivos normales en el repositorio -- se ven, se
+    reemplazan y pesan lo que pesan -- en vez de como un chorro de base64
+    dentro de teve-fotos.js, que nadie puede abrir ni revisar.
+    """
+    def cambia(m):
+        ruta = m.group(1)
+        archivo = RAIZ / ruta.lstrip('/')
+        if not archivo.is_file():
+            faltantes.append(ruta)
+            return m.group(0)
+        return '"%s"' % a_data_uri(ruta)
+
+    faltantes = []
+    texto = re.sub(r'"(/img/[^"]+)"', cambia, texto)
+    for r in sorted(set(faltantes)):
+        print('  AVISO: no existe %s — se queda como ruta' % r)
+    return texto
+
+
 def main():
-    config = (RAIZ / 'teve-config.js').read_text(encoding='utf-8')
-    fotos = (RAIZ / 'teve-fotos.js').read_text(encoding='utf-8')
-    for ruta in IMAGENES:
-        uri = a_data_uri(ruta)
-        config = config.replace('"%s"' % ruta, '"%s"' % uri)
-        fotos = fotos.replace('"%s"' % ruta, '"%s"' % uri)
+    config = incrustar_rutas((RAIZ / 'teve-config.js').read_text(encoding='utf-8'))
+    fotos = incrustar_rutas((RAIZ / 'teve-fotos.js').read_text(encoding='utf-8'))
 
     html = (RAIZ / 'index.html').read_text(encoding='utf-8')
     # La etiqueta original se SUSTITUYE por el contenido, no se conserva.
