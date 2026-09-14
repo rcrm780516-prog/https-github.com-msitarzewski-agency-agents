@@ -235,25 +235,23 @@
   .hero-marca img { width: 100%; height: 100%; }
   @keyframes marcaGira { to { transform: rotate(360deg); } }
 
-  /* --- sello Travelers' Choice en la portada --- */
-  .hero-premio { display: flex; justify-content: center; margin-top: 26px; }
-  .hero-premio a {
-    display: inline-flex; align-items: center; gap: 13px;
-    background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.3);
-    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-    padding: 9px 20px 9px 12px; border-radius: 100px; text-decoration: none;
-    transition: background 0.2s, border-color 0.2s;
+  /* --- sello Travelers' Choice, esquina superior izquierda de la portada --- */
+  .hero-premio { position: absolute; z-index: 3; top: 26px; left: 26px; }
+  .hero-premio a { display: block; text-decoration: none; transition: transform 0.25s; }
+  .hero-premio a:hover { transform: scale(1.04); }
+  .hero-premio img {
+    display: block; width: clamp(96px, 10vw, 150px); height: auto;
+    /* La obra es negra y va sobre una foto con velo oscuro encima. Dos halos
+       blancos, uno cerrado y otro abierto, la despegan del fondo sin meterla
+       en una caja: se lee a cualquier hora del dia y en cualquier foto. */
+    filter: drop-shadow(0 0 3px rgba(255,255,255,0.95))
+            drop-shadow(0 0 10px rgba(255,255,255,0.75))
+            drop-shadow(0 0 26px rgba(255,255,255,0.45))
+            drop-shadow(0 6px 14px rgba(0,0,0,0.3));
   }
-  .hero-premio a:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.5); }
-  .hero-premio img { height: 46px; width: auto; display: block; }
-  /* El respaldo: si la imagen de TripAdvisor no carga, queda el texto solo y
-     el sello sigue comunicando el premio en vez de dejar un hueco roto. */
-  .hero-premio .premio-txt { text-align: left; line-height: 1.25; color: #fff; }
-  .hero-premio .premio-txt b { display: block; font-size: 0.86rem; font-weight: 700; letter-spacing: 0.01em; }
-  .hero-premio .premio-txt span { display: block; font-size: 0.68rem; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.1em; }
-  @media (max-width: 480px) {
-    .hero-premio img { height: 38px; }
-    .hero-premio a { padding: 8px 16px 8px 10px; gap: 10px; }
+  @media (max-width: 760px) {
+    .hero-premio { top: 16px; left: 16px; }
+    .hero-premio img { width: clamp(78px, 21vw, 104px); }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -611,6 +609,7 @@
     <canvas id="heroCanvas" aria-hidden="true"></canvas>
     <div class="hero-veil"></div>
     <div class="hero-marca" id="heroMarca" aria-hidden="true"></div>
+    <div class="hero-premio" id="heroPremio"></div>
     <div class="hero-content">
       <div class="hero-badge" id="heroBadge"></div>
       <div class="hero-eyebrow" id="heroEyebrow"></div>
@@ -620,7 +619,7 @@
         <a class="btn-secondary" href="/services" data-page="servicios" data-i18n="heroBotonServicios">View Services</a>
         <button class="btn-wa" onclick="waMsg(T('waPortada'))" data-i18n="heroBotonWhatsapp">Quote on WhatsApp</button>
       </div>
-      <div class="hero-premio" id="heroPremio"></div>
+
     </div>
   </section>
 
@@ -1464,22 +1463,19 @@ function renderPortada() {
     badge.innerHTML = '';
     marca.innerHTML = '';
   }
-  // Sello Travelers' Choice en la portada. Usa la imagen oficial servida por
-  // TripAdvisor, que es la forma que ellos autorizan para mostrar el premio.
-  // Si esa imagen no carga -- TripAdvisor caído, red del visitante, un
-  // bloqueador -- se esconde y queda el texto, que dice lo mismo y enlaza a la
-  // ficha real. Nunca se queda el icono roto.
+  // Sello Travelers' Choice en la esquina de la portada. La imagen es un
+  // archivo del sitio, no una peticion a los servidores de TripAdvisor: asi
+  // aparece siempre, sin depender de que ellos respondan ni de que el
+  // visitante traiga un bloqueador. El enlace sigue yendo a la ficha real.
   const premio = document.getElementById('heroPremio');
   const ta = ((C.widgets || {}).tripadvisor) || {};
   const fichaTA = (C.redes || {}).tripadvisor;
   if (ta.activo && fichaTA) {
     const anio = esc(ta.anio || '2026');
     premio.innerHTML = `
-      <a href="${esc(fichaTA)}" target="_blank" rel="noopener"
-         aria-label="${esc(T('taPremio'))} ${anio} — Tripadvisor">
-        <img src="https://static.tacdn.com/img2/travelers_choice/widgets/tchotel_${anio}_LL.png"
-             alt="" loading="lazy" onerror="this.remove()">
-        <span class="premio-txt"><b>${esc(T('taPremio'))} ${anio}</b><span>Tripadvisor</span></span>
+      <a href="${esc(fichaTA)}" target="_blank" rel="noopener">
+        <img src="/img/travellers-choice-2026.png"
+             alt="${esc(T('taPremio'))} ${anio} — Tripadvisor" loading="eager">
       </a>`;
   } else {
     premio.innerHTML = '';
