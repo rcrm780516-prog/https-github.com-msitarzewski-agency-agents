@@ -137,8 +137,11 @@
     max-width: 1280px; margin: 0 auto; padding: 12px 20px;
     display: flex; align-items: center; justify-content: space-between; gap: 20px;
   }
-  .logo { display: flex; align-items: center; flex-direction: column; line-height: 1; }
-  .logo img { height: 44px; width: auto; }
+  /* flex: none es imprescindible: si no, cuando la barra se queda sin
+     espacio comprime el logotipo hasta dejarlo en unos pocos píxeles. */
+  .logo { display: flex; align-items: center; flex-direction: column; line-height: 1; flex: none; }
+  .logo img { height: 44px; width: auto; flex: none; align-self: center; }
+  .footer-logo img { height: 58px; flex: none; align-self: center; }
   .logo-word { font-size: 1.7rem; font-weight: 900; color: var(--primary); letter-spacing: 0.04em; }
   .logo-sub { font-size: 0.62rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; margin-top: 2px; }
 
@@ -186,6 +189,13 @@
     .quote-box { flex-direction: column; align-items: flex-start; }
     .quote-box.q-ask .q-price { text-align: left; }
   }
+
+  /* --- biografía de Tim --- */
+  #timBio { max-width: 680px; margin: 0 auto; text-align: left; }
+  #timBio p { margin-bottom: 15px; }
+  #timBio p:last-child { margin-bottom: 0; }
+  .tim-quote[hidden] { display: none; }
+  @media (max-width: 640px) { #timBio { text-align: left; } }
 
   /* --- selector de idioma --- */
   .lang-switch { display: flex; align-items: center; gap: 4px; margin-left: 18px; }
@@ -421,7 +431,7 @@
 
   .footer-main { background: var(--primary); color: #cfe3ea; padding: 46px 20px 0; }
   .footer-logo { text-align: center; margin-bottom: 30px; }
-  .footer-logo img { height: 48px; width: auto; margin: 0 auto; }
+  .footer-logo img { width: auto; margin: 0 auto; }
   .footer-tabs { display: flex; max-width: 700px; margin: 0 auto; border-radius: 6px 6px 0 0; overflow: hidden; }
   .footer-tabs button { flex: 1; padding: 14px; font-weight: 600; font-size: 0.9rem; }
   .footer-tabs button.active { background: #fff; color: var(--primary); }
@@ -462,6 +472,15 @@
   .wa-float svg { width: 30px; height: 30px; fill: #fff; }
 
   /* ============ RESPONSIVO ============ */
+  /* Franja estrecha entre el menú de escritorio y el de hamburguesa: se
+     aprieta el espaciado para que la barra no se desborde. */
+  @media (max-width: 1040px) and (min-width: 881px) {
+    .nav-links { gap: 14px; }
+    .nav-links .nav-link { font-size: 0.82rem; }
+    .nav-links .btn-secondary { padding: 9px 16px !important; font-size: 0.74rem !important; }
+    .lang-switch { margin-left: 10px; gap: 2px; }
+    .lang-btn { padding: 5px 7px; font-size: 0.68rem; }
+  }
   @media (max-width: 880px) {
     .nav-links { display: none; }
     .nav-ham { display: flex; }
@@ -1218,9 +1237,36 @@ document.querySelectorAll('[data-ftab]').forEach(btn => {
    ========================================================================== */
 
 /* ---------- marca y logotipo ---------- */
+/* Reduce el logotipo con filtro de calidad y a la resolución real de la
+   pantalla. Sin esto, pasar de 834 px a 56 lo deja lavado: el navegador
+   usa un filtro rápido para reducciones tan grandes. Se recalcula sobre el
+   logotipo que esté configurado, así que sigue funcionando si lo cambias. */
+function nitido(img, alturaCSS) {
+  const aplicar = () => {
+    if (!img.naturalWidth) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    const h = Math.round(alturaCSS * dpr * 2);          // 2x extra de margen
+    if (img.naturalHeight <= h * 1.2) return;           // ya es del tamaño justo
+    const w = Math.round(img.naturalWidth * h / img.naturalHeight);
+    try {
+      const lienzo = document.createElement('canvas');
+      lienzo.width = w; lienzo.height = h;
+      const ctx = lienzo.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, 0, 0, w, h);
+      img.style.width = (alturaCSS * w / h) + 'px';
+      img.src = lienzo.toDataURL('image/png');
+    } catch (err) { /* si algo falla se queda la imagen original */ }
+  };
+  if (img.complete) aplicar(); else img.addEventListener('load', aplicar, { once: true });
+}
+
 function bloqueLogo(fuente, alto) {
   if (fuente) {
-    return `<img src="${esc(fuente)}" alt="${esc(C.marca.nombreCompleto)}" style="height:${esc(alto || 44)}px;">`;
+    const h = Number(alto) || 44;
+    return `<img src="${esc(fuente)}" alt="${esc(C.marca.nombreCompleto)}"
+                 style="height:${h}px;width:auto;" onload="nitido(this, ${h})">`;
   }
   return `<span class="logo-word">${esc(C.marca.nombre)}</span>
           <span class="logo-sub">${esc(C.marca.tagline)}</span>`;
@@ -1233,7 +1279,7 @@ function renderMarca() {
   const fLogo = document.getElementById('footerLogo');
   const fuente = C.marca.logoBlanco || C.marca.logo;
   fLogo.innerHTML = fuente
-    ? `<img src="${esc(fuente)}" alt="${esc(C.marca.nombreCompleto)}" style="height:48px;">`
+    ? `<img src="${esc(fuente)}" alt="${esc(C.marca.nombreCompleto)}" style="height:58px;width:auto;" onload="nitido(this, 58)">`
     : `<span class="logo-word" style="color:#fff;">${esc(C.marca.nombre)}</span>
        <span class="logo-sub" style="display:block;">${esc(C.marca.tagline)}</span>`;
 
@@ -1385,7 +1431,7 @@ function tarjetaTour(t, i) {
         <div class="tour-price-row">
           ${t.adulto
             ? `<span>${esc(T(t.desde ? 'tarjetaDesde' : 'tarjetaDesde'))}</span>
-               <span class="tour-price">${esc(money(t.adulto, moneda))}<small style="display:block;font-size:0.66rem;font-weight:500;color:#7b8b92;text-transform:none;letter-spacing:0;">${esc(T(t.porPersona === false ? 'cotizaPorEmbarcacion' : 'tarjetaPorAdulto'))}</small></span>`
+               <span class="tour-price">${esc(money(t.adulto, moneda))}<small style="display:block;font-size:0.66rem;font-weight:500;color:#7b8b92;text-transform:none;letter-spacing:0;">${esc(t.porPersona === false ? (trad(t.unidad) || T('cotizaPorEmbarcacion')) : T('tarjetaPorAdulto'))}</small></span>`
             : `<span class="tour-price" style="font-size:0.92rem;font-weight:700;color:var(--primary);">${esc(T('tarjetaSinPrecio'))}</span>`}
         </div>
       </div>
@@ -1425,9 +1471,19 @@ function renderDestinos() {
 function renderTim() {
   const t = L.tim || {};
   document.getElementById('timTitulo').textContent = t.titulo || '';
-  document.getElementById('timBio').textContent = t.biografia || '';
-  document.getElementById('timCita').innerHTML =
-    `"${esc(t.citaDestacada)}"<span>— ${esc(t.citaAutor)}</span>`;
+
+  // La biografía viene como lista de párrafos; también admite texto suelto.
+  const parrafos = Array.isArray(t.biografia) ? t.biografia : [t.biografia || ''];
+  document.getElementById('timBio').innerHTML =
+    parrafos.filter(Boolean).map(x => `<p>${esc(x)}</p>`).join('');
+
+  const cita = document.getElementById('timCita');
+  if (t.citaDestacada) {
+    cita.innerHTML = `"${esc(t.citaDestacada)}"<span>— ${esc(t.citaAutor)}</span>`;
+    cita.hidden = false;
+  } else {
+    cita.hidden = true;
+  }
 
   const btn = document.getElementById('timBoton');
   btn.textContent = T('waTim');
@@ -1651,8 +1707,9 @@ function calcularTour() {
   // Los yates se cobran por embarcación: el precio no se multiplica.
   if (tour.porPersona === false) {
     const importe = (tour.desde ? T('cotizaDesdePrecio') + ' ' : '') + money(pAdulto, moneda);
-    pintarCaja(caja, T('cotizaEtiqueta'), nombre, importe, T('cotizaPorEmbarcacion'), false);
-    return { texto: importe + ' (' + T('cotizaPorEmbarcacion') + ')', zona: nombre };
+    const unidad = trad(tour.unidad) || T('cotizaPorEmbarcacion');
+    pintarCaja(caja, T('cotizaEtiqueta'), nombre, importe, unidad, false);
+    return { texto: importe + ' (' + unidad + ')', zona: nombre };
   }
 
   const total = pAdulto * adultos + pMenor * menores;

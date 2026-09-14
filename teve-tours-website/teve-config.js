@@ -92,7 +92,8 @@ window.TEVE_CONFIG = {
     // se lea sobre el fondo oscuro de la portada y del pie de página.
     logo:        "/img/logo-teve.png",         // barra de navegación (fondo blanco)
     logoBlanco:  "/img/logo-teve-blanco.png",  // portada y pie de página oscuro
-    logoAlto:    "56", // altura del logo en píxeles dentro de la barra
+    logoAlto:    "74", // altura del logo en píxeles dentro de la barra
+                       // (un sello circular con texto necesita tamaño para leerse)
 
     favicon:     "/img/favicon.png",   // ícono de la pestaña del navegador
     imagenRedes: ""    // ej. "/img/og-teve.jpg" (1200x630) — al compartir en redes
@@ -226,7 +227,8 @@ window.TEVE_CONFIG = {
     { id: "atv",         nombre: { en: "ATV, Zipline & Cenote", es: "ATV, Tirolesa y Cenote", pt: "ATV, Tirolesa e Cenote" }, categoria: "cancun", adulto: "90", menor: "" },
     { id: "parasailing", nombre: "Parasailing",            categoria: "cancun", adulto: "80", menor: "" },
     { id: "jungle",      nombre: "Jungle Tour",            categoria: "cancun", adulto: "70", menor: "60" },
-    { id: "jetski",      nombre: { en: "Jet Ski (per ski)", es: "Jet Ski (por moto)", pt: "Jet Ski (por moto)" },     categoria: "cancun", adulto: "80", menor: "", porPersona: false },
+    { id: "jetski",      nombre: { en: "Jet Ski (per ski)", es: "Jet Ski (por moto)", pt: "Jet Ski (por moto)" },     categoria: "cancun", adulto: "80", menor: "", porPersona: false,
+      unidad: { en: "per jet ski", es: "por moto", pt: "por moto" } },
     { id: "glassboat",   nombre: { en: "Glass Bottom Boat", es: "Barco con fondo de cristal", pt: "Barco com fundo de vidro" }, categoria: "cancun", adulto: "70", menor: "60" },
     { id: "taco",        nombre: "Taco Tour",              categoria: "cancun", adulto: "80", menor: "70" },
 
@@ -528,7 +530,7 @@ window.TEVE_CONFIG = {
         waDestino: "Hi! I'd like a quote for a private tour to",
         waTraslado: "Hi! I'd like to quote a transfer.",
         waTourBusqueda: "Hi! I'd like to quote a private tour.",
-        waTim: "Message Tim on WhatsApp",
+        waTim: "MESSAGE ME ON WHATSAPP",
 
         avisoSuscrito: "Thank you! We'll send you travel ideas for the Riviera Maya.",
         avisoFaltanCampos: "Please fill in the required fields."
@@ -599,10 +601,14 @@ window.TEVE_CONFIG = {
       },
 
       tim: {
-        titulo: "Tim — Your Trusted Person in Cancun",
-        citaDestacada: "Tim was far more than a driver, he became part of our holiday. He knew exactly where to take us and everything just flowed.",
-        citaAutor: "Sarah M., Toronto · TripAdvisor",
-        biografia: "Tim has spent more than eight years guiding visitors around Cancun and the Riviera Maya. Bilingual, plugged into the local culture and genuinely invested in making your trip memorable — which is why his name turns up, unprompted, in hundreds of five-star reviews."
+        titulo: "Hi, I’m Tim.",
+        biografia: [
+          "I’ve been working with travelers in Cancún and the Riviera Maya for more than eight years, and during that time I’ve learned that everyone wants to experience Mexico in their own way.",
+          "That’s why I love offering private and personalized experiences. You tell me what you’d like to see, what you’re interested in doing, and how much time you have, and I’ll help you put together a day you’ll truly enjoy. And if you’re not sure where to start, don’t worry, that’s what I’m here for. 😊",
+          "I want my clients to feel comfortable asking me anything, from where to eat and which cenote to visit to which places are really worth seeing. My goal is for you to feel confident from the very first conversation and, when the day of your tour arrives, simply relax and enjoy your experience.",
+          "After all these years, one of the things that makes me happiest is seeing travelers recommend me to their family and friends. To me, that’s the best sign that I’m doing my job right.",
+          "I hope I get the chance to meet you and show you some of my favorite places in Cancún and the Riviera Maya. 🇲🇽"
+        ]
       },
 
       resenas: [
@@ -820,7 +826,7 @@ window.TEVE_CONFIG = {
         waDestino: "¡Hola! Quiero cotizar un tour privado a",
         waTraslado: "¡Hola! Quiero cotizar un traslado.",
         waTourBusqueda: "¡Hola! Quiero cotizar un tour privado.",
-        waTim: "Escríbele a Tim por WhatsApp",
+        waTim: "ESCRÍBEME POR WHATSAPP",
 
         avisoSuscrito: "¡Gracias! Te enviaremos ideas de viaje para la Riviera Maya.",
         avisoFaltanCampos: "Por favor completa los campos obligatorios."
@@ -891,10 +897,14 @@ window.TEVE_CONFIG = {
       },
 
       tim: {
-        titulo: "Tim — Tu Persona de Confianza en Cancún",
-        citaDestacada: "Tim fue mucho más que un chofer, se volvió parte de nuestras vacaciones. Sabía exactamente a dónde llevarnos y todo fluyó sin esfuerzo.",
-        citaAutor: "Sarah M., Toronto · TripAdvisor",
-        biografia: "Tim lleva más de ocho años guiando viajeros por Cancún y la Riviera Maya. Bilingüe, conectado con la cultura local y genuinamente comprometido con hacer memorable tu viaje — por eso su nombre aparece, sin que nadie se lo pida, en cientos de reseñas de cinco estrellas."
+        titulo: "Hola, soy Tim.",
+        biografia: [
+          "Llevo más de ocho años trabajando con viajeros en Cancún y la Riviera Maya, y en ese tiempo he aprendido que cada persona quiere vivir México a su manera.",
+          "Por eso me encanta ofrecer experiencias privadas y personalizadas. Tú me dices qué te gustaría ver, qué te interesa hacer y de cuánto tiempo dispones, y yo te ayudo a armar un día que de verdad disfrutes. Y si no sabes por dónde empezar, no te preocupes, para eso estoy. 😊",
+          "Quiero que mis clientes se sientan con la confianza de preguntarme lo que sea: dónde comer, qué cenote visitar, qué lugares valen realmente la pena. Mi objetivo es que te sientas seguro desde la primera conversación y que, cuando llegue el día de tu tour, solo te relajes y disfrutes.",
+          "Después de todos estos años, una de las cosas que más me alegra es ver que los viajeros me recomiendan con su familia y sus amigos. Para mí, esa es la mejor señal de que estoy haciendo bien mi trabajo.",
+          "Ojalá tenga la oportunidad de conocerte y mostrarte algunos de mis lugares favoritos en Cancún y la Riviera Maya. 🇲🇽"
+        ]
       },
 
       resenas: [
@@ -1106,7 +1116,7 @@ window.TEVE_CONFIG = {
         waDestino: "Olá! Quero um orçamento de passeio privativo para",
         waTraslado: "Olá! Quero um orçamento de transfer.",
         waTourBusqueda: "Olá! Quero um orçamento de passeio privativo.",
-        waTim: "Fale com o Tim no WhatsApp",
+        waTim: "FALE COMIGO NO WHATSAPP",
 
         avisoSuscrito: "Obrigado! Enviaremos ideias de viagem para a Riviera Maya.",
         avisoFaltanCampos: "Por favor, preencha os campos obrigatórios."
@@ -1177,10 +1187,14 @@ window.TEVE_CONFIG = {
       },
 
       tim: {
-        titulo: "Tim — Sua Pessoa de Confiança em Cancún",
-        citaDestacada: "O Tim foi muito mais que um motorista, virou parte das nossas férias. Sabia exatamente para onde nos levar e tudo fluiu sem esforço.",
-        citaAutor: "Sarah M., Toronto · TripAdvisor",
-        biografia: "O Tim tem mais de oito anos guiando visitantes por Cancún e pela Riviera Maya. Bilíngue, conectado à cultura local e genuinamente comprometido em tornar sua viagem memorável — por isso o nome dele aparece, sem que ninguém peça, em centenas de avaliações cinco estrelas."
+        titulo: "Oi, eu sou o Tim.",
+        biografia: [
+          "Trabalho com viajantes em Cancún e na Riviera Maya há mais de oito anos, e nesse tempo aprendi que cada pessoa quer viver o México do seu próprio jeito.",
+          "Por isso adoro oferecer experiências privativas e personalizadas. Você me diz o que gostaria de ver, o que tem vontade de fazer e de quanto tempo dispõe, e eu ajudo a montar um dia que você realmente aproveite. E se não souber por onde começar, não se preocupe, é para isso que estou aqui. 😊",
+          "Quero que meus clientes se sintam à vontade para me perguntar qualquer coisa: onde comer, qual cenote visitar, quais lugares valem mesmo a pena. Meu objetivo é que você se sinta seguro desde a primeira conversa e que, no dia do passeio, apenas relaxe e aproveite.",
+          "Depois de todos esses anos, uma das coisas que mais me alegra é ver viajantes me recomendando para a família e os amigos. Para mim, esse é o melhor sinal de que estou fazendo bem o meu trabalho.",
+          "Espero ter a chance de te conhecer e mostrar alguns dos meus lugares favoritos em Cancún e na Riviera Maya. 🇲🇽"
+        ]
       },
 
       resenas: [
