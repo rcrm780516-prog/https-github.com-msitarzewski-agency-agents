@@ -64,11 +64,13 @@ def main():
     # mostraba el contenido viejo sobre el diseño nuevo, sin ningún aviso.
     # Un archivo único tiene que ser exactamente lo que dice ser: lo que está
     # adentro es lo que se ve, sin importar qué más haya en la carpeta.
-    for etiqueta, contenido in (('<script src="/teve-config.js"></script>', config),
-                                ('<script src="/teve-fotos.js"></script>', fotos)):
-        if etiqueta not in html:
-            raise SystemExit('No se encontró %s en index.html' % etiqueta)
-        html = html.replace(etiqueta, '<script>\n' + contenido + '\n</script>')
+    # La etiqueta lleva ?v=… para que el navegador no sirva una copia vieja,
+    # así que se busca por patrón y no por texto exacto.
+    for archivo, contenido in (('teve-config.js', config), ('teve-fotos.js', fotos)):
+        patron = re.compile(r'<script src="/%s(?:\?v=[^"]*)?"></script>' % re.escape(archivo))
+        if not patron.search(html):
+            raise SystemExit('No se encontró la etiqueta de %s en index.html' % archivo)
+        html = patron.sub(lambda m: '<script>\n' + contenido + '\n</script>', html, count=1)
 
     destino = RAIZ / 'dist'
     destino.mkdir(exist_ok=True)

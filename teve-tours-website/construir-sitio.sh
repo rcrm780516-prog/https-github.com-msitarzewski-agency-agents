@@ -18,6 +18,25 @@ cd "$(dirname "$0")"
 SALIDA="sitio-publicar"
 PUERTO=8791
 
+# La versión de version.txt se estampa en la dirección de teve-config.js y
+# teve-fotos.js. Sin esto el navegador se queda con su copia guardada: sirve el
+# HTML nuevo con los datos viejos, y el resultado es un menú con un hueco en
+# blanco o un precio que ya cambiamos. Al cambiar la versión cambia la
+# dirección, y no le queda más remedio que pedirlos otra vez.
+VERSION=$(grep -m1 '^Version:' version.txt | awk '{print $2}')
+[ -n "$VERSION" ] || { echo "version.txt no dice ninguna versión"; exit 1; }
+echo "0/4  estampando la versión $VERSION en los archivos…"
+python3 - "$VERSION" <<'PY'
+import io, re, sys
+v = sys.argv[1]
+p = 'index.html'
+s = io.open(p, encoding='utf-8').read()
+for f in ('teve-config.js', 'teve-fotos.js'):
+    s = re.sub(r'<script src="/%s(?:\?v=[^"]*)?"></script>' % re.escape(f),
+               '<script src="/%s?v=%s"></script>' % (f, v), s)
+io.open(p, 'w', encoding='utf-8').write(s)
+PY
+
 echo "1/4  arrancando servidor local…"
 node servidor-local.mjs . $PUERTO >/dev/null 2>&1 &
 SRV=$!
