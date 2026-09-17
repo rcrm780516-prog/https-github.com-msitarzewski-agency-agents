@@ -154,7 +154,7 @@ window.TEVE_CONFIG = {
     // negocio, y no tres cosas sueltas. Para sacarlo: entra a tu perfil,
     // "Compartir perfil", y copia la dirección que te da (empieza por
     // https://g.page/ o https://maps.app.goo.gl/).
-    perfilGoogle: ""
+    perfilGoogle: "https://share.google/4gKj5s8oSL3X3cX2r"
   },
 
   /* ======================================================================
