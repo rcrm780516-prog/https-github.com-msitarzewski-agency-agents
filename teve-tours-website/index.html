@@ -62,7 +62,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "url": "https://www.tevetransferstours.com",
   "areaServed": ["Cancún", "Riviera Maya", "Tulum", "Playa del Carmen", "Isla Mujeres"],
   "paymentAccepted": ["cash", "credit card", "paypal"],
-  "priceRange": "$$"
+  "priceRange": "$$",
+  "logo": "https://www.tevetransferstours.com/img/logo-teve.png",
+  "image": "https://www.tevetransferstours.com/img/hero.jpg",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "00:00",
+    "closes": "23:59"
+  },
+  "contactPoint": [
+    { "@type": "ContactPoint", "telephone": "+52-998-735-1905", "contactType": "reservations", "availableLanguage": "English" },
+    { "@type": "ContactPoint", "telephone": "+52-228-210-7684", "contactType": "reservations", "availableLanguage": "Spanish" }
+  ]
 }
 </script>
 
@@ -1376,6 +1388,7 @@ function actualizarSEO(id) {
   if (ogu) ogu.setAttribute('content', urlAbsoluta(id, LANG));
 
   inyectarHreflang(id);
+  renderDatosEstructurados(id);
 }
 
 function cerrarMenu() {
@@ -1696,6 +1709,70 @@ function renderDestinos() {
       </div>
     </div>`; }).join('');
   initDestCanvas();
+}
+
+/* ---------- datos estructurados: la ficha del negocio y la del servicio ----------
+   sameAs es lo que enlaza este sitio con TripAdvisor, las redes y el Perfil de
+   Empresa de Google. Sin eso Google puede tratarlos como negocios distintos y
+   la autoridad de cada uno no suma. Se arma desde el config, así que basta con
+   pegar el enlace del perfil ahí para que entre.
+   La ficha del servicio solo se pone en la página del chofer privado, con sus
+   tres tarifas: es lo que permite que Google enseñe el precio en el resultado.
+   ------------------------------------------------------------------------- */
+function renderDatosEstructurados(pagina) {
+  const r = C.redes || {};
+  const perfiles = [r.perfilGoogle, r.tripadvisor, r.facebook, r.instagram, r.youtube, r.tiktok]
+    .filter(Boolean);
+
+  const ficha = document.getElementById('schemaOrg');
+  if (ficha && perfiles.length) {
+    try {
+      const datos = JSON.parse(ficha.textContent);
+      datos.sameAs = perfiles;
+      ficha.textContent = JSON.stringify(datos, null, 2);
+    } catch (err) { /* si el JSON viniera mal, mejor dejarlo como está */ }
+  }
+
+  const viejo = document.getElementById('schemaServicio');
+  if (viejo) viejo.remove();
+  if (pagina !== 'chofer') return;
+
+  const c = L.chofer || {};
+  const precios = (c.tarifas || []).map(t => {
+    const n = String(t.precio).replace(/[^0-9.]/g, '');
+    return {
+      "@type": "Offer",
+      "name": t.horas,
+      "price": n,
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    };
+  });
+  if (!precios.length) return;
+
+  const servicio = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": c.titulo || "Private driver",
+    "name": c.titulo || "",
+    "description": c.entrada || "",
+    "provider": { "@type": "TravelAgency", "name": (C.marca || {}).nombreCompleto || "TEVE Transfers & Tours",
+                  "url": (C.marca || {}).dominio || "" },
+    "areaServed": ["Cancún", "Riviera Maya", "Tulum", "Playa del Carmen"],
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "lowPrice": Math.min(...precios.map(o => Number(o.price))),
+      "highPrice": Math.max(...precios.map(o => Number(o.price))),
+      "offerCount": precios.length,
+      "offers": precios
+    }
+  };
+  const et = document.createElement('script');
+  et.type = 'application/ld+json';
+  et.id = 'schemaServicio';
+  et.textContent = JSON.stringify(servicio, null, 2);
+  document.head.appendChild(et);
 }
 
 /* ---------- Chofer privado por día ---------- */

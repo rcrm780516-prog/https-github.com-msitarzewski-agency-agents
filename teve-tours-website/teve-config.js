@@ -148,7 +148,13 @@ window.TEVE_CONFIG = {
     instagram:   "https://www.instagram.com/tevetransferstours",
     tripadvisor: "https://www.tripadvisor.com.au/Attraction_Review-g150807-d28028440-Reviews-Teve_Transfers_Tours-Cancun_Yucatan_Peninsula.html",
     youtube:     "",
-    tiktok:      ""
+    tiktok:      "",
+    // Enlace público de tu Perfil de Empresa en Google. Sirve para que Google
+    // entienda que el sitio, la ficha del mapa y TripAdvisor son el MISMO
+    // negocio, y no tres cosas sueltas. Para sacarlo: entra a tu perfil,
+    // "Compartir perfil", y copia la dirección que te da (empieza por
+    // https://g.page/ o https://maps.app.goo.gl/).
+    perfilGoogle: ""
   },
 
   /* ======================================================================
