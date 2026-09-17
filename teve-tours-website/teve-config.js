@@ -701,8 +701,8 @@ window.TEVE_CONFIG = {
           descripcion: "Hire a private driver in Cancun with a van for up to 8 people. From $180 USD for 4 hours, fuel and bilingual driver included. Go anywhere, at your own pace."
         },
         home: {
-          titulo: "Cancun Airport Transfers & Private Riviera Maya Tours",
-          descripcion: "Private Cancun airport transfers and custom Riviera Maya tours for travellers from the UK, Australia, the US and Canada. Book direct on WhatsApp."
+          titulo: "Private Driver Cancun & Riviera Maya | Airport Transfers",
+          descripcion: "Private driver by the day in Cancun and the Riviera Maya from $180 USD, plus airport transfers and custom tours. Bilingual driver, book direct on WhatsApp."
         },
         servicios: {
           titulo: "Cancun Airport Transfer & Private Driver Services | TEVE",
@@ -1022,8 +1022,8 @@ window.TEVE_CONFIG = {
           descripcion: "Chofer privado en Cancún con camioneta para hasta 8 personas. Desde $180 USD por 4 horas, gasolina y chofer bilingüe incluidos. Ve a donde quieras, a tu ritmo."
         },
         home: {
-          titulo: "Transporte Privado y Tours en Cancún | TEVE Transfers",
-          descripcion: "Traslados privados del aeropuerto de Cancún y tours a la medida en la Riviera Maya. Chofer bilingüe y reserva directa por WhatsApp con Tim."
+          titulo: "Chofer Privado en Cancún y Riviera Maya | Traslados",
+          descripcion: "Chofer privado por día en Cancún y la Riviera Maya desde $180 USD, más traslados del aeropuerto y tours a la medida. Chofer bilingüe, reserva por WhatsApp."
         },
         servicios: {
           titulo: "Traslados y Chofer Privado en Cancún | TEVE",
@@ -1344,8 +1344,8 @@ window.TEVE_CONFIG = {
           descripcion: "Motorista privativo em Cancún com van para até 8 pessoas. A partir de US$ 180 por 4 horas, combustível e motorista bilíngue inclusos. Vá aonde quiser."
         },
         home: {
-          titulo: "Transfer e Passeios Privativos em Cancún | TEVE",
-          descripcion: "Transfers privativos do aeroporto de Cancún e passeios sob medida na Riviera Maya. Motorista bilíngue e reserva direta pelo WhatsApp."
+          titulo: "Motorista Privativo em Cancún e Riviera Maya | Transfers",
+          descripcion: "Motorista privativo por dia em Cancún e na Riviera Maya a partir de US$ 180, mais transfers do aeroporto e passeios sob medida. Reserve pelo WhatsApp."
         },
         servicios: {
           titulo: "Transfer do Aeroporto e Motorista em Cancún | TEVE",

@@ -1,7 +1,7 @@
 TEVE TRANSFERS & TOURS — VERSION DEL SITIO
 ==========================================
 
-Version:  2026-09-18-h
+Version:  2026-09-18-i
 Subida:   (escribe aqui la fecha en que la subiste)
 
 QUE TRAE ESTA VERSION
@@ -43,7 +43,7 @@ Abre en el navegador:
 
     tevetransferstours.com/version.txt
 
-Si ves "2026-09-18-h", tu sitio esta actualizado.
+Si ves "2026-09-18-i", tu sitio esta actualizado.
 Si no aparece este archivo, o dice otra version, es que el index.html
 que esta arriba no es el nuevo: la subida no se completo.
 
