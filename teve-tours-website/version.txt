@@ -1,11 +1,22 @@
 TEVE TRANSFERS & TOURS — VERSION DEL SITIO
 ==========================================
 
-Version:  2026-09-17-e
+Version:  2026-09-17-g-SEO
 Subida:   (escribe aqui la fecha en que la subiste)
 
 QUE TRAE ESTA VERSION
 ---------------------
+- PRECIO CORREGIDO: el chofer privado son $180 USD por 4 horas,
+  no $200 como decia antes
+- PAGINA NUEVA dedicada a "private driver cancun":
+      /private-driver-cancun
+      /es/chofer-privado-cancun
+      /pt/motorista-privativo-cancun
+  Con las tarifas reales (180 / 250 / 350 y el extra de $30 antes de
+  las 8am), que incluye y que no
+- 24 paginas de verdad, cada una con su titulo, su H1 y su canonical.
+  Antes las 21 direcciones devolvian el mismo archivo y Google
+  indexaba una sola
 - Private Driver for the Day destacado y PRIMERO, tambien en celular
 - Sello Travellers' Choice 2026 grande, esquina superior izquierda del hero
 - Los 7 tours con su fotografia propia
@@ -26,7 +37,7 @@ Abre en el navegador:
 
     tevetransferstours.com/version.txt
 
-Si ves "2026-09-17-e", tu sitio esta actualizado.
+Si ves "2026-09-17-g-SEO", tu sitio esta actualizado.
 Si no aparece este archivo, o dice otra version, es que el index.html
 que esta arriba no es el nuevo: la subida no se completo.
 
