@@ -177,7 +177,7 @@ window.TEVE_CONFIG = {
     { id: "transfer",  imagen: "", destacado: true,  desde: { en: "From $50 USD per vehicle", es: "Desde $50 USD por vehículo", pt: "A partir de US$ 50 por veículo" } },
     // "estrella" saca este servicio de la rejilla y lo pone arriba, a todo lo
     // ancho. Solo uno debe llevarla: si se marcan dos, dejan de destacar.
-    { id: "chofer",    imagen: "", destacado: true,  estrella: true, desde: { en: "From $200 USD · 4 hours, up to 8 people", es: "Desde $200 USD · 4 horas, hasta 8 personas", pt: "A partir de US$ 200 · 4 horas, até 8 pessoas" } },
+    { id: "chofer",    imagen: "", destacado: true,  estrella: true, desde: { en: "From $180 USD · 4 hours, up to 8 people", es: "Desde $180 USD · 4 horas, hasta 8 personas", pt: "A partir de US$ 180 · 4 horas, até 8 pessoas" } },
     { id: "grupos",    imagen: "", destacado: true,  desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
     { id: "catamaran", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
     { id: "yate",      imagen: "", destacado: false, desde: { en: "From $700 USD · up to 8 people", es: "Desde $700 USD · hasta 8 personas", pt: "A partir de US$ 700 · até 8 pessoas" } },
@@ -405,14 +405,14 @@ window.TEVE_CONFIG = {
         // Trozo de dirección de cada página. El inglés vive en la raíz.
         prefijo: "",
         rutas: {
-          home: "", servicios: "services", tours: "tours",
+          home: "", servicios: "services", chofer: "private-driver-cancun", tours: "tours",
           destinos: "destinations", tim: "about-tim",
           blog: "blog", contacto: "contact"
         }
       },
 
       ui: {
-        navHome: "Home", navServicios: "Services", navTours: "Private Tours",
+        navHome: "Home", navServicios: "Services", navChofer: "Private Driver", navTours: "Private Tours",
         navDestinos: "Destinations", navTim: "Meet Tim", navBlog: "Travel Blog",
         navContacto: "Contact Us", navAbrirMenu: "Open menu",
         selectorIdioma: "Language",
@@ -602,6 +602,39 @@ window.TEVE_CONFIG = {
         bacalar: { duracion: "Overnight optional",   texto: "3-4 hrs · The magic well off the tourist trail" }
       },
 
+      /* --------------------------------------------------------------------
+         CHOFER PRIVADO POR DÍA — la página que pelea por "private driver cancun"
+         Las tarifas y lo que incluye salen textuales de lo que TEVE contesta
+         por WhatsApp. Si cambian allá, cámbialas aquí.
+         -------------------------------------------------------------------- */
+      chofer: {
+        eyebrow: "Our most booked service",
+        titulo: "Private Driver in Cancun by the Day",
+        entrada: "You choose where to go and when. A private van and a bilingual driver at your disposal for the day — beaches, cenotes, archaeological sites, markets, shopping, or all of it. No fixed route, no group waiting on you.",
+        tarifasTitulo: "Vehicle and driver hire",
+        tarifas: [
+          { horas: "4 hours",       precio: "$180 USD" },
+          { horas: "6 to 8 hours",  precio: "$250 USD" },
+          { horas: "10 to 12 hours",precio: "$350 USD" }
+        ],
+        tarifaNota: "Pick-ups before 8:00 am carry an extra $30 USD.",
+        incluyeTitulo: "What's included",
+        incluye: [
+          "Fuel is paid for",
+          "Van for up to 8 people",
+          "Private bilingual driver",
+          "Beer, water and soft drinks in the vehicle"
+        ],
+        noIncluyeTitulo: "What's not included",
+        noIncluye: [
+          "Entrance fees to attractions or sights",
+          "Food",
+          "Parking and tolls, where they apply"
+        ],
+        itinerarioTitulo: "We help you plan the day",
+        itinerario: "Not sure where to start? We help you put the itinerary together so your time works as hard as it can, and we tell you what we think you will actually enjoy — not just the places everyone else visits.",
+        cta: "Ask about a private driver"
+      },
       tim: {
         titulo: "Hi, I’m Tim.",
         biografia: [
@@ -657,6 +690,10 @@ window.TEVE_CONFIG = {
          literalmente lo que el viajero escribe en Google antes de reservar.
          -------------------------------------------------------------------- */
       seo: {
+        chofer: {
+          titulo: "Private Driver in Cancun by the Day | From $180 USD — TEVE",
+          descripcion: "Hire a private driver in Cancun with a van for up to 8 people. From $180 USD for 4 hours, fuel and bilingual driver included. Go anywhere, at your own pace."
+        },
         home: {
           titulo: "Cancun Airport Transfers & Private Riviera Maya Tours",
           descripcion: "Private Cancun airport transfers and custom Riviera Maya tours for travellers from the UK, Australia, the US and Canada. Book direct on WhatsApp."
@@ -703,14 +740,14 @@ window.TEVE_CONFIG = {
         hreflang: ["es", "es-MX"],
         prefijo: "es",
         rutas: {
-          home: "", servicios: "servicios", tours: "tours",
+          home: "", servicios: "servicios", chofer: "chofer-privado-cancun", tours: "tours",
           destinos: "destinos", tim: "tim",
           blog: "blog", contacto: "contacto"
         }
       },
 
       ui: {
-        navHome: "Inicio", navServicios: "Servicios", navTours: "Tours Privados",
+        navHome: "Inicio", navServicios: "Servicios", navChofer: "Chofer Privado", navTours: "Tours Privados",
         navDestinos: "Destinos", navTim: "Conoce a Tim", navBlog: "Blog de Viajes",
         navContacto: "Contáctanos", navAbrirMenu: "Abrir menú",
         selectorIdioma: "Idioma",
@@ -898,6 +935,34 @@ window.TEVE_CONFIG = {
         bacalar: { duracion: "Con opción de noche",      texto: "3-4 hrs · La magia fuera del camino turístico" }
       },
 
+      chofer: {
+        eyebrow: "Nuestro servicio más vendido",
+        titulo: "Chofer Privado en Cancún por Día",
+        entrada: "Tú decides a dónde ir y a qué hora. Una camioneta privada y un chofer bilingüe a tu disposición todo el día: playas, cenotes, zonas arqueológicas, mercados, compras, o todo junto. Sin ruta fija y sin un grupo esperándote.",
+        tarifasTitulo: "Renta de vehículo con chofer",
+        tarifas: [
+          { horas: "4 horas",        precio: "$180 USD" },
+          { horas: "6 a 8 horas",    precio: "$250 USD" },
+          { horas: "10 a 12 horas",  precio: "$350 USD" }
+        ],
+        tarifaNota: "Las salidas antes de las 8:00 am tienen un cargo extra de $30 USD.",
+        incluyeTitulo: "Qué incluye",
+        incluye: [
+          "La gasolina va pagada",
+          "Camioneta para hasta 8 personas",
+          "Chofer privado bilingüe",
+          "Cerveza, agua y refrescos en el vehículo"
+        ],
+        noIncluyeTitulo: "Qué no incluye",
+        noIncluye: [
+          "Entradas a parques, sitios o atracciones",
+          "Comida",
+          "Estacionamientos y casetas, cuando apliquen"
+        ],
+        itinerarioTitulo: "Te ayudamos a armar el día",
+        itinerario: "¿No sabes por dónde empezar? Te ayudamos a armar el itinerario para que tu tiempo rinda lo más posible, y te decimos qué creemos que de verdad vas a disfrutar, no solo los lugares a los que va todo el mundo.",
+        cta: "Pregunta por el chofer privado"
+      },
       tim: {
         titulo: "Hola, soy Tim.",
         biografia: [
@@ -946,6 +1011,10 @@ window.TEVE_CONFIG = {
       },
 
       seo: {
+        chofer: {
+          titulo: "Chofer Privado en Cancún por Día | Desde $180 USD — TEVE",
+          descripcion: "Chofer privado en Cancún con camioneta para hasta 8 personas. Desde $180 USD por 4 horas, gasolina y chofer bilingüe incluidos. Ve a donde quieras, a tu ritmo."
+        },
         home: {
           titulo: "Transporte Privado y Tours en Cancún | TEVE Transfers",
           descripcion: "Traslados privados del aeropuerto de Cancún y tours a la medida en la Riviera Maya. Chofer bilingüe y reserva directa por WhatsApp con Tim."
@@ -993,14 +1062,14 @@ window.TEVE_CONFIG = {
         hreflang: ["pt", "pt-BR", "pt-PT"],
         prefijo: "pt",
         rutas: {
-          home: "", servicios: "servicos", tours: "passeios",
+          home: "", servicios: "servicos", chofer: "motorista-privativo-cancun", tours: "passeios",
           destinos: "destinos", tim: "tim",
           blog: "blog", contacto: "contato"
         }
       },
 
       ui: {
-        navHome: "Início", navServicios: "Serviços", navTours: "Passeios Privativos",
+        navHome: "Início", navServicios: "Serviços", navChofer: "Motorista Privativo", navTours: "Passeios Privativos",
         navDestinos: "Destinos", navTim: "Conheça o Tim", navBlog: "Blog de Viagem",
         navContacto: "Fale Conosco", navAbrirMenu: "Abrir menu",
         selectorIdioma: "Idioma",
@@ -1188,6 +1257,34 @@ window.TEVE_CONFIG = {
         bacalar: { duracion: "Com opção de pernoite",   texto: "3-4 h · A mágica fora da rota turística" }
       },
 
+      chofer: {
+        eyebrow: "Nosso serviço mais vendido",
+        titulo: "Motorista Privativo em Cancún por Dia",
+        entrada: "Você escolhe aonde ir e a que horas. Uma van privativa e um motorista bilíngue à sua disposição o dia todo: praias, cenotes, sítios arqueológicos, mercados, compras, ou tudo junto. Sem roteiro fixo e sem grupo esperando por você.",
+        tarifasTitulo: "Aluguel de veículo com motorista",
+        tarifas: [
+          { horas: "4 horas",        precio: "US$ 180" },
+          { horas: "6 a 8 horas",    precio: "US$ 250" },
+          { horas: "10 a 12 horas",  precio: "US$ 350" }
+        ],
+        tarifaNota: "Saídas antes das 8h00 têm um acréscimo de US$ 30.",
+        incluyeTitulo: "O que está incluso",
+        incluye: [
+          "O combustível está pago",
+          "Van para até 8 pessoas",
+          "Motorista privativo bilíngue",
+          "Cerveja, água e refrigerantes no veículo"
+        ],
+        noIncluyeTitulo: "O que não está incluso",
+        noIncluye: [
+          "Ingressos para parques, sítios ou atrações",
+          "Comida",
+          "Estacionamento e pedágios, quando houver"
+        ],
+        itinerarioTitulo: "Ajudamos você a montar o dia",
+        itinerario: "Não sabe por onde começar? Ajudamos a montar o roteiro para o seu tempo render o máximo, e dizemos o que achamos que você vai realmente curtir, não só os lugares aonde todo mundo vai.",
+        cta: "Pergunte sobre o motorista privativo"
+      },
       tim: {
         titulo: "Oi, eu sou o Tim.",
         biografia: [
@@ -1236,6 +1333,10 @@ window.TEVE_CONFIG = {
       },
 
       seo: {
+        chofer: {
+          titulo: "Motorista Privativo em Cancún por Dia | A partir de US$ 180",
+          descripcion: "Motorista privativo em Cancún com van para até 8 pessoas. A partir de US$ 180 por 4 horas, combustível e motorista bilíngue inclusos. Vá aonde quiser."
+        },
         home: {
           titulo: "Transfer e Passeios Privativos em Cancún | TEVE",
           descripcion: "Transfers privativos do aeroporto de Cancún e passeios sob medida na Riviera Maya. Motorista bilíngue e reserva direta pelo WhatsApp."

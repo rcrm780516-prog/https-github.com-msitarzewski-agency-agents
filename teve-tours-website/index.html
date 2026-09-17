@@ -393,6 +393,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .svc-estrella-cuerpo { padding: 28px 24px; }
   }
 
+  /* ============ CHOFER PRIVADO POR DÍA ============ */
+  .chofer-entrada { font-size: 1.08rem; line-height: 1.7; color: #445; max-width: 780px; margin: 0 auto 38px; text-align: center; }
+  .chofer-rejilla { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+  .chofer-tarifas { border: 2px solid var(--secondary); border-radius: 14px; padding: 30px; background: #fff; }
+  .chofer-tarifas h3, .chofer-lista h3, .chofer-itinerario h3 { color: var(--primary); font-size: 1.18rem; margin-bottom: 16px; }
+  .chofer-tarifas table { width: 100%; border-collapse: collapse; }
+  .chofer-tarifas td { padding: 13px 0; border-bottom: 1px solid #e3e9ec; font-size: 1rem; }
+  .chofer-tarifas tr:last-child td { border-bottom: 0; }
+  .chofer-tarifas td:last-child { text-align: right; font-weight: 800; color: var(--secondary); font-size: 1.16rem; white-space: nowrap; }
+  .chofer-nota { font-size: 0.87rem; color: #667; margin: 14px 0 22px; }
+  .chofer-tarifas .btn-secondary { width: 100%; }
+  .chofer-listas { display: grid; gap: 22px; }
+  .chofer-lista { background: var(--fourth); border-radius: 12px; padding: 26px 28px; }
+  .chofer-lista ul { list-style: none; }
+  .chofer-lista li { padding: 8px 0 8px 30px; position: relative; font-size: 0.96rem; color: #445; line-height: 1.5; }
+  .chofer-lista.si li::before { content: "✓"; position: absolute; left: 0; color: #16a34a; font-weight: 800; }
+  .chofer-lista.no li::before { content: "✕"; position: absolute; left: 0; color: #c2410c; font-weight: 800; }
+  .chofer-itinerario { margin-top: 30px; background: var(--fourth); border-radius: 12px; padding: 30px 32px; }
+  .chofer-itinerario p { color: #445; line-height: 1.7; font-size: 1rem; }
+  @media (max-width: 820px) {
+    .chofer-rejilla { grid-template-columns: 1fr; }
+    .chofer-entrada { text-align: left; }
+  }
+
   /* ============ TARJETAS DE TOUR ============ */
   .tours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
   .tour-card {
@@ -765,6 +789,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ============ TOURS ============ -->
+<!-- ============ CHOFER PRIVADO POR DÍA ============ -->
+<div class="page-section" id="page-chofer">
+  <section class="section section-top">
+    <div class="container">
+      <div class="sec-head">
+        <div class="sec-eyebrow" id="choferEyebrow"></div>
+        <h2 class="sec-title" id="choferTitulo"></h2>
+      </div>
+      <p class="chofer-entrada" id="choferEntrada"></p>
+
+      <div class="chofer-rejilla">
+        <div class="chofer-tarifas">
+          <h3 id="choferTarifasTitulo"></h3>
+          <table id="choferTarifas"></table>
+          <p class="chofer-nota" id="choferNota"></p>
+          <button class="btn-secondary" id="choferCta"></button>
+        </div>
+        <div class="chofer-listas">
+          <div class="chofer-lista si">
+            <h3 id="choferIncluyeTitulo"></h3>
+            <ul id="choferIncluye"></ul>
+          </div>
+          <div class="chofer-lista no">
+            <h3 id="choferNoIncluyeTitulo"></h3>
+            <ul id="choferNoIncluye"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chofer-itinerario">
+        <h3 id="choferItinerarioTitulo"></h3>
+        <p id="choferItinerario"></p>
+      </div>
+    </div>
+  </section>
+</div>
+
 <div class="page-section" id="page-tours">
   <section class="section section-top">
     <div class="container">
@@ -1015,7 +1076,7 @@ const C = window.TEVE_CONFIG || {};
     });
   });
 })();
-const PAGES = ['home', 'servicios', 'tours', 'destinos', 'tim', 'blog', 'contacto'];
+const PAGES = ['home', 'servicios', 'chofer', 'tours', 'destinos', 'tim', 'blog', 'contacto'];
 
 /* ==========================================================================
    IDIOMAS
@@ -1436,6 +1497,7 @@ function renderMarca() {
 const MENU = [
   { id: 'home',      clave: 'navHome' },
   { id: 'servicios', clave: 'navServicios' },
+  { id: 'chofer',    clave: 'navChofer' },
   { id: 'tours',     clave: 'navTours' },
   { id: 'destinos',  clave: 'navDestinos' },
   { id: 'tim',       clave: 'navTim' },
@@ -1634,6 +1696,33 @@ function renderDestinos() {
       </div>
     </div>`; }).join('');
   initDestCanvas();
+}
+
+/* ---------- Chofer privado por día ---------- */
+function renderChofer() {
+  const c = L.chofer || {};
+  const poner = (id, valor) => { const el = document.getElementById(id); if (el) el.textContent = valor || ''; };
+
+  poner('choferEyebrow', c.eyebrow);
+  poner('choferTitulo', c.titulo);
+  poner('choferEntrada', c.entrada);
+  poner('choferTarifasTitulo', c.tarifasTitulo);
+  poner('choferNota', c.tarifaNota);
+  poner('choferIncluyeTitulo', c.incluyeTitulo);
+  poner('choferNoIncluyeTitulo', c.noIncluyeTitulo);
+  poner('choferItinerarioTitulo', c.itinerarioTitulo);
+  poner('choferItinerario', c.itinerario);
+
+  document.getElementById('choferTarifas').innerHTML = (c.tarifas || [])
+    .map(t => `<tr><td>${esc(t.horas)}</td><td>${esc(t.precio)}</td></tr>`).join('');
+  document.getElementById('choferIncluye').innerHTML = (c.incluye || [])
+    .map(x => `<li>${esc(x)}</li>`).join('');
+  document.getElementById('choferNoIncluye').innerHTML = (c.noIncluye || [])
+    .map(x => `<li>${esc(x)}</li>`).join('');
+
+  const btn = document.getElementById('choferCta');
+  btn.textContent = c.cta || '';
+  btn.onclick = () => waMsg(`${T('waServicio')} ${c.titulo || ''}`);
 }
 
 /* ---------- Tim ---------- */
@@ -2155,6 +2244,7 @@ function renderTodo() {
   renderTopbar();
   renderPortada();
   renderServicios();
+  renderChofer();
   renderTours();
   renderDestinos();
   renderTim();
