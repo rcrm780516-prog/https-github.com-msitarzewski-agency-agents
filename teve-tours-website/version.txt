@@ -1,7 +1,7 @@
 TEVE TRANSFERS & TOURS — VERSION DEL SITIO
 ==========================================
 
-Version:  2026-09-15-c
+Version:  2026-09-17-d
 Subida:   (escribe aqui la fecha en que la subiste)
 
 QUE TRAE ESTA VERSION
@@ -12,6 +12,8 @@ QUE TRAE ESTA VERSION
 - Texto completo de Tim en la seccion Meet Tim
 - Dominio tevetransferstours.com en todo el sitio
 - index.html de 104 KB, fotos aparte en img/
+- Etiqueta de Google Ads (AW-16596162124) en el <head>
+- Dominio corregido tambien en canonical, og:url y datos estructurados
 
 
 PARA QUE SIRVE ESTE ARCHIVO
@@ -22,7 +24,7 @@ Abre en el navegador:
 
     tevetransferstours.com/version.txt
 
-Si ves "2026-09-15-c", tu sitio esta actualizado.
+Si ves "2026-09-17-d", tu sitio esta actualizado.
 Si no aparece este archivo, o dice otra version, es que el index.html
 que esta arriba no es el nuevo: la subida no se completo.
 

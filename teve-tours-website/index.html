@@ -1,21 +1,31 @@
-<!-- TEVE build 2026-09-15-c -->
+<!-- TEVE build 2026-09-17-d -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16596162124"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16596162124');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Cancun Airport Transfers &amp; Private Riviera Maya Tours</title>
 <meta name="description" content="Private Cancun airport transfers and custom Riviera Maya tours for travellers from the UK, Australia, the US and Canada. Book direct on WhatsApp.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="TEVE Transfers &amp; Tours">
-<link rel="canonical" href="https://www.tevetours.com/">
+<link rel="canonical" href="https://www.tevetransferstours.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="TEVE Transfers &amp; Tours">
 <meta property="og:title" content="Cancun Airport Transfers &amp; Private Riviera Maya Tours">
 <meta property="og:description" content="Private Cancun airport transfers and custom Riviera Maya tours across Cancun, Tulum and the Riviera Maya.">
-<meta property="og:url" content="https://www.tevetours.com/">
+<meta property="og:url" content="https://www.tevetransferstours.com/">
 <meta property="og:locale" content="en_US">
 <!-- Las etiquetas hreflang de cada idioma se inyectan solas al cargar. -->
 <meta name="twitter:card" content="summary_large_image">
@@ -41,7 +51,7 @@
   },
   "email": "reservas@tevetransferstours.com",
   "telephone": "+52-998-735-1905",
-  "url": "https://www.tevetours.com",
+  "url": "https://www.tevetransferstours.com",
   "areaServed": ["Cancún", "Riviera Maya", "Tulum", "Playa del Carmen", "Isla Mujeres"],
   "paymentAccepted": ["cash", "credit card", "paypal"],
   "priceRange": "$$"
@@ -1931,7 +1941,11 @@ function renderWidgets() {
   const r = C.redes || {};
   const tarjetas = [];
 
-  // --- TripAdvisor: sello oficial servido por TripAdvisor ---
+  // --- TripAdvisor: el mismo sello del archivo local que usa la portada ---
+  // Antes esta imagen se pedia a static.tacdn.com. Se veia rota para quien
+  // trae un bloqueador, y era la unica imagen del sitio que dependia de un
+  // servidor ajeno. Es el mismo sello, ya esta descargado, y el widget vivo
+  // de TripAdvisor lo reemplaza igual cuando su script responde.
   const ta = w.tripadvisor || {};
   if (ta.activo && r.tripadvisor) {
     const uniq = esc(ta.uniq || '663');
@@ -1945,9 +1959,9 @@ function renderWidgets() {
             <ul class="TA_links">
               <li>
                 <a target="_blank" rel="noopener" href="${esc(r.tripadvisor)}">
-                  <img src="https://static.tacdn.com/img2/travelers_choice/widgets/tchotel_${esc(ta.anio || '2026')}_LL.png"
+                  <img src="/img/travellers-choice-2026.png"
                        alt="Travelers' Choice ${esc(ta.anio || '2026')} — TripAdvisor"
-                       class="widCOEImg" id="CDSWIDCOELOGO" width="130" height="130" loading="lazy">
+                       class="widCOEImg" id="CDSWIDCOELOGO" width="130" height="146" loading="lazy">
                 </a>
               </li>
             </ul>
