@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Migrar fotos — Dr. Sepúlveda</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:system-ui,sans-serif;background:#f0ece8;color:#1a1a1a;padding:30px 16px;min-height:100vh;}
+.wrap{max-width:700px;margin:0 auto;}
+h1{font-size:1.4rem;color:#0A2540;margin-bottom:6px;}
+.sub{font-size:0.9rem;color:#555;margin-bottom:30px;}
+.step{background:#fff;border-radius:10px;border:1px solid #ddd;padding:24px;margin-bottom:16px;}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:#0A2540;color:#fff;border-radius:50%;font-size:0.8rem;font-weight:700;margin-right:10px;flex-shrink:0;}
+.step-title{font-size:1rem;font-weight:700;color:#0A2540;display:flex;align-items:center;margin-bottom:14px;}
+.file-zone{border:2px dashed #ccc;border-radius:8px;padding:20px;text-align:center;cursor:pointer;transition:border-color 0.2s,background 0.2s;position:relative;}
+.file-zone:hover{border-color:#C5742A;background:#fff8f3;}
+.file-zone.loaded{border-color:#25a244;border-style:solid;background:#f0fff5;}
+.file-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.file-zone-icon{font-size:2rem;margin-bottom:8px;}
+.file-zone-label{font-size:0.9rem;color:#555;}
+.file-zone-label strong{color:#0A2540;}
+.file-status{margin-top:8px;font-size:0.82rem;font-weight:600;}
+.file-status.ok{color:#25a244;}
+.file-status.wait{color:#888;}
+.btn{display:block;width:100%;padding:16px;background:#C5742A;color:#fff;border:none;border-radius:8px;font-size:1.1rem;font-weight:700;cursor:pointer;transition:background 0.2s;margin-top:6px;}
+.btn:hover{background:#a8601e;}
+.btn:disabled{background:#ccc;cursor:not-allowed;}
+.log{margin-top:16px;background:#f8f8f8;border-radius:8px;padding:16px;font-size:0.82rem;color:#333;line-height:1.7;display:none;}
+.log.show{display:block;}
+.log-item{padding:3px 0;}
+.log-item.ok{color:#25a244;}
+.log-item.skip{color:#aaa;}
+.log-item.warn{color:#c5742a;}
+.note{background:#fff8ee;border:1px solid #f0d090;border-radius:7px;padding:14px 16px;font-size:0.83rem;color:#7a4e00;line-height:1.6;margin-bottom:20px;}
+.arrow{text-align:center;font-size:1.5rem;color:#ccc;margin:4px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🔄 Migrar fotos al nuevo sitio web</h1>
+  <p class="sub">Extrae automáticamente las fotos del sitio anterior y las pone en el nuevo. Sin volver a seleccionarlas una por una.</p>
+
+  <div class="note">
+    <strong>¿Qué necesitas?</strong><br>
+    • El archivo <strong>index.html anterior</strong> (el que ya tenía las fotos incrustadas — el que subiste a Hostinger)<br>
+    • El archivo <strong>index.html nuevo</strong> (el del ZIP que acabas de descargar, con los placeholders)<br>
+    Carga los dos y haz clic en <strong>Migrar y descargar</strong>.
+  </div>
+
+  <!-- Step 1 -->
+  <div class="step">
+    <div class="step-title"><span class="step-num">1</span> Sitio anterior (con fotos ya incrustadas)</div>
+    <div class="file-zone" id="zone-old">
+      <input type="file" id="input-old" accept=".html">
+      <div class="file-zone-icon">📂</div>
+      <div class="file-zone-label"><strong>Haz clic aquí</strong> para cargar el index.html antiguo<br><small>(el que ya tenía las fotos)</small></div>
+      <div class="file-status wait" id="status-old">Sin cargar</div>
+    </div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <!-- Step 2 -->
+  <div class="step">
+    <div class="step-title"><span class="step-num">2</span> Sitio nuevo (con placeholders, del ZIP reciente)</div>
+    <div class="file-zone" id="zone-new">
+      <input type="file" id="input-new" accept=".html">
+      <div class="file-zone-icon">📄</div>
+      <div class="file-zone-label"><strong>Haz clic aquí</strong> para cargar el index.html nuevo<br><small>(el del ZIP descargado hoy)</small></div>
+      <div class="file-status wait" id="status-new">Sin cargar</div>
+    </div>
+  </div>
+
+  <div class="arrow">↓</div>
+
+  <!-- Step 3 -->
+  <div class="step">
+    <div class="step-title"><span class="step-num">3</span> Migrar y descargar</div>
+    <button class="btn" id="btn-migrate" disabled>⬇ Migrar fotos y descargar index-final.html</button>
+    <div class="log" id="log"></div>
+  </div>
+</div>
+
+<script>
+var oldHTML = null;
+var newHTML = null;
+
+function loadFile(inputId, zoneId, statusId, callback) {
+  document.getElementById(inputId).addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      callback(ev.target.result, file.name);
+      document.getElementById(zoneId).classList.add('loaded');
+      document.getElementById(statusId).textContent = '✓ Cargado: ' + file.name;
+      document.getElementById(statusId).className = 'file-status ok';
+      checkReady();
+    };
+    reader.readAsText(file);
+  });
+}
+
+loadFile('input-old', 'zone-old', 'status-old', function(html) { oldHTML = html; });
+loadFile('input-new', 'zone-new', 'status-new', function(html) { newHTML = html; });
+
+function checkReady() {
+  document.getElementById('btn-migrate').disabled = !(oldHTML && newHTML);
+}
+
+document.getElementById('btn-migrate').addEventListener('click', function() {
+  var log = document.getElementById('log');
+  log.innerHTML = '';
+  log.classList.add('show');
+
+  function logLine(msg, type) {
+    var d = document.createElement('div');
+    d.className = 'log-item ' + (type||'');
+    d.textContent = msg;
+    log.appendChild(d);
+  }
+
+  // Parse old HTML
+  var parser = new DOMParser();
+  var oldDoc = parser.parseFromString(oldHTML, 'text/html');
+
+  // Extract images from old HTML by known selectors
+  var extractions = {};
+
+  function extract(selector, label) {
+    var el = oldDoc.querySelector(selector);
+    if (el && el.src && el.src.startsWith('data:')) {
+      extractions[label] = el.src;
+      logLine('✓ ' + label + ' extraído desde ' + selector, 'ok');
+      return true;
+    }
+    logLine('— ' + label + ' no encontrado en ' + selector, 'skip');
+    return false;
+  }
+
+  function extractNth(selector, nth, label) {
+    var els = oldDoc.querySelectorAll(selector);
+    var el = els[nth];
+    if (el && el.src && el.src.startsWith('data:')) {
+      extractions[label] = el.src;
+      logLine('✓ ' + label + ' extraído desde ' + selector + '[' + nth + ']', 'ok');
+      return true;
+    }
+    logLine('— ' + label + ' no encontrado en ' + selector + '[' + nth + ']', 'skip');
+    return false;
+  }
+
+  logLine('── Extrayendo imágenes del sitio antiguo ──');
+
+  // Logo (same in both old and new)
+  extract('#nav-logo-img', 'LOGO');
+
+  // Hero / About — NOTE: old hero=CIRUGIA_1, old about=CIRUGIA_2
+  // New design: hero=CIRUGIA_2, about=CIRUGIA_1 → SWAP
+  var oldHeroEl = oldDoc.querySelector('.hero-photo');
+  var oldAboutEl = oldDoc.querySelector('.about-photo');
+
+  if (oldHeroEl && oldHeroEl.src && oldHeroEl.src.startsWith('data:')) {
+    // Old hero photo goes to new about slot (CIRUGIA_1)
+    extractions['CIRUGIA_1'] = oldHeroEl.src;
+    logLine('✓ CIRUGIA_1 (foto sobre mí) ← hero anterior', 'ok');
+  } else {
+    logLine('— CIRUGIA_1 no encontrado en .hero-photo', 'skip');
+  }
+
+  if (oldAboutEl && oldAboutEl.src && oldAboutEl.src.startsWith('data:')) {
+    // Old about photo goes to new hero slot (CIRUGIA_2)
+    extractions['CIRUGIA_2'] = oldAboutEl.src;
+    logLine('✓ CIRUGIA_2 (foto hero) ← about anterior', 'ok');
+  } else {
+    logLine('— CIRUGIA_2 no encontrado en .about-photo', 'skip');
+  }
+
+  // Try to detect if old and new are same version (no swap needed)
+  var isNewVersion = newHTML.indexOf('__B64_FOTO_CIRUGIA_2__') > -1 && newHTML.indexOf('hero-photo') > -1;
+  var newHeroPlaceholderPos = newHTML.indexOf('__B64_FOTO_CIRUGIA_2__');
+  var newHeroPhotoPos = newHTML.indexOf('class="hero-photo"');
+  // If new file has hero before CIRUGIA_2, probably already correct structure
+
+  // Service card images (old structure: .services-grid img or service card imgs)
+  // Try multiple selectors for old service card images
+  var serviceSelectors = [
+    '.services-grid img',
+    '.service-card img',
+    '.service-photo',
+    'section.servicios img',
+    '#servicios img'
+  ];
+  var serviceImgs = [];
+  for (var s = 0; s < serviceSelectors.length; s++) {
+    var found = oldDoc.querySelectorAll(serviceSelectors[s]);
+    if (found.length > 0) {
+      serviceImgs = Array.from(found).filter(function(i){ return i.src && i.src.startsWith('data:'); });
+      if (serviceImgs.length > 0) break;
+    }
+  }
+
+  // Old service order: CIRUGIA_3, CIRUGIA_4, CIRUGIA_5, CIRUGIA_6, CIRUGIA_10
+  var serviceKeys = ['CIRUGIA_3','CIRUGIA_4','CIRUGIA_5','CIRUGIA_6','CIRUGIA_10'];
+  serviceImgs.forEach(function(img, i) {
+    if (i < serviceKeys.length) {
+      extractions[serviceKeys[i]] = img.src;
+      logLine('✓ ' + serviceKeys[i] + ' extraído (servicio ' + (i+1) + ')', 'ok');
+    }
+  });
+
+  // Also try spec-photo for new-style (if migrating same new version)
+  var specImgs = Array.from(oldDoc.querySelectorAll('.spec-photo')).filter(function(i){ return i.src && i.src.startsWith('data:'); });
+  if (specImgs.length > 0 && serviceImgs.length === 0) {
+    var specKeys = ['CIRUGIA_3','CIRUGIA_4','CIRUGIA_5','CIRUGIA_10'];
+    specImgs.forEach(function(img, i) {
+      if (i < specKeys.length && !extractions[specKeys[i]]) {
+        extractions[specKeys[i]] = img.src;
+        logLine('✓ ' + specKeys[i] + ' extraído (specialty ' + (i+1) + ')', 'ok');
+      }
+    });
+  }
+
+  // Gallery images
+  var galleryImgs = Array.from(oldDoc.querySelectorAll('.gallery img, .gallery-main img, .gallery-side img')).filter(function(i){ return i.src && i.src.startsWith('data:'); });
+  var galleryKeys = ['CIRUGIA_7','CIRUGIA_8','CIRUGIA_9'];
+  galleryImgs.forEach(function(img, i) {
+    if (i < galleryKeys.length) {
+      extractions[galleryKeys[i]] = img.src;
+      logLine('✓ ' + galleryKeys[i] + ' (galería ' + (i+1) + ')', 'ok');
+    }
+  });
+
+  // Cert images
+  var certImgs = Array.from(oldDoc.querySelectorAll('.cert-img')).filter(function(i){ return i.src && i.src.startsWith('data:'); });
+  ['CERT_1','CERT_2'].forEach(function(key, i) {
+    if (certImgs[i]) {
+      extractions[key] = certImgs[i].src;
+      logLine('✓ ' + key + ' (certificado ' + (i+1) + ')', 'ok');
+    }
+  });
+
+  // Now replace placeholders in new HTML
+  logLine('');
+  logLine('── Aplicando al nuevo sitio ──');
+
+  var result = newHTML;
+  var replaced = 0;
+  var missing = [];
+
+  // Define placeholder map
+  var placeholders = {
+    'LOGO': '__B64_LOGO__',
+    'CIRUGIA_1': '__B64_FOTO_CIRUGIA_1__',
+    'CIRUGIA_2': '__B64_FOTO_CIRUGIA_2__',
+    'CIRUGIA_3': '__B64_FOTO_CIRUGIA_3__',
+    'CIRUGIA_4': '__B64_FOTO_CIRUGIA_4__',
+    'CIRUGIA_5': '__B64_FOTO_CIRUGIA_5__',
+    'CIRUGIA_6': '__B64_FOTO_CIRUGIA_6__',
+    'CIRUGIA_7': '__B64_FOTO_CIRUGIA_7__',
+    'CIRUGIA_8': '__B64_FOTO_CIRUGIA_8__',
+    'CIRUGIA_9': '__B64_FOTO_CIRUGIA_9__',
+    'CIRUGIA_10': '__B64_FOTO_CIRUGIA_10__',
+    'CERT_1': '__B64_CERT_1__',
+    'CERT_2': '__B64_CERT_2__'
+  };
+
+  Object.keys(placeholders).forEach(function(key) {
+    var ph = placeholders[key];
+    if (result.indexOf(ph) === -1) return; // placeholder not in new file
+    if (extractions[key]) {
+      var count = 0;
+      while (result.indexOf(ph) !== -1) {
+        result = result.replace(ph, extractions[key]);
+        count++;
+      }
+      logLine('✓ ' + ph + ' → aplicado (' + count + ' ocurrencia' + (count>1?'s':'') + ')', 'ok');
+      replaced++;
+    } else {
+      missing.push(ph);
+      logLine('⚠ ' + ph + ' — sin imagen (placeholder quedará vacío)', 'warn');
+    }
+  });
+
+  logLine('');
+  if (replaced > 0) {
+    logLine('✅ Listo: ' + replaced + ' imagen(es) migrada(s). Descargando...', 'ok');
+  }
+  if (missing.length > 0) {
+    logLine('⚠ ' + missing.length + ' slot(s) sin imagen: ' + missing.join(', '), 'warn');
+  }
+
+  // Download
+  var blob = new Blob([result], {type:'text/html'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'index-migrado.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+</script>
+</body>
+</html>
