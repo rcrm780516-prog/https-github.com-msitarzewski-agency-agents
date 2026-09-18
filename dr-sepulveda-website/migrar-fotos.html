@@ -234,7 +234,7 @@ document.getElementById('btn-migrate').addEventListener('click', function() {
 
   // Cert images
   var certImgs = Array.from(oldDoc.querySelectorAll('.cert-img')).filter(function(i){ return i.src && i.src.startsWith('data:'); });
-  ['CERT_1','CERT_2'].forEach(function(key, i) {
+  ['CERT_1','CERT_2','CERT_3','CERT_4'].forEach(function(key, i) {
     if (certImgs[i]) {
       extractions[key] = certImgs[i].src;
       logLine('✓ ' + key + ' (certificado ' + (i+1) + ')', 'ok');
@@ -263,7 +263,9 @@ document.getElementById('btn-migrate').addEventListener('click', function() {
     'CIRUGIA_9': '__B64_FOTO_CIRUGIA_9__',
     'CIRUGIA_10': '__B64_FOTO_CIRUGIA_10__',
     'CERT_1': '__B64_CERT_1__',
-    'CERT_2': '__B64_CERT_2__'
+    'CERT_2': '__B64_CERT_2__',
+    'CERT_3': '__B64_CERT_3__',
+    'CERT_4': '__B64_CERT_4__'
   };
 
   Object.keys(placeholders).forEach(function(key) {

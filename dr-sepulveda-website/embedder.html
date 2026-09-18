@@ -208,11 +208,14 @@ input[type=file]{display:none;}
 
 <!-- CERTIFICATES -->
 <div class="section">
-  <h2>6. Certificados (opcional)</h2>
+  <h2>6. Certificados</h2>
+  <div style="background:#fff8ee;border:1px solid #f0d090;border-radius:6px;padding:12px 14px;font-size:0.82rem;color:#7a4e00;margin-bottom:18px;line-height:1.6;">
+    <strong>📄 Los certificados son PDFs:</strong> Abre cada PDF, toma una captura de pantalla (screenshot) de la primera página y sube la imagen PNG/JPG aquí. También puedes imprimir a PDF y guardar como imagen.
+  </div>
   <div class="slot">
     <div class="slot-info">
-      <h3>Certificado / Cédula 1</h3>
-      <p>Foto de la cédula profesional o diploma. Alta resolución recomendada.</p>
+      <h3>Certificado 1 — CMOT</h3>
+      <p>Certificado del Consejo Mexicano de Ortopedia y Traumatología (CONACEM).</p>
       <span class="placeholder">__B64_CERT_1__</span>
     </div>
     <div class="slot-ctrl">
@@ -224,8 +227,8 @@ input[type=file]{display:none;}
   </div>
   <div class="slot">
     <div class="slot-info">
-      <h3>Certificado / Cédula 2</h3>
-      <p>Foto de la cédula de especialidad u otro reconocimiento.</p>
+      <h3>Certificado 2 — Diploma AO</h3>
+      <p>Diploma AO Foundation — Fijación y Osteosíntesis de Fracturas.</p>
       <span class="placeholder">__B64_CERT_2__</span>
     </div>
     <div class="slot-ctrl">
@@ -233,6 +236,32 @@ input[type=file]{display:none;}
       <input type="file" id="input-CERT_2" accept="image/*" data-key="CERT_2">
       <img class="preview" id="preview-CERT_2" alt="Vista previa cert 2">
       <span class="status" id="status-CERT_2">✓ Cargado</span>
+    </div>
+  </div>
+  <div class="slot">
+    <div class="slot-info">
+      <h3>Certificado 3 — Constancia ISAKOS</h3>
+      <p>Artroscopia y Cirugía Ortopédica Deportiva — ISAKOS.</p>
+      <span class="placeholder">__B64_CERT_3__</span>
+    </div>
+    <div class="slot-ctrl">
+      <label class="upload-btn" for="input-CERT_3">Seleccionar imagen</label>
+      <input type="file" id="input-CERT_3" accept="image/*" data-key="CERT_3">
+      <img class="preview" id="preview-CERT_3" alt="Vista previa cert 3">
+      <span class="status" id="status-CERT_3">✓ Cargado</span>
+    </div>
+  </div>
+  <div class="slot">
+    <div class="slot-info">
+      <h3>Certificado 4 — Diploma Preservación de Cadera</h3>
+      <p>Diploma — Introducción a la Cirugía de Preservación de Cadera.</p>
+      <span class="placeholder">__B64_CERT_4__</span>
+    </div>
+    <div class="slot-ctrl">
+      <label class="upload-btn" for="input-CERT_4">Seleccionar imagen</label>
+      <input type="file" id="input-CERT_4" accept="image/*" data-key="CERT_4">
+      <img class="preview" id="preview-CERT_4" alt="Vista previa cert 4">
+      <span class="status" id="status-CERT_4">✓ Cargado</span>
     </div>
   </div>
 </div>
@@ -251,7 +280,7 @@ var MAX_WIDTH = {
   CIRUGIA_3: 700, CIRUGIA_4: 700, CIRUGIA_5: 700,
   CIRUGIA_7: 800, CIRUGIA_8: 700, CIRUGIA_9: 700,
   CIRUGIA_10: 700,
-  CERT_1: 1000, CERT_2: 1000
+  CERT_1: 1000, CERT_2: 1000, CERT_3: 1000, CERT_4: 1000
 };
 var QUALITY = 0.75;
 
