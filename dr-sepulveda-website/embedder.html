@@ -441,9 +441,20 @@ document.getElementById('btn-generate').addEventListener('click', function() {
       : key.startsWith('CERT')
         ? '__B64_' + key + '__'
         : '__B64_FOTO_' + key + '__';
-    // Replace all occurrences
+    // Replace placeholder tokens
     while (result.indexOf(placeholder) !== -1) {
       result = result.replace(placeholder, images[key]);
+    }
+    // For LOGO: also replace already-embedded base64 on logo img elements
+    // (handles index-migrado.html where placeholder was already replaced)
+    if (key === 'LOGO') {
+      var newSrc = images[key];
+      // Replace src on id="nav-logo-img" — attribute order: id first or src first
+      result = result.replace(/(id="nav-logo-img"[^>]*?\bsrc=")data:[^"]*(")/g, '$1' + newSrc + '$2');
+      result = result.replace(/(\bsrc=")data:[^"]*("[^>]*id="nav-logo-img")/g, '$1' + newSrc + '$2');
+      // Replace src on id="hero-logo-display"
+      result = result.replace(/(id="hero-logo-display"[^>]*?\bsrc=")data:[^"]*(")/g, '$1' + newSrc + '$2');
+      result = result.replace(/(\bsrc=")data:[^"]*("[^>]*id="hero-logo-display")/g, '$1' + newSrc + '$2');
     }
   });
 
