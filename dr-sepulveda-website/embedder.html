@@ -67,7 +67,7 @@ input[type=file]{display:none;}
       <canvas id="canvas-logo-proc" style="max-width:100%;border-radius:6px;border:1px solid #ddd;background:repeating-conic-gradient(#ccc 0% 25%,#fff 0% 50%) 0 0/16px 16px;display:none;margin-top:8px;"></canvas>
       <span id="status-logo-proc" style="font-size:0.75rem;color:#25a244;font-weight:600;display:none;">✓ Procesado — fondo eliminado</span>
       <button id="btn-dl-logo" style="display:none;background:#25a244;color:#fff;border:none;padding:9px 14px;border-radius:5px;font-size:0.82rem;font-weight:600;cursor:pointer;margin-top:6px;">⬇ Descargar logo procesado (PNG)</button>
-      <p id="logo-proc-hint" style="font-size:0.75rem;color:#888;margin-top:6px;display:none;">Luego usa este PNG descargado en el paso 2 (slot Logo).</p>
+      <p id="logo-proc-hint" style="font-size:0.75rem;color:#25a244;margin-top:6px;display:none;">El logo ya está listo en el Paso 2. Solo carga las fotos y genera el archivo.</p>
     </div>
   </div>
 </div>
@@ -334,10 +334,23 @@ document.getElementById('input-logo-proc').addEventListener('change', function(e
     }
     ctx.putImageData(idata, 0, 0);
 
+    // Auto-populate the LOGO slot directly (no download needed)
+    var dataUrl = canvas.toDataURL('image/png');
+    images['LOGO'] = dataUrl;
+
+    // Update LOGO slot preview in Step 2
+    var logoPreview = document.getElementById('preview-LOGO');
+    var logoStatus = document.getElementById('status-LOGO');
+    if (logoPreview) { logoPreview.src = dataUrl; logoPreview.style.display = 'block'; }
+    if (logoStatus) { logoStatus.textContent = '✓ Cargado desde procesador'; logoStatus.style.display = 'block'; }
+
     canvas.style.display = 'block';
+    document.getElementById('status-logo-proc').textContent = '✓ Listo — logo cargado automáticamente en el Paso 2';
     document.getElementById('status-logo-proc').style.display = 'block';
     document.getElementById('btn-dl-logo').style.display = 'block';
+    document.getElementById('logo-proc-hint').textContent = 'El logo ya está listo en el Paso 2. Solo carga las fotos y genera el archivo.';
     document.getElementById('logo-proc-hint').style.display = 'block';
+    updateBtn();
   };
   img.src = url;
 });
