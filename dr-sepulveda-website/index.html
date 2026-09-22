@@ -206,30 +206,34 @@ a{color:inherit;text-decoration:none;}
 .spec-cta:hover{background:#a8601e;}
 
 /* CERTIFICATES */
-.certs{background:var(--navy);padding:80px 20px;}
-.certs-inner{max-width:600px;margin:0 auto;}
-.certs-header{text-align:center;margin-bottom:50px;}
+.certs{background:var(--navy);padding:70px 20px;}
+.certs-inner{max-width:580px;margin:0 auto;}
+.certs-header{text-align:center;margin-bottom:44px;}
 .certs-header .section-tag{color:rgba(197,116,42,0.9);}
 .certs-header .section-title{color:#fff;}
-.cert-carousel-wrap{position:relative;padding:0 52px;}
-.cert-carousel{overflow:hidden;border-radius:10px;}
-.cert-track{display:flex;transition:transform 0.5s cubic-bezier(.4,0,.2,1);}
-.cert-slide{min-width:100%;}
-.cert-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:10px;overflow:hidden;}
-.cert-nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;padding:0;line-height:1;z-index:2;}
+.cert-carousel-wrap{position:relative;display:flex;align-items:center;gap:12px;}
+.cert-carousel{overflow:hidden;border-radius:10px;flex:1;min-width:0;}
+.cert-track{display:flex;transition:transform 0.5s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.cert-slide{flex:0 0 100%;width:100%;min-width:0;}
+.cert-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:10px;overflow:hidden;}
+.cert-nav-btn{flex-shrink:0;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s,border-color 0.2s;padding:0;line-height:1;}
 .cert-nav-btn:hover{background:var(--copper);border-color:var(--copper);}
-.cert-nav-prev{left:0;}
-.cert-nav-next{right:0;}
-.cert-dots{display:flex;justify-content:center;gap:10px;margin-top:20px;}
+.cert-dots{display:flex;justify-content:center;gap:10px;margin-top:18px;}
 .cert-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.25);border:none;cursor:pointer;transition:background 0.25s,transform 0.2s;padding:0;}
 .cert-dot.active{background:var(--copper);transform:scale(1.3);}
-@media(max-width:500px){.cert-carousel-wrap{padding:0 40px;}.cert-nav-btn{width:34px;height:34px;font-size:1rem;}}
+.cert-counter{text-align:center;margin-top:10px;font-size:0.78rem;color:rgba(255,255,255,0.4);letter-spacing:0.06em;}
 .cert-img-wrap{background:rgba(255,255,255,0.04);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .cert-img{width:100%;height:100%;object-fit:contain;}
 .cert-placeholder{color:rgba(255,255,255,0.3);text-align:center;padding:20px;font-size:0.85rem;}
-.cert-body{padding:18px;}
-.cert-name{font-family:Georgia,serif;font-size:1rem;color:#fff;margin-bottom:4px;}
-.cert-inst{font-size:0.82rem;color:rgba(255,255,255,0.6);}
+.cert-body{padding:18px 20px;}
+.cert-name{font-family:Georgia,serif;font-size:1rem;color:#fff;margin-bottom:5px;}
+.cert-inst{font-size:0.81rem;color:rgba(255,255,255,0.55);line-height:1.5;}
+@media(max-width:480px){
+  .cert-carousel-wrap{gap:8px;}
+  .cert-nav-btn{width:36px;height:36px;font-size:1.1rem;}
+  .cert-body{padding:14px 16px;}
+  .cert-name{font-size:0.92rem;}
+}
 .cert-text-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:8px;padding:28px;}
 .cert-text-card h3{font-family:Georgia,serif;font-size:1.1rem;color:var(--copper);margin-bottom:12px;}
 .cert-text-card p{font-size:0.9rem;color:rgba(255,255,255,0.75);line-height:1.7;}
@@ -442,7 +446,7 @@ footer a{color:rgba(197,116,42,0.8);}
     </div>
     <div class="cert-carousel-wrap">
       <button class="cert-nav-btn cert-nav-prev" id="cert-prev" aria-label="Certificado anterior">&#8592;</button>
-      <div class="cert-carousel">
+      <div class="cert-carousel" id="cert-carousel">
         <div class="cert-track" id="cert-track">
           <!-- Cert 1: CMOT -->
           <div class="cert-slide">
@@ -522,6 +526,7 @@ footer a{color:rgba(197,116,42,0.8);}
       <button class="cert-dot" data-idx="2" aria-label="Certificado 3"></button>
       <button class="cert-dot" data-idx="3" aria-label="Certificado 4"></button>
     </div>
+    <div class="cert-counter" id="cert-counter">1 / 4</div>
   </div>
 </section>
 
@@ -900,16 +905,21 @@ footer a{color:rgba(197,116,42,0.8);}
 
 // CERTIFICATE CAROUSEL
 (function(){
-  var track = document.getElementById('cert-track');
-  var dotBtns = document.querySelectorAll('#cert-dots .cert-dot');
-  var total = 4;
-  var current = 0;
+  var carousel = document.getElementById('cert-carousel');
+  var track    = document.getElementById('cert-track');
+  var counter  = document.getElementById('cert-counter');
+  var dotBtns  = document.querySelectorAll('#cert-dots .cert-dot');
+  var total    = 4;
+  var current  = 0;
   var timer;
+
+  function slideWidth() { return carousel ? carousel.offsetWidth : 0; }
 
   function goTo(idx) {
     current = (idx + total) % total;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    track.style.transform = 'translateX(-' + (current * slideWidth()) + 'px)';
     dotBtns.forEach(function(d, i){ d.classList.toggle('active', i === current); });
+    if (counter) counter.textContent = (current + 1) + ' / ' + total;
   }
 
   function startAuto() { timer = setInterval(function(){ goTo(current + 1); }, 4500); }
@@ -917,22 +927,28 @@ footer a{color:rgba(197,116,42,0.8);}
 
   document.getElementById('cert-prev').addEventListener('click', function(){ stopAuto(); goTo(current - 1); startAuto(); });
   document.getElementById('cert-next').addEventListener('click', function(){ stopAuto(); goTo(current + 1); startAuto(); });
-  dotBtns.forEach(function(d){ d.addEventListener('click', function(){ stopAuto(); goTo(+this.dataset.idx); startAuto(); }); });
+  dotBtns.forEach(function(d){
+    d.addEventListener('click', function(){ stopAuto(); goTo(+this.dataset.idx); startAuto(); });
+  });
 
-  var carousel = document.querySelector('.cert-carousel-wrap');
-  if (carousel) {
-    carousel.addEventListener('mouseenter', stopAuto);
-    carousel.addEventListener('mouseleave', startAuto);
+  var wrap = document.querySelector('.cert-carousel-wrap');
+  if (wrap) {
+    wrap.addEventListener('mouseenter', stopAuto);
+    wrap.addEventListener('mouseleave', startAuto);
   }
 
-  // Touch swipe support
+  // Touch / swipe
   var touchStartX = 0;
-  track.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
-  track.addEventListener('touchend', function(e){
+  carousel.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+  carousel.addEventListener('touchend', function(e){
     var dx = e.changedTouches[0].clientX - touchStartX;
     if (Math.abs(dx) > 40) { stopAuto(); goTo(dx < 0 ? current + 1 : current - 1); startAuto(); }
   }, {passive:true});
 
+  // Re-snap on resize
+  window.addEventListener('resize', function(){ goTo(current); });
+
+  goTo(0);
   startAuto();
 })();
 </script>
