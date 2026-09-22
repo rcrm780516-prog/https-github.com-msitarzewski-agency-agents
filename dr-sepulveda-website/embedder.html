@@ -320,6 +320,7 @@ document.getElementById('input-logo-proc').addEventListener('change', function(e
     ctx.drawImage(img, 0, 0);
     URL.revokeObjectURL(url);
 
+    ctx.imageSmoothingEnabled = false;
     var idata = ctx.getImageData(0, 0, canvas.width, canvas.height);
     var d = idata.data;
     for (var i = 0; i < d.length; i += 4) {
