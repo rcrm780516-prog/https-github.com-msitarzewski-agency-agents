@@ -207,14 +207,23 @@ a{color:inherit;text-decoration:none;}
 
 /* CERTIFICATES */
 .certs{background:var(--navy);padding:80px 20px;}
-.certs-inner{max-width:1200px;margin:0 auto;}
+.certs-inner{max-width:600px;margin:0 auto;}
 .certs-header{text-align:center;margin-bottom:50px;}
 .certs-header .section-tag{color:rgba(197,116,42,0.9);}
 .certs-header .section-title{color:#fff;}
-.certs-grid{display:grid;grid-template-columns:1fr;gap:24px;}
-@media(min-width:600px){.certs-grid{grid-template-columns:1fr 1fr 1fr;}}
-@media(max-width:500px){.certs-inner [style*="grid-template-columns:repeat(2"]{grid-template-columns:1fr !important;}}
-.cert-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:8px;overflow:hidden;}
+.cert-carousel-wrap{position:relative;padding:0 52px;}
+.cert-carousel{overflow:hidden;border-radius:10px;}
+.cert-track{display:flex;transition:transform 0.5s cubic-bezier(.4,0,.2,1);}
+.cert-slide{min-width:100%;}
+.cert-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:10px;overflow:hidden;}
+.cert-nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;padding:0;line-height:1;z-index:2;}
+.cert-nav-btn:hover{background:var(--copper);border-color:var(--copper);}
+.cert-nav-prev{left:0;}
+.cert-nav-next{right:0;}
+.cert-dots{display:flex;justify-content:center;gap:10px;margin-top:20px;}
+.cert-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.25);border:none;cursor:pointer;transition:background 0.25s,transform 0.2s;padding:0;}
+.cert-dot.active{background:var(--copper);transform:scale(1.3);}
+@media(max-width:500px){.cert-carousel-wrap{padding:0 40px;}.cert-nav-btn{width:34px;height:34px;font-size:1rem;}}
 .cert-img-wrap{background:rgba(255,255,255,0.04);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .cert-img{width:100%;height:100%;object-fit:contain;}
 .cert-placeholder{color:rgba(255,255,255,0.3);text-align:center;padding:20px;font-size:0.85rem;}
@@ -431,67 +440,87 @@ footer a{color:rgba(197,116,42,0.8);}
       <h2 class="section-title">Certificados y reconocimientos</h2>
       <div class="divider" style="margin:14px auto 0;"></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:10px;">
-      <!-- Cert 1: CMOT -->
-      <div class="cert-card">
-        <div class="cert-img-wrap">
-          <img class="cert-img" src="__B64_CERT_1__" alt="Certificado CMOT — Especialista en Ortopedia y Traumatología" loading="lazy"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cert-placeholder" style="display:none;flex-direction:column;align-items:center;">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;opacity:0.4" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M9 11l1.5 7L12 15l1.5 3L15 11"/></svg>
-            Certificado CMOT
+    <div class="cert-carousel-wrap">
+      <button class="cert-nav-btn cert-nav-prev" id="cert-prev" aria-label="Certificado anterior">&#8592;</button>
+      <div class="cert-carousel">
+        <div class="cert-track" id="cert-track">
+          <!-- Cert 1: CMOT -->
+          <div class="cert-slide">
+            <div class="cert-card">
+              <div class="cert-img-wrap">
+                <img class="cert-img" src="__B64_CERT_1__" alt="Certificado CMOT — Especialista en Ortopedia y Traumatología" loading="lazy"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="cert-placeholder" style="display:none;flex-direction:column;align-items:center;">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;opacity:0.4" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M9 11l1.5 7L12 15l1.5 3L15 11"/></svg>
+                  Certificado CMOT
+                </div>
+              </div>
+              <div class="cert-body">
+                <div class="cert-name">Especialista en Ortopedia y Traumatología</div>
+                <div class="cert-inst">Consejo Mexicano de Ortopedia y Traumatología · CONACEM · 2026–2031</div>
+              </div>
+            </div>
+          </div>
+          <!-- Cert 2: AO -->
+          <div class="cert-slide">
+            <div class="cert-card">
+              <div class="cert-img-wrap">
+                <img class="cert-img" src="__B64_CERT_2__" alt="Diploma AO Foundation — Fijación de Fracturas" loading="lazy"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="cert-placeholder" style="display:none;flex-direction:column;align-items:center;">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;opacity:0.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg>
+                  Diploma AO
+                </div>
+              </div>
+              <div class="cert-body">
+                <div class="cert-name">Diploma AO — Fijación y Osteosíntesis de Fracturas</div>
+                <div class="cert-inst">AO Foundation</div>
+              </div>
+            </div>
+          </div>
+          <!-- Cert 3: ISAKOS -->
+          <div class="cert-slide">
+            <div class="cert-card">
+              <div class="cert-img-wrap">
+                <img class="cert-img" src="__B64_CERT_3__" alt="Constancia ISAKOS — Artroscopia y Cirugía Ortopédica" loading="lazy"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="cert-placeholder" style="display:none;flex-direction:column;align-items:center;">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;opacity:0.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                  Constancia ISAKOS
+                </div>
+              </div>
+              <div class="cert-body">
+                <div class="cert-name">Constancia ISAKOS — Artroscopia y Cirugía Ortopédica Deportiva</div>
+                <div class="cert-inst">International Society of Arthroscopy, Knee Surgery &amp; Orthopaedic Sports Medicine</div>
+              </div>
+            </div>
+          </div>
+          <!-- Cert 4: Cadera -->
+          <div class="cert-slide">
+            <div class="cert-card">
+              <div class="cert-img-wrap">
+                <img class="cert-img" src="__B64_CERT_4__" alt="Diploma Cirugía de Preservación de Cadera" loading="lazy"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="cert-placeholder" style="display:none;flex-direction:column;align-items:center;">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;opacity:0.4" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
+                  Diploma Cadera
+                </div>
+              </div>
+              <div class="cert-body">
+                <div class="cert-name">Diploma — Introducción a la Cirugía de Preservación de Cadera</div>
+                <div class="cert-inst">Curso de especialización en cadera</div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="cert-body">
-          <div class="cert-name">Especialista en Ortopedia y Traumatología</div>
-          <div class="cert-inst">Consejo Mexicano de Ortopedia y Traumatología · CONACEM · 2026–2031</div>
-        </div>
       </div>
-      <!-- Cert 2: AO -->
-      <div class="cert-card">
-        <div class="cert-img-wrap">
-          <img class="cert-img" src="__B64_CERT_2__" alt="Diploma AO Foundation — Fijación de Fracturas" loading="lazy"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cert-placeholder" style="display:none;flex-direction:column;align-items:center;">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;opacity:0.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg>
-            Diploma AO
-          </div>
-        </div>
-        <div class="cert-body">
-          <div class="cert-name">Diploma AO — Fijación y Osteosíntesis de Fracturas</div>
-          <div class="cert-inst">AO Foundation</div>
-        </div>
-      </div>
-      <!-- Cert 3: ISAKOS -->
-      <div class="cert-card">
-        <div class="cert-img-wrap">
-          <img class="cert-img" src="__B64_CERT_3__" alt="Constancia ISAKOS — Artroscopia y Cirugía Ortopédica" loading="lazy"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cert-placeholder" style="display:none;flex-direction:column;align-items:center;">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;opacity:0.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-            Constancia ISAKOS
-          </div>
-        </div>
-        <div class="cert-body">
-          <div class="cert-name">Constancia ISAKOS — Artroscopia y Cirugía Ortopédica Deportiva</div>
-          <div class="cert-inst">International Society of Arthroscopy, Knee Surgery &amp; Orthopaedic Sports Medicine</div>
-        </div>
-      </div>
-      <!-- Cert 4: Cadera -->
-      <div class="cert-card">
-        <div class="cert-img-wrap">
-          <img class="cert-img" src="__B64_CERT_4__" alt="Diploma Cirugía de Preservación de Cadera" loading="lazy"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="cert-placeholder" style="display:none;flex-direction:column;align-items:center;">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px;opacity:0.4" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12h8M12 8v8"/></svg>
-            Diploma Cadera
-          </div>
-        </div>
-        <div class="cert-body">
-          <div class="cert-name">Diploma — Introducción a la Cirugía de Preservación de Cadera</div>
-          <div class="cert-inst">Curso de especialización en cadera</div>
-        </div>
-      </div>
+      <button class="cert-nav-btn cert-nav-next" id="cert-next" aria-label="Certificado siguiente">&#8594;</button>
+    </div>
+    <div class="cert-dots" id="cert-dots" role="tablist" aria-label="Navegación de certificados">
+      <button class="cert-dot active" data-idx="0" aria-label="Certificado 1"></button>
+      <button class="cert-dot" data-idx="1" aria-label="Certificado 2"></button>
+      <button class="cert-dot" data-idx="2" aria-label="Certificado 3"></button>
+      <button class="cert-dot" data-idx="3" aria-label="Certificado 4"></button>
     </div>
   </div>
 </section>
@@ -867,6 +896,44 @@ footer a{color:rgba(197,116,42,0.8);}
   }
   checkWidth();
   window.addEventListener('resize',checkWidth);
+})();
+
+// CERTIFICATE CAROUSEL
+(function(){
+  var track = document.getElementById('cert-track');
+  var dotBtns = document.querySelectorAll('#cert-dots .cert-dot');
+  var total = 4;
+  var current = 0;
+  var timer;
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dotBtns.forEach(function(d, i){ d.classList.toggle('active', i === current); });
+  }
+
+  function startAuto() { timer = setInterval(function(){ goTo(current + 1); }, 4500); }
+  function stopAuto()  { clearInterval(timer); }
+
+  document.getElementById('cert-prev').addEventListener('click', function(){ stopAuto(); goTo(current - 1); startAuto(); });
+  document.getElementById('cert-next').addEventListener('click', function(){ stopAuto(); goTo(current + 1); startAuto(); });
+  dotBtns.forEach(function(d){ d.addEventListener('click', function(){ stopAuto(); goTo(+this.dataset.idx); startAuto(); }); });
+
+  var carousel = document.querySelector('.cert-carousel-wrap');
+  if (carousel) {
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+  }
+
+  // Touch swipe support
+  var touchStartX = 0;
+  track.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].clientX; }, {passive:true});
+  track.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) { stopAuto(); goTo(dx < 0 ? current + 1 : current - 1); startAuto(); }
+  }, {passive:true});
+
+  startAuto();
 })();
 </script>
 </body>
