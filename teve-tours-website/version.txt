@@ -1,11 +1,14 @@
 TEVE TRANSFERS & TOURS — VERSION DEL SITIO
 ==========================================
 
-Version:  2026-09-23-j
+Version:  2026-09-23-k
 Subida:   (escribe aqui la fecha en que la subiste)
 
 QUE TRAE ESTA VERSION
 ---------------------
+- "Planea tu Viaje a Cancun" YA ABRE. La tarjeta completa es el boton,
+  asi funciona igual con el dedo que con el raton. Cada nota trae su
+  texto completo, escrito en los 3 idiomas
 - PRIVATE DRIVER CANCUN como producto principal: lema "Your day.
   Your way.", bloque "Why choose a private driver?" y los lugares
   que puedes visitar
@@ -52,7 +55,7 @@ Abre en el navegador:
 
     tevetransferstours.com/version.txt
 
-Si ves "2026-09-23-j", tu sitio esta actualizado.
+Si ves "2026-09-23-k", tu sitio esta actualizado.
 Si no aparece este archivo, o dice otra version, es que el index.html
 que esta arriba no es el nuevo: la subida no se completo.
 

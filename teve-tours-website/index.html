@@ -81,11 +81,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- ARCHIVO DE PERSONALIZACIÓN: logo, imágenes, teléfonos, precios y textos.
      La ruta empieza con "/" a propósito: así también carga bien desde las
      direcciones con idioma, como /es/destinos o /pt/passeios. -->
-<script src="/teve-config.js?v=2026-09-23-j"></script>
+<script src="/teve-config.js?v=2026-09-23-k"></script>
 
 <!-- ARCHIVO DE FOTOGRAFÍAS: aquí se pegan todas las imágenes del sitio.
      Va después del config para poder sobrescribir sus rutas. -->
-<script src="/teve-fotos.js?v=2026-09-23-j"></script>
+<script src="/teve-fotos.js?v=2026-09-23-k"></script>
 
 <style>
   :root {
@@ -550,7 +550,56 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ============ BLOG ============ */
   .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-  .blog-card { background: var(--fourth); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+  .blog-card {
+    background: var(--fourth); border-radius: 10px; overflow: hidden;
+    display: flex; flex-direction: column; text-align: left;
+    border: 1px solid transparent; padding: 0; width: 100%; font: inherit;
+    cursor: pointer; text-decoration: none; color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    /* El dedo necesita blanco suficiente: la tarjeta entera es el objetivo. */
+    -webkit-tap-highlight-color: rgba(4,164,227,0.15);
+  }
+  .blog-card:hover, .blog-card:focus-visible {
+    transform: translateY(-3px); box-shadow: 0 12px 26px rgba(2,34,46,0.1);
+    border-color: var(--secondary); outline: none;
+  }
+  .blog-card:active { transform: translateY(-1px); }
+
+  /* --- la nota completa --- */
+  .nota-fondo {
+    position: fixed; inset: 0; z-index: 4000; background: rgba(2,34,46,0.62);
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+    opacity: 0; pointer-events: none; transition: opacity 0.22s;
+  }
+  .nota-fondo.abierta { opacity: 1; pointer-events: auto; }
+  .nota-caja {
+    background: #fff; border-radius: 14px; max-width: 700px; width: 100%;
+    max-height: 88vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    position: relative; transform: translateY(14px); transition: transform 0.22s;
+  }
+  .nota-fondo.abierta .nota-caja { transform: none; }
+  .nota-img { width: 100%; height: 210px; background-size: cover; background-position: center; }
+  .nota-cuerpo { padding: 30px 34px 34px; }
+  .nota-cat {
+    color: var(--secondary); font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;
+  }
+  .nota-cuerpo h3 { color: var(--primary); font-size: clamp(1.3rem, 3vw, 1.7rem); line-height: 1.25; margin-bottom: 18px; }
+  .nota-cuerpo p { color: #445; font-size: 1rem; line-height: 1.75; margin-bottom: 15px; }
+  .nota-cerrar {
+    position: absolute; top: 12px; right: 12px; width: 42px; height: 42px;
+    border-radius: 50%; border: 0; background: rgba(255,255,255,0.94);
+    color: var(--primary); font-size: 1.5rem; line-height: 1; cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+  }
+  .nota-cerrar:hover { background: #fff; }
+  .nota-cta { margin-top: 8px; }
+  @media (max-width: 560px) {
+    .nota-fondo { padding: 0; align-items: flex-end; }
+    .nota-caja { max-height: 92vh; border-radius: 16px 16px 0 0; }
+    .nota-cuerpo { padding: 24px 22px 30px; }
+    .nota-img { height: 170px; }
+  }
   .blog-img { aspect-ratio: 16/9; background-size: cover; background-position: center; }
   .blog-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
   .blog-cat { font-size: 0.7rem; text-transform: uppercase; color: var(--secondary); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px; }
@@ -1759,6 +1808,59 @@ function renderDestinos() {
   initDestCanvas();
 }
 
+/* ---------- la nota completa de "Planea tu viaje" ----------
+   Un solo panel que se rellena con la nota que se tocó. Funciona igual con el
+   dedo que con el ratón porque lo que abre es la tarjeta entera, no un enlace
+   diminuto. Se cierra con la X, tocando fuera, o con Escape.
+   ---------------------------------------------------------------------- */
+let notaAbridor = null;
+
+function abrirNota(id) {
+  const b = (C.blog || []).find(x => x.id === id);
+  const x = (L.blog || {})[id] || {};
+  if (!b) return;
+
+  notaAbridor = document.activeElement;
+  document.getElementById('notaImg').style.cssText = fondo(b.imagen, 0);
+  document.getElementById('notaCat').textContent = x.categoria || '';
+  document.getElementById('notaTitulo').textContent = x.titulo || '';
+
+  // Si aún no hay nota larga escrita, al menos se enseña el resumen: más vale
+  // eso que abrir un panel vacío.
+  const parrafos = (x.contenido && x.contenido.length) ? x.contenido : [x.texto || ''];
+  document.getElementById('notaTexto').innerHTML =
+    parrafos.filter(Boolean).map(t => `<p>${esc(t)}</p>`).join('');
+
+  const cta = document.getElementById('notaCta');
+  cta.textContent = T('tarjetaCotizar');
+  cta.onclick = () => waMsg(`${T('waGeneral')} — ${x.titulo || ''}`);
+
+  const f = document.getElementById('notaFondo');
+  f.hidden = false;
+  requestAnimationFrame(() => f.classList.add('abierta'));
+  document.body.style.overflow = 'hidden';
+  document.getElementById('notaCerrar').focus();
+}
+
+function cerrarNota() {
+  const f = document.getElementById('notaFondo');
+  if (!f || f.hidden) return;
+  f.classList.remove('abierta');
+  document.body.style.overflow = '';
+  setTimeout(() => { f.hidden = true; }, 220);
+  if (notaAbridor && notaAbridor.focus) notaAbridor.focus();
+  notaAbridor = null;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const f = document.getElementById('notaFondo');
+  if (!f) return;
+  document.getElementById('notaCerrar').addEventListener('click', cerrarNota);
+  // Tocar el fondo cierra; tocar la caja no.
+  f.addEventListener('click', e => { if (e.target === f) cerrarNota(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarNota(); });
+});
+
 /* ---------- datos estructurados: la ficha del negocio y la del servicio ----------
    sameAs es lo que enlaza este sitio con TripAdvisor, las redes y el Perfil de
    Empresa de Google. Sin eso Google puede tratarlos como negocios distintos y
@@ -1900,18 +2002,33 @@ function renderTim() {
 function renderBlog() {
   document.getElementById('blogGrid').innerHTML = (C.blog || []).map((b, i) => {
     const x = (L.blog || {})[b.id] || {};
+    // Antes, sin enlace configurado, quedaba un <span> muerto: la tarjeta no
+    // abría nada ni en computadora ni en celular. Ahora la tarjeta ENTERA es
+    // un botón que abre la nota completa, así funciona igual con el dedo que
+    // con el ratón. Si algún día hay artículo externo, el enlace manda.
+    if (b.enlace) {
+      return `
+      <a class="blog-card" href="${esc(b.enlace)}">
+        <div class="blog-img" style="${fondo(b.imagen, i)}"></div>
+        <div class="blog-body">
+          <div class="blog-cat">${esc(x.categoria)}</div>
+          <h5>${esc(x.titulo)}</h5>
+          <p>${esc(x.texto)}</p>
+          <span class="blog-more">${esc(T('blogLeerMas'))}</span>
+        </div>
+      </a>`;
+    }
     return `
-    <div class="blog-card">
+    <button type="button" class="blog-card" onclick="abrirNota('${esc(b.id)}')"
+            aria-haspopup="dialog">
       <div class="blog-img" style="${fondo(b.imagen, i)}"></div>
       <div class="blog-body">
         <div class="blog-cat">${esc(x.categoria)}</div>
         <h5>${esc(x.titulo)}</h5>
         <p>${esc(x.texto)}</p>
-        ${b.enlace
-          ? `<a class="blog-more" href="${esc(b.enlace)}">${esc(T('blogLeerMas'))}</a>`
-          : `<span class="blog-more" style="opacity:0.55;cursor:default;">${esc(T('blogEyebrow'))}</span>`}
+        <span class="blog-more">${esc(T('blogLeerMas'))}</span>
       </div>
-    </div>`; }).join('');
+    </button>`; }).join('');
 }
 
 /* ==========================================================================
@@ -2411,6 +2528,20 @@ initCanvasSuave(document.getElementById('whyCanvasTim'));
 // del navegador para que la dirección y el contenido siempre coincidan.
 showPage(inicio.pagina, LANG !== IDIOMA_DEF || inicio.idioma != null);
 </script>
+
+<!-- Nota completa de "Planea tu viaje". Se abre al tocar una tarjeta. -->
+<div class="nota-fondo" id="notaFondo" role="dialog" aria-modal="true" aria-labelledby="notaTitulo" hidden>
+  <div class="nota-caja">
+    <button type="button" class="nota-cerrar" id="notaCerrar" aria-label="Cerrar">&times;</button>
+    <div class="nota-img" id="notaImg"></div>
+    <div class="nota-cuerpo">
+      <div class="nota-cat" id="notaCat"></div>
+      <h3 id="notaTitulo"></h3>
+      <div id="notaTexto"></div>
+      <button class="btn-secondary nota-cta" id="notaCta"></button>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

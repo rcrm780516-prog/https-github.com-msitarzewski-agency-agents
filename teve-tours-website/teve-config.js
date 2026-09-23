@@ -689,17 +689,35 @@ window.TEVE_CONFIG = {
         "transfer-vs-shared": {
           categoria: "Airport & Transfers",
           titulo: "Private vs Shared Transfer: Which One Suits You?",
-          texto: "We compare both options with real numbers so you can decide before you book your next trip."
+          texto: "We compare both options with real numbers so you can decide before you book your next trip.",
+          contenido: [
+            "A shared transfer is cheaper per seat, and that is the whole of its case. The van waits until it fills, then works its way down the hotel zone dropping everyone off. If your hotel is last, an hour of your first day is gone before you see it.",
+            "A private transfer is priced per vehicle, not per person, which changes the maths faster than people expect. From $50 USD the van is yours, so two people pay the same as six. Past three or four travellers it usually costs the same or less than buying separate seats.",
+            "The part that does not show up in a price comparison: your driver tracks your flight. If you land two hours late at one in the morning, he is still there holding the sign. A shared shuttle has a schedule to keep and other passengers waiting.",
+            "Take the shared van if you are travelling alone, on a tight budget, and arriving at a civilised hour. Take the private one if you are a family, carrying a lot, arriving late, or simply do not want your holiday to start in a queue."
+          ]
         },
         "chichen-guide": {
           categoria: "Private Tours",
           titulo: "Private Chichen Itza from Cancun: Complete 2026 Guide",
-          texto: "The best arrival time, what to bring, where to stop for lunch and why a private guide changes the whole day."
+          texto: "The best arrival time, what to bring, where to stop for lunch and why a private guide changes the whole day.",
+          contenido: [
+            "Chichén Itzá is about two and a half hours from Cancún, and the single decision that shapes the whole day is what time you leave. The site opens at eight. The coaches from the hotel zone start arriving around eleven, along with the worst of the heat.",
+            "Leaving Cancún at six means you walk in as it opens, with the pyramid to yourself and shade still on the ground. That is why our early pick-ups carry a small surcharge before eight: it is the one detail that decides whether you remember the place or the crowd.",
+            "Bring cash for the entrance, which is not included, plus water, a hat and shoes you can walk in. The site is large and open, and there is no shade in the middle of it.",
+            "Afterwards there is time for a cenote to cool off and lunch in Valladolid, a colonial town twenty minutes on. A full day like this runs twelve hours door to door, which is what our longest hire covers. Your driver waits while you explore — no set return time, no group to catch up with."
+          ]
         },
         "snowbirds": {
           categoria: "For Canadian Travellers",
           titulo: "Winter Stays in Cancun: A Transport Guide",
-          texto: "Everything about recurring private transport for long stays of four to eight weeks."
+          texto: "Everything about recurring private transport for long stays of four to eight weeks.",
+          contenido: [
+            "A four to eight week stay is a different problem from a one week holiday. You are not moving between attractions; you are living somewhere, and you need to get to the supermarket, the pharmacy, dinner, the occasional day out.",
+            "Renting a car for two months is one answer, but it comes with Cancún traffic, parking in the hotel zone, insurance arguments and the drive home after dinner. Taxis add up and you negotiate every time.",
+            "What most of our long-stay guests settle into is a standing arrangement: the same driver, booked for the days they need. A weekly shop, a day to Tulum or a cenote when the mood strikes, the airport at both ends.",
+            "The advantage is that it is the same person every time. He learns which supermarket you prefer and how you like the day to run, and you stop explaining yourself. Tell us your dates and we work out what makes sense for the stay."
+          ]
         }
       },
 
@@ -1029,17 +1047,35 @@ window.TEVE_CONFIG = {
         "transfer-vs-shared": {
           categoria: "Aeropuerto y Traslados",
           titulo: "Transfer Privado vs Compartido: ¿Cuál te conviene?",
-          texto: "Comparamos ambas opciones con números reales para que decidas antes de reservar tu próximo viaje."
+          texto: "Comparamos ambas opciones con números reales para que decidas antes de reservar tu próximo viaje.",
+          contenido: [
+            "El transfer compartido sale más barato por asiento, y ese es todo su argumento. La van espera a llenarse y luego recorre la zona hotelera dejando a todos. Si tu hotel queda al final, se te fue una hora del primer día antes de verlo.",
+            "El transfer privado se cobra por vehículo, no por persona, y eso cambia la cuenta más rápido de lo que la gente cree. Desde $50 USD la camioneta es tuya, así que dos pagan lo mismo que seis. Pasando de tres o cuatro viajeros, suele costar igual o menos que comprar asientos sueltos.",
+            "Lo que no aparece en una comparación de precios: tu chofer sigue tu vuelo. Si aterrizas dos horas tarde a la una de la mañana, ahí sigue con el letrero. Una van compartida tiene un horario que cumplir y otros pasajeros esperando.",
+            "Toma la compartida si viajas solo, con presupuesto ajustado y llegas a una hora decente. Toma la privada si van en familia, con mucho equipaje, llegan de noche, o sencillamente no quieres empezar las vacaciones en una fila."
+          ]
         },
         "chichen-guide": {
           categoria: "Tours Privados",
           titulo: "Chichén Itzá Privado desde Cancún: Guía Completa 2026",
-          texto: "La mejor hora de llegada, qué llevar, dónde parar a comer y por qué un guía privado cambia el día entero."
+          texto: "La mejor hora de llegada, qué llevar, dónde parar a comer y por qué un guía privado cambia el día entero.",
+          contenido: [
+            "Chichén Itzá está a unas dos horas y media de Cancún, y la única decisión que define el día entero es a qué hora sales. El sitio abre a las ocho. Los autobuses de la zona hotelera empiezan a llegar cerca de las once, junto con lo peor del calor.",
+            "Salir de Cancún a las seis significa entrar cuando abre, con la pirámide para ti solo y sombra todavía en el suelo. Por eso nuestras salidas tempranas llevan un cargo pequeño antes de las ocho: es el detalle que decide si recuerdas el lugar o la multitud.",
+            "Lleva efectivo para la entrada, que no va incluida, además de agua, gorra y zapatos con los que puedas caminar. El sitio es grande y abierto, y en medio no hay sombra.",
+            "Después da tiempo de un cenote para refrescarse y comer en Valladolid, un pueblo colonial a veinte minutos. Un día así son doce horas de puerta a puerta, que es lo que cubre nuestra renta más larga. Tu chofer espera mientras exploras: sin hora fija de regreso y sin grupo al que alcanzar."
+          ]
         },
         "snowbirds": {
           categoria: "Para Viajeros Canadienses",
           titulo: "Estadías de Invierno en Cancún: Guía de Transporte",
-          texto: "Todo sobre transportación privada recurrente para estadías largas de cuatro a ocho semanas."
+          texto: "Todo sobre transportación privada recurrente para estadías largas de cuatro a ocho semanas.",
+          contenido: [
+            "Una estancia de cuatro a ocho semanas es un problema distinto al de unas vacaciones de una semana. No andas moviéndote entre atracciones; estás viviendo en un lugar, y necesitas llegar al súper, a la farmacia, a cenar, y algún paseo de vez en cuando.",
+            "Rentar un coche dos meses es una respuesta, pero viene con el tráfico de Cancún, estacionarse en la zona hotelera, discusiones de seguro y manejar de regreso después de cenar. Los taxis se acumulan y negocias cada vez.",
+            "En lo que acaban la mayoría de nuestros huéspedes de estancia larga es en un arreglo fijo: el mismo chofer, apartado los días que lo necesitan. El súper de la semana, un día a Tulum o a un cenote cuando se les antoja, y el aeropuerto de ida y de vuelta.",
+            "La ventaja es que siempre es la misma persona. Aprende qué supermercado prefieres y cómo te gusta que corra el día, y dejas de tener que explicarte. Dinos tus fechas y vemos qué tiene sentido para la estancia."
+          ]
         }
       },
 
@@ -1363,17 +1399,35 @@ window.TEVE_CONFIG = {
         "transfer-vs-shared": {
           categoria: "Aeroporto e Transfers",
           titulo: "Transfer Privativo vs Compartilhado: Qual Escolher?",
-          texto: "Comparamos as duas opções com números reais para você decidir antes de reservar sua próxima viagem."
+          texto: "Comparamos as duas opções com números reais para você decidir antes de reservar sua próxima viagem.",
+          contenido: [
+            "O transfer compartilhado sai mais barato por assento, e esse é todo o argumento dele. A van espera encher e depois percorre a zona hoteleira deixando todo mundo. Se o seu hotel é o último, lá se foi uma hora do primeiro dia antes de você vê-lo.",
+            "O transfer privativo é cobrado por veículo, não por pessoa, e isso muda a conta mais rápido do que se imagina. A partir de US$ 50 a van é sua, então duas pessoas pagam o mesmo que seis. Passando de três ou quatro viajantes, costuma custar igual ou menos que comprar assentos avulsos.",
+            "O que não aparece numa comparação de preços: seu motorista acompanha o seu voo. Se você pousar duas horas atrasado à uma da manhã, ele continua lá com a placa. Uma van compartilhada tem horário a cumprir e outros passageiros esperando.",
+            "Pegue a compartilhada se viaja sozinho, com orçamento apertado e chega em horário civilizado. Pegue a privativa se vão em família, com muita bagagem, chegando de noite, ou se simplesmente não quer começar as férias numa fila."
+          ]
         },
         "chichen-guide": {
           categoria: "Passeios Privativos",
           titulo: "Chichén Itzá Privativo saindo de Cancún: Guia 2026",
-          texto: "O melhor horário de chegada, o que levar, onde parar para almoçar e por que um guia privativo muda o dia inteiro."
+          texto: "O melhor horário de chegada, o que levar, onde parar para almoçar e por que um guia privativo muda o dia inteiro.",
+          contenido: [
+            "Chichén Itzá fica a cerca de duas horas e meia de Cancún, e a única decisão que define o dia inteiro é a que horas você sai. O sítio abre às oito. Os ônibus da zona hoteleira começam a chegar por volta das onze, junto com o pior do calor.",
+            "Sair de Cancún às seis significa entrar na hora que abre, com a pirâmide só para você e sombra ainda no chão. Por isso nossas saídas cedo têm um acréscimo pequeno antes das oito: é o detalhe que decide se você lembra do lugar ou da multidão.",
+            "Leve dinheiro para a entrada, que não está inclusa, além de água, boné e sapatos com que dê para caminhar. O sítio é grande e aberto, e no meio dele não há sombra.",
+            "Depois dá tempo de um cenote para refrescar e almoçar em Valladolid, uma cidade colonial a vinte minutos. Um dia assim são doze horas de porta a porta, que é o que cobre a nossa locação mais longa. Seu motorista espera enquanto você explora: sem hora fixa de volta e sem grupo para alcançar."
+          ]
         },
         "snowbirds": {
           categoria: "Para Viajantes Canadenses",
           titulo: "Temporadas de Inverno em Cancún: Guia de Transporte",
-          texto: "Tudo sobre transporte privativo recorrente para estadias longas de quatro a oito semanas."
+          texto: "Tudo sobre transporte privativo recorrente para estadias longas de quatro a oito semanas.",
+          contenido: [
+            "Uma estadia de quatro a oito semanas é um problema diferente de umas férias de uma semana. Você não fica se movendo entre atrações; está morando num lugar, e precisa chegar ao supermercado, à farmácia, ao jantar, e a um passeio de vez em quando.",
+            "Alugar um carro por dois meses é uma resposta, mas vem com o trânsito de Cancún, estacionar na zona hoteleira, discussões de seguro e dirigir de volta depois do jantar. Os táxis vão somando e você negocia toda vez.",
+            "O que a maioria dos nossos hóspedes de longa estadia acaba adotando é um arranjo fixo: o mesmo motorista, reservado nos dias em que precisam. O mercado da semana, um dia em Tulum ou num cenote quando dá vontade, e o aeroporto na ida e na volta.",
+            "A vantagem é que é sempre a mesma pessoa. Ele aprende qual supermercado você prefere e como gosta que o dia corra, e você para de ter que se explicar. Diga as suas datas e vemos o que faz sentido para a estadia."
+          ]
         }
       },
 
