@@ -1,11 +1,20 @@
 TEVE TRANSFERS & TOURS — VERSION DEL SITIO
 ==========================================
 
-Version:  2026-09-18-i
+Version:  2026-09-23-j
 Subida:   (escribe aqui la fecha en que la subiste)
 
 QUE TRAE ESTA VERSION
 ---------------------
+- PRIVATE DRIVER CANCUN como producto principal: lema "Your day.
+  Your way.", bloque "Why choose a private driver?" y los lugares
+  que puedes visitar
+- La tarjeta completa con "12 Hour Private Driver Service",
+  From $300 USD y la nota de horas/grupos
+- Xcaret, Xel-Ha y demas YA NO se llaman "privados": ahora son
+  "Most Popular Experiences". No lo son, y decirlo le quitaba
+  valor a lo que si es privado
+- "Our Transport Services" -> "Private Experiences in Cancun"
 - El sitio ya se declara como el MISMO negocio que tu ficha de
   TripAdvisor, tu Perfil de Empresa de Google y tus redes (sameAs)
 - La pagina de chofer privado declara sus 3 tarifas de forma que
@@ -43,7 +52,7 @@ Abre en el navegador:
 
     tevetransferstours.com/version.txt
 
-Si ves "2026-09-18-i", tu sitio esta actualizado.
+Si ves "2026-09-23-j", tu sitio esta actualizado.
 Si no aparece este archivo, o dice otra version, es que el index.html
 que esta arriba no es el nuevo: la subida no se completo.
 

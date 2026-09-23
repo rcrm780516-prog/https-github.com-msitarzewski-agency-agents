@@ -183,7 +183,10 @@ window.TEVE_CONFIG = {
     { id: "transfer",  imagen: "", destacado: true,  desde: { en: "From $50 USD per vehicle", es: "Desde $50 USD por vehículo", pt: "A partir de US$ 50 por veículo" } },
     // "estrella" saca este servicio de la rejilla y lo pone arriba, a todo lo
     // ancho. Solo uno debe llevarla: si se marcan dos, dejan de destacar.
-    { id: "chofer",    imagen: "", destacado: true,  estrella: true, desde: { en: "From $180 USD · 4 hours, up to 8 people", es: "Desde $180 USD · 4 horas, hasta 8 personas", pt: "A partir de US$ 180 · 4 horas, até 8 pessoas" } },
+    { id: "chofer",    imagen: "", destacado: true,  estrella: true,
+      desde: { en: "From $300 USD · Full Day · Small & Large Groups",
+               es: "Desde $300 USD · Día Completo · Grupos Pequeños y Grandes",
+               pt: "A partir de US$ 300 · Dia Inteiro · Grupos Pequenos e Grandes" } },
     { id: "grupos",    imagen: "", destacado: true,  desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
     { id: "catamaran", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
     { id: "yate",      imagen: "", destacado: false, desde: { en: "From $700 USD · up to 8 people", es: "Desde $700 USD · hasta 8 personas", pt: "A partir de US$ 700 · até 8 pessoas" } },
@@ -418,7 +421,7 @@ window.TEVE_CONFIG = {
       },
 
       ui: {
-        navHome: "Home", navServicios: "Services", navChofer: "Private Driver", navTours: "Private Tours",
+        navHome: "Home", navServicios: "Services", navChofer: "Private Driver", navTours: "Popular Tours",
         navDestinos: "Destinations", navTim: "Meet Tim", navBlog: "Travel Blog",
         navContacto: "Contact Us", navAbrirMenu: "Open menu",
         selectorIdioma: "Language",
@@ -440,9 +443,9 @@ window.TEVE_CONFIG = {
         buscadorFechaTour: "Date", buscadorCotizarTour: "Quote My Tour",
 
         homeServiciosEyebrow: "What We Offer",
-        homeServiciosTitulo: "Our Transport Services",
+        homeServiciosTitulo: "Private Experiences in Cancun",
         homeToursEyebrow: "The Best Of",
-        homeToursTitulo: "Featured Private Tours",
+        homeToursTitulo: "Most Popular Experiences",
         homeToursBoton: "See All Tours",
 
         porQueEyebrow: "Why TEVE?",
@@ -452,7 +455,7 @@ window.TEVE_CONFIG = {
 
         serviciosEyebrow: "Transport in Cancun",
         serviciosTitulo: "TEVE Private Services",
-        toursEyebrow: "The Best Of", toursTitulo: "Top Private Tours",
+        toursEyebrow: "Best Sellers", toursTitulo: "Most Popular Experiences",
         destinosEyebrow: "Where We Take You", destinosTitulo: "Private Destinations",
         timEyebrow: "Meet Your Driver",
         resenasEyebrow: "Real Reviews", resenasTitulo: "What Our Travellers Say",
@@ -538,7 +541,9 @@ window.TEVE_CONFIG = {
         waDestino: "Hi! I'd like a quote for a private tour to",
         waTraslado: "Hi! I'd like to quote a transfer.",
         waTourBusqueda: "Hi! I'd like to quote a private tour.",
-        waTim: "MESSAGE ME ON WHATSAPP", svcEstrella: "Our most booked service", taPremio: "Travellers' Choice",
+        waTim: "MESSAGE ME ON WHATSAPP", svcEstrella: "Our most booked service",
+        svcEstrellaSub: "12 Hour Private Driver Service",
+        svcEstrellaNota: "Need fewer hours or traveling with a larger group? Contact us for a customized option.", taPremio: "Travellers' Choice",
 
         avisoSuscrito: "Thank you! We'll send you travel ideas for the Riviera Maya.",
         avisoFaltanCampos: "Please fill in the required fields."
@@ -561,8 +566,8 @@ window.TEVE_CONFIG = {
           texto: "Name-board greeting in the arrivals hall, help with your luggage and an air-conditioned vehicle. Your driver waits even if your flight is delayed."
         },
         chofer: {
-          titulo: "Private Driver for the Day",
-          texto: "Beaches, Archaeological Sites, Cenotes, markets and shopping at your own pace."
+          titulo: "Private Driver Cancun",
+          texto: "Explore sites like Chichén Itzá, Tulum, Akumal, cenotes, Cobá, beaches, local markets and more, all at your own pace with your own private driver. You pay on the day."
         },
         grupos: {
           titulo: "Group Transport",
@@ -614,6 +619,16 @@ window.TEVE_CONFIG = {
          por WhatsApp. Si cambian allá, cámbialas aquí.
          -------------------------------------------------------------------- */
       chofer: {
+        lema: "Your day. Your way.",
+        porQueTitulo: "Why choose a private driver?",
+        porQue: [
+          { t: "Your own vehicle", d: "A van for up to 8 people, just for your group. Nobody else on board, no stops that are not yours." },
+          { t: "Your own driver",  d: "A private bilingual driver who stays with you all day, not a shuttle that drops you and leaves." },
+          { t: "You set the plan", d: "Where you go, what time you leave, how long you stay at each place. You change your mind halfway through, that is fine too." },
+          { t: "We help you plan", d: "Tell us what you like and we put the itinerary together with you, and say what we think is actually worth your day." }
+        ],
+        lugaresTitulo: "Places you can visit",
+        lugares: ["Chichén Itzá", "Tulum", "Swim with turtles in Akumal 🐢", "Cobá", "Cenotes", "Beaches", "Local markets", "And more"],
         eyebrow: "Our most booked service",
         titulo: "Private Driver in Cancun by the Day",
         entrada: "You choose where to go and when. A private van and a bilingual driver at your disposal for the day — beaches, cenotes, archaeological sites, markets, shopping, or all of it. No fixed route, no group waiting on you.",
@@ -709,7 +724,7 @@ window.TEVE_CONFIG = {
           descripcion: "Airport transfers, private drivers by the day, group transport, catamarans and yacht charters across Cancun, Tulum and the Riviera Maya."
         },
         tours: {
-          titulo: "Private Tours from Cancun: Chichen Itza, Tulum, Isla Mujeres",
+          titulo: "Popular Tours from Cancun: Xcaret, Xel-Há, Chichén Itzá",
           descripcion: "Private day tours from Cancun to Chichen Itza, Tulum, Coba, Akumal and Isla Mujeres. Private vehicle, English-speaking guide, your own pace."
         },
         destinos: {
@@ -753,7 +768,7 @@ window.TEVE_CONFIG = {
       },
 
       ui: {
-        navHome: "Inicio", navServicios: "Servicios", navChofer: "Chofer Privado", navTours: "Tours Privados",
+        navHome: "Inicio", navServicios: "Servicios", navChofer: "Chofer Privado", navTours: "Tours Populares",
         navDestinos: "Destinos", navTim: "Conoce a Tim", navBlog: "Blog de Viajes",
         navContacto: "Contáctanos", navAbrirMenu: "Abrir menú",
         selectorIdioma: "Idioma",
@@ -775,9 +790,9 @@ window.TEVE_CONFIG = {
         buscadorFechaTour: "Fecha", buscadorCotizarTour: "Cotizar Tour",
 
         homeServiciosEyebrow: "Lo que ofrecemos",
-        homeServiciosTitulo: "Nuestros Servicios de Transportación",
+        homeServiciosTitulo: "Experiencias Privadas en Cancún",
         homeToursEyebrow: "Los Mejores",
-        homeToursTitulo: "Tours Privados Destacados",
+        homeToursTitulo: "Experiencias Más Populares",
         homeToursBoton: "Ver Todos los Tours",
 
         porQueEyebrow: "¿Por qué TEVE?",
@@ -787,7 +802,7 @@ window.TEVE_CONFIG = {
 
         serviciosEyebrow: "Transportación en Cancún",
         serviciosTitulo: "Servicios Privados TEVE",
-        toursEyebrow: "Los Mejores", toursTitulo: "Top Tours Privados",
+        toursEyebrow: "Los Más Vendidos", toursTitulo: "Experiencias Más Populares",
         destinosEyebrow: "A Dónde Te Llevamos", destinosTitulo: "Destinos Privados",
         timEyebrow: "Conoce a tu Guía",
         resenasEyebrow: "Reseñas Reales", resenasTitulo: "Lo Que Dicen Nuestros Viajeros",
@@ -871,7 +886,9 @@ window.TEVE_CONFIG = {
         waDestino: "¡Hola! Quiero cotizar un tour privado a",
         waTraslado: "¡Hola! Quiero cotizar un traslado.",
         waTourBusqueda: "¡Hola! Quiero cotizar un tour privado.",
-        waTim: "ESCRÍBEME POR WHATSAPP", svcEstrella: "Nuestro servicio más vendido", taPremio: "Travellers' Choice",
+        waTim: "ESCRÍBEME POR WHATSAPP", svcEstrella: "Nuestro servicio más vendido",
+        svcEstrellaSub: "Servicio de Chofer Privado por 12 Horas",
+        svcEstrellaNota: "¿Necesitas menos horas o viajas con un grupo más grande? Escríbenos y te armamos una opción a tu medida.", taPremio: "Travellers' Choice",
 
         avisoSuscrito: "¡Gracias! Te enviaremos ideas de viaje para la Riviera Maya.",
         avisoFaltanCampos: "Por favor completa los campos obligatorios."
@@ -894,8 +911,8 @@ window.TEVE_CONFIG = {
           texto: "Recepción con letrero en la sala de llegadas, ayuda con el equipaje y vehículo con aire acondicionado. Tu conductor te espera aunque tu vuelo se retrase."
         },
         chofer: {
-          titulo: "Chofer Privado por Día",
-          texto: "Playas, zonas arqueológicas, cenotes, mercados y compras a tu propio ritmo."
+          titulo: "Chofer Privado en Cancún",
+          texto: "Conoce Chichén Itzá, Tulum, Akumal, cenotes, Cobá, playas, mercados locales y más, a tu propio ritmo y con tu chofer privado. Pagas el mismo día."
         },
         grupos: {
           titulo: "Transportación para Grupos",
@@ -942,6 +959,16 @@ window.TEVE_CONFIG = {
       },
 
       chofer: {
+        lema: "Tu día. A tu manera.",
+        porQueTitulo: "¿Por qué un chofer privado?",
+        porQue: [
+          { t: "Tu propio vehículo", d: "Una camioneta para hasta 8 personas, solo para tu grupo. Nadie más a bordo y ninguna parada que no sea tuya." },
+          { t: "Tu propio chofer",   d: "Un chofer privado bilingüe que se queda contigo todo el día, no una van que te deja y se va." },
+          { t: "Tú decides el plan", d: "A dónde vas, a qué hora sales, cuánto te quedas en cada lugar. Y si cambias de idea a media jornada, también está bien." },
+          { t: "Te ayudamos a armarlo", d: "Cuéntanos qué te gusta y armamos el itinerario contigo, y te decimos qué creemos que de verdad vale tu día." }
+        ],
+        lugaresTitulo: "Lugares que puedes visitar",
+        lugares: ["Chichén Itzá", "Tulum", "Nadar con tortugas en Akumal 🐢", "Cobá", "Cenotes", "Playas", "Mercados locales", "Y más"],
         eyebrow: "Nuestro servicio más vendido",
         titulo: "Chofer Privado en Cancún por Día",
         entrada: "Tú decides a dónde ir y a qué hora. Una camioneta privada y un chofer bilingüe a tu disposición todo el día: playas, cenotes, zonas arqueológicas, mercados, compras, o todo junto. Sin ruta fija y sin un grupo esperándote.",
@@ -1030,7 +1057,7 @@ window.TEVE_CONFIG = {
           descripcion: "Transfer aeropuerto-hotel, chofer privado por día, transportación para grupos, catamarán y renta de yates en Cancún y Riviera Maya."
         },
         tours: {
-          titulo: "Tours Privados desde Cancún: Chichén Itzá y Tulum",
+          titulo: "Tours Populares desde Cancún: Xcaret, Xel-Há, Chichén Itzá",
           descripcion: "Tours privados a Chichén Itzá, Tulum, Cobá, Akumal e Isla Mujeres. Vehículo privado, guía bilingüe y horarios flexibles a tu ritmo."
         },
         destinos: {
@@ -1075,7 +1102,7 @@ window.TEVE_CONFIG = {
       },
 
       ui: {
-        navHome: "Início", navServicios: "Serviços", navChofer: "Motorista Privativo", navTours: "Passeios Privativos",
+        navHome: "Início", navServicios: "Serviços", navChofer: "Motorista Privativo", navTours: "Passeios Populares",
         navDestinos: "Destinos", navTim: "Conheça o Tim", navBlog: "Blog de Viagem",
         navContacto: "Fale Conosco", navAbrirMenu: "Abrir menu",
         selectorIdioma: "Idioma",
@@ -1097,9 +1124,9 @@ window.TEVE_CONFIG = {
         buscadorFechaTour: "Data", buscadorCotizarTour: "Orçar Meu Passeio",
 
         homeServiciosEyebrow: "O que oferecemos",
-        homeServiciosTitulo: "Nossos Serviços de Transporte",
+        homeServiciosTitulo: "Experiências Privativas em Cancún",
         homeToursEyebrow: "Os Melhores",
-        homeToursTitulo: "Passeios Privativos em Destaque",
+        homeToursTitulo: "Experiências Mais Populares",
         homeToursBoton: "Ver Todos os Passeios",
 
         porQueEyebrow: "Por que a TEVE?",
@@ -1109,7 +1136,7 @@ window.TEVE_CONFIG = {
 
         serviciosEyebrow: "Transporte em Cancún",
         serviciosTitulo: "Serviços Privativos TEVE",
-        toursEyebrow: "Os Melhores", toursTitulo: "Top Passeios Privativos",
+        toursEyebrow: "Os Mais Vendidos", toursTitulo: "Experiências Mais Populares",
         destinosEyebrow: "Para Onde Levamos Você", destinosTitulo: "Destinos Privativos",
         timEyebrow: "Conheça seu Guia",
         resenasEyebrow: "Avaliações Reais", resenasTitulo: "O Que Dizem Nossos Viajantes",
@@ -1193,7 +1220,9 @@ window.TEVE_CONFIG = {
         waDestino: "Olá! Quero um orçamento de passeio privativo para",
         waTraslado: "Olá! Quero um orçamento de transfer.",
         waTourBusqueda: "Olá! Quero um orçamento de passeio privativo.",
-        waTim: "FALE COMIGO NO WHATSAPP", svcEstrella: "Nosso serviço mais vendido", taPremio: "Travellers' Choice",
+        waTim: "FALE COMIGO NO WHATSAPP", svcEstrella: "Nosso serviço mais vendido",
+        svcEstrellaSub: "Serviço de Motorista Privativo por 12 Horas",
+        svcEstrellaNota: "Precisa de menos horas ou viaja com um grupo maior? Fale com a gente e montamos uma opção sob medida.", taPremio: "Travellers' Choice",
 
         avisoSuscrito: "Obrigado! Enviaremos ideias de viagem para a Riviera Maya.",
         avisoFaltanCampos: "Por favor, preencha os campos obrigatórios."
@@ -1216,8 +1245,8 @@ window.TEVE_CONFIG = {
           texto: "Recepção com placa no saguão de desembarque, ajuda com as malas e veículo com ar-condicionado. Seu motorista espera mesmo se o voo atrasar."
         },
         chofer: {
-          titulo: "Motorista Privativo por Dia",
-          texto: "Praias, sítios arqueológicos, cenotes, mercados e compras no seu ritmo."
+          titulo: "Motorista Privativo em Cancún",
+          texto: "Conheça Chichén Itzá, Tulum, Akumal, cenotes, Cobá, praias, mercados locais e muito mais, no seu ritmo e com seu motorista privativo. Você paga no mesmo dia."
         },
         grupos: {
           titulo: "Transporte para Grupos",
@@ -1264,6 +1293,16 @@ window.TEVE_CONFIG = {
       },
 
       chofer: {
+        lema: "Seu dia. Do seu jeito.",
+        porQueTitulo: "Por que um motorista privativo?",
+        porQue: [
+          { t: "Seu próprio veículo", d: "Uma van para até 8 pessoas, só para o seu grupo. Ninguém mais a bordo e nenhuma parada que não seja sua." },
+          { t: "Seu próprio motorista", d: "Um motorista privativo bilíngue que fica com você o dia todo, não uma van que deixa e vai embora." },
+          { t: "Você define o plano", d: "Aonde ir, a que horas sair, quanto tempo ficar em cada lugar. E se mudar de ideia no meio do dia, tudo bem também." },
+          { t: "Ajudamos a montar", d: "Conte o que você gosta e montamos o roteiro junto, e dizemos o que achamos que vale mesmo o seu dia." }
+        ],
+        lugaresTitulo: "Lugares que você pode visitar",
+        lugares: ["Chichén Itzá", "Tulum", "Nadar com tartarugas em Akumal 🐢", "Cobá", "Cenotes", "Praias", "Mercados locais", "E mais"],
         eyebrow: "Nosso serviço mais vendido",
         titulo: "Motorista Privativo em Cancún por Dia",
         entrada: "Você escolhe aonde ir e a que horas. Uma van privativa e um motorista bilíngue à sua disposição o dia todo: praias, cenotes, sítios arqueológicos, mercados, compras, ou tudo junto. Sem roteiro fixo e sem grupo esperando por você.",
@@ -1352,7 +1391,7 @@ window.TEVE_CONFIG = {
           descripcion: "Transfer aeroporto-hotel, motorista privativo por dia, transporte para grupos, catamarã e aluguel de iates em Cancún e Riviera Maya."
         },
         tours: {
-          titulo: "Passeios Privativos de Cancún: Chichén Itzá e Tulum",
+          titulo: "Passeios Populares de Cancún: Xcaret, Xel-Há, Chichén Itzá",
           descripcion: "Passeios privativos para Chichén Itzá, Tulum, Cobá, Akumal e Isla Mujeres. Veículo privativo, guia bilíngue e horários flexíveis."
         },
         destinos: {
