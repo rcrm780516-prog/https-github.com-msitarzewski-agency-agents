@@ -636,7 +636,7 @@ window.TEVE_CONFIG = {
         tarifas: [
           { horas: "4 hours",       precio: "$180 USD" },
           { horas: "6 to 8 hours",  precio: "$250 USD" },
-          { horas: "10 to 12 hours",precio: "$350 USD" }
+          { horas: "10 to 12 hours · Full day", precio: "$300 USD" }
         ],
         tarifaNota: "Pick-ups before 8:00 am carry an extra $30 USD.",
         incluyeTitulo: "What's included",
@@ -994,7 +994,7 @@ window.TEVE_CONFIG = {
         tarifas: [
           { horas: "4 horas",        precio: "$180 USD" },
           { horas: "6 a 8 horas",    precio: "$250 USD" },
-          { horas: "10 a 12 horas",  precio: "$350 USD" }
+          { horas: "10 a 12 horas · Día completo", precio: "$300 USD" }
         ],
         tarifaNota: "Las salidas antes de las 8:00 am tienen un cargo extra de $30 USD.",
         incluyeTitulo: "Qué incluye",
@@ -1346,7 +1346,7 @@ window.TEVE_CONFIG = {
         tarifas: [
           { horas: "4 horas",        precio: "US$ 180" },
           { horas: "6 a 8 horas",    precio: "US$ 250" },
-          { horas: "10 a 12 horas",  precio: "US$ 350" }
+          { horas: "10 a 12 horas · Dia inteiro", precio: "US$ 300" }
         ],
         tarifaNota: "Saídas antes das 8h00 têm um acréscimo de US$ 30.",
         incluyeTitulo: "O que está incluso",
