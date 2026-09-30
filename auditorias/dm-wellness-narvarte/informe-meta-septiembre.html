@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Informe de Resultados Meta — Septiembre 2026 — DM Wellness</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --pp:#6B1E7A; --pp2:#A020C0; --pp3:#C77DDB; --ink:#1C1526; --gray:#5B5566;
+    --line:#E4DEE9; --bg:#FBF9FC; --red:#C42B4A; --amber:#D98324; --green:#1E8E5A;
+  }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:"Liberation Sans","DejaVu Sans",Arial,sans-serif; color:var(--ink); font-size:8.4pt; line-height:1.38; }
+  .page{ width:210mm; min-height:297mm; padding:12.5mm 13mm 8mm; page-break-after:always; position:relative; display:flex; flex-direction:column; background:#fff; }
+  .page:last-child{ page-break-after:auto; }
+  .ph{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1.6pt solid var(--pp); padding-bottom:2mm; margin-bottom:4mm; }
+  .ph b{ color:var(--pp); font-size:8pt; letter-spacing:.09em; text-transform:uppercase; }
+  .ph span{ font-size:7.5pt; color:var(--gray); letter-spacing:.05em; }
+  .pf{ margin-top:auto; padding-top:2.6mm; border-top:.6pt solid var(--line); display:flex; justify-content:space-between; font-size:7pt; color:#8C8496; letter-spacing:.03em; }
+  h1{ font-size:20pt; line-height:1.15; color:var(--pp); letter-spacing:-.02em; }
+  h2{ font-size:12.6pt; color:var(--pp); margin-bottom:2.2mm; letter-spacing:-.01em; }
+  h3{ font-size:9.9pt; margin:3.4mm 0 1.5mm; color:var(--ink); }
+  h4{ font-size:8.6pt; margin:2.8mm 0 1.2mm; color:var(--pp); text-transform:uppercase; letter-spacing:.06em; }
+  p{ margin-bottom:1.9mm; }
+  ul,ol{ margin:0 0 2.2mm 4.2mm; }
+  li{ margin-bottom:.9mm; }
+  strong{ font-weight:bold; }
+  .lead{ font-size:9.4pt; line-height:1.42; color:var(--gray); }
+  table{ width:100%; border-collapse:collapse; margin:2mm 0 2.8mm; font-size:7.3pt; }
+  th{ background:var(--pp); color:#fff; text-align:left; padding:1.4mm 1.7mm; font-size:6.8pt; text-transform:uppercase; letter-spacing:.05em; font-weight:bold; }
+  td{ padding:1.25mm 1.7mm; border-bottom:.5pt solid var(--line); vertical-align:top; }
+  tr:nth-child(even) td{ background:var(--bg); }
+  .num{ text-align:right; font-variant-numeric:tabular-nums; }
+  .ctr{ text-align:center; }
+  .tag{ display:inline-block; padding:.4mm 1.4mm; border-radius:2mm; font-size:6.4pt; font-weight:bold; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; }
+  .t-crit{ background:#FBE4E9; color:var(--red); } .t-alt{ background:#FBEEDC; color:var(--amber); }
+  .t-med{ background:#E6F0FB; color:#2A5FA8; } .t-ok{ background:#E1F3EA; color:var(--green); }
+  .box{ border:.8pt solid var(--line); border-left:3pt solid var(--pp2); padding:2.6mm 3.2mm; margin:2.2mm 0; background:var(--bg); border-radius:0 2mm 2mm 0; }
+  .box.crit{ border-left-color:var(--red); background:#FDF6F7; }
+  .box.win{ border-left-color:var(--green); background:#F4FBF7; }
+  .box h4{ margin-top:0; }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.6mm; }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:2.4mm; }
+  .kpi{ border:.8pt solid var(--line); border-radius:2.5mm; padding:2.4mm 2.2mm; text-align:center; background:#fff; }
+  .kpi .v{ font-size:16pt; font-weight:bold; color:var(--pp); line-height:1.05; letter-spacing:-.02em; }
+  .kpi .v.bad{ color:var(--red); } .kpi .v.good{ color:var(--green); } .kpi .v.warn{ color:var(--amber); }
+  .kpi .l{ font-size:6.5pt; color:var(--gray); text-transform:uppercase; letter-spacing:.06em; margin-top:1.5mm; line-height:1.3; }
+  .bar{ height:3.6mm; background:#EFEAF3; border-radius:1mm; overflow:hidden; margin:1mm 0; }
+  .bar i{ display:block; height:100%; background:linear-gradient(90deg,var(--pp),var(--pp2)); }
+  .bar i.r{ background:linear-gradient(90deg,#A82040,var(--red)); }
+  .bar i.g{ background:linear-gradient(90deg,#146B43,var(--green)); }
+  .barrow{ display:grid; grid-template-columns:42mm 1fr 20mm; gap:2.5mm; align-items:center; margin-bottom:1.3mm; font-size:7.4pt; }
+  .barrow .lbl{ color:var(--gray); }
+  .barrow .val{ text-align:right; font-weight:bold; font-variant-numeric:tabular-nums; }
+  .cover{ background:linear-gradient(150deg,#3A0F45 0%,var(--pp) 45%,var(--pp2) 100%); color:#fff; justify-content:space-between; }
+  .cover h1{ color:#fff; font-size:31pt; }
+  .cover .sub{ font-size:13pt; opacity:.9; margin-top:4mm; }
+  .cover .meta{ font-size:9pt; opacity:.8; line-height:1.9; }
+  .rule{ width:34mm; height:2.4pt; background:#fff; margin:7mm 0; opacity:.85; }
+  .score{ display:flex; align-items:center; gap:5mm; }
+  .score .big{ font-size:44pt; font-weight:bold; line-height:1; letter-spacing:-.03em; }
+  .toc li{ display:flex; justify-content:space-between; border-bottom:.5pt dotted var(--line); padding:1.05mm 0; list-style:none; font-size:8pt; }
+  .toc ul{ margin:0; }
+  .toc b{ color:var(--pp); }
+  .small{ font-size:6.9pt; color:var(--gray); line-height:1.45; }
+  .chk{ list-style:none; margin-left:0; }
+  .chk li{ padding-left:6mm; position:relative; }
+  .chk li:before{ content:"□"; position:absolute; left:0; color:var(--pp2); font-size:11pt; line-height:1; top:.3mm; }
+  .quote{  font-style:italic; color:var(--gray); border-left:2pt solid var(--pp3); padding-left:3mm; margin:2mm 0; font-size:8.6pt; }
+  .copyblock{ background:#F5F1F8; border:.6pt dashed var(--pp3); border-radius:2mm; padding:2.2mm 2.8mm; font-family:"DejaVu Sans Mono",monospace; font-size:7pt; line-height:1.45; white-space:pre-wrap; margin:1.8mm 0; }
+  .split{ display:grid; grid-template-columns:1fr 1fr; gap:0; border:.8pt solid var(--line); border-radius:2mm; overflow:hidden; margin:2.2mm 0; }
+  .split>div{ padding:2.6mm 3mm; }
+  .split .a{ background:#FDF6F7; border-right:.8pt solid var(--line); }
+  .split .b{ background:#F4FBF7; }
+  .split h4{ margin-top:0; }
+  .t4 table{ font-size:6pt; } .t4 td{ padding:.62mm 1.1mm; } .t4 th{ padding:.7mm 1.1mm; font-size:5.8pt; }
+  .t4 p{ margin-bottom:1.1mm; } .t4 li{ margin-bottom:.5mm; } .t4 .box{ padding:1.6mm 2.2mm; margin:1.2mm 0; }
+  .t4 h3{ margin:1.9mm 0 .9mm; } .t4 h4{ margin:2.2mm 0 1mm; } .t4 table{ margin:1.2mm 0 1.5mm; }
+  .t4 .lead{ font-size:8.2pt; } .t4 h2{ font-size:11.4pt; margin-bottom:1.7mm; }
+  .t4 .kpi{ padding:2mm 1.8mm; } .t4 .kpi .v{ font-size:14pt; }
+
+  .t1 table{ font-size:7pt; } .t1 td{ padding:1.05mm 1.5mm; } .t1 th{ padding:1.2mm 1.5mm; font-size:6.5pt; }
+  .t1 p{ margin-bottom:1.6mm; } .t1 li{ margin-bottom:.75mm; } .t1 .box{ padding:2.2mm 2.8mm; margin:1.9mm 0; }
+  .t1 h3{ margin:2.8mm 0 1.3mm; } .t1 table{ margin:1.7mm 0 2.3mm; }
+  .t2 table{ font-size:6.7pt; } .t2 td{ padding:.9mm 1.4mm; } .t2 th{ padding:1mm 1.4mm; font-size:6.3pt; }
+  .t2 p{ margin-bottom:1.4mm; } .t2 li{ margin-bottom:.65mm; } .t2 .box{ padding:2mm 2.6mm; margin:1.6mm 0; }
+  .t2 h3{ margin:2.4mm 0 1.1mm; } .t2 table{ margin:1.5mm 0 2mm; } .t2 .lead{ font-size:8.8pt; }
+  .t2 .copyblock{ font-size:6.6pt; padding:1.9mm 2.4mm; margin:1.5mm 0; }
+  .t3 table{ font-size:6.3pt; } .t3 td{ padding:.75mm 1.2mm; } .t3 th{ padding:.85mm 1.2mm; font-size:6pt; }
+  .t3 p{ margin-bottom:1.2mm; } .t3 li{ margin-bottom:.55mm; } .t3 .box{ padding:1.8mm 2.4mm; margin:1.4mm 0; }
+  .t3 h3{ margin:2.1mm 0 1mm; } .t3 table{ margin:1.3mm 0 1.7mm; } .t3 .lead{ font-size:8.4pt; }
+  .t3 h2{ font-size:11.6pt; margin-bottom:1.8mm; }
+  .t3 .copyblock{ font-size:6.3pt; padding:1.7mm 2.2mm; margin:1.3mm 0; line-height:1.4; }
+</style>
+</head>
+<body>
+
+
+<section class="page cover">
+  <div>
+    <div style="font-size:8.5pt;letter-spacing:.28em;text-transform:uppercase;opacity:.85">Informe mensual de resultados · Meta Ads</div>
+    <div class="rule"></div>
+    <h1>Septiembre 2026</h1>
+    <div class="sub"><strong>DM Wellness Beauty and Nutrition</strong><br>Campaña de Endolift · 11 al 30 de septiembre</div>
+  </div>
+  <div style="display:flex;gap:5mm;flex-wrap:wrap">
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:4.5mm 5.5mm;min-width:44mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Conversaciones</div>
+      <div style="font-size:34pt;font-weight:bold;line-height:1.05">134</div>
+      <div style="font-size:8.5pt;opacity:.9">iniciadas por la pauta</div>
+    </div>
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:4.5mm 5.5mm;min-width:44mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Costo por conversación</div>
+      <div style="font-size:34pt;font-weight:bold;line-height:1.05">$11<span style="font-size:16pt;opacity:.7">.32</span></div>
+      <div style="font-size:8.5pt;opacity:.9">pesos mexicanos</div>
+    </div>
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:4.5mm 5.5mm;min-width:44mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Inversión</div>
+      <div style="font-size:34pt;font-weight:bold;line-height:1.05">$1,517</div>
+      <div style="font-size:8.5pt;opacity:.9">en 17 días con entrega</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="rule" style="margin:0 0 5mm"></div>
+    <strong>Cuenta publicitaria:</strong> DM WELLNESS BEAUTY AND NUTRITION · <strong>Campaña:</strong> Campaña de Endolift<br>
+    <strong>Objetivo:</strong> Interacción · <strong>Meta de rendimiento:</strong> Conversaciones · <strong>Presupuesto:</strong> $100 MXN diarios<br>
+    <strong>Alcance de este informe:</strong> datos extraídos directamente de la cuenta de Meta el 30/09/2026<br>
+    <strong>Límite declarado:</strong> la campaña mide mensajes recibidos, no citas ni ventas — ver sección 05
+  </div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>01 · Veredicto</b><span>Resumen ejecutivo</span></div>
+  <h2>Lo que hay que saber en una página</h2>
+  <p class="lead"><strong>La campaña está funcionando bien en lo que sí sabe hacer: traer conversaciones baratas.</strong> $11.32 por conversación iniciada es un costo competitivo para medicina estética en CDMX. El problema de este mes no está en Meta — está en tres fugas internas de la campaña y, sobre todo, en que <strong>nadie sabe qué pasó con esas 134 conversaciones.</strong></p>
+
+  <div class="grid4" style="margin:4mm 0">
+    <div class="kpi"><div class="v good">134</div><div class="l">Conversaciones iniciadas</div></div>
+    <div class="kpi"><div class="v good">$11.32</div><div class="l">Costo por conversación</div></div>
+    <div class="kpi"><div class="v warn">7.9</div><div class="l">Conversaciones por día activo</div></div>
+    <div class="kpi"><div class="v bad">?</div><div class="l">Citas generadas · no medido</div></div>
+  </div>
+
+  <h3>Métricas del mes</h3>
+  <table>
+    <tr><th style="width:52mm">Métrica</th><th class="num" style="width:26mm">Septiembre</th><th>Lectura</th></tr>
+    <tr><td>Inversión</td><td class="num">$1,517.04</td><td>De $2,000 disponibles en la ventana activa</td></tr>
+    <tr><td>Impresiones</td><td class="num">11,915</td><td>—</td></tr>
+    <tr><td>Alcance</td><td class="num">5,309</td><td>Cuentas únicas. <strong>Audiencia pequeña</strong></td></tr>
+    <tr><td>Frecuencia</td><td class="num">2.24</td><td>Cada persona vio el anuncio 2.2 veces</td></tr>
+    <tr><td>Clics (todos)</td><td class="num">583</td><td>CTR 4.89% — alto</td></tr>
+    <tr><td>Clics en el enlace</td><td class="num">214</td><td>CTR de enlace 1.80%</td></tr>
+    <tr><td><strong>Conversaciones iniciadas</strong></td><td class="num"><strong>134</strong></td><td><strong>62.6% de quienes clicaron el enlace escribieron</strong></td></tr>
+    <tr><td>Costo por conversación</td><td class="num">$11.32</td><td>Competitivo para el sector y la zona</td></tr>
+    <tr><td>CPM</td><td class="num">$127.32</td><td>Subiendo: +15% de la primera a la última semana</td></tr>
+  </table>
+
+  <h3>Los cuatro hallazgos del mes</h3>
+  <table>
+    <tr><th style="width:7mm">#</th><th>Hallazgo</th><th style="width:34mm">Costo estimado</th></tr>
+    <tr><td><strong>1</strong></td><td><strong>Tres días sin entrega.</strong> El 14, 17 y 18 de septiembre la campaña no gastó un peso. Quedaron $482.90 del presupuesto disponible sin ejecutar — el 24%.</td><td>~24 conversaciones perdidas</td></tr>
+    <tr><td><strong>2</strong></td><td><strong>El 30% del gasto se fue a la peor ubicación.</strong> Instagram Feed consumió $448.70 a $14.02 por conversación, mientras Instagram Reels entrega a $8.13.</td><td>~28 conversaciones perdidas</td></tr>
+    <tr><td><strong>3</strong></td><td><strong>El rango de edad más caro recibe más presupuesto que el más eficiente.</strong> 25-34 años cuesta $13.46 por conversación; 45-54 cuesta $10.72 y tiene el doble de CTR.</td><td>~8 conversaciones perdidas</td></tr>
+    <tr><td><strong>4</strong></td><td><strong>No se mide nada después del mensaje.</strong> Sin registro de citas, Meta optimiza hacia el mensaje más barato, no hacia el paciente más valioso.</td><td>Ver sección 05</td></tr>
+  </table>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>La conclusión que ordena el plan</h4>
+    <p style="margin:0">Corregir los tres primeros hallazgos daría <strong>alrededor de 60 conversaciones más al mes sin aumentar un peso el presupuesto</strong>. Pero el cuarto es el que decide si eso sirve de algo: mientras no se registre cuántas de esas conversaciones terminan en cita, no se puede saber si el problema es que llegan pocos mensajes o que los mensajes que llegan no se convierten. <strong>Ese registro cuesta cero pesos y se monta en una tarde.</strong></p>
+  </div>
+  <div class="pf"><span>DM Wellness · Informe Meta Ads · Septiembre 2026</span><span>Página 2</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>02 · Rendimiento</b><span>Lo que sí funcionó</span></div>
+  <h2>La campaña capta bien. Eso no está en duda.</h2>
+  <p class="lead">Antes de los problemas conviene fijar lo que está bien hecho, porque determina dónde <em>no</em> hay que tocar.</p>
+
+  <div class="grid3" style="margin:4mm 0">
+    <div class="kpi"><div class="v good">4.89%</div><div class="l">CTR general — muy por encima de lo típico</div></div>
+    <div class="kpi"><div class="v good">62.6%</div><div class="l">De quienes clican el enlace, escriben</div></div>
+    <div class="kpi"><div class="v good">$11.32</div><div class="l">Costo por conversación</div></div>
+  </div>
+
+  <h3>Tres señales de que el creativo y la oferta conectan</h3>
+  <table>
+    <tr><th style="width:44mm">Señal</th><th>Qué significa</th></tr>
+    <tr><td><strong>CTR del 4.89%</strong></td><td>El anuncio detiene el scroll. Un CTR así en una campaña de interacción indica que el gancho y el creativo están haciendo su trabajo. No hay que rehacerlos.</td></tr>
+    <tr><td><strong>62.6% de conversión de clic a mensaje</strong></td><td>De 214 clics en el enlace salieron 134 conversaciones. Es una tasa alta: quien llega al paso de escribir, escribe. La fricción entre el anuncio y WhatsApp está resuelta.</td></tr>
+    <tr><td><strong>Costo por conversación de $11.32</strong></td><td>Para medicina estética en Ciudad de México es un costo competitivo. No hay un problema de precio de la captación.</td></tr>
+  </table>
+
+  <h3>Pero hay un matiz importante sobre ese costo</h3>
+  <div class="box crit">
+    <p style="margin-bottom:1.5mm">Endolift es un tratamiento de ticket alto. Que la conversación cueste $11.32 es una buena noticia <strong>si esas conversaciones son de gente que puede pagarlo</strong>. Cuando se optimiza por "Conversaciones", el sistema de Meta busca exactamente lo que se le pidió: <strong>el mayor número de personas que abran un chat, al menor costo</strong>. No sabe distinguir entre quien pregunta el precio por curiosidad y quien está listo para agendar.</p>
+    <p style="margin:0">Un costo por conversación muy bajo en un tratamiento caro suele significar que <strong>el volumen viene acompañado de baja intención</strong>. No es un fallo de la campaña: es la consecuencia natural de la meta que se eligió. Y es precisamente lo que no se puede confirmar ni descartar sin medir las citas.</p>
+  </div>
+
+  <h3>Lo que también conviene notar</h3>
+  <table>
+    <tr><th style="width:44mm">Dato</th><th>Lectura</th></tr>
+    <tr><td><strong>369 de los 583 clics no fueron al enlace</strong></td><td>El 63% de los clics fueron a otras partes del anuncio: el perfil, "ver más", reacciones. Es normal en campañas de interacción, pero significa que hay interés que no se está canalizando hacia la conversación.</td></tr>
+    <tr><td><strong>Alcance de 5,309 cuentas con frecuencia 2.24</strong></td><td>La audiencia es <strong>pequeña</strong>. En 17 días cada persona ya vio el anuncio más de dos veces. Si se mantiene así, en octubre la frecuencia sube y el costo con ella.</td></tr>
+    <tr><td><strong>CPM subiendo 15%</strong></td><td>De $128.94 promedio en la primera semana a $147.70 en la última. Es el síntoma temprano de la saturación de audiencia.</td></tr>
+    <tr><td><strong>Una sola campaña, un solo conjunto, un solo anuncio</strong></td><td>Sin variantes no hay comparación posible. Todo lo que sabemos del creativo es que funciona — no sabemos si otro funcionaría mejor.</td></tr>
+  </table>
+
+  <div class="box" style="margin-top:auto">
+    <h4>Qué no tocar en octubre</h4>
+    <p style="margin:0">El creativo, el gancho y la ruta al WhatsApp están funcionando. <strong>Los cambios del plan de acción no los tocan.</strong> Se concentran en dónde se gasta el dinero, a quién se le muestra y qué pasa después del mensaje.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Informe Meta Ads · Septiembre 2026</span><span>Página 3</span></div>
+</section>
+
+<section class="page t2">
+  <div class="ph"><b>03 · Día por día</b><span>Los tres días muertos</span></div>
+  <h2>El 24% del presupuesto nunca se gastó</h2>
+
+  <table>
+    <tr><th class="ctr" style="width:14mm">Día</th><th class="num" style="width:20mm">Gasto</th><th class="num" style="width:18mm">Impres.</th><th class="num" style="width:18mm">Alcance</th><th class="num" style="width:18mm">Conv.</th><th class="num" style="width:22mm">Costo/conv.</th><th class="num" style="width:18mm">CPM</th><th class="num" style="width:16mm">CTR</th></tr>
+    <tr><td class="ctr">11 sep</td><td class="num">$64.33</td><td class="num">581</td><td class="num">454</td><td class="num">8</td><td class="num">$8.04</td><td class="num">$110.72</td><td class="num">6.37%</td></tr>
+    <tr><td class="ctr">12 sep</td><td class="num">$81.17</td><td class="num">672</td><td class="num">525</td><td class="num">12</td><td class="num" style="color:var(--green)"><strong>$6.76</strong></td><td class="num">$120.79</td><td class="num">6.70%</td></tr>
+    <tr><td class="ctr">13 sep</td><td class="num">$28.05</td><td class="num">174</td><td class="num">158</td><td class="num">0</td><td class="num">—</td><td class="num">$161.21</td><td class="num">1.72%</td></tr>
+    <tr style="background:#FBE4E9"><td class="ctr"><strong>14 sep</strong></td><td class="num" colspan="7"><strong>SIN ENTREGA</strong> — la campaña no gastó ni mostró un solo anuncio</td></tr>
+    <tr><td class="ctr">15 sep</td><td class="num">$151.14</td><td class="num">1,308</td><td class="num">1,044</td><td class="num">9</td><td class="num">$16.79</td><td class="num">$115.55</td><td class="num">4.82%</td></tr>
+    <tr><td class="ctr">16 sep</td><td class="num">$22.92</td><td class="num">168</td><td class="num">156</td><td class="num">3</td><td class="num">$7.64</td><td class="num">$136.43</td><td class="num">7.74%</td></tr>
+    <tr style="background:#FBE4E9"><td class="ctr"><strong>17 sep</strong></td><td class="num" colspan="7"><strong>SIN ENTREGA</strong></td></tr>
+    <tr style="background:#FBE4E9"><td class="ctr"><strong>18 sep</strong></td><td class="num" colspan="7"><strong>SIN ENTREGA</strong></td></tr>
+    <tr><td class="ctr">19 sep</td><td class="num">$169.00</td><td class="num">2,114</td><td class="num">1,730</td><td class="num">11</td><td class="num">$15.36</td><td class="num">$79.94</td><td class="num">3.78%</td></tr>
+    <tr><td class="ctr">20 sep</td><td class="num">$141.12</td><td class="num">961</td><td class="num">737</td><td class="num">14</td><td class="num">$10.08</td><td class="num">$146.85</td><td class="num">5.62%</td></tr>
+    <tr><td class="ctr">21 sep</td><td class="num">$89.69</td><td class="num">532</td><td class="num">425</td><td class="num">3</td><td class="num" style="color:var(--red)">$29.90</td><td class="num">$168.59</td><td class="num">4.70%</td></tr>
+    <tr><td class="ctr">22 sep</td><td class="num">$128.50</td><td class="num">942</td><td class="num">767</td><td class="num"><strong>19</strong></td><td class="num" style="color:var(--green)"><strong>$6.76</strong></td><td class="num">$136.41</td><td class="num">6.16%</td></tr>
+    <tr><td class="ctr">23 sep</td><td class="num">$87.10</td><td class="num">663</td><td class="num">538</td><td class="num">12</td><td class="num">$7.26</td><td class="num">$131.37</td><td class="num">4.37%</td></tr>
+    <tr><td class="ctr">24 sep</td><td class="num">$88.54</td><td class="num">743</td><td class="num">613</td><td class="num">8</td><td class="num">$11.07</td><td class="num">$119.17</td><td class="num">4.17%</td></tr>
+    <tr><td class="ctr">25 sep</td><td class="num">$85.33</td><td class="num">510</td><td class="num">434</td><td class="num">5</td><td class="num">$17.07</td><td class="num">$167.31</td><td class="num">3.92%</td></tr>
+    <tr><td class="ctr">26 sep</td><td class="num">$78.54</td><td class="num">638</td><td class="num">546</td><td class="num">10</td><td class="num">$7.85</td><td class="num">$123.10</td><td class="num">3.92%</td></tr>
+    <tr><td class="ctr">27 sep</td><td class="num">$102.87</td><td class="num">699</td><td class="num">557</td><td class="num">3</td><td class="num" style="color:var(--red)"><strong>$34.29</strong></td><td class="num">$147.17</td><td class="num">4.29%</td></tr>
+    <tr><td class="ctr">28 sep</td><td class="num">$115.96</td><td class="num">742</td><td class="num">577</td><td class="num">8</td><td class="num">$14.50</td><td class="num">$156.28</td><td class="num">5.39%</td></tr>
+    <tr><td class="ctr">29 sep</td><td class="num">$75.69</td><td class="num">419</td><td class="num">319</td><td class="num">8</td><td class="num">$9.46</td><td class="num" style="color:var(--red)">$180.64</td><td class="num">5.97%</td></tr>
+    <tr><td class="ctr">30 sep</td><td class="num">$7.15</td><td class="num">51</td><td class="num">42</td><td class="num">1</td><td class="num">$7.15</td><td class="num">$140.20</td><td class="num">9.80%</td></tr>
+    <tr style="background:#F5F1F8"><td class="ctr"><strong>TOTAL</strong></td><td class="num"><strong>$1,517.04</strong></td><td class="num"><strong>11,915</strong></td><td class="num"><strong>5,309</strong></td><td class="num"><strong>134</strong></td><td class="num"><strong>$11.32</strong></td><td class="num"><strong>$127.32</strong></td><td class="num"><strong>4.89%</strong></td></tr>
+  </table>
+
+  <div class="grid3" style="margin:3mm 0">
+    <div class="kpi"><div class="v bad">3</div><div class="l">Días sin entrega dentro de la ventana activa</div></div>
+    <div class="kpi"><div class="v bad">$482.90</div><div class="l">Presupuesto disponible que nunca se gastó</div></div>
+    <div class="kpi"><div class="v bad">~24</div><div class="l">Conversaciones perdidas por esos días</div></div>
+  </div>
+
+  <h3>Tres lecturas de esta tabla</h3>
+  <table>
+    <tr><th style="width:40mm">Observación</th><th>Qué hacer</th></tr>
+    <tr><td><strong>Los días 14, 17 y 18 no hubo entrega</strong></td><td>Hay que averiguar la causa en Meta: puede ser saldo, método de pago, revisión del anuncio o pausa manual. A 7.9 conversaciones por día, son ~24 conversaciones que no ocurrieron. <strong>Revisar el historial de la cuenta y activar alertas de entrega.</strong></td></tr>
+    <tr><td><strong>El costo por conversación va de $6.76 a $34.29</strong></td><td>Una variación de cinco veces entre el mejor y el peor día. Con un solo anuncio y un solo conjunto no hay forma de saber si es la audiencia, el día de la semana o la hora. <strong>Es el argumento para separar en varios conjuntos.</strong></td></tr>
+    <tr><td><strong>El CPM sube 15% de la primera a la última semana</strong></td><td>De $128.94 (11–16 sep) a $147.70 (24–30 sep). Con alcance de solo 5,309 cuentas y frecuencia 2.24, la audiencia se está agotando. <strong>Hay que ampliarla en octubre o el costo seguirá subiendo.</strong></td></tr>
+  </table>
+
+  <div class="box crit" style="margin-top:auto">
+    <h4>Lo más caro de este mes no fue un error de estrategia</h4>
+    <p style="margin:0">Fue <strong>dejar de gastar</strong>. Los $482.90 no ejecutados equivalen, al costo real del mes, a unas 42 conversaciones que sencillamente no existieron. Antes de discutir creativos o segmentación, lo primero es garantizar que la campaña <strong>entregue los 31 días de octubre sin un solo hueco</strong>.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Informe Meta Ads · Septiembre 2026</span><span>Página 4</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>04 · Segmentación</b><span>Edad y ubicaciones</span></div>
+  <h2>Dónde se está yendo el dinero equivocado</h2>
+
+  <h3>Por rango de edad — todas mujeres</h3>
+  <table>
+    <tr><th style="width:22mm">Edad</th><th class="num" style="width:22mm">Gasto</th><th class="num" style="width:20mm">% gasto</th><th class="num" style="width:18mm">Conv.</th><th class="num" style="width:20mm">% conv.</th><th class="num" style="width:22mm">Costo/conv.</th><th class="num" style="width:18mm">CTR</th><th>Lectura</th></tr>
+    <tr style="background:#FBE4E9"><td><strong>25–34</strong></td><td class="num">$403.91</td><td class="num">26.6%</td><td class="num">30</td><td class="num">22.4%</td><td class="num" style="color:var(--red)"><strong>$13.46</strong></td><td class="num" style="color:var(--red)">3.40%</td><td><strong>Sobrefinanciado.</strong> Recibe más presupuesto del que devuelve</td></tr>
+    <tr style="background:#E1F3EA"><td><strong>35–44</strong></td><td class="num">$738.03</td><td class="num">48.6%</td><td class="num"><strong>69</strong></td><td class="num"><strong>51.5%</strong></td><td class="num" style="color:var(--green)"><strong>$10.70</strong></td><td class="num">5.31%</td><td><strong>El motor.</strong> Mitad del gasto, mitad de los resultados</td></tr>
+    <tr style="background:#FBEEDC"><td><strong>45–54</strong></td><td class="num">$375.16</td><td class="num">24.7%</td><td class="num">35</td><td class="num">26.1%</td><td class="num" style="color:var(--green)"><strong>$10.72</strong></td><td class="num" style="color:var(--green)"><strong>6.69%</strong></td><td><strong>Subfinanciado.</strong> Mejor CTR de los tres y casi el mejor costo</td></tr>
+  </table>
+
+  <div class="box win">
+    <h4>El hallazgo demográfico</h4>
+    <p style="margin-bottom:1.5mm">El rango <strong>45–54 tiene el CTR más alto (6.69%, casi el doble que 25–34) y un costo por conversación prácticamente igual al mejor</strong> — pero solo recibe una cuarta parte del presupuesto. Mientras tanto, 25–34 consume el 26.6% del gasto para devolver el 22.4% de las conversaciones al costo más caro.</p>
+    <p style="margin:0">Esto confirma con datos lo que el análisis de arquetipos anticipaba: <strong>el dinero de esta clínica está en la paciente de 35 a 54 años</strong>, no en la de 25 a 34. Si los $403.91 de 25–34 rindieran al costo de 35–44, habrían producido <strong>38 conversaciones en vez de 30</strong>.</p>
+  </div>
+
+  <h3>Por ubicación del anuncio</h3>
+  <table>
+    <tr><th style="width:36mm">Ubicación</th><th class="num" style="width:22mm">Gasto</th><th class="num" style="width:18mm">% gasto</th><th class="num" style="width:16mm">Conv.</th><th class="num" style="width:24mm">Costo/conv.</th><th class="num" style="width:20mm">CPM</th><th>Veredicto</th></tr>
+    <tr style="background:#E1F3EA"><td><strong>Instagram Reels</strong></td><td class="num">$146.30</td><td class="num">9.6%</td><td class="num">18</td><td class="num" style="color:var(--green)"><strong>$8.13</strong></td><td class="num">$135.72</td><td><strong>La mejor.</strong> Merece más presupuesto</td></tr>
+    <tr style="background:#E1F3EA"><td><strong>Instagram Stories</strong></td><td class="num">$330.55</td><td class="num">21.8%</td><td class="num"><strong>39</strong></td><td class="num" style="color:var(--green)"><strong>$8.48</strong></td><td class="num">$163.96</td><td><strong>Mayor volumen a bajo costo</strong></td></tr>
+    <tr style="background:#E1F3EA"><td><strong>Facebook Reels</strong></td><td class="num">$112.71</td><td class="num">7.4%</td><td class="num">11</td><td class="num" style="color:var(--green)">$10.25</td><td class="num">$184.77</td><td>Buena. CTR del 6.72%</td></tr>
+    <tr><td><strong>Facebook Feed</strong></td><td class="num">$422.14</td><td class="num">27.8%</td><td class="num">33</td><td class="num">$12.79</td><td class="num">$77.83</td><td>Aceptable. CPM barato compensa</td></tr>
+    <tr style="background:#FBE4E9"><td><strong>Instagram Feed</strong></td><td class="num"><strong>$448.70</strong></td><td class="num"><strong>29.6%</strong></td><td class="num">32</td><td class="num" style="color:var(--red)"><strong>$14.02</strong></td><td class="num" style="color:var(--red)">$208.31</td><td><strong>La fuga principal.</strong> Mayor gasto, peor CPM</td></tr>
+    <tr style="background:#FBE4E9"><td><strong>Facebook Stories</strong></td><td class="num">$40.87</td><td class="num">2.7%</td><td class="num">1</td><td class="num" style="color:var(--red)"><strong>$40.87</strong></td><td class="num">$180.06</td><td><strong>Apagar.</strong> Una conversación en todo el mes</td></tr>
+    <tr style="background:#FBE4E9"><td><strong>Resto</strong> <span class="small">(notificaciones, Marketplace, Explorar, búsqueda, estado de WhatsApp)</span></td><td class="num">$15.83</td><td class="num">1.0%</td><td class="num">0</td><td class="num" style="color:var(--red)">sin conv.</td><td class="num">—</td><td><strong>Apagar.</strong> Ruido puro</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>La cuenta de la reasignación</h4>
+    <p style="margin:0">Entre <strong>Instagram Feed, Facebook Stories y el ruido</strong> se fueron <strong>$505.40 — un tercio del presupuesto del mes— para producir 33 conversaciones</strong>. Ese mismo dinero puesto en Instagram Reels y Stories, al costo que ya demostraron ($8.13 y $8.48), habría producido <strong>alrededor de 61</strong>. Son <strong>28 conversaciones más, sin gastar un peso adicional.</strong></p>
+  </div>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>Sumando las tres correcciones</h4>
+    <p style="margin:0">Días sin entrega (~24) + reasignación de ubicaciones (~28) + reasignación de edad (~8) = <strong>alrededor de 60 conversaciones adicionales al mes con el mismo presupuesto de $100 diarios</strong>. Eso llevaría la campaña de 134 a cerca de 195 conversaciones mensuales, y el costo por conversación de $11.32 a aproximadamente $8.50.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Informe Meta Ads · Septiembre 2026</span><span>Página 5</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>05 · El límite</b><span>Lo que no sabemos y cuánto cuesta</span></div>
+  <h2>134 conversaciones. ¿Cuántas citas?</h2>
+  <p class="lead">Esta es la pregunta que este informe <strong>no puede responder</strong>, y conviene decirlo con todas sus letras antes de proponer nada.</p>
+
+  <div class="split">
+    <div class="b">
+      <h4 style="color:var(--green)">Lo que sí sabemos (medido)</h4>
+      <ul style="margin-bottom:0">
+        <li>Cuánto se gastó y en qué días</li>
+        <li>Cuántas personas vieron el anuncio</li>
+        <li>Cuántas hicieron clic</li>
+        <li><strong>Cuántas abrieron una conversación: 134</strong></li>
+        <li>Qué edad y qué ubicación las trajo</li>
+        <li>Cuánto costó cada una: $11.32</li>
+      </ul>
+    </div>
+    <div class="a">
+      <h4 style="color:var(--red)">Lo que no sabemos (sin medir)</h4>
+      <ul style="margin-bottom:0">
+        <li>Cuántas de esas 134 pidieron cita</li>
+        <li>Cuántas citas se agendaron</li>
+        <li>Cuántas personas se presentaron</li>
+        <li>Cuántas compraron un tratamiento</li>
+        <li>Cuánto facturó la campaña</li>
+        <li>Si las personas eran de la zona</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Por qué esto no es solo un problema de reporte</h3>
+  <p>La falta de medición tiene una consecuencia operativa que cuesta dinero todos los días, no solo a fin de mes:</p>
+  <table>
+    <tr><th style="width:44mm">Consecuencia</th><th>Qué está pasando</th></tr>
+    <tr><td><strong>Meta optimiza hacia el objetivo equivocado</strong></td><td>La meta configurada es "Conversaciones". El sistema busca el mayor número de chats abiertos al menor costo — y lo está logrando. Pero <strong>no tiene ninguna señal de qué conversación terminó en cita</strong>, así que no puede aprender a buscar pacientes. Busca conversadores.</td></tr>
+    <tr><td><strong>No se puede decidir qué escalar</strong></td><td>Instagram Stories trajo 39 conversaciones y Facebook Feed 33. ¿Cuál trajo más citas? No se sabe. Podría ser que las 33 de Facebook valgan más que las 39 de Instagram, y se estaría apagando lo que funciona.</td></tr>
+    <tr><td><strong>No se puede saber si el problema es de volumen o de cierre</strong></td><td>Si la agenda no se llena, hay dos explicaciones posibles y opuestas: llegan pocos mensajes, o llegan muchos y no se convierten. <strong>La solución de cada una es distinta</strong> —subir presupuesto contra arreglar el WhatsApp— y hoy no hay forma de elegir.</td></tr>
+    <tr><td><strong>No se puede justificar el presupuesto</strong></td><td>$1,517 produjeron 134 conversaciones. Si eso son 3 pacientes, el retorno es cuestionable. Si son 14, es excelente. Sin el dato, cualquier decisión de inversión es una apuesta.</td></tr>
+  </table>
+
+  <h3>Los dos escenarios posibles con las mismas 134 conversaciones</h3>
+  <div class="box crit">
+    <p style="margin-bottom:2mm"><strong>Advertencia:</strong> lo que sigue es un <strong>modelo con supuestos declarados, no una medición</strong>. Sirve para dimensionar la incertidumbre, no para reportar resultados. Ninguna de estas cifras debe presentarse como un dato del mes.</p>
+    <table style="margin-bottom:0">
+      <tr><th style="width:44mm">Escenario</th><th class="num" style="width:26mm">Citas agendadas</th><th class="num" style="width:24mm">Asisten</th><th class="num" style="width:26mm">Compran</th><th>Supuesto</th></tr>
+      <tr><td><strong>Sin sistema de WhatsApp</strong><br><span class="small">respuesta lenta, sin guion, sin seguimiento</span></td><td class="num">~11</td><td class="num">~8</td><td class="num" style="color:var(--red)"><strong>~4</strong></td><td>8% de mensaje a cita</td></tr>
+      <tr><td><strong>Con sistema de WhatsApp</strong><br><span class="small">respuesta en 5 min, guion de calificación, 3 seguimientos</span></td><td class="num">~40</td><td class="num">~30</td><td class="num" style="color:var(--green)"><strong>~14</strong></td><td>30% de mensaje a cita</td></tr>
+    </table>
+  </div>
+  <p style="margin-top:2mm">En ambos casos se gastó <strong>exactamente lo mismo en Meta</strong> y llegaron <strong>exactamente las mismas 134 conversaciones</strong>. La diferencia —de 4 a 14 pacientes, más de tres veces— <strong>ocurre íntegramente después del mensaje</strong>, en una parte del proceso que hoy no tiene ni medición ni protocolo.</p>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>La conclusión operativa</h4>
+    <p style="margin:0">La palanca más grande de este negocio no está en Meta. Está en <strong>los primeros cinco minutos después de que entra el mensaje</strong>. Y el primer paso para accionarla no cuesta dinero: es empezar a anotar qué pasa con cada conversación. Eso es el Nivel 1 del plan.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Informe Meta Ads · Septiembre 2026</span><span>Página 6</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>06 · Plan · Nivel 1</b><span>Medir — semana 1, costo $0</span></div>
+  <h2>Empezar a contar lo que importa</h2>
+  <p class="lead">No se puede subir lo que no se mide. Antes de tocar presupuesto o creativos, hay que poder responder una pregunta: <strong>de cada 10 mensajes que entran, ¿cuántos terminan en una persona sentada en la camilla?</strong></p>
+
+  <h3>La bitácora de conversaciones — lo primero que hay que montar</h3>
+  <p>Una hoja compartida donde recepción registra <strong>cada</strong> conversación entrante. Ocho columnas, treinta segundos por registro:</p>
+  <table>
+    <tr><th class="ctr" style="width:8mm">#</th><th style="width:34mm">Columna</th><th>Qué se anota</th><th style="width:44mm">Para qué sirve</th></tr>
+    <tr><td class="ctr">1</td><td><strong>Fecha y hora de entrada</strong></td><td>Cuándo llegó el mensaje</td><td>Detectar las horas pico y ajustar turnos</td></tr>
+    <tr><td class="ctr">2</td><td><strong>Hora de primera respuesta</strong></td><td>Cuándo se contestó</td><td><strong>El dato más importante de todos</strong></td></tr>
+    <tr><td class="ctr">3</td><td><strong>Origen</strong></td><td>Anuncio / orgánico / referido / paso peatonal</td><td>Separar lo que trae la pauta de lo que no</td></tr>
+    <tr><td class="ctr">4</td><td><strong>Tratamiento que menciona</strong></td><td>Lo que pregunta en su primer mensaje</td><td>Saber qué se demanda de verdad</td></tr>
+    <tr><td class="ctr">5</td><td><strong>Código postal o colonia</strong></td><td>Se pregunta en la calificación</td><td>Validar si el radio de la pauta es correcto</td></tr>
+    <tr><td class="ctr">6</td><td><strong>¿Agendó?</strong></td><td>Sí / No / Pendiente</td><td>La tasa de mensaje a cita</td></tr>
+    <tr><td class="ctr">7</td><td><strong>¿Asistió?</strong></td><td>Sí / No se presentó / Reagendó</td><td>La tasa de ausencia</td></tr>
+    <tr><td class="ctr">8</td><td><strong>¿Compró y cuánto?</strong></td><td>Monto en pesos</td><td>El ticket real y el retorno de la pauta</td></tr>
+  </table>
+
+  <div class="box win">
+    <h4>Con eso solo, al día 30 de octubre se sabrá</h4>
+    <p style="margin:0">El <strong>costo real por cita</strong> · el <strong>costo real por paciente</strong> · la <strong>tasa de conversión de mensaje a cita</strong> · el <strong>tiempo medio de respuesta</strong> y cómo afecta al cierre · <strong>qué tratamiento pide la gente</strong> frente a cuál se anuncia · <strong>de qué colonias vienen</strong>. Siete datos que hoy no existen, sin un peso de inversión ni una herramienta nueva.</p>
+  </div>
+
+  <h3>El segundo paso: devolverle la señal a Meta</h3>
+  <p>Una vez que la bitácora lleve tres o cuatro semanas, se puede cerrar el círculo. Hay dos caminos según hasta dónde se quiera llegar:</p>
+  <table>
+    <tr><th style="width:36mm">Camino</th><th>Cómo funciona</th><th style="width:34mm">Requisito</th></tr>
+    <tr><td><strong>A · Carga manual de eventos</strong><br><span class="small">recomendado para empezar</span></td><td>Subir periódicamente a Meta un archivo con las personas que sí agendaron o compraron. Meta las cruza con quienes vieron los anuncios y empieza a reportar —y a optimizar hacia— resultados reales, no solo mensajes.</td><td>La bitácora con teléfono y fecha. Sin desarrollo.</td></tr>
+    <tr><td><strong>B · Integración de WhatsApp</strong><br><span class="small">para más adelante</span></td><td>Conectar WhatsApp a través de su plataforma de negocios para que cada mensaje llegue identificado con el anuncio que lo originó, y poder enviar de vuelta el evento de cita agendada de forma automática.</td><td>Requiere configuración técnica y un proveedor.</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Sobre el camino A — aclaración importante</h4>
+    <p style="margin:0">La carga de eventos fuera de línea existe en Meta y es la vía estándar para negocios que cierran por teléfono o en mostrador, pero <strong>los nombres exactos de las herramientas y el formato del archivo cambian con frecuencia</strong>. Antes de prometer plazos al cliente, hay que verificar en el Administrador de eventos de la cuenta qué opción está disponible hoy. Lo que no cambia es el requisito previo: <strong>sin la bitácora no hay nada que cargar.</strong></p>
+  </div>
+
+  <div class="box" style="margin-top:auto">
+    <h4>Cuándo empieza esto</h4>
+    <p style="margin:0"><strong>El 1 de octubre.</strong> No requiere aprobación de presupuesto, ni herramienta nueva, ni cambio en la campaña. Requiere que recepción anote ocho columnas por cada mensaje que entre. Si esto no se hace, el informe de octubre dirá exactamente lo mismo que este: cuántas conversaciones hubo, y nada sobre cuántas citas.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Informe Meta Ads · Septiembre 2026</span><span>Página 7</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>07 · Plan · Nivel 2</b><span>Convertir — donde está la palanca grande</span></div>
+  <h2>Los primeros cinco minutos</h2>
+  <p class="lead">Si el modelo de la página 6 se acerca a la realidad, <strong>aquí se decide si las 134 conversaciones valen 4 pacientes o 14</strong>. Es la intervención de mayor retorno de todo el plan y no cuesta un peso de medios.</p>
+
+  <h3>Las tres fugas de la conversación</h3>
+  <table>
+    <tr><th class="ctr" style="width:8mm">#</th><th style="width:38mm">Fuga</th><th>Qué pasa y cómo se tapa</th></tr>
+    <tr><td class="ctr"><strong>1</strong></td><td><strong>Tiempo de respuesta</strong></td><td>En estética la probabilidad de agendar cae de forma pronunciada con cada minuto que pasa. Los mensajes de la noche —cuando más se consulta este tipo de tratamiento— llegan al día siguiente. <strong>Solución:</strong> respuesta automática inmediata que reconoce el mensaje y hace una primera pregunta, más un acuerdo interno de responder en persona en menos de 5 minutos en horario.</td></tr>
+    <tr><td class="ctr"><strong>2</strong></td><td><strong>Ausencia de guion</strong></td><td>Sin un guion, cada persona del equipo responde distinto y la conversación se convierte en una cotización. <strong>Solución:</strong> cinco preguntas de calificación, una por mensaje —nunca todas juntas—, encuadre de valor antes de mencionar precio, y cierre con dos horarios concretos en vez de "¿te gustaría agendar?".</td></tr>
+    <tr><td class="ctr"><strong>3</strong></td><td><strong>Cero seguimiento</strong></td><td>Quien pregunta y no agenda desaparece para siempre. <strong>Solución:</strong> tres toques con ángulos distintos —24 h resolver la duda concreta, 72 h contenido educativo del tratamiento, 7 días disponibilidad u oferta— y después dejar de insistir.</td></tr>
+  </table>
+
+  <h3>El guion mínimo, listo para usar</h3>
+  <table>
+    <tr><th style="width:26mm">Momento</th><th>Contenido</th></tr>
+    <tr><td><strong>0 min</strong><br><span class="small">automático</span></td><td><em>"¡Hola! Gracias por escribir a DM Wellness 💜 Somos clínica de medicina estética, nutrición y spa en Narvarte. En un momento te atiende una persona del equipo. Mientras tanto, ¿qué te gustaría mejorar?"</em></td></tr>
+    <tr><td><strong>Menos de 5 min</strong><br><span class="small">persona real</span></td><td>Cinco preguntas, una por mensaje: 1) ¿Qué te gustaría trabajar? · 2) ¿Te has hecho algún tratamiento antes? · 3) ¿Buscas algo para una fecha específica? · 4) ¿Qué días y horarios te acomodan? · <strong>5) ¿De qué zona nos escribes?</strong> — esta última alimenta la bitácora</td></tr>
+    <tr><td><strong>Encuadre</strong></td><td><em>"Por lo que me cuentas, lo correcto es una valoración: la Dra. [Nombre], céd. prof. [número], revisa tu caso y te dice qué sí y qué no te conviene. No vendemos tratamientos sin valorar."</em> — justifica el precio antes de mencionarlo</td></tr>
+    <tr><td><strong>Cierre</strong></td><td>Nunca "¿te gustaría agendar?". Siempre dos opciones: <em>"Tengo jueves a las 4:00 o viernes a las 11:00. ¿Cuál te queda mejor?"</em></td></tr>
+    <tr><td><strong>Confirmación</strong></td><td>24 h antes con dirección y referencias para llegar; recordatorio 2 h antes. Reduce las ausencias de forma notable.</td></tr>
+  </table>
+
+  <h4>Las seis objeciones que ya están llegando y cómo responderlas</h4>
+  <table>
+    <tr><th style="width:38mm">Objeción</th><th>Respuesta</th></tr>
+    <tr><td>"Está caro"</td><td>Desglosar qué incluye: valoración médica, equipo certificado, seguimiento. Comparar con el costo de corregir un mal procedimiento.</td></tr>
+    <tr><td>"Lo voy a pensar"</td><td>Preguntar qué específicamente quiere pensar. Casi siempre es una duda concreta que se resuelve en un mensaje.</td></tr>
+    <tr><td>"¿Duele?"</td><td>Describir con honestidad la sensación real y las medidas de confort. Exagerar se paga con reseñas negativas.</td></tr>
+    <tr><td>"En otro lado me lo hacen más barato"</td><td>Preguntar quién lo realiza y con qué cédula. Ahí está la diferencia, y casi nadie lo había considerado.</td></tr>
+    <tr><td>"No tengo tiempo"</td><td>Ofrecer horarios de apertura, cierre o sábado. Mencionar la duración real del procedimiento.</td></tr>
+    <tr><td>"Me da miedo quedar rara"</td><td>Explicar la filosofía de resultados naturales y ofrecer empezar con algo reversible o de baja intervención.</td></tr>
+  </table>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>La cuenta de este nivel</h4>
+    <p style="margin:0">Pasar la tasa de mensaje a cita del 8% al 30% sobre las mismas 134 conversaciones significa <strong>alrededor de 29 citas más y unos 10 pacientes más al mes</strong>, con <strong>cero pesos adicionales de inversión publicitaria</strong>. Ningún ajuste de segmentación, creativo o presupuesto se acerca a ese retorno.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Informe Meta Ads · Septiembre 2026</span><span>Página 8</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>08 · Plan · Nivel 3</b><span>La campaña — cambios concretos</span></div>
+  <h2>Qué tocar en Meta el 1 de octubre</h2>
+  <p class="lead">Ocho cambios, ordenados por impacto. Los cinco primeros no requieren presupuesto adicional.</p>
+
+  <table>
+    <tr><th class="ctr" style="width:8mm">#</th><th style="width:44mm">Cambio</th><th>Cómo se hace</th><th class="ctr" style="width:22mm">Impacto</th></tr>
+    <tr><td class="ctr"><strong>1</strong></td><td><strong>Garantizar entrega los 31 días</strong></td><td>Revisar el historial de la cuenta para entender por qué el 14, 17 y 18 no hubo entrega. Verificar método de pago y límite de gasto de la cuenta. Activar alertas de entrega.</td><td class="ctr"><span class="tag t-crit">Alto</span></td></tr>
+    <tr><td class="ctr"><strong>2</strong></td><td><strong>Apagar las ubicaciones que no rinden</strong></td><td>Quitar Facebook Stories, Marketplace, notificaciones, Explorar, búsqueda y estado de WhatsApp. Reducir drásticamente Instagram Feed. Concentrar en <strong>Instagram Reels, Instagram Stories y Facebook Reels</strong>.</td><td class="ctr"><span class="tag t-crit">Alto</span></td></tr>
+    <tr><td class="ctr"><strong>3</strong></td><td><strong>Subir el piso de edad a 33 años</strong></td><td>Los datos son claros: 35–54 concentra el 77.6% de las conversaciones al menor costo. Dejar 33–55 y liberar ese presupuesto hacia donde ya rinde.</td><td class="ctr"><span class="tag t-alt">Medio</span></td></tr>
+    <tr><td class="ctr"><strong>4</strong></td><td><strong>Separar en dos conjuntos</strong></td><td>Uno para 33–44 y otro para 45–55. Hoy hay un solo conjunto, así que Meta reparte el presupuesto sin que nadie pueda intervenir. Con dos, se controla cuánto va a cada uno y se compara limpiamente.</td><td class="ctr"><span class="tag t-alt">Medio</span></td></tr>
+    <tr><td class="ctr"><strong>5</strong></td><td><strong>Añadir dos variantes de anuncio</strong></td><td>Hoy hay uno solo, llamado "Nuevo anuncio de Interacción". Sin variantes no hay aprendizaje posible. Añadir dos: uno con la médica explicando a cámara quién es candidata a Endolift, y otro que responda la objeción del precio.</td><td class="ctr"><span class="tag t-alt">Medio</span></td></tr>
+    <tr><td class="ctr"><strong>6</strong></td><td><strong>Ampliar la audiencia</strong></td><td>Con alcance de 5,309 cuentas y frecuencia 2.24 en 17 días, la audiencia se agota. Ampliar el radio geográfico o quitar capas de segmentación para frenar la subida del CPM.</td><td class="ctr"><span class="tag t-alt">Medio</span></td></tr>
+    <tr><td class="ctr"><strong>7</strong></td><td><strong>Activar remarketing</strong></td><td>No existe hoy. Crear públicos de quienes vieron el 50% del video, interactuaron con el perfil en 365 días y ya escribieron. Es la audiencia más barata y más caliente, y no se está usando.</td><td class="ctr"><span class="tag t-alt">Medio</span></td></tr>
+    <tr><td class="ctr"><strong>8</strong></td><td><strong>Nomenclatura</strong></td><td>Renombrar campaña, conjuntos y anuncios con un esquema legible (servicio · audiencia · creativo · fecha). Con una sola campaña no importa; con seis es la diferencia entre poder leer el reporte y no.</td><td class="ctr"><span class="tag t-med">Bajo</span></td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Lo que NO hay que hacer todavía</h4>
+    <p style="margin-bottom:1.5mm"><strong>No subir el presupuesto en octubre.</strong> Mientras no se sepa cuántas citas producen las 134 conversaciones actuales, aumentar la inversión solo multiplica un resultado desconocido. Si el problema resulta ser de cierre y no de volumen, más presupuesto significa más mensajes sin atender — y eso produce malas reseñas, que es peor que no tenerlos.</p>
+    <p style="margin:0"><strong>No cambiar la meta de rendimiento todavía.</strong> Cambiar de "Conversaciones" a una meta de conversión requiere que Meta reciba señales de citas reales. Eso solo es posible después de que el Nivel 1 lleve varias semanas funcionando. Hacerlo antes reinicia el aprendizaje de la campaña sin nada a cambio.</p>
+  </div>
+
+  <h3>Orden de ejecución</h3>
+  <table>
+    <tr><th style="width:30mm">Cuándo</th><th>Qué</th></tr>
+    <tr><td><strong>1 de octubre</strong></td><td>Arranca la bitácora (Nivel 1) · Se activan respuestas automáticas y el guion (Nivel 2) · Cambios 1, 2 y 3 en la campaña</td></tr>
+    <tr><td><strong>Semana 2</strong></td><td>Cambios 4 y 5: separar conjuntos y subir las dos variantes de anuncio</td></tr>
+    <tr><td><strong>Semana 3</strong></td><td>Cambios 6, 7 y 8: ampliar audiencia, montar remarketing, renombrar</td></tr>
+    <tr><td><strong>Semana 4</strong></td><td>Primera lectura de la bitácora: costo real por cita y por paciente. Con ese dato se decide si octubre cierra subiendo presupuesto o no</td></tr>
+  </table>
+  <div class="pf"><span>DM Wellness · Informe Meta Ads · Septiembre 2026</span><span>Página 9</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>09 · Octubre</b><span>Proyección y tablero</span></div>
+  <h2>Qué esperar y cómo se va a medir</h2>
+
+  <div class="box crit">
+    <p style="margin:0"><strong>Lo que sigue es un modelo con supuestos declarados, no un compromiso de resultado.</strong> Se construye sobre el rendimiento real de septiembre y sobre el efecto esperado de las correcciones. Los resultados dependen de la ejecución, de la capacidad de agenda y de la competencia en la subasta.</p>
+  </div>
+
+  <h3>Proyección de conversaciones — mismo presupuesto</h3>
+  <table>
+    <tr><th style="width:44mm">Escenario</th><th class="num" style="width:22mm">Inversión</th><th class="num" style="width:24mm">Conversaciones</th><th class="num" style="width:24mm">Costo/conv.</th><th>Supuesto</th></tr>
+    <tr><td><strong>Septiembre (real)</strong></td><td class="num">$1,517</td><td class="num">134</td><td class="num">$11.32</td><td>17 días con entrega de 20 posibles</td></tr>
+    <tr><td>Octubre sin cambios</td><td class="num">$2,700</td><td class="num">~215</td><td class="num">$12.50</td><td>27 días de entrega; el CPM sigue subiendo</td></tr>
+    <tr style="background:#E1F3EA"><td><strong>Octubre con las correcciones</strong></td><td class="num"><strong>$3,100</strong></td><td class="num"><strong>~330</strong></td><td class="num" style="color:var(--green)"><strong>$9.40</strong></td><td>31 días sin huecos + reasignación de ubicación y edad</td></tr>
+  </table>
+  <p class="small" style="margin:-1mm 0 3mm">El aumento de inversión de $1,517 a $3,100 <strong>no es una subida de presupuesto</strong>: es el mismo tope de $100 diarios ejecutándose los 31 días, en vez de 17.</p>
+
+  <h3>Proyección de citas — según se ejecute o no el Nivel 2</h3>
+  <table>
+    <tr><th style="width:44mm">Escenario</th><th class="num" style="width:24mm">Conversaciones</th><th class="num" style="width:22mm">Citas</th><th class="num" style="width:22mm">Asisten</th><th class="num" style="width:24mm">Pacientes</th><th class="num">Costo/paciente</th></tr>
+    <tr><td>Correcciones de campaña, <strong>sin</strong> sistema de WhatsApp</td><td class="num">~330</td><td class="num">~26</td><td class="num">~20</td><td class="num" style="color:var(--red)"><strong>~9</strong></td><td class="num">$344</td></tr>
+    <tr style="background:#E1F3EA"><td>Correcciones de campaña <strong>y</strong> sistema de WhatsApp</td><td class="num">~330</td><td class="num">~99</td><td class="num">~74</td><td class="num" style="color:var(--green)"><strong>~33</strong></td><td class="num" style="color:var(--green)"><strong>$94</strong></td></tr>
+  </table>
+  <p style="margin-top:1mm">La diferencia entre las dos filas —<strong>24 pacientes al mes</strong>— no depende de un solo peso adicional de pauta. Depende de responder rápido, con guion y con seguimiento.</p>
+
+  <h3>Tablero de octubre</h3>
+  <table>
+    <tr><th style="width:48mm">Indicador</th><th class="ctr" style="width:24mm">Septiembre</th><th class="ctr" style="width:24mm">Meta octubre</th><th>Cómo se obtiene</th></tr>
+    <tr><td>Días con entrega</td><td class="ctr" style="color:var(--red)"><strong>17 de 20</strong></td><td class="ctr">31 de 31</td><td>Administrador de anuncios</td></tr>
+    <tr><td>Presupuesto ejecutado</td><td class="ctr" style="color:var(--red)">76%</td><td class="ctr">98%+</td><td>Administrador de anuncios</td></tr>
+    <tr><td>Conversaciones iniciadas</td><td class="ctr">134</td><td class="ctr">300+</td><td>Administrador de anuncios</td></tr>
+    <tr><td>Costo por conversación</td><td class="ctr">$11.32</td><td class="ctr">&lt; $10.00</td><td>Administrador de anuncios</td></tr>
+    <tr><td>Frecuencia</td><td class="ctr">2.24</td><td class="ctr">&lt; 2.50</td><td>Administrador de anuncios</td></tr>
+    <tr style="background:#F5F1F8"><td><strong>Tiempo de primera respuesta</strong></td><td class="ctr" style="color:var(--red)"><strong>sin medir</strong></td><td class="ctr">&lt; 5 min</td><td><strong>Bitácora</strong></td></tr>
+    <tr style="background:#F5F1F8"><td><strong>Tasa de mensaje a cita</strong></td><td class="ctr" style="color:var(--red)"><strong>sin medir</strong></td><td class="ctr">25%+</td><td><strong>Bitácora</strong></td></tr>
+    <tr style="background:#F5F1F8"><td><strong>Citas agendadas por la pauta</strong></td><td class="ctr" style="color:var(--red)"><strong>sin medir</strong></td><td class="ctr">medido</td><td><strong>Bitácora</strong></td></tr>
+    <tr style="background:#F5F1F8"><td><strong>Tasa de ausencia</strong></td><td class="ctr" style="color:var(--red)"><strong>sin medir</strong></td><td class="ctr">&lt; 30%</td><td><strong>Bitácora</strong></td></tr>
+    <tr style="background:#F5F1F8"><td><strong>Costo por paciente nuevo</strong></td><td class="ctr" style="color:var(--red)"><strong>sin medir</strong></td><td class="ctr">medido</td><td><strong>Bitácora</strong></td></tr>
+    <tr style="background:#F5F1F8"><td><strong>Colonia de origen</strong></td><td class="ctr" style="color:var(--red)"><strong>sin medir</strong></td><td class="ctr">medido</td><td><strong>Bitácora</strong></td></tr>
+  </table>
+  <p class="small" style="margin:-1mm 0 0">Las seis filas resaltadas son las que hoy no existen. <strong>Son también las únicas que responden la pregunta que importa: ¿cuántas citas trajo la pauta?</strong></p>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>Las tres decisiones de este informe</h4>
+    <p style="margin:0"><strong>1.</strong> La campaña no se rehace: capta bien y barato. Se corrigen tres fugas concretas —días sin entrega, ubicaciones y edad— que valen unas 60 conversaciones al mes. &nbsp;<strong>2.</strong> El presupuesto no sube todavía; primero se ejecuta completo el que ya está aprobado. &nbsp;<strong>3.</strong> La prioridad absoluta de octubre no está en Meta: es montar la bitácora y el sistema de WhatsApp. <strong>Ahí está la diferencia entre 9 y 33 pacientes.</strong></p>
+  </div>
+  <div class="pf"><span>DM Wellness · Informe Meta Ads · Septiembre 2026</span><span>Página 10</span></div>
+</section>
+
+</body>
+</html>

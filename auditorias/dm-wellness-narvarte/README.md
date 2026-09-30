@@ -12,6 +12,8 @@ Benito Juárez, CDMX (C.P. 03023).
 | `Auditoria-DM-Wellness-Narvarte-Ejecutiva.pdf` | **Versión ejecutiva** — 16 páginas, mismo contenido condensado |
 | `auditoria.html` | Fuente de la versión completa (A4, se imprime con Chromium headless) |
 | `auditoria-ejecutiva.html` | Fuente de la versión ejecutiva |
+| `Informe-Meta-DM-Wellness-Septiembre-2026.pdf` | **Informe mensual de Meta Ads** — septiembre 2026, 10 páginas |
+| `informe-meta-septiembre.html` | Fuente del informe mensual |
 
 Ambas versiones comparten hallazgos, cifras y recomendaciones. La ejecutiva fusiona
 secciones y recorta la prosa explicativa, el calendario editorial de 4 semanas y el
@@ -49,3 +51,18 @@ afirmaciones que se descartan por falta de sustento.
 
 Las cifras del informe están etiquetadas como **medidas**, **inferidas** o
 **proyectadas**; las proyecciones incluyen sus supuestos y no son promesas de resultado.
+
+
+## Informe mensual de Meta Ads
+
+Datos extraídos directamente de la cuenta publicitaria (`2059690118000351`) el 30/09/2026
+vía el conector de Meta Ads. Cubre la Campaña de Endolift del 11 al 30 de septiembre.
+
+Cifras verificadas del mes: $1,517.04 MXN de inversión · 11,915 impresiones ·
+5,309 de alcance · 583 clics · 214 clics en el enlace · **134 conversaciones iniciadas**
+a **$11.32** cada una.
+
+El informe distingue explícitamente lo **medido** (todo lo anterior, más los desgloses
+por día, edad y ubicación) de lo **modelado** (las proyecciones de citas y pacientes,
+que parten de supuestos declarados). La campaña mide mensajes, no citas: esa brecha
+es el eje del plan de acción.
