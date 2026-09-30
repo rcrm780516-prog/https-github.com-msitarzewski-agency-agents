@@ -1,8 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Página principal -->
   <url>
-    <loc>https://www.drvictorsepulveda.com/</loc>
+    <loc>https://www.drvictorsepulvedatyo.com/</loc>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.drvictorsepulvedatyo.com/</image:loc>
+      <image:title>Dr. Víctor Sepúlveda — Traumatólogo y Ortopedista en Monterrey NL</image:title>
+      <image:caption>Dr. Víctor Sepúlveda, especialista en Traumatología y Ortopedia en Monterrey</image:caption>
+    </image:image>
   </url>
+
+  <!-- Sección: Sobre el especialista -->
+  <url>
+    <loc>https://www.drvictorsepulvedatyo.com/#sobre-mi</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sección: Certificados y acreditaciones -->
+  <url>
+    <loc>https://www.drvictorsepulvedatyo.com/#certificados</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Sección: Cirugía de rodilla -->
+  <url>
+    <loc>https://www.drvictorsepulvedatyo.com/#rodilla</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Sección: Cirugía de cadera -->
+  <url>
+    <loc>https://www.drvictorsepulvedatyo.com/#cadera</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Sección: Cirugía de columna -->
+  <url>
+    <loc>https://www.drvictorsepulvedatyo.com/#columna</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Sección: Cirugía robótica ortopédica -->
+  <url>
+    <loc>https://www.drvictorsepulvedatyo.com/#robotica</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Sección: Galería -->
+  <url>
+    <loc>https://www.drvictorsepulvedatyo.com/#galeria</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Sección: Preguntas frecuentes -->
+  <url>
+    <loc>https://www.drvictorsepulvedatyo.com/#faq</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sección: Contacto -->
+  <url>
+    <loc>https://www.drvictorsepulvedatyo.com/#contacto</loc>
+    <lastmod>2026-09-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
