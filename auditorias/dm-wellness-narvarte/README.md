@@ -75,11 +75,24 @@ es el eje del plan de acción.
 Unifica tres estudios independientes sobre la misma pregunta: qué promociona la
 competencia de DM Wellness y con qué mecánicas.
 
-La única fuente con cifras verificables es la Biblioteca de Anuncios de Meta (México,
-1/10/2026), que mide **inversión publicitaria, no volumen de búsqueda**. Quince términos
-medidos; el contraste central es `endolift` (261 anuncios) frente a `papada` (23,229)
-— el mismo tratamiento nombrado por el aparato o por el problema.
+Trabaja con **dos mediciones distintas y complementarias**: Google Keyword Planner
+(reparto de demanda de búsqueda, mide intención del paciente) y la Biblioteca de Anuncios
+de Meta (conteo de anuncios activos, mide inversión de la competencia).
 
-Se descartaron de los estudios aportados: los porcentajes de demanda local sin fuente,
-la recomendación de antes/después en pauta, el ranking por estrellas y los servicios que
-no constan en el catálogo observable de DM.
+El hallazgo central sale de cruzarlas en un **índice de oportunidad** = % demanda ÷ %
+inversión. El orden de las cinco categorías resulta idéntico en ambas fuentes, pero las
+magnitudes se separan:
+
+| Categoría | Demanda | Inversión | Índice |
+|---|---|---|---|
+| Toxina botulínica | 35% | 73.6% | **0.48** sobresaturado |
+| Ácido hialurónico | 25% | 14.1% | 1.77 |
+| Papada / perfilado | 18% | 5.5% | **3.24** |
+| Limpieza y piel | 12% | 5.0% | 2.39 |
+| Nutrición | 10% | 1.7% | **5.94** |
+
+Como contraste de detalle: `endolift` tiene 261 anuncios y `papada` 23,229 — el mismo
+tratamiento nombrado por el aparato o por el problema.
+
+Se descartaron de los estudios aportados: la recomendación de antes/después en pauta,
+el ranking por estrellas y los servicios que no constan en el catálogo observable de DM.
