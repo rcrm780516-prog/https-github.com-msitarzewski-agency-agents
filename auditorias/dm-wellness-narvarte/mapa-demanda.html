@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mapa de Demanda y Competencia — DM Wellness Narvarte</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --pp:#6B1E7A; --pp2:#A020C0; --pp3:#C77DDB; --ink:#1C1526; --gray:#5B5566;
+    --line:#E4DEE9; --bg:#FBF9FC; --red:#C42B4A; --amber:#D98324; --green:#1E8E5A;
+  }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:"Liberation Sans","DejaVu Sans",Arial,sans-serif; color:var(--ink); font-size:8.4pt; line-height:1.38; }
+  .page{ width:210mm; min-height:297mm; padding:12.5mm 13mm 8mm; page-break-after:always; position:relative; display:flex; flex-direction:column; background:#fff; }
+  .page:last-child{ page-break-after:auto; }
+  .ph{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1.6pt solid var(--pp); padding-bottom:2mm; margin-bottom:4mm; }
+  .ph b{ color:var(--pp); font-size:8pt; letter-spacing:.09em; text-transform:uppercase; }
+  .ph span{ font-size:7.5pt; color:var(--gray); letter-spacing:.05em; }
+  .pf{ margin-top:auto; padding-top:2.6mm; border-top:.6pt solid var(--line); display:flex; justify-content:space-between; font-size:7pt; color:#8C8496; letter-spacing:.03em; }
+  h1{ font-size:20pt; line-height:1.15; color:var(--pp); letter-spacing:-.02em; }
+  h2{ font-size:12.6pt; color:var(--pp); margin-bottom:2.2mm; letter-spacing:-.01em; }
+  h3{ font-size:9.9pt; margin:3.4mm 0 1.5mm; color:var(--ink); }
+  h4{ font-size:8.6pt; margin:2.8mm 0 1.2mm; color:var(--pp); text-transform:uppercase; letter-spacing:.06em; }
+  p{ margin-bottom:1.9mm; }
+  ul,ol{ margin:0 0 2.2mm 4.2mm; }
+  li{ margin-bottom:.9mm; }
+  strong{ font-weight:bold; }
+  .lead{ font-size:9.4pt; line-height:1.42; color:var(--gray); }
+  table{ width:100%; border-collapse:collapse; margin:2mm 0 2.8mm; font-size:7.3pt; }
+  th{ background:var(--pp); color:#fff; text-align:left; padding:1.4mm 1.7mm; font-size:6.8pt; text-transform:uppercase; letter-spacing:.05em; font-weight:bold; }
+  td{ padding:1.25mm 1.7mm; border-bottom:.5pt solid var(--line); vertical-align:top; }
+  tr:nth-child(even) td{ background:var(--bg); }
+  .num{ text-align:right; font-variant-numeric:tabular-nums; }
+  .ctr{ text-align:center; }
+  .tag{ display:inline-block; padding:.4mm 1.4mm; border-radius:2mm; font-size:6.4pt; font-weight:bold; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; }
+  .t-crit{ background:#FBE4E9; color:var(--red); } .t-alt{ background:#FBEEDC; color:var(--amber); }
+  .t-med{ background:#E6F0FB; color:#2A5FA8; } .t-ok{ background:#E1F3EA; color:var(--green); }
+  .box{ border:.8pt solid var(--line); border-left:3pt solid var(--pp2); padding:2.6mm 3.2mm; margin:2.2mm 0; background:var(--bg); border-radius:0 2mm 2mm 0; }
+  .box.crit{ border-left-color:var(--red); background:#FDF6F7; }
+  .box.win{ border-left-color:var(--green); background:#F4FBF7; }
+  .box h4{ margin-top:0; }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.6mm; }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:2.4mm; }
+  .kpi{ border:.8pt solid var(--line); border-radius:2.5mm; padding:2.4mm 2.2mm; text-align:center; background:#fff; }
+  .kpi .v{ font-size:16pt; font-weight:bold; color:var(--pp); line-height:1.05; letter-spacing:-.02em; }
+  .kpi .v.bad{ color:var(--red); } .kpi .v.good{ color:var(--green); } .kpi .v.warn{ color:var(--amber); }
+  .kpi .l{ font-size:6.5pt; color:var(--gray); text-transform:uppercase; letter-spacing:.06em; margin-top:1.5mm; line-height:1.3; }
+  .bar{ height:3.6mm; background:#EFEAF3; border-radius:1mm; overflow:hidden; margin:1mm 0; }
+  .bar i{ display:block; height:100%; background:linear-gradient(90deg,var(--pp),var(--pp2)); }
+  .bar i.r{ background:linear-gradient(90deg,#A82040,var(--red)); }
+  .bar i.g{ background:linear-gradient(90deg,#146B43,var(--green)); }
+  .barrow{ display:grid; grid-template-columns:42mm 1fr 20mm; gap:2.5mm; align-items:center; margin-bottom:1.3mm; font-size:7.4pt; }
+  .barrow .lbl{ color:var(--gray); }
+  .barrow .val{ text-align:right; font-weight:bold; font-variant-numeric:tabular-nums; }
+  .cover{ background:linear-gradient(150deg,#3A0F45 0%,var(--pp) 45%,var(--pp2) 100%); color:#fff; justify-content:space-between; }
+  .cover h1{ color:#fff; font-size:31pt; }
+  .cover .sub{ font-size:13pt; opacity:.9; margin-top:4mm; }
+  .cover .meta{ font-size:9pt; opacity:.8; line-height:1.9; }
+  .rule{ width:34mm; height:2.4pt; background:#fff; margin:7mm 0; opacity:.85; }
+  .score{ display:flex; align-items:center; gap:5mm; }
+  .score .big{ font-size:44pt; font-weight:bold; line-height:1; letter-spacing:-.03em; }
+  .toc li{ display:flex; justify-content:space-between; border-bottom:.5pt dotted var(--line); padding:1.05mm 0; list-style:none; font-size:8pt; }
+  .toc ul{ margin:0; }
+  .toc b{ color:var(--pp); }
+  .small{ font-size:6.9pt; color:var(--gray); line-height:1.45; }
+  .chk{ list-style:none; margin-left:0; }
+  .chk li{ padding-left:6mm; position:relative; }
+  .chk li:before{ content:"□"; position:absolute; left:0; color:var(--pp2); font-size:11pt; line-height:1; top:.3mm; }
+  .quote{  font-style:italic; color:var(--gray); border-left:2pt solid var(--pp3); padding-left:3mm; margin:2mm 0; font-size:8.6pt; }
+  .copyblock{ background:#F5F1F8; border:.6pt dashed var(--pp3); border-radius:2mm; padding:2.2mm 2.8mm; font-family:"DejaVu Sans Mono",monospace; font-size:7pt; line-height:1.45; white-space:pre-wrap; margin:1.8mm 0; }
+  .split{ display:grid; grid-template-columns:1fr 1fr; gap:0; border:.8pt solid var(--line); border-radius:2mm; overflow:hidden; margin:2.2mm 0; }
+  .split>div{ padding:2.6mm 3mm; }
+  .split .a{ background:#FDF6F7; border-right:.8pt solid var(--line); }
+  .split .b{ background:#F4FBF7; }
+  .split h4{ margin-top:0; }
+  .t4 table{ font-size:6pt; } .t4 td{ padding:.62mm 1.1mm; } .t4 th{ padding:.7mm 1.1mm; font-size:5.8pt; }
+  .t4 p{ margin-bottom:1.1mm; } .t4 li{ margin-bottom:.5mm; } .t4 .box{ padding:1.6mm 2.2mm; margin:1.2mm 0; }
+  .t4 h3{ margin:1.9mm 0 .9mm; } .t4 h4{ margin:2.2mm 0 1mm; } .t4 table{ margin:1.2mm 0 1.5mm; }
+  .t4 .lead{ font-size:8.2pt; } .t4 h2{ font-size:11.4pt; margin-bottom:1.7mm; }
+  .t4 .kpi{ padding:2mm 1.8mm; } .t4 .kpi .v{ font-size:14pt; }
+
+  .t1 table{ font-size:7pt; } .t1 td{ padding:1.05mm 1.5mm; } .t1 th{ padding:1.2mm 1.5mm; font-size:6.5pt; }
+  .t1 p{ margin-bottom:1.6mm; } .t1 li{ margin-bottom:.75mm; } .t1 .box{ padding:2.2mm 2.8mm; margin:1.9mm 0; }
+  .t1 h3{ margin:2.8mm 0 1.3mm; } .t1 table{ margin:1.7mm 0 2.3mm; }
+  .t2 table{ font-size:6.7pt; } .t2 td{ padding:.9mm 1.4mm; } .t2 th{ padding:1mm 1.4mm; font-size:6.3pt; }
+  .t2 p{ margin-bottom:1.4mm; } .t2 li{ margin-bottom:.65mm; } .t2 .box{ padding:2mm 2.6mm; margin:1.6mm 0; }
+  .t2 h3{ margin:2.4mm 0 1.1mm; } .t2 table{ margin:1.5mm 0 2mm; } .t2 .lead{ font-size:8.8pt; }
+  .t2 .copyblock{ font-size:6.6pt; padding:1.9mm 2.4mm; margin:1.5mm 0; }
+  .t3 table{ font-size:6.3pt; } .t3 td{ padding:.75mm 1.2mm; } .t3 th{ padding:.85mm 1.2mm; font-size:6pt; }
+  .t3 p{ margin-bottom:1.2mm; } .t3 li{ margin-bottom:.55mm; } .t3 .box{ padding:1.8mm 2.4mm; margin:1.4mm 0; }
+  .t3 h3{ margin:2.1mm 0 1mm; } .t3 table{ margin:1.3mm 0 1.7mm; } .t3 .lead{ font-size:8.4pt; }
+  .t3 h2{ font-size:11.6pt; margin-bottom:1.8mm; }
+  .t3 .copyblock{ font-size:6.3pt; padding:1.7mm 2.2mm; margin:1.3mm 0; line-height:1.4; }
+</style>
+</head>
+<body>
+
+
+
+<section class="page cover">
+  <div>
+    <div style="font-size:8.5pt;letter-spacing:.28em;text-transform:uppercase;opacity:.85">Estudio de demanda y competencia · Edición unificada</div>
+    <div class="rule"></div>
+    <h1>Qué promociona<br>la competencia</h1>
+    <div class="sub"><strong>DM Wellness Beauty and Nutrition</strong><br>Narvarte · Benito Juárez · Ciudad de México</div>
+  </div>
+  <div style="display:flex;gap:5mm;flex-wrap:wrap">
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:4.5mm 5.5mm;min-width:44mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Términos medidos</div>
+      <div style="font-size:34pt;font-weight:bold;line-height:1.05">15</div>
+      <div style="font-size:8.5pt;opacity:.9">con datos verificables</div>
+    </div>
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:4.5mm 5.5mm;min-width:44mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Estudios unificados</div>
+      <div style="font-size:34pt;font-weight:bold;line-height:1.05">3</div>
+      <div style="font-size:8.5pt;opacity:.9">fuentes independientes</div>
+    </div>
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:4.5mm 5.5mm;min-width:44mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Mecánicas detectadas</div>
+      <div style="font-size:34pt;font-weight:bold;line-height:1.05">8</div>
+      <div style="font-size:8.5pt;opacity:.9">promociones de la competencia</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="rule" style="margin:0 0 5mm"></div>
+    <strong>Pregunta que responde este documento:</strong> qué están promocionando las clínicas que compiten con DM Wellness,<br>
+    con qué mensajes y con qué mecánicas comerciales — y qué debe hacer DM para competir con inteligencia.<br>
+    <strong>Fuente principal medida:</strong> Biblioteca de Anuncios de Meta, México, 1 de octubre de 2026<br>
+    <strong>Fuentes unificadas:</strong> tres estudios independientes, contrastados y depurados en la sección 02
+  </div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>01 · Veredicto</b><span>Resumen ejecutivo</span></div>
+  <h2>Lo que hay que saber en una página</h2>
+  <p class="lead">Se unificaron tres estudios de demanda hechos por separado. Coinciden en lo fundamental, y al cruzarlos aparece un hallazgo que ninguno tenía solo: <strong>DM Wellness está anunciando el término con menos competencia de todo su catálogo, y el problema que ese tratamiento resuelve tiene 89 veces más mercado.</strong></p>
+
+  <div class="grid4" style="margin:4mm 0">
+    <div class="kpi"><div class="v">313,704</div><div class="l">Anuncios compitiendo por "botox"</div></div>
+    <div class="kpi"><div class="v warn">23,229</div><div class="l">Anuncios por "papada"</div></div>
+    <div class="kpi"><div class="v bad">261</div><div class="l">Anuncios por "endolift"</div></div>
+    <div class="kpi"><div class="v bad">1</div><div class="l">De esos 261 es el de DM</div></div>
+  </div>
+
+  <h3>Los cinco puntos que importan</h3>
+  <table>
+    <tr><th style="width:7mm">#</th><th>Hallazgo</th><th style="width:44mm">Qué significa para DM</th></tr>
+    <tr><td><strong>1</strong></td><td><strong>El mercado se mueve por problemas, no por aparatos.</strong> "Papada" tiene 23,229 anuncios; "endolift" tiene 261. Las clínicas que venden volumen dicen <em>"elimina tu papada"</em>, no <em>"endolift"</em>.</td><td>Cambiar el gancho, no el tratamiento. Es una línea de texto.</td></tr>
+    <tr><td><strong>2</strong></td><td><strong>Botox y ácido hialurónico son el 40% del mercado medido</strong> y DM no los anuncia. Las tres fuentes coinciden en que son el número uno y el número dos.</td><td>Hay demanda masiva sin atender en su propio catálogo.</td></tr>
+    <tr><td><strong>3</strong></td><td><strong>Flacidez (105,402) y manchas (98,053) tienen más mercado que casi cualquier nombre de tratamiento.</strong> DM tiene el equipo para ambos: Venus Legacy y Dermapen.</td><td>Dos campañas nuevas con aparatología ya instalada.</td></tr>
+    <tr><td><strong>4</strong></td><td><strong>El formato ganador es el especialista explicando a cámara.</strong> Las tres fuentes lo señalan por separado, y los datos de alcance del sector lo confirman.</td><td>DM hoy publica procedimiento sin rostro ni voz.</td></tr>
+    <tr><td><strong>5</strong></td><td><strong>La competencia promociona con ocho mecánicas identificables</strong>, de las cuales DM no usa ninguna: eventos con nombre propio, meses sin intereses, escasez real, valoración sin costo, paquetes.</td><td>Sección 07: cinco promociones listas para lanzar.</td></tr>
+  </table>
+
+  <div class="split">
+    <div class="b">
+      <h4 style="color:var(--green)">Lo que DM ya tiene y no comunica</h4>
+      <ul style="margin-bottom:0">
+        <li><strong>Endolift Mónaco</strong> → resuelve papada y definición mandibular</li>
+        <li><strong>Venus Legacy</strong> → resuelve flacidez y firmeza</li>
+        <li><strong>Dermapen</strong> → resuelve manchas y cicatrices</li>
+        <li><strong>Nutrición clínica</strong> → la única línea recurrente</li>
+        <li><strong>Aviso COFEPRIS vigente</strong> → el argumento que la competencia informal no puede usar</li>
+      </ul>
+    </div>
+    <div class="a">
+      <h4 style="color:var(--red)">Lo que está haciendo hoy</h4>
+      <ul style="margin-bottom:0">
+        <li>Anuncia "Endolift" — 261 anuncios de mercado</li>
+        <li>No anuncia botox ni ácido hialurónico</li>
+        <li>No comunica flacidez ni manchas</li>
+        <li>Cero de doce reels hablan de nutrición</li>
+        <li>Ninguna promoción estructurada activa</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>La tesis de este documento</h4>
+    <p style="margin:0">DM Wellness no necesita tratamientos nuevos ni más presupuesto: <strong>necesita nombrar lo que ya tiene con las palabras que la gente usa, y empaquetarlo con las mecánicas que el mercado ya demostró que funcionan.</strong> Todo lo que se propone aquí se ejecuta con la aparatología instalada y el presupuesto actual.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Mapa de Demanda y Competencia · Octubre 2026</span><span>Página 2</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>02 · Unificación</b><span>Qué aporta cada estudio y qué se descarta</span></div>
+  <h2>Cómo se construyó este documento</h2>
+  <p class="lead">Tres estudios independientes sobre la misma pregunta. Se conservó lo que resiste verificación, se resolvieron dos contradicciones y se descartó lo que no se puede sostener frente a un cliente.</p>
+
+  <table>
+    <tr><th style="width:30mm">Estudio</th><th>Lo que aporta y se conserva</th><th style="width:48mm">Su límite</th></tr>
+    <tr><td><strong>A · "Análisis de Demanda Local"</strong><br><span class="small">2 páginas</span></td><td>El formato publicitario ganador (video del especialista a cámara) · la oferta anzuelo de entrada · el embudo de tres niveles · las palabras clave de búsqueda local · <strong>el hallazgo de que la papada es categoría propia</strong> · el insight de mensaje: naturalidad, respaldo médico y sin incapacidad</td><td>Presenta porcentajes exactos de demanda (35%, 25%, 18%…) sin fuente ni método verificable</td></tr>
+    <tr><td><strong>B · "Mapa de Demanda Local"</strong><br><span class="small">4 páginas</span></td><td><strong>El rigor metodológico</strong>: declara explícitamente que la publicidad no es volumen de búsqueda · la arquitectura de tres pilares · la estructura de campañas · <strong>la métrica correcta del embudo completo</strong> · el siguiente paso con Keyword Planner · competidores no detectados antes</td><td>El sistema de estrellas da cinco categorías con la máxima calificación, lo que no prioriza</td></tr>
+    <tr><td><strong>C · Estudio de Virtuoso</strong><br><span class="small">este análisis</span></td><td><strong>Los únicos números verificables</strong>: 15 términos medidos en la Biblioteca de Anuncios de Meta · los textos reales de los anuncios de la competencia · las ocho mecánicas promocionales · los datos propios de la campaña de DM</td><td>Los datos son nacionales, no por colonia; miden inversión publicitaria, no búsquedas</td></tr>
+  </table>
+
+  <h3>Las dos contradicciones y cómo se resolvieron</h3>
+  <table>
+    <tr><th style="width:30mm">Tema</th><th>El conflicto</th><th style="width:52mm">Resolución adoptada</th></tr>
+    <tr><td><strong>Antes y después</strong></td><td>El estudio A recomienda carruseles de antes/después como formato de alta efectividad. El estudio C advierte que las políticas publicitarias de Meta los restringen.</td><td><strong>Se separan los usos.</strong> En orgánico y en el sitio, sí, con consentimiento informado por escrito. <strong>En pauta, nunca</strong>: acumular rechazos deteriora la cuenta publicitaria hasta restringirla. Dos bibliotecas creativas separadas.</td></tr>
+    <tr><td><strong>Porcentajes de demanda</strong></td><td>El estudio A afirma repartos exactos (botox 35%, hialurónico 25%…). El estudio B declara expresamente que ese dato no es obtenible con las fuentes disponibles.</td><td><strong>Se adopta el criterio de B.</strong> Los porcentajes de A se conservan solo como <em>orden de prioridad</em> —que sí coincide con lo medido— y <strong>no se presentan como cifras</strong>. Ninguna tabla de este documento publica un porcentaje de demanda.</td></tr>
+  </table>
+
+  <h3>Lo que se descarta y por qué</h3>
+  <table>
+    <tr><th style="width:52mm">Elemento descartado</th><th>Razón</th></tr>
+    <tr><td><strong>Los porcentajes de demanda local</strong> <span class="small">(A)</span></td><td>No hay fuente que los sostenga. Google Keyword Planner entrega volumen por palabra, no reparto porcentual por procedimiento. Presentarlos a un cliente crea una expectativa indefendible si los cuestiona.</td></tr>
+    <tr><td><strong>Antes/después en pauta</strong> <span class="small">(A)</span></td><td>Riesgo directo sobre la cuenta publicitaria. Ver resolución arriba.</td></tr>
+    <tr><td><strong>El sistema de estrellas</strong> <span class="small">(B)</span></td><td>Cinco categorías con cinco estrellas no es una priorización. Se sustituye por el ranking medido de la sección 03.</td></tr>
+    <tr><td><strong>Servicios que DM no ofrece</strong> <span class="small">(A y B)</span></td><td>Depilación láser, sueroterapia intravenosa, enzimas lipolíticas, HIFU, bioestimuladores y rinomodelación aparecen en los otros estudios pero <strong>no constan en el catálogo observable de DM</strong>. Se listan aparte en la sección 09 como decisión pendiente, no se planifica sobre ellos.</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Qué mide realmente la fuente principal — leer antes de la tabla siguiente</h4>
+    <p style="margin-bottom:1.5mm">Los números de la sección 03 vienen de la Biblioteca de Anuncios de Meta y miden <strong>cuántos anuncios compiten por cada término</strong>. <strong>No miden cuántas personas lo buscan.</strong> Son señales distintas, aunque relacionadas: ninguna clínica sostiene inversión durante meses en algo que no vende.</p>
+    <p style="margin:0">Dos límites más, declarados: la medición es <strong>nacional</strong>, no por colonia —la Biblioteca no segmenta por Narvarte—, y los términos muy amplios arrastran ruido. Donde ocurre, se señala en la tabla.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Mapa de Demanda y Competencia · Octubre 2026</span><span>Página 3</span></div>
+</section>
+
+<section class="page t2">
+  <div class="ph"><b>03 · El mercado</b><span>Qué promociona la competencia</span></div>
+  <h2>Quince términos medidos</h2>
+  <p class="lead">Cada cifra es el número de anuncios activos que compiten por ese término en México. Es la medida más directa disponible de dónde está invirtiendo la competencia.</p>
+
+  <table>
+    <tr><th class="ctr" style="width:8mm">#</th><th style="width:40mm">Término</th><th class="num" style="width:24mm">Anuncios</th><th style="width:40mm">Peso relativo</th><th class="ctr" style="width:22mm">¿DM lo vende?</th><th class="ctr" style="width:24mm">¿Lo anuncia?</th></tr>
+    <tr><td class="ctr">1</td><td><strong>botox</strong></td><td class="num"><strong>313,704</strong></td><td><div class="bar"><i style="width:100%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr">2</td><td>bajar de peso <span class="small">⚠ ruidoso</span></td><td class="num">299,701</td><td><div class="bar"><i style="width:96%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr">3</td><td><strong>flacidez</strong></td><td class="num"><strong>105,402</strong></td><td><div class="bar"><i style="width:34%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr">4</td><td><strong>manchas en la cara</strong></td><td class="num"><strong>98,053</strong></td><td><div class="bar"><i style="width:31%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr">5</td><td><strong>ácido hialurónico</strong></td><td class="num"><strong>51,419</strong></td><td><div class="bar"><i style="width:17%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr style="background:#FBEEDC"><td class="ctr">6</td><td><strong>papada</strong></td><td class="num"><strong>23,229</strong></td><td><div class="bar"><i style="width:8%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr">7</td><td>limpieza facial</td><td class="num">21,386</td><td><div class="bar"><i style="width:7%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr">8</td><td>relleno de labios</td><td class="num">8,708</td><td><div class="bar"><i style="width:3%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr">9</td><td>nutriólogo</td><td class="num">7,172</td><td><div class="bar"><i style="width:2.5%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr">10</td><td>depilación láser</td><td class="num">6,344</td><td><div class="bar"><i style="width:2%"></i></div></td><td class="ctr"><span class="tag t-alt">Verificar</span></td><td class="ctr">—</td></tr>
+    <tr><td class="ctr">11</td><td>armonización facial</td><td class="num">5,131</td><td><div class="bar"><i style="width:1.8%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr">12</td><td>maderoterapia</td><td class="num">1,719</td><td><div class="bar"><i style="width:0.8%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-ok">Sí</span></td></tr>
+    <tr><td class="ctr">13</td><td>medicina estética CDMX</td><td class="num">416</td><td><div class="bar"><i style="width:0.4%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr">—</td></tr>
+    <tr><td class="ctr">14</td><td>masaje reductivo</td><td class="num">407</td><td><div class="bar"><i style="width:0.4%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr style="background:#FDF6F7"><td class="ctr">15</td><td><strong>endolift</strong></td><td class="num" style="color:var(--red)"><strong>261</strong></td><td><div class="bar"><i class="r" style="width:0.3%"></i></div></td><td class="ctr"><span class="tag t-ok">Sí</span></td><td class="ctr"><span class="tag t-ok">Es lo único</span></td></tr>
+  </table>
+  <p class="small" style="margin:-1mm 0 2mm">⚠ "Bajar de peso" arrastra anuncios ajenos al sector —suplementos, cirugía bariátrica e incluso productos sin relación—. Tómese como orden de magnitud, no como cifra exacta. Las barras están en escala relativa a "botox".</p>
+
+  <div class="box crit">
+    <h4>La lectura incómoda</h4>
+    <p style="margin:0">DM Wellness vende once de los quince términos medidos. <strong>Anuncia uno: el que ocupa el último lugar.</strong> Y entre los diez que vende pero no comunica están los cuatro primeros del mercado.</p>
+  </div>
+
+  <h3>Dónde coinciden los tres estudios</h3>
+  <table>
+    <tr><th style="width:44mm">Punto de acuerdo</th><th>Quién lo dice</th></tr>
+    <tr><td><strong>Botox es la categoría número uno</strong></td><td>Los tres, por caminos distintos. Un dato de sector lo refuerza: la toxina botulínica es solicitada por ocho de cada diez pacientes de medicina estética en México.</td></tr>
+    <tr><td><strong>Ácido hialurónico es la número dos</strong></td><td>Los tres.</td></tr>
+    <tr><td><strong>La papada es categoría propia</strong></td><td>El estudio A la nombra con enzimas lipolíticas; el C la mide con 23,229 anuncios; el B la incluye en corporales. <strong>DM la resuelve con Endolift.</strong></td></tr>
+    <tr><td><strong>La limpieza facial es la puerta de entrada</strong></td><td>Los tres la señalan como producto de menor barrera para abrir la relación.</td></tr>
+    <tr><td><strong>Nutrición es recurrencia, no captación</strong></td><td>Los tres. Es la línea que estabiliza el flujo, no la que llena la agenda.</td></tr>
+    <tr><td><strong>El video del especialista a cámara es el formato ganador</strong></td><td>Los tres.</td></tr>
+    <tr><td><strong>El mensaje que convierte es naturalidad y respaldo médico</strong></td><td>Los tres. El propio reel de DM que mejor funcionó decía: <em>"no cambia quién eres, solo resalta tu mejor versión"</em>.</td></tr>
+    <tr><td><strong>No medir solo el costo por lead</strong></td><td>B y C. El embudo va de impresión a recompra, no termina en el mensaje.</td></tr>
+  </table>
+  <div class="pf"><span>DM Wellness · Mapa de Demanda y Competencia · Octubre 2026</span><span>Página 4</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>04 · El hallazgo</b><span>Endolift contra papada</span></div>
+  <h2>Están vendiendo el aparato, no el problema</h2>
+
+  <div class="grid2" style="margin:4mm 0">
+    <div class="kpi" style="background:#FDF6F7"><div class="v bad" style="font-size:26pt">261</div><div class="l" style="font-size:7.5pt">Anuncios por "ENDOLIFT"<br>— el término que DM anuncia</div></div>
+    <div class="kpi" style="background:#E1F3EA"><div class="v good" style="font-size:26pt">23,229</div><div class="l" style="font-size:7.5pt">Anuncios por "PAPADA"<br>— el problema que el Endolift resuelve</div></div>
+  </div>
+  <p style="text-align:center;font-size:11pt;color:var(--pp);font-weight:bold;margin:2mm 0 4mm">89 veces más mercado, con el mismo tratamiento y el mismo equipo.</p>
+
+  <h3>Cómo lo nombran las clínicas que sí venden volumen</h3>
+  <p>Estos son textos reales de anuncios activos en México, tomados de la Biblioteca de Anuncios. Ninguno de los que opera a escala dice "endolift" en el gancho:</p>
+  <table>
+    <tr><th style="width:44mm">Clínica</th><th>Texto real del anuncio</th></tr>
+    <tr><td><strong>Lazer Medicina Estética</strong><br><span class="small">opera en varias plazas</span></td><td><em>"Elimina tu papada en minutos 🤩"</em> · <em>"Quita tu papada en minutos"</em> · <em>"Adiós papada en minutos"</em> · <em>"¿Qué estás esperando para ELIMINAR tu papada?"</em> · <em>"Elimina tu papada sin cirugía"</em> · <em>"PROMOCIÓN Endolifting Papada"</em></td></tr>
+    <tr><td><strong>Dr. Abimael Galeana</strong></td><td><em>"¿Te molesta la papada?"</em> · <em>"Redefine tu mandíbula"</em> · <em>"Rejuvenece tu cuello"</em> · <em>"Recupera firmeza"</em> · <em>"Rejuvenece sin cambiar tu esencia"</em> · <em>"Valoración sin Costo"</em></td></tr>
+    <tr><td><strong>Renew Medical</strong></td><td><em>"✨ QUIERO MI ENDOLIFT"</em> — usa el nombre, pero como botón de acción, no como gancho</td></tr>
+    <tr><td><strong>Medical House</strong></td><td><em>"Endolift! Mira este cambio"</em></td></tr>
+    <tr><td><strong>Confort Clinic</strong></td><td><em>"QUIERO REJUVENECER 👉"</em></td></tr>
+  </table>
+
+  <div class="box win">
+    <h4>El patrón es inequívoco</h4>
+    <p style="margin:0">Quien quiere volumen <strong>nombra el problema en el gancho</strong> —papada, mandíbula, cuello, firmeza— y deja el nombre del tratamiento para el cuerpo del anuncio o el botón. La paciente no busca un aparato italiano: busca que se le quite la papada. <strong>El cambio para DM es de una línea de texto, con el mismo creativo, el mismo tratamiento y el mismo presupuesto.</strong></p>
+  </div>
+
+  <h3>La misma lógica aplicada al resto del catálogo</h3>
+  <table>
+    <tr><th style="width:34mm">Lo que DM tiene</th><th style="width:38mm">Como lo nombra hoy</th><th style="width:48mm">Como debería nombrarlo</th><th class="num" style="width:22mm">Mercado del nuevo nombre</th></tr>
+    <tr><td><strong>Endolift Mónaco</strong></td><td>"Endolift Mónaco"</td><td><strong>"Papada sin cirugía"</strong> · "Define tu mandíbula"</td><td class="num">261 → <strong>23,229</strong></td></tr>
+    <tr><td><strong>Venus Legacy</strong></td><td>"Venus Legacy"</td><td><strong>"Flacidez"</strong> · "Firmeza sin cirugía"</td><td class="num">— → <strong>105,402</strong></td></tr>
+    <tr><td><strong>Dermapen</strong></td><td>"Dermapen"</td><td><strong>"Manchas"</strong> · "Cicatrices de acné"</td><td class="num">— → <strong>98,053</strong></td></tr>
+    <tr><td><strong>Faciales</strong></td><td>"Nuestros faciales"</td><td><strong>"Limpieza facial profunda"</strong></td><td class="num">— → <strong>21,386</strong></td></tr>
+    <tr><td><strong>Armonización</strong></td><td>mencionado una vez</td><td>"Armonización facial"</td><td class="num">— → 5,131</td></tr>
+    <tr><td><strong>Botox · A. hialurónico</strong></td><td><strong>no los anuncia</strong></td><td>Por nombre — son términos que la gente ya conoce y busca</td><td class="num">— → <strong>365,123</strong></td></tr>
+    <tr><td><strong>Nutrición</strong></td><td><strong>cero de doce reels</strong></td><td>"Nutriólogo" · plan mensual</td><td class="num">— → 7,172</td></tr>
+    <tr><td><strong>Maderoterapia</strong></td><td>sí la publica</td><td>Mantener — nicho defendible y poco disputado</td><td class="num">1,719</td></tr>
+  </table>
+
+  <div class="box crit" style="margin-top:auto">
+    <h4>Una precisión importante sobre el precio de esta oportunidad</h4>
+    <p style="margin:0">El costo de conversación de la campaña actual de DM es de <strong>$11.32 MXN</strong> — competitivo. Parte de la explicación es que compite en un término casi vacío. <strong>Al moverse a "papada" el costo subirá</strong>, porque habrá 23,229 anuncios compitiendo en vez de 261. La apuesta es que el volumen y la intención compensen con creces: hoy se compra barato a muy poca gente. Esto debe medirse, no asumirse, y por eso la sección 08 propone hacerlo por conjuntos separados.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Mapa de Demanda y Competencia · Octubre 2026</span><span>Página 5</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>05 · Mecánicas</b><span>Cómo promociona la competencia</span></div>
+  <h2>Las ocho mecánicas que están usando</h2>
+  <p class="lead">No basta con saber <em>qué</em> promociona la competencia. Esto es <em>cómo</em> lo empaqueta, con ejemplos reales de anuncios activos. DM Wellness no está usando ninguna de las ocho.</p>
+
+  <table>
+    <tr><th class="ctr" style="width:8mm">#</th><th style="width:38mm">Mecánica</th><th>Ejemplo real observado</th><th class="ctr" style="width:22mm">¿La usa DM?</th></tr>
+    <tr><td class="ctr"><strong>1</strong></td><td><strong>Evento con nombre propio</strong></td><td><strong>Ilysium Lab:</strong> <em>"🇲🇽 ¡BOTOX PARTY MEXICANA por nuestro 5.º aniversario!"</em> · <strong>Skintopia:</strong> <em>"Glow Up Acne Day"</em> — esta última fue la pieza de mayor alcance del mes en su cuenta, con más de seis veces su mediana habitual</td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr"><strong>2</strong></td><td><strong>Meses sin intereses</strong></td><td><strong>Lazer Medicina Estética:</strong> <em>"🔥💎 Resultados Increíbles + 12 MSI"</em> — financiamiento sobre ticket alto, una palanca muy potente en México</td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr"><strong>3</strong></td><td><strong>Escasez con número concreto</strong></td><td><strong>Sharis Cabina&amp;Spa:</strong> <em>"Solo 5 paquetes a solo $3,500!!"</em> · <strong>Feellers Wellness Center:</strong> <em>"Agenda tu valoración por WhatsApp — cupo limitado esta semana"</em>, replicado en siete variantes de anuncio</td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr"><strong>4</strong></td><td><strong>Valoración sin costo</strong></td><td><strong>Dr. Abimael Galeana:</strong> <em>"Valoración sin Costo"</em> como título del anuncio — elimina la barrera de entrada y traslada la venta a la consulta</td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr"><strong>5</strong></td><td><strong>Descuento sobre aparatología</strong></td><td><strong>dr.marck_:</strong> <em>"🔥 20% OFF | HIFU | ULTRAFORMER"</em> — el descuento se ancla al equipo con nombre, lo que justifica el precio base</td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr"><strong>6</strong></td><td><strong>Paquete de sesiones</strong></td><td><strong>NutriClinic:</strong> <em>"💗 ¡Promoción especial en Pack Láser!"</em> — convierte una compra en varias y asegura recurrencia desde el primer día</td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr"><strong>7</strong></td><td><strong>Combo de tratamientos</strong></td><td><strong>Ilysium Lab:</strong> <em>"SCULPTRA GALDERMA + BOTOX FULL FACE POR ANIVERSARIO"</em> — sube el ticket medio uniendo dos procedimientos complementarios</td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+    <tr><td class="ctr"><strong>8</strong></td><td><strong>Diagnóstico como gancho</strong></td><td><strong>Dr. Juan Sierra:</strong> <em>"Descubre el tratamiento ideal para ti"</em> · <strong>Dra. Elisa Rentería:</strong> <em>"📩 Mándanos DM y agenda tu cita"</em> — no venden un procedimiento, venden saber cuál necesitas</td><td class="ctr"><span class="tag t-crit">No</span></td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Lo que NO se debe copiar</h4>
+    <p style="margin-bottom:1.5mm"><strong>Lazer Medicina Estética</strong> corre un anuncio titulado <em>"Resultados Garantizados 🔥"</em>. Aunque hoy les esté pasando, es exactamente el lenguaje que una clínica con aviso COFEPRIS no debe usar: una promesa absoluta de resultado en un servicio de salud.</p>
+    <p style="margin:0">Lo mismo con los carruseles de antes y después en pauta. <strong>Ser el competidor que cumple es un argumento de venta, no una desventaja</strong> — y es precisamente el que DM puede usar y la competencia informal no.</p>
+  </div>
+
+  <h3>Qué revela el conjunto</h3>
+  <table>
+    <tr><th style="width:44mm">Observación</th><th>Implicación para DM</th></tr>
+    <tr><td><strong>Seis de las ocho mecánicas no cuestan medios</strong></td><td>Evento, escasez, valoración sin costo, paquete, combo y diagnóstico son decisiones comerciales, no presupuesto publicitario.</td></tr>
+    <tr><td><strong>El evento con nombre propio es el de mayor alcance orgánico observado</strong></td><td>Una jornada con nombre genera más alcance que semanas de contenido de catálogo, y además llena agenda en una fecha concreta.</td></tr>
+    <tr><td><strong>Nadie en la zona combina estética con nutrición en una misma promoción</strong></td><td>Es el territorio donde DM puede construir una oferta que ningún competidor directo puede copiar sin abrir un servicio nuevo.</td></tr>
+  </table>
+  <div class="pf"><span>DM Wellness · Mapa de Demanda y Competencia · Octubre 2026</span><span>Página 6</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>06 · Prioridades</b><span>Mapa de oportunidad</span></div>
+  <h2>Dónde debe competir DM y dónde no</h2>
+  <p class="lead">Cruzando el tamaño del mercado con lo que DM realmente puede entregar hoy, el catálogo se ordena en cuatro grupos. No todos merecen presupuesto, y dos de ellos ni siquiera deberían anunciarse todavía.</p>
+
+  <table>
+    <tr><th style="width:34mm">Grupo</th><th style="width:44mm">Servicios</th><th>Criterio</th><th class="ctr" style="width:26mm">Decisión</th></tr>
+    <tr style="background:#E1F3EA"><td><strong>A · Ganar ya</strong><br><span class="small">mercado grande + equipo instalado + nadie lo comunica así en la zona</span></td><td><strong>Papada</strong> (Endolift)<br><strong>Flacidez</strong> (Venus Legacy)<br><strong>Manchas</strong> (Dermapen)</td><td>Son los tres casos donde DM ya tiene la aparatología, el mercado es grande y lo único que falta es llamar al tratamiento por el nombre del problema. Coste de implementación: reescribir ganchos.</td><td class="ctr"><span class="tag t-ok">Octubre</span></td></tr>
+    <tr style="background:#FBEEDC"><td><strong>B · Entrar con medida</strong><br><span class="small">mercado enorme pero competencia alta</span></td><td><strong>Botox</strong><br><strong>Ácido hialurónico</strong><br>Armonización facial</td><td>Es el 40% del mercado medido y DM los ofrece sin anunciarlos. Pero son los términos más disputados: el costo por conversación será notablemente mayor que los $11.32 actuales. Entrar con presupuesto acotado y medir antes de escalar.</td><td class="ctr"><span class="tag t-alt">Nov · prueba</span></td></tr>
+    <tr><td><strong>C · Construir recurrencia</strong><br><span class="small">mercado medio, competencia moderada, ingreso repetido</span></td><td><strong>Nutrición</strong><br>Limpieza facial<br>Maderoterapia · spa</td><td>No son los que más volumen traen, pero son los que estabilizan el negocio: la limpieza facial abre la relación con poca fricción y la nutrición la sostiene mes a mes. Hoy la nutrición no aparece en una sola pieza de contenido.</td><td class="ctr"><span class="tag t-ok">Octubre</span></td></tr>
+    <tr style="background:#FDF6F7"><td><strong>D · No anunciar aún</strong></td><td>Depilación láser<br>Sueroterapia · drips<br>Enzimas lipolíticas<br>HIFU · bioestimuladores<br>Rinomodelación</td><td>Aparecen recomendados en los otros dos estudios, pero <strong>no constan en el catálogo observable de DM</strong>. Anunciar lo que no se presta genera mensajes que no se pueden cerrar y reseñas negativas. Primero confirmar qué de esto sí se ofrece.</td><td class="ctr"><span class="tag t-crit">Verificar</span></td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Pregunta pendiente para DM Wellness</h4>
+    <p style="margin:0">De la lista del grupo D, <strong>¿cuáles ofrece realmente la clínica hoy?</strong> La respuesta cambia el plan: si ofrecen depilación láser, es un mercado de 6,344 anuncios con recurrencia natural y debe entrar en el plan de noviembre. Si no, se descarta y no se vuelve a mencionar. Es la única información que este estudio no pudo obtener de fuentes públicas.</p>
+  </div>
+
+  <h3>Lo que ningún competidor directo puede copiar</h3>
+  <table>
+    <tr><th style="width:38mm">Activo de DM</th><th>Por qué es defendible</th></tr>
+    <tr><td><strong>Aviso COFEPRIS vigente</strong></td><td>La competencia informal del barrio no puede exhibirlo. En un sector donde la paciente teme el mal resultado, es el argumento más fuerte que existe — y DM lo tiene en la biografía pero no en los anuncios.</td></tr>
+    <tr><td><strong>Aparatología con nombre propio</strong></td><td>Endolift Mónaco, Venus Legacy y Dermapen son marcas reconocibles que justifican un precio superior al de una cabina.</td></tr>
+    <tr><td><strong>Estética + nutrición bajo el mismo techo</strong></td><td>Permite construir promociones combinadas que un competidor solo de estética no puede igualar sin abrir un servicio nuevo. <strong>Nadie en la zona está promocionando esta combinación.</strong></td></tr>
+    <tr><td><strong>Médico identificable</strong></td><td>El formato que más convierte en todo el sector es el especialista explicando a cámara. DM tiene a quién poner frente a la cámara y no lo está haciendo.</td></tr>
+  </table>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>La secuencia correcta</h4>
+    <p style="margin:0">Primero el grupo <strong>A</strong>, porque es donde el mercado es grande y DM ya tiene todo lo necesario — solo hay que renombrar. Después el <strong>C</strong>, que es barato y construye el ingreso recurrente. El <strong>B</strong> entra cuando haya datos propios de cuánto cuesta realmente una cita, no antes. El <strong>D</strong> espera a que la clínica confirme su catálogo.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Mapa de Demanda y Competencia · Octubre 2026</span><span>Página 7</span></div>
+</section>
+
+<section class="page t2">
+  <div class="ph"><b>07 · Promociones</b><span>Cinco ofertas listas para lanzar</span></div>
+  <h2>Promociones competitivas para DM Wellness</h2>
+  <p class="lead">Cada una combina un hueco de mercado medido con una mecánica que la competencia ya demostró que funciona. Ninguna requiere equipo nuevo ni aumento de presupuesto publicitario.</p>
+
+  <table>
+    <tr><th class="ctr" style="width:7mm">#</th><th style="width:40mm">Promoción</th><th>Qué es y por qué funciona</th><th style="width:34mm">Mecánica que usa</th></tr>
+    <tr style="background:#E1F3EA"><td class="ctr"><strong>1</strong></td><td><strong>"Día del Perfil Definido"</strong><br><span class="small">jornada mensual con nombre propio</span></td><td>Un día al mes dedicado a <strong>papada y definición mandibular</strong> con Endolift. Cupo cerrado —por ejemplo doce valoraciones— anunciado con una semana de anticipación. Ataca el hueco de 23,229 anuncios con el formato de mayor alcance orgánico observado en el sector, y concentra la agenda en una fecha en lugar de dispersarla.</td><td>Evento con nombre + escasez con número concreto</td></tr>
+    <tr style="background:#E1F3EA"><td class="ctr"><strong>2</strong></td><td><strong>"Valoración Integral Narvarte"</strong><br><span class="small">oferta de entrada permanente</span></td><td>Diagnóstico de piel <strong>más</strong> valoración nutricional en una sola cita, a precio de entrada. Es la puerta de menor fricción, abre las tres líneas de negocio en una sola visita y <strong>ningún competidor de la zona ofrece el combinado</strong>. Es también el mejor filtro: quien paga una valoración es un paciente real, no un curioso.</td><td>Valoración de entrada + diagnóstico como gancho + combo</td></tr>
+    <tr style="background:#E1F3EA"><td class="ctr"><strong>3</strong></td><td><strong>"Pack Firmeza"</strong><br><span class="small">paquete de sesiones</span></td><td>Serie de sesiones de <strong>Venus Legacy</strong> a precio de paquete, con meses sin intereses. Ataca "flacidez" —105,402 anuncios, el tercer mercado más grande medido— con aparatología ya instalada, y convierte una compra suelta en varias desde el primer día.</td><td>Paquete + meses sin intereses</td></tr>
+    <tr><td class="ctr"><strong>4</strong></td><td><strong>"Semana de la Piel Limpia"</strong><br><span class="small">campaña estacional</span></td><td>Limpieza facial profunda con <strong>Dermapen</strong> enfocada en <strong>manchas y cicatrices de acné</strong> —98,053 anuncios—. Funciona como producto de entrada de bajo riesgo que después abre la venta de tratamientos de mayor margen en la propia consulta.</td><td>Evento acotado + descuento sobre aparatología</td></tr>
+    <tr><td class="ctr"><strong>5</strong></td><td><strong>"Plan Mensual DM"</strong><br><span class="small">suscripción</span></td><td>Nutrición con consulta, seguimiento y mediciones mensuales, con un beneficio sobre tratamientos estéticos para quien está inscrito. Es la única línea de <strong>ingreso recurrente</strong> del negocio y hoy no se vende: cero de los doce reels publicados la mencionan.</td><td>Suscripción + cruce entre servicios</td></tr>
+  </table>
+
+  <h3>Reglas de cumplimiento — aplican a las cinco</h3>
+  <div class="split">
+    <div class="a">
+      <h4 style="color:var(--red)">Nunca en pauta</h4>
+      <ul style="margin-bottom:0">
+        <li>Imágenes de antes y después</li>
+        <li>Encuadres cerrados de abdomen, glúteos o busto</li>
+        <li>"Resultados garantizados" o cualquier promesa absoluta</li>
+        <li>Frases que señalen al espectador: "¿te da pena tu…?"</li>
+        <li>Imágenes de pacientes sin consentimiento por escrito</li>
+      </ul>
+    </div>
+    <div class="b">
+      <h4 style="color:var(--green)">Siempre en los creativos</h4>
+      <ul style="margin-bottom:0">
+        <li>Aviso COFEPRIS visible en el video</li>
+        <li>Nombre y cédula del médico responsable</li>
+        <li>"Los resultados varían según cada paciente"</li>
+        <li>Ubicación: Narvarte, Vértiz 995</li>
+        <li>Escasez real: si se dicen doce lugares, son doce</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>Cómo se encadenan las cinco</h4>
+    <p style="margin:0">La promoción <strong>2</strong> es el motor: llena la agenda de valoraciones a bajo costo. De ahí salen las ventas de <strong>1</strong> y <strong>3</strong>, que son las de mayor ticket. La <strong>4</strong> alimenta la base de pacientes nuevos en temporada baja. La <strong>5</strong> convierte a cualquiera de los anteriores en un ingreso que se repite cada mes. <strong>No son cinco campañas sueltas: es un solo embudo con cinco entradas.</strong></p>
+  </div>
+  <div class="pf"><span>DM Wellness · Mapa de Demanda y Competencia · Octubre 2026</span><span>Página 8</span></div>
+</section>
+
+<section class="page t2">
+  <div class="ph"><b>08 · Pauta</b><span>Plan de medios para Virtuoso</span></div>
+  <h2>Cómo publicitar esto de forma inteligente</h2>
+  <p class="lead">La campaña actual de DM gasta $100 diarios en un solo conjunto con un solo anuncio sobre un solo término. Esta es la estructura que convierte ese mismo presupuesto en un sistema que aprende.</p>
+
+  <h3>Estructura de campaña recomendada</h3>
+  <table>
+    <tr><th style="width:34mm">Conjunto</th><th style="width:34mm">Gancho principal</th><th class="num" style="width:20mm">Presup./día</th><th>Audiencia y nota</th></tr>
+    <tr style="background:#E1F3EA"><td><strong>1 · Papada</strong></td><td>"Papada sin cirugía"<br>"Define tu mandíbula"</td><td class="num">$35</td><td>35–55 años · radio 5 km. <strong>Es la campaña actual con el gancho cambiado</strong>, no una nueva. Conserva el aprendizaje acumulado.</td></tr>
+    <tr style="background:#E1F3EA"><td><strong>2 · Flacidez</strong></td><td>"Firmeza sin cirugía"</td><td class="num">$25</td><td>38–55 años · radio 6 km. Venus Legacy. Mercado grande y sin explorar por DM.</td></tr>
+    <tr><td><strong>3 · Piel</strong></td><td>"Manchas" · "Cicatrices de acné"</td><td class="num">$20</td><td>28–45 años · radio 5 km. Dermapen y limpieza profunda. Entrada de bajo riesgo.</td></tr>
+    <tr><td><strong>4 · Nutrición</strong></td><td>"Plan mensual"<br>"Sin rebote"</td><td class="num">$10</td><td>30–50 años · radio 6 km. Competencia moderada. Construye el ingreso recurrente.</td></tr>
+    <tr><td><strong>5 · Remarketing</strong></td><td>Testimonio + credenciales</td><td class="num">$10</td><td>Quienes vieron el 50% del video, interactuaron en 365 días y escribieron. <strong>Hoy no existe.</strong> Es la audiencia más barata que hay.</td></tr>
+    <tr style="background:#F5F1F8"><td colspan="2"><strong>TOTAL</strong></td><td class="num"><strong>$100/día</strong></td><td><strong>El mismo presupuesto que hoy</strong>, repartido en cinco apuestas en vez de una</td></tr>
+  </table>
+  <p class="small" style="margin:-1mm 0 2mm">Botox y ácido hialurónico <strong>no entran todavía</strong>: son los términos más disputados del mercado y conviene medir primero cuánto cuesta una cita real en los conjuntos baratos. Entran en noviembre con presupuesto propio.</p>
+
+  <h3>Reglas de ejecución</h3>
+  <table>
+    <tr><th class="ctr" style="width:8mm">#</th><th style="width:40mm">Regla</th><th>Por qué</th></tr>
+    <tr><td class="ctr">1</td><td><strong>Dos variantes de anuncio por conjunto, mínimo</strong></td><td>Hoy hay un solo anuncio en toda la cuenta. Sin variantes no hay comparación y no se aprende nada.</td></tr>
+    <tr><td class="ctr">2</td><td><strong>Concentrar en Reels y Stories</strong></td><td>En septiembre, Instagram Reels entregó a $8.13 por conversación y Stories a $8.48, mientras Instagram Feed costó $14.02 y se llevó el 30% del gasto.</td></tr>
+    <tr><td class="ctr">3</td><td><strong>Apagar Facebook Stories y las ubicaciones residuales</strong></td><td>Facebook Stories costó $40.87 por una sola conversación en todo el mes. El resto no produjo ninguna.</td></tr>
+    <tr><td class="ctr">4</td><td><strong>Piso de edad en 33 años</strong></td><td>El rango 35–54 concentró el 77.6% de las conversaciones al menor costo. El tramo 25–34 consumió más presupuesto del que devolvió.</td></tr>
+    <tr><td class="ctr">5</td><td><strong>El especialista a cámara en al menos la mitad de los creativos</strong></td><td>Es el formato que las tres fuentes señalan como el de mayor conversión del sector.</td></tr>
+    <tr><td class="ctr">6</td><td><strong>Garantizar entrega todos los días</strong></td><td>En septiembre hubo tres días sin entrega y quedó sin ejecutar el 24% del presupuesto disponible.</td></tr>
+    <tr><td class="ctr">7</td><td><strong>Registrar cada conversación</strong></td><td>Sin saber cuántos mensajes se vuelven cita, no se puede decidir qué conjunto escalar. Es el dato que falta y el que más vale.</td></tr>
+  </table>
+
+  <h3>Búsqueda en Google — alta intención, pendiente de activar</h3>
+  <p>Los tres estudios coinciden en que la búsqueda captura al usuario en el momento exacto de decisión. DM no tiene campañas de búsqueda activas. Términos de arranque, en orden de prioridad:</p>
+  <table>
+    <tr><th style="width:52mm">Término</th><th style="width:34mm">Intención</th><th>Nota competitiva</th></tr>
+    <tr><td><strong>"papada sin cirugía cdmx"</strong></td><td>Compra directa</td><td>Alta intención, competencia media. El mejor punto de entrada.</td></tr>
+    <tr><td><strong>"medicina estética cerca de mí"</strong></td><td>Geolocalizada</td><td><strong>Requiere la ficha de Google activa</strong> — hoy no existe y es el prerrequisito.</td></tr>
+    <tr><td><strong>"botox narvarte"</strong> · "botox del valle"</td><td>Compra directa</td><td>Volumen alto. El nombre de la colonia reduce mucho la competencia.</td></tr>
+    <tr><td><strong>"nutriólogo narvarte"</strong></td><td>Consulta especializada</td><td>Competencia baja. Fácil de dominar y abre la línea recurrente.</td></tr>
+    <tr><td>"clínica medicina estética benito juárez"</td><td>Geolocalizada</td><td>Term medio, buena relación costo-intención.</td></tr>
+  </table>
+
+  <div class="box crit" style="margin-top:auto">
+    <h4>El prerrequisito que bloquea la mitad de este plan</h4>
+    <p style="margin:0">Las campañas de búsqueda con intención local y el término "cerca de mí" <strong>dependen de que exista la ficha de Google del negocio</strong>, que hoy no está creada. Es gratuita, se activa en quince minutos y se verifica en días. Mientras no exista, el canal de mayor intención de compra del mercado queda cerrado — y además, sin ella no puede haber ni una sola reseña de Google, que es la prueba social que la competencia de la zona ya acumula.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Mapa de Demanda y Competencia · Octubre 2026</span><span>Página 9</span></div>
+</section>
+
+<section class="page t1">
+  <div class="ph"><b>09 · Cierre</b><span>Pendientes, límites y siguientes pasos</span></div>
+  <h2>Qué falta y qué sigue</h2>
+
+  <h3>Lo que este estudio no puede responder</h3>
+  <table>
+    <tr><th style="width:44mm">Pregunta abierta</th><th>Por qué y cómo se resuelve</th></tr>
+    <tr><td><strong>¿Cuánta gente busca cada procedimiento, en cifras?</strong></td><td>Requiere Google Ads Keyword Planner con segmentación para CDMX y, si es posible, Benito Juárez. Es el paso que convierte este mapa en un estudio cuantitativo. Los tres análisis coinciden en recomendarlo. <strong>Es gratuito dentro de una cuenta de Google Ads activa.</strong></td></tr>
+    <tr><td><strong>¿Qué pide específicamente la gente de Narvarte?</strong></td><td>Ninguna fuente pública baja a nivel de colonia. <strong>Pero DM genera ese dato todos los días</strong>: basta registrar qué tratamiento menciona cada persona en su primer mensaje de WhatsApp. En cuatro semanas se sabrá qué pide su zona, no qué anuncia el país.</td></tr>
+    <tr><td><strong>¿Qué servicios ofrece realmente la clínica?</strong></td><td>Depilación láser, sueroterapia, enzimas lipolíticas, HIFU y bioestimuladores aparecen en los otros estudios. Es una respuesta que solo DM puede dar, y cambia el plan de noviembre.</td></tr>
+    <tr><td><strong>¿Cuántas de las conversaciones se vuelven citas?</strong></td><td>La campaña mide mensajes, no citas. Sin ese dato no se puede saber si conviene subir presupuesto o arreglar la atención. Se resuelve con la bitácora de conversaciones.</td></tr>
+  </table>
+
+  <h3>Fuentes de este documento</h3>
+  <table>
+    <tr><th style="width:48mm">Fuente</th><th>Uso</th></tr>
+    <tr><td>Biblioteca de Anuncios de Meta · México · 1 oct 2026</td><td>Los quince términos medidos, los textos reales de anuncios de la competencia y las ocho mecánicas promocionales</td></tr>
+    <tr><td>Cuenta publicitaria de DM Wellness</td><td>Rendimiento de septiembre: costo por conversación, desgloses por edad y ubicación, días de entrega</td></tr>
+    <tr><td>Estudio independiente "Análisis de Demanda Local"</td><td>Formato publicitario ganador, oferta de entrada, embudo de tres niveles, palabras clave y el insight de mensaje</td></tr>
+    <tr><td>Estudio independiente "Mapa de Demanda Local"</td><td>Criterio metodológico, arquitectura de pilares, estructura de campañas, métrica de embudo completo y competidores adicionales</td></tr>
+    <tr><td>Prensa de sector mexicana</td><td>Contraste del orden de prioridad por categoría</td></tr>
+  </table>
+
+  <div class="box crit">
+    <h4>Declaración de límites</h4>
+    <p style="margin:0">Los números de la sección 03 miden <strong>inversión publicitaria, no volumen de búsqueda</strong>, y son nacionales, no de Narvarte. Las promociones de la sección 07 y el plan de la 08 son <strong>recomendaciones basadas en esa evidencia</strong>, no garantías de resultado. Este documento no publica ningún porcentaje de demanda porque ninguna fuente disponible lo sostiene.</p>
+  </div>
+
+  <h3>Las tres decisiones de octubre</h3>
+  <table>
+    <tr><th class="ctr" style="width:10mm">#</th><th style="width:48mm">Decisión</th><th>Por qué esta y no otra</th></tr>
+    <tr><td class="ctr"><strong>1</strong></td><td><strong>Cambiar el gancho de "Endolift" a "papada"</strong></td><td>Es el movimiento de mayor diferencial de todo el estudio y cuesta una línea de texto. Mismo tratamiento, mismo equipo, mismo presupuesto, 89 veces más mercado.</td></tr>
+    <tr><td class="ctr"><strong>2</strong></td><td><strong>Lanzar la Valoración Integral Narvarte</strong></td><td>Es la oferta de entrada que alimenta todas las demás, y la única que ningún competidor de la zona puede igualar sin abrir un servicio nuevo.</td></tr>
+    <tr><td class="ctr"><strong>3</strong></td><td><strong>Crear la ficha de Google</strong></td><td>Cuesta cero pesos y desbloquea la búsqueda local, las reseñas y la mitad del plan de medios de la sección 08.</td></tr>
+  </table>
+
+  <div class="box win" style="margin-top:auto">
+    <h4>Conclusión</h4>
+    <p style="margin:0">Los tres estudios llegaron por caminos distintos a la misma conclusión: <strong>el mercado que DM Wellness necesita ya existe y está a su alcance con la aparatología que tiene instalada.</strong> Lo que falta no es inversión ni tecnología, sino <strong>nombrar los tratamientos como los nombra la paciente y empaquetarlos con las mecánicas que la competencia ya validó</strong>. Las tres decisiones de arriba se ejecutan en octubre, con el presupuesto actual.</p>
+  </div>
+  <div class="pf"><span>DM Wellness · Mapa de Demanda y Competencia · Octubre 2026</span><span>Página 10</span></div>
+</section>
+
+</body>
+</html>

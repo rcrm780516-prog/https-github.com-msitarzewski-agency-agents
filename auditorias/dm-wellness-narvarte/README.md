@@ -14,6 +14,8 @@ Benito Juárez, CDMX (C.P. 03023).
 | `auditoria-ejecutiva.html` | Fuente de la versión ejecutiva |
 | `Informe-Meta-DM-Wellness-Septiembre-2026.pdf` | **Informe mensual de Meta Ads** — septiembre 2026, 10 páginas |
 | `informe-meta-septiembre.html` | Fuente del informe mensual |
+| `Mapa-Demanda-Competencia-DM-Wellness.pdf` | **Mapa de demanda y competencia** — 10 páginas, edición unificada |
+| `mapa-demanda.html` | Fuente del mapa de demanda |
 
 Ambas versiones comparten hallazgos, cifras y recomendaciones. La ejecutiva fusiona
 secciones y recorta la prosa explicativa, el calendario editorial de 4 semanas y el
@@ -66,3 +68,18 @@ El informe distingue explícitamente lo **medido** (todo lo anterior, más los d
 por día, edad y ubicación) de lo **modelado** (las proyecciones de citas y pacientes,
 que parten de supuestos declarados). La campaña mide mensajes, no citas: esa brecha
 es el eje del plan de acción.
+
+
+## Mapa de demanda y competencia
+
+Unifica tres estudios independientes sobre la misma pregunta: qué promociona la
+competencia de DM Wellness y con qué mecánicas.
+
+La única fuente con cifras verificables es la Biblioteca de Anuncios de Meta (México,
+1/10/2026), que mide **inversión publicitaria, no volumen de búsqueda**. Quince términos
+medidos; el contraste central es `endolift` (261 anuncios) frente a `papada` (23,229)
+— el mismo tratamiento nombrado por el aparato o por el problema.
+
+Se descartaron de los estudios aportados: los porcentajes de demanda local sin fuente,
+la recomendación de antes/después en pauta, el ranking por estrellas y los servicios que
+no constan en el catálogo observable de DM.
