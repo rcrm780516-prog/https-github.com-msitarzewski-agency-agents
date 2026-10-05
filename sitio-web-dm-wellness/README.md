@@ -5,13 +5,15 @@ Hostinger y el sitio funciona.
 
 | Archivo | Qué es | Peso |
 |---|---|---|
-| `index.html` | Todo el sitio: HTML, CSS, JavaScript, las dos imágenes del encabezado y el favicon, incrustados | 93 KB |
+| `index.html` | Todo el sitio: HTML, CSS, JavaScript, las diez imágenes (encabezado, fotos de sección y favicon), incrustadas | 415 KB |
 | `robots.txt` | Indica a Google qué rastrear y dónde está el sitemap | 1 KB |
 | `sitemap.xml` | Mapa del sitio para Search Console | 1 KB |
 | `README.md` | Este documento. No se sube | — |
 
-Las imágenes van incrustadas como `data:` dentro del CSS, así que no hay que
-subir ningún archivo de imagen ni preocuparse por rutas rotas.
+Las imágenes van incrustadas como `data:`, dos en el CSS (el encabezado) y ocho
+como `<img>` en el cuerpo, así que no hay que subir ningún archivo de imagen ni
+preocuparse por rutas rotas. El archivo pesa 415 KB porque las fotos viajan
+dentro; a cambio no hay una sola petición extra ni una ruta que se pueda romper.
 
 ---
 
@@ -182,25 +184,71 @@ rompe el contraste sin que se note a simple vista.
 
 ---
 
-## Lo que sigue faltando: fotografía real
+## Las fotos de la clínica
 
-El fondo resuelve la estética, pero no sustituye una sesión de fotos. El formato
-que más convierte en este sector es **el especialista a cámara**, y eso no lo da
-ninguna textura.
+Ocho fotos reales, recortadas y convertidas a WebP, incrustadas en `index.html`.
+Dónde quedó cada una y por qué:
 
-**Para el encabezado:** retrato de la médica, de pie, mirada a cámara, con bata,
-en la clínica. Horizontal, con espacio libre a la izquierda para el texto.
+| Sección | Foto | Criterio |
+|---|---|---|
+| Medicina estética | Aplicación de inyectable, perfil | Es la imagen más editorial del lote; abre la línea que más se busca |
+| Nutrición clínica | Báscula de bioimpedancia y estadímetro | Ilustra literalmente «medición real de composición corporal», que es lo que dice la tarjeta |
+| Spa y bienestar | Ritual facial con esponjas | Tono suave, coincide con «rituales faciales» de la lista |
+| Aparatología | Láser facial · paciente hombre · maderoterapia | Tira de tres: rostro, público masculino y cuerpo. Muestra la amplitud sin abrir una sección nueva |
+| Tu primera visita | Toma de presión en consulta | Es la prueba visual de que la visita empieza con una valoración, no con una venta |
+| Por qué DM Wellness | Procedimiento con los certificados al fondo | La foto de credibilidad de la página: equipo, cédula visible y manos trabajando |
+
+Las fotos de aparatología llevan texto alternativo **genérico**, no nombran el
+equipo. Poner una foto bajo el rótulo «Venus Legacy» sin confirmar que ese es el
+aparato de la foto sería una afirmación falsa. Si la clínica confirma qué equipo
+aparece en cada toma, se puede emparejar una foto con cada ficha.
+
+### Las que quedaron fuera
+
+| Foto | Motivo |
+|---|---|
+| Segundo paciente hombre | Prácticamente idéntica a la que sí se usó |
+| Las dos de cabina con luz roja | El rojo saturado choca con la paleta malva del sitio, y el encuadre centra el cuerpo más de lo que conviene a una clínica médica |
+| Inyectable periocular | Redundante con la de perfil, y la aguja junto al ojo incomoda a parte del público |
+
+No están descartadas: si se quieren dentro, entran. Es una decisión de marca,
+no técnica.
+
+### Consentimiento
+
+**Todas las fotos muestran pacientes identificables.** Antes de publicar hace
+falta consentimiento informado por escrito y específico para uso publicitario en
+el sitio web, de cada persona que aparece, archivado. Un permiso verbal o uno
+genérico de «uso de imagen» no cubre esto.
+
+### La etiqueta del producto
+
+En la foto de medicina estética se alcanza a leer la marca del inyectable en el
+frasco. La publicidad de productos de prescripción dirigida al público general
+está restringida en México. No es una infracción evidente — es una foto clínica,
+no un anuncio del producto — pero conviene que lo valide el responsable
+sanitario. Si prefieren evitarlo, hay un recorte más cerrado que deja el frasco
+fuera de cuadro.
+
+### Añadir o cambiar una foto
+
+1. Recorta al formato que usa su hueco: 1:1 para las tarjetas de línea, 4:5 para
+   las demás.
+2. Redimensiona a 640 px de ancho (tarjetas) o 700 px (el resto) y guarda como
+   WebP calidad 62.
+3. Conviértela a base64 (`base64 -w0 foto.webp`) y sustituye la cadena del
+   `<img>` correspondiente en `index.html`, que se localiza por su texto `alt`.
+
+### Lo que todavía no hay
 
 **Para la ficha de Google** (mínimo 25, y las primeras pesan más): fachada desde
 la banqueta, entrada con el número visible, recepción, cada cabina ordenada,
 cada equipo con su nombre, el personal con bata.
 
-**Para el sitio y redes:** verticales de cada tratamiento en proceso, el área de
-nutrición con la báscula de composición corporal, la zona de spa.
-
-**Consentimiento:** cualquier toma donde aparezca una paciente necesita
-consentimiento informado por escrito y específico para uso publicitario.
-Archívalo.
+**Para el encabezado:** sigue siendo una textura abstracta. El formato que más
+convierte en este sector es el retrato de la especialista a cámara, horizontal,
+con espacio libre a la izquierda para el texto. Ninguna de las ocho fotos
+actuales sirve para eso.
 
 ---
 
