@@ -154,12 +154,20 @@ La legibilidad del texto se controla con dos capas: la imagen va en
 `.hero::after` aplica el velo `--hero-scrim`. Ambos cambian según el tema claro
 u oscuro.
 
+La imagen va al 92% de opacidad en tema claro y al 100% en tema oscuro; lo que
+regula cuánto se ve es el velo, no la opacidad.
+
 Contraste medido sobre el fondo real, con el texto oculto:
 
-| | Escritorio | Móvil |
-|---|---|---|
-| Titular, peor punto | 10.6:1 | 12.1:1 |
-| Párrafo, peor punto | 6.7:1 | 8.3:1 |
+| | Escritorio claro | Escritorio oscuro | Móvil claro | Móvil oscuro |
+|---|---|---|---|---|
+| Antetítulo, peor punto | 6.1:1 | 6.0:1 | 5.7:1 | 5.0:1 |
+| Titular, peor punto | 12.8:1 | 15.1:1 | 12.3:1 | 12.9:1 |
+| Párrafo, peor punto | 6.8:1 | 9.4:1 | 8.4:1 | 9.6:1 |
+
+En móvil el velo es más cerrado a propósito: el texto arranca casi pegado al
+borde superior, así que la seda se queda como textura. Con un velo más abierto
+el antetítulo cae a 2.1:1 y deja de ser legible.
 
 El mínimo WCAG AA para texto normal es 4.5:1. **Si cambias la imagen hay que
 volver a medir**, no basta con mirarla: una foto más oscura en la zona del texto
