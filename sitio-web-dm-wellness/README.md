@@ -5,15 +5,18 @@ Hostinger y el sitio funciona.
 
 | Archivo | Qué es | Peso |
 |---|---|---|
-| `index.html` | Todo el sitio: HTML, CSS, JavaScript, las diez imágenes (encabezado, fotos de sección y favicon), incrustadas | 415 KB |
+| `index.html` | Todo el sitio: HTML, CSS, JavaScript, las catorce imágenes (encabezado, doce fotos de sección y favicon), incrustadas | 472 KB |
 | `robots.txt` | Indica a Google qué rastrear y dónde está el sitemap | 1 KB |
 | `sitemap.xml` | Mapa del sitio para Search Console | 1 KB |
 | `README.md` | Este documento. No se sube | — |
 
-Las imágenes van incrustadas como `data:`, dos en el CSS (el encabezado) y ocho
+Las imágenes van incrustadas como `data:`, dos en el CSS (el encabezado) y doce
 como `<img>` en el cuerpo, así que no hay que subir ningún archivo de imagen ni
-preocuparse por rutas rotas. El archivo pesa 415 KB porque las fotos viajan
+preocuparse por rutas rotas. El archivo pesa 472 KB porque las fotos viajan
 dentro; a cambio no hay una sola petición extra ni una ruta que se pueda romper.
+El precio de esa decisión es que el navegador descarga esos 472 KB antes de
+pintar nada. Si algún día pesa el tiempo de carga, la salida es sacar las fotos
+a archivos sueltos y perder la portabilidad de un solo archivo.
 
 ---
 
@@ -186,33 +189,25 @@ rompe el contraste sin que se note a simple vista.
 
 ## Las fotos de la clínica
 
-Ocho fotos reales, recortadas y convertidas a WebP, incrustadas en `index.html`.
+Las doce fotos, recortadas y convertidas a WebP, incrustadas en `index.html`.
 Dónde quedó cada una y por qué:
 
-| Sección | Foto | Criterio |
+| Sección | Fotos | Criterio |
 |---|---|---|
-| Medicina estética | Aplicación de inyectable, perfil | Es la imagen más editorial del lote; abre la línea que más se busca |
-| Nutrición clínica | Báscula de bioimpedancia y estadímetro | Ilustra literalmente «medición real de composición corporal», que es lo que dice la tarjeta |
-| Spa y bienestar | Ritual facial con esponjas | Tono suave, coincide con «rituales faciales» de la lista |
-| Aparatología | Láser facial · paciente hombre · maderoterapia | Tira de tres: rostro, público masculino y cuerpo. Muestra la amplitud sin abrir una sección nueva |
+| Tarjetas de línea | Inyectable de perfil · báscula de bioimpedancia · ritual facial | Una por servicio. Cada foto ilustra lo que su propia tarjeta promete: la de nutrición muestra literalmente la «medición real de composición corporal» |
+| Tira bajo las tarjetas | Paciente hombre · inyectable periocular · segundo paciente hombre | Medicina estética en proceso. Alternadas hombre-mujer-hombre para que no se lean como la misma foto repetida |
+| Aparatología, banner | Cabina corporal con luz LED | Es la única horizontal del lote, así que es la única que funciona a todo lo ancho |
+| Aparatología, tira | Láser facial · cápsula LED · maderoterapia | Rostro, equipo corporal y terapia manual: la amplitud de la cabina en una sola fila |
 | Tu primera visita | Toma de presión en consulta | Es la prueba visual de que la visita empieza con una valoración, no con una venta |
-| Por qué DM Wellness | Procedimiento con los certificados al fondo | La foto de credibilidad de la página: equipo, cédula visible y manos trabajando |
+| Por qué DM Wellness | Procedimiento con los certificados al fondo | La foto de credibilidad de la página: equipo, certificación visible y manos trabajando |
 
 Las fotos de aparatología llevan texto alternativo **genérico**, no nombran el
 equipo. Poner una foto bajo el rótulo «Venus Legacy» sin confirmar que ese es el
 aparato de la foto sería una afirmación falsa. Si la clínica confirma qué equipo
 aparece en cada toma, se puede emparejar una foto con cada ficha.
 
-### Las que quedaron fuera
-
-| Foto | Motivo |
-|---|---|
-| Segundo paciente hombre | Prácticamente idéntica a la que sí se usó |
-| Las dos de cabina con luz roja | El rojo saturado choca con la paleta malva del sitio, y el encuadre centra el cuerpo más de lo que conviene a una clínica médica |
-| Inyectable periocular | Redundante con la de perfil, y la aguja junto al ojo incomoda a parte del público |
-
-No están descartadas: si se quieren dentro, entran. Es una decisión de marca,
-no técnica.
+La foto de la cápsula LED está recortada alta a propósito, para que domine el
+equipo y no el cuerpo de la paciente. Es una clínica médica, no un catálogo.
 
 ### Consentimiento
 
