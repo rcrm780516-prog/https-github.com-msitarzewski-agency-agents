@@ -1,21 +1,105 @@
 # Sitio web · DM Wellness Beauty and Nutrition
 
-Sitio de una sola página, sin dependencias ni build. Todo vive en `index.html`:
-HTML, CSS y JavaScript en un solo archivo de ~46 KB. Se sube a cualquier hosting
-y funciona.
+Cuatro archivos. Sin build, sin dependencias, sin carpetas. Se arrastran a
+Hostinger y el sitio funciona.
 
-## Arquitectura de contenido
+| Archivo | Qué es | Peso |
+|---|---|---|
+| `index.html` | Todo el sitio: HTML, CSS, JavaScript, las dos imágenes del encabezado y el favicon, incrustados | 93 KB |
+| `robots.txt` | Indica a Google qué rastrear y dónde está el sitemap | 1 KB |
+| `sitemap.xml` | Mapa del sitio para Search Console | 1 KB |
+| `README.md` | Este documento. No se sube | — |
 
-La estructura sale directamente de la auditoría: **la gente busca por problema, no
-por aparato**. Por eso el héroe abre con un selector de motivos de consulta
-—papada, flacidez, manchas, líneas de expresión, volumen, peso, tensión— y cada
-uno revela el tratamiento, las sesiones y la recuperación, con un enlace a
-WhatsApp que ya lleva el mensaje escrito.
+Las imágenes van incrustadas como `data:` dentro del CSS, así que no hay que
+subir ningún archivo de imagen ni preocuparse por rutas rotas.
 
-Las tres líneas de negocio tienen color propio para que se distingan de un vistazo:
-orquídea (estética), verde (nutrición), arcilla (spa).
+---
 
-## Datos de contacto cableados
+## Cómo subirlo a Hostinger
+
+1. Entra a **hPanel → Archivos → Administrador de archivos**.
+2. Abre la carpeta **`public_html`**. Si trae un `index.html` o `default.php`
+   de ejemplo, bórralo.
+3. Sube **`index.html`**, **`robots.txt`** y **`sitemap.xml`** ahí dentro.
+   No en una subcarpeta: los enlaces internos usan rutas absolutas.
+4. En **hPanel → Rendimiento → SSL**, activa el certificado y enciende
+   **«Forzar HTTPS»**.
+5. En **hPanel → Rendimiento → Caché**, deja la caché activada.
+
+Listo. Con eso el sitio ya está en línea.
+
+### Antes de dar por terminado
+
+Busca y reemplaza **`dmwellness.mx`** por tu dominio real. Aparece en:
+
+- `index.html` → etiqueta `canonical`, las etiquetas Open Graph y los dos
+  bloques de datos estructurados
+- `robots.txt` → la línea `Sitemap:`
+- `sitemap.xml` → la etiqueta `<loc>`
+
+---
+
+## Opcional: `.htaccess`
+
+Hostinger ya fuerza HTTPS desde el panel, así que esto no es obligatorio. Si
+quieres encabezados de seguridad y caché más agresiva, crea un archivo llamado
+`.htaccess` en `public_html` con esto:
+
+```apache
+Options -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/xml application/javascript
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType image/webp "access plus 1 year"
+</IfModule>
+```
+
+---
+
+## Qué falta completar en `index.html`
+
+| # | Qué | Dónde |
+|---|---|---|
+| 1 | **Horario real** — ahora dice Lun–Vie 10:00–19:00 y Sáb 10:00–15:00 como supuesto | Sección «Ubicación» y el bloque `openingHoursSpecification` del `<head>` |
+| 2 | **Nombre y cédula del médico** — es de los argumentos que más convierten | Sección «Por qué DM Wellness» y el pie |
+| 3 | **Razón social y correo de contacto** | Aviso de privacidad, campos entre corchetes |
+| 4 | **Logotipo real** — el monograma es un SVG provisional | Las dos apariciones de `class="mark"` |
+| 5 | **Revisión legal** del aviso de privacidad | Antes de publicar |
+
+---
+
+## Arquitectura del contenido
+
+El encabezado no abre con un catálogo de servicios sino con un **selector de
+problemas**: papada, flacidez, manchas, líneas de expresión, volumen, peso y
+tensión. Eliges lo que te molesta y aparece el tratamiento, las sesiones, la
+recuperación y un botón a WhatsApp con el mensaje ya escrito.
+
+Esa decisión viene del análisis de demanda: la gente busca **el problema**, no
+el nombre del aparato. «Papada» tiene mucho más mercado que «Endolift», aunque
+sea el mismo tratamiento. Por eso el texto de todo el sitio usa el vocabulario
+de búsqueda y deja los nombres de los equipos para la sección de aparatología,
+donde sí suman como prueba.
+
+Las tres líneas de negocio tienen color propio para distinguirse de un vistazo:
+orquídea para estética, verde para nutrición, arcilla para spa.
+
+---
+
+## Datos cableados
 
 | Dato | Valor |
 |---|---|
@@ -25,171 +109,106 @@ orquídea (estética), verde (nutrición), arcilla (spa).
 | Facebook | [facebook.com/dminbc](https://www.facebook.com/dminbc) |
 | COFEPRIS | 2409145036X00027 |
 
-El botón flotante de WhatsApp aparece en toda la página y en móvil se reduce a un
-círculo. Cada CTA manda un mensaje distinto, así que al llegar ya se sabe de qué
-sección vino la persona.
+El botón flotante de WhatsApp aparece en toda la página y en móvil se reduce a
+un círculo. Cada llamado a la acción manda un mensaje distinto, así que al
+llegar la conversación ya se sabe de qué sección vino la persona.
 
+---
 
-## Archivos del proyecto
+## SEO incluido
 
-| Archivo | Qué es | ¿Obligatorio? |
-|---|---|---|
-| `index.html` | El sitio completo: HTML, CSS y JS en un archivo | Sí |
-| `aviso-de-privacidad.html` | Aviso de privacidad (plantilla LFPDPPP) | Sí, por ley |
-| `404.html` | Página de error con rutas de regreso | Sí |
-| `robots.txt` | Indica a los buscadores qué rastrear | Sí |
-| `sitemap.xml` | Mapa del sitio para Google Search Console | Sí |
-| `favicon.svg` | Icono vectorial (navegadores modernos) | Sí |
-| `favicon.ico` | Icono de respaldo (navegadores antiguos) | Sí |
-| `apple-touch-icon.png` | Icono 180×180 para iOS | Recomendado |
-| `icon-192.png` · `icon-512.png` | Iconos para Android e instalación | Recomendado |
-| `icon-512-maskable.png` | Icono adaptable de Android | Recomendado |
-| `site.webmanifest` | Permite instalar el sitio como app | Recomendado |
-| `og-image.png` | Imagen 1200×630 al compartir en redes | Sí |
-| `hero.webp` | Fondo del encabezado, 1672×941, 57 KB | Sí |
-| `hero-mobile.webp` | Recorte vertical del fondo, 860×780, 12 KB | Sí |
-| `.htaccess` | Config. Apache: HTTPS, caché, seguridad | Solo cPanel/Apache |
-| `_headers` · `_redirects` | Equivalente para Netlify y Cloudflare Pages | Solo esos hosts |
+- **Datos estructurados `MedicalClinic`**: dirección completa, teléfono,
+  coordenadas, horarios, servicios, colonias atendidas y perfiles sociales.
+- **Datos estructurados `FAQPage`** con las siete preguntas visibles en la
+  página. Puede hacer que el resultado se expanda en Google.
+- Meta description, canonical, Open Graph, Twitter Card y etiquetas geográficas.
+- Un solo `<h1>`, jerarquía limpia de encabezados, HTML semántico.
+- Vocabulario orientado a búsqueda: «papada», «flacidez», «manchas», «limpieza
+  facial profunda», «Narvarte».
 
-Todo pesa junto menos de 300 KB. No hay build, ni `node_modules`, ni dependencias.
+**Validar después de publicar** con el
+[Test de Resultados Enriquecidos](https://search.google.com/test/rich-results):
+debe detectar `MedicalClinic` **y** `FAQPage`.
 
-### Qué archivo de configuración usar
+**No se incluye `AggregateRating`.** Marcar calificaciones que no existen viola
+las directrices de Google y puede costar una penalización manual. Cuando haya
+reseñas reales se agrega.
 
-Depende del hosting. **Sube solo el que corresponda** y borra los otros:
+> El sitio **no sustituye la ficha de Google Business Profile**. Son dos activos
+> distintos, y la ficha es la que desbloquea el mapa, las reseñas y las
+> búsquedas «cerca de mí». Para una clínica local esa ficha pesa más que el
+> sitio.
 
-- **cPanel, hosting compartido, servidor propio con Apache** → `.htaccess`
-- **Netlify, Cloudflare Pages** → `_headers` y `_redirects`
-- **Vercel** → ninguno de los dos; se configura con `vercel.json`
-- **GitHub Pages** → ninguno; no admite encabezados personalizados
-
-### Cómo subirlo
-
-Arrastra el contenido de la carpeta a la raíz pública del hosting
-(`public_html/`, `www/` o equivalente). No va en una subcarpeta: los enlaces
-internos usan rutas absolutas (`/favicon.svg`, `/aviso-de-privacidad.html`).
-
-### Después de publicar
-
-1. **Buscar y reemplazar `dmwellness.mx`** por el dominio real en `index.html`,
-   `sitemap.xml`, `robots.txt` y `aviso-de-privacidad.html`.
-2. **Dar de alta el sitio en Google Search Console** y enviar el sitemap.
-3. **Completar el aviso de privacidad** y pasarlo por revisión legal.
-4. Verificar con [PageSpeed Insights](https://pagespeed.web.dev/) y el
-   [Test de Resultados Enriquecidos](https://search.google.com/test/rich-results)
-   de Google, que valida el marcado `MedicalClinic`.
-
-## Pendientes antes de publicar
-
-1. **Horario real.** Está puesto Lun–Vie 10:00–19:00 y Sáb 10:00–15:00 como
-   supuesto. Corregir en dos lugares: la sección `#ubicacion` y el bloque JSON-LD
-   del `<head>`.
-2. **Nombre y cédula del médico responsable.** Añadir en la sección «Por qué DM
-   Wellness» y en el pie. Es de los argumentos que más convierten en este sector.
-3. **Logotipo real.** El monograma es un SVG provisional. Sustituir en las dos
-   apariciones de `class="mark"` (encabezado y pie) por el archivo de marca.
-4. **Fotografías de la clínica.** El fondo del encabezado ya está puesto, pero
-   sigue faltando la sesión real: fachada, recepción, cabinas, equipos y
-   personal. Ver `FOTOGRAFIA.md`.
-5. **Dominio.** Reemplazar `https://dmwellness.mx/` en `<link rel="canonical">`,
-   en las etiquetas Open Graph y en el JSON-LD.
+---
 
 ## El fondo del encabezado
 
-`hero.webp` es una textura abstracta, no una fotografía de la clínica. Esa
-distinción importa: un negocio de salud no debe mostrar interiores, equipos ni
-personal generados por IA, porque una paciente que llega esperando lo que vio en
-la foto y encuentra otra cosa pierde la confianza. Las texturas no afirman ser
-un lugar concreto, así que son seguras.
+Es una **textura abstracta**, no una fotografía de la clínica. La distinción
+importa: un negocio de salud no debe mostrar interiores, equipos ni personal
+generados por inteligencia artificial, porque una paciente que llega esperando
+lo que vio en la foto y encuentra otra cosa pierde la confianza. Las texturas no
+afirman ser un lugar concreto, así que son seguras.
 
-La legibilidad del texto se controla con dos capas en el CSS: la imagen va en
+La legibilidad del texto se controla con dos capas: la imagen va en
 `.hero::before` con la opacidad del token `--hero-img-op`, y encima
-`.hero::after` aplica el velo `--hero-scrim`. Ambos cambian por tema.
+`.hero::after` aplica el velo `--hero-scrim`. Ambos cambian según el tema claro
+u oscuro.
 
-Contraste medido sobre el fondo real, sin texto:
+Contraste medido sobre el fondo real, con el texto oculto:
 
 | | Escritorio | Móvil |
 |---|---|---|
 | Titular, peor punto | 10.6:1 | 12.1:1 |
 | Párrafo, peor punto | 6.7:1 | 8.3:1 |
 
-El mínimo WCAG AA para texto normal es 4.5:1. **Si se cambia la imagen hay que
+El mínimo WCAG AA para texto normal es 4.5:1. **Si cambias la imagen hay que
 volver a medir**, no basta con mirarla: una foto más oscura en la zona del texto
 rompe el contraste sin que se note a simple vista.
 
-## Integraciones que se activan al desplegar
+### Cambiar la imagen del encabezado
 
-Las tres necesitan un dominio real; en la vista previa no cargan.
+1. Recorta a 1400 px de ancho y guarda como WebP calidad 70.
+2. Conviértela a base64 (`base64 -w0 imagen.webp`, o cualquier conversor en línea).
+3. En `index.html`, busca `url("data:image/webp;base64,` y sustituye la cadena
+   larga que sigue. Hay dos: la primera es la de escritorio, la segunda la de móvil.
 
-### Mapa de Google
+---
 
-Sustituir el bloque `.map` de la sección `#ubicacion` por:
+## Lo que sigue faltando: fotografía real
 
-```html
-<iframe
-  src="https://www.google.com/maps/embed/v1/place?key=TU_API_KEY&q=Calle+Doctor+Vertiz+995,Narvarte+Oriente,CDMX"
-  width="100%" height="320" style="border:0;border-radius:10px"
-  loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-  title="Ubicación de DM Wellness"></iframe>
-```
+El fondo resuelve la estética, pero no sustituye una sesión de fotos. El formato
+que más convierte en este sector es **el especialista a cámara**, y eso no lo da
+ninguna textura.
 
-### Plugin de página de Facebook
+**Para el encabezado:** retrato de la médica, de pie, mirada a cámara, con bata,
+en la clínica. Horizontal, con espacio libre a la izquierda para el texto.
 
-Va dentro de `#fb-widget`, sustituyendo el párrafo descriptivo. No requiere token:
+**Para la ficha de Google** (mínimo 25, y las primeras pesan más): fachada desde
+la banqueta, entrada con el número visible, recepción, cada cabina ordenada,
+cada equipo con su nombre, el personal con bata.
 
-```html
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-  src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v21.0"></script>
-<div class="fb-page" data-href="https://www.facebook.com/dminbc"
-     data-tabs="timeline" data-width="400" data-height="420"
-     data-small-header="false" data-adapt-container-width="true"
-     data-hide-cover="false" data-show-facepile="true"></div>
-```
+**Para el sitio y redes:** verticales de cada tratamiento en proceso, el área de
+nutrición con la báscula de composición corporal, la zona de spa.
 
-### Feed de Instagram
+**Consentimiento:** cualquier toma donde aparezca una paciente necesita
+consentimiento informado por escrito y específico para uso publicitario.
+Archívalo.
 
-Las seis miniaturas de `.ig-grid` son marcadores. Instagram ya no permite
-incrustar un feed sin token, así que hay dos caminos:
-
-- **Servicio de terceros** (Behold, SnapWidget, Elfsight): pegan un script y
-  resuelven el token. Es lo más rápido.
-- **Instagram Basic Display API**: token propio, sin costo mensual, pero hay que
-  renovarlo cada 60 días.
-
-En ambos casos el contenedor a reemplazar es `<div class="ig-grid">`. El contador
-de seguidores (6,800) y de publicaciones (181) está escrito a mano en
-`#ig-widget`; actualizarlo cuando se revise el sitio.
-
-## SEO ya incluido
-
-- **JSON-LD `MedicalClinic`** con NAP completo, horarios, servicios y perfiles
-  sociales. Es lo que permite a Google entender el negocio.
-- **Meta description, canonical, Open Graph** y etiquetas geográficas de CDMX.
-- **Vocabulario orientado a búsqueda**: el texto usa «papada», «flacidez»,
-  «manchas», «limpieza facial profunda» y «Narvarte» en lugar de los nombres
-  comerciales de los equipos. Esa decisión viene del análisis de demanda.
-
-> El sitio **no sustituye la ficha de Google Business Profile**. Siguen siendo
-> dos activos distintos y la ficha es la que desbloquea el mapa, las reseñas y
-> las búsquedas «cerca de mí».
+---
 
 ## Cumplimiento
 
-Incluido en el pie y en las secciones de tratamiento: aviso COFEPRIS visible,
-«los resultados varían según cada paciente» y «todo procedimiento requiere
-valoración médica previa». No hay imágenes de antes y después ni promesas de
-resultado garantizado, en línea con las políticas de publicidad de Meta y con el
-criterio sanitario.
+Incluido: aviso COFEPRIS visible, «los resultados varían según cada paciente»,
+«todo procedimiento requiere valoración médica previa» y el aviso de privacidad
+completo como sección de la página.
 
-Falta añadir el **aviso de privacidad** (obligatorio por la LFPDPPP si se
-capturan datos) cuando se agregue cualquier formulario.
+No hay imágenes de antes y después ni promesas de resultado garantizado, en
+línea con las políticas de publicidad de Meta y con el criterio sanitario.
 
-## Desarrollo
+---
+
+## Probar en local
 
 ```bash
 python3 -m http.server 8000   # y abrir http://localhost:8000
 ```
-
-No hay build, ni dependencias, ni paso de compilación. Para regenerar los
-iconos y la imagen de redes a partir del SVG basta con cualquier conversor;
-los que vienen incluidos se generaron desde `favicon.svg`.
