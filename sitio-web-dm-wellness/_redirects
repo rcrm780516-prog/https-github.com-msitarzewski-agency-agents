@@ -1,0 +1,11 @@
+# Netlify / Cloudflare Pages
+# El dominio canónico y HTTPS se configuran en el panel del proveedor.
+
+/inicio            /                          301
+/contacto          /#ubicacion                301
+/servicios         /#tratamientos             301
+/tratamientos      /#tratamientos             301
+/privacidad        /aviso-de-privacidad.html  301
+/aviso-privacidad  /aviso-de-privacidad.html  301
+
+/*  /404.html  404

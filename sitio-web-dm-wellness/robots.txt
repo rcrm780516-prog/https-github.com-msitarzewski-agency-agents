@@ -1,0 +1,14 @@
+# robots.txt · DM Wellness Beauty and Nutrition
+# https://dmwellness.mx/
+
+User-agent: *
+Allow: /
+
+# Nada que ocultar: el sitio es una sola página pública.
+# Si más adelante se agregan páginas internas (panel, pruebas, staging),
+# bloquearlas aquí explícitamente.
+Disallow: /admin/
+Disallow: /staging/
+Disallow: /*?utm_
+
+Sitemap: https://dmwellness.mx/sitemap.xml

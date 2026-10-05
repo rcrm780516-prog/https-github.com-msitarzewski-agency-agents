@@ -29,6 +29,53 @@ El botón flotante de WhatsApp aparece en toda la página y en móvil se reduce 
 círculo. Cada CTA manda un mensaje distinto, así que al llegar ya se sabe de qué
 sección vino la persona.
 
+
+## Archivos del proyecto
+
+| Archivo | Qué es | ¿Obligatorio? |
+|---|---|---|
+| `index.html` | El sitio completo: HTML, CSS y JS en un archivo | Sí |
+| `aviso-de-privacidad.html` | Aviso de privacidad (plantilla LFPDPPP) | Sí, por ley |
+| `404.html` | Página de error con rutas de regreso | Sí |
+| `robots.txt` | Indica a los buscadores qué rastrear | Sí |
+| `sitemap.xml` | Mapa del sitio para Google Search Console | Sí |
+| `favicon.svg` | Icono vectorial (navegadores modernos) | Sí |
+| `favicon.ico` | Icono de respaldo (navegadores antiguos) | Sí |
+| `apple-touch-icon.png` | Icono 180×180 para iOS | Recomendado |
+| `icon-192.png` · `icon-512.png` | Iconos para Android e instalación | Recomendado |
+| `icon-512-maskable.png` | Icono adaptable de Android | Recomendado |
+| `site.webmanifest` | Permite instalar el sitio como app | Recomendado |
+| `og-image.png` | Imagen 1200×630 al compartir en redes | Sí |
+| `.htaccess` | Config. Apache: HTTPS, caché, seguridad | Solo cPanel/Apache |
+| `_headers` · `_redirects` | Equivalente para Netlify y Cloudflare Pages | Solo esos hosts |
+
+Todo pesa junto menos de 300 KB. No hay build, ni `node_modules`, ni dependencias.
+
+### Qué archivo de configuración usar
+
+Depende del hosting. **Sube solo el que corresponda** y borra los otros:
+
+- **cPanel, hosting compartido, servidor propio con Apache** → `.htaccess`
+- **Netlify, Cloudflare Pages** → `_headers` y `_redirects`
+- **Vercel** → ninguno de los dos; se configura con `vercel.json`
+- **GitHub Pages** → ninguno; no admite encabezados personalizados
+
+### Cómo subirlo
+
+Arrastra el contenido de la carpeta a la raíz pública del hosting
+(`public_html/`, `www/` o equivalente). No va en una subcarpeta: los enlaces
+internos usan rutas absolutas (`/favicon.svg`, `/aviso-de-privacidad.html`).
+
+### Después de publicar
+
+1. **Buscar y reemplazar `dmwellness.mx`** por el dominio real en `index.html`,
+   `sitemap.xml`, `robots.txt` y `aviso-de-privacidad.html`.
+2. **Dar de alta el sitio en Google Search Console** y enviar el sitemap.
+3. **Completar el aviso de privacidad** y pasarlo por revisión legal.
+4. Verificar con [PageSpeed Insights](https://pagespeed.web.dev/) y el
+   [Test de Resultados Enriquecidos](https://search.google.com/test/rich-results)
+   de Google, que valida el marcado `MedicalClinic`.
+
 ## Pendientes antes de publicar
 
 1. **Horario real.** Está puesto Lun–Vie 10:00–19:00 y Sáb 10:00–15:00 como
@@ -118,4 +165,6 @@ capturan datos) cuando se agregue cualquier formulario.
 python3 -m http.server 8000   # y abrir http://localhost:8000
 ```
 
-No hay build, ni dependencias, ni paso de compilación.
+No hay build, ni dependencias, ni paso de compilación. Para regenerar los
+iconos y la imagen de redes a partir del SVG basta con cualquier conversor;
+los que vienen incluidos se generaron desde `favicon.svg`.
