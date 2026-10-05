@@ -46,6 +46,8 @@ sección vino la persona.
 | `icon-512-maskable.png` | Icono adaptable de Android | Recomendado |
 | `site.webmanifest` | Permite instalar el sitio como app | Recomendado |
 | `og-image.png` | Imagen 1200×630 al compartir en redes | Sí |
+| `hero.webp` | Fondo del encabezado, 1672×941, 57 KB | Sí |
+| `hero-mobile.webp` | Recorte vertical del fondo, 860×780, 12 KB | Sí |
 | `.htaccess` | Config. Apache: HTTPS, caché, seguridad | Solo cPanel/Apache |
 | `_headers` · `_redirects` | Equivalente para Netlify y Cloudflare Pages | Solo esos hosts |
 
@@ -85,11 +87,34 @@ internos usan rutas absolutas (`/favicon.svg`, `/aviso-de-privacidad.html`).
    Wellness» y en el pie. Es de los argumentos que más convierten en este sector.
 3. **Logotipo real.** El monograma es un SVG provisional. Sustituir en las dos
    apariciones de `class="mark"` (encabezado y pie) por el archivo de marca.
-4. **Fotografías.** El sitio funciona sin ellas, pero conviene la sesión que ya
-   recomendaba la auditoría: fachada, recepción, cada cabina, cada equipo y el
-   personal con bata.
+4. **Fotografías de la clínica.** El fondo del encabezado ya está puesto, pero
+   sigue faltando la sesión real: fachada, recepción, cabinas, equipos y
+   personal. Ver `FOTOGRAFIA.md`.
 5. **Dominio.** Reemplazar `https://dmwellness.mx/` en `<link rel="canonical">`,
    en las etiquetas Open Graph y en el JSON-LD.
+
+## El fondo del encabezado
+
+`hero.webp` es una textura abstracta, no una fotografía de la clínica. Esa
+distinción importa: un negocio de salud no debe mostrar interiores, equipos ni
+personal generados por IA, porque una paciente que llega esperando lo que vio en
+la foto y encuentra otra cosa pierde la confianza. Las texturas no afirman ser
+un lugar concreto, así que son seguras.
+
+La legibilidad del texto se controla con dos capas en el CSS: la imagen va en
+`.hero::before` con la opacidad del token `--hero-img-op`, y encima
+`.hero::after` aplica el velo `--hero-scrim`. Ambos cambian por tema.
+
+Contraste medido sobre el fondo real, sin texto:
+
+| | Escritorio | Móvil |
+|---|---|---|
+| Titular, peor punto | 10.6:1 | 12.1:1 |
+| Párrafo, peor punto | 6.7:1 | 8.3:1 |
+
+El mínimo WCAG AA para texto normal es 4.5:1. **Si se cambia la imagen hay que
+volver a medir**, no basta con mirarla: una foto más oscura en la zona del texto
+rompe el contraste sin que se note a simple vista.
 
 ## Integraciones que se activan al desplegar
 
