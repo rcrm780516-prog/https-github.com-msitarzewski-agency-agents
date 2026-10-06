@@ -5,7 +5,7 @@ Hostinger y el sitio funciona.
 
 | Archivo | Qué es | Peso |
 |---|---|---|
-| `index.html` | Todo el sitio: HTML, CSS, JavaScript, el logotipo, las doce fotos, el encabezado y el favicon, todo incrustado | 526 KB |
+| `index.html` | Todo el sitio: HTML, CSS, JavaScript, el logotipo, las doce fotos, el encabezado y el favicon, todo incrustado | 527 KB |
 | `robots.txt` | Indica a Google qué rastrear y dónde está el sitemap | 1 KB |
 | `sitemap.xml` | Mapa del sitio para Search Console | 1 KB |
 | `README.md` | Este documento. No se sube | — |
@@ -13,7 +13,7 @@ Hostinger y el sitio funciona.
 Las imágenes van incrustadas como `data:`: cuatro en el CSS (las dos del
 encabezado y las dos del logotipo) y doce como `<img>` en el cuerpo, así que no
 hay que subir ningún archivo de imagen ni preocuparse por rutas rotas. El
-archivo pesa 526 KB porque las fotos viajan dentro; a cambio no hay una sola petición extra ni una ruta que se pueda romper.
+archivo pesa 527 KB porque las fotos viajan dentro; a cambio no hay una sola petición extra ni una ruta que se pueda romper.
 El precio de esa decisión es que el navegador descarga esos 472 KB antes de
 pintar nada. Si algún día pesa el tiempo de carga, la salida es sacar las fotos
 a archivos sueltos y perder la portabilidad de un solo archivo.
@@ -303,6 +303,83 @@ en el panel de conocimiento, y un `data:` no se rastrea. Cuando tengan dominio,
 subir `logo.png` a la raíz y añadir `"logo": "https://dmwellness.mx/logo.png"`
 al bloque `MedicalClinic` es el único caso en que vale la pena romper la regla
 de los cuatro archivos.
+
+---
+
+## Los widgets de redes
+
+### Facebook: ya está puesto y es el oficial
+
+La sección «Síguenos» carga la **página de Facebook real** con el Page Plugin
+oficial de Meta, en un `iframe` apuntando a `facebook.com/dminbc`. No necesita
+token, ni app de desarrollador, ni cuenta de empresa: solo que la página esté
+publicada y sea pública. Se carga en diferido (`loading="lazy"`), así que no
+pesa hasta que el visitante llega a esa altura.
+
+**No pude verificarlo en vivo.** El entorno donde construí el sitio tiene
+bloqueado el acceso a los dominios de Meta, así que en mis capturas esa zona
+sale vacía. Al subirlo al dominio debe cargar. Si no carga, las dos causas
+posibles son que la página no sea pública o que una extensión del navegador
+esté bloqueando el contenido de Facebook — por eso dejé un mensaje de respaldo
+detrás del iframe que lo explica, y el botón que abre la página directamente.
+
+### Instagram: Meta ya no da un widget de perfil
+
+Esto hay que decirlo claro, porque es la pregunta que siempre vuelve: **Meta
+eliminó el widget gratuito de feed de Instagram.** La API Basic Display, que era
+la forma gratuita de leer el perfil, se apagó en diciembre de 2024. Hoy solo
+existen tres caminos:
+
+| Camino | Qué muestra | Qué cuesta |
+|---|---|---|
+| **Publicaciones oficiales incrustadas** | Las publicaciones que ustedes elijan, con el marco real de Instagram | Gratis. Hay que pegar las URLs y cambiarlas cuando quieran rotar el contenido |
+| **Instagram Graph API** | El feed completo, al día | Cuenta de empresa, app de Meta, token que caduca cada 60 días y **un servidor** que lo renueve. Imposible desde un archivo estático sin exponer el token |
+| **Servicio de terceros** (LightWidget, Behold, SnapWidget, Elfsight) | El feed completo, al día | Ellos guardan el token. Capa gratuita con su marca, o de pago para quitarla. Añade una dependencia externa |
+
+Dejé montado el **primer camino**, que es el único gratuito, oficial y sin
+dependencias. Lo único que falta son las URLs.
+
+### Cómo activar las publicaciones de Instagram
+
+1. Abre `index.html` y busca `var IG_POSTS`. Está casi al final, dentro del
+   `<script>`, con un comentario que lo señala.
+2. En Instagram, abre cada publicación que quieras mostrar, usa **Copiar enlace**
+   y pega la URL entre comillas, separadas por coma:
+
+```js
+var IG_POSTS = [
+  "https://www.instagram.com/p/C8QhQXKx1Qh/",
+  "https://www.instagram.com/p/C9AbCdEfGhI/",
+  "https://www.instagram.com/reel/C9XyZwVuTsR/",
+  "https://www.instagram.com/p/C9MnOpQrStU/"
+];
+```
+
+3. Guarda y sube el archivo. Nada más.
+
+Funcionan igual los posts y los reels. Dos, cuatro o seis se ven bien; la
+cuadrícula es de dos columnas en escritorio y una en móvil.
+
+**Mientras la lista esté vacía** el hueco no se queda feo: se rellena con seis
+fotos de la clínica que ya están en la página, enlazadas al perfil. No se
+descarga un solo byte extra — el JavaScript reutiliza las imágenes que el
+navegador ya tiene. En cuanto pongas una sola URL, esa cuadrícula desaparece y
+entran las publicaciones reales.
+
+### Lo que quité
+
+Los contadores de «6,800 seguidores · 181 publicaciones». Un número de
+seguidores escrito a mano en el código envejece mal: en un mes está equivocado y
+nadie se acuerda de actualizarlo. Las publicaciones incrustadas traen sus cifras
+reales y al día.
+
+### Privacidad
+
+Los componentes de Meta reciben la IP del visitante y pueden instalar cookies en
+cuanto se cargan. Añadí el párrafo correspondiente al punto 7 del aviso de
+privacidad. Si más adelante quieren que nada de Meta se cargue hasta que el
+visitante lo pida, se puede poner un botón de «cargar publicaciones» delante;
+dilo y lo cambio.
 
 ---
 
