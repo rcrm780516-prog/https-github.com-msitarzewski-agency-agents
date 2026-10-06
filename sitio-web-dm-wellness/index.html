@@ -424,24 +424,6 @@ section{padding-block:clamp(56px,7vw,96px)}
 .faq .a{padding:0 0 20px;font-size:.93rem;color:var(--ink);max-width:72ch}
 
 /* redes */
-.social{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px;align-items:start}
-@media(max-width:900px){.social{grid-template-columns:1fr}}
-.sc-head{display:flex;align-items:center;gap:13px;margin-bottom:18px}
-.sc-head .av{width:50px;height:50px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--orchid-soft)}
-.sc-head b{display:block;font-size:.98rem;color:var(--plum);font-weight:700}
-.sc-head span{font-size:.82rem;color:var(--muted)}
-.ig-embeds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:16px}
-.ig-embeds iframe{width:100%;height:468px;border:0;border-radius:var(--r-lg);background:var(--mist);display:block;color-scheme:light}
-@media(max-width:620px){.ig-embeds{grid-template-columns:1fr}}
-.ig-fallback{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:16px}
-.ig-fallback a{display:block;border-radius:var(--r);overflow:hidden;line-height:0;background:var(--mist)}
-.ig-fallback img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;transition:opacity .18s}
-.ig-fallback a:hover img,.ig-fallback a:focus-visible img{opacity:.82}
-.ig-fallback:empty{display:none}
-.fb-wrap{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--mist);margin-bottom:16px;isolation:isolate}
-.fb-wrap .fb-alt{position:absolute;inset:0;z-index:-1;display:grid;place-items:center;padding:24px;text-align:center;font-size:.86rem;color:var(--muted);line-height:1.5}
-.fb-wrap iframe{width:100%;height:600px;border:0;display:block;color-scheme:light}
-@media(max-width:900px){.fb-wrap iframe{height:520px}}
 
 /* ubicación */
 .loc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:22px;align-items:start}
@@ -465,6 +447,17 @@ section{padding-block:clamp(56px,7vw,96px)}
 .cta-band .btn-p{background:var(--orchid);margin-top:24px}
 
 /* footer */
+.redes-pie{padding-top:26px;border-top:1px solid var(--line);margin-bottom:28px}
+.redes-row{display:flex;flex-wrap:wrap;gap:12px}
+.rlink{display:inline-flex;align-items:center;gap:12px;padding:11px 17px 11px 13px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--linen);transition:border-color .18s,transform .18s}
+.rlink:hover,.rlink:focus-visible{border-color:var(--orchid);transform:translateY(-1px)}
+.rico{width:27px;height:27px;flex:none;display:grid;place-items:center}
+.rico svg{width:100%;height:100%;display:block}
+.rtx{display:flex;flex-direction:column;line-height:1.3;min-width:0}
+.rtx b{font-size:.9rem;color:var(--plum);font-weight:600}
+.rtx span{font-size:.75rem;color:var(--muted)}
+.rlink:hover .rtx b{color:var(--orchid)}
+@media(max-width:560px){.redes-row{flex-direction:column}.rlink{width:100%}}
 footer{background:var(--paper);border-top:1px solid var(--line);padding-block:48px 32px;font-size:.87rem}
 .f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;margin-bottom:34px}
 @media(max-width:860px){.f-grid{grid-template-columns:1fr;gap:24px}}
@@ -738,39 +731,6 @@ footer a:hover{color:var(--orchid)}
   </div>
 </section>
 
-<section id="redes">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Síguenos</p>
-      <h2>Lo que publicamos cada semana</h2>
-      <p class="lede">Explicamos tratamientos, resolvemos dudas reales y mostramos cómo trabajamos. Sin promesas imposibles.</p>
-    </div>
-    <div class="social">
-      <div class="card" id="ig-widget">
-        <div class="sc-head">
-          <span class="av"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orchid)" stroke-width="1.7" aria-hidden="true"><rect x="2.8" y="2.8" width="18.4" height="18.4" rx="5.2"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.1" fill="var(--orchid)" stroke="none"/></svg></span>
-          <span><b>@dmwellness.mx</b><span>Instagram · Clínica integral de belleza y nutrición</span></span>
-        </div>
-        <div class="ig-embeds" id="ig-embeds" hidden></div>
-        <div class="ig-fallback" id="ig-fallback" aria-label="Fotos de la clínica"></div>
-        <a class="btn btn-o" href="https://www.instagram.com/dmwellness.mx/" target="_blank" rel="noopener" style="width:100%">Ver perfil en Instagram</a>
-      </div>
-
-      <div class="card" id="fb-widget">
-        <div class="sc-head">
-          <span class="av" style="background:#E7EDF8"><svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg></span>
-          <span><b>DM Wellness</b><span>Facebook · facebook.com/dminbc</span></span>
-        </div>
-        <div class="fb-wrap">
-          <p class="fb-alt">Si esta zona se queda vacía, tu navegador o una extensión está bloqueando el contenido de Facebook. El botón de abajo abre la página directamente.</p>
-          <iframe title="Página de DM Wellness en Facebook" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdminbc&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&lazy=true" loading="lazy" scrolling="no" frameborder="0" allowfullscreen="true" allow="clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-        </div>
-        <a class="btn btn-o" href="https://www.facebook.com/dminbc" target="_blank" rel="noopener" style="width:100%;margin-bottom:10px">Ver página en Facebook</a>
-        <a class="btn btn-o" href="https://wa.me/525534960420?text=Hola%2C%20vi%20su%20p%C3%A1gina%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener" style="width:100%">Escribir por WhatsApp</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="ubicacion" class="alt">
   <div class="wrap">
@@ -829,7 +789,7 @@ footer a:hover{color:var(--orchid)}
       <details><summary>4. Transferencia de datos</summary><div class="a">Sus datos personales no serán transferidos a terceros sin su consentimiento, salvo en los supuestos previstos en el artículo 37 de la Ley, como el cumplimiento de requerimientos de autoridad competente o la atención de una urgencia médica.</div></details>
       <details><summary>5. Derechos ARCO</summary><div class="a">Usted tiene derecho a conocer qué datos personales tenemos y para qué los utilizamos (<strong>Acceso</strong>); solicitar la corrección de su información cuando esté desactualizada o sea inexacta (<strong>Rectificación</strong>); pedir que la eliminemos de nuestros registros cuando considere que no se utiliza conforme a los principios de la Ley (<strong>Cancelación</strong>); y oponerse al uso de sus datos para fines específicos (<strong>Oposición</strong>).<br><br>Para ejercer cualquiera de estos derechos envíe su solicitud a <strong>[correo de contacto]</strong> o preséntela en nuestro domicilio, acompañada de identificación oficial y de una descripción clara de los datos sobre los que busca ejercer el derecho. Responderemos en un plazo máximo de 20 días hábiles.</div></details>
       <details><summary>6. Revocación del consentimiento</summary><div class="a">Puede revocar el consentimiento otorgado por el mismo medio señalado en el apartado anterior. Por motivos legales y sanitarios, en ciertos casos no podremos atender su solicitud de forma inmediata ni concluir el uso de forma total, ya que el expediente clínico debe conservarse por el plazo que establece la normativa aplicable.</div></details>
-      <details><summary>7. Cookies y cambios al aviso</summary><div class="a"><strong>[Ajustar según las herramientas que se instalen]</strong> Este sitio puede utilizar cookies propias y de terceros para medir el tráfico y mejorar la navegación. Puede deshabilitarlas desde la configuración de su navegador; hacerlo no impide el uso del sitio.<br><br><strong>Contenido incrustado de terceros.</strong> La sección «Síguenos» muestra publicaciones de Instagram y la página de Facebook mediante los componentes oficiales de Meta Platforms. Al cargarse, esos componentes reciben su dirección IP y pueden instalar cookies propias de Meta, conforme a las políticas de privacidad de Instagram y Facebook, sobre las que esta clínica no tiene control.<br><br>Cualquier modificación a este aviso se publicará en esta misma sección, indicando la fecha de la última actualización. Si considera que su derecho a la protección de datos personales ha sido vulnerado, puede acudir a la autoridad competente en la materia.</div></details>
+      <details><summary>7. Cookies y cambios al aviso</summary><div class="a"><strong>[Ajustar según las herramientas que se instalen]</strong> Este sitio puede utilizar cookies propias y de terceros para medir el tráfico y mejorar la navegación. Puede deshabilitarlas desde la configuración de su navegador; hacerlo no impide el uso del sitio.<br><br>Cualquier modificación a este aviso se publicará en esta misma sección, indicando la fecha de la última actualización. Si considera que su derecho a la protección de datos personales ha sido vulnerado, puede acudir a la autoridad competente en la materia.</div></details>
     </div>
     <p class="note"><strong>Pendiente antes de publicar:</strong> completar los campos entre corchetes y someter el texto final a revisión legal.</p>
   </div>
@@ -865,9 +825,24 @@ footer a:hover{color:var(--orchid)}
           <li>Doctor Vértiz 995, Narvarte Oriente</li>
           <li>Benito Juárez, CDMX · 03023</li>
           <li><a href="https://wa.me/525534960420" target="_blank" rel="noopener">WhatsApp 55 3496 0420</a></li>
-          <li><a href="https://www.instagram.com/dmwellness.mx/" target="_blank" rel="noopener">Instagram @dmwellness.mx</a></li>
-          <li><a href="https://www.facebook.com/dminbc" target="_blank" rel="noopener">Facebook /dminbc</a></li>
         </ul>
+      </div>
+    </div>
+    <div class="redes-pie">
+      <h4>Síguenos</h4>
+      <div class="redes-row">
+        <a class="rlink" href="https://www.instagram.com/dmwellness.mx/" target="_blank" rel="noopener">
+          <span class="rico"><svg viewBox="0 0 24 24" role="img" aria-hidden="true"><defs><linearGradient id="gig" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FDCB5C"/><stop offset=".35" stop-color="#F6681F"/><stop offset=".65" stop-color="#D8257D"/><stop offset="1" stop-color="#6B30C9"/></linearGradient></defs><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4" fill="none" stroke="url(#gig)" stroke-width="1.9"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="url(#gig)" stroke-width="1.9"/><circle cx="17.4" cy="6.6" r="1.25" fill="url(#gig)"/></svg></span>
+          <span class="rtx"><b>Instagram</b><span>@dmwellness.mx</span></span>
+        </a>
+        <a class="rlink" href="https://www.facebook.com/dminbc" target="_blank" rel="noopener">
+          <span class="rico"><svg viewBox="0 0 24 24" role="img" aria-hidden="true"><path fill="#1877F2" d="M24 12a12 12 0 10-13.9 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v2.9h-1.5c-1.5 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4A12 12 0 0024 12z"/></svg></span>
+          <span class="rtx"><b>Facebook</b><span>facebook.com/dminbc</span></span>
+        </a>
+        <a class="rlink" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Doctor+Vertiz+995+Narvarte+Oriente+Ciudad+de+Mexico+03023" target="_blank" rel="noopener">
+          <span class="rico"><svg viewBox="0 0 48 48" role="img" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.6C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3l5.7-5.6C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2A11.9 11.9 0 0124 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3a12 12 0 01-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg></span>
+          <span class="rtx"><b>Google Maps</b><span>Cómo llegar a la clínica</span></span>
+        </a>
       </div>
     </div>
     <div class="legal">
@@ -952,57 +927,6 @@ footer a:hover{color:var(--orchid)}
     });
   });
   render("papada");
-
-  /* ---------------------------------------------------------------
-     Publicaciones de Instagram incrustadas.
-     Pega aquí las URLs de las publicaciones o reels que quieras mostrar,
-     entre comillas y separadas por coma. Dos, cuatro o seis se ven bien.
-     Ejemplo: "https://www.instagram.com/p/C8QhQXKx1Qh/"
-     Mientras la lista esté vacía se muestran fotos de la clínica.
-     --------------------------------------------------------------- */
-  var IG_POSTS = [
-  ];
-
-  (function(){
-    var cont = document.getElementById("ig-embeds");
-    var fall = document.getElementById("ig-fallback");
-    if(!cont || !fall) return;
-
-    var codes = IG_POSTS.map(function(u){
-      var m = String(u).match(/instagram\.com\/(?:[^\/]+\/)?(?:p|reel|tv)\/([A-Za-z0-9_-]+)/);
-      return m ? m[1] : null;
-    }).filter(Boolean);
-
-    if(codes.length){
-      codes.forEach(function(c){
-        var f = document.createElement("iframe");
-        f.src = "https://www.instagram.com/p/" + c + "/embed/";
-        f.title = "Publicación de @dmwellness.mx en Instagram";
-        f.loading = "lazy";
-        f.setAttribute("scrolling","no");
-        f.setAttribute("frameborder","0");
-        f.setAttribute("allowtransparency","true");
-        cont.appendChild(f);
-      });
-      cont.hidden = false;
-      fall.remove();
-      return;
-    }
-
-    /* Sin publicaciones configuradas: se reutilizan las fotos que ya están
-       en la página, sin descargar un solo byte de más. */
-    var fotos = Array.prototype.slice.call(document.querySelectorAll("#tratamientos img.ph, #tecnologia .ph-row img.ph")).slice(0,6);
-    fotos.forEach(function(img){
-      var a = document.createElement("a");
-      a.href = "https://www.instagram.com/dmwellness.mx/";
-      a.target = "_blank"; a.rel = "noopener";
-      var i = document.createElement("img");
-      i.src = img.currentSrc || img.src;
-      i.alt = img.alt;
-      i.loading = "lazy"; i.decoding = "async";
-      a.appendChild(i); fall.appendChild(a);
-    });
-  })();
 
   /* Año del footer */
   document.getElementById("yr").textContent = new Date().getFullYear();
