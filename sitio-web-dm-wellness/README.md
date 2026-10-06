@@ -79,10 +79,29 @@ DirectoryIndex index.html
 | # | Qué | Dónde |
 |---|---|---|
 | 1 | **Horario real** — ahora dice Lun–Vie 10:00–19:00 y Sáb 10:00–15:00 como supuesto | Sección «Ubicación» y el bloque `openingHoursSpecification` del `<head>` |
-| 2 | **Nombre y cédula del médico** — es de los argumentos que más convierten | Sección «Por qué DM Wellness» y el pie |
-| 3 | **Razón social y correo de contacto** | Aviso de privacidad, campos entre corchetes |
-| 4 | **Logotipo real** — el monograma es un SVG provisional | Las dos apariciones de `class="mark"` |
-| 5 | **Revisión legal** del aviso de privacidad | Antes de publicar |
+| 2 | **Razón social y correo de contacto** | Aviso de privacidad, campos entre corchetes |
+| 3 | **Revisión legal** del aviso de privacidad | Antes de publicar |
+| 4 | **URLs de las publicaciones de Instagram** | `var IG_POSTS` en el `<script>`, ver la sección de widgets |
+
+Resueltos: el logotipo real ya está incrustado, y el nombre y la cédula de la
+médica responsable aparecen en cuatro lugares.
+
+### La cédula profesional
+
+**Dra. Dulce María Martínez Colmenares · cédula profesional 09058660 · médico
+responsable sanitario.** Está en:
+
+| Dónde | Cómo se ve |
+|---|---|
+| Distintivo del encabezado | «Médico titulado · Céd. 09058660» — sustituye a la afirmación genérica anterior, que no era verificable |
+| Pie de la foto en «Por qué DM Wellness» | Nombre completo, cédula y cargo, debajo de la foto donde se ven sus certificados |
+| Pie de página | Línea de médico responsable junto al aviso COFEPRIS |
+| Datos estructurados | Propiedad `employee` del `MedicalClinic`, como `Physician` con un `identifier` de tipo cédula profesional |
+
+No es un adorno de confianza: al anunciar servicios de salud en México se espera
+que el responsable sanitario esté identificado. Y la cédula es pública — se
+verifica en el Registro Nacional de Profesionistas de la SEP — así que publicarla
+no expone nada y sí distingue a la clínica de la oferta informal de la zona.
 
 ---
 
