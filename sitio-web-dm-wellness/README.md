@@ -5,15 +5,15 @@ Hostinger y el sitio funciona.
 
 | Archivo | Qué es | Peso |
 |---|---|---|
-| `index.html` | Todo el sitio: HTML, CSS, JavaScript, las catorce imágenes (encabezado, doce fotos de sección y favicon), incrustadas | 472 KB |
+| `index.html` | Todo el sitio: HTML, CSS, JavaScript, el logotipo, las doce fotos, el encabezado y el favicon, todo incrustado | 505 KB |
 | `robots.txt` | Indica a Google qué rastrear y dónde está el sitemap | 1 KB |
 | `sitemap.xml` | Mapa del sitio para Search Console | 1 KB |
 | `README.md` | Este documento. No se sube | — |
 
-Las imágenes van incrustadas como `data:`, dos en el CSS (el encabezado) y doce
-como `<img>` en el cuerpo, así que no hay que subir ningún archivo de imagen ni
-preocuparse por rutas rotas. El archivo pesa 472 KB porque las fotos viajan
-dentro; a cambio no hay una sola petición extra ni una ruta que se pueda romper.
+Las imágenes van incrustadas como `data:`: cuatro en el CSS (las dos del
+encabezado y las dos del logotipo) y doce como `<img>` en el cuerpo, así que no
+hay que subir ningún archivo de imagen ni preocuparse por rutas rotas. El
+archivo pesa 505 KB porque las fotos viajan dentro; a cambio no hay una sola petición extra ni una ruta que se pueda romper.
 El precio de esa decisión es que el navegador descarga esos 472 KB antes de
 pintar nada. Si algún día pesa el tiempo de carga, la salida es sacar las fotos
 a archivos sueltos y perder la portabilidad de un solo archivo.
@@ -244,6 +244,43 @@ cada equipo con su nombre, el personal con bata.
 convierte en este sector es el retrato de la especialista a cámara, horizontal,
 con espacio libre a la izquierda para el texto. Ninguna de las ocho fotos
 actuales sirve para eso.
+
+---
+
+## El logotipo
+
+Va incrustado **sin fondo**: le quité el blanco del original con desmatizado por
+canal, no con un recorte duro, así que los bordes del trazo conservan su
+antialias y la marca se apoya limpia sobre cualquier color.
+
+| Dónde | Tamaño | Versión |
+|---|---|---|
+| Encabezado | 38 px, junto al nombre | Color |
+| Pie de página | 92 px, solo, sin texto al lado | Color |
+| Favicon | 96 px, PNG de 64 colores (2.3 KB) | Color |
+| Sello sobre fotos | 54 px en las tarjetas, 76 px en el banner | Blanco |
+
+**Por qué el sello va en blanco.** Medí las cuatro esquinas de cada foto donde
+podría ir. Con el morado de la marca el contraste iba de 1.3:1 a 2.5:1 — es
+decir, invisible. En blanco va de 2.9:1 a 15.6:1, y la sombra suave que lleva
+encima separa el trazo del fondo en el único caso que se queda corto. Si
+prefieren el morado sobre las fotos, se cambia, pero en tres de las cuatro no se
+va a distinguir.
+
+**En tema oscuro** el logotipo lleva `filter: brightness(1.38)`. El morado de
+marca sobre el fondo casi negro queda por debajo del umbral de 3:1 que pide la
+norma para gráficos; el filtro lo sube sin cambiar el tono.
+
+El data URI de cada versión aparece **una sola vez**, en el CSS, y los cuatro
+sellos y las dos marcas lo referencian desde ahí. Repetirlo en cada `<img>`
+costaba 49 KB de más.
+
+**Lo único que el logotipo sí necesita como archivo suelto:** la propiedad
+`logo` del `schema.org`. Google tiene que poder rastrear esa imagen para usarla
+en el panel de conocimiento, y un `data:` no se rastrea. Cuando tengan dominio,
+subir `logo.png` a la raíz y añadir `"logo": "https://dmwellness.mx/logo.png"`
+al bloque `MedicalClinic` es el único caso en que vale la pena romper la regla
+de los cuatro archivos.
 
 ---
 
