@@ -5,7 +5,7 @@ Hostinger y el sitio funciona.
 
 | Archivo | Qué es | Peso |
 |---|---|---|
-| `index.html` | Todo el sitio: HTML, CSS, JavaScript, el logotipo, las doce fotos, el encabezado y el favicon, todo incrustado | 505 KB |
+| `index.html` | Todo el sitio: HTML, CSS, JavaScript, el logotipo, las doce fotos, el encabezado y el favicon, todo incrustado | 526 KB |
 | `robots.txt` | Indica a Google qué rastrear y dónde está el sitemap | 1 KB |
 | `sitemap.xml` | Mapa del sitio para Search Console | 1 KB |
 | `README.md` | Este documento. No se sube | — |
@@ -13,7 +13,7 @@ Hostinger y el sitio funciona.
 Las imágenes van incrustadas como `data:`: cuatro en el CSS (las dos del
 encabezado y las dos del logotipo) y doce como `<img>` en el cuerpo, así que no
 hay que subir ningún archivo de imagen ni preocuparse por rutas rotas. El
-archivo pesa 505 KB porque las fotos viajan dentro; a cambio no hay una sola petición extra ni una ruta que se pueda romper.
+archivo pesa 526 KB porque las fotos viajan dentro; a cambio no hay una sola petición extra ni una ruta que se pueda romper.
 El precio de esa decisión es que el navegador descarga esos 472 KB antes de
 pintar nada. Si algún día pesa el tiempo de carga, la salida es sacar las fotos
 a archivos sueltos y perder la portabilidad de un solo archivo.
@@ -253,27 +253,49 @@ Va incrustado **sin fondo**: le quité el blanco del original con desmatizado po
 canal, no con un recorte duro, así que los bordes del trazo conservan su
 antialias y la marca se apoya limpia sobre cualquier color.
 
-| Dónde | Tamaño | Versión |
+### Dos versiones, por tamaño
+
+El logotipo original es un lockup circular con el texto «WELLNESS BEAUTY AND
+NUTRITION» curvado por dentro del aro. Esas 26 letras miden, en el archivo
+original, unos 30 px cada una sobre un lienzo de 1254 px. A 38 px de alto se
+convierten en ruido y ensucian toda la marca — se ve como una mancha de color,
+no como un logotipo.
+
+Por eso hay dos versiones:
+
+| Dónde | Versión | Tamaño |
 |---|---|---|
-| Encabezado | 38 px, junto al nombre | Color |
-| Pie de página | 92 px, solo, sin texto al lado | Color |
-| Favicon | 96 px, PNG de 64 colores (2.3 KB) | Color |
-| Sello sobre fotos | 54 px en las tarjetas, 76 px en el banner | Blanco |
+| Encabezado | Reducida: aro, monograma y hoja, sin el texto curvo | 52 × 41 px |
+| Pie de página | Completa, con el texto curvo legible | 92 px |
+| Favicon | Reducida, PNG de 64 colores con alfa | 96 px (2.1 KB) |
+| Sello sobre fotos | Reducida, en blanco | 56 × 45 px; 80 × 64 en el banner |
 
-**Por qué el sello va en blanco.** Medí las cuatro esquinas de cada foto donde
-podría ir. Con el morado de la marca el contraste iba de 1.3:1 a 2.5:1 — es
-decir, invisible. En blanco va de 2.9:1 a 15.6:1, y la sombra suave que lleva
-encima separa el trazo del fondo en el único caso que se queda corto. Si
-prefieren el morado sobre las fotos, se cambia, pero en tres de las cuatro no se
-va a distinguir.
+La versión reducida no se dibujó a mano: se obtuvo etiquetando los componentes
+conexos del trazo y descartando los de menos de 1500 px de área. El aro
+(22 977 px), el monograma con su línea (76 872 px) y los cuatro pétalos
+(3 217 a 6 170 px) se quedan; las 26 letras, todas por debajo de 472 px, se van.
+Es reproducible y no toca un solo píxel del trazo que se conserva.
 
-**En tema oscuro** el logotipo lleva `filter: brightness(1.38)`. El morado de
-marca sobre el fondo casi negro queda por debajo del umbral de 3:1 que pide la
-norma para gráficos; el filtro lo sube sin cambiar el tono.
+### Por qué el sello va en blanco
+
+Medí las cuatro esquinas de cada foto donde podría ir. Con el morado de la marca
+el contraste iba de 1.3:1 a 2.5:1 — es decir, invisible. En blanco va de 2.9:1 a
+15.6:1, y la sombra suave que lleva encima separa el trazo del fondo en el único
+caso que se queda corto.
+
+### El filtro de tema oscuro
+
+El trazo del logotipo promedia `#A502C6`. Sobre el fondo del encabezado en
+oscuro da 3.04:1, justo en el mínimo de 3:1 que pide la norma para gráficos.
+Lleva `filter: brightness(1.2)`, que lo sube a 4.13:1.
+
+**No más que eso.** A 1.38 el canal azul se satura en 255 mientras el rojo
+todavía sube, el tono se corre a un magenta neón que no es el color de marca, y
+el trazo fino se empasta. Ese era, junto con el tamaño, el motivo de que la
+marca se viera como una plasta.
 
 El data URI de cada versión aparece **una sola vez**, en el CSS, y los cuatro
-sellos y las dos marcas lo referencian desde ahí. Repetirlo en cada `<img>`
-costaba 49 KB de más.
+sellos y las dos marcas lo referencian desde ahí.
 
 **Lo único que el logotipo sí necesita como archivo suelto:** la propiedad
 `logo` del `schema.org`. Google tiene que poder rastrear esa imagen para usarla
