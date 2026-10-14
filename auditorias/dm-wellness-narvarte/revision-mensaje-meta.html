@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Revisión del mensaje automático de Meta — DM Wellness</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root{
+    --pp:#6B1E7A; --pp2:#A020C0; --pp3:#C77DDB; --ink:#1C1526; --gray:#5B5566;
+    --line:#E4DEE9; --bg:#FBF9FC; --red:#C42B4A; --amber:#D98324; --green:#1E8E5A;
+  }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:"Liberation Sans","DejaVu Sans",Arial,sans-serif; color:var(--ink); font-size:8.4pt; line-height:1.38; }
+  .page{ width:210mm; min-height:297mm; padding:12.5mm 13mm 8mm; page-break-after:always; position:relative; display:flex; flex-direction:column; background:#fff; }
+  .page:last-child{ page-break-after:auto; }
+  .ph{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:1.6pt solid var(--pp); padding-bottom:2mm; margin-bottom:4mm; }
+  .ph b{ color:var(--pp); font-size:8pt; letter-spacing:.09em; text-transform:uppercase; }
+  .ph span{ font-size:7.5pt; color:var(--gray); letter-spacing:.05em; }
+  .pf{ margin-top:auto; padding-top:2.6mm; border-top:.6pt solid var(--line); display:flex; justify-content:space-between; font-size:7pt; color:#8C8496; letter-spacing:.03em; }
+  h1{ font-size:20pt; line-height:1.15; color:var(--pp); letter-spacing:-.02em; }
+  h2{ font-size:12.6pt; color:var(--pp); margin-bottom:2.2mm; letter-spacing:-.01em; }
+  h3{ font-size:9.9pt; margin:3.4mm 0 1.5mm; color:var(--ink); }
+  h4{ font-size:8.6pt; margin:2.8mm 0 1.2mm; color:var(--pp); text-transform:uppercase; letter-spacing:.06em; }
+  p{ margin-bottom:1.9mm; }
+  ul,ol{ margin:0 0 2.2mm 4.2mm; }
+  li{ margin-bottom:.9mm; }
+  strong{ font-weight:bold; }
+  .lead{ font-size:9.4pt; line-height:1.42; color:var(--gray); }
+  table{ width:100%; border-collapse:collapse; margin:2mm 0 2.8mm; font-size:7.3pt; }
+  th{ background:var(--pp); color:#fff; text-align:left; padding:1.4mm 1.7mm; font-size:6.8pt; text-transform:uppercase; letter-spacing:.05em; font-weight:bold; }
+  td{ padding:1.25mm 1.7mm; border-bottom:.5pt solid var(--line); vertical-align:top; }
+  tr:nth-child(even) td{ background:var(--bg); }
+  .num{ text-align:right; font-variant-numeric:tabular-nums; }
+  .ctr{ text-align:center; }
+  .tag{ display:inline-block; padding:.4mm 1.4mm; border-radius:2mm; font-size:6.4pt; font-weight:bold; letter-spacing:.04em; text-transform:uppercase; white-space:nowrap; }
+  .t-crit{ background:#FBE4E9; color:var(--red); } .t-alt{ background:#FBEEDC; color:var(--amber); }
+  .t-med{ background:#E6F0FB; color:#2A5FA8; } .t-ok{ background:#E1F3EA; color:var(--green); }
+  .box{ border:.8pt solid var(--line); border-left:3pt solid var(--pp2); padding:2.6mm 3.2mm; margin:2.2mm 0; background:var(--bg); border-radius:0 2mm 2mm 0; }
+  .box.crit{ border-left-color:var(--red); background:#FDF6F7; }
+  .box.win{ border-left-color:var(--green); background:#F4FBF7; }
+  .box h4{ margin-top:0; }
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:2.6mm; }
+  .grid4{ display:grid; grid-template-columns:repeat(4,1fr); gap:2.4mm; }
+  .kpi{ border:.8pt solid var(--line); border-radius:2.5mm; padding:2.4mm 2.2mm; text-align:center; background:#fff; }
+  .kpi .v{ font-size:16pt; font-weight:bold; color:var(--pp); line-height:1.05; letter-spacing:-.02em; }
+  .kpi .v.bad{ color:var(--red); } .kpi .v.good{ color:var(--green); } .kpi .v.warn{ color:var(--amber); }
+  .kpi .l{ font-size:6.5pt; color:var(--gray); text-transform:uppercase; letter-spacing:.06em; margin-top:1.5mm; line-height:1.3; }
+  .bar{ height:3.6mm; background:#EFEAF3; border-radius:1mm; overflow:hidden; margin:1mm 0; }
+  .bar i{ display:block; height:100%; background:linear-gradient(90deg,var(--pp),var(--pp2)); }
+  .bar i.r{ background:linear-gradient(90deg,#A82040,var(--red)); }
+  .bar i.g{ background:linear-gradient(90deg,#146B43,var(--green)); }
+  .barrow{ display:grid; grid-template-columns:42mm 1fr 20mm; gap:2.5mm; align-items:center; margin-bottom:1.3mm; font-size:7.4pt; }
+  .barrow .lbl{ color:var(--gray); }
+  .barrow .val{ text-align:right; font-weight:bold; font-variant-numeric:tabular-nums; }
+  .cover{ background:linear-gradient(150deg,#3A0F45 0%,var(--pp) 45%,var(--pp2) 100%); color:#fff; justify-content:space-between; }
+  .cover h1{ color:#fff; font-size:31pt; }
+  .cover .sub{ font-size:13pt; opacity:.9; margin-top:4mm; }
+  .cover .meta{ font-size:9pt; opacity:.8; line-height:1.9; }
+  .rule{ width:34mm; height:2.4pt; background:#fff; margin:7mm 0; opacity:.85; }
+  .score{ display:flex; align-items:center; gap:5mm; }
+  .score .big{ font-size:44pt; font-weight:bold; line-height:1; letter-spacing:-.03em; }
+  .toc li{ display:flex; justify-content:space-between; border-bottom:.5pt dotted var(--line); padding:1.05mm 0; list-style:none; font-size:8pt; }
+  .toc ul{ margin:0; }
+  .toc b{ color:var(--pp); }
+  .small{ font-size:6.9pt; color:var(--gray); line-height:1.45; }
+  .chk{ list-style:none; margin-left:0; }
+  .chk li{ padding-left:6mm; position:relative; }
+  .chk li:before{ content:"□"; position:absolute; left:0; color:var(--pp2); font-size:11pt; line-height:1; top:.3mm; }
+  .quote{  font-style:italic; color:var(--gray); border-left:2pt solid var(--pp3); padding-left:3mm; margin:2mm 0; font-size:8.6pt; }
+  .copyblock{ background:#F5F1F8; border:.6pt dashed var(--pp3); border-radius:2mm; padding:2.2mm 2.8mm; font-family:"DejaVu Sans Mono",monospace; font-size:7pt; line-height:1.45; white-space:pre-wrap; margin:1.8mm 0; }
+  .split{ display:grid; grid-template-columns:1fr 1fr; gap:0; border:.8pt solid var(--line); border-radius:2mm; overflow:hidden; margin:2.2mm 0; }
+  .split>div{ padding:2.6mm 3mm; }
+  .split .a{ background:#FDF6F7; border-right:.8pt solid var(--line); }
+  .split .b{ background:#F4FBF7; }
+  .split h4{ margin-top:0; }
+  .t4 table{ font-size:6pt; } .t4 td{ padding:.62mm 1.1mm; } .t4 th{ padding:.7mm 1.1mm; font-size:5.8pt; }
+  .t4 p{ margin-bottom:1.1mm; } .t4 li{ margin-bottom:.5mm; } .t4 .box{ padding:1.6mm 2.2mm; margin:1.2mm 0; }
+  .t4 h3{ margin:1.9mm 0 .9mm; } .t4 h4{ margin:2.2mm 0 1mm; } .t4 table{ margin:1.2mm 0 1.5mm; }
+  .t4 .lead{ font-size:8.2pt; } .t4 h2{ font-size:11.4pt; margin-bottom:1.7mm; }
+  .t4 .kpi{ padding:2mm 1.8mm; } .t4 .kpi .v{ font-size:14pt; }
+
+  .t1 table{ font-size:7pt; } .t1 td{ padding:1.05mm 1.5mm; } .t1 th{ padding:1.2mm 1.5mm; font-size:6.5pt; }
+  .t1 p{ margin-bottom:1.6mm; } .t1 li{ margin-bottom:.75mm; } .t1 .box{ padding:2.2mm 2.8mm; margin:1.9mm 0; }
+  .t1 h3{ margin:2.8mm 0 1.3mm; } .t1 table{ margin:1.7mm 0 2.3mm; }
+  .t2 table{ font-size:6.7pt; } .t2 td{ padding:.9mm 1.4mm; } .t2 th{ padding:1mm 1.4mm; font-size:6.3pt; }
+  .t2 p{ margin-bottom:1.4mm; } .t2 li{ margin-bottom:.65mm; } .t2 .box{ padding:2mm 2.6mm; margin:1.6mm 0; }
+  .t2 h3{ margin:2.4mm 0 1.1mm; } .t2 table{ margin:1.5mm 0 2mm; } .t2 .lead{ font-size:8.8pt; }
+  .t2 .copyblock{ font-size:6.6pt; padding:1.9mm 2.4mm; margin:1.5mm 0; }
+  .t3 table{ font-size:6.3pt; } .t3 td{ padding:.75mm 1.2mm; } .t3 th{ padding:.85mm 1.2mm; font-size:6pt; }
+  .t3 p{ margin-bottom:1.2mm; } .t3 li{ margin-bottom:.55mm; } .t3 .box{ padding:1.8mm 2.4mm; margin:1.4mm 0; }
+  .t3 h3{ margin:2.1mm 0 1mm; } .t3 table{ margin:1.3mm 0 1.7mm; } .t3 .lead{ font-size:8.4pt; }
+  .t3 h2{ font-size:11.6pt; margin-bottom:1.8mm; }
+  .t3 .copyblock{ font-size:6.3pt; padding:1.7mm 2.2mm; margin:1.3mm 0; line-height:1.4; }
+</style>
+</head>
+<body>
+<section class="page cover">
+  <div>
+    <div style="font-size:8.5pt;letter-spacing:.28em;text-transform:uppercase;opacity:.85">Revisión de copy y cumplimiento</div>
+    <div class="rule"></div>
+    <h1>El mensaje que<br>responde al anuncio</h1>
+    <div class="sub"><strong>DM Wellness Beauty and Nutrition</strong><br>Mensaje automático de Meta · Tratamiento con PDRN</div>
+  </div>
+  <div style="display:flex;gap:5mm;flex-wrap:wrap">
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:4.5mm 5.5mm;min-width:44mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Aciertos</div>
+      <div style="font-size:34pt;font-weight:bold;line-height:1.05">3</div>
+      <div style="font-size:8.5pt;opacity:.9">que no hay que tocar</div>
+    </div>
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:4.5mm 5.5mm;min-width:44mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Fugas de cita</div>
+      <div style="font-size:34pt;font-weight:bold;line-height:1.05">6</div>
+      <div style="font-size:8.5pt;opacity:.9">ordenadas por impacto</div>
+    </div>
+    <div style="background:rgba(255,255,255,.14);border:.8pt solid rgba(255,255,255,.3);border-radius:3mm;padding:4.5mm 5.5mm;min-width:44mm">
+      <div style="font-size:7.5pt;opacity:.8;text-transform:uppercase;letter-spacing:.1em">Banderas legales</div>
+      <div style="font-size:34pt;font-weight:bold;line-height:1.05">5</div>
+      <div style="font-size:8.5pt;opacity:.9">a resolver antes de seguir</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div class="rule" style="margin:0 0 5mm"></div>
+    <strong>Qué revisa este documento:</strong> el mensaje que se dispara cuando alguien da clic en un anuncio de Meta,<br>
+    evaluado en dos ejes a la vez — si convierte a cita y si cumple con la normativa sanitaria y de datos personales.<br>
+    <strong>Elaborado por:</strong> Virtuoso Marketing · 14 de octubre de 2026<br>
+    <strong>Criterio:</strong> efectivo siempre, pero cúmplido primero.
+  </div>
+</section>
+<section class="page ">
+  <div class="ph"><b>01 · Veredicto y mensaje analizado</b><span>DM Wellness · Mensaje automático de Meta</span></div>
+  
+  <h2>No está mal escrito. Está mal estructurado.</h2>
+  <p class="lead">La redacción es correcta y, en lo legal, hay una cosa bien hecha que conviene reconocer antes de criticar nada.
+  El problema es otro: el mensaje está armado para <strong>informar</strong>, y lo que necesitamos es que <strong>agende</strong>.</p>
+
+  <div class="box">
+    <h4>El cuello de botella al que ataca esta revisión</h4>
+    <p>Los anuncios están trayendo conversaciones a un costo competitivo. Donde se pierde el dinero es después:
+    entre el mensaje que entra y la cita que se agenda. Este documento trabaja exactamente ese tramo, que es el
+    más barato de arreglar porque no cuesta un peso más de pauta.</p>
+  </div>
+
+  <h3>El mensaje tal como está hoy</h3>
+  <div class="copyblock">¡Hola, bienvenida a DM WELLNESS! 💜✨
+
+¡Renueva la apariencia de tu piel con nuestro tratamiento de PDRN de salmón! 🧬💉
+
+✨ Beneficios:
+💜 Ayuda a mejorar la textura de la piel.
+💜 Favorece la hidratación y elasticidad.
+💜 Mejora la apariencia de líneas finas.
+💜 Promueve una apariencia más luminosa y revitalizada.
+
+👩🏻‍⚕️ Aplicación realizada por nuestra Dra. Con previa valoración.
+
+💕 1 sesión: $4,500
+💕 3 sesiones: $11,990
+
+💳 ¡Contamos con meses sin intereses con tarjeta de crédito!
+
+📍 Dr. José María Vértiz 995, Narvarte Oriente, Benito Juárez, CDMX.
+
+✨ ¿Te gustaría agendar tu valoración y comenzar a consentir tu piel?</div>
+
+  <h3>Cómo está organizado este documento</h3>
+  <div class="toc"><ul>
+    <li><span><b>02</b> · Lo que está bien hecho y no hay que tocar</span><span>pág. 3</span></li>
+    <li><span><b>03</b> · Las seis fugas de cita, por impacto</span><span>pág. 3 y 4</span></li>
+    <li><span><b>04</b> · Banderas de cumplimiento</span><span>pág. 5</span></li>
+    <li><span><b>05</b> · Propuesta de reescritura</span><span>pág. 6</span></li>
+    <li><span><b>06</b> · Objeción de precio y seguimiento</span><span>pág. 7</span></li>
+    <li><span><b>07</b> · Cómo medir si funcionó</span><span>pág. 7</span></li>
+    <li><span><b>08</b> · Lista de implementación</span><span>pág. 8</span></li>
+  </ul></div>
+
+  <div class="pf"><span>Virtuoso Marketing · Revisión de copy y cumplimiento</span><span>2 / 8</span></div>
+</section>
+<section class="page ">
+  <div class="ph"><b>02 · Aciertos  ·  03 · Fugas de cita</b><span>DM Wellness · Mensaje automático de Meta</span></div>
+  
+  <h2>Lo que está bien hecho</h2>
+  <p class="lead">Tres cosas que la mayoría de las clínicas de la zona hace mal y aquí están bien. No se tocan.</p>
+
+  <div class="box win">
+    <h4>1 · Los beneficios usan el verbo correcto</h4>
+    <p>«Ayuda a», «Favorece», «Mejora la apariencia de», «Promueve». Ninguno promete un resultado.
+    Es exactamente lo que exige la normativa de publicidad sanitaria, y es la diferencia entre un anuncio
+    defendible y uno que puede costar una sanción. <strong>Mantener esta forma de redactar en todo el material.</strong></p>
+  </div>
+  <div class="box win">
+    <h4>2 · «Con previa valoración» está presente</h4>
+    <p>Deja claro que no se vende un procedimiento por catálogo. Es coherente con el posicionamiento de la clínica
+    y protege a la médica responsable.</p>
+  </div>
+  <div class="box win">
+    <h4>3 · El paquete tiene lógica comercial</h4>
+    <p>Tres sesiones a $11,990 son $3,997 por sesión: 11% abajo del precio unitario. Es un descuento razonable
+    que premia el compromiso sin regalar margen.</p>
+  </div>
+
+  <h2 style="margin-top:4mm">Las seis fugas de cita</h2>
+  <p class="lead">Ordenadas por lo que cuestan, no por el orden en que aparecen en el texto.</p>
+
+  <div class="box crit">
+    <h4><span class="tag t-crit">Crítico</span>&nbsp; 1 · Da el precio antes de que exista conversación</h4>
+    <p>Es la fuga más cara. La clínica no vende un producto de $4,500: vende el criterio de una médica para decidir
+    si ese tratamiento le sirve a <em>esa</em> persona. Al soltar el número en el primer mensaje, lo único que la
+    prospecta tiene para juzgar es el número, sin contexto de por qué le conviene. La respuesta natural es
+    «gracias, déjame pensarlo», y ahí se acaba la conversación.</p>
+    <p><strong>Y contradice la promesa del sitio web.</strong> La página dice literalmente
+    <span class="quote" style="display:inline;border:0;padding:0;margin:0">«Te respondemos con dos horarios concretos, no con un catálogo de precios»</span>
+    y «Valoración antes que venta». Este mensaje es un catálogo de precios. Quien vea el sitio y luego escriba
+    nota la incoherencia.</p>
+  </div>
+
+  <div class="box crit">
+    <h4><span class="tag t-crit">Crítico</span>&nbsp; 2 · Es un monólogo de once líneas con la única pregunta hasta el final</h4>
+    <p>En WhatsApp y Messenger la conversión no viene de un folleto, viene del intercambio. La pregunta tiene que
+    estar arriba, no abajo. Y no puede ser de sí o no: <strong>«¿te gustaría agendar?» se contesta no contestando.</strong></p>
+  </div>
+
+  <div class="pf"><span>Virtuoso Marketing · Revisión de copy y cumplimiento</span><span>3 / 8</span></div>
+</section>
+<section class="page ">
+  <div class="ph"><b>03 · Fugas de cita (continúa)</b><span>DM Wellness · Mensaje automático de Meta</span></div>
+  
+  <div class="box crit">
+    <h4><span class="tag t-alt">Alto</span>&nbsp; 3 · Asume que todos los anuncios son de PDRN</h4>
+    <p>Si este es el mensaje automático de toda la cuenta y también corren anuncios de papada o de otros
+    tratamientos, quien hizo clic buscando una cosa recibe la oferta de otra. Ahí se pierde la intención con la
+    que llegó, que es justo lo que se pagó por conseguir.</p>
+    <p><strong>Salida:</strong> un mensaje por conjunto de anuncios, o un abridor neutro que no mencione ningún
+    tratamiento y pregunte qué le interesa.</p>
+  </div>
+
+  <div class="box crit">
+    <h4><span class="tag t-alt">Alto</span>&nbsp; 4 · «Nuestra Dra.», en anónimo</h4>
+    <p>El dato ya existe y es público: <strong>Dra. Dulce María Martínez Colmenares, cédula profesional 09058660.</strong>
+    Nombrarla con cédula convierte y separa a la clínica de la oferta informal de la zona, que fue uno de los
+    hallazgos de la auditoría. «Nuestra Dra.» suena a cabina, no a consultorio.</p>
+  </div>
+
+  <div class="box crit">
+    <h4><span class="tag t-med">Medio</span>&nbsp; 5 · «Bienvenida» deja fuera a los hombres</h4>
+    <p>La clínica atiende pacientes hombres y el análisis de demanda los identificó como un segmento desatendido
+    en la zona. Un saludo en femenino le dice a la mitad del mercado que el mensaje no es para él.
+    <strong>«Hola, qué gusto que nos escribas»</strong> sirve para ambos y no cuesta nada.</p>
+  </div>
+
+  <div class="box crit">
+    <h4><span class="tag t-med">Medio</span>&nbsp; 6 · El emoji de jeringa en el segundo renglón</h4>
+    <p>La objeción número uno de cualquier inyectable es el miedo al piquete — la sección de preguntas del propio
+    sitio web abre con «¿Duele?». Poner una jeringa en los primeros segundos del mensaje trabaja en contra del
+    objetivo. El resto de los emojis están bien; ese sobra.</p>
+  </div>
+
+  <h3>Resumen de las seis</h3>
+  <table>
+    <tr><th style="width:8mm">#</th><th>Fuga</th><th style="width:20mm">Impacto</th><th style="width:62mm">Corrección</th></tr>
+    <tr><td class="ctr">1</td><td>Precio antes de conversación</td><td><span class="tag t-crit">Crítico</span></td><td>Mover el precio al segundo mensaje</td></tr>
+    <tr><td class="ctr">2</td><td>Monólogo con pregunta de sí o no al final</td><td><span class="tag t-crit">Crítico</span></td><td>Pregunta abierta arriba y dos horarios concretos abajo</td></tr>
+    <tr><td class="ctr">3</td><td>Un solo mensaje para todos los anuncios</td><td><span class="tag t-alt">Alto</span></td><td>Un mensaje por anuncio, o abridor neutro</td></tr>
+    <tr><td class="ctr">4</td><td>La médica sin nombre ni cédula</td><td><span class="tag t-alt">Alto</span></td><td>Nombre completo y cédula 09058660</td></tr>
+    <tr><td class="ctr">5</td><td>Saludo solo en femenino</td><td><span class="tag t-med">Medio</span></td><td>Saludo neutro</td></tr>
+    <tr><td class="ctr">6</td><td>Emoji de jeringa</td><td><span class="tag t-med">Medio</span></td><td>Quitarlo</td></tr>
+  </table>
+
+  <div class="pf"><span>Virtuoso Marketing · Revisión de copy y cumplimiento</span><span>4 / 8</span></div>
+</section>
+<section class="page ">
+  <div class="ph"><b>04 · Banderas de cumplimiento</b><span>DM Wellness · Mensaje automático de Meta</span></div>
+  
+  <h2>Cinco puntos a resolver antes de seguir publicándolo</h2>
+  <p class="lead">En salud, un error de cumplimiento no solo pierde una campaña: daña la reputación profesional
+  de quien firma. Estos cinco van ordenados por riesgo.</p>
+
+  <div class="box crit">
+    <h4><span class="tag t-crit">Verificar</span>&nbsp; 1 · El registro sanitario del producto</h4>
+    <p>Antes de seguir anunciando el tratamiento por su nombre hay que confirmar dos cosas con el responsable sanitario:</p>
+    <ul>
+      <li>Que el producto de PDRN que se aplica tenga <strong>registro sanitario COFEPRIS vigente en México</strong>.</li>
+      <li>Si el aviso de publicidad que ya tiene la clínica (2409145036X00027) cubre el anuncio de <em>ese producto por
+      su nombre</em>, o solamente el servicio. No es lo mismo anunciar «tratamiento de bioestimulación» que anunciar
+      una molécula específica dirigida al público general.</li>
+    </ul>
+    <p><strong>Si hay cualquier duda</strong>, la salida segura es describir qué hace el tratamiento sin nombrar la
+    molécula ni su origen, y dejar el nombre del producto para la consulta.</p>
+  </div>
+
+  <div class="box crit">
+    <h4><span class="tag t-alt">Falta</span>&nbsp; 2 · El descargo de resultados</h4>
+    <p>«Los resultados varían según cada paciente» está en el sitio web y en su pie de página, pero no en este mensaje.
+    Debe aparecer una vez, en letra pequeña, en el mensaje donde se habla de precio y protocolo.</p>
+  </div>
+
+  <div class="box crit">
+    <h4><span class="tag t-crit">Riesgo</span>&nbsp; 3 · Datos personales sensibles por WhatsApp</h4>
+    <p>En cuanto alguien contesta hablando de su piel, su edad o algún antecedente, eso es <strong>dato personal
+    sensible</strong> bajo la Ley Federal de Protección de Datos Personales. Recabarlo exige aviso de privacidad en el
+    punto de contacto y, en estricto, consentimiento expreso.</p>
+    <p>Dos medidas prácticas, ambas sencillas:</p>
+    <ul>
+      <li>Una línea con el enlace al aviso de privacidad del sitio, en el segundo mensaje.</li>
+      <li><strong>Regla interna: no preguntar antecedentes clínicos por chat.</strong> Eso se pregunta en la valoración,
+      en el expediente. Es el error que comete casi toda clínica y nadie lo revisa hasta que hay una queja.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h4><span class="tag t-med">Corregir</span>&nbsp; 4 · La dirección no coincide con el sitio web</h4>
+    <p>El mensaje dice «Dr. José María Vértiz 995»; el sitio dice «Calle Doctor Vértiz 995». Es la misma calle, pero
+    para el posicionamiento local la dirección tiene que escribirse <strong>igual en todos lados</strong> — mensaje,
+    sitio, redes y, sobre todo, la ficha de Google cuando se cree. Elegir una forma y usarla siempre.</p>
+  </div>
+
+  <div class="box">
+    <h4><span class="tag t-med">Precisar</span>&nbsp; 5 · «Meses sin intereses» sin condiciones</h4>
+    <p>Tal como está, genera una pregunta en lugar de una cita. Hay que decir cuántos meses, desde qué monto y con
+    qué bancos. Una condición clara cierra; una vaga abre un ida y vuelta.</p>
+  </div>
+
+  <div class="pf"><span>Virtuoso Marketing · Revisión de copy y cumplimiento</span><span>5 / 8</span></div>
+</section>
+<section class="page ">
+  <div class="ph"><b>05 · Propuesta de reescritura</b><span>DM Wellness · Mensaje automático de Meta</span></div>
+  
+  <h2>Dos mensajes en lugar de uno</h2>
+  <p class="lead">El primero gana la respuesta. El segundo da el precio, ya con contexto. Es el mismo contenido
+  repartido de forma que la conversación avance.</p>
+
+  <h3>Mensaje 1 — el que se dispara con el clic</h3>
+  <div class="copyblock">¡Hola! Qué gusto que nos escribas 💜
+
+Soy [nombre] de DM Wellness, en la Narvarte, a una cuadra del Metro Etiopía.
+
+Vi que te interesó nuestro tratamiento para renovar la piel. Antes de decirte
+nada quiero entender tu caso: ¿qué es lo que más te gustaría mejorar — la
+textura, la luminosidad o las líneas finas?
+
+Te lo pregunto porque la Dra. Dulce María Martínez Colmenares (céd. prof.
+09058660) valora cada piel antes de proponer algo, y de ahí sale un plan por
+escrito con número de sesiones y costo. La valoración toma unos 20 minutos.
+
+Esta semana tengo jueves 4:30 pm o sábado 11:00 am. ¿Alguno te acomoda?</div>
+  <p class="small"><strong>Por qué funciona:</strong> cinco líneas en vez de once. La pregunta abierta está arriba y hace dos
+  cosas a la vez — califica el caso y obliga a contestar. Los dos horarios concretos abajo convierten un «sí me interesa»
+  vago en una decisión de calendario. La cédula hace el trabajo que antes hacía el precio: establecer que esto es serio.</p>
+
+  <h3>Mensaje 2 — después de que contesta, con el precio</h3>
+  <div class="copyblock">Perfecto. Para eso trabajamos con PDRN, que ayuda a mejorar textura,
+hidratación y luminosidad de forma progresiva.
+
+El protocolo completo son 3 sesiones — $11,990 (si prefieres probar con una,
+son $4,500). Aceptamos tarjeta y manejamos meses sin intereses desde $[monto]
+con [bancos].
+
+Los resultados varían según cada paciente y se explican caso por caso en la
+valoración. Aviso de privacidad: dmwellness.mx/#aviso-de-privacidad
+
+¿Te aparto el [horario que eligió]?</div>
+  <p class="small"><strong>El cambio de encuadre:</strong> las tres sesiones dejan de ser «un paquete con descuento» y pasan a ser
+  <strong>el protocolo</strong>; una sesión pasa a ser la prueba. Es exactamente el mismo precio contado al revés, y cambia
+  la pregunta mental de «¿me alcanza?» a «¿empiezo completo o pruebo?».</p>
+
+  <h3>Variante neutra — para cuando corre más de un anuncio</h3>
+  <p>Si la cuenta tiene varios conjuntos de anuncios entrando al mismo buzón, este abridor no menciona ningún
+  tratamiento y deja que la persona diga a qué llegó.</p>
+  <div class="copyblock">¡Hola! Qué gusto que nos escribas 💜
+
+Soy [nombre] de DM Wellness, clínica de medicina estética, nutrición y spa en
+la Narvarte, a una cuadra del Metro Etiopía.
+
+Para orientarte bien: ¿qué es lo que te gustaría trabajar — rostro, cuerpo o
+alimentación?
+
+Con eso te digo qué puede hacer la Dra. Dulce María Martínez Colmenares
+(céd. prof. 09058660) en tu caso y te aparto lugar para valoración. Esta
+semana tengo jueves 4:30 pm o sábado 11:00 am.</div>
+  <p class="small">Pierde la ventaja de nombrar el tratamiento que atrajo el clic, pero no corre el riesgo de ofrecer
+  lo que no se buscaba. Mientras haya un solo mensaje para toda la cuenta, esta versión rinde más que una específica.</p>
+
+  <div class="pf"><span>Virtuoso Marketing · Revisión de copy y cumplimiento</span><span>6 / 8</span></div>
+</section>
+<section class="page ">
+  <div class="ph"><b>06 · Objeción y seguimiento  ·  07 · Medición</b><span>DM Wellness · Mensaje automático de Meta</span></div>
+  
+  <h2>Si preguntan el precio de entrada</h2>
+  <p class="lead">No hay que esquivarlo. Evadir un precio quema la confianza más rápido que cualquier número.
+  El guion da la cifra y la devuelve a la agenda en la misma respuesta.</p>
+  <div class="copyblock">Va desde $4,500 la sesión, y el protocolo de 3 queda en $11,990. Pero cuántas
+necesitas depende de tu piel, y eso lo define la doctora en la valoración para
+que no pagues de más. ¿Te agendo el jueves 4:30 o el sábado 11:00?</div>
+  <p class="small">La frase <strong>«para que no pagues de más»</strong> es la que hace el trabajo: convierte la valoración
+  de un trámite en un beneficio económico para la paciente.</p>
+
+  <h2 style="margin-top:4mm">Si no contesta</h2>
+  <table>
+    <tr><th style="width:26mm">Cuándo</th><th>Qué se manda</th></tr>
+    <tr><td><strong>A las 24 h</strong></td><td>«Hola [nombre], te dejo los horarios por si te sirve: jueves 4:30 pm o sábado 11:00 am. Si ninguno te queda, dime qué día te acomoda y lo vemos.»</td></tr>
+    <tr><td><strong>A los 4 días</strong></td><td>«Sigo por aquí si quieres resolver cualquier duda antes de agendar. ¿Hay algo que te esté frenando?» — esta última pregunta es la que destapa la objeción real.</td></tr>
+  </table>
+  <p class="small">Dos toques y se cierra. Un tercero molesta y en salud la molestia cuesta reputación.</p>
+
+  <h2 style="margin-top:4mm">Cómo saber si funcionó</h2>
+  <p class="lead">No hace falta ninguna herramienta nueva. Hacen falta tres números, anotados a mano en una libreta
+  o una hoja de cálculo, todos los días.</p>
+  <div class="grid3">
+    <div class="kpi"><div class="v">1</div><div class="l">Mensajes recibidos</div></div>
+    <div class="kpi"><div class="v">2</div><div class="l">Cuántos contestaron la primera pregunta</div></div>
+    <div class="kpi"><div class="v">3</div><div class="l">Cuántas citas se agendaron</div></div>
+  </div>
+  <div class="box">
+    <h4>La prueba, en cuatro semanas</h4>
+    <p>Dos semanas con el mensaje actual y dos con el nuevo, contando esos tres números. Al final se compara la
+    tasa de <strong>mensaje a cita</strong>, que es el dato que hoy no existe en ningún reporte y es el que decide si la
+    inversión en pauta se convierte en pacientes.</p>
+    <p>Con el costo por conversación que trae la cuenta hoy, mover esa tasa del 25% al 50% vale más que cualquier
+    optimización que se le pueda hacer a la segmentación o a la creatividad. Es la palanca más barata que queda.</p>
+  </div>
+
+  <div class="pf"><span>Virtuoso Marketing · Revisión de copy y cumplimiento</span><span>7 / 8</span></div>
+</section>
+<section class="page ">
+  <div class="ph"><b>08 · Lista de implementación</b><span>DM Wellness · Mensaje automático de Meta</span></div>
+  
+  <h2>Qué hacer, en orden</h2>
+  <p class="lead">Separado por quién lo ejecuta. Nada de esto requiere presupuesto adicional.</p>
+
+  <h3>La clínica, antes de volver a publicar</h3>
+  <ul class="chk">
+    <li>Confirmar con el responsable sanitario el registro COFEPRIS del producto de PDRN y el alcance del aviso de publicidad.</li>
+    <li>Definir las condiciones exactas de meses sin intereses: cuántos, desde qué monto y con qué bancos.</li>
+    <li>Elegir la forma única de escribir la dirección y usarla en todos lados.</li>
+    <li>Establecer la regla interna de no preguntar antecedentes clínicos por chat.</li>
+    <li>Definir qué dos horarios reales se ofrecen cada semana, para que recepción no improvise.</li>
+  </ul>
+
+  <h3>Virtuoso, en la cuenta</h3>
+  <ul class="chk">
+    <li>Sustituir el mensaje automático por el Mensaje 1 de la página 6.</li>
+    <li>Cargar el Mensaje 2 y el guion de objeción de precio como respuestas rápidas.</li>
+    <li>Revisar si hay más de un conjunto de anuncios activo y, si lo hay, escribir un abridor por cada uno.</li>
+    <li>Entregar a recepción la hoja de conteo de los tres números.</li>
+  </ul>
+
+  <h3>A las cuatro semanas</h3>
+  <ul class="chk">
+    <li>Comparar la tasa de mensaje a cita entre las dos quincenas.</li>
+    <li>Ajustar la pregunta de apertura si la tasa de respuesta no subió.</li>
+    <li>Llevar el resultado al siguiente informe mensual.</li>
+  </ul>
+
+  <div class="box" style="margin-top:4mm">
+    <h4>Lo que hay que conservar del mensaje original</h4>
+    <p>Los verbos de los beneficios — «ayuda a», «favorece», «mejora la apariencia de», «promueve» — y la mención de la
+    valoración previa. Son la parte que está bien hecha y la que protege a la clínica. Cualquier versión futura del
+    mensaje, para cualquier tratamiento, debe redactarse con esa misma forma.</p>
+  </div>
+
+  <div class="box win">
+    <h4>El criterio de fondo</h4>
+    <p>El mensaje actual trata de vender un tratamiento. El propuesto trata de conseguir una valoración. En una clínica
+    con criterio médico eso no es un rodeo comercial: es el producto. La paciente que llega valorada compra más, regresa
+    y recomienda; la que compra por precio en un chat se va con quien se lo baje.</p>
+  </div>
+
+  <div class="pf"><span>Virtuoso Marketing · Revisión de copy y cumplimiento</span><span>8 / 8</span></div>
+</section>
+</body>
+</html>

@@ -16,6 +16,8 @@ Benito Juárez, CDMX (C.P. 03023).
 | `informe-meta-septiembre.html` | Fuente del informe mensual |
 | `Mapa-Demanda-Competencia-DM-Wellness.pdf` | **Mapa de demanda y competencia** — 10 páginas, edición unificada |
 | `mapa-demanda.html` | Fuente del mapa de demanda |
+| `Revision-Mensaje-Meta-DM-Wellness.pdf` | **Revisión del mensaje automático de Meta** — 8 páginas, copy y cumplimiento |
+| `revision-mensaje-meta.html` | Fuente de la revisión del mensaje |
 
 Ambas versiones comparten hallazgos, cifras y recomendaciones. La ejecutiva fusiona
 secciones y recorta la prosa explicativa, el calendario editorial de 4 semanas y el
