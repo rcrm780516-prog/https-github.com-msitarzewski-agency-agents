@@ -303,6 +303,11 @@ a{color:inherit;text-decoration:none;}
 .social-btn:hover{opacity:0.88;transform:translateY(-2px);}
 .social-btn--fb{background:#1877F2;}
 .social-btn--ig{background:linear-gradient(135deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888);}
+/* Botón flotante WhatsApp */
+#wa-fab{position:fixed;bottom:24px;right:24px;z-index:9999;background:#25D366;color:#fff;display:flex;align-items:center;gap:10px;padding:14px 20px;border-radius:50px;box-shadow:0 4px 20px rgba(37,211,102,0.45);font-weight:700;font-size:0.95rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;animation:waFabIn 0.6s ease 1.5s both;}
+#wa-fab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 28px rgba(37,211,102,0.55);}
+@keyframes waFabIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){#wa-fab span{display:none;}#wa-fab{padding:16px;}}
 .map-placeholder{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:8px;height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,0.5);font-size:0.9rem;text-align:center;padding:20px;}
 
 /* FOOTER */
@@ -923,6 +928,12 @@ footer a{color:rgba(197,116,42,0.8);}
   </div>
 </section>
 
+<!-- BOTÓN FLOTANTE WHATSAPP -->
+<a id="wa-fab" href="https://wa.me/528122026068?text=Hola%20Dr.%20Sepúlveda%2C%20quisiera%20agendar%20una%20consulta." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp" onclick="gtagWaConversion()">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.534 5.861L0 24l6.318-1.505A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.005-1.372l-.359-.213-3.75.893.944-3.664-.234-.376A9.818 9.818 0 1112 21.818z"/></svg>
+  <span>¿Tienes dudas?</span>
+</a>
+
 <!-- FOOTER -->
 <footer>
   <p>
@@ -1039,6 +1050,21 @@ footer a{color:rgba(197,116,42,0.8);}
   goTo(0);
   startAuto();
 })();
+</script>
+
+<!-- Google Ads WhatsApp Conversion -->
+<script>
+function gtagWaConversion() {
+  if (typeof gtag === 'undefined') return;
+  // Reemplaza AW-XXXXXXXXX/YYYYYYYYYYY con tu ID de conversión de Google Ads
+  gtag('event', 'conversion', {
+    'send_to': 'AW-XXXXXXXXX/YYYYYYYYYYY'
+  });
+}
+// Dispara conversión en TODOS los links de WhatsApp del sitio
+document.querySelectorAll('a[href*="wa.me"]').forEach(function(el){
+  el.addEventListener('click', gtagWaConversion);
+});
 </script>
 </body>
 </html>
