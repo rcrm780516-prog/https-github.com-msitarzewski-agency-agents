@@ -1,0 +1,16 @@
+RESPALDO — TEVE Transfers & Tours
+=================================
+Tomado antes de agregar las 3 paginas de destino.
+
+QUE CONTIENE
+  index.html y las 24 paginas, img/ (30 archivos), teve-config.js,
+  teve-fotos.js, robots.txt, sitemap.xml, .htaccess, version.txt
+  image-manifest.csv   ruta, dimensiones, sha256 y bytes de cada imagen
+  repo-hashes.txt      sha256 de los 47 archivos fuente del repo
+  screenshots/         antes-*.png a 390px y 1440px
+
+DE DONDE SALIO  (importante)
+  De la salida compilada del repositorio, NO del sitio en vivo.
+  La red de este entorno bloquea tevetransferstours.com, asi que no se
+  pudo descargar el sitio publicado. Es el mismo contenido que se subio
+  (version 2026-09-23-m), pero no esta verificado contra el servidor.

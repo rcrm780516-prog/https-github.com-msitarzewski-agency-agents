@@ -1,0 +1,94 @@
+# ==========================================================================
+# TEVE Transfers & Tours — configuración del servidor (Hostinger / Apache)
+# Sube este archivo a public_html/ junto con index.html
+# IMPORTANTE: el nombre empieza con punto y NO tiene extensión: .htaccess
+# ==========================================================================
+
+# --------------------------------------------------------------------------
+# 1. Forzar HTTPS y www  (evita contenido duplicado en Google)
+# --------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http -> https
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # sin www -> con www
+  RewriteCond %{HTTP_HOST} ^tevetransferstours\.com [NC]
+  RewriteRule ^(.*)$ https://www.tevetransferstours.com/$1 [R=301,L]
+
+  # El dominio anterior manda a este, con o sin www. Si tevetours.com ya no es
+  # tuyo, esta regla simplemente nunca se activa: no estorba.
+  RewriteCond %{HTTP_HOST} ^(www\.)?tevetours\.com [NC]
+  RewriteRule ^(.*)$ https://www.tevetransferstours.com/$1 [R=301,L]
+
+  # ------------------------------------------------------------------------
+  # 2. Rutas internas del sitio.
+  #
+  #    Cada página existe ahora como un archivo real: /services/index.html,
+  #    /es/servicios/index.html, y así las 21. Antes TODAS las direcciones
+  #    devolvían el mismo index.html y el contenido lo armaba JavaScript
+  #    después, así que un buscador veía 21 direcciones idénticas, sin H1 y
+  #    con el canonical apuntando siempre a la portada. Indexaba una sola.
+  #
+  #    Los slugs viejos en español que estaban en la raíz se redirigen a su
+  #    nueva dirección con 301, para no perder los enlaces ya publicados.
+  # ------------------------------------------------------------------------
+  RewriteRule ^servicios/?$   /es/servicios [R=301,L]
+  RewriteRule ^destinos/?$    /es/destinos  [R=301,L]
+  RewriteRule ^contacto/?$    /es/contacto  [R=301,L]
+
+  # Apache, al pedir /services, redirige solo a /services/ con una 301. Eso
+  # añade un salto y deja la dirección con barra final, distinta a la del
+  # sitemap y a la del canonical. Se apaga y se sirve el archivo por dentro,
+  # sin redirección: la dirección que ve el visitante es la que se indexa.
+  DirectorySlash Off
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.+?)/?$ /$1/index.html [L]
+
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 3. Compresión — la página pesa mucho menos al viajar
+# --------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json image/svg+xml
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 4. Caché del navegador — mejora la velocidad y la nota de PageSpeed
+# --------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg        "access plus 1 year"
+  ExpiresByType image/png         "access plus 1 year"
+  ExpiresByType image/webp        "access plus 1 year"
+  ExpiresByType image/svg+xml     "access plus 1 year"
+  ExpiresByType image/x-icon      "access plus 1 year"
+  ExpiresByType text/css          "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType text/html         "access plus 0 seconds"
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 5. Seguridad básica
+# --------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# No mostrar el listado de archivos de las carpetas
+Options -Indexes
+
+# Página de error personalizada
+ErrorDocument 404 /index.html
+
+# Codificación por defecto
+AddDefaultCharset UTF-8

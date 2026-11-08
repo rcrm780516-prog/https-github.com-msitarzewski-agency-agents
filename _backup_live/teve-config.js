@@ -1,0 +1,1470 @@
+/* ==========================================================================
+   TEVE TRANSFERS & TOURS — ARCHIVO DE PERSONALIZACIÓN (EL "EMBEBEDOR")
+   ==========================================================================
+
+   Este es el ÚNICO archivo que necesitas editar. No toques index.html.
+
+   Aquí se cambian: el logotipo, TODAS las imágenes, los teléfonos,
+   los precios, los textos y el SEO — en los TRES IDIOMAS.
+
+   --------------------------------------------------------------------------
+   CÓMO ESTÁ ORGANIZADO
+   --------------------------------------------------------------------------
+   PARTE A — Datos que NO cambian entre idiomas:
+             logotipo, teléfonos, correo, redes sociales, imágenes,
+             widgets y analítica. Se editan una sola vez.
+
+   PARTE B — Textos, uno por idioma, dentro de  textos: { en, es, pt }.
+             El inglés (en) es la versión original: es el idioma del
+             mercado principal (Reino Unido, Australia, Estados Unidos y
+             Canadá). El español y el portugués son traducciones.
+
+   --------------------------------------------------------------------------
+   CÓMO PONER UNA IMAGEN — hay tres formas, todas válidas
+   --------------------------------------------------------------------------
+   1) ARCHIVO SUBIDO (lo normal)
+      Sube la foto a la carpeta  img/  de tu hosting y escribe la ruta
+      empezando con una barra, para que también funcione en /es/ y /pt/:
+          "/img/hero-cancun.jpg"
+
+   2) DIRECCIÓN DE INTERNET
+      Si la foto ya está publicada en otro lado:
+          "https://misitio.com/foto.jpg"
+
+   3) INCRUSTADA (base64)
+      Conviértela en https://www.base64-image.de y pega el resultado:
+          "data:image/jpeg;base64,/9j/4AAQSkZJRg..."
+      Así viaja dentro del código y nunca se rompe. Ideal para el logo.
+
+   Si dejas una imagen en "" el sitio muestra un degradado animado con los
+   colores de la marca. Nunca se ve rota ni con el ícono de imagen perdida.
+   Las medidas recomendadas están en  img/LEEME.txt
+
+   --------------------------------------------------------------------------
+   REGLA DE ORO PARA EDITAR
+   --------------------------------------------------------------------------
+   El texto va SIEMPRE entre comillas dobles y cada línea termina en coma.
+   Si borras una comilla o una coma, la página sale en blanco. Si eso pasa:
+   abre la página, presiona F12, pestaña Console, y ahí te dice la línea.
+   ========================================================================== */
+
+window.TEVE_CONFIG = {
+
+  /* ==========================================================================
+     PARTE A — DATOS COMUNES A LOS TRES IDIOMAS
+     ========================================================================== */
+
+  /* ======================================================================
+     0. IDIOMAS
+     ----------------------------------------------------------------------
+     El idioma por defecto es el que ve quien entra a tevetransferstours.com sin
+     indicar nada, y el que Google usa como versión principal del sitio.
+
+     Está en inglés a propósito: tus clientes vienen de Reino Unido,
+     Australia, Estados Unidos y Canadá.
+
+     Direcciones que genera el sitio:
+         Inglés     tevetransferstours.com/            tevetransferstours.com/tours
+         Español    tevetransferstours.com/es/         tevetransferstours.com/es/tours
+         Portugués  tevetransferstours.com/pt/         tevetransferstours.com/pt/tours
+
+     Para quitar un idioma, bórralo de idiomasActivos y desaparece del
+     selector, del mapa del sitio y de las etiquetas hreflang.
+     ====================================================================== */
+  idiomaPorDefecto: "en",
+  idiomasActivos: ["en", "es", "pt"],
+
+  // Detectar el idioma del navegador y redirigir la primera visita.
+  // true  = un visitante de Brasil que entra a tevetransferstours.com ve el portugués.
+  // false = todos ven inglés hasta que cambian de idioma a mano.
+  detectarIdiomaDelNavegador: true,
+
+  /* ======================================================================
+     1. MARCA Y LOGOTIPO
+     ====================================================================== */
+  marca: {
+    nombre: "TEVE",
+    nombreCompleto: "TEVE Transfers & Tours",
+    dominio: "https://www.tevetransferstours.com",
+
+    // Logotipo oficial de TEVE, extraído del tarifario original a 834x840 px.
+    // La versión "blanca" lleva el anillo y la tipografía en blanco para que
+    // se lea sobre el fondo oscuro de la portada y del pie de página.
+    logo:        "/img/logo-teve.png",         // barra de navegación (fondo blanco)
+    logoBlanco:  "/img/logo-teve-blanco.png",  // portada y pie de página oscuro
+    logoAlto:    "74", // altura del logo en píxeles dentro de la barra
+                       // (un sello circular con texto necesita tamaño para leerse)
+
+    favicon:     "/img/favicon.png",   // ícono de la pestaña del navegador
+    imagenRedes: ""    // ej. "/img/og-teve.jpg" (1200x630) — al compartir en redes
+  },
+
+  /* ======================================================================
+     2. CONTACTO  ← CAMBIA ESTO PRIMERO, ES LO MÁS IMPORTANTE
+     ====================================================================== */
+  contacto: {
+    // WhatsApp: SOLO NÚMEROS, con código de país, sin +, sin espacios, sin guiones.
+    // México: 52 + 1 + LADA + número.
+    // Si algún día WhatsApp deja de abrir, prueba quitando el 1: "529987351905".
+    whatsapp: "5219987351905",
+
+    // WhatsApp distinto según el idioma en que esté navegando el visitante.
+    // Déjalo en "" y usa el de arriba.
+    //   Si el número de atención en español (228 210 7684) tiene WhatsApp,
+    //   escríbelo aquí como "5212282107684" y los visitantes que naveguen
+    //   en español escribirán directo a esa línea.
+    whatsappPorIdioma: {
+      en: "",
+      es: "",
+      pt: ""
+    },
+
+    email: "reservas@tevetransferstours.com",
+
+    // Teléfonos. Salen en la barra superior, en el pie y en la página de
+    // contacto, tanto en escritorio como en móvil. La etiqueta se traduce sola.
+    telefonos: [
+      { etiqueta: { en: "English", es: "Atención en inglés",  pt: "Atendimento em inglês"   },
+        numero: "+52 998 735 1905", marcar: "+529987351905" },
+      { etiqueta: { en: "Español", es: "Atención en español", pt: "Atendimento em espanhol" },
+        numero: "+52 228 210 7684", marcar: "+522282107684" }
+    ],
+
+    direccion: {
+      calle: "Zona Hotelera",
+      ciudad: "Cancún",
+      estado: "Quintana Roo",
+      cp: "77500",
+      pais: "MX"
+    }
+  },
+
+  /* ======================================================================
+     3. REDES SOCIALES
+     Deja en "" las que no uses y desaparecen solas del sitio.
+     ====================================================================== */
+  redes: {
+    facebook:    "https://www.facebook.com/profile.php?id=61550914251672",
+    instagram:   "https://www.instagram.com/tevetransferstours",
+    tripadvisor: "https://www.tripadvisor.com.au/Attraction_Review-g150807-d28028440-Reviews-Teve_Transfers_Tours-Cancun_Yucatan_Peninsula.html",
+    youtube:     "",
+    tiktok:      "",
+    // Enlace público de tu Perfil de Empresa en Google. Sirve para que Google
+    // entienda que el sitio, la ficha del mapa y TripAdvisor son el MISMO
+    // negocio, y no tres cosas sueltas. Para sacarlo: entra a tu perfil,
+    // "Compartir perfil", y copia la dirección que te da (empieza por
+    // https://g.page/ o https://maps.app.goo.gl/).
+    perfilGoogle: "https://share.google/4gKj5s8oSL3X3cX2r"
+  },
+
+  /* ======================================================================
+     4. IMÁGENES PRINCIPALES
+     ====================================================================== */
+  imagenes: {
+    hero:    "",  // Portada. ej. "/img/hero-cancun.jpg" (1920x1080)
+    timFoto: "",  // Foto de Tim. ej. "/img/tim.jpg"      (800x800)
+    porQue:  "",  // Fondo de la sección "Why TEVE?"      (1920x800)
+    contacto:""   // Fondo de la sección de contacto (opcional)
+  },
+
+  /* ======================================================================
+     5. IMÁGENES Y PRECIOS DE SERVICIOS, TOURS Y DESTINOS
+     ----------------------------------------------------------------------
+     Las fotos y los precios son los mismos en los tres idiomas, así que
+     viven aquí y NO se repiten en cada traducción. Cada bloque se une con
+     su texto por el campo  id  (los ids deben coincidir exactamente).
+
+     El orden de esta lista es el orden en que aparecen en el sitio.
+     ====================================================================== */
+  servicios: [
+    // El precio del transfer sale del tarifario oficial (sección 6).
+    // Los demás dicen "cotización personalizada" hasta que nos pases el
+    // precio real: es preferible eso a publicar una cifra inventada.
+    { id: "transfer",  imagen: "", destacado: true,  desde: { en: "From $50 USD per vehicle", es: "Desde $50 USD por vehículo", pt: "A partir de US$ 50 por veículo" } },
+    // "estrella" saca este servicio de la rejilla y lo pone arriba, a todo lo
+    // ancho. Solo uno debe llevarla: si se marcan dos, dejan de destacar.
+    { id: "chofer",    imagen: "", destacado: true,  estrella: true,
+      desde: { en: "From $300 USD · Full Day · Small & Large Groups",
+               es: "Desde $300 USD · Día Completo · Grupos Pequeños y Grandes",
+               pt: "A partir de US$ 300 · Dia Inteiro · Grupos Pequenos e Grandes" } },
+    { id: "grupos",    imagen: "", destacado: true,  desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
+    { id: "catamaran", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } },
+    { id: "yate",      imagen: "", destacado: false, desde: { en: "From $700 USD · up to 8 people", es: "Desde $700 USD · hasta 8 personas", pt: "A partir de US$ 700 · até 8 pessoas" } },
+    { id: "concierge", imagen: "", destacado: false, desde: { en: "Custom quote", es: "Cotización personalizada", pt: "Orçamento personalizado" } }
+  ],
+
+  /* --------------------------------------------------------------------
+     TOURS  —  catálogo real de TEVE
+     --------------------------------------------------------------------
+     ⚠ LOS PRECIOS SON LOS "PUBLIC PRICE" DE TU LISTA.
+       El "TEVE PRICE" es tu costo y NO se publica: revelaría tu margen a
+       cualquiera que entre al sitio, incluida tu competencia.
+
+     adulto / menor  solo el número, sin signos ni comas
+                     ""    = no tenemos el precio → pide cotización
+                     "NA"  = solo adultos (Coco Bongo, yates)
+     porPersona      true  -> se multiplica por adultos y menores
+                     false -> precio cerrado por embarcación o grupo
+     destacado       true  -> además sale como tarjeta en la página Tours
+     categoria       agrupa el menú del buscador (ver textos → categorias)
+
+     Todos aparecen en el buscador. Solo los "destacado" tienen tarjeta.
+     -------------------------------------------------------------------- */
+  tours: [
+    /* --- Parques Xcaret --- */
+    { id: "xcaret-plus",     nombre: "Xcaret Plus",                    categoria: "parques", adulto: "215", menor: "161", destacado: true },
+    { id: "xelha",           nombre: "Xel-Há All Inclusive",           categoria: "parques", adulto: "165", menor: "123", destacado: true },
+    { id: "xplor",           nombre: { en: "Xplor (Day)", es: "Xplor (día)", pt: "Xplor (dia)" },                    categoria: "parques", adulto: "195", menor: "146", destacado: true },
+    { id: "xplor-fuego",     nombre: "Xplor Fuego",                    categoria: "parques", adulto: "175", menor: "131" },
+    { id: "xoximilco",       nombre: "Xoximilco",                      categoria: "parques", adulto: "145", menor: "108" },
+    { id: "xenses",          nombre: "Xenses",                         categoria: "parques", adulto: "125", menor: "93"  },
+    { id: "xenotes",         nombre: "Xenotes",                        categoria: "parques", adulto: "159", menor: "119", destacado: true },
+    { id: "xichen-deluxe-x", nombre: { en: "Xichén Deluxe (Xcaret)",  es: "Xichén Deluxe (Xcaret)",  pt: "Xichén Deluxe (Xcaret)" },         categoria: "parques", adulto: "185", menor: "138" },
+    { id: "xichen-clasico-x",nombre: { en: "Xichén Classic (Xcaret)", es: "Xichén Clásico (Xcaret)", pt: "Xichén Clássico (Xcaret)" },        categoria: "parques", adulto: "165", menor: "123" },
+    { id: "ferry-isla",      nombre: { en: "Isla Mujeres Ferry (round trip)", es: "Ferry a Isla Mujeres (redondo)", pt: "Ferry para Isla Mujeres (ida e volta)" }, categoria: "parques", adulto: "38",  menor: "30"  },
+
+    /* --- Dolphin Discovery --- */
+    { id: "dolphin-royal",     nombre: "Dolphin Royal Connection", categoria: "delfines", adulto: "179", menor: "109", destacado: true },
+    { id: "dolphin-connection",nombre: "Dolphin Connection",       categoria: "delfines", adulto: "149", menor: "109" },
+    { id: "dolphin-encounter", nombre: "Dolphin Encounter",        categoria: "delfines", adulto: "119", menor: "109" },
+
+    /* --- Chichén Itzá --- */
+    { id: "xichen-clasico",  nombre: { en: "Chichén Itzá Classic", es: "Chichén Itzá Clásico", pt: "Chichén Itzá Clássico" },        categoria: "chichen", adulto: "90",  menor: "80", destacado: true },
+    { id: "xichen-plus",     nombre: "Chichén Itzá Plus",           categoria: "chichen", adulto: "95",  menor: "85" },
+    { id: "xichen-deluxe",   nombre: "Chichén Itzá Deluxe",         categoria: "chichen", adulto: "105", menor: "95" },
+    { id: "xichen-2cenotes", nombre: { en: "Chichén Itzá + 2 Cenotes", es: "Chichén Itzá + 2 Cenotes", pt: "Chichén Itzá + 2 Cenotes" },    categoria: "chichen", adulto: "120", menor: "110" },
+
+    /* --- Actividades cortas en Cancún --- */
+    { id: "atv",         nombre: { en: "ATV, Zipline & Cenote", es: "ATV, Tirolesa y Cenote", pt: "ATV, Tirolesa e Cenote" }, categoria: "cancun", adulto: "90", menor: "" },
+    { id: "parasailing", nombre: "Parasailing",            categoria: "cancun", adulto: "80", menor: "" },
+    { id: "jungle",      nombre: "Jungle Tour",            categoria: "cancun", adulto: "70", menor: "60" },
+    { id: "jetski",      nombre: { en: "Jet Ski (per ski)", es: "Jet Ski (por moto)", pt: "Jet Ski (por moto)" },     categoria: "cancun", adulto: "80", menor: "", porPersona: false,
+      unidad: { en: "per jet ski", es: "por moto", pt: "por moto" } },
+    { id: "glassboat",   nombre: { en: "Glass Bottom Boat", es: "Barco con fondo de cristal", pt: "Barco com fundo de vidro" }, categoria: "cancun", adulto: "70", menor: "60" },
+    { id: "taco",        nombre: "Taco Tour",              categoria: "cancun", adulto: "80", menor: "70" },
+
+    /* --- Coco Bongo (solo adultos) --- */
+    { id: "cb-drink",       nombre: { en: "Coco Bongo · Drink Pack (Mon-Wed)", es: "Coco Bongo · Drink Pack (lun-mié)", pt: "Coco Bongo · Drink Pack (seg-qua)" },  categoria: "cocobongo", adulto: "80",  menor: "NA" },
+    { id: "cb-reg-lm",      nombre: { en: "Coco Bongo · Regular (Mon-Wed)", es: "Coco Bongo · Regular (lun-mié)", pt: "Coco Bongo · Regular (seg-qua)" },     categoria: "cocobongo", adulto: "90",  menor: "NA" },
+    { id: "cb-reg-jd",      nombre: { en: "Coco Bongo · Regular (Thu-Sun)", es: "Coco Bongo · Regular (jue-dom)", pt: "Coco Bongo · Regular (qui-dom)" },     categoria: "cocobongo", adulto: "100", menor: "NA" },
+    { id: "cb-reg-v",       nombre: { en: "Coco Bongo · Regular (Friday)", es: "Coco Bongo · Regular (viernes)", pt: "Coco Bongo · Regular (sexta)" },     categoria: "cocobongo", adulto: "125", menor: "NA" },
+    { id: "cb-prem-js",     nombre: { en: "Coco Bongo · Premium (Thu-Sat)", es: "Coco Bongo · Premium (jue-sáb)", pt: "Coco Bongo · Premium (qui-sáb)" },     categoria: "cocobongo", adulto: "125", menor: "NA" },
+    { id: "cb-prem-dm",     nombre: { en: "Coco Bongo · Premium (Sun-Wed)", es: "Coco Bongo · Premium (dom-mié)", pt: "Coco Bongo · Premium (dom-qua)" },     categoria: "cocobongo", adulto: "140", menor: "NA" },
+    { id: "cb-gold-dm",     nombre: { en: "Coco Bongo · Gold Member (Sun-Wed)", es: "Coco Bongo · Gold Member (dom-mié)", pt: "Coco Bongo · Gold Member (dom-qua)" }, categoria: "cocobongo", adulto: "160", menor: "NA" },
+    { id: "cb-gold-js",     nombre: { en: "Coco Bongo · Gold Member (Thu-Sat)", es: "Coco Bongo · Gold Member (jue-sáb)", pt: "Coco Bongo · Gold Member (qui-sáb)" }, categoria: "cocobongo", adulto: "170", menor: "NA" },
+    { id: "cb-royal",       nombre: { en: "Coco Bongo · Royal Service (Sun-Wed)", es: "Coco Bongo · Royal Service (dom-mié)", pt: "Coco Bongo · Royal Service (dom-qua)" }, categoria: "cocobongo", adulto: "175", menor: "NA" },
+    { id: "cb-front-js",    nombre: { en: "Coco Bongo · Front Row (Thu-Sat)", es: "Coco Bongo · Front Row (jue-sáb)", pt: "Coco Bongo · Front Row (qui-sáb)" },   categoria: "cocobongo", adulto: "210", menor: "NA" },
+    { id: "cb-front-dm",    nombre: { en: "Coco Bongo · Front Row (Sun-Wed)", es: "Coco Bongo · Front Row (dom-mié)", pt: "Coco Bongo · Front Row (dom-qua)" },   categoria: "cocobongo", adulto: "195", menor: "NA" },
+
+    /* --- Yates y catamaranes ---
+       Los yates se cobran por embarcación, no por persona. */
+    { id: "yate-8",   nombre: { en: "Yacht · up to 8 people",  es: "Yate hasta 8 personas",  pt: "Iate até 8 pessoas" },  categoria: "nautico", adulto: "700",  menor: "NA", porPersona: false, desde: true },
+    { id: "yate-10",  nombre: { en: "Yacht · up to 10 people", es: "Yate hasta 10 personas", pt: "Iate até 10 pessoas" }, categoria: "nautico", adulto: "850",  menor: "NA", porPersona: false, desde: true },
+    { id: "yate-15",  nombre: { en: "Yacht · up to 15 people", es: "Yate hasta 15 personas", pt: "Iate até 15 pessoas" }, categoria: "nautico", adulto: "1100", menor: "NA", porPersona: false, desde: true },
+    { id: "cat-plus",    nombre: { en: "Catamaran Plus to Isla Mujeres",    es: "Catamarán Plus a Isla Mujeres",    pt: "Catamarã Plus para Isla Mujeres" },    categoria: "nautico", adulto: "80",  menor: "70", destacado: true },
+    { id: "cat-premium", nombre: { en: "Catamaran Premium to Isla Mujeres", es: "Catamarán Premium a Isla Mujeres", pt: "Catamarã Premium para Isla Mujeres" }, categoria: "nautico", adulto: "130", menor: "" }
+  ],
+
+  // Las tarjetas de destino son verticales: las fotos de 800x1000 se ven mejor.
+  // paleta = degradado automático si no hay foto: jungle / coastal / ocean / lagoon
+  destinos: [
+    { id: "chichen", nombre: "Chichén Itzá",     imagen: "", paleta: "jungle"  },
+    { id: "tulum",   nombre: "Tulum",            imagen: "", paleta: "coastal" },
+    { id: "isla",    nombre: "Isla Mujeres",     imagen: "", paleta: "ocean"   },
+    { id: "bacalar", nombre: "Bacalar & Holbox", imagen: "", paleta: "lagoon"  }
+  ],
+
+  blog: [
+    { id: "transfer-vs-shared", imagen: "", enlace: "" },
+    { id: "chichen-guide",      imagen: "", enlace: "" },
+    { id: "snowbirds",          imagen: "", enlace: "" }
+  ],
+
+  /* ======================================================================
+     6. TARIFARIO DE TRASLADOS  (Price Chart)
+     ----------------------------------------------------------------------
+     Precios en dólares, POR VEHÍCULO (no por persona), tomados del
+     tarifario oficial de TEVE. Dos columnas según el tamaño del grupo.
+
+     Para cambiar un precio solo cambias el número: se actualiza solo en
+     los tres idiomas. Para agregar una zona, copia un bloque completo.
+
+     zona   = nombre de la zona (no se traduce, son nombres propios)
+     rango  = los hoteles que abarca, en los tres idiomas
+     ====================================================================== */
+  // Moneda de los precios de tours (los traslados llevan la suya abajo).
+  monedaTours: "USD",
+
+  tarifas: {
+    moneda: "USD",
+
+    // El tarifario da UN precio por zona. Asumimos que es por trayecto y que
+    // el viaje redondo cuesta el doble. Si tus precios ya fueran redondos,
+    // pon 1 aquí y la opción "redondo" dejará de multiplicar.
+    redondoMultiplicador: 2,
+
+    zonas: [
+      { zona: "Cancún", hasta10: "50", hasta18: "90",
+        rango: { en: "Downtown & Hotel Zone", es: "Centro y Zona Hotelera", pt: "Centro e Zona Hoteleira" } },
+      { zona: "Punta Sam", hasta10: "60", hasta18: "100",
+        rango: { en: "Puerto Juárez to Villas del Palmar", es: "Puerto Juárez hasta Villas del Palmar", pt: "Puerto Juárez até Villas del Palmar" } },
+      { zona: "Riviera Cancún", hasta10: "60", hasta18: "100",
+        rango: { en: "Moon Palace to Bahía Petempich", es: "Moon Palace hasta Bahía Petempich", pt: "Moon Palace até Bahía Petempich" } },
+      { zona: "Playa Mujeres", hasta10: "70", hasta18: "110",
+        rango: { en: "Marina V&V to Dreams Playa Mujeres", es: "Marina V&V hasta Dreams Playa Mujeres", pt: "Marina V&V até Dreams Playa Mujeres" } },
+      { zona: "Costa Mujeres", hasta10: "80", hasta18: "120",
+        rango: { en: "Palladium Costa Mujeres to RIU Dunamar", es: "Palladium Costa Mujeres hasta RIU Dunamar", pt: "Palladium Costa Mujeres até RIU Dunamar" } },
+      { zona: "Puerto Morelos", hasta10: "60", hasta18: "110",
+        rango: { en: "Crococun to Grand Residences", es: "Crococún hasta Grand Residences", pt: "Crococún até Grand Residences" } },
+      { zona: "Playa del Carmen Norte", hasta10: "70", hasta18: "120",
+        rango: { en: "Nickelodeon to Punta Maroma", es: "Nickelodeon hasta Punta Maroma", pt: "Nickelodeon até Punta Maroma" } },
+      { zona: "Playa del Carmen", hasta10: "80", hasta18: "125",
+        rango: { en: "Hacienda Tres Ríos to Xcaret", es: "Hacienda Tres Ríos hasta Xcaret", pt: "Hacienda Tres Ríos até Xcaret" } },
+      { zona: "Puerto Aventuras", hasta10: "90", hasta18: "135",
+        rango: { en: "Punta Venado to Catalonia Royal Tulum", es: "Punta Venado hasta Catalonia Royal Tulum", pt: "Punta Venado até Catalonia Royal Tulum" } },
+      { zona: "Akumal", hasta10: "100", hasta18: "160",
+        rango: { en: "El Dorado Seaside to Bahía Príncipe", es: "El Dorado Seaside hasta Bahía Príncipe", pt: "El Dorado Seaside até Bahía Príncipe" } },
+      { zona: "Riviera Maya Tulum", hasta10: "120", hasta18: "180",
+        rango: { en: "Chemuyil to Dreams Tulum", es: "Chemuyil hasta Dreams Tulum", pt: "Chemuyil até Dreams Tulum" } },
+      { zona: "Tulum Centro", hasta10: "130", hasta18: "200",
+        rango: { en: "Tulum Centro, Aldea Zamá & La Veleta", es: "Tulum Centro, Aldea Zamá y La Veleta", pt: "Tulum Centro, Aldea Zamá e La Veleta" } },
+      { zona: "Tulum Hotel Zone", hasta10: "140", hasta18: "210",
+        rango: { en: "Boca Paila coast road to Arco Maya", es: "Zona costera de Boca Paila hasta Arco Maya", pt: "Zona costeira de Boca Paila até Arco Maya" } },
+      { zona: "Chiquilá (Holbox)", hasta10: "220", hasta18: "340",
+        rango: { en: "From / to Cancun or the Riviera Maya", es: "Desde / a Cancún o Riviera Maya", pt: "De / para Cancún ou Riviera Maya" } }
+    ],
+
+    // Segunda tabla del tarifario: traslados entre puntos, marinas y parques.
+    otros: [
+      { hasta10: "50", hasta18: "100",
+        zona:  { en: "Transfers within Cancun", es: "Traslados dentro de Cancún", pt: "Transfers dentro de Cancún" },
+        rango: { en: "Downtown & Hotel Zone", es: "Centro y Zona Hotelera", pt: "Centro e Zona Hoteleira" } },
+      { hasta10: "100", hasta18: "150",
+        zona:  { en: "Playa del Carmen ↔ Cancun", es: "Playa del Carmen ↔ Cancún", pt: "Playa del Carmen ↔ Cancún" },
+        rango: { en: "Marinas, hotel changes, theme parks", es: "Marinas, cambios de hotel, parques", pt: "Marinas, trocas de hotel, parques" } },
+      { hasta10: "160", hasta18: "250",
+        zona:  { en: "Tulum Hotel Zone ↔ Cancun", es: "Zona Hotelera Tulum ↔ Cancún", pt: "Zona Hoteleira Tulum ↔ Cancún" },
+        rango: { en: "Marinas, hotel changes and more", es: "Marinas, cambios de hotel y más", pt: "Marinas, trocas de hotel e mais" } }
+    ]
+  },
+
+  /* ======================================================================
+     7. WIDGETS SOCIALES
+     ----------------------------------------------------------------------
+     El sello de TripAdvisor se carga desde los servidores de TripAdvisor y
+     se actualiza solo. locationId es el número que aparece como d########
+     en tu enlace de TripAdvisor.
+
+     Para ocultar cualquier widget, pon  activo: false.
+     ====================================================================== */
+  widgets: {
+    tripadvisor: {
+      activo:     true,
+      locationId: "28028440",   // el d28028440 de tu enlace de TripAdvisor
+      uniq:       "663",        // identificador del widget que da TripAdvisor
+      anio:       "2026",       // año del sello Travelers' Choice
+      // Idioma del sello según el idioma que esté viendo el visitante.
+      idioma: { en: "en_AU", es: "es", pt: "pt" }
+    },
+    // Facebook e Instagram se muestran como tarjetas que enlazan al perfil.
+    // No cargan scripts de terceros ni cookies, así el sitio sigue siendo
+    // rápido y no arrastra problemas de privacidad ni de Core Web Vitals.
+    facebook:  { activo: true },
+    instagram: { activo: true }
+  },
+
+  /* ======================================================================
+     8. ANALÍTICA (opcional — déjalo en "" si aún no lo tienes)
+     ====================================================================== */
+  analitica: {
+    googleAnalytics: "",   // ej. "G-XXXXXXXXXX"
+    googleTagManager: "",  // ej. "GTM-XXXXXXX"
+    facebookPixel: ""      // ej. "123456789012345"
+  },
+
+  /* ==========================================================================
+     PARTE B — TEXTOS POR IDIOMA
+     --------------------------------------------------------------------------
+     Cada idioma es un bloque completo e independiente. Para traducir algo,
+     busca la misma clave en los tres bloques y cámbiala en cada uno.
+
+     Los  id  de servicios, tours, destinos y blog TIENEN QUE COINCIDIR con
+     los de la PARTE A. Si cambias un id, cámbialo en los cuatro lugares.
+     ========================================================================== */
+  textos: {
+
+    /* ======================================================================
+       INGLÉS — VERSIÓN ORIGINAL
+       ----------------------------------------------------------------------
+       Este es el idioma principal del sitio y el que Google indexa como
+       versión canónica. El SEO está escrito para el viajero que planea sus
+       vacaciones desde Reino Unido, Australia, Estados Unidos y Canadá:
+       busca en inglés, reserva con meses de anticipación y compara
+       "private transfer" contra "shared shuttle" antes de decidir.
+       ====================================================================== */
+    en: {
+      meta: {
+        nombre: "English",
+        bandera: "🇬🇧",
+        htmlLang: "en",
+        ogLocale: "en_US",
+        // Variantes regionales que se declaran a Google con hreflang. Así la
+        // misma página en inglés se ofrece a los cuatro mercados objetivo.
+        hreflang: ["en", "en-GB", "en-AU", "en-US", "en-CA"],
+        // Trozo de dirección de cada página. El inglés vive en la raíz.
+        prefijo: "",
+        rutas: {
+          home: "", servicios: "services", chofer: "private-driver-cancun", tours: "tours",
+          destinos: "destinations", tim: "about-tim",
+          blog: "blog", contacto: "contact"
+        }
+      },
+
+      ui: {
+        navHome: "Home", navServicios: "Services", navChofer: "Private Driver", navTours: "Popular Tours",
+        navDestinos: "Destinations", navTim: "Meet Tim", navBlog: "Travel Blog",
+        navContacto: "Contact Us", navAbrirMenu: "Open menu",
+        selectorIdioma: "Language",
+
+        heroBotonServicios: "View Services",
+        heroBotonWhatsapp: "Quote on WhatsApp",
+
+        buscadorTraslado: "🚐 Transfers", buscadorTour: "📍 Tours",
+        buscadorTipo: "Service type",
+        buscadorOpcion1: "Airport → Hotel",
+        buscadorOpcion2: "Hotel → Airport",
+        buscadorOpcion3: "Airport → Hotel → Airport (round trip)",
+        buscadorDesde: "From", buscadorDesdeEjemplo: "Cancun Airport (CUN)",
+        buscadorHacia: "To", buscadorHaciaEjemplo: "Hotel, Airbnb or address",
+        buscadorFecha: "Arrival date", buscadorPasajeros: "Passengers",
+        buscadorCotizarTraslado: "Quote My Transfer",
+        buscadorDestino: "Destination or experience",
+        buscadorDestinoEjemplo: "Chichen Itza, Tulum, Isla Mujeres…",
+        buscadorFechaTour: "Date", buscadorCotizarTour: "Quote My Tour",
+
+        homeServiciosEyebrow: "What We Offer",
+        homeServiciosTitulo: "Private Experiences in Cancun",
+        homeToursEyebrow: "The Best Of",
+        homeToursTitulo: "Most Popular Experiences",
+        homeToursBoton: "See All Tours",
+
+        porQueEyebrow: "Why TEVE?",
+        porQueTitulo: "What Makes Us Different",
+        porQueTexto: "TEVE Transfers &amp; Tours is the trusted choice for private transport and custom tours in Cancun, Tulum and the Riviera Maya. One driver who stays with you from the airport arrival hall to your last day of holiday. No shared shuttles, no waiting for strangers, no surprises — just your trip, built around you.",
+        porQueBoton: "Let Us Plan Your Trip",
+
+        serviciosEyebrow: "Transport in Cancun",
+        serviciosTitulo: "TEVE Private Services",
+        toursEyebrow: "Best Sellers", toursTitulo: "Most Popular Experiences",
+        destinosEyebrow: "Where We Take You", destinosTitulo: "Private Destinations",
+        timEyebrow: "Meet Your Driver",
+        resenasEyebrow: "Real Reviews", resenasTitulo: "What Our Travellers Say",
+        // Textos del precio que se calcula solo en el buscador.
+        cotizaAeropuerto: "Cancun International Airport (CUN)",
+        cotizaGrupoZonas: "Hotel zones",
+        cotizaGrupoPunto: "Point to point, marinas & parks",
+        cotizaElige: "Choose a destination…",
+        cotizaEligeTour: "Choose a tour…",
+        cotizaOtroTour: "Something else / not sure yet",
+        cotizaEtiqueta: "Your estimate",
+        cotizaPorVehiculo: "per vehicle · up to {pax} passengers",
+        cotizaRedondo: "round trip · per vehicle",
+        cotizaPorPersona: "per person",
+        cotizaGrupoGrande: "For groups over 18 we build a custom quote — send it over and we reply within the hour.",
+        cotizaSinPrecio: "Tell us your dates and we will confirm the price by WhatsApp.",
+        cotizaIncluye: "Meet and greet inside the terminal, luggage help and free waiting time if your flight is delayed.",
+        cotizaPorPersonaUnidad: "per person",
+        cotizaTotalPax: "total for {pax}",
+        cotizaMinimo: "Minimum {min} passengers for this tour",
+        cotizaZonaAZona: "We only publish rates between the airport and a hotel zone. Tell us both points and we quote it by WhatsApp.",
+        cotizaMismoPunto: "Pick a different pick-up and drop-off point.",
+        buscadorAdultos: "Adults",
+        buscadorMenores: "Children",
+        cotizaAdultos: "adult", cotizaAdultosPl: "adults",
+        cotizaMenores: "child", cotizaMenoresPl: "children",
+        cotizaSoloAdultos: "Adults only — this experience does not admit children.",
+        cotizaSinPrecioMenor: "We confirm the child price by WhatsApp — tell us their ages.",
+        cotizaPorEmbarcacion: "per boat, not per person",
+        cotizaDesdePrecio: "from",
+        tarjetaPorAdulto: "per adult",
+
+        blogEyebrow: "Travel Guide", blogTitulo: "Plan Your Trip to Cancun",
+        blogLeerMas: "Read article →",
+
+        tarjetaCotizar: "Get a Quote", tarjetaReservar: "Book Now",
+        tarjetaDesde: "From", tarjetaDescubrir: "Discover More",
+        tarjetaSinPrecio: "Custom quote",
+
+        contactoEyebrow: "Planning a trip to Cancun?",
+        contactoTitulo: "Our team is ready to help",
+        formNombre: "First name*", formApellido: "Last name*",
+        formEmail: "Email address*", formTelefono: "Phone*",
+        formLlegada: "Arrival date", formSalida: "Departure date",
+        formAdultos: "Adults", formMenores: "Children",
+        formMensaje: "Service you need / comments",
+        formSms: "Send me SMS updates", formEmailOpt: "Send me email updates",
+        formEnviar: "Send on WhatsApp",
+        contactoWhatsappTexto: "Instant reply",
+
+        socialEyebrow: "What people say about us",
+        socialTitulo: "Follow us and read our reviews",
+        socialTaTexto: "Verified reviews from travellers who have already ridden with us.",
+        socialTaBoton: "Read reviews",
+        socialFbTexto: "News, offers and photos from our transfers and tours.",
+        socialFbBoton: "Follow on Facebook",
+        socialIgTexto: "Day to day in Cancun, Tulum, Holbox and the Riviera Maya.",
+        socialIgBoton: "Follow on Instagram",
+
+        newsletterEyebrow: "Your next adventure starts here",
+        newsletterTitulo: "Get travel inspiration by email",
+        newsletterEjemplo: "Your email address",
+        newsletterBoton: "Subscribe",
+
+        pieContacto: "Contact", pieDescubrir: "Discover",
+        pieLlamanos: "Call us", pieCorreo: "Email us", pieRedes: "Social Media",
+        pieHorario: "Available 24/7, 365 days a year",
+        pieCancun: "Cancun", pieQueVer: "What to see",
+        pieTraslados: "Transfers &amp; transport", pieToursPrivados: "Private tours",
+        pieBlog: "Travel blog", pieRiviera: "Riviera Maya",
+        pieBacalar: "Bacalar &amp; Holbox", pieServicios: "Services",
+        pieChofer: "Private driver", pieGrupos: "Groups &amp; events",
+        pieYates: "Yacht charters", pieConcierge: "Travel concierge",
+        pieCompania: "Company", pieConoceTim: "Meet Tim", pieContactanos: "Contact us",
+        piePrivacidad: "Privacy Policy", pieTerminos: "Terms &amp; Conditions",
+        pieCookies: "Cookie Policy", pieDerechos: "All rights reserved.",
+
+        // Mensajes que se escriben solos en WhatsApp.
+        waGeneral: "Hi! I'd like information about a private service in Cancun.",
+        waPortada: "Hi! I'd like a quote for a private service in Cancun.",
+        waServicio: "Hi! I'd like information about:",
+        waTour: "Hi! I'd like to book the tour:",
+        waDestino: "Hi! I'd like a quote for a private tour to",
+        waTraslado: "Hi! I'd like to quote a transfer.",
+        waTourBusqueda: "Hi! I'd like to quote a private tour.",
+        waTim: "MESSAGE ME ON WHATSAPP", svcEstrella: "Our most booked service",
+        svcEstrellaSub: "12 Hour Private Driver Service",
+        svcEstrellaNota: "Need fewer hours or traveling with a larger group? Contact us for a customized option.", taPremio: "Travellers' Choice",
+
+        avisoSuscrito: "Thank you! We'll send you travel ideas for the Riviera Maya.",
+        avisoFaltanCampos: "Please fill in the required fields."
+      },
+
+      portada: {
+        titulo: "Experience Cancun<br>Your Way",
+        subtitulo: "Private transport and custom tours across Cancun and the Riviera Maya. One trusted driver, from the arrivals hall to the memories.",
+        metricas: [
+          { numero: "500+", texto: "Happy Travellers" },
+          { numero: "5.0★", texto: "TripAdvisor" },
+          { numero: "8+",   texto: "Years in Cancun" },
+          { numero: "USD",  texto: "CAD, AUD & GBP welcome" }
+        ]
+      },
+
+      servicios: {
+        transfer: {
+          titulo: "Private Airport ↔ Hotel Transfer",
+          texto: "Name-board greeting in the arrivals hall, help with your luggage and an air-conditioned vehicle. Your driver waits even if your flight is delayed."
+        },
+        chofer: {
+          titulo: "Private Driver Cancun",
+          texto: "Explore sites like Chichén Itzá, Tulum, Akumal, cenotes, Cobá, beaches, local markets and more, all at your own pace with your own private driver. You pay on the day."
+        },
+        grupos: {
+          titulo: "Group Transport",
+          texto: "Planning a conference, wedding or corporate event? We have the fleet and the logistics to move large groups without anyone waiting around."
+        },
+        catamaran: {
+          titulo: "Catamaran to Isla Mujeres",
+          texto: "Sail across to Isla Mujeres with snorkelling included and free time on the island. Every detail coordinated by your TEVE driver."
+        },
+        yate: {
+          titulo: "Private Yacht Charter",
+          texto: "From a sport boat to a luxury catamaran. A day of fishing, a sunset cruise or your own private island — you choose."
+        },
+        concierge: {
+          titulo: "Travel Concierge",
+          texto: "Full itinerary planning: reservations, activities and local recommendations from someone who actually lives here."
+        }
+      },
+
+      categorias: {
+        parques:   "Xcaret parks",
+        delfines:  "Swim with dolphins",
+        chichen:   "Chichén Itzá",
+        cancun:    "Short activities in Cancun",
+        cocobongo: "Coco Bongo (adults only)",
+        nautico:   "Yachts & catamarans"
+      },
+
+      tours: {
+        "xcaret-plus": { texto: "The flagship park: underground rivers, the Mexico Espectacular show, and the Plus buffet and locker included." },
+        "xelha":       { texto: "All-inclusive natural inlet. Snorkelling, cliff jumping, food and drinks included all day." },
+        "xplor":       { texto: "Zip-lines over the jungle, amphibious vehicles and swimming through underground rivers." },
+        "xenotes":     { texto: "Four cenotes in one day — swim, abseil, zip-line and kayak, with a Mayan lunch." },
+        "dolphin-royal": { texto: "The most complete dolphin programme: foot push, dorsal tow and the belly ride." },
+        "xichen-clasico": { texto: "One of the New Seven Wonders of the World, with a certified guide and time to explore." },
+        "cat-plus":    { texto: "Sail from Cancun to Isla Mujeres with snorkelling, open bar and free time on the island." }
+      },
+
+      destinos: {
+        chichen: { duracion: "Half day or full day", texto: "2.5 hrs from Cancun · Private guide included" },
+        tulum:   { duracion: "Day trip",             texto: "1.5 hrs from Cancun · Clifftop ruins and cenotes" },
+        isla:    { duracion: "Full day",             texto: "30 min by ferry · Private catamaran available" },
+        bacalar: { duracion: "Overnight optional",   texto: "3-4 hrs · The magic well off the tourist trail" }
+      },
+
+      /* --------------------------------------------------------------------
+         CHOFER PRIVADO POR DÍA — la página que pelea por "private driver cancun"
+         Las tarifas y lo que incluye salen textuales de lo que TEVE contesta
+         por WhatsApp. Si cambian allá, cámbialas aquí.
+         -------------------------------------------------------------------- */
+      chofer: {
+        lema: "Your day. Your way.",
+        porQueTitulo: "Why choose a private driver?",
+        porQue: [
+          { t: "Your own vehicle", d: "A van for up to 8 people, just for your group. Nobody else on board, no stops that are not yours." },
+          { t: "Your own driver",  d: "A private bilingual driver who stays with you all day, not a shuttle that drops you and leaves." },
+          { t: "You set the plan", d: "Where you go, what time you leave, how long you stay at each place. You change your mind halfway through, that is fine too." },
+          { t: "We help you plan", d: "Tell us what you like and we put the itinerary together with you, and say what we think is actually worth your day." }
+        ],
+        lugaresTitulo: "Places you can visit",
+        lugares: ["Chichén Itzá", "Tulum", "Swim with turtles in Akumal 🐢", "Cobá", "Cenotes", "Beaches", "Local markets", "And more"],
+        eyebrow: "Our most booked service",
+        titulo: "Private Driver in Cancun by the Day",
+        entrada: "You choose where to go and when. A private van and a bilingual driver at your disposal for the day — beaches, cenotes, archaeological sites, markets, shopping, or all of it. No fixed route, no group waiting on you.",
+        tarifasTitulo: "Vehicle and driver hire",
+        tarifas: [
+          { horas: "4 hours",       precio: "$180 USD" },
+          { horas: "6 to 8 hours",  precio: "$250 USD" },
+          { horas: "10 to 12 hours · Full day", precio: "$300 USD" }
+        ],
+        tarifaNota: "Pick-ups before 8:00 am carry an extra $30 USD.",
+        incluyeTitulo: "What's included",
+        incluye: [
+          "Fuel is paid for",
+          "Van for up to 8 people",
+          "Private bilingual driver",
+          "Beer, water and soft drinks in the vehicle"
+        ],
+        noIncluyeTitulo: "What's not included",
+        noIncluye: [
+          "Entrance fees to attractions or sights",
+          "Food",
+          "Parking and tolls, where they apply"
+        ],
+        itinerarioTitulo: "We help you plan the day",
+        itinerario: "Not sure where to start? We help you put the itinerary together so your time works as hard as it can, and we tell you what we think you will actually enjoy — not just the places everyone else visits.",
+        cta: "Ask about a private driver"
+      },
+      tim: {
+        titulo: "Hi, I’m Tim.",
+        biografia: [
+          "I’ve been working with travelers in Cancún and the Riviera Maya for more than eight years, and during that time I’ve learned that everyone wants to experience Mexico in their own way.",
+          "That’s why I love offering private and personalized experiences. You tell me what you’d like to see, what you’re interested in doing, and how much time you have, and I’ll help you put together a day you’ll truly enjoy. And if you’re not sure where to start, don’t worry, that’s what I’m here for. 😊",
+          "I want my clients to feel comfortable asking me anything, from where to eat and which cenote to visit to which places are really worth seeing. My goal is for you to feel confident from the very first conversation and, when the day of your tour arrives, simply relax and enjoy your experience.",
+          "After all these years, one of the things that makes me happiest is seeing travelers recommend me to their family and friends. To me, that’s the best sign that I’m doing my job right.",
+          "I hope I get the chance to meet you and show you some of my favorite places in Cancún and the Riviera Maya. 🇲🇽"
+        ]
+      },
+
+      resenas: [
+        {
+          texto: "Tim handled everything: airport, Chichen Itza, cenote, lunch. We never felt rushed and he knew every trick for dodging the crowds.",
+          nombre: "Jennifer K.",
+          lugar: "Houston, Texas 🇺🇸"
+        },
+        {
+          texto: "As Canadians who spend six weeks in Cancun every winter, reliable transport was our biggest worry. Tim solved it completely.",
+          nombre: "Robert & Linda S.",
+          lugar: "Vancouver, BC 🇨🇦"
+        },
+        {
+          texto: "We flew in from Sydney knowing nothing about the area. Tim became our unofficial concierge. I've already recommended him to four friends.",
+          nombre: "Michael P.",
+          lugar: "Sydney, Australia 🇦🇺"
+        }
+      ],
+
+      blog: {
+        "transfer-vs-shared": {
+          categoria: "Airport & Transfers",
+          titulo: "Private vs Shared Transfer: Which One Suits You?",
+          texto: "We compare both options with real numbers so you can decide before you book your next trip.",
+          contenido: [
+            "A shared transfer is cheaper per seat, and that is the whole of its case. The van waits until it fills, then works its way down the hotel zone dropping everyone off. If your hotel is last, an hour of your first day is gone before you see it.",
+            "A private transfer is priced per vehicle, not per person, which changes the maths faster than people expect. From $50 USD the van is yours, so two people pay the same as six. Past three or four travellers it usually costs the same or less than buying separate seats.",
+            "The part that does not show up in a price comparison: your driver tracks your flight. If you land two hours late at one in the morning, he is still there holding the sign. A shared shuttle has a schedule to keep and other passengers waiting.",
+            "Take the shared van if you are travelling alone, on a tight budget, and arriving at a civilised hour. Take the private one if you are a family, carrying a lot, arriving late, or simply do not want your holiday to start in a queue."
+          ]
+        },
+        "chichen-guide": {
+          categoria: "Private Tours",
+          titulo: "Private Chichen Itza from Cancun: Complete 2026 Guide",
+          texto: "The best arrival time, what to bring, where to stop for lunch and why a private guide changes the whole day.",
+          contenido: [
+            "Chichén Itzá is about two and a half hours from Cancún, and the single decision that shapes the whole day is what time you leave. The site opens at eight. The coaches from the hotel zone start arriving around eleven, along with the worst of the heat.",
+            "Leaving Cancún at six means you walk in as it opens, with the pyramid to yourself and shade still on the ground. That is why our early pick-ups carry a small surcharge before eight: it is the one detail that decides whether you remember the place or the crowd.",
+            "Bring cash for the entrance, which is not included, plus water, a hat and shoes you can walk in. The site is large and open, and there is no shade in the middle of it.",
+            "Afterwards there is time for a cenote to cool off and lunch in Valladolid, a colonial town twenty minutes on. A full day like this runs twelve hours door to door, which is what our longest hire covers. Your driver waits while you explore — no set return time, no group to catch up with."
+          ]
+        },
+        "snowbirds": {
+          categoria: "For Canadian Travellers",
+          titulo: "Winter Stays in Cancun: A Transport Guide",
+          texto: "Everything about recurring private transport for long stays of four to eight weeks.",
+          contenido: [
+            "A four to eight week stay is a different problem from a one week holiday. You are not moving between attractions; you are living somewhere, and you need to get to the supermarket, the pharmacy, dinner, the occasional day out.",
+            "Renting a car for two months is one answer, but it comes with Cancún traffic, parking in the hotel zone, insurance arguments and the drive home after dinner. Taxis add up and you negotiate every time.",
+            "What most of our long-stay guests settle into is a standing arrangement: the same driver, booked for the days they need. A weekly shop, a day to Tulum or a cenote when the mood strikes, the airport at both ends.",
+            "The advantage is that it is the same person every time. He learns which supermarket you prefer and how you like the day to run, and you stop explaining yourself. Tell us your dates and we work out what makes sense for the stay."
+          ]
+        }
+      },
+
+      /* --------------------------------------------------------------------
+         SEO EN INGLÉS
+         --------------------------------------------------------------------
+         Máximo recomendado: 60 caracteres en el título, 155 en la descripción.
+         Las descripciones nombran a los cuatro mercados objetivo porque es
+         literalmente lo que el viajero escribe en Google antes de reservar.
+         -------------------------------------------------------------------- */
+      seo: {
+        chofer: {
+          titulo: "Private Driver in Cancun by the Day | From $180 USD — TEVE",
+          descripcion: "Hire a private driver in Cancun with a van for up to 8 people. From $180 USD for 4 hours, fuel and bilingual driver included. Go anywhere, at your own pace."
+        },
+        home: {
+          titulo: "Private Driver Cancun & Riviera Maya | Airport Transfers",
+          descripcion: "Private driver by the day in Cancun and the Riviera Maya from $180 USD, plus airport transfers and custom tours. Bilingual driver, book direct on WhatsApp."
+        },
+        servicios: {
+          titulo: "Cancun Airport Transfer & Private Driver Services | TEVE",
+          descripcion: "Airport transfers, private drivers by the day, group transport, catamarans and yacht charters across Cancun, Tulum and the Riviera Maya."
+        },
+        tours: {
+          titulo: "Popular Tours from Cancun: Xcaret, Xel-Há, Chichén Itzá",
+          descripcion: "Private day tours from Cancun to Chichen Itza, Tulum, Coba, Akumal and Isla Mujeres. Private vehicle, English-speaking guide, your own pace."
+        },
+        destinos: {
+          titulo: "Riviera Maya Destinations from Cancun | TEVE Tours",
+          descripcion: "Where we take you from Cancun: Chichen Itza, Tulum, Isla Mujeres, Bacalar and Holbox. Door-to-door private transport, never a crowded coach."
+        },
+        tim: {
+          titulo: "Meet Tim — Your English-Speaking Driver in Cancun",
+          descripcion: "Eight years driving visitors around Cancun and the Riviera Maya. Bilingual, local, and named personally in hundreds of five-star reviews."
+        },
+        blog: {
+          titulo: "Cancun & Riviera Maya Travel Guides | TEVE Transfers",
+          descripcion: "Practical guides for planning a Cancun trip: airport transfers, private tours, long winter stays and honest advice from a local driver."
+        },
+        contacto: {
+          titulo: "Get a Quote — Cancun Transfers & Tours | TEVE",
+          descripcion: "Get a quote for your Cancun transfer or private tour. Fast replies on WhatsApp, email or phone, across UK, Australian and North American hours."
+        }
+      }
+    },
+
+    /* ======================================================================
+       ESPAÑOL — TRADUCCIÓN
+       ----------------------------------------------------------------------
+       Dirigido al viajero mexicano y latinoamericano, y a quien ya está en
+       Cancún y busca transporte de última hora.
+       ====================================================================== */
+    es: {
+      meta: {
+        nombre: "Español",
+        bandera: "🇲🇽",
+        htmlLang: "es",
+        ogLocale: "es_MX",
+        hreflang: ["es", "es-MX"],
+        prefijo: "es",
+        rutas: {
+          home: "", servicios: "servicios", chofer: "chofer-privado-cancun", tours: "tours",
+          destinos: "destinos", tim: "tim",
+          blog: "blog", contacto: "contacto"
+        }
+      },
+
+      ui: {
+        navHome: "Inicio", navServicios: "Servicios", navChofer: "Chofer Privado", navTours: "Tours Populares",
+        navDestinos: "Destinos", navTim: "Conoce a Tim", navBlog: "Blog de Viajes",
+        navContacto: "Contáctanos", navAbrirMenu: "Abrir menú",
+        selectorIdioma: "Idioma",
+
+        heroBotonServicios: "Ver Servicios",
+        heroBotonWhatsapp: "Cotizar por WhatsApp",
+
+        buscadorTraslado: "🚐 Traslados", buscadorTour: "📍 Tours",
+        buscadorTipo: "Tipo de servicio",
+        buscadorOpcion1: "Aeropuerto → Hotel",
+        buscadorOpcion2: "Hotel → Aeropuerto",
+        buscadorOpcion3: "Aeropuerto → Hotel → Aeropuerto (redondo)",
+        buscadorDesde: "Desde", buscadorDesdeEjemplo: "Aeropuerto de Cancún (CUN)",
+        buscadorHacia: "Hacia", buscadorHaciaEjemplo: "Hotel, Airbnb o dirección",
+        buscadorFecha: "Fecha de llegada", buscadorPasajeros: "Pasajeros",
+        buscadorCotizarTraslado: "Cotizar Traslado",
+        buscadorDestino: "Destino o experiencia",
+        buscadorDestinoEjemplo: "Chichén Itzá, Tulum, Isla Mujeres…",
+        buscadorFechaTour: "Fecha", buscadorCotizarTour: "Cotizar Tour",
+
+        homeServiciosEyebrow: "Lo que ofrecemos",
+        homeServiciosTitulo: "Experiencias Privadas en Cancún",
+        homeToursEyebrow: "Los Mejores",
+        homeToursTitulo: "Experiencias Más Populares",
+        homeToursBoton: "Ver Todos los Tours",
+
+        porQueEyebrow: "¿Por qué TEVE?",
+        porQueTitulo: "¿Qué nos hace diferentes?",
+        porQueTexto: "TEVE Transfers &amp; Tours es la opción de confianza en transportación privada y tours a la medida en Cancún, Tulum y la Riviera Maya. Un solo chofer que te acompaña desde la sala de llegadas hasta tu último día de vacaciones. Sin shuttles compartidos, sin esperar a desconocidos, sin sorpresas: tu viaje, diseñado para ti.",
+        porQueBoton: "Permítenos Planear Tu Viaje",
+
+        serviciosEyebrow: "Transportación en Cancún",
+        serviciosTitulo: "Servicios Privados TEVE",
+        toursEyebrow: "Los Más Vendidos", toursTitulo: "Experiencias Más Populares",
+        destinosEyebrow: "A Dónde Te Llevamos", destinosTitulo: "Destinos Privados",
+        timEyebrow: "Conoce a tu Guía",
+        resenasEyebrow: "Reseñas Reales", resenasTitulo: "Lo Que Dicen Nuestros Viajeros",
+        cotizaAeropuerto: "Aeropuerto Internacional de Cancún (CUN)",
+        cotizaGrupoZonas: "Zonas hoteleras",
+        cotizaGrupoPunto: "Punto a punto, marinas y parques",
+        cotizaElige: "Elige un destino…",
+        cotizaEligeTour: "Elige un tour…",
+        cotizaOtroTour: "Otra cosa / aún no lo sé",
+        cotizaEtiqueta: "Tu estimado",
+        cotizaPorVehiculo: "por vehículo · hasta {pax} pasajeros",
+        cotizaRedondo: "viaje redondo · por vehículo",
+        cotizaPorPersona: "por persona",
+        cotizaGrupoGrande: "Para grupos de más de 18 armamos una cotización a la medida — mándala y respondemos en menos de una hora.",
+        cotizaSinPrecio: "Cuéntanos tus fechas y te confirmamos el precio por WhatsApp.",
+        cotizaIncluye: "Recepción dentro de la terminal, ayuda con el equipaje y espera sin costo si tu vuelo se retrasa.",
+        cotizaPorPersonaUnidad: "por persona",
+        cotizaTotalPax: "total para {pax}",
+        cotizaMinimo: "Mínimo {min} pasajeros para este tour",
+        cotizaZonaAZona: "Solo publicamos tarifas entre el aeropuerto y una zona hotelera. Dinos los dos puntos y te cotizamos por WhatsApp.",
+        cotizaMismoPunto: "Elige un punto de salida y uno de llegada distintos.",
+        buscadorAdultos: "Adultos",
+        buscadorMenores: "Menores",
+        cotizaAdultos: "adulto", cotizaAdultosPl: "adultos",
+        cotizaMenores: "menor", cotizaMenoresPl: "menores",
+        cotizaSoloAdultos: "Solo adultos — esta experiencia no admite menores.",
+        cotizaSinPrecioMenor: "El precio de menores lo confirmamos por WhatsApp — dinos sus edades.",
+        cotizaPorEmbarcacion: "por embarcación, no por persona",
+        cotizaDesdePrecio: "desde",
+        tarjetaPorAdulto: "por adulto",
+
+        blogEyebrow: "Guía de Viaje", blogTitulo: "Planea tu Viaje a Cancún",
+        blogLeerMas: "Leer artículo →",
+
+        tarjetaCotizar: "Cotizar Ahora", tarjetaReservar: "Reservar",
+        tarjetaDesde: "Desde", tarjetaDescubrir: "Descubrir Más",
+        tarjetaSinPrecio: "Cotización personalizada",
+
+        contactoEyebrow: "¿Planeas un viaje a Cancún?",
+        contactoTitulo: "Nuestro equipo está listo para ayudarte",
+        formNombre: "Nombre(s)*", formApellido: "Apellido(s)*",
+        formEmail: "Correo electrónico*", formTelefono: "Teléfono*",
+        formLlegada: "Fecha de llegada", formSalida: "Fecha de salida",
+        formAdultos: "Adultos", formMenores: "Menores",
+        formMensaje: "Servicio de interés / comentarios",
+        formSms: "Recibir alertas por SMS", formEmailOpt: "Recibir alertas por email",
+        formEnviar: "Enviar por WhatsApp",
+        contactoWhatsappTexto: "Respuesta inmediata",
+
+        socialEyebrow: "Lo que dicen de nosotros",
+        socialTitulo: "Síguenos y lee nuestras reseñas",
+        socialTaTexto: "Reseñas verificadas de viajeros que ya viajaron con nosotros.",
+        socialTaBoton: "Leer reseñas",
+        socialFbTexto: "Novedades, promociones y fotos de nuestros traslados y tours.",
+        socialFbBoton: "Seguir en Facebook",
+        socialIgTexto: "El día a día en Cancún, Tulum, Holbox y la Riviera Maya.",
+        socialIgBoton: "Seguir en Instagram",
+
+        newsletterEyebrow: "Tu próxima aventura empieza aquí",
+        newsletterTitulo: "Recibe inspiración en tu correo",
+        newsletterEjemplo: "Tu correo electrónico",
+        newsletterBoton: "Suscribirme",
+
+        pieContacto: "Contacto", pieDescubrir: "Descubrir",
+        pieLlamanos: "Llámanos", pieCorreo: "Envíanos un correo", pieRedes: "Redes Sociales",
+        pieHorario: "Disponibles 24/7, los 365 días del año",
+        pieCancun: "Cancún", pieQueVer: "¿Qué ver?",
+        pieTraslados: "Traslados y transportación", pieToursPrivados: "Tours privados",
+        pieBlog: "Blog de viajes", pieRiviera: "Riviera Maya",
+        pieBacalar: "Bacalar y Holbox", pieServicios: "Servicios",
+        pieChofer: "Chofer privado", pieGrupos: "Grupos y eventos",
+        pieYates: "Renta de yates", pieConcierge: "Travel concierge",
+        pieCompania: "Compañía", pieConoceTim: "Conoce a Tim", pieContactanos: "Contáctanos",
+        piePrivacidad: "Aviso de Privacidad", pieTerminos: "Términos y Condiciones",
+        pieCookies: "Política de Cookies", pieDerechos: "Todos los derechos reservados.",
+
+        waGeneral: "¡Hola! Quiero información de un servicio privado en Cancún.",
+        waPortada: "¡Hola! Quiero cotizar un servicio privado en Cancún.",
+        waServicio: "¡Hola! Quiero información sobre:",
+        waTour: "¡Hola! Quiero reservar el tour:",
+        waDestino: "¡Hola! Quiero cotizar un tour privado a",
+        waTraslado: "¡Hola! Quiero cotizar un traslado.",
+        waTourBusqueda: "¡Hola! Quiero cotizar un tour privado.",
+        waTim: "ESCRÍBEME POR WHATSAPP", svcEstrella: "Nuestro servicio más vendido",
+        svcEstrellaSub: "Servicio de Chofer Privado por 12 Horas",
+        svcEstrellaNota: "¿Necesitas menos horas o viajas con un grupo más grande? Escríbenos y te armamos una opción a tu medida.", taPremio: "Travellers' Choice",
+
+        avisoSuscrito: "¡Gracias! Te enviaremos ideas de viaje para la Riviera Maya.",
+        avisoFaltanCampos: "Por favor completa los campos obligatorios."
+      },
+
+      portada: {
+        titulo: "Vive Cancún<br>a tu Manera",
+        subtitulo: "Transportación privada y tours a la medida en Cancún y Riviera Maya. Un solo chofer de confianza, de la sala de llegadas a tus recuerdos.",
+        metricas: [
+          { numero: "500+", texto: "Viajeros Felices" },
+          { numero: "5.0★", texto: "TripAdvisor" },
+          { numero: "8+",   texto: "Años en Cancún" },
+          { numero: "USD",  texto: "CAD, AUD y GBP aceptados" }
+        ]
+      },
+
+      servicios: {
+        transfer: {
+          titulo: "Transfer Privado Aeropuerto ↔ Hotel",
+          texto: "Recepción con letrero en la sala de llegadas, ayuda con el equipaje y vehículo con aire acondicionado. Tu conductor te espera aunque tu vuelo se retrase."
+        },
+        chofer: {
+          titulo: "Chofer Privado en Cancún",
+          texto: "Conoce Chichén Itzá, Tulum, Akumal, cenotes, Cobá, playas, mercados locales y más, a tu propio ritmo y con tu chofer privado. Pagas el mismo día."
+        },
+        grupos: {
+          titulo: "Transportación para Grupos",
+          texto: "¿Planeas una conferencia, boda o evento corporativo? Contamos con flotilla y logística para mover grupos grandes sin que nadie espere."
+        },
+        catamaran: {
+          titulo: "Catamarán a Isla Mujeres",
+          texto: "Zarpa hacia Isla Mujeres con snorkel incluido y tiempo libre en la isla. Cada detalle coordinado por tu chofer TEVE."
+        },
+        yate: {
+          titulo: "Renta de Yate Privado",
+          texto: "Desde una lancha deportiva hasta un catamarán de lujo. Día de pesca, atardecer o isla privada, tú decides."
+        },
+        concierge: {
+          titulo: "Travel Concierge",
+          texto: "Planeación completa de tu itinerario: reservaciones, actividades y recomendaciones locales de quien realmente vive aquí."
+        }
+      },
+
+      categorias: {
+        parques:   "Parques Xcaret",
+        delfines:  "Nado con delfines",
+        chichen:   "Chichén Itzá",
+        cancun:    "Actividades cortas en Cancún",
+        cocobongo: "Coco Bongo (solo adultos)",
+        nautico:   "Yates y catamaranes"
+      },
+
+      tours: {
+        "xcaret-plus": { texto: "El parque insignia: ríos subterráneos, el espectáculo México Espectacular y el bufet y casillero del Plus incluidos." },
+        "xelha":       { texto: "Caleta natural todo incluido. Snorkel, salto del acantilado, comida y bebidas todo el día." },
+        "xplor":       { texto: "Tirolesas sobre la selva, vehículos anfibios y nado en ríos subterráneos." },
+        "xenotes":     { texto: "Cuatro cenotes en un día: nadas, rapeleas, vuelas en tirolesa y remas, con comida maya." },
+        "dolphin-royal": { texto: "El programa de delfines más completo: foot push, dorsal tow y el paseo en la panza." },
+        "xichen-clasico": { texto: "Una de las nuevas siete maravillas del mundo, con guía certificado y tiempo para recorrerla." },
+        "cat-plus":    { texto: "Navega de Cancún a Isla Mujeres con snorkel, barra libre y tiempo libre en la isla." }
+      },
+
+      destinos: {
+        chichen: { duracion: "Medio día o día completo", texto: "2.5 hrs desde Cancún · Guía privado incluido" },
+        tulum:   { duracion: "Excursión de un día",      texto: "1.5 hrs desde Cancún · Ruinas frente al mar y cenotes" },
+        isla:    { duracion: "Día completo",             texto: "30 min en ferry · Catamarán privado disponible" },
+        bacalar: { duracion: "Con opción de noche",      texto: "3-4 hrs · La magia fuera del camino turístico" }
+      },
+
+      chofer: {
+        lema: "Tu día. A tu manera.",
+        porQueTitulo: "¿Por qué un chofer privado?",
+        porQue: [
+          { t: "Tu propio vehículo", d: "Una camioneta para hasta 8 personas, solo para tu grupo. Nadie más a bordo y ninguna parada que no sea tuya." },
+          { t: "Tu propio chofer",   d: "Un chofer privado bilingüe que se queda contigo todo el día, no una van que te deja y se va." },
+          { t: "Tú decides el plan", d: "A dónde vas, a qué hora sales, cuánto te quedas en cada lugar. Y si cambias de idea a media jornada, también está bien." },
+          { t: "Te ayudamos a armarlo", d: "Cuéntanos qué te gusta y armamos el itinerario contigo, y te decimos qué creemos que de verdad vale tu día." }
+        ],
+        lugaresTitulo: "Lugares que puedes visitar",
+        lugares: ["Chichén Itzá", "Tulum", "Nadar con tortugas en Akumal 🐢", "Cobá", "Cenotes", "Playas", "Mercados locales", "Y más"],
+        eyebrow: "Nuestro servicio más vendido",
+        titulo: "Chofer Privado en Cancún por Día",
+        entrada: "Tú decides a dónde ir y a qué hora. Una camioneta privada y un chofer bilingüe a tu disposición todo el día: playas, cenotes, zonas arqueológicas, mercados, compras, o todo junto. Sin ruta fija y sin un grupo esperándote.",
+        tarifasTitulo: "Renta de vehículo con chofer",
+        tarifas: [
+          { horas: "4 horas",        precio: "$180 USD" },
+          { horas: "6 a 8 horas",    precio: "$250 USD" },
+          { horas: "10 a 12 horas · Día completo", precio: "$300 USD" }
+        ],
+        tarifaNota: "Las salidas antes de las 8:00 am tienen un cargo extra de $30 USD.",
+        incluyeTitulo: "Qué incluye",
+        incluye: [
+          "La gasolina va pagada",
+          "Camioneta para hasta 8 personas",
+          "Chofer privado bilingüe",
+          "Cerveza, agua y refrescos en el vehículo"
+        ],
+        noIncluyeTitulo: "Qué no incluye",
+        noIncluye: [
+          "Entradas a parques, sitios o atracciones",
+          "Comida",
+          "Estacionamientos y casetas, cuando apliquen"
+        ],
+        itinerarioTitulo: "Te ayudamos a armar el día",
+        itinerario: "¿No sabes por dónde empezar? Te ayudamos a armar el itinerario para que tu tiempo rinda lo más posible, y te decimos qué creemos que de verdad vas a disfrutar, no solo los lugares a los que va todo el mundo.",
+        cta: "Pregunta por el chofer privado"
+      },
+      tim: {
+        titulo: "Hola, soy Tim.",
+        biografia: [
+          "Llevo más de ocho años trabajando con viajeros en Cancún y la Riviera Maya, y en ese tiempo he aprendido que cada persona quiere vivir México a su manera.",
+          "Por eso me encanta ofrecer experiencias privadas y personalizadas. Tú me dices qué te gustaría ver, qué te interesa hacer y de cuánto tiempo dispones, y yo te ayudo a armar un día que de verdad disfrutes. Y si no sabes por dónde empezar, no te preocupes, para eso estoy. 😊",
+          "Quiero que mis clientes se sientan con la confianza de preguntarme lo que sea: dónde comer, qué cenote visitar, qué lugares valen realmente la pena. Mi objetivo es que te sientas seguro desde la primera conversación y que, cuando llegue el día de tu tour, solo te relajes y disfrutes.",
+          "Después de todos estos años, una de las cosas que más me alegra es ver que los viajeros me recomiendan con su familia y sus amigos. Para mí, esa es la mejor señal de que estoy haciendo bien mi trabajo.",
+          "Ojalá tenga la oportunidad de conocerte y mostrarte algunos de mis lugares favoritos en Cancún y la Riviera Maya. 🇲🇽"
+        ]
+      },
+
+      resenas: [
+        {
+          texto: "Tim se encargó de todo: aeropuerto, Chichén Itzá, cenote, comida. Nunca sentimos prisa y conocía cada truco para esquivar a las multitudes.",
+          nombre: "Jennifer K.",
+          lugar: "Houston, Texas 🇺🇸"
+        },
+        {
+          texto: "Como canadienses que pasamos seis semanas en Cancún cada invierno, la transportación confiable era nuestra mayor preocupación. Tim la resolvió por completo.",
+          nombre: "Robert & Linda S.",
+          lugar: "Vancouver, BC 🇨🇦"
+        },
+        {
+          texto: "Llegamos desde Sídney sin saber nada de la zona. Tim se volvió nuestro concierge no oficial. Ya lo recomendé a cuatro amigos.",
+          nombre: "Michael P.",
+          lugar: "Sídney, Australia 🇦🇺"
+        }
+      ],
+
+      blog: {
+        "transfer-vs-shared": {
+          categoria: "Aeropuerto y Traslados",
+          titulo: "Transfer Privado vs Compartido: ¿Cuál te conviene?",
+          texto: "Comparamos ambas opciones con números reales para que decidas antes de reservar tu próximo viaje.",
+          contenido: [
+            "El transfer compartido sale más barato por asiento, y ese es todo su argumento. La van espera a llenarse y luego recorre la zona hotelera dejando a todos. Si tu hotel queda al final, se te fue una hora del primer día antes de verlo.",
+            "El transfer privado se cobra por vehículo, no por persona, y eso cambia la cuenta más rápido de lo que la gente cree. Desde $50 USD la camioneta es tuya, así que dos pagan lo mismo que seis. Pasando de tres o cuatro viajeros, suele costar igual o menos que comprar asientos sueltos.",
+            "Lo que no aparece en una comparación de precios: tu chofer sigue tu vuelo. Si aterrizas dos horas tarde a la una de la mañana, ahí sigue con el letrero. Una van compartida tiene un horario que cumplir y otros pasajeros esperando.",
+            "Toma la compartida si viajas solo, con presupuesto ajustado y llegas a una hora decente. Toma la privada si van en familia, con mucho equipaje, llegan de noche, o sencillamente no quieres empezar las vacaciones en una fila."
+          ]
+        },
+        "chichen-guide": {
+          categoria: "Tours Privados",
+          titulo: "Chichén Itzá Privado desde Cancún: Guía Completa 2026",
+          texto: "La mejor hora de llegada, qué llevar, dónde parar a comer y por qué un guía privado cambia el día entero.",
+          contenido: [
+            "Chichén Itzá está a unas dos horas y media de Cancún, y la única decisión que define el día entero es a qué hora sales. El sitio abre a las ocho. Los autobuses de la zona hotelera empiezan a llegar cerca de las once, junto con lo peor del calor.",
+            "Salir de Cancún a las seis significa entrar cuando abre, con la pirámide para ti solo y sombra todavía en el suelo. Por eso nuestras salidas tempranas llevan un cargo pequeño antes de las ocho: es el detalle que decide si recuerdas el lugar o la multitud.",
+            "Lleva efectivo para la entrada, que no va incluida, además de agua, gorra y zapatos con los que puedas caminar. El sitio es grande y abierto, y en medio no hay sombra.",
+            "Después da tiempo de un cenote para refrescarse y comer en Valladolid, un pueblo colonial a veinte minutos. Un día así son doce horas de puerta a puerta, que es lo que cubre nuestra renta más larga. Tu chofer espera mientras exploras: sin hora fija de regreso y sin grupo al que alcanzar."
+          ]
+        },
+        "snowbirds": {
+          categoria: "Para Viajeros Canadienses",
+          titulo: "Estadías de Invierno en Cancún: Guía de Transporte",
+          texto: "Todo sobre transportación privada recurrente para estadías largas de cuatro a ocho semanas.",
+          contenido: [
+            "Una estancia de cuatro a ocho semanas es un problema distinto al de unas vacaciones de una semana. No andas moviéndote entre atracciones; estás viviendo en un lugar, y necesitas llegar al súper, a la farmacia, a cenar, y algún paseo de vez en cuando.",
+            "Rentar un coche dos meses es una respuesta, pero viene con el tráfico de Cancún, estacionarse en la zona hotelera, discusiones de seguro y manejar de regreso después de cenar. Los taxis se acumulan y negocias cada vez.",
+            "En lo que acaban la mayoría de nuestros huéspedes de estancia larga es en un arreglo fijo: el mismo chofer, apartado los días que lo necesitan. El súper de la semana, un día a Tulum o a un cenote cuando se les antoja, y el aeropuerto de ida y de vuelta.",
+            "La ventaja es que siempre es la misma persona. Aprende qué supermercado prefieres y cómo te gusta que corra el día, y dejas de tener que explicarte. Dinos tus fechas y vemos qué tiene sentido para la estancia."
+          ]
+        }
+      },
+
+      seo: {
+        chofer: {
+          titulo: "Chofer Privado en Cancún por Día | Desde $180 USD — TEVE",
+          descripcion: "Chofer privado en Cancún con camioneta para hasta 8 personas. Desde $180 USD por 4 horas, gasolina y chofer bilingüe incluidos. Ve a donde quieras, a tu ritmo."
+        },
+        home: {
+          titulo: "Chofer Privado en Cancún y Riviera Maya | Traslados",
+          descripcion: "Chofer privado por día en Cancún y la Riviera Maya desde $180 USD, más traslados del aeropuerto y tours a la medida. Chofer bilingüe, reserva por WhatsApp."
+        },
+        servicios: {
+          titulo: "Traslados y Chofer Privado en Cancún | TEVE",
+          descripcion: "Transfer aeropuerto-hotel, chofer privado por día, transportación para grupos, catamarán y renta de yates en Cancún y Riviera Maya."
+        },
+        tours: {
+          titulo: "Tours Populares desde Cancún: Xcaret, Xel-Há, Chichén Itzá",
+          descripcion: "Tours privados a Chichén Itzá, Tulum, Cobá, Akumal e Isla Mujeres. Vehículo privado, guía bilingüe y horarios flexibles a tu ritmo."
+        },
+        destinos: {
+          titulo: "Destinos desde Cancún: Tulum, Chichén Itzá, Bacalar",
+          descripcion: "A dónde te llevamos desde Cancún: Chichén Itzá, Tulum, Isla Mujeres, Bacalar y Holbox con transporte privado puerta a puerta."
+        },
+        tim: {
+          titulo: "Conoce a Tim, tu Chofer Privado en Cancún | TEVE",
+          descripcion: "Más de ocho años guiando viajeros por Cancún y la Riviera Maya. Bilingüe, local y con cientos de reseñas de cinco estrellas a su nombre."
+        },
+        blog: {
+          titulo: "Blog de Viajes: Guías de Cancún y Riviera Maya | TEVE",
+          descripcion: "Guías prácticas para planear tu viaje a Cancún: traslados, tours privados, estadías largas y consejos honestos de un chofer local."
+        },
+        contacto: {
+          titulo: "Contacto y Cotizaciones | TEVE Transfers & Tours",
+          descripcion: "Cotiza tu traslado o tour privado en Cancún. Respuesta rápida por WhatsApp, correo o teléfono. Atendemos todo el año."
+        }
+      }
+    },
+
+    /* ======================================================================
+       PORTUGUÉS — TRADUCCIÓN
+       ----------------------------------------------------------------------
+       Portugués de Brasil. Brasil es el mercado latinoamericano que más
+       crece hacia Cancún y la Riviera Maya, y casi ningún competidor local
+       tiene el sitio traducido.
+       ====================================================================== */
+    pt: {
+      meta: {
+        nombre: "Português",
+        bandera: "🇧🇷",
+        htmlLang: "pt-BR",
+        ogLocale: "pt_BR",
+        hreflang: ["pt", "pt-BR", "pt-PT"],
+        prefijo: "pt",
+        rutas: {
+          home: "", servicios: "servicos", chofer: "motorista-privativo-cancun", tours: "passeios",
+          destinos: "destinos", tim: "tim",
+          blog: "blog", contacto: "contato"
+        }
+      },
+
+      ui: {
+        navHome: "Início", navServicios: "Serviços", navChofer: "Motorista Privativo", navTours: "Passeios Populares",
+        navDestinos: "Destinos", navTim: "Conheça o Tim", navBlog: "Blog de Viagem",
+        navContacto: "Fale Conosco", navAbrirMenu: "Abrir menu",
+        selectorIdioma: "Idioma",
+
+        heroBotonServicios: "Ver Serviços",
+        heroBotonWhatsapp: "Orçamento no WhatsApp",
+
+        buscadorTraslado: "🚐 Transfers", buscadorTour: "📍 Passeios",
+        buscadorTipo: "Tipo de serviço",
+        buscadorOpcion1: "Aeroporto → Hotel",
+        buscadorOpcion2: "Hotel → Aeroporto",
+        buscadorOpcion3: "Aeroporto → Hotel → Aeroporto (ida e volta)",
+        buscadorDesde: "De", buscadorDesdeEjemplo: "Aeroporto de Cancún (CUN)",
+        buscadorHacia: "Para", buscadorHaciaEjemplo: "Hotel, Airbnb ou endereço",
+        buscadorFecha: "Data de chegada", buscadorPasajeros: "Passageiros",
+        buscadorCotizarTraslado: "Orçar Meu Transfer",
+        buscadorDestino: "Destino ou experiência",
+        buscadorDestinoEjemplo: "Chichén Itzá, Tulum, Isla Mujeres…",
+        buscadorFechaTour: "Data", buscadorCotizarTour: "Orçar Meu Passeio",
+
+        homeServiciosEyebrow: "O que oferecemos",
+        homeServiciosTitulo: "Experiências Privativas em Cancún",
+        homeToursEyebrow: "Os Melhores",
+        homeToursTitulo: "Experiências Mais Populares",
+        homeToursBoton: "Ver Todos os Passeios",
+
+        porQueEyebrow: "Por que a TEVE?",
+        porQueTitulo: "O que nos torna diferentes",
+        porQueTexto: "A TEVE Transfers &amp; Tours é a escolha de confiança em transporte privativo e passeios sob medida em Cancún, Tulum e na Riviera Maya. Um único motorista que acompanha você do saguão de desembarque até o último dia de férias. Sem vans compartilhadas, sem esperar por estranhos, sem surpresas: sua viagem, feita para você.",
+        porQueBoton: "Deixe-nos Planejar Sua Viagem",
+
+        serviciosEyebrow: "Transporte em Cancún",
+        serviciosTitulo: "Serviços Privativos TEVE",
+        toursEyebrow: "Os Mais Vendidos", toursTitulo: "Experiências Mais Populares",
+        destinosEyebrow: "Para Onde Levamos Você", destinosTitulo: "Destinos Privativos",
+        timEyebrow: "Conheça seu Guia",
+        resenasEyebrow: "Avaliações Reais", resenasTitulo: "O Que Dizem Nossos Viajantes",
+        cotizaAeropuerto: "Aeroporto Internacional de Cancún (CUN)",
+        cotizaGrupoZonas: "Zonas hoteleiras",
+        cotizaGrupoPunto: "Ponto a ponto, marinas e parques",
+        cotizaElige: "Escolha um destino…",
+        cotizaEligeTour: "Escolha um passeio…",
+        cotizaOtroTour: "Outra coisa / ainda não sei",
+        cotizaEtiqueta: "Sua estimativa",
+        cotizaPorVehiculo: "por veículo · até {pax} passageiros",
+        cotizaRedondo: "ida e volta · por veículo",
+        cotizaPorPersona: "por pessoa",
+        cotizaGrupoGrande: "Para grupos acima de 18 fazemos um orçamento sob medida — envie e respondemos em menos de uma hora.",
+        cotizaSinPrecio: "Conte-nos suas datas e confirmamos o preço pelo WhatsApp.",
+        cotizaIncluye: "Recepção dentro do terminal, ajuda com as malas e espera sem custo se o voo atrasar.",
+        cotizaPorPersonaUnidad: "por pessoa",
+        cotizaTotalPax: "total para {pax}",
+        cotizaMinimo: "Mínimo de {min} passageiros para este passeio",
+        cotizaZonaAZona: "Só publicamos tarifas entre o aeroporto e uma zona hoteleira. Diga-nos os dois pontos e orçamos pelo WhatsApp.",
+        cotizaMismoPunto: "Escolha um ponto de saída e um de chegada diferentes.",
+        buscadorAdultos: "Adultos",
+        buscadorMenores: "Crianças",
+        cotizaAdultos: "adulto", cotizaAdultosPl: "adultos",
+        cotizaMenores: "criança", cotizaMenoresPl: "crianças",
+        cotizaSoloAdultos: "Apenas adultos — esta experiência não admite crianças.",
+        cotizaSinPrecioMenor: "O preço de crianças confirmamos pelo WhatsApp — diga-nos as idades.",
+        cotizaPorEmbarcacion: "por embarcação, não por pessoa",
+        cotizaDesdePrecio: "a partir de",
+        tarjetaPorAdulto: "por adulto",
+
+        blogEyebrow: "Guia de Viagem", blogTitulo: "Planeje sua Viagem a Cancún",
+        blogLeerMas: "Ler artigo →",
+
+        tarjetaCotizar: "Solicitar Orçamento", tarjetaReservar: "Reservar",
+        tarjetaDesde: "A partir de", tarjetaDescubrir: "Descobrir Mais",
+        tarjetaSinPrecio: "Orçamento personalizado",
+
+        contactoEyebrow: "Planejando uma viagem a Cancún?",
+        contactoTitulo: "Nossa equipe está pronta para ajudar",
+        formNombre: "Nome*", formApellido: "Sobrenome*",
+        formEmail: "E-mail*", formTelefono: "Telefone*",
+        formLlegada: "Data de chegada", formSalida: "Data de saída",
+        formAdultos: "Adultos", formMenores: "Crianças",
+        formMensaje: "Serviço de interesse / comentários",
+        formSms: "Quero receber avisos por SMS", formEmailOpt: "Quero receber avisos por e-mail",
+        formEnviar: "Enviar pelo WhatsApp",
+        contactoWhatsappTexto: "Resposta imediata",
+
+        socialEyebrow: "O que dizem sobre nós",
+        socialTitulo: "Siga-nos e leia nossas avaliações",
+        socialTaTexto: "Avaliações verificadas de viajantes que já viajaram conosco.",
+        socialTaBoton: "Ler avaliações",
+        socialFbTexto: "Novidades, promoções e fotos dos nossos transfers e passeios.",
+        socialFbBoton: "Seguir no Facebook",
+        socialIgTexto: "O dia a dia em Cancún, Tulum, Holbox e na Riviera Maya.",
+        socialIgBoton: "Seguir no Instagram",
+
+        newsletterEyebrow: "Sua próxima aventura começa aqui",
+        newsletterTitulo: "Receba inspiração por e-mail",
+        newsletterEjemplo: "Seu e-mail",
+        newsletterBoton: "Inscrever-me",
+
+        pieContacto: "Contato", pieDescubrir: "Descobrir",
+        pieLlamanos: "Ligue para nós", pieCorreo: "Envie um e-mail", pieRedes: "Redes Sociais",
+        pieHorario: "Disponíveis 24/7, 365 dias por ano",
+        pieCancun: "Cancún", pieQueVer: "O que ver",
+        pieTraslados: "Transfers e transporte", pieToursPrivados: "Passeios privativos",
+        pieBlog: "Blog de viagem", pieRiviera: "Riviera Maya",
+        pieBacalar: "Bacalar e Holbox", pieServicios: "Serviços",
+        pieChofer: "Motorista privativo", pieGrupos: "Grupos e eventos",
+        pieYates: "Aluguel de iates", pieConcierge: "Travel concierge",
+        pieCompania: "Empresa", pieConoceTim: "Conheça o Tim", pieContactanos: "Fale conosco",
+        piePrivacidad: "Política de Privacidade", pieTerminos: "Termos e Condições",
+        pieCookies: "Política de Cookies", pieDerechos: "Todos os direitos reservados.",
+
+        waGeneral: "Olá! Quero informações sobre um serviço privativo em Cancún.",
+        waPortada: "Olá! Quero um orçamento de serviço privativo em Cancún.",
+        waServicio: "Olá! Quero informações sobre:",
+        waTour: "Olá! Quero reservar o passeio:",
+        waDestino: "Olá! Quero um orçamento de passeio privativo para",
+        waTraslado: "Olá! Quero um orçamento de transfer.",
+        waTourBusqueda: "Olá! Quero um orçamento de passeio privativo.",
+        waTim: "FALE COMIGO NO WHATSAPP", svcEstrella: "Nosso serviço mais vendido",
+        svcEstrellaSub: "Serviço de Motorista Privativo por 12 Horas",
+        svcEstrellaNota: "Precisa de menos horas ou viaja com um grupo maior? Fale com a gente e montamos uma opção sob medida.", taPremio: "Travellers' Choice",
+
+        avisoSuscrito: "Obrigado! Enviaremos ideias de viagem para a Riviera Maya.",
+        avisoFaltanCampos: "Por favor, preencha os campos obrigatórios."
+      },
+
+      portada: {
+        titulo: "Viva Cancún<br>do Seu Jeito",
+        subtitulo: "Transporte privativo e passeios sob medida em Cancún e na Riviera Maya. Um único motorista de confiança, do desembarque às suas memórias.",
+        metricas: [
+          { numero: "500+", texto: "Viajantes Felizes" },
+          { numero: "5.0★", texto: "TripAdvisor" },
+          { numero: "8+",   texto: "Anos em Cancún" },
+          { numero: "USD",  texto: "CAD, AUD e GBP aceitos" }
+        ]
+      },
+
+      servicios: {
+        transfer: {
+          titulo: "Transfer Privativo Aeroporto ↔ Hotel",
+          texto: "Recepção com placa no saguão de desembarque, ajuda com as malas e veículo com ar-condicionado. Seu motorista espera mesmo se o voo atrasar."
+        },
+        chofer: {
+          titulo: "Motorista Privativo em Cancún",
+          texto: "Conheça Chichén Itzá, Tulum, Akumal, cenotes, Cobá, praias, mercados locais e muito mais, no seu ritmo e com seu motorista privativo. Você paga no mesmo dia."
+        },
+        grupos: {
+          titulo: "Transporte para Grupos",
+          texto: "Planejando um congresso, casamento ou evento corporativo? Temos frota e logística para mover grupos grandes sem ninguém esperando."
+        },
+        catamaran: {
+          titulo: "Catamarã para Isla Mujeres",
+          texto: "Navegue até Isla Mujeres com mergulho de snorkel incluído e tempo livre na ilha. Cada detalhe coordenado pelo seu motorista TEVE."
+        },
+        yate: {
+          titulo: "Aluguel de Iate Privativo",
+          texto: "De uma lancha esportiva a um catamarã de luxo. Dia de pesca, pôr do sol ou ilha privativa, você decide."
+        },
+        concierge: {
+          titulo: "Travel Concierge",
+          texto: "Planejamento completo do roteiro: reservas, atividades e recomendações locais de quem realmente mora aqui."
+        }
+      },
+
+      categorias: {
+        parques:   "Parques Xcaret",
+        delfines:  "Nado com golfinhos",
+        chichen:   "Chichén Itzá",
+        cancun:    "Atividades curtas em Cancún",
+        cocobongo: "Coco Bongo (apenas adultos)",
+        nautico:   "Iates e catamarãs"
+      },
+
+      tours: {
+        "xcaret-plus": { texto: "O parque principal: rios subterrâneos, o show México Espectacular e o bufê e armário do Plus inclusos." },
+        "xelha":       { texto: "Enseada natural all inclusive. Snorkel, salto do penhasco, comida e bebidas o dia inteiro." },
+        "xplor":       { texto: "Tirolesas sobre a selva, veículos anfíbios e nado em rios subterrâneos." },
+        "xenotes":     { texto: "Quatro cenotes em um dia: nado, rapel, tirolesa e caiaque, com almoço maia." },
+        "dolphin-royal": { texto: "O programa de golfinhos mais completo: foot push, dorsal tow e o passeio na barriga." },
+        "xichen-clasico": { texto: "Uma das novas sete maravilhas do mundo, com guia certificado e tempo para explorar." },
+        "cat-plus":    { texto: "Navegue de Cancún a Isla Mujeres com snorkel, open bar e tempo livre na ilha." }
+      },
+
+      destinos: {
+        chichen: { duracion: "Meio dia ou dia inteiro", texto: "2,5 h de Cancún · Guia privativo incluído" },
+        tulum:   { duracion: "Bate-volta de um dia",    texto: "1,5 h de Cancún · Ruínas à beira-mar e cenotes" },
+        isla:    { duracion: "Dia inteiro",             texto: "30 min de ferry · Catamarã privativo disponível" },
+        bacalar: { duracion: "Com opção de pernoite",   texto: "3-4 h · A mágica fora da rota turística" }
+      },
+
+      chofer: {
+        lema: "Seu dia. Do seu jeito.",
+        porQueTitulo: "Por que um motorista privativo?",
+        porQue: [
+          { t: "Seu próprio veículo", d: "Uma van para até 8 pessoas, só para o seu grupo. Ninguém mais a bordo e nenhuma parada que não seja sua." },
+          { t: "Seu próprio motorista", d: "Um motorista privativo bilíngue que fica com você o dia todo, não uma van que deixa e vai embora." },
+          { t: "Você define o plano", d: "Aonde ir, a que horas sair, quanto tempo ficar em cada lugar. E se mudar de ideia no meio do dia, tudo bem também." },
+          { t: "Ajudamos a montar", d: "Conte o que você gosta e montamos o roteiro junto, e dizemos o que achamos que vale mesmo o seu dia." }
+        ],
+        lugaresTitulo: "Lugares que você pode visitar",
+        lugares: ["Chichén Itzá", "Tulum", "Nadar com tartarugas em Akumal 🐢", "Cobá", "Cenotes", "Praias", "Mercados locais", "E mais"],
+        eyebrow: "Nosso serviço mais vendido",
+        titulo: "Motorista Privativo em Cancún por Dia",
+        entrada: "Você escolhe aonde ir e a que horas. Uma van privativa e um motorista bilíngue à sua disposição o dia todo: praias, cenotes, sítios arqueológicos, mercados, compras, ou tudo junto. Sem roteiro fixo e sem grupo esperando por você.",
+        tarifasTitulo: "Aluguel de veículo com motorista",
+        tarifas: [
+          { horas: "4 horas",        precio: "US$ 180" },
+          { horas: "6 a 8 horas",    precio: "US$ 250" },
+          { horas: "10 a 12 horas · Dia inteiro", precio: "US$ 300" }
+        ],
+        tarifaNota: "Saídas antes das 8h00 têm um acréscimo de US$ 30.",
+        incluyeTitulo: "O que está incluso",
+        incluye: [
+          "O combustível está pago",
+          "Van para até 8 pessoas",
+          "Motorista privativo bilíngue",
+          "Cerveja, água e refrigerantes no veículo"
+        ],
+        noIncluyeTitulo: "O que não está incluso",
+        noIncluye: [
+          "Ingressos para parques, sítios ou atrações",
+          "Comida",
+          "Estacionamento e pedágios, quando houver"
+        ],
+        itinerarioTitulo: "Ajudamos você a montar o dia",
+        itinerario: "Não sabe por onde começar? Ajudamos a montar o roteiro para o seu tempo render o máximo, e dizemos o que achamos que você vai realmente curtir, não só os lugares aonde todo mundo vai.",
+        cta: "Pergunte sobre o motorista privativo"
+      },
+      tim: {
+        titulo: "Oi, eu sou o Tim.",
+        biografia: [
+          "Trabalho com viajantes em Cancún e na Riviera Maya há mais de oito anos, e nesse tempo aprendi que cada pessoa quer viver o México do seu próprio jeito.",
+          "Por isso adoro oferecer experiências privativas e personalizadas. Você me diz o que gostaria de ver, o que tem vontade de fazer e de quanto tempo dispõe, e eu ajudo a montar um dia que você realmente aproveite. E se não souber por onde começar, não se preocupe, é para isso que estou aqui. 😊",
+          "Quero que meus clientes se sintam à vontade para me perguntar qualquer coisa: onde comer, qual cenote visitar, quais lugares valem mesmo a pena. Meu objetivo é que você se sinta seguro desde a primeira conversa e que, no dia do passeio, apenas relaxe e aproveite.",
+          "Depois de todos esses anos, uma das coisas que mais me alegra é ver viajantes me recomendando para a família e os amigos. Para mim, esse é o melhor sinal de que estou fazendo bem o meu trabalho.",
+          "Espero ter a chance de te conhecer e mostrar alguns dos meus lugares favoritos em Cancún e na Riviera Maya. 🇲🇽"
+        ]
+      },
+
+      resenas: [
+        {
+          texto: "O Tim cuidou de tudo: aeroporto, Chichén Itzá, cenote, almoço. Nunca nos sentimos apressados e ele conhecia cada truque para fugir das multidões.",
+          nombre: "Jennifer K.",
+          lugar: "Houston, Texas 🇺🇸"
+        },
+        {
+          texto: "Como canadenses que passam seis semanas em Cancún todo inverno, transporte confiável era nossa maior preocupação. O Tim resolveu por completo.",
+          nombre: "Robert & Linda S.",
+          lugar: "Vancouver, BC 🇨🇦"
+        },
+        {
+          texto: "Chegamos de Sydney sem saber nada da região. O Tim virou nosso concierge não oficial. Já o recomendei para quatro amigos.",
+          nombre: "Michael P.",
+          lugar: "Sydney, Austrália 🇦🇺"
+        }
+      ],
+
+      blog: {
+        "transfer-vs-shared": {
+          categoria: "Aeroporto e Transfers",
+          titulo: "Transfer Privativo vs Compartilhado: Qual Escolher?",
+          texto: "Comparamos as duas opções com números reais para você decidir antes de reservar sua próxima viagem.",
+          contenido: [
+            "O transfer compartilhado sai mais barato por assento, e esse é todo o argumento dele. A van espera encher e depois percorre a zona hoteleira deixando todo mundo. Se o seu hotel é o último, lá se foi uma hora do primeiro dia antes de você vê-lo.",
+            "O transfer privativo é cobrado por veículo, não por pessoa, e isso muda a conta mais rápido do que se imagina. A partir de US$ 50 a van é sua, então duas pessoas pagam o mesmo que seis. Passando de três ou quatro viajantes, costuma custar igual ou menos que comprar assentos avulsos.",
+            "O que não aparece numa comparação de preços: seu motorista acompanha o seu voo. Se você pousar duas horas atrasado à uma da manhã, ele continua lá com a placa. Uma van compartilhada tem horário a cumprir e outros passageiros esperando.",
+            "Pegue a compartilhada se viaja sozinho, com orçamento apertado e chega em horário civilizado. Pegue a privativa se vão em família, com muita bagagem, chegando de noite, ou se simplesmente não quer começar as férias numa fila."
+          ]
+        },
+        "chichen-guide": {
+          categoria: "Passeios Privativos",
+          titulo: "Chichén Itzá Privativo saindo de Cancún: Guia 2026",
+          texto: "O melhor horário de chegada, o que levar, onde parar para almoçar e por que um guia privativo muda o dia inteiro.",
+          contenido: [
+            "Chichén Itzá fica a cerca de duas horas e meia de Cancún, e a única decisão que define o dia inteiro é a que horas você sai. O sítio abre às oito. Os ônibus da zona hoteleira começam a chegar por volta das onze, junto com o pior do calor.",
+            "Sair de Cancún às seis significa entrar na hora que abre, com a pirâmide só para você e sombra ainda no chão. Por isso nossas saídas cedo têm um acréscimo pequeno antes das oito: é o detalhe que decide se você lembra do lugar ou da multidão.",
+            "Leve dinheiro para a entrada, que não está inclusa, além de água, boné e sapatos com que dê para caminhar. O sítio é grande e aberto, e no meio dele não há sombra.",
+            "Depois dá tempo de um cenote para refrescar e almoçar em Valladolid, uma cidade colonial a vinte minutos. Um dia assim são doze horas de porta a porta, que é o que cobre a nossa locação mais longa. Seu motorista espera enquanto você explora: sem hora fixa de volta e sem grupo para alcançar."
+          ]
+        },
+        "snowbirds": {
+          categoria: "Para Viajantes Canadenses",
+          titulo: "Temporadas de Inverno em Cancún: Guia de Transporte",
+          texto: "Tudo sobre transporte privativo recorrente para estadias longas de quatro a oito semanas.",
+          contenido: [
+            "Uma estadia de quatro a oito semanas é um problema diferente de umas férias de uma semana. Você não fica se movendo entre atrações; está morando num lugar, e precisa chegar ao supermercado, à farmácia, ao jantar, e a um passeio de vez em quando.",
+            "Alugar um carro por dois meses é uma resposta, mas vem com o trânsito de Cancún, estacionar na zona hoteleira, discussões de seguro e dirigir de volta depois do jantar. Os táxis vão somando e você negocia toda vez.",
+            "O que a maioria dos nossos hóspedes de longa estadia acaba adotando é um arranjo fixo: o mesmo motorista, reservado nos dias em que precisam. O mercado da semana, um dia em Tulum ou num cenote quando dá vontade, e o aeroporto na ida e na volta.",
+            "A vantagem é que é sempre a mesma pessoa. Ele aprende qual supermercado você prefere e como gosta que o dia corra, e você para de ter que se explicar. Diga as suas datas e vemos o que faz sentido para a estadia."
+          ]
+        }
+      },
+
+      seo: {
+        chofer: {
+          titulo: "Motorista Privativo em Cancún por Dia | A partir de US$ 180",
+          descripcion: "Motorista privativo em Cancún com van para até 8 pessoas. A partir de US$ 180 por 4 horas, combustível e motorista bilíngue inclusos. Vá aonde quiser."
+        },
+        home: {
+          titulo: "Motorista Privativo em Cancún e Riviera Maya | Transfers",
+          descripcion: "Motorista privativo por dia em Cancún e na Riviera Maya a partir de US$ 180, mais transfers do aeroporto e passeios sob medida. Reserve pelo WhatsApp."
+        },
+        servicios: {
+          titulo: "Transfer do Aeroporto e Motorista em Cancún | TEVE",
+          descripcion: "Transfer aeroporto-hotel, motorista privativo por dia, transporte para grupos, catamarã e aluguel de iates em Cancún e Riviera Maya."
+        },
+        tours: {
+          titulo: "Passeios Populares de Cancún: Xcaret, Xel-Há, Chichén Itzá",
+          descripcion: "Passeios privativos para Chichén Itzá, Tulum, Cobá, Akumal e Isla Mujeres. Veículo privativo, guia bilíngue e horários flexíveis."
+        },
+        destinos: {
+          titulo: "Destinos saindo de Cancún: Tulum, Chichén Itzá, Bacalar",
+          descripcion: "Para onde levamos você saindo de Cancún: Chichén Itzá, Tulum, Isla Mujeres, Bacalar e Holbox com transporte privativo porta a porta."
+        },
+        tim: {
+          titulo: "Conheça o Tim, seu Motorista Privativo em Cancún",
+          descripcion: "Mais de oito anos guiando viajantes por Cancún e pela Riviera Maya. Bilíngue, local e citado em centenas de avaliações cinco estrelas."
+        },
+        blog: {
+          titulo: "Blog de Viagem: Guias de Cancún e Riviera Maya | TEVE",
+          descripcion: "Guias práticos para planejar sua viagem a Cancún: transfers, passeios privativos, estadias longas e conselhos honestos de um local."
+        },
+        contacto: {
+          titulo: "Contato e Orçamentos | TEVE Transfers & Tours Cancún",
+          descripcion: "Solicite um orçamento do seu transfer ou passeio privativo em Cancún. Resposta rápida pelo WhatsApp, e-mail ou telefone, o ano todo."
+        }
+      }
+    }
+  }
+};
