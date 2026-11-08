@@ -1,2 +1,5 @@
 # Salida generada por construir-sitio.sh: se reconstruye con un comando.
 teve-tours-website/sitio-publicar/
+
+# Cache de Python del generador de paginas de destino.
+teve-tours-website/paginas-destino/__pycache__/
