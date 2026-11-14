@@ -11,6 +11,10 @@ falta información hay un marcador `[POR CONFIRMAR]` visible en pantalla.
 
 ## BLOQUEA EL LANZAMIENTO
 
+> **Las direcciones, teléfonos y horarios de las cinco sedes están concentrados
+> en [`DATOS-SEDES.md`](./DATOS-SEDES.md)**, con lo encontrado en directorios ya
+> precargado para solo verificar.
+
 ### 1. Datos de contacto
 - [ ] Número de WhatsApp (con lada país). ¿Uno central o uno por sede?
 - [ ] Teléfono de cada sede
