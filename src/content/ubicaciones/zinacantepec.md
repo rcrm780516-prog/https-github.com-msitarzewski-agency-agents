@@ -7,7 +7,7 @@ excerpt: "Consulta ginecológica y seguimiento de embarazo en Zinacantepec, sin 
 seo:
   title: "Ginecólogo en Zinacantepec | GEMMAE Ginecólogos"
   description: "Atención ginecológica, control prenatal y salud femenina en Zinacantepec. Conoce la sede GEMMAE, horarios, ubicación y cómo agendar tu consulta."
-order: 3
+order: 4
 address:
   street: "[POR CONFIRMAR] Calle y número"
   neighborhood: "[POR CONFIRMAR] Colonia"
@@ -46,8 +46,10 @@ doctors: []
 coverage:
   - "Zinacantepec centro"
   - "San Cristóbal Tecolit"
+  - "San Antonio Acahualco"
   - "Toluca poniente"
   - "Almoloya de Juárez"
+  - "Amanalco"
 faq:
   - q: "¿Qué servicios se atienden directamente en Zinacantepec?"
     a: "Consulta ginecológica general, revisión preventiva, seguimiento de embarazo y valoración de menopausia. Algunos estudios se programan en las sedes de Toluca o Metepec; te lo indicamos al agendar para que no hagas un traslado innecesario."

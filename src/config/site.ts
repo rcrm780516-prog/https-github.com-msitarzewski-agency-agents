@@ -21,7 +21,7 @@ export const site = {
   legalName: TBC, // razon social exacta
   tagline: 'Salud integral de la mujer',
   description:
-    'Ginecología, obstetricia, embarazo, fertilidad y menopausia en Toluca, Metepec y Zinacantepec. Atención médica especializada para la mujer en cada etapa de su vida.',
+    'Ginecología, obstetricia, embarazo, fertilidad y menopausia en cinco sedes: Toluca, Auge, Metepec, Zinacantepec y Santa Fé. Atención especializada para la mujer.',
   url: (env.PUBLIC_SITE_URL as string) || 'https://gemmaeginecologos.com',
   locale: 'es-MX',
   lang: 'es',
@@ -30,7 +30,9 @@ export const site = {
   currency: 'MXN',
   /** Imagen social por defecto (1200x630). */
   defaultOgImage: '/images/og/gemmae-og-default.png',
-  themeColor: '#2F3B36',
+  /** Sedes tal como aparecen en el logotipo oficial */
+  sedes: ['Toluca', 'Auge', 'Metepec', 'Zinacantepec', 'Santa Fé'] as const,
+  themeColor: '#F02880',
 } as const;
 
 /** Contacto principal. Se sobreescribe por .env sin tocar codigo. */

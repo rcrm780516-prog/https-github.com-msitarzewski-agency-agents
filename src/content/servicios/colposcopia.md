@@ -41,7 +41,7 @@ faq:
     a: "En general sí. Si se tomó biopsia, se indica evitar relaciones sexuales y el uso de tampones durante los días que el médico señale, y puede presentarse sangrado ligero."
   - q: "¿Cuánto tarda el resultado?"
     a: "La observación se comenta al terminar el estudio. Si se tomó biopsia, el resultado depende del laboratorio; se te informa el tiempo estimado al agendar."
-locations: [toluca, metepec]
+locations: [toluca, auge, metepec]
 related: [vph, ginecologia, salud-femenina]
 searchTerms: ["colposcopia", "papanicolaou alterado", "citologia alterada", "biopsia de cervix", "lesion cuello uterino", "nic"]
 ---

@@ -14,7 +14,20 @@ muestra en gris para que sea evidente en revisión.
 
 ---
 
-## 1. Dominio
+## 1. Identidad de marca
+
+| Elemento | Valor |
+|---|---|
+| Rosa oficial | `#F02880` (tomado del logotipo) |
+| Gris oficial | `#808080` (la "MAE" del wordmark) |
+| Rosa de CTA | `#CE1368` — el rosa del logo sobre blanco da 3.87:1 y no alcanza AA para texto |
+| Enlaces | `#A80F53` |
+| Archivos | `public/images/marca/` (logotipo completo e isotipo) |
+
+Los tokens viven en `src/styles/tokens.css`. Cambiar el rosa ahí lo propaga a
+todo el sitio. Cualquier color nuevo debe verificarse contra WCAG AA.
+
+## 1b. Dominio
 
 | Variable | Valor | Estado |
 |---|---|---|
@@ -124,9 +137,14 @@ Google) y los iconos del pie. Si están vacías, no se renderizan.
 
 ## 6. Sedes
 
-Se editan en `src/content/ubicaciones/{toluca,metepec,zinacantepec}.md`.
+Cinco sedes, según el logotipo oficial. Se editan en
+`src/content/ubicaciones/{toluca,auge,metepec,zinacantepec,santa-fe}.md`.
 
-Pendiente en las tres: `address` (calle, colonia, CP), `phone`, `hours`,
+**[POR CONFIRMAR] crítico para el SEO local:** a qué municipio pertenecen
+exactamente **Auge** y **Santa Fé**. De eso depende a qué búsquedas apunta cada
+página ("ginecólogo en X") y el `areaServed` de sus datos estructurados.
+
+Pendiente en las cinco: `address` (calle, colonia, CP), `phone`, `hours`,
 `hoursSchema`, `geo` (lat/lng), `mapEmbed`, `mapLink`, `googleBusinessUrl`,
 `directions`, `parking`.
 

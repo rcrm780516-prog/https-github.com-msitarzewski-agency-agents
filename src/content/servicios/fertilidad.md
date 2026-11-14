@@ -39,7 +39,7 @@ faq:
     a: "No. Ningún estudio o tratamiento puede garantizar un embarazo. La valoración busca identificar factores que sí pueden abordarse y darte información clara sobre tus alternativas."
   - q: "¿Realizan tratamientos de reproducción asistida?"
     a: "[POR CONFIRMAR] Especificar qué procedimientos se realizan en GEMMAE y en qué casos se deriva a un centro especializado."
-locations: [toluca, metepec]
+locations: [toluca, auge, metepec]
 related: [ginecologia, embarazo, ultrasonido, salud-femenina]
 searchTerms: ["fertilidad", "no puedo embarazarme", "infertilidad", "busco embarazo", "ovulacion", "ciclo irregular", "ovario poliquistico"]
 ---

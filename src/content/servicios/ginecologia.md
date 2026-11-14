@@ -1,11 +1,11 @@
 ---
 name: "Ginecología"
 shortName: "Ginecología"
-h1: "Ginecología en Toluca, Metepec y Zinacantepec"
+h1: "Ginecología en las cinco sedes GEMMAE"
 excerpt: "Consulta ginecológica integral: revisión preventiva, atención de síntomas y seguimiento a lo largo de la vida."
 seo:
   title: "Ginecología en Toluca y Metepec | GEMMAE"
-  description: "Consulta ginecológica integral en Toluca, Metepec y Zinacantepec: revisión preventiva, citología, alteraciones menstruales, infecciones y anticoncepción."
+  description: "Consulta ginecológica integral en las cinco sedes GEMMAE: revisión preventiva, citología, alteraciones menstruales, infecciones y anticoncepción."
 category: "ginecologia"
 order: 1
 featured: true
@@ -40,7 +40,7 @@ faq:
     a: "Sí. La consulta ginecológica no requiere haber iniciado vida sexual y la valoración se adapta a tu situación."
   - q: "¿Atienden a adolescentes?"
     a: "Sí. La primera consulta en la adolescencia se aborda con un enfoque informativo y respetuoso, y puede realizarse acompañada por madre, padre o tutor."
-locations: [toluca, metepec, zinacantepec]
+locations: [toluca, auge, metepec, zinacantepec, santa-fe]
 related: [salud-femenina, colposcopia, vph, ultrasonido, ginecologia-adolescente, menopausia]
 searchTerms: ["ginecologo", "ginecologa", "consulta ginecologica", "papanicolaou", "citologia", "revision anual", "anticoncepcion"]
 ---

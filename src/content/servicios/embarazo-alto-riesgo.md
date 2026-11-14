@@ -35,7 +35,7 @@ faq:
     a: "En muchos casos sí. Algunos estudios o valoraciones pueden requerir una sede específica o la participación de otra especialidad; se te indica con anticipación."
   - q: "¿Puedo pedir una segunda opinión?"
     a: "Por supuesto. Puedes solicitar una valoración para revisar tu caso y los estudios que ya tengas."
-locations: [toluca, metepec]
+locations: [toluca, auge, metepec]
 related: [embarazo, obstetricia, ultrasonido]
 searchTerms: ["embarazo de alto riesgo", "alto riesgo", "preeclampsia", "diabetes gestacional", "embarazo multiple", "amenaza de parto prematuro"]
 ---

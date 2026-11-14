@@ -5,7 +5,7 @@ h1: "Salud femenina: prevención y revisión periódica"
 excerpt: "Un esquema de revisión preventiva ordenado por etapa de vida, para detectar a tiempo y no acumular pendientes."
 seo:
   title: "Revisión preventiva y salud femenina en Toluca | GEMMAE"
-  description: "Revisión ginecológica preventiva en Toluca, Metepec y Zinacantepec: citología, prueba de VPH, valoración mamaria y seguimiento por etapa de vida."
+  description: "Revisión ginecológica preventiva en las cinco sedes GEMMAE: citología, prueba de VPH, valoración mamaria y seguimiento por etapa de vida."
 category: "ginecologia"
 order: 8
 icon: "shield"
@@ -31,7 +31,7 @@ faq:
     a: "La valoración mamaria forma parte de la consulta. La indicación de mastografía u otros estudios de imagen depende de tu edad y antecedentes. [POR CONFIRMAR] Indicar si GEMMAE realiza el estudio o deriva."
   - q: "Me siento bien, ¿necesito revisión?"
     a: "Sí. Varias condiciones ginecológicas relevantes no producen síntomas en etapas iniciales; ese es precisamente el propósito de la detección oportuna."
-locations: [toluca, metepec, zinacantepec]
+locations: [toluca, auge, metepec, zinacantepec, santa-fe]
 related: [ginecologia, vph, colposcopia, ultrasonido, menopausia]
 searchTerms: ["revision preventiva", "chequeo ginecologico", "papanicolaou", "citologia", "deteccion oportuna", "salud femenina", "prevencion"]
 ---

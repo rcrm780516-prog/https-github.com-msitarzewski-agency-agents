@@ -5,7 +5,7 @@ h1: "Acompañamiento durante tu embarazo"
 excerpt: "Control prenatal con seguimiento cercano: valoración inicial, citas periódicas, estudios y resolución de dudas en cada etapa."
 seo:
   title: "Control prenatal y embarazo en Toluca | GEMMAE"
-  description: "Control prenatal y seguimiento de embarazo en Toluca, Metepec y Zinacantepec: primera valoración, citas periódicas, ultrasonidos y acompañamiento."
+  description: "Control prenatal y seguimiento de embarazo en las cinco sedes GEMMAE: primera valoración, citas periódicas, ultrasonidos y acompañamiento."
 category: "etapas"
 order: 3
 featured: true
@@ -59,7 +59,7 @@ faq:
     a: "Comunícate de inmediato con nosotros o acude a valoración. Ante sangrado, dolor intenso, fiebre o disminución de movimientos del bebé, la valoración no debe posponerse."
   - q: "Empecé mi control en otro lado, ¿puedo cambiarme?"
     a: "Sí. Lleva los estudios y notas que tengas para dar continuidad al seguimiento sin repetir lo que ya está hecho."
-locations: [toluca, metepec, zinacantepec]
+locations: [toluca, auge, metepec, zinacantepec, santa-fe]
 related: [obstetricia, embarazo-alto-riesgo, ultrasonido, fertilidad]
 searchTerms: ["embarazo", "control prenatal", "prenatal", "estoy embarazada", "primer trimestre", "fecha probable de parto", "semanas de embarazo"]
 ---

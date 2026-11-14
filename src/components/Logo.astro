@@ -1,8 +1,48 @@
 ---
-export interface Props { class?: string; href?: string; label?: boolean }
-const { class: className = '', href = '/', label = true } = Astro.props;
+/**
+ * Logotipo oficial GEMMAE.
+ *
+ * - `mark` (cabecera): isotipo + wordmark bicolor compuesto con tipografía.
+ *   Se arma con texto y no con imagen para que quede nítido en cualquier
+ *   pantalla, pese menos de 1 KB y pueda leerlo un lector de pantalla.
+ * - `full` (pie): el archivo original completo, con la línea de sedes.
+ */
+export interface Props {
+  variant?: 'mark' | 'full';
+  class?: string;
+  href?: string | null;
+  /** Tamaño del isotipo en píxeles */
+  size?: number;
+}
+
+const { variant = 'mark', class: className = '', href = '/', size = 38 } = Astro.props;
+const Tag = href ? 'a' : 'div';
+const attrs = href ? { href, 'aria-label': 'GEMMAE Ginecólogos — Inicio' } : {};
 ---
-<a href={href} class:list={['logo', className]} aria-label="GEMMAE Ginecólogos — Inicio">
-  <span class="logo__mark">GEMMAE</span>
-  {label && <span class="logo__sub">Ginecólogos</span>}
-</a>
+<Tag class:list={['logo', `logo--${variant}`, className]} {...attrs}>
+  {variant === 'full' ? (
+    <img
+      src="/images/marca/gemmae-logo.webp"
+      alt="GEMMAE Ginecólogos — Toluca, Auge, Metepec, Zinacantepec y Santa Fé"
+      width="900"
+      height="900"
+      loading="lazy"
+      decoding="async"
+      class="logo__full"
+    />
+  ) : (
+    <>
+      <img
+        src="/images/marca/gemmae-isotipo.webp"
+        alt=""
+        width={size}
+        height={size}
+        class="logo__icon"
+        decoding="async"
+      />
+      <span class="logo__word">
+        <span class="logo__word-a">GEM</span><span class="logo__word-b">MAE</span>
+      </span>
+    </>
+  )}
+</Tag>

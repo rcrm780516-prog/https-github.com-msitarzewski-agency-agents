@@ -1,12 +1,14 @@
 ---
 import { mainNav, footerNav } from '../config/site';
 import { isActive, routes } from '../lib/urls';
+import { getUbicaciones } from '../lib/content';
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
 import AppointmentCTA from './AppointmentCTA.astro';
 import WhatsAppButton from './WhatsAppButton.astro';
 
 const current = Astro.url.pathname;
+const ubicaciones = await getUbicaciones();
 ---
 <header class="header" id="site-header">
   <div class="container header__inner">
@@ -14,15 +16,38 @@ const current = Astro.url.pathname;
 
     <nav class="nav" aria-label="Navegación principal">
       <ul class="nav__list">
-        {mainNav.map((item) => (
-          <li>
-            <a
-              class="nav__link"
-              href={item.href}
-              aria-current={isActive(current, item.href) ? 'page' : undefined}
-            >{item.label}</a>
-          </li>
-        ))}
+        {mainNav.map((item) =>
+          item.href === routes.ubicaciones ? (
+            <li class="nav__item has-sub">
+              <a
+                class="nav__link"
+                href={item.href}
+                aria-current={isActive(current, item.href) ? 'page' : undefined}
+                aria-haspopup="true"
+                aria-expanded="false"
+                data-sub-toggle
+              >{item.label}</a>
+              <ul class="subnav" data-sub>
+                {ubicaciones.map((u) => (
+                  <li>
+                    <a href={routes.ubicacion(u.id)} data-event="view_location" data-location={u.id}>
+                      {u.data.city}
+                    </a>
+                  </li>
+                ))}
+                <li class="subnav__all"><a href={routes.ubicaciones}>Ver todas las sedes</a></li>
+              </ul>
+            </li>
+          ) : (
+            <li>
+              <a
+                class="nav__link"
+                href={item.href}
+                aria-current={isActive(current, item.href) ? 'page' : undefined}
+              >{item.label}</a>
+            </li>
+          )
+        )}
       </ul>
     </nav>
 
@@ -75,6 +100,14 @@ const current = Astro.url.pathname;
             <Icon name="chevron" size={18} />
           </a>
         </li>
+        {ubicaciones.map((u) => (
+          <li>
+            <a class="mobile-menu__link mobile-menu__link--sub" href={routes.ubicacion(u.id)}>
+              Sede {u.data.city}
+              <Icon name="chevron" size={16} />
+            </a>
+          </li>
+        ))}
         <li>
           <a class="mobile-menu__link" href={routes.faq}>
             Preguntas frecuentes

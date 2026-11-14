@@ -52,6 +52,37 @@ if (revealables.length) {
   }
 }
 
+// --- Submenu de sedes: accesible con teclado, no solo con hover ---
+document.querySelectorAll<HTMLElement>('[data-sub-toggle]').forEach((toggle) => {
+  const sub = toggle.parentElement?.querySelector<HTMLElement>('[data-sub]');
+  if (!sub) return;
+  const abrir = (on: boolean) => {
+    sub.classList.toggle('is-open', on);
+    toggle.setAttribute('aria-expanded', String(on));
+  };
+  // En pantalla tactil el primer toque abre el submenu en vez de navegar
+  toggle.addEventListener('click', (e) => {
+    if (window.matchMedia('(hover: none)').matches && !sub.classList.contains('is-open')) {
+      e.preventDefault();
+      abrir(true);
+    }
+  });
+  toggle.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      abrir(true);
+      sub.querySelector('a')?.focus();
+    }
+  });
+  toggle.parentElement?.addEventListener('focusout', (e) => {
+    if (!toggle.parentElement?.contains(e.relatedTarget as Node)) abrir(false);
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') abrir(false); });
+  document.addEventListener('click', (e) => {
+    if (!toggle.parentElement?.contains(e.target as Node)) abrir(false);
+  });
+});
+
 // --- Overlay de busqueda desde el header ---
 const searchTrigger = document.querySelector<HTMLAnchorElement>('[data-search-open]');
 const overlay = document.getElementById('search-overlay');

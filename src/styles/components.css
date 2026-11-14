@@ -80,7 +80,7 @@
   font-size: var(--step--1);
   letter-spacing: 0.01em;
   text-decoration: none;
-  color: var(--teal-600);
+  color: var(--brand-700);
 }
 .link-arrow::after {
   content: '→';
@@ -110,24 +110,37 @@
 
 .logo {
   display: inline-flex;
-  align-items: baseline;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.6rem;
   text-decoration: none;
   color: var(--ink-900);
 }
-.logo__mark {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  letter-spacing: 0.14em;
+.logo__icon {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 50%;
+}
+/* Wordmark bicolor, igual que el logotipo oficial: GEM rosa, MAE gris */
+.logo__word {
+  font-family: var(--font-sans);
+  font-size: 1.42rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   line-height: 1;
 }
-.logo__sub {
-  font-size: 0.62rem;
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--ink-500);
-  font-weight: 500;
+.logo__word-a { color: var(--brand-500); }
+.logo__word-b { color: var(--gray-logo); }
+.logo__full { width: 190px; height: auto; }
+
+@media (max-width: 420px) {
+  .logo__word { font-size: 1.2rem; }
+  .logo__icon { width: 32px; height: 32px; }
 }
+
+/* En secciones oscuras el gris del wordmark pierde contraste */
+.footer .logo__word-b,
+.section--dark .logo__word-b { color: #C49AAF; }
 
 .nav { display: none; }
 .nav__list { display: flex; align-items: center; gap: clamp(0.5rem, 1.2vw, 1.35rem); list-style: none; margin: 0; padding: 0; }
@@ -438,7 +451,7 @@ a.chip:hover { background: var(--brand-100); color: var(--brand-900); }
 .data-list__row svg { color: var(--brand-600); margin-top: 0.2rem; }
 .data-list__label { display: block; font-weight: 600; color: var(--ink-900); }
 .data-list a { color: var(--ink-700); text-decoration: none; }
-.data-list a:hover { color: var(--teal-600); text-decoration: underline; }
+.data-list a:hover { color: var(--brand-700); text-decoration: underline; }
 
 .map-frame {
   width: 100%;
@@ -495,7 +508,7 @@ a.chip:hover { background: var(--brand-100); color: var(--brand-900); }
 .breadcrumb li { display: flex; align-items: center; gap: 0.4rem; color: var(--ink-500); }
 .breadcrumb li + li::before { content: '/'; color: var(--sand-400); }
 .breadcrumb a { color: var(--ink-500); text-decoration: none; }
-.breadcrumb a:hover { color: var(--teal-600); text-decoration: underline; }
+.breadcrumb a:hover { color: var(--brand-700); text-decoration: underline; }
 .breadcrumb [aria-current='page'] { color: var(--ink-900); font-weight: 500; }
 /* En móvil el último nivel puede ser un título largo: se recorta en vez de
    romper la línea y dejar el separador colgando. */
@@ -531,8 +544,8 @@ a.chip:hover { background: var(--brand-100); color: var(--brand-900); }
   color: var(--text-on-dark);
   overflow: hidden;
 }
-.cta-block h2 { color: #FBF9F6; max-width: 22ch; }
-.cta-block p { color: #D9E2DB; max-width: 52ch; margin-top: var(--space-md); }
+.cta-block h2 { color: #FFF7FA; max-width: 22ch; }
+.cta-block p { color: #F0D9E4; max-width: 52ch; margin-top: var(--space-md); }
 .cta-block .btn-row { margin-top: var(--space-xl); }
 
 /* ---------- Barra fija movil ---------- */
@@ -732,18 +745,17 @@ a.chip:hover { background: var(--brand-100); color: var(--brand-900); }
 .toc { position: sticky; top: calc(var(--header-h) + 1.5rem); }
 .toc__list { list-style: none; margin: var(--space-sm) 0 0; padding: 0; display: grid; gap: 0.5rem; font-size: 0.85rem; }
 .toc__list a { color: var(--ink-500); text-decoration: none; }
-.toc__list a:hover { color: var(--teal-600); }
+.toc__list a:hover { color: var(--brand-700); }
 
 /* ---------- Footer ---------- */
-.footer { background: var(--brand-900); color: #CBD5CC; padding-block: var(--space-3xl) var(--space-xl); margin-top: var(--section-y); }
-.footer a { color: #CBD5CC; text-decoration: none; }
+.footer { background: var(--brand-900); color: #E3CDD9; padding-block: var(--space-3xl) var(--space-xl); margin-top: var(--section-y); }
+.footer a { color: #E3CDD9; text-decoration: none; }
 .footer a:hover { color: #fff; text-decoration: underline; }
 .footer__grid { display: grid; gap: var(--space-2xl); }
 @media (min-width: 760px) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; } }
-.footer__title { font-size: 0.74rem; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: #8FA595; font-weight: 600; margin-bottom: var(--space-md); }
+.footer__title { font-size: 0.74rem; text-transform: uppercase; letter-spacing: var(--tracking-wider); color: #C49AAF; font-weight: 600; margin-bottom: var(--space-md); }
 .footer__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.55rem; font-size: var(--step--1); }
-.footer__brand .logo { color: #F4F1EC; }
-.footer__brand .logo__sub { color: #8FA595; }
+.footer__brand .logo__full { width: 230px; }
 .footer__bottom {
   margin-top: var(--space-2xl);
   padding-top: var(--space-lg);
@@ -753,7 +765,7 @@ a.chip:hover { background: var(--brand-100); color: var(--brand-900); }
   gap: var(--space-md) var(--space-lg);
   justify-content: space-between;
   font-size: 0.78rem;
-  color: #8FA595;
+  color: #C49AAF;
 }
 .social-row { display: flex; gap: var(--space-sm); }
 .social-row a {
@@ -778,3 +790,49 @@ a.chip:hover { background: var(--brand-100); color: var(--brand-900); }
 .section-head { display: grid; gap: var(--space-sm); max-width: 60ch; margin-bottom: var(--space-2xl); }
 .section-head--center { margin-inline: auto; text-align: center; }
 .split-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--space-md); margin-bottom: var(--space-2xl); }
+
+/* ---------- Submenú de sedes ---------- */
+.nav__item { position: relative; }
+.subnav {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 13rem;
+  margin: 0;
+  padding: 0.4rem;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out),
+    visibility var(--dur);
+  z-index: var(--z-float);
+}
+.nav__item:hover .subnav,
+.nav__item:focus-within .subnav,
+.subnav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.subnav a {
+  display: block;
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--radius-md);
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--ink-700);
+  text-decoration: none;
+}
+.subnav a:hover { background: var(--brand-50); color: var(--brand-800); }
+.subnav__all { border-top: 1px solid var(--border); margin-top: 0.25rem; padding-top: 0.25rem; }
+.subnav__all a { font-weight: 600; color: var(--brand-700); }
+.mobile-menu__link--sub {
+  font-size: var(--step-0);
+  padding-left: 1rem;
+  color: var(--ink-700);
+}

@@ -5,7 +5,7 @@ h1: "Obstetricia: atención médica del embarazo y el nacimiento"
 excerpt: "Seguimiento médico del embarazo, el trabajo de parto y el puerperio, con valoración individual en cada etapa."
 seo:
   title: "Obstetricia en Toluca y Metepec | GEMMAE"
-  description: "Atención obstétrica en Toluca, Metepec y Zinacantepec: control prenatal, valoración de embarazo, seguimiento del nacimiento y consulta posterior al parto."
+  description: "Atención obstétrica en las cinco sedes GEMMAE: control prenatal, valoración de embarazo, seguimiento del nacimiento y consulta posterior al parto."
 category: "obstetricia"
 order: 2
 featured: true
@@ -32,7 +32,7 @@ faq:
     a: "Lo recomendable es acudir en cuanto se confirma o se sospecha el embarazo. Un inicio temprano permite valorar mejor y planear el seguimiento; el esquema exacto puede variar según cada paciente."
   - q: "¿Atienden partos y cesáreas?"
     a: "[POR CONFIRMAR] Especificar hospitales y convenios donde el equipo GEMMAE atiende el nacimiento."
-locations: [toluca, metepec, zinacantepec]
+locations: [toluca, auge, metepec, zinacantepec, santa-fe]
 related: [embarazo, embarazo-alto-riesgo, ultrasonido, ginecologia]
 searchTerms: ["obstetricia", "obstetra", "parto", "cesarea", "puerperio", "control del embarazo"]
 ---

@@ -7,7 +7,7 @@ excerpt: "Atención ginecológica y obstétrica en Metepec, con agenda flexible 
 seo:
   title: "Ginecólogo en Metepec | GEMMAE Ginecólogos"
   description: "Consulta de ginecología, embarazo, menopausia y estudios como colposcopia y ultrasonido en Metepec. Conoce la sede GEMMAE, horarios y cómo agendar."
-order: 2
+order: 3
 address:
   street: "[POR CONFIRMAR] Calle y número"
   neighborhood: "[POR CONFIRMAR] Colonia"
@@ -49,8 +49,12 @@ doctors: []
 coverage:
   - "Metepec centro"
   - "San Jerónimo Chicahualco"
+  - "Pueblo Nuevo"
   - "Toluca sur"
-  - "San Mateo Atenco"
+  - "Mexicaltzingo"
+  - "Chapultepec"
+  - "Calimaya"
+  - "San Antonio la Isla"
   - "Santiago Tianguistenco"
 faq:
   - q: "¿La sede de Metepec ofrece los mismos servicios que Toluca?"

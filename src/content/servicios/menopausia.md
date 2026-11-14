@@ -5,7 +5,7 @@ h1: "Menopausia: una nueva etapa también merece atención"
 excerpt: "Valoración y acompañamiento durante la perimenopausia y la menopausia, con enfoque en calidad de vida y prevención."
 seo:
   title: "Menopausia en Toluca y Metepec | GEMMAE Ginecólogos"
-  description: "Atención de menopausia y perimenopausia en Toluca, Metepec y Zinacantepec: valoración de síntomas, salud ósea y cardiovascular, y opciones de manejo."
+  description: "Atención de menopausia y perimenopausia en las cinco sedes GEMMAE: valoración de síntomas, salud ósea y cardiovascular, y opciones de manejo."
 category: "etapas"
 order: 6
 featured: true
@@ -49,7 +49,7 @@ faq:
     a: "La duración varía mucho de una persona a otra. Muchos síntomas disminuyen con el tiempo, y varios pueden manejarse mientras están presentes."
   - q: "Ya no menstrúo, ¿debo seguir yendo al ginecólogo?"
     a: "Sí. La revisión preventiva sigue siendo relevante después de la menopausia, incluida la valoración de salud ósea, urogenital y la detección oportuna de cáncer según tu caso."
-locations: [toluca, metepec, zinacantepec]
+locations: [toluca, auge, metepec, zinacantepec, santa-fe]
 related: [ginecologia, salud-femenina, ultrasonido]
 searchTerms: ["menopausia", "climaterio", "perimenopausia", "bochornos", "sofocos", "resequedad vaginal", "terapia hormonal"]
 ---

@@ -56,7 +56,7 @@ h5, h6 {
 }
 
 a { color: var(--link); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
-a:hover { color: var(--teal-700); }
+a:hover { color: var(--brand-800); }
 
 strong, b { font-weight: 600; color: var(--text-strong); }
 
@@ -125,7 +125,7 @@ hr { border: 0; border-top: 1px solid var(--border); margin: var(--space-xl) 0; 
 .section--alt { background: var(--bg-alt); }
 .section--deep { background: var(--bg-deep); }
 .section--dark { background: var(--bg-brand); color: var(--text-on-dark); }
-.section--dark h1, .section--dark h2, .section--dark h3 { color: #FBF9F6; }
+.section--dark h1, .section--dark h2, .section--dark h3 { color: #FFF7FA; }
 .section--dark a { color: var(--brand-200); }
 
 .stack > * + * { margin-top: var(--flow, var(--space-md)); }

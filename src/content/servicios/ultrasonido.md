@@ -5,7 +5,7 @@ h1: "Ultrasonido ginecológico y obstétrico"
 excerpt: "Estudios de imagen para valorar el útero, los ovarios y el desarrollo del embarazo, interpretados en la misma consulta."
 seo:
   title: "Ultrasonido ginecológico y obstétrico en Toluca | GEMMAE"
-  description: "Ultrasonido ginecológico y obstétrico en Toluca, Metepec y Zinacantepec: tipos de estudio, preparación, cuándo se indica y entrega de resultados."
+  description: "Ultrasonido ginecológico y obstétrico en las cinco sedes GEMMAE: tipos de estudio, preparación, cuándo se indica y entrega de resultados."
 category: "diagnostico"
 order: 11
 featured: true
@@ -40,7 +40,7 @@ faq:
     a: "[POR CONFIRMAR] Indicar la política de acompañantes por sede."
   - q: "¿Entregan imágenes o video del estudio?"
     a: "[POR CONFIRMAR] Indicar qué se entrega (impresión, archivo digital) y si tiene costo adicional."
-locations: [toluca, metepec, zinacantepec]
+locations: [toluca, auge, metepec, zinacantepec, santa-fe]
 related: [embarazo, ginecologia, fertilidad, obstetricia]
 searchTerms: ["ultrasonido", "ecografia", "ultrasonido obstetrico", "ultrasonido pelvico", "ultrasonido transvaginal", "ver al bebe"]
 ---

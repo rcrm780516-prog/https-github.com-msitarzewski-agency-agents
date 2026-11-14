@@ -61,12 +61,13 @@ export function organizationSchema() {
     medicalSpecialty: ['Obstetric', 'Gynecologic'],
     telephone: contact.phone,
     email: contact.email,
+    // Municipios reales que cubre la red: alimenta el SEO local de alrededores
     areaServed: [
-      { '@type': 'City', name: 'Toluca' },
-      { '@type': 'City', name: 'Metepec' },
-      { '@type': 'City', name: 'Zinacantepec' },
-      { '@type': 'City', name: 'Lerma' },
-    ],
+      'Toluca', 'Metepec', 'Zinacantepec', 'Lerma', 'San Mateo Atenco',
+      'Almoloya de Juárez', 'Temoaya', 'Otzolotepec', 'Xonacatlán',
+      'Calimaya', 'Mexicaltzingo', 'Chapultepec', 'San Antonio la Isla',
+      'Santiago Tianguistenco',
+    ].map((name) => ({ '@type': 'City', name })),
     sameAs: sameAs(),
   });
 }

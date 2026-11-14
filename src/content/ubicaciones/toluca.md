@@ -49,10 +49,13 @@ services:
 doctors: []
 coverage:
   - "Toluca centro"
-  - "Zona Metepec"
+  - "San Buenaventura"
   - "Lerma"
   - "San Mateo Atenco"
   - "Almoloya de Juárez"
+  - "Temoaya"
+  - "Otzolotepec"
+  - "Xonacatlán"
 faq:
   - q: "¿Necesito cita previa para consultar en la sede de Toluca?"
     a: "Recomendamos agendar con anticipación para reservar tiempo suficiente de consulta. Puedes escribirnos por WhatsApp o llamar y te confirmamos el primer horario disponible."

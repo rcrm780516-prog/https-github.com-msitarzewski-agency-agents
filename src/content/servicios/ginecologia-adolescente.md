@@ -5,7 +5,7 @@ h1: "Ginecología adolescente: la primera consulta, sin miedo"
 excerpt: "Atención ginecológica para adolescentes con enfoque informativo, respetuoso y adaptado a su etapa."
 seo:
   title: "Ginecología adolescente en Toluca | GEMMAE"
-  description: "Consulta ginecológica para adolescentes en Toluca, Metepec y Zinacantepec: primera consulta, ciclos irregulares, dolor menstrual y orientación en salud sexual."
+  description: "Consulta ginecológica para adolescentes en las cinco sedes GEMMAE: primera consulta, ciclos irregulares, dolor menstrual y orientación en salud sexual."
 category: "ginecologia"
 order: 7
 icon: "heart"
@@ -34,7 +34,7 @@ faq:
     a: "Sí. La consulta puede realizarse acompañada; en algunos momentos puede ser útil un espacio a solas para que la paciente exprese dudas con libertad, siempre con acuerdo previo."
   - q: "¿Se puede aplicar la vacuna contra el VPH?"
     a: "[POR CONFIRMAR] Indicar si GEMMAE aplica la vacuna, en qué esquemas y desde qué edad."
-locations: [toluca, metepec, zinacantepec]
+locations: [toluca, auge, metepec, zinacantepec, santa-fe]
 related: [ginecologia, vph, salud-femenina]
 searchTerms: ["ginecologia adolescente", "primera consulta ginecologica", "dolor menstrual", "colicos menstruales", "regla irregular", "adolescente"]
 ---

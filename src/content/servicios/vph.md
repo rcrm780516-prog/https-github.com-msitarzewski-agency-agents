@@ -36,7 +36,7 @@ faq:
     a: "La vacuna no trata una infección existente, pero puede proteger frente a otros tipos que aún no se hayan adquirido. La indicación depende de tu edad y tu caso; se valora en consulta."
   - q: "¿Cada cuándo debo hacerme la prueba?"
     a: "Depende de tu edad, resultados previos y del esquema de detección que se te indique. Se define en tu consulta de revisión preventiva."
-locations: [toluca, metepec]
+locations: [toluca, auge, metepec]
 related: [colposcopia, ginecologia, salud-femenina, ginecologia-adolescente]
 searchTerms: ["vph", "virus del papiloma humano", "papiloma", "verrugas genitales", "prueba de vph", "vacuna vph", "cancer cervicouterino"]
 ---
