@@ -11,8 +11,10 @@ import ReviewCard from './ReviewCard.astro';
 import Icon from './Icon.astro';
 import { social } from '../config/site';
 
-export interface Props { limit?: number; title?: string }
-const { limit = 3, title = 'Lo que dicen nuestras pacientes' } = Astro.props;
+export interface Props { limit?: number; title?: string; profileUrl?: string }
+const { limit = 3, title = 'Lo que dicen nuestras pacientes', profileUrl } = Astro.props;
+/** El perfil de la sede tiene prioridad sobre el perfil general de la marca. */
+const perfil = profileUrl || social.googleBusiness;
 
 type Review = { quote: string; author: string; source?: string; rating?: number; date?: string };
 const items = (reviews as Review[]).slice(0, limit);
@@ -24,8 +26,9 @@ const items = (reviews as Review[]).slice(0, limit);
         <span class="eyebrow">Experiencias</span>
         <h2>{title}</h2>
       </div>
-      {social.googleBusiness && (
-        <a class="link-arrow" href={social.googleBusiness} target="_blank" rel="noopener">
+      {perfil && (
+        <a class="link-arrow" href={perfil} target="_blank" rel="noopener"
+           data-event="click_reviews">
           Ver reseñas en Google
         </a>
       )}

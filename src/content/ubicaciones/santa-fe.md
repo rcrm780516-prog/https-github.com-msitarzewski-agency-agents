@@ -1,18 +1,18 @@
 ---
 name: "GEMMAE Santa Fé"
-city: "Santa Fé"
-state: "[POR CONFIRMAR]"
-h1: "Ginecólogos en GEMMAE Santa Fé"
-excerpt: "Atención ginecológica y obstétrica en la sede Santa Fé, con seguimiento continuo en toda la red GEMMAE."
+city: "Santa Fé (CDMX)"
+state: "Ciudad de México"
+h1: "Ginecólogos en Santa Fe, Cuajimalpa — GEMMAE"
+excerpt: "Atención ginecológica y obstétrica en Santa Fe, Cuajimalpa, con seguimiento continuo en toda la red GEMMAE."
 seo:
-  title: "Ginecólogo en Santa Fé | GEMMAE Ginecólogos"
-  description: "Consulta de ginecología, obstetricia y salud femenina en la sede Santa Fé de GEMMAE. Conoce horarios, servicios disponibles y cómo agendar tu consulta."
+  title: "Ginecólogo en Santa Fe, Cuajimalpa | GEMMAE"
+  description: "Consulta de ginecología, obstetricia y salud femenina en Santa Fe, Cuajimalpa, CDMX. Conoce la sede GEMMAE, horarios, servicios y cómo agendar tu consulta."
 order: 5
 address:
   street: "[POR CONFIRMAR] Calle y número"
   neighborhood: "[POR CONFIRMAR] Colonia"
-  city: "[POR CONFIRMAR] Municipio o alcaldía"
-  state: "[POR CONFIRMAR]"
+  city: "Cuajimalpa de Morelos"
+  state: "Ciudad de México"
   postalCode: "[POR CONFIRMAR]"
 phone: "[POR CONFIRMAR]"
 whatsapp: ""
@@ -27,8 +27,8 @@ geo:
   lng: null
 mapEmbed: ""
 mapLink: ""
-googleBusinessUrl: ""
-intro: "La sede Santa Fé acerca la atención GEMMAE a las pacientes de esa zona, con el mismo modelo de seguimiento que el resto de la red: consulta con tiempo suficiente para resolver dudas, expediente compartido entre sedes y agenda que se confirma por WhatsApp."
+googleBusinessUrl: "https://share.google/kIzJWCydMxk0HxNQt"
+intro: "Santa Fe concentra oficinas corporativas y zona residencial en el poniente de la Ciudad de México, y para muchas pacientes de Cuajimalpa el obstáculo no es el costo de la consulta sino encontrar horario sin cruzar la ciudad. Esta sede responde a eso: consulta ginecológica, seguimiento de embarazo y valoración por etapa de vida en el poniente de CDMX, con el mismo expediente y criterio clínico que el resto de la red GEMMAE."
 directions:
   - "[POR CONFIRMAR] Referencia principal de acceso."
   - "[POR CONFIRMAR] Indicación para quien llega en automóvil."
@@ -45,7 +45,14 @@ services:
   - ultrasonido
 doctors: []
 coverage:
-  - "[POR CONFIRMAR] Zonas que atiende esta sede"
+  - "Santa Fe"
+  - "Cuajimalpa de Morelos"
+  - "Contadero"
+  - "El Yaqui"
+  - "Bosques de las Lomas"
+  - "Interlomas"
+  - "Lomas de Vista Hermosa"
+  - "Huixquilucan"
 faq:
   - q: "¿Qué servicios se atienden en la sede Santa Fé?"
     a: "Consulta ginecológica, obstetricia, seguimiento de embarazo, menopausia y ultrasonido. Algunos estudios se programan en otra sede; te lo indicamos al agendar."
@@ -56,7 +63,10 @@ faq:
 searchTerms:
   - "gemmae santa fe"
   - "ginecologo santa fe"
-  - "ginecologa santa fe"
+  - "ginecologa santa fe cdmx"
+  - "ginecologo cuajimalpa"
+  - "ginecologo bosques de las lomas"
+  - "ginecologo interlomas"
 ---
 
-La sede Santa Fé completa la red de cinco sedes GEMMAE.
+La sede Santa Fé es la presencia de GEMMAE en la Ciudad de México.

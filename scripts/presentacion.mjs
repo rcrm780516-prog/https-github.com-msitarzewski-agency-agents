@@ -134,7 +134,7 @@ export function aplicarPresentacion(html) {
     const etiquetas = $lista.find('.data-list__label').map((_, l) => $(l).text()).get();
     const tieneContacto = etiquetas.some((t) => /Dirección|Teléfono|Horario/.test(t));
     if (!tieneContacto) {
-      if (etiquetas.length) $el.text('Zonas que atendemos');
+      if (etiquetas.length) $el.text('Ubicación y contacto');
       else { $lista.remove(); $el.remove(); }
     }
   });
@@ -167,6 +167,20 @@ export function aplicarPresentacion(html) {
       if (limpio) $el.text(limpio);
       else $el.remove();
     }
+  });
+
+  // 6b. Encabezados que se quedaron sin nada debajo: se mira hasta el
+  //     siguiente encabezado del mismo nivel o superior.
+  $('h2, h3').each((_, el) => {
+    const $el = $(el);
+    const $sig = $el.next();
+    // Lo que sigue a un encabezado debe ser su contenido. Si no hay nada, o si
+    // es otro encabezado o un aviso que no le pertenece, quedó huérfano.
+    const huerfano =
+      $sig.length === 0 ||
+      $sig.is('h2, h3, aside, .disclaimer') ||
+      $sig.text().trim() === '';
+    if (huerfano) $el.remove();
   });
 
   // 7. Secciones que quedaron sin contenido tras la limpieza (p. ej. reseñas):

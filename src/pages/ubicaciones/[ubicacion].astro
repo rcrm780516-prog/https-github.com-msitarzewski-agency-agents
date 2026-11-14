@@ -127,6 +127,18 @@ const schemas = [
                 ))}
               </span>
             </li>
+            {d.googleBusinessUrl && (
+              <li class="data-list__row">
+                <Icon name="star" size={18} />
+                <span>
+                  <span class="data-list__label">Perfil de Google</span>
+                  <a href={d.googleBusinessUrl} target="_blank" rel="noopener"
+                     data-event="click_map" data-location={ubicacion.id}>
+                    Ver ubicación y reseñas en Google
+                  </a>
+                </span>
+              </li>
+            )}
             {d.coverage.length > 0 && (
               <li class="data-list__row">
                 <Icon name="users" size={18} />
@@ -166,7 +178,7 @@ const schemas = [
               height="1067"
               loading="lazy"
               decoding="async"
-              style="width:100%;height:auto;border-radius:var(--radius-lg);margin-bottom:1.25rem"
+              style="width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:var(--radius-lg);margin-bottom:1.25rem;background:var(--bg-deep)"
             />
           )}
           <div class="map-frame">
@@ -243,7 +255,7 @@ const schemas = [
     </section>
   )}
 
-  <Reviews title={`Experiencias de pacientes en ${d.city}`} />
+  <Reviews title={`Experiencias de pacientes en ${d.city}`} profileUrl={d.googleBusinessUrl} />
 
   {otras.length > 0 && (
     <section class="section--tight">

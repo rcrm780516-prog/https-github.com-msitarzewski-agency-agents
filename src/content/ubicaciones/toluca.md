@@ -27,7 +27,7 @@ geo:
   lng: null
 mapEmbed: ""
 mapLink: ""
-googleBusinessUrl: ""
+googleBusinessUrl: "https://share.google/B3TMArgzdZuGrbs3Z"
 intro: "Toluca concentra buena parte de la demanda de atención especializada del Valle de Toluca: es la capital del Estado de México y el punto al que se desplazan pacientes de municipios vecinos para consultas de seguimiento, estudios y valoraciones. Nuestra sede en Toluca está pensada para ese ritmo: consulta ginecológica general, seguimiento de embarazo y estudios de gabinete en un mismo lugar, con agenda que se puede confirmar por WhatsApp."
 directions:
   - "[POR CONFIRMAR] Referencia principal de acceso (avenida o vialidad más cercana)."

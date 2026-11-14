@@ -140,9 +140,22 @@ Google) y los iconos del pie. Si están vacías, no se renderizan.
 Cinco sedes, según el logotipo oficial. Se editan en
 `src/content/ubicaciones/{toluca,auge,metepec,zinacantepec,santa-fe}.md`.
 
-**[POR CONFIRMAR] crítico para el SEO local:** a qué municipio pertenecen
-exactamente **Auge** y **Santa Fé**. De eso depende a qué búsquedas apunta cada
-página ("ginecólogo en X") y el `areaServed` de sus datos estructurados.
+Cada sede ya está enlazada a su perfil de Google Business (campo
+`googleBusinessUrl`), que alimenta el `sameAs` del schema y el enlace visible
+"Ver ubicación y reseñas en Google".
+
+| Archivo | Municipio | Ficha de Google |
+|---|---|---|
+| `toluca.md` | Toluca | "Gemmae tollocan" |
+| `auge.md` | Toluca | "GEMMAE Ginecólogos" |
+| `metepec.md` | Metepec | "Gemmae Metepec" |
+| `zinacantepec.md` | Zinacantepec | "GEMMAE ginecólogos zinacantepec" |
+| `santa-fe.md` | Cuajimalpa de Morelos, CDMX | "Gemmae Santa Fe" |
+
+**Atención al NAP:** el nombre del sitio y el de la ficha no coinciden en dos
+casos ("GEMMAE Toluca" vs "Gemmae tollocan"; "GEMMAE Auge" vs "GEMMAE
+Ginecólogos"). Conviene alinear uno de los dos lados: Google usa la coincidencia
+de nombre, dirección y teléfono como señal de confianza para el paquete local.
 
 Pendiente en las cinco: `address` (calle, colonia, CP), `phone`, `hours`,
 `hoursSchema`, `geo` (lat/lng), `mapEmbed`, `mapLink`, `googleBusinessUrl`,

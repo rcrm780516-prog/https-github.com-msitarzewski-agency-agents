@@ -27,7 +27,7 @@ geo:
   lng: null
 mapEmbed: ""
 mapLink: ""
-googleBusinessUrl: ""
+googleBusinessUrl: "https://share.google/EUunDhvoV7V9TrQVx"
 intro: "Metepec es una zona predominantemente residencial y con alta densidad de servicios de salud privados, donde muchas pacientes buscan continuidad con un mismo equipo médico más que una consulta aislada. La sede de Metepec responde a esa expectativa: consultas con tiempo suficiente para resolver dudas, seguimiento a lo largo del año y coordinación con las otras sedes cuando se requiere un estudio en fecha distinta."
 directions:
   - "[POR CONFIRMAR] Referencia principal de acceso (avenida o vialidad más cercana)."

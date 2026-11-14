@@ -208,6 +208,8 @@ const jobs = [
   { file: 'sede-toluca.jpg', svg: sceneSvg({ variant: 0, accent: C.brand300, accent2: C.clay }) },
   { file: 'sede-metepec.jpg', svg: sceneSvg({ variant: 4, accent: C.brand200, accent2: C.blush }) },
   { file: 'sede-zinacantepec.jpg', svg: sceneSvg({ variant: 2, accent: C.brand300, accent2: C.teal100 }) },
+  { file: 'sede-auge.jpg', svg: sceneSvg({ variant: 3, accent: C.brand200, accent2: C.clay }) },
+  { file: 'sede-santa-fe.jpg', svg: sceneSvg({ variant: 1, accent: C.brand300, accent2: C.blush }) },
   { file: 'confianza.jpg', svg: sceneSvg({ w: 1920, h: 1080, variant: 5, accent: C.brand300, accent2: C.clay }) },
   { file: 'embarazo.jpg', svg: sceneSvg({ variant: 1, accent: C.blush, accent2: C.brand200 }) },
   { file: 'blog-vph.jpg', svg: sceneSvg({ variant: 3, accent: C.teal100, accent2: C.brand300 }) },

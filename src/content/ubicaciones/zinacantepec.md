@@ -27,7 +27,7 @@ geo:
   lng: null
 mapEmbed: ""
 mapLink: ""
-googleBusinessUrl: ""
+googleBusinessUrl: "https://share.google/P4FsvufGMWhKFYiRW"
 intro: "Zinacantepec está conurbado con Toluca por el poniente, y para muchas pacientes de esa zona la barrera para una revisión ginecológica no es el costo sino el traslado: cruzar la ciudad implica medio día. Esta sede existe para eliminar ese obstáculo, con consulta ginecológica general, revisión preventiva y seguimiento de embarazo cerca de casa, y derivación a las sedes de Toluca o Metepec solo cuando un estudio lo requiere."
 directions:
   - "[POR CONFIRMAR] Referencia principal de acceso (avenida o vialidad más cercana)."
