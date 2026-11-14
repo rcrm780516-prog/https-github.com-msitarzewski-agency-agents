@@ -12,7 +12,9 @@
     "check": "astro check",
     "audit:seo": "node scripts/audit.mjs",
     "demo:images": "node scripts/generate-demo-images.mjs",
-    "demo": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs"
+    "demo": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs",
+    "presentacion": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs --presentacion",
+    "presentacion:hosting": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs --presentacion --absolutas --salida=demo-hosting"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.0",
@@ -22,7 +24,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "cheerio": "^1.1.2"
   },
   "engines": {
     "node": ">=20.3.0"

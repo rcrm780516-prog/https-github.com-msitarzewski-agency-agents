@@ -13,7 +13,9 @@ npm run audit:seo         # auditoría SEO / CRO / accesibilidad del build
 npm run preview           # sirve dist/
 
 npm run demo:images       # regenera la imaginería editorial (public/images/demo/)
-npm run demo              # genera demo/ navegable sin servidor (presentación a cliente)
+npm run demo              # demo/ navegable sin servidor, con barra de vista previa
+npm run presentacion      # demo-presentacion/ como si ya estuviera publicado
+npm run presentacion:hosting  # demo-hosting/ para subir a un subdominio
 ```
 
 ## Documentación
@@ -96,8 +98,25 @@ Qué cambia el modo demo, y **solo** el modo demo:
 | Formulario | envía al endpoint | confirma sin enviar |
 | Aviso de vista previa | no | barra superior |
 
+### Modo presentación
+
+`npm run presentacion` va un paso más allá: deja el sitio como si ya estuviera
+publicado. Retira la barra de vista previa y **oculta** todo campo sin dato
+confirmado en lugar de imprimir el marcador — un teléfono que no existe no se
+sustituye por uno falso, se quita la fila entera. Lo aplica
+`scripts/presentacion.mjs` sobre el HTML ya construido, para no sembrar
+condicionales de presentación por los componentes del sitio real.
+
+El script verifica al final que no quede ningún marcador visible y avisa si
+alguno sobrevivió. Las páginas llevan `noindex`: es una vista previa en un
+dominio provisional y no debe competir con el sitio definitivo en Google.
+
+Las fichas de especialista se titulan "Especialista en Ginecología y
+Obstetricia" mientras no haya nombres reales: es la especialidad de la clínica,
+no una identidad inventada.
+
 El build de producción (`npm run build`, sin la bandera) no contiene ninguna
-referencia a `/images/demo/`: se verifica con `npm run audit:seo`.
+referencia a `/images/demo/` ni `noindex`: se verifica con `npm run audit:seo`.
 
 Cuando GEMMAE entregue fotografía real, se sustituyen los archivos de
 `public/images/demo/` y no hay que tocar ningún componente.

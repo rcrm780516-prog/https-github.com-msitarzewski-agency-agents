@@ -10,3 +10,5 @@ npm-debug.log*
 # Demo offline generado por scripts/build-demo.mjs (solo la carpeta raíz:
 # public/images/demo/ sí se versiona porque es la imaginería del sitio)
 /demo/
+/demo-presentacion/
+/demo-hosting/

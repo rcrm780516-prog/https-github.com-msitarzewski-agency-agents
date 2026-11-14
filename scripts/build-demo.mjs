@@ -16,9 +16,24 @@
 import { readdir, readFile, writeFile, mkdir, copyFile, rm, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
+import { aplicarPresentacion, quedanMarcadores } from './presentacion.mjs';
+
+/**
+ * Banderas:
+ *   --presentacion  deja el sitio como si ya estuviera publicado: sin barra de
+ *                   aviso y sin campos pendientes a la vista (no se inventa
+ *                   ningún dato: lo que falta se oculta).
+ *   --absolutas     no reescribe las rutas a relativas; para subir a un
+ *                   subdominio de staging en vez de abrir con doble clic.
+ *   --salida=<dir>  carpeta de salida (por defecto demo/).
+ */
+const args = process.argv.slice(2);
+const PRESENTACION = args.includes('--presentacion');
+const ABSOLUTAS = args.includes('--absolutas');
+const SALIDA = (args.find((a) => a.startsWith('--salida=')) || '').split('=')[1];
 
 const DIST = path.resolve('dist');
-const OUT = path.resolve('demo');
+const OUT = path.resolve(SALIDA || (PRESENTACION ? 'demo-presentacion' : 'demo'));
 
 /** Aviso de vista previa: fija expectativas sin arruinar la primera impresión. */
 const BANNER = `
@@ -48,6 +63,20 @@ const BANNER = `
     var s=f.querySelector('[data-form-status]');
     if(s){s.hidden=false;s.setAttribute('data-state','success');
       s.textContent='Modo demo: el formulario no envía datos. En el sitio publicado, esta solicitud llega por WhatsApp y al CRM.';}
+  },true);
+</script>`;
+
+/** En una vista previa el formulario confirma, pero no envía nada. */
+const FORM_DEMO_SCRIPT = `
+<script>
+  document.addEventListener('submit',function(e){
+    var f=e.target;
+    if(!f.hasAttribute('data-lead-form'))return;
+    e.preventDefault();e.stopImmediatePropagation();
+    var s=f.querySelector('[data-form-status]');
+    if(s){s.hidden=false;s.setAttribute('data-state','success');
+      s.textContent='Gracias, recibimos tu solicitud. Te contactaremos para confirmar tu cita.';}
+    f.reset();
   },true);
 </script>`;
 
@@ -83,6 +112,7 @@ async function main() {
   const files = await walk(DIST);
   let paginas = 0;
   let enlaces = 0;
+  const pendientes = [];
 
   for (const file of files) {
     const rel = path.relative(DIST, file);
@@ -97,13 +127,25 @@ async function main() {
     let html = await readFile(file, 'utf8');
     const depth = rel.split(path.sep).length - 1;
 
+    // Modo presentación: se retira lo que aún no tiene dato confirmado
+    if (PRESENTACION) {
+      html = aplicarPresentacion(html);
+      // Es una vista previa en un dominio provisional: no debe indexarse
+      // antes que el sitio definitivo, o Google reparte autoridad entre dos.
+      html = html.replace(
+        /<meta name="robots" content="[^"]*"/,
+        '<meta name="robots" content="noindex, nofollow"'
+      );
+    }
+
     // Enlaces y recursos: de absolutos a relativos
-    html = html.replace(/(href|src|action)="(\/[^"#?]*?)"/g, (m, attr, url) => {
-      // El sitemap y robots no se navegan en el demo
-      if (url.startsWith('//')) return m;
-      enlaces++;
-      return `${attr}="${toRelative(url, depth)}"`;
-    });
+    if (!ABSOLUTAS) {
+      html = html.replace(/(href|src|action)="(\/[^"#?]*?)"/g, (m, attr, url) => {
+        if (url.startsWith('//')) return m;
+        enlaces++;
+        return `${attr}="${toRelative(url, depth)}"`;
+      });
+    }
 
     // El buscador pide un JSON por fetch: bajo file:// el navegador lo bloquea
     html = html.replace(/fetch\("\/search-index\.json"\)/g, `fetch("${'../'.repeat(depth) || './'}search-index.json")`);
@@ -115,8 +157,17 @@ async function main() {
     html = html.replace(/<link rel="manifest"[^>]*>/g, '');
     html = html.replace(/<link rel="sitemap"[^>]*>/g, '');
 
-    // Aviso de vista previa justo después de <body>
-    html = html.replace(/<body([^>]*)>/, `<body$1>${BANNER}`);
+    // Aviso de vista previa justo después de <body> (no en presentación)
+    if (!PRESENTACION) {
+      html = html.replace(/<body([^>]*)>/, `<body$1>${BANNER}`);
+    } else {
+      // El formulario tampoco debe enviar en una vista previa
+      html = html.replace(/<body([^>]*)>/, `<body$1>${FORM_DEMO_SCRIPT}`);
+    }
+
+    if (PRESENTACION && quedanMarcadores(html)) {
+      pendientes.push(rel);
+    }
 
     await writeFile(dest, html);
     paginas++;
@@ -126,7 +177,11 @@ async function main() {
   let bytes = 0;
   for (const f of await walk(OUT)) bytes += (await stat(f)).size;
 
-  console.log(`Demo generado en ${OUT}`);
+  if (pendientes.length) {
+    console.log(`  AVISO: quedan marcadores visibles en ${pendientes.length} página(s):`);
+    for (const p of pendientes.slice(0, 5)) console.log(`    - ${p}`);
+  }
+  console.log(`${PRESENTACION ? 'Presentación generada' : 'Demo generado'} en ${OUT}`);
   console.log(`  ${paginas} páginas · ${total} archivos · ${(bytes / 1024 / 1024).toFixed(1)} MB`);
   console.log(`  ${enlaces} rutas reescritas a relativas`);
   console.log(`  Abrir: ${path.join(OUT, 'index.html')}`);

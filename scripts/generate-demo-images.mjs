@@ -181,7 +181,7 @@ function sceneSvg({ w = 1600, h = 1067, variant = 0, accent = C.brand300, base =
 }
 
 /** Marco de retrato: deja claro que la fotografía del médico está pendiente. */
-function portraitSvg({ w = 800, h = 1000, initials = '' }) {
+function portraitSvg({ w = 800, h = 1000, caption = 'Fotografía pendiente' }) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
     <defs>
       <linearGradient id="pg" x1="0" y1="0" x2="0.4" y2="1">
@@ -196,7 +196,7 @@ function portraitSvg({ w = 800, h = 1000, initials = '' }) {
       <circle cx="${w * 0.5}" cy="${h * 0.42}" r="${w * 0.14}" fill="${C.brand200}" opacity="0.75"/>
       <path d="M ${w * 0.26} ${h * 0.84} C ${w * 0.3} ${h * 0.62}, ${w * 0.7} ${h * 0.62}, ${w * 0.74} ${h * 0.84} Z" fill="${C.brand200}" opacity="0.75"/>
       ${branch({ x: w * 0.1, y: h * 0.92, length: w * 0.34, rot: -14, scale: 0.7, color: C.brand500, leaf: C.brand300, opacity: 0.8, leaves: 7 })}
-      <text x="${w * 0.5}" y="${h * 0.95}" text-anchor="middle" font-family="Georgia, serif" font-size="${w * 0.045}" fill="${C.brand600}" opacity="0.8">Fotografía pendiente</text>
+      ${caption ? `<text x="${w * 0.5}" y="${h * 0.95}" text-anchor="middle" font-family="Georgia, serif" font-size="${w * 0.045}" fill="${C.brand600}" opacity="0.8">${caption}</text>` : ''}
     </g>
   </svg>`;
 }
@@ -218,6 +218,10 @@ const jobs = [
   { file: 'medico-01.jpg', svg: portraitSvg({}) },
   { file: 'medico-02.jpg', svg: portraitSvg({}) },
   { file: 'medico-03.jpg', svg: portraitSvg({}) },
+  // Variantes sin leyenda, para el modo presentación
+  { file: 'medico-01-limpio.jpg', svg: portraitSvg({ caption: '' }) },
+  { file: 'medico-02-limpio.jpg', svg: portraitSvg({ caption: '' }) },
+  { file: 'medico-03-limpio.jpg', svg: portraitSvg({ caption: '' }) },
 ];
 
 await mkdir(OUT, { recursive: true });
