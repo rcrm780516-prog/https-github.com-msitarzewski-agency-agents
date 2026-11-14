@@ -20,7 +20,7 @@ import Icon from '../../components/Icon.astro';
 import { getMedicosAll, getServiciosPorIds, getUbicacionesPorIds } from '../../lib/content';
 import { routes, absolute } from '../../lib/urls';
 import { physicianSchema, faqSchema } from '../../lib/schema';
-import { isTBC } from '../../config/site';
+import { isTBC, demoImage } from '../../config/site';
 
 export const getStaticPaths = (async () => {
   const medicos = await getMedicosAll();
@@ -37,6 +37,7 @@ const [servicios, ubicaciones] = await Promise.all([
 ]);
 
 const fullName = [d.honorific, d.name].filter(Boolean).join(' ');
+const retrato = d.photo || demoImage(medico.id);
 const crumbs = [
   { label: 'Inicio', href: '/' },
   { label: 'Médicos', href: routes.medicos },
@@ -143,6 +144,16 @@ const schemas = [
         </div>
 
         <aside>
+          {retrato && (
+            <img
+              src={retrato}
+              alt={d.photoAlt || `Fotografía pendiente de ${fullName}`}
+              width="800"
+              height="1000"
+              decoding="async"
+              style="width:100%;height:auto;border-radius:var(--radius-lg);margin-bottom:1.5rem"
+            />
+          )}
           <div class="guide-widget">
             <h2 style="font-size:var(--step-1)">Información profesional</h2>
             <ul class="data-list" style="margin-top:1.25rem">

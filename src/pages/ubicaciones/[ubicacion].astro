@@ -25,7 +25,7 @@ import {
 } from '../../lib/content';
 import { routes } from '../../lib/urls';
 import { clinicSchema, faqSchema } from '../../lib/schema';
-import { isTBC } from '../../config/site';
+import { isTBC, demoImage } from '../../config/site';
 import { telHref } from '../../lib/whatsapp';
 
 export const getStaticPaths = (async () => {
@@ -48,6 +48,7 @@ const [servicios, medicos, todas] = await Promise.all([
 
 const otras = todas.filter((u) => u.id !== ubicacion.id);
 const tel = telHref(d.phone);
+const imagenSede = demoImage(`sede-${ubicacion.id}`);
 const direccion = [d.address.street, d.address.neighborhood, d.address.city, d.address.state, d.address.postalCode]
   .filter(Boolean)
   .join(', ');
@@ -157,6 +158,17 @@ const schemas = [
         </div>
 
         <div>
+          {imagenSede && (
+            <img
+              src={imagenSede}
+              alt={`Ilustración editorial de la sede ${d.city}`}
+              width="1600"
+              height="1067"
+              loading="lazy"
+              decoding="async"
+              style="width:100%;height:auto;border-radius:var(--radius-lg);margin-bottom:1.25rem"
+            />
+          )}
           <div class="map-frame">
             {d.mapEmbed ? (
               <iframe src={d.mapEmbed} title={`Mapa de ${d.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>

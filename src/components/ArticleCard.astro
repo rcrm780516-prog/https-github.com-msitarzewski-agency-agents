@@ -1,6 +1,7 @@
 ---
 import { routes } from '../lib/urls';
 import { categoriaLabel, formatDate } from '../lib/content';
+import { demoBlogCover } from '../config/site';
 
 export interface Props {
   slug: string;
@@ -13,11 +14,12 @@ export interface Props {
   coverAlt?: string;
 }
 const { slug, title, excerpt, category, publishedAt, readingMinutes, cover, coverAlt } = Astro.props;
+const portada = cover || demoBlogCover(category);
 ---
 <article class="card">
-  {cover && (
+  {portada && (
     <div class="card__media">
-      <img src={cover} alt={coverAlt || ''} width="600" height="400" loading="lazy" decoding="async" />
+      <img src={portada} alt={coverAlt || ''} width="600" height="400" loading="lazy" decoding="async" />
     </div>
   )}
   <div class="card__body">

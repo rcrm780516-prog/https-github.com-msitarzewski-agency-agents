@@ -1,6 +1,6 @@
 ---
 import { routes } from '../lib/urls';
-import { isTBC } from '../config/site';
+import { isTBC, demoImage } from '../config/site';
 import Icon from './Icon.astro';
 
 export interface Props {
@@ -15,11 +15,12 @@ export interface Props {
 }
 const { slug, name, honorific = '', specialty, photo, photoAlt, locations = [], draft = false } = Astro.props;
 const fullName = [honorific, name].filter(Boolean).join(' ');
+const retrato = photo || demoImage(slug);
 ---
 <article class="card doctor-card">
   <div class="card__media doctor-card__media">
-    {photo ? (
-      <img src={photo} alt={photoAlt || `Fotografía de ${fullName}`} width="400" height="500" loading="lazy" decoding="async" />
+    {retrato ? (
+      <img src={retrato} alt={photoAlt || `Fotografía pendiente de ${fullName}`} width="400" height="500" loading="lazy" decoding="async" />
     ) : (
       <div style="height:100%;display:grid;place-items:center;background:linear-gradient(160deg,var(--brand-100),var(--sand-200));color:var(--brand-600)">
         <Icon name="users" size={40} />

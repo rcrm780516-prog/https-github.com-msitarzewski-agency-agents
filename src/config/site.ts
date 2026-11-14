@@ -75,6 +75,35 @@ export const forms = {
   minFillSeconds: 3,
 } as const;
 
+/**
+ * Modo demo. Con PUBLIC_DEMO=true el sitio rellena los huecos de imagen con
+ * la imagineria editorial de /images/demo/, para presentaciones a cliente.
+ * En el build de produccion (bandera ausente) NADA de esto se activa: los
+ * espacios siguen marcados como [POR CONFIRMAR] hasta tener material real.
+ */
+export const demo = {
+  enabled: (env.PUBLIC_DEMO as string) === 'true',
+} as const;
+
+/** Ruta de una imagen de demo, o cadena vacia si el modo demo esta apagado. */
+export function demoImage(name: string): string {
+  return demo.enabled && name ? `/images/demo/${name}.jpg` : '';
+}
+
+/** Portada de blog por categoria (solo en modo demo). */
+export function demoBlogCover(category: string): string {
+  const porCategoria: Record<string, string> = {
+    vph: 'blog-vph',
+    embarazo: 'blog-embarazo',
+    menopausia: 'blog-menopausia',
+    ginecologia: 'blog-ginecologia',
+    fertilidad: 'blog-ginecologia',
+    'salud-preventiva': 'blog-prevencion',
+    adolescencia: 'blog-prevencion',
+  };
+  return demoImage(porCategoria[category] ?? 'blog-ginecologia');
+}
+
 /** Datos regulatorios para publicidad medica en Mexico. */
 export const compliance = {
   responsableSanitario: TBC,

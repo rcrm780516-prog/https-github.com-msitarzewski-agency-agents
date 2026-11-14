@@ -6,6 +6,7 @@
 import AppointmentCTA from './AppointmentCTA.astro';
 import WhatsAppButton from './WhatsAppButton.astro';
 import Icon from './Icon.astro';
+import { demoImage } from '../config/site';
 
 export interface Props {
   trust?: string[];
@@ -15,8 +16,11 @@ export interface Props {
 const {
   trust = [],
   image,
-  imageAlt = 'Consulta de ginecología en GEMMAE',
+  imageAlt = 'Ilustración editorial de GEMMAE Ginecólogos',
 } = Astro.props;
+
+// En modo demo se usa la imaginería editorial; en producción, el marcador.
+const heroImage = image || demoImage('hero');
 ---
 <section class="hero">
   <div class="container hero__grid">
@@ -43,8 +47,8 @@ const {
     </div>
 
     <div class="hero__media" data-reveal>
-      {image ? (
-        <img src={image} alt={imageAlt} width="720" height="900" fetchpriority="high" decoding="async" />
+      {heroImage ? (
+        <img src={heroImage} alt={imageAlt} width="720" height="900" fetchpriority="high" decoding="async" />
       ) : (
         <div style="height:100%;display:grid;place-content:center;gap:.75rem;text-align:center;padding:2rem;color:var(--brand-700)">
           <Icon name="heart" size={44} class="mx-auto" />

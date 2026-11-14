@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { demo } from '../config/site';
 
 export type Servicio = CollectionEntry<'servicios'>;
 export type Ubicacion = CollectionEntry<'ubicaciones'>;
@@ -25,8 +26,10 @@ export async function getUbicaciones(): Promise<Ubicacion[]> {
 /**
  * Medicos publicables. Los perfiles marcados como draft son plantillas sin
  * datos reales: se construyen para revision pero no se listan en produccion.
+ * En modo demo si se listan, con su etiqueta de "perfil por completar": al
+ * director le dice mas ver la ficha armada que un estado vacio.
  */
-export async function getMedicos(includeDrafts = !isProd): Promise<Medico[]> {
+export async function getMedicos(includeDrafts = !isProd || demo.enabled): Promise<Medico[]> {
   const all = await getCollection('medicos');
   return all
     .filter((m) => includeDrafts || !m.data.draft)

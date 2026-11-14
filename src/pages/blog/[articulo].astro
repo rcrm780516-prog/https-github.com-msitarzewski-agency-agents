@@ -28,6 +28,7 @@ import {
 } from '../../lib/content';
 import { routes, absolute } from '../../lib/urls';
 import { articleSchema, faqSchema } from '../../lib/schema';
+import { demoBlogCover } from '../../config/site';
 
 export const getStaticPaths = (async () => {
   const articulos = await getArticulos();
@@ -53,6 +54,8 @@ const relacionados = (d.relatedArticles.length
   ? todos.filter((a) => d.relatedArticles.some((r) => r.id === a.id))
   : todos.filter((a) => a.id !== articulo.id && a.data.category === d.category)
 ).slice(0, 3);
+
+const portada = d.cover || demoBlogCover(d.category);
 
 const crumbs = [
   { label: 'Inicio', href: '/' },
@@ -135,6 +138,17 @@ const schemas = [
           </p>
         )}
       </header>
+
+      {portada && (
+        <img
+          src={portada}
+          alt={d.coverAlt || ''}
+          width="1600"
+          height="1067"
+          decoding="async"
+          style="width:100%;height:auto;border-radius:var(--radius-lg);margin-top:var(--space-xl)"
+        />
+      )}
 
       <div class="prose" style="margin-top:var(--space-xl)">
         <Content />

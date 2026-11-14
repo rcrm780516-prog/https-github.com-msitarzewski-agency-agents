@@ -10,7 +10,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "audit:seo": "node scripts/audit.mjs"
+    "audit:seo": "node scripts/audit.mjs",
+    "demo:images": "node scripts/generate-demo-images.mjs",
+    "demo": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.0",

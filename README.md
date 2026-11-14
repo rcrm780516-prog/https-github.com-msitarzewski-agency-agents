@@ -11,6 +11,9 @@ npm run dev               # http://localhost:4321
 npm run build             # → dist/
 npm run audit:seo         # auditoría SEO / CRO / accesibilidad del build
 npm run preview           # sirve dist/
+
+npm run demo:images       # regenera la imaginería editorial (public/images/demo/)
+npm run demo              # genera demo/ navegable sin servidor (presentación a cliente)
 ```
 
 ## Documentación
@@ -76,6 +79,28 @@ scripts/audit.mjs         Auditoría automática del build
 /vph/                                /buscar/  ·  /404
 /ultrasonido/                        /aviso-de-privacidad/  ·  /terminos-y-condiciones/
 ```
+
+## Demo para cliente
+
+`npm run demo` compila el sitio con `PUBLIC_DEMO=true` y lo empaqueta en `demo/`,
+una carpeta que se abre con doble clic en `index.html` — sin servidor, sin
+internet. Se usa para presentar el sitio antes de tener dominio.
+
+Qué cambia el modo demo, y **solo** el modo demo:
+
+| | Producción | Demo |
+|---|---|---|
+| Huecos de imagen | marcador `[POR CONFIRMAR]` | imaginería editorial de `public/images/demo/` |
+| Perfiles médicos en borrador | ocultos | visibles, etiquetados "perfil por completar" |
+| Enlaces | absolutos (`/ginecologia/`) | relativos (`../ginecologia/index.html`) |
+| Formulario | envía al endpoint | confirma sin enviar |
+| Aviso de vista previa | no | barra superior |
+
+El build de producción (`npm run build`, sin la bandera) no contiene ninguna
+referencia a `/images/demo/`: se verifica con `npm run audit:seo`.
+
+Cuando GEMMAE entregue fotografía real, se sustituyen los archivos de
+`public/images/demo/` y no hay que tocar ningún componente.
 
 ## Estado actual
 
