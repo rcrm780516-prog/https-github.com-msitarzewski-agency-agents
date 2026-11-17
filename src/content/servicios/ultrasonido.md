@@ -12,7 +12,7 @@ featured: true
 icon: "waves"
 schemaType: "MedicalTest"
 ctaPrimary: "Agenda tu ultrasonido"
-intro: "El ultrasonido resuelve en minutos preguntas que de otro modo quedarían en suposición: si el embarazo evoluciona como se espera, de dónde viene un dolor, qué explica un sangrado. Realizarlo dentro de la misma consulta permite además interpretarlo con tu historia clínica delante."
+intro: "El ultrasonido resuelve en minutos preguntas que de otro modo quedarían en suposición: si el embarazo evoluciona como se espera, de dónde viene un dolor, qué explica un sangrado. Las cinco unidades GEMMAE cuentan con equipo, así que el estudio se realiza dentro de la misma consulta y se interpreta con tu historia clínica delante, no en una cita posterior y con un reporte suelto."
 whatIsTitle: "¿Qué es el ultrasonido?"
 whatIs: "El ultrasonido es un estudio de imagen que utiliza ondas de sonido, sin radiación, para visualizar órganos internos. En ginecología permite valorar el útero, los ovarios y estructuras cercanas; en obstetricia permite valorar el desarrollo del embarazo, el crecimiento del bebé y otros aspectos según la etapa. Puede realizarse por vía abdominal o transvaginal, según lo que se necesite estudiar."
 whenToConsult:

@@ -22,6 +22,7 @@ whenToConsult:
 whatToExpect:
   - "Revisión de antecedentes y de tu historial de estudios previos."
   - "Definición del esquema de detección que corresponde a tu edad y antecedentes."
+  - "Ultrasonido ginecológico cuando corresponde, en la misma consulta: las cinco unidades tienen equipo."
   - "Toma de estudios cuando corresponde en la misma consulta."
   - "Un calendario claro de próximas revisiones."
 faq:

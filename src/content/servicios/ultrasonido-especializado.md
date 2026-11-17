@@ -42,7 +42,7 @@ faq:
   - q: "¿El ultrasonido genético sustituye a un estudio de sangre o a una amniocentesis?"
     a: "No. El ultrasonido genético estima riesgo a partir de marcadores; otros estudios lo precisan de distinta forma. Qué corresponde en tu caso se define en consulta, según tus antecedentes y tus resultados."
   - q: "¿En qué sedes se realizan?"
-    a: "En las unidades de Toluca, Metepec y Santa Fé. En Auge (Tollocan) y Zinacantepec se realizan ultrasonidos de seguimiento, y el estudio especializado se programa en alguna de las tres sedes que lo ofrecen."
+    a: "El estructural y el genético se realizan en Toluca, Metepec y Santa Fé. Las cinco unidades cuentan con equipo de ultrasonido para la revisión ginecológica y el seguimiento del embarazo; lo que se concentra en esas tres sedes es el estudio de alta especialidad, que requiere más tiempo de gabinete."
   - q: "¿Puedo pasar acompañada?"
     a: "[POR CONFIRMAR] Indicar la política de acompañantes para estos estudios."
 locations: [toluca, metepec, santa-fe]

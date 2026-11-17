@@ -11,7 +11,7 @@ order: 1
 featured: true
 icon: "heart"
 schemaType: "MedicalSpecialty"
-intro: "La consulta ginecológica es el punto de partida de la atención en GEMMAE. Sirve tanto para una revisión preventiva anual como para estudiar un síntoma concreto, y es el espacio donde se define, junto contigo, qué seguimiento necesitas."
+intro: "La consulta ginecológica es el punto de partida de la atención en GEMMAE. Sirve tanto para una revisión preventiva anual como para estudiar un síntoma concreto. Todas nuestras unidades cuentan con equipo de ultrasonido, de modo que la revisión puede completarse en la misma cita en lugar de dividirse en dos visitas."
 whatIsTitle: "¿Qué abarca la ginecología?"
 whatIs: "La ginecología es la especialidad médica dedicada a la salud del aparato reproductor femenino. Abarca la revisión preventiva, el estudio de síntomas como dolor pélvico o sangrado irregular, la detección oportuna de cáncer cervicouterino, la orientación anticonceptiva y el acompañamiento en etapas como la adolescencia, la edad reproductiva y la menopausia."
 whenToConsult:
@@ -25,7 +25,8 @@ whenToConsult:
 whatToExpect:
   - "Historia clínica: hablamos de tus antecedentes, tus síntomas y lo que te preocupa."
   - "Exploración ginecológica cuando es necesaria, siempre explicándote antes qué se va a realizar y por qué."
-  - "Toma de estudios si corresponde, como citología, prueba de VPH o ultrasonido."
+  - "Ultrasonido ginecológico en la misma consulta cuando aporta información: las cinco unidades cuentan con equipo, así que no hay que agendar una cita aparte."
+  - "Toma de estudios si corresponde, como citología o prueba de VPH."
   - "Explicación de hallazgos y de las opciones disponibles, con un plan de seguimiento claro."
 preparation:
   - "De ser posible, agenda fuera de los días de menstruación si el motivo incluye citología o exploración."

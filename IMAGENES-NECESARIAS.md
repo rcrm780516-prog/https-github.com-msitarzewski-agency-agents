@@ -42,15 +42,38 @@ Copia este párrafo al final de cada prompt. Es lo que mantiene las imágenes
 coherentes entre sí y con la marca:
 
 ```
-Estilo: fotografía editorial premium de clínica de salud femenina, estética de
-revista de wellness. Luz natural suave y difusa, ambiente cálido y sereno.
-Paleta estricta: blanco cálido #FFFCFD, marfil rosado #FDF6F9, rosa suave
-#FFE0EE, con acentos de rosa magenta #F02880 usados con moderación, y gris
-cálido #808080 en detalles. Composición minimalista, mucho espacio vacío,
-profundidad de campo suave. Fotorrealista, NO ilustración, NO render 3D.
-Sin texto, sin letreros, sin logotipos, sin marcas de agua, sin rostros
-reconocibles.
+Estilo: fotografía editorial premium de consultorio de ginecología en
+funcionamiento, estética de revista de wellness pero con equipamiento médico
+real y visible. Luz natural suave y difusa, ambiente cálido y sereno, nunca
+frío ni hospitalario. Paleta estricta: blanco cálido #FFFCFD, marfil rosado
+#FDF6F9, rosa suave #FFE0EE, con acentos de rosa magenta #F02880 usados con
+moderación, y gris cálido #808080 en detalles. Composición minimalista con
+espacio libre, profundidad de campo suave. Fotorrealista, NO ilustración,
+NO render 3D. Sin texto, sin letreros, sin logotipos, sin marcas de agua,
+sin rostros reconocibles.
 ```
+
+### Regla de equipamiento — esto faltaba en la primera versión
+
+Todo consultorio que aparezca debe verse **equipado para trabajar**, no
+decorado. En GEMMAE las cinco unidades hacen revisión ginecológica completa
+con ultrasonido, y eso tiene que leerse en la imagen.
+
+Añade esta frase a cualquier prompt de consultorio o sala de exploración:
+
+```
+En el encuadre debe verse un equipo de ultrasonido ginecológico moderno, de
+pie, con pantalla y transductores en su soporte, junto a una mesa de
+exploración ginecológica con estribos y sábana blanca limpia. El equipo es
+parte de la escena, no un adorno de fondo: debe reconocerse como un
+consultorio donde se realizan estudios.
+```
+
+> **Por qué importa más allá de la foto.** Que cada unidad resuelva la
+> revisión y el ultrasonido en una sola cita es un argumento de venta real
+> frente a quien manda a la paciente a otro consultorio a hacerse el estudio.
+> Ya lo incorporé al texto del sitio: aparece en la portada, en Ginecología,
+> en Salud femenina y en Ultrasonido.
 
 ---
 
@@ -63,11 +86,14 @@ reconocibles.
 - **Archivo:** `hero.jpg`
 
 ```
-Interior de un consultorio de ginecología privado y muy luminoso, visto en
-composición vertical. Luz natural entrando por una ventana alta a la izquierda.
-Una planta verde discreta, textiles en marfil, superficie de madera clara y un
-detalle floral en rosa suave. Sensación de calma y cuidado, no de hospital.
-Sin personas.
+Interior vertical de un consultorio de ginecología privado, muy luminoso y
+completamente equipado. A la derecha, un equipo de ultrasonido ginecológico
+moderno con su pantalla y los transductores colocados en el soporte. A la
+izquierda, una mesa de exploración ginecológica con estribos y sábana blanca
+impecable. Luz natural entrando por una ventana alta. Una planta verde
+discreta, mobiliario de madera clara y un detalle en rosa suave. Se reconoce
+de inmediato como un consultorio donde se hacen estudios, pero el ambiente es
+cálido y tranquilo, no hospitalario. Sin personas.
 
 [pega aquí el bloque de estilo]
 ```
@@ -84,8 +110,10 @@ orden de utilidad:
 
 1. **La fachada o la entrada**, tal como la ve quien llega. Es lo que más
    reduce la ansiedad de "no sé si es aquí".
-2. La recepción o sala de espera.
-3. Un consultorio ordenado, sin pacientes ni expedientes visibles.
+2. **El consultorio con el equipo de ultrasonido visible**, ordenado y sin
+   pacientes ni expedientes a la vista. Es la foto que demuestra que la
+   revisión se resuelve ahí mismo, y la que más diferencia a GEMMAE.
+3. La recepción o sala de espera.
 
 Consejos: de día, con luz natural, sin flash; horizontal; sin personas
 identificables; ordena el encuadre antes de disparar (cables, papeles, botes).
@@ -135,9 +163,11 @@ hospitalaria. Sin personas.
 ### `servicio-ultrasonido.jpg` — Ultrasonido general
 
 ```
-Detalle cercano de una sala de ultrasonido: gel, transductor apoyado en su
-soporte y una toalla blanca doblada sobre una mesa clara. Luz lateral suave.
-Encuadre muy limpio, sin personas.
+Equipo de ultrasonido ginecológico moderno como protagonista del encuadre, en
+un consultorio luminoso: pantalla apagada, transductores ordenados en su
+soporte, frasco de gel y toalla blanca doblada sobre la mesa auxiliar. Al
+fondo, desenfocada, la mesa de exploración con sábana blanca. Luz lateral
+suave. Sin personas.
 
 [bloque de estilo]
 ```
@@ -165,9 +195,12 @@ espacio vacío alrededor. Metáfora sutil, sin bebés ni pruebas de embarazo.
 ### `servicio-ginecologia.jpg` — Ginecología
 
 ```
-Consultorio de ginecología visto en plano general: escritorio ordenado, dos
-sillas enfrentadas que sugieren conversación, una planta y un ventanal con luz
-suave. Transmite consulta tranquila y con tiempo. Sin personas.
+Consultorio de ginecología en plano general horizontal, con las dos zonas
+visibles en el mismo encuadre: al frente, el escritorio ordenado con dos
+sillas enfrentadas que sugieren una consulta con tiempo; al fondo, el equipo
+de ultrasonido ginecológico y la mesa de exploración con sábana blanca. Un
+ventanal con luz natural suave y una planta. La imagen debe comunicar que la
+consulta y el estudio ocurren en el mismo espacio. Sin personas.
 
 [bloque de estilo]
 ```
@@ -175,9 +208,11 @@ suave. Transmite consulta tranquila y con tiempo. Sin personas.
 ### `servicio-colposcopia.jpg` — Colposcopia · `servicio-vph.jpg` — VPH
 
 ```
-Detalle de consultorio con instrumental clínico limpio y ordenado sobre campo
-estéril blanco, en un espacio luminoso con un acento de color rosa suave.
-Transmite precisión y pulcritud, sin resultar intimidante. Sin personas.
+Consultorio de colposcopia equipado: colposcopio moderno de pie junto a la
+mesa de exploración ginecológica con estribos y sábana blanca impecable, e
+instrumental limpio ordenado sobre campo estéril en la mesa auxiliar. Espacio
+luminoso con un acento en rosa suave. Transmite precisión y pulcritud sin
+resultar intimidante. Sin personas.
 
 [bloque de estilo]
 ```
