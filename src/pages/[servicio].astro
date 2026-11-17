@@ -29,6 +29,7 @@ import {
 } from '../lib/content';
 import { routes, absolute } from '../lib/urls';
 import { faqSchema, medicalWebPageSchema } from '../lib/schema';
+import { demoServicio } from '../config/site';
 
 export const getStaticPaths = (async () => {
   const servicios = await getServicios();
@@ -48,6 +49,8 @@ const [ubicaciones, medicos, articulos, relacionados] = await Promise.all([
   getArticulosPorServicio(servicio.id),
   getServiciosPorIds(d.related.map((r) => r.id)),
 ]);
+
+const imagen = d.image || demoServicio(servicio.id);
 
 const crumbs = [
   { label: 'Inicio', href: '/' },
@@ -88,6 +91,16 @@ const schemas = [
     <div class="container">
       <div class="location-panel__grid">
         <div class="measure">
+          {imagen && (
+            <img
+              src={imagen}
+              alt={d.imageAlt || `${d.name} en GEMMAE Ginecólogos`}
+              width="1600"
+              height="1067"
+              decoding="async"
+              style="width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:var(--radius-lg);margin-bottom:var(--space-xl);background:var(--bg-deep)"
+            />
+          )}
           <p class="lead">{d.intro}</p>
 
           <h2 style="margin-top:var(--space-2xl)">{d.whatIsTitle}</h2>

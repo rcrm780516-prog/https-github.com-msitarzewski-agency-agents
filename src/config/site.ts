@@ -109,6 +109,16 @@ export function demoBlogCover(category: string): string {
   return demoImage(porCategoria[category] ?? 'blog-ginecologia');
 }
 
+/** Imagen de demo para la cabecera de un servicio. */
+export function demoServicio(slug: string): string {
+  const conImagen = [
+    'embarazo', 'ultrasonido-especializado', 'ultrasonido', 'menopausia',
+    'fertilidad', 'ginecologia', 'colposcopia', 'vph', 'obstetricia',
+    'salud-femenina', 'embarazo-alto-riesgo', 'ginecologia-adolescente',
+  ];
+  return conImagen.includes(slug) ? demoImage(`servicio-${slug}`) : '';
+}
+
 /** Datos regulatorios para publicidad medica en Mexico. */
 export const compliance = {
   responsableSanitario: TBC,

@@ -30,6 +30,9 @@ const servicios = defineCollection({
     featured: z.boolean().default(false),
     /** Icono del set interno (src/components/Icon.astro) */
     icon: z.string().default('stethoscope'),
+    /** Imagen de cabecera del servicio; vacío usa la del modo demo */
+    image: z.string().default(''),
+    imageAlt: z.string().default(''),
     intro: z.string(),
     whatIs: z.string(),
     /** Encabezado de la sección "qué es": por defecto "¿En qué consiste?" */
