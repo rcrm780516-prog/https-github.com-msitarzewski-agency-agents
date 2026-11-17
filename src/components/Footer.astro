@@ -71,7 +71,7 @@ const redes = [
               WhatsApp
             </a>
           </li>
-          {!isTBC(contact.email) && <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>}
+          {contact.email && <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>}
         </ul>
       </div>
     </div>

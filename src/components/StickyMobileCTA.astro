@@ -8,11 +8,19 @@ import { telHref, whatsappHref } from '../lib/whatsapp';
 import { routes } from '../lib/urls';
 import Icon from './Icon.astro';
 
-export interface Props { service?: string; location?: string; doctor?: string; phone?: string }
-const { service, location, doctor, phone } = Astro.props;
+export interface Props {
+  service?: string;
+  location?: string;
+  doctor?: string;
+  /** Teléfono en E.164 para marcar */
+  phone?: string;
+  /** WhatsApp de la sede; puede ser distinto del teléfono */
+  whatsapp?: string;
+}
+const { service, location, doctor, phone, whatsapp } = Astro.props;
 
 const tel = telHref(phone || contact.phoneHref || contact.phone);
-const wa = whatsappHref({ service, location, doctor, phone });
+const wa = whatsappHref({ service, location, doctor, phone: whatsapp });
 const params = new URLSearchParams();
 if (service) params.set('servicio', service);
 if (location) params.set('sede', location);

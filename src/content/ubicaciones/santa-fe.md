@@ -17,7 +17,7 @@ address:
   postalCode: "01330"
 phone: "55 1306 6623"
 phoneHref: "+525513066623"
-whatsapp: ""
+whatsapp: "525513066623"
 hours:
   - days: "Lunes a viernes"
     time: "[POR CONFIRMAR]"

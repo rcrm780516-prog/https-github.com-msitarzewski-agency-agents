@@ -37,14 +37,16 @@ export const site = {
 
 /** Contacto principal. Se sobreescribe por .env sin tocar codigo. */
 export const contact = {
-  /** Formato E.164 sin signos, usado para enlaces wa.me */
-  whatsapp: (env.PUBLIC_WHATSAPP as string) || '52TBC0000000',
+  /** Formato E.164 sin signos, usado para enlaces wa.me.
+      Por defecto el de la matriz (Toluca); cada sede usa el suyo. */
+  whatsapp: (env.PUBLIC_WHATSAPP as string) || '527221756692',
   /** Formato legible para humanos */
-  whatsappDisplay: (env.PUBLIC_WHATSAPP_DISPLAY as string) || TBC,
+  whatsappDisplay: (env.PUBLIC_WHATSAPP_DISPLAY as string) || '722 175 6692',
   /** Por defecto, el número de la matriz (Toluca). Se sobreescribe por .env. */
   phone: (env.PUBLIC_PHONE as string) || '722 175 6692',
   phoneHref: (env.PUBLIC_PHONE_HREF as string) || '+527221756692',
-  email: (env.PUBLIC_EMAIL as string) || TBC,
+  /** GEMMAE decidió no publicar correo: vacío oculta la fila en todo el sitio. */
+  email: (env.PUBLIC_EMAIL as string) || '',
   /** Mensaje precargado por defecto en WhatsApp */
   whatsappDefaultMessage:
     'Hola GEMMAE, me gustaría agendar una consulta. Vengo de su sitio web.',

@@ -3,9 +3,9 @@
 import { whatsappHref } from '../lib/whatsapp';
 import Icon from './Icon.astro';
 
-export interface Props { service?: string; location?: string; doctor?: string }
-const { service, location, doctor } = Astro.props;
-const href = whatsappHref({ service, location, doctor });
+export interface Props { service?: string; location?: string; doctor?: string; phone?: string }
+const { service, location, doctor, phone } = Astro.props;
+const href = whatsappHref({ service, location, doctor, phone });
 ---
 <a
   class="wa-float"

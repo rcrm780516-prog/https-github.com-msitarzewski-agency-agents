@@ -17,7 +17,7 @@ address:
   postalCode: "52140"
 phone: "729 922 9098"
 phoneHref: "+527299229098"
-whatsapp: ""
+whatsapp: "527299229098"
 hours:
   - days: "Lunes a viernes"
     time: "[POR CONFIRMAR]"

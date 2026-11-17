@@ -85,7 +85,8 @@ const schemas = [
   crumbs={crumbs}
   schemas={schemas}
   location={ubicacion.id}
-  phone={d.phone}
+  phone={d.phoneHref || d.phone}
+  whatsapp={d.whatsapp || undefined}
 >
   <PageHeader eyebrow={`Sede ${d.city}`} title={d.h1} lead={d.excerpt} crumbs={crumbs}>
     <Fragment slot="actions">
@@ -271,6 +272,7 @@ const schemas = [
 
   <CTASection
     location={ubicacion.id}
+    phone={d.whatsapp || undefined}
     title={`Agenda tu consulta en ${d.city}`}
     text="Escríbenos por WhatsApp o déjanos tus datos y te confirmamos el primer horario disponible en esta sede."
     ctaLabel="Agendar en esta sede"

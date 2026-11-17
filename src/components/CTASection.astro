@@ -12,6 +12,8 @@ export interface Props {
   service?: string;
   location?: string;
   doctor?: string;
+  /** WhatsApp de la sede, si la página corresponde a una */
+  phone?: string;
   ctaLabel?: string;
   showLocations?: boolean;
   class?: string;
@@ -22,6 +24,7 @@ const {
   service,
   location,
   doctor,
+  phone,
   ctaLabel = 'Agenda tu consulta',
   showLocations = true,
   class: className = '',
@@ -34,7 +37,7 @@ const {
       <p>{text}</p>
       <div class="btn-row">
         <AppointmentCTA variant="light" size="lg" label={ctaLabel} service={service} location={location} doctor={doctor} />
-        <WhatsAppButton size="lg" label="Hablar por WhatsApp" service={service} location={location} doctor={doctor} />
+        <WhatsAppButton size="lg" label="Hablar por WhatsApp" service={service} location={location} doctor={doctor} phone={phone} />
         {showLocations && (
           <a class="btn btn--ghost btn--lg" href={routes.ubicaciones} style="color:#F0D9E4">Ver ubicaciones</a>
         )}

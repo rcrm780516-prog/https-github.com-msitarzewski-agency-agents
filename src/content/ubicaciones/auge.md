@@ -17,7 +17,7 @@ address:
   postalCode: "50246"
 phone: "729 103 5618"
 phoneHref: "+527291035618"
-whatsapp: ""
+whatsapp: "527291035618"
 hours:
   - days: "Lunes a viernes"
     time: "[POR CONFIRMAR]"

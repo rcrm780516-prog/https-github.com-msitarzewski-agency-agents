@@ -17,7 +17,7 @@ address:
   postalCode: "51354"
 phone: "729 738 2883"
 phoneHref: "+527297382883"
-whatsapp: ""
+whatsapp: "527297382883"
 hours:
   - days: "Lunes a viernes"
     time: "[POR CONFIRMAR]"

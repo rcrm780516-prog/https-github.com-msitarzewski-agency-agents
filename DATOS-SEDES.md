@@ -24,34 +24,35 @@ página de contacto). Se cambia en `.env` con `PUBLIC_PHONE`.
 
 ---
 
-## PENDIENTE 1 — Horario
+## Resuelto — WhatsApp
 
-| Día | Horario |
-|---|---|
-| Lunes a viernes | **[COMPLETAR]** |
-| Sábado | **[COMPLETAR]** |
-| Domingo | **[COMPLETAR]** |
+Cada sede usa como WhatsApp su propio número telefónico. Todos los CTA del
+contenido de una sede (encabezado, columna lateral, barra móvil, botón
+flotante y bloque de cierre) marcan el número de esa sede; el menú y el pie
+usan el de la matriz, por ser elementos globales.
 
-Me indicaste que es el mismo en las cinco, pero no venía en la extracción de
-las fichas. Es el dato que más se consulta antes de llamar, y sin él el schema
-sale sin `openingHours`, que es uno de los campos que Google usa para el
-paquete local.
+## Resuelto — Correo
 
-## PENDIENTE 2 — WhatsApp
+Omitido por decisión de GEMMAE. La fila desaparece del pie, de la página de
+contacto y del schema. Para reactivarlo basta definir `PUBLIC_EMAIL` en `.env`.
 
-| Campo | Valor |
-|---|---|
-| ¿Un WhatsApp central o uno por sede? | **[COMPLETAR]** |
-| Número(s) | **[COMPLETAR]** |
+## PENDIENTE — Horario, uno por clínica
 
-Es el CTA principal de todo el sitio: hoy los botones renderizan pero el enlace
-no lleva número.
+Cada clínica maneja el suyo, así que hacen falta **cinco horarios distintos**.
 
-## PENDIENTE 3 — Correo de contacto
+| Sede | Lunes a viernes | Sábado | Domingo |
+|---|---|---|---|
+| Toluca (matriz) | **[COMPLETAR]** | | |
+| Auge | **[COMPLETAR]** | | |
+| Metepec | **[COMPLETAR]** | | |
+| Zinacantepec | **[COMPLETAR]** | | |
+| Santa Fé | **[COMPLETAR]** | | |
 
-| Campo | Valor |
-|---|---|
-| Correo | **[COMPLETAR]** |
+> El horario **no venía en la extracción de las fichas** que me compartiste:
+> esa tabla traía únicamente nombre, dirección y teléfono. Es el único dato
+> que falta para cerrar, y pesa: sin él el schema sale sin `openingHours`,
+> uno de los campos que Google usa para decidir el paquete local, y es lo que
+> más consultan las pacientes antes de llamar.
 
 ---
 

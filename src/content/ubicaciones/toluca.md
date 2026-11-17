@@ -17,7 +17,7 @@ address:
   postalCode: "50040"
 phone: "722 175 6692"
 phoneHref: "+527221756692"
-whatsapp: ""
+whatsapp: "527221756692"
 hours:
   - days: "Lunes a viernes"
     time: "[POR CONFIRMAR]"

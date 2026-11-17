@@ -33,7 +33,10 @@ export interface Props {
   service?: string;
   location?: string;
   doctor?: string;
+  /** Teléfono en E.164 para el enlace tel: de la barra móvil */
   phone?: string;
+  /** WhatsApp de la sede; sin él, los CTA usan el número central */
+  whatsapp?: string;
   bodyClass?: string;
 }
 
@@ -50,6 +53,7 @@ const {
   location,
   doctor,
   phone,
+  whatsapp,
   bodyClass = '',
 } = Astro.props;
 
@@ -146,8 +150,8 @@ const selfHostedFonts = import.meta.env.PUBLIC_SELF_HOSTED_FONTS === 'true';
     </main>
 
     <Footer />
-    <StickyMobileCTA service={service} location={location} doctor={doctor} phone={phone} />
-    <WhatsAppFloat service={service} location={location} doctor={doctor} />
+    <StickyMobileCTA service={service} location={location} doctor={doctor} phone={phone} whatsapp={whatsapp} />
+    <WhatsAppFloat service={service} location={location} doctor={doctor} phone={whatsapp} />
 
     <script>
       import '../scripts/attribution';

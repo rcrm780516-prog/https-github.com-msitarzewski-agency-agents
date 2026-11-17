@@ -59,13 +59,15 @@ const crumbs = [
                   {tel ? <a href={tel} data-event="click_call" data-source="contacto">{contact.phone}</a> : <span class="text-muted">{contact.phone}</span>}
                 </span>
               </li>
-              <li class="data-list__row">
-                <Icon name="mail" size={18} />
-                <span>
-                  <span class="data-list__label">Correo</span>
-                  <span class={isTBC(contact.email) ? 'text-muted' : ''}>{contact.email}</span>
-                </span>
-              </li>
+              {contact.email && (
+                <li class="data-list__row">
+                  <Icon name="mail" size={18} />
+                  <span>
+                    <span class="data-list__label">Correo</span>
+                    <span>{contact.email}</span>
+                  </span>
+                </li>
+              )}
             </ul>
             <div style="margin-top:1.5rem">
               <WhatsAppButton block label="Escribir por WhatsApp" />
