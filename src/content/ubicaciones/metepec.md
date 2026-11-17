@@ -20,10 +20,8 @@ phoneHref: "+527299229098"
 whatsapp: "527299229098"
 hours:
   - days: "Lunes a viernes"
-    time: "[POR CONFIRMAR]"
-  - days: "Sábado"
-    time: "[POR CONFIRMAR]"
-hoursSchema: []
+    time: "9:00 a 16:00 h"
+hoursSchema: ["Mo-Fr 09:00-16:00"]
 geo:
   lat: null
   lng: null
@@ -47,6 +45,7 @@ services:
   - colposcopia
   - vph
   - ultrasonido
+  - ultrasonido-especializado
 doctors: []
 coverage:
   - "Metepec centro"

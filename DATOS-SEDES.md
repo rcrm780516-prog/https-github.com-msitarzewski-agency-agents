@@ -36,23 +36,22 @@ usan el de la matriz, por ser elementos globales.
 Omitido por decisión de GEMMAE. La fila desaparece del pie, de la página de
 contacto y del schema. Para reactivarlo basta definir `PUBLIC_EMAIL` en `.env`.
 
-## PENDIENTE — Horario, uno por clínica
+## Resuelto — Horario por clínica
 
-Cada clínica maneja el suyo, así que hacen falta **cinco horarios distintos**.
+| Sede | Horario cargado |
+|---|---|
+| Toluca (matriz) | 9:00 a 20:00 h |
+| Auge (Tollocan) | 10:00 a 19:00 h |
+| Metepec | 9:00 a 16:00 h |
+| Zinacantepec | 16:00 a 20:00 h |
+| Santa Fé | 16:00 a 21:00 h |
 
-| Sede | Lunes a viernes | Sábado | Domingo |
-|---|---|---|---|
-| Toluca (matriz) | **[COMPLETAR]** | | |
-| Auge | **[COMPLETAR]** | | |
-| Metepec | **[COMPLETAR]** | | |
-| Zinacantepec | **[COMPLETAR]** | | |
-| Santa Fé | **[COMPLETAR]** | | |
+Entran al texto visible y al `openingHours` del schema de cada sede.
 
-> El horario **no venía en la extracción de las fichas** que me compartiste:
-> esa tabla traía únicamente nombre, dirección y teléfono. Es el único dato
-> que falta para cerrar, y pesa: sin él el schema sale sin `openingHours`,
-> uno de los campos que Google usa para decidir el paquete local, y es lo que
-> más consultan las pacientes antes de llamar.
+> **Un supuesto que conviene confirmar:** los horarios se cargaron como
+> **lunes a viernes**, porque no se indicaron días. Si alguna clínica abre
+> sábado, hay que añadirlo: para una paciente que busca el sábado, un horario
+> incompleto en Google y en el sitio es una cita perdida.
 
 ---
 

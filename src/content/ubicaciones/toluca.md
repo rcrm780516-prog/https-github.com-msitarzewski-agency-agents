@@ -20,10 +20,8 @@ phoneHref: "+527221756692"
 whatsapp: "527221756692"
 hours:
   - days: "Lunes a viernes"
-    time: "[POR CONFIRMAR]"
-  - days: "Sábado"
-    time: "[POR CONFIRMAR]"
-hoursSchema: []
+    time: "9:00 a 20:00 h"
+hoursSchema: ["Mo-Fr 09:00-20:00"]
 geo:
   lat: null
   lng: null
@@ -48,6 +46,7 @@ services:
   - colposcopia
   - vph
   - ultrasonido
+  - ultrasonido-especializado
 doctors: []
 coverage:
   - "Toluca centro"

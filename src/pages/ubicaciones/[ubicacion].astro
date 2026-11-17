@@ -17,6 +17,7 @@ import CTASection from '../../components/CTASection.astro';
 import MedicalDisclaimer from '../../components/MedicalDisclaimer.astro';
 import RelatedLinks from '../../components/RelatedLinks.astro';
 import Icon from '../../components/Icon.astro';
+import MapEmbed from '../../components/MapEmbed.astro';
 
 import {
   getUbicaciones,
@@ -183,24 +184,14 @@ const schemas = [
               style="width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:var(--radius-lg);margin-bottom:1.25rem;background:var(--bg-deep)"
             />
           )}
-          <div class="map-frame">
-            {d.mapEmbed ? (
-              <iframe src={d.mapEmbed} title={`Mapa de ${d.name}`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-            ) : (
-              <div class="map-frame__placeholder">
-                <Icon name="map-pin" size={28} class="mx-auto" />
-                <p><strong>Mapa pendiente</strong></p>
-                <p>[POR CONFIRMAR] dirección exacta y enlace de Google Maps.</p>
-              </div>
-            )}
-          </div>
-          {d.mapLink && (
-            <p style="margin-top:.75rem">
-              <a class="link-arrow" href={d.mapLink} target="_blank" rel="noopener" data-event="click_map" data-location={ubicacion.id}>
-                Abrir en Google Maps
-              </a>
-            </p>
-          )}
+          <MapEmbed
+            src={d.mapEmbed}
+            link={d.mapLink}
+            address={direccion}
+            name={d.name}
+            location={ubicacion.id}
+          />
+
           <div class="btn-row" style="margin-top:1.5rem">
             <AppointmentCTA block label="Agendar en esta sede" location={ubicacion.id} />
             <WhatsAppButton block variant="secondary" location={ubicacion.id} phone={d.whatsapp || undefined} />

@@ -1,0 +1,74 @@
+---
+/**
+ * Mapa bajo demanda.
+ *
+ * El iframe de Google no se carga hasta que la paciente lo pide. Razones:
+ * - No se hace ninguna petición a Google al abrir la página: ni cookies de
+ *   terceros ni ~800 KB de mapa que la mayoría no va a usar.
+ * - Si el iframe fallara (bloqueo de red, política del navegador), lo que se
+ *   ve es la dirección y el botón a Google Maps, no un recuadro vacío.
+ * - La dirección queda en el HTML, legible para Google y para lectores de
+ *   pantalla, que es lo que importa para el SEO local.
+ */
+import Icon from './Icon.astro';
+
+export interface Props {
+  /** URL de incrustación (…output=embed) */
+  src?: string;
+  /** Enlace para abrir en Google Maps */
+  link?: string;
+  /** Dirección legible, visible mientras el mapa no se carga */
+  address?: string;
+  /** Nombre de la sede, para la etiqueta accesible */
+  name: string;
+  /** slug de la sede, para la medición */
+  location?: string;
+}
+
+const { src, link, address, name, location } = Astro.props;
+---
+<div class="map-frame" data-map>
+  {src ? (
+    <button type="button" class="map-frame__trigger" data-map-load data-src={src}
+            data-event="click_map" data-location={location}
+            aria-label={`Cargar el mapa de ${name}`}>
+      <span class="map-frame__pin" aria-hidden="true"><Icon name="map-pin" size={26} /></span>
+      {address && <span class="map-frame__address">{address}</span>}
+      <span class="map-frame__cta">Ver mapa</span>
+      <span class="map-frame__note">El mapa se carga solo si lo abres</span>
+    </button>
+  ) : (
+    <div class="map-frame__placeholder">
+      <Icon name="map-pin" size={28} class="mx-auto" />
+      <p><strong>Mapa pendiente</strong></p>
+      <p>[POR CONFIRMAR] dirección exacta y enlace de Google Maps.</p>
+    </div>
+  )}
+</div>
+
+{link && (
+  <p style="margin-top:.75rem">
+    <a class="link-arrow" href={link} target="_blank" rel="noopener"
+       data-event="click_map" data-location={location}>
+      Abrir en Google Maps
+    </a>
+  </p>
+)}
+
+<script>
+  // Al pulsar, el botón se reemplaza por el iframe real.
+  document.querySelectorAll('[data-map-load]').forEach((boton) => {
+    boton.addEventListener('click', () => {
+      const src = boton.getAttribute('data-src');
+      const contenedor = boton.closest('[data-map]');
+      if (!src || !contenedor) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = src;
+      iframe.title = boton.getAttribute('aria-label') || 'Mapa';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.allowFullscreen = true;
+      contenedor.replaceChildren(iframe);
+    });
+  });
+</script>

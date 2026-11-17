@@ -10,6 +10,7 @@ import { routes } from '../lib/urls';
 import { isTBC } from '../config/site';
 import { telHref } from '../lib/whatsapp';
 import type { Ubicacion } from '../lib/content';
+import MapEmbed from './MapEmbed.astro';
 
 export interface Props {
   ubicaciones: Ubicacion[];
@@ -109,30 +110,13 @@ const {
               </div>
 
               <div>
-                <div class="map-frame">
-                  {u.data.mapEmbed ? (
-                    <iframe
-                      src={u.data.mapEmbed}
-                      title={`Mapa de ${u.data.name}`}
-                      loading="lazy"
-                      referrerpolicy="no-referrer-when-downgrade"
-                      allowfullscreen
-                    ></iframe>
-                  ) : (
-                    <div class="map-frame__placeholder">
-                      <Icon name="map-pin" size={28} class="mx-auto" />
-                      <p><strong>Mapa pendiente</strong></p>
-                      <p>[POR CONFIRMAR] dirección exacta y enlace de Google Maps de la sede {u.data.city}.</p>
-                    </div>
-                  )}
-                </div>
-                {u.data.mapLink && (
-                  <p style="margin-top:.75rem">
-                    <a class="link-arrow" href={u.data.mapLink} target="_blank" rel="noopener" data-event="click_map" data-location={u.id}>
-                      Cómo llegar
-                    </a>
-                  </p>
-                )}
+                <MapEmbed
+                  src={u.data.mapEmbed}
+                  link={u.data.mapLink}
+                  address={dir}
+                  name={u.data.name}
+                  location={u.id}
+                />
               </div>
             </div>
           </div>

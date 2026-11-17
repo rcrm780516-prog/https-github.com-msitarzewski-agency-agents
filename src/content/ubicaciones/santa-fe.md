@@ -20,10 +20,8 @@ phoneHref: "+525513066623"
 whatsapp: "525513066623"
 hours:
   - days: "Lunes a viernes"
-    time: "[POR CONFIRMAR]"
-  - days: "Sábado"
-    time: "[POR CONFIRMAR]"
-hoursSchema: []
+    time: "16:00 a 21:00 h"
+hoursSchema: ["Mo-Fr 16:00-21:00"]
 geo:
   lat: null
   lng: null
@@ -45,6 +43,7 @@ services:
   - ginecologia-adolescente
   - salud-femenina
   - ultrasonido
+  - ultrasonido-especializado
 doctors: []
 coverage:
   - "Santa Fe"

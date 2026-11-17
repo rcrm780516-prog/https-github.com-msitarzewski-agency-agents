@@ -20,10 +20,8 @@ phoneHref: "+527291035618"
 whatsapp: "527291035618"
 hours:
   - days: "Lunes a viernes"
-    time: "[POR CONFIRMAR]"
-  - days: "Sábado"
-    time: "[POR CONFIRMAR]"
-hoursSchema: []
+    time: "10:00 a 19:00 h"
+hoursSchema: ["Mo-Fr 10:00-19:00"]
 geo:
   lat: null
   lng: null
