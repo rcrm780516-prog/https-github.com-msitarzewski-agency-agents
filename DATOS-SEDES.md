@@ -1,25 +1,30 @@
-# DATOS DE LAS CINCO SEDES — para completar
+# DATOS DE LAS CINCO SEDES
 
-Este archivo concentra lo único que falta para publicar el sitio indexable.
-Corrige lo que esté mal y completa lo vacío; con eso se carga todo en minutos.
-
-## Por qué no se llenó automáticamente
-
-Google bloquea la lectura automatizada de las fichas de negocio desde un
-servidor (muestra el CAPTCHA de "tráfico inusual"). Lo que aparece abajo viene
-de **directorios de terceros**, no de las fichas oficiales, y en algunos casos
-las fuentes se contradicen o tienen más de un año de antigüedad.
-
-**Nada de esto está publicado en el sitio todavía.** Una dirección equivocada
-en los datos estructurados le enseña a Google un NAP falso y cuesta más
-trabajo corregirlo que dejarlo pendiente.
-
-La fuente ideal es el panel de Google Business: copiar y pegar de ahí garantiza
-que el sitio y la ficha digan exactamente lo mismo, que es lo que Google premia.
+Direcciones y teléfonos **cargados** desde las fichas de Google Business.
+Quedan dos datos pendientes, marcados abajo.
 
 ---
 
-## 1. Horario (el mismo en las cinco, según me indicaste)
+## Cargado y publicado
+
+| Sede | Ficha de Google | Dirección | Teléfono |
+|---|---|---|---|
+| Toluca (matriz) | GEMMAE Ginecólogos | Prolongación Tenancingo 110, Sor Juana Inés de la Cruz, 50040 Toluca de Lerdo | 722 175 6692 |
+| Auge | Gemmae Tollocan | Av. Paseo Tollocan 2533-MZ 019, Delegación Santa María Totoltepec, 50246 Toluca | 729 103 5618 |
+| Metepec | Gemmae Metepec | Priv. Melchor Ocampo 139, esquina Pedro Ascencio, Médica San Patricio, 52140 Metepec | 729 922 9098 |
+| Zinacantepec | GEMMAE Ginecólogos Zinacantepec | Av. 16 de Septiembre 307, Plaza Paloma, San Miguel Zinacantepec, 51354 | 729 738 2883 |
+| Santa Fé | Gemmae Santa Fe | Prol. Paseo de la Reforma 19, Santa Fe, Paseo de las Lomas, Cuajimalpa de Morelos, 01330 CDMX | 55 1306 6623 |
+
+El schema `MedicalClinic` de cada página declara el nombre de la **ficha de
+Google** en `name` y el comercial en `alternateName`, para que el NAP coincida
+exactamente con lo que Google ya tiene registrado.
+
+El teléfono de la matriz quedó como contacto general del sitio (cabecera, pie y
+página de contacto). Se cambia en `.env` con `PUBLIC_PHONE`.
+
+---
+
+## PENDIENTE 1 — Horario
 
 | Día | Horario |
 |---|---|
@@ -27,107 +32,44 @@ que el sitio y la ficha digan exactamente lo mismo, que es lo que Google premia.
 | Sábado | **[COMPLETAR]** |
 | Domingo | **[COMPLETAR]** |
 
-No encontré horario confirmado en ninguna fuente, ni siquiera en la ficha de
-Toluca. Es el dato que más piden las pacientes antes de llamar.
+Me indicaste que es el mismo en las cinco, pero no venía en la extracción de
+las fichas. Es el dato que más se consulta antes de llamar, y sin él el schema
+sale sin `openingHours`, que es uno de los campos que Google usa para el
+paquete local.
 
----
+## PENDIENTE 2 — WhatsApp
 
-## 2. Sedes
-
-### Toluca — ficha de Google: "Gemmae tollocan"
-
-| Campo | Valor encontrado | Estado |
-|---|---|---|
-| Calle y número | Tenancingo 110, primer piso, consultorio 3 | ⚠️ verificar |
-| Colonia | Sor Juana Inés de la Cruz | ⚠️ verificar |
-| CP | **[COMPLETAR]** | falta |
-| Teléfono | 722 175 6692 | ⚠️ verificar |
-| WhatsApp | **[COMPLETAR]** | falta |
-
-### Auge (Toluca) — ficha de Google: "GEMMAE Ginecólogos"
-
-| Campo | Valor encontrado | Estado |
-|---|---|---|
-| Calle y número | Paseo Tollocan 2533, tercer piso, consultorio 302 | ⚠️ verificar |
-| Colonia | Santa María Totoltepec | ⚠️ verificar |
-| CP | 50246 | ⚠️ verificar |
-| Teléfono | 729 103 5618 | ⚠️ verificar |
-| WhatsApp | **[COMPLETAR]** | falta |
-
-> **Posible cruce de nombres.** La ficha llamada *"Gemmae tollocan"* la asigné a
-> la sede Toluca, pero la unidad que está sobre **Paseo Tollocan** es Auge.
-> Es probable que las dos fichas estén intercambiadas respecto a como quedaron
-> en el sitio. Confírmame cuál es cuál.
-
-### Metepec — ficha de Google: "Gemmae Metepec"
-
-| Campo | Valor encontrado | Estado |
-|---|---|---|
-| Calle y número | Melchor Ocampo 139 | ⚠️ verificar |
-| Colonia | Espíritu Santo | ⚠️ verificar |
-| CP | **[COMPLETAR]** | falta |
-| Teléfono | **[COMPLETAR]** | falta |
-| WhatsApp | **[COMPLETAR]** | falta |
-
-> Una fuente la nombra "Gemmae San Patricio". Si la sede tiene ese nombre
-> comercial, conviene usarlo también en el sitio.
-
-### Zinacantepec — ficha de Google: "GEMMAE ginecólogos zinacantepec"
-
-| Campo | Valor encontrado | Estado |
-|---|---|---|
-| Calle y número | Av. 16 de Septiembre 307, Plaza Paloma, interior 7 | ⚠️ verificar |
-| Colonia | Vista Nevado I | ⚠️ verificar |
-| CP | 51354 | ⚠️ verificar |
-| Teléfono | 729 738 2883 | ⚠️ verificar |
-| WhatsApp | **[COMPLETAR]** | falta |
-
-### Santa Fé (Cuajimalpa, CDMX) — ficha de Google: "Gemmae Santa Fe"
-
-| Campo | Valor encontrado | Estado |
-|---|---|---|
-| Calle y número | — | **falta** |
-| Colonia | — | **falta** |
-| CP | — | **falta** |
-| Teléfono | — | **falta** |
-| WhatsApp | — | **falta** |
-
-> Esta sede **no aparece en ningún directorio**. Es normal en una sede reciente,
-> y además es una señal: si no está en directorios, tampoco tiene las citas
-> locales que ayudan a posicionar. Vale la pena darla de alta en Doctoralia y
-> directorios médicos de CDMX.
-
----
-
-## 3. Contacto general
-
-| Campo | Valor | Estado |
-|---|---|---|
-| WhatsApp central | **[COMPLETAR]** | falta |
-| ¿Un WhatsApp por sede o uno solo? | **[COMPLETAR]** | falta |
-| Correo de contacto | **[COMPLETAR]** | falta |
-| Tiempo de respuesta que se promete | **[COMPLETAR]** | falta |
-
----
-
-## 4. Advertencia de NAP
-
-El nombre que usa el sitio y el de la ficha de Google no coinciden en dos sedes:
-
-| Sitio | Google |
+| Campo | Valor |
 |---|---|
-| GEMMAE Toluca | Gemmae tollocan |
-| GEMMAE Auge | GEMMAE Ginecólogos |
+| ¿Un WhatsApp central o uno por sede? | **[COMPLETAR]** |
+| Número(s) | **[COMPLETAR]** |
 
-Google usa la coincidencia exacta de **nombre, dirección y teléfono** como señal
-de confianza para el paquete local. Conviene alinear un lado u otro: o se
-renombran las fichas, o el sitio adopta el nombre de las fichas.
+Es el CTA principal de todo el sitio: hoy los botones renderizan pero el enlace
+no lleva número.
+
+## PENDIENTE 3 — Correo de contacto
+
+| Campo | Valor |
+|---|---|
+| Correo | **[COMPLETAR]** |
 
 ---
 
-## 5. Cómo se carga
+## Discrepancias detectadas
 
-Cada sede es un archivo en `src/content/ubicaciones/`. Al completar esta tabla
-se editan los campos `address`, `phone`, `whatsapp`, `hours` y `hoursSchema`,
-se recompila y los datos entran automáticamente al texto visible, al schema
-`MedicalClinic` y al sitemap. No hay que tocar ningún componente.
+**Zinacantepec.** El resumen de IA de Google muestra "16 de Septiembre No. 4,
+Plaza Paloma Int. 7, Col. Iturbide Guerrero", pero la ficha dice **No. 307**,
+CP 51354. Se cargó la versión de la ficha, que es la que manda para el NAP.
+Si la correcta es la otra, hay que corregir **la ficha primero** y luego el sitio.
+
+**Auge / Tollocan.** Facebook la nombra "Unidad AUGE" y añade *tercer piso,
+consultorio 302*; la ficha de Google no menciona el piso. Conviene añadirlo en
+Google: reduce llamadas de pacientes que no encuentran el consultorio.
+
+**Nombres cruzados.** La ficha "Gemmae Tollocan" corresponde a la unidad AUGE
+y "GEMMAE Ginecólogos" a la matriz de Toluca. Ya quedó corregido en el sitio.
+
+**Recomendación de NAP.** Las fichas usan cuatro nombres distintos (GEMMAE
+Ginecólogos, Gemmae Tollocan, Gemmae Metepec, GEMMAE Ginecólogos Zinacantepec,
+Gemmae Santa Fe). Unificarlas con el patrón "GEMMAE Ginecólogos — <Sede>"
+fortalece la marca y facilita que Google entienda que son la misma red.

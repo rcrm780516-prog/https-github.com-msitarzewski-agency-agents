@@ -49,7 +49,7 @@ const {
       </div>
 
       {ubicaciones.map((u, i) => {
-        const tel = telHref(u.data.phone);
+        const tel = telHref(u.data.phoneHref || u.data.phone);
         const dir = [u.data.address.street, u.data.address.neighborhood, u.data.address.city, u.data.address.postalCode]
           .filter(Boolean)
           .join(', ');

@@ -60,6 +60,9 @@ const ubicaciones = defineCollection({
   loader: glob({ base: './src/content/ubicaciones', pattern: '**/*.{md,mdx}' }),
   schema: z.object({
     name: z.string(),
+    /** Nombre EXACTO de la ficha de Google Business. El schema usa este, no el
+        comercial: Google premia que nombre, dirección y teléfono coincidan. */
+    gbpName: z.string().optional(),
     city: z.string(),
     state: z.string().default('Estado de México'),
     h1: z.string(),
@@ -76,6 +79,8 @@ const ubicaciones = defineCollection({
       country: z.string().default('MX'),
     }),
     phone: z.string(),
+    /** Mismo teléfono en E.164, para el enlace tel: */
+    phoneHref: z.string().optional(),
     whatsapp: z.string(),
     email: z.string().optional(),
     /** Horario en formato schema.org: "Mo-Fr 09:00-19:00" + version legible */

@@ -47,7 +47,7 @@ const [servicios, medicos, todas] = await Promise.all([
 ]);
 
 const otras = todas.filter((u) => u.id !== ubicacion.id);
-const tel = telHref(d.phone);
+const tel = telHref(d.phoneHref || d.phone);
 const imagenSede = demoImage(`sede-${ubicacion.id}`);
 const direccion = [d.address.street, d.address.neighborhood, d.address.city, d.address.state, d.address.postalCode]
   .filter(Boolean)
@@ -63,6 +63,7 @@ const schemas = [
   clinicSchema({
     slug: ubicacion.id,
     name: d.name,
+    gbpName: d.gbpName,
     description: d.excerpt,
     address: d.address,
     phone: d.phone,

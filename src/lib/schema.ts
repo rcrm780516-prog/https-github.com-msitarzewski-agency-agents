@@ -94,6 +94,8 @@ export function websiteSchema() {
 export interface ClinicInput {
   slug: string;
   name: string;
+  /** Nombre de la ficha de Google, si difiere del comercial */
+  gbpName?: string;
   description: string;
   address: {
     street: string;
@@ -125,7 +127,8 @@ export function clinicSchema(input: ClinicInput) {
   return clean({
     '@type': 'MedicalClinic',
     '@id': `${url}#clinic`,
-    name: input.name,
+    name: input.gbpName || input.name,
+    alternateName: input.gbpName && input.gbpName !== input.name ? input.name : undefined,
     description: input.description,
     url,
     parentOrganization: { '@id': ORG_ID },

@@ -1,5 +1,6 @@
 ---
 name: "GEMMAE Metepec"
+gbpName: "Gemmae Metepec"
 city: "Metepec"
 state: "Estado de México"
 h1: "Ginecólogos en Metepec — GEMMAE"
@@ -9,12 +10,13 @@ seo:
   description: "Consulta de ginecología, embarazo, menopausia y estudios como colposcopia y ultrasonido en Metepec. Conoce la sede GEMMAE, horarios y cómo agendar."
 order: 3
 address:
-  street: "[POR CONFIRMAR] Calle y número"
-  neighborhood: "[POR CONFIRMAR] Colonia"
+  street: "Priv. Melchor Ocampo 139, esquina Pedro Ascencio"
+  neighborhood: "Médica San Patricio"
   city: "Metepec"
   state: "Estado de México"
-  postalCode: "[POR CONFIRMAR]"
-phone: "[POR CONFIRMAR]"
+  postalCode: "52140"
+phone: "729 922 9098"
+phoneHref: "+527299229098"
 whatsapp: ""
 hours:
   - days: "Lunes a viernes"
@@ -25,8 +27,8 @@ hoursSchema: []
 geo:
   lat: null
   lng: null
-mapEmbed: ""
-mapLink: ""
+mapEmbed: "https://www.google.com/maps?q=Gemmae%20Metepec%2C%20Priv.%20Melchor%20Ocampo%20139%2C%20M%C3%A9dica%20San%20Patricio%2C%2052140%20Metepec%2C%20Estado%20de%20M%C3%A9xico&output=embed"
+mapLink: "https://www.google.com/maps/search/?api=1&query=Gemmae%20Metepec%2C%20Priv.%20Melchor%20Ocampo%20139%2C%20M%C3%A9dica%20San%20Patricio%2C%2052140%20Metepec%2C%20Estado%20de%20M%C3%A9xico"
 googleBusinessUrl: "https://share.google/EUunDhvoV7V9TrQVx"
 intro: "Metepec es una zona predominantemente residencial y con alta densidad de servicios de salud privados, donde muchas pacientes buscan continuidad con un mismo equipo médico más que una consulta aislada. La sede de Metepec responde a esa expectativa: consultas con tiempo suficiente para resolver dudas, seguimiento a lo largo del año y coordinación con las otras sedes cuando se requiere un estudio en fecha distinta."
 directions:

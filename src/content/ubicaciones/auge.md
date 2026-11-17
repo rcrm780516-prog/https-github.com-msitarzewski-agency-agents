@@ -1,5 +1,6 @@
 ---
 name: "GEMMAE Auge"
+gbpName: "Gemmae Tollocan"
 city: "Auge (Toluca)"
 state: "Estado de México"
 h1: "Ginecólogos en Toluca — GEMMAE Auge"
@@ -9,12 +10,13 @@ seo:
   description: "Consulta de ginecología, obstetricia y control prenatal en la sede Auge de GEMMAE, en Toluca. Conoce horarios, servicios disponibles y cómo agendar."
 order: 2
 address:
-  street: "[POR CONFIRMAR] Calle y número"
-  neighborhood: "[POR CONFIRMAR] Colonia"
+  street: "Av. Paseo Tollocan 2533-MZ 019"
+  neighborhood: "Delegación Santa María Totoltepec"
   city: "Toluca"
   state: "Estado de México"
-  postalCode: "[POR CONFIRMAR]"
-phone: "[POR CONFIRMAR]"
+  postalCode: "50246"
+phone: "729 103 5618"
+phoneHref: "+527291035618"
 whatsapp: ""
 hours:
   - days: "Lunes a viernes"
@@ -25,9 +27,9 @@ hoursSchema: []
 geo:
   lat: null
   lng: null
-mapEmbed: ""
-mapLink: ""
-googleBusinessUrl: "https://share.google/Dws8qZriRcO0ZbYHE"
+mapEmbed: "https://www.google.com/maps?q=Gemmae%20Tollocan%2C%20Av.%20Paseo%20Tollocan%202533%2C%20Santa%20Mar%C3%ADa%20Totoltepec%2C%2050246%20Toluca%2C%20Estado%20de%20M%C3%A9xico&output=embed"
+mapLink: "https://www.google.com/maps/search/?api=1&query=Gemmae%20Tollocan%2C%20Av.%20Paseo%20Tollocan%202533%2C%20Santa%20Mar%C3%ADa%20Totoltepec%2C%2050246%20Toluca%2C%20Estado%20de%20M%C3%A9xico"
+googleBusinessUrl: "https://share.google/B3TMArgzdZuGrbs3Z"
 intro: "La sede Auge es una de las dos sedes GEMMAE en Toluca. Atiende consulta ginecológica general, seguimiento de embarazo y valoración por etapa de vida, con el mismo expediente y el mismo criterio clínico que el resto de las sedes: si inicias tu seguimiento aquí, puedes continuarlo en cualquier otra sin repetir tu historia."
 directions:
   - "[POR CONFIRMAR] Referencia principal de acceso."

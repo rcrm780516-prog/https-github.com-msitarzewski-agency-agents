@@ -41,8 +41,9 @@ export const contact = {
   whatsapp: (env.PUBLIC_WHATSAPP as string) || '52TBC0000000',
   /** Formato legible para humanos */
   whatsappDisplay: (env.PUBLIC_WHATSAPP_DISPLAY as string) || TBC,
-  phone: (env.PUBLIC_PHONE as string) || TBC,
-  phoneHref: (env.PUBLIC_PHONE_HREF as string) || '',
+  /** Por defecto, el número de la matriz (Toluca). Se sobreescribe por .env. */
+  phone: (env.PUBLIC_PHONE as string) || '722 175 6692',
+  phoneHref: (env.PUBLIC_PHONE_HREF as string) || '+527221756692',
   email: (env.PUBLIC_EMAIL as string) || TBC,
   /** Mensaje precargado por defecto en WhatsApp */
   whatsappDefaultMessage:

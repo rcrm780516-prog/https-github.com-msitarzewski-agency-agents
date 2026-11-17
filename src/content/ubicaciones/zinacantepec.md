@@ -1,5 +1,6 @@
 ---
 name: "GEMMAE Zinacantepec"
+gbpName: "GEMMAE Ginecólogos Zinacantepec"
 city: "Zinacantepec"
 state: "Estado de México"
 h1: "Ginecólogos en Zinacantepec — GEMMAE"
@@ -9,12 +10,13 @@ seo:
   description: "Atención ginecológica, control prenatal y salud femenina en Zinacantepec. Conoce la sede GEMMAE, horarios, ubicación y cómo agendar tu consulta."
 order: 4
 address:
-  street: "[POR CONFIRMAR] Calle y número"
-  neighborhood: "[POR CONFIRMAR] Colonia"
+  street: "Av. 16 de Septiembre 307, Plaza Paloma"
+  neighborhood: "San Miguel Zinacantepec"
   city: "Zinacantepec"
   state: "Estado de México"
-  postalCode: "[POR CONFIRMAR]"
-phone: "[POR CONFIRMAR]"
+  postalCode: "51354"
+phone: "729 738 2883"
+phoneHref: "+527297382883"
 whatsapp: ""
 hours:
   - days: "Lunes a viernes"
@@ -25,8 +27,8 @@ hoursSchema: []
 geo:
   lat: null
   lng: null
-mapEmbed: ""
-mapLink: ""
+mapEmbed: "https://www.google.com/maps?q=GEMMAE%20Ginec%C3%B3logos%20Zinacantepec%2C%20Av.%2016%20de%20Septiembre%20307%2C%20Plaza%20Paloma%2C%2051354%20San%20Miguel%20Zinacantepec%2C%20Estado%20de%20M%C3%A9xico&output=embed"
+mapLink: "https://www.google.com/maps/search/?api=1&query=GEMMAE%20Ginec%C3%B3logos%20Zinacantepec%2C%20Av.%2016%20de%20Septiembre%20307%2C%20Plaza%20Paloma%2C%2051354%20San%20Miguel%20Zinacantepec%2C%20Estado%20de%20M%C3%A9xico"
 googleBusinessUrl: "https://share.google/P4FsvufGMWhKFYiRW"
 intro: "Zinacantepec está conurbado con Toluca por el poniente, y para muchas pacientes de esa zona la barrera para una revisión ginecológica no es el costo sino el traslado: cruzar la ciudad implica medio día. Esta sede existe para eliminar ese obstáculo, con consulta ginecológica general, revisión preventiva y seguimiento de embarazo cerca de casa, y derivación a las sedes de Toluca o Metepec solo cuando un estudio lo requiere."
 directions:

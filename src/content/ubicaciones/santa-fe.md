@@ -1,5 +1,6 @@
 ---
 name: "GEMMAE Santa Fé"
+gbpName: "Gemmae Santa Fe"
 city: "Santa Fé (CDMX)"
 state: "Ciudad de México"
 h1: "Ginecólogos en Santa Fe, Cuajimalpa — GEMMAE"
@@ -9,12 +10,13 @@ seo:
   description: "Consulta de ginecología, obstetricia y salud femenina en Santa Fe, Cuajimalpa, CDMX. Conoce la sede GEMMAE, horarios, servicios y cómo agendar tu consulta."
 order: 5
 address:
-  street: "[POR CONFIRMAR] Calle y número"
-  neighborhood: "[POR CONFIRMAR] Colonia"
+  street: "Prol. Paseo de la Reforma 19"
+  neighborhood: "Santa Fe, Paseo de las Lomas"
   city: "Cuajimalpa de Morelos"
   state: "Ciudad de México"
-  postalCode: "[POR CONFIRMAR]"
-phone: "[POR CONFIRMAR]"
+  postalCode: "01330"
+phone: "55 1306 6623"
+phoneHref: "+525513066623"
 whatsapp: ""
 hours:
   - days: "Lunes a viernes"
@@ -25,8 +27,8 @@ hoursSchema: []
 geo:
   lat: null
   lng: null
-mapEmbed: ""
-mapLink: ""
+mapEmbed: "https://www.google.com/maps?q=Gemmae%20Santa%20Fe%2C%20Prol.%20Paseo%20de%20la%20Reforma%2019%2C%20Santa%20Fe%2C%20Paseo%20de%20las%20Lomas%2C%20Cuajimalpa%20de%20Morelos%2C%2001330%20Ciudad%20de%20M%C3%A9xico&output=embed"
+mapLink: "https://www.google.com/maps/search/?api=1&query=Gemmae%20Santa%20Fe%2C%20Prol.%20Paseo%20de%20la%20Reforma%2019%2C%20Santa%20Fe%2C%20Paseo%20de%20las%20Lomas%2C%20Cuajimalpa%20de%20Morelos%2C%2001330%20Ciudad%20de%20M%C3%A9xico"
 googleBusinessUrl: "https://share.google/kIzJWCydMxk0HxNQt"
 intro: "Santa Fe concentra oficinas corporativas y zona residencial en el poniente de la Ciudad de México, y para muchas pacientes de Cuajimalpa el obstáculo no es el costo de la consulta sino encontrar horario sin cruzar la ciudad. Esta sede responde a eso: consulta ginecológica, seguimiento de embarazo y valoración por etapa de vida en el poniente de CDMX, con el mismo expediente y criterio clínico que el resto de la red GEMMAE."
 directions:

@@ -1,5 +1,6 @@
 ---
 name: "GEMMAE Toluca"
+gbpName: "GEMMAE Ginecólogos"
 city: "Toluca"
 state: "Estado de México"
 h1: "Ginecólogos en Toluca — GEMMAE"
@@ -9,12 +10,13 @@ seo:
   description: "Consulta ginecológica y obstétrica en Toluca: control prenatal, colposcopia, ultrasonido y menopausia. Conoce nuestra sede, horarios y cómo agendar."
 order: 1
 address:
-  street: "[POR CONFIRMAR] Calle y número"
-  neighborhood: "[POR CONFIRMAR] Colonia"
-  city: "Toluca"
+  street: "Prolongación Tenancingo 110"
+  neighborhood: "Sor Juana Inés de la Cruz"
+  city: "Toluca de Lerdo"
   state: "Estado de México"
-  postalCode: "[POR CONFIRMAR]"
-phone: "[POR CONFIRMAR]"
+  postalCode: "50040"
+phone: "722 175 6692"
+phoneHref: "+527221756692"
 whatsapp: ""
 hours:
   - days: "Lunes a viernes"
@@ -25,9 +27,9 @@ hoursSchema: []
 geo:
   lat: null
   lng: null
-mapEmbed: ""
-mapLink: ""
-googleBusinessUrl: "https://share.google/B3TMArgzdZuGrbs3Z"
+mapEmbed: "https://www.google.com/maps?q=GEMMAE%20Ginec%C3%B3logos%2C%20Prolongaci%C3%B3n%20Tenancingo%20110%2C%20Sor%20Juana%20In%C3%A9s%20de%20la%20Cruz%2C%2050040%20Toluca%20de%20Lerdo%2C%20Estado%20de%20M%C3%A9xico&output=embed"
+mapLink: "https://www.google.com/maps/search/?api=1&query=GEMMAE%20Ginec%C3%B3logos%2C%20Prolongaci%C3%B3n%20Tenancingo%20110%2C%20Sor%20Juana%20In%C3%A9s%20de%20la%20Cruz%2C%2050040%20Toluca%20de%20Lerdo%2C%20Estado%20de%20M%C3%A9xico"
+googleBusinessUrl: "https://share.google/Dws8qZriRcO0ZbYHE"
 intro: "Toluca concentra buena parte de la demanda de atención especializada del Valle de Toluca: es la capital del Estado de México y el punto al que se desplazan pacientes de municipios vecinos para consultas de seguimiento, estudios y valoraciones. Nuestra sede en Toluca está pensada para ese ritmo: consulta ginecológica general, seguimiento de embarazo y estudios de gabinete en un mismo lugar, con agenda que se puede confirmar por WhatsApp."
 directions:
   - "[POR CONFIRMAR] Referencia principal de acceso (avenida o vialidad más cercana)."
