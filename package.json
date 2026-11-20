@@ -14,7 +14,8 @@
     "demo:images": "node scripts/generate-demo-images.mjs",
     "demo": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs",
     "presentacion": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs --presentacion",
-    "presentacion:hosting": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs --presentacion --absolutas --salida=demo-hosting"
+    "presentacion:hosting": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs --presentacion --absolutas --salida=demo-hosting",
+    "archivo-unico": "PUBLIC_DEMO=true astro build && node scripts/build-demo.mjs --presentacion --absolutas --salida=demo-hosting && node scripts/build-onefile.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.0",

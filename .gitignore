@@ -12,3 +12,5 @@ npm-debug.log*
 /demo/
 /demo-presentacion/
 /demo-hosting/
+# Archivo único generado por scripts/build-onefile.mjs
+/GEMMAE-sitio-completo.html

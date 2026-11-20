@@ -16,6 +16,7 @@ npm run demo:images       # regenera la imaginería editorial (public/images/dem
 npm run demo              # demo/ navegable sin servidor, con barra de vista previa
 npm run presentacion      # demo-presentacion/ como si ya estuviera publicado
 npm run presentacion:hosting  # demo-hosting/ para subir a un subdominio
+npm run archivo-unico     # GEMMAE-sitio-completo.html: el sitio entero en 1 archivo
 ```
 
 ## Documentación
@@ -97,6 +98,17 @@ Qué cambia el modo demo, y **solo** el modo demo:
 | Enlaces | absolutos (`/ginecologia/`) | relativos (`../ginecologia/index.html`) |
 | Formulario | envía al endpoint | confirma sin enviar |
 | Aviso de vista previa | no | barra superior |
+
+### Archivo único
+
+`npm run archivo-unico` empaqueta **las 42 páginas en un solo `.html`**, con
+las imágenes en base64 y el CSS en línea. Se abre con doble clic y se navega
+completo sin servidor, sin internet y sin descomprimir: es la forma de
+enseñar el sitio a alguien que no va a montar nada.
+
+Dentro, un enrutador reemplaza el contenido al hacer clic en vez de cargar
+otro documento. Los CTA flotantes viajan con cada página, de modo que el
+botón de WhatsApp de Santa Fé marca su número y no el de la matriz.
 
 ### Modo presentación
 
