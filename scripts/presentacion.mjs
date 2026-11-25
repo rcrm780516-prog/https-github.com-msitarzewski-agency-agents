@@ -133,9 +133,14 @@ export function aplicarPresentacion(html) {
     const $lista = $el.nextAll('.data-list').first();
     const etiquetas = $lista.find('.data-list__label').map((_, l) => $(l).text()).get();
     const tieneContacto = etiquetas.some((t) => /Dirección|Teléfono|Horario/.test(t));
+    const tieneMedioDeContacto = etiquetas.some((t) => /Teléfono|Horario/.test(t));
     if (!tieneContacto) {
       if (etiquetas.length) $el.text('Ubicación y contacto');
       else { $lista.remove(); $el.remove(); }
+    } else if (!tieneMedioDeContacto) {
+      // Queda la dirección y las zonas, pero ni teléfono ni horario:
+      // "Datos de contacto" prometería algo que no está debajo.
+      $el.text('Ubicación y cobertura');
     }
   });
 

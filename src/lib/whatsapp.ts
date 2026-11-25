@@ -19,7 +19,7 @@ export interface WhatsAppContext {
 }
 
 /** Solo digitos: wa.me no acepta signos ni espacios. */
-export function normalizePhone(raw: string): string {
+export function normalizePhone(raw?: string): string {
   return (raw || '').replace(/\D/g, '');
 }
 
@@ -39,7 +39,9 @@ export function buildMessage(ctx: WhatsAppContext = {}): string {
  * el script de atribucion le agrega los UTM de la sesion en el cliente.
  */
 export function whatsappHref(ctx: WhatsAppContext = {}): string {
-  const phone = normalizePhone(ctx.phone || contact.whatsapp);
+  // Si la sede aun no tiene numero confirmado, el enlace cae al de la matriz:
+  // un wa.me sin digitos abre WhatsApp en blanco y pierde el contacto.
+  const phone = normalizePhone(ctx.phone) || normalizePhone(contact.whatsapp);
   const text = encodeURIComponent(buildMessage(ctx));
   return `https://wa.me/${phone}?text=${text}`;
 }

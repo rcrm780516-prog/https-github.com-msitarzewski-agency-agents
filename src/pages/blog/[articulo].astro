@@ -142,7 +142,7 @@ const schemas = [
       {portada && (
         <img
           src={portada}
-          alt={d.coverAlt || ''}
+          alt={d.coverAlt || `Imagen de portada del artículo: ${d.title}`}
           width="1600"
           height="1067"
           decoding="async"

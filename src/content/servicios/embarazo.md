@@ -59,7 +59,7 @@ faq:
     a: "Comunícate de inmediato con nosotros o acude a valoración. Ante sangrado, dolor intenso, fiebre o disminución de movimientos del bebé, la valoración no debe posponerse."
   - q: "Empecé mi control en otro lado, ¿puedo cambiarme?"
     a: "Sí. Lleva los estudios y notas que tengas para dar continuidad al seguimiento sin repetir lo que ya está hecho."
-locations: [toluca, auge, metepec, zinacantepec, santa-fe]
+locations: [toluca, auge, metepec, zinacantepec, calimaya]
 related: [obstetricia, embarazo-alto-riesgo, ultrasonido, fertilidad]
 searchTerms: ["embarazo", "control prenatal", "prenatal", "estoy embarazada", "primer trimestre", "fecha probable de parto", "semanas de embarazo"]
 ---

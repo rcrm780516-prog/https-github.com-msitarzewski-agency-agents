@@ -86,7 +86,7 @@ const schemas = [
   crumbs={crumbs}
   schemas={schemas}
   location={ubicacion.id}
-  phone={d.phoneHref || d.phone}
+  phone={isTBC(d.phone) ? undefined : d.phoneHref || d.phone}
   whatsapp={d.whatsapp || undefined}
 >
   <PageHeader eyebrow={`Sede ${d.city}`} title={d.h1} lead={d.excerpt} crumbs={crumbs}>

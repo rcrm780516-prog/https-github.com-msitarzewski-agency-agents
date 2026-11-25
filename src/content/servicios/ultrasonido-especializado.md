@@ -2,10 +2,10 @@
 name: "Ultrasonido especializado: estructural y genético"
 shortName: "Ultrasonido especializado"
 h1: "Ultrasonido estructural y genético"
-excerpt: "Estudios de ultrasonido de alta especialidad durante el embarazo, disponibles en las unidades de Toluca, Metepec y Santa Fé."
+excerpt: "Estudios de ultrasonido de alta especialidad durante el embarazo, disponibles en las unidades de Toluca y Metepec."
 seo:
   title: "Ultrasonido estructural y genético | GEMMAE"
-  description: "Ultrasonido estructural y genético en Toluca, Metepec y Santa Fé: en qué consiste cada estudio, en qué semanas se realiza y cómo prepararte. Agenda tu cita."
+  description: "Ultrasonido estructural y genético en Toluca y Metepec: en qué consiste cada estudio, en qué semanas se realiza y cómo prepararte. Agenda tu cita."
 category: "diagnostico"
 order: 12
 featured: true
@@ -42,10 +42,10 @@ faq:
   - q: "¿El ultrasonido genético sustituye a un estudio de sangre o a una amniocentesis?"
     a: "No. El ultrasonido genético estima riesgo a partir de marcadores; otros estudios lo precisan de distinta forma. Qué corresponde en tu caso se define en consulta, según tus antecedentes y tus resultados."
   - q: "¿En qué sedes se realizan?"
-    a: "El estructural y el genético se realizan en Toluca, Metepec y Santa Fé. Las cinco unidades cuentan con equipo de ultrasonido para la revisión ginecológica y el seguimiento del embarazo; lo que se concentra en esas tres sedes es el estudio de alta especialidad, que requiere más tiempo de gabinete."
+    a: "El estructural y el genético se realizan en Toluca y Metepec. Las cinco unidades cuentan con equipo de ultrasonido para la revisión ginecológica y el seguimiento del embarazo; lo que se concentra en esas dos sedes es el estudio de alta especialidad, que requiere más tiempo de gabinete."
   - q: "¿Puedo pasar acompañada?"
     a: "[POR CONFIRMAR] Indicar la política de acompañantes para estos estudios."
-locations: [toluca, metepec, santa-fe]
+locations: [toluca, metepec]
 related: [ultrasonido, embarazo, embarazo-alto-riesgo, obstetricia]
 searchTerms:
   - "ultrasonido estructural"
@@ -53,7 +53,7 @@ searchTerms:
   - "ultrasonido estructural toluca"
   - "ultrasonido genetico toluca"
   - "ultrasonido estructural metepec"
-  - "ultrasonido estructural santa fe"
+  - "ultrasonido genetico metepec"
   - "ultrasonido 5d"
   - "translucencia nucal"
   - "semana 20 ultrasonido"

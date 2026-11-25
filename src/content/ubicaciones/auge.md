@@ -69,4 +69,4 @@ searchTerms:
   - "hospital auge ginecologia"
 ---
 
-La sede Auge integra la red de cinco sedes GEMMAE en el Valle de Toluca y la Ciudad de México.
+La sede Auge integra la red de cinco sedes GEMMAE en el Valle de Toluca.

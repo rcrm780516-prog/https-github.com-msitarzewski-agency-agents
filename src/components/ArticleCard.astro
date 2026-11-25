@@ -19,7 +19,7 @@ const portada = cover || demoBlogCover(category);
 <article class="card">
   {portada && (
     <div class="card__media">
-      <img src={portada} alt={coverAlt || ''} width="600" height="400" loading="lazy" decoding="async" />
+      <img src={portada} alt={coverAlt || `Portada del artículo: ${title}`} width="600" height="400" loading="lazy" decoding="async" />
     </div>
   )}
   <div class="card__body">

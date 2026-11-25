@@ -66,7 +66,7 @@ export function organizationSchema() {
       'Toluca', 'Metepec', 'Zinacantepec', 'Lerma', 'San Mateo Atenco',
       'Almoloya de Juárez', 'Temoaya', 'Otzolotepec', 'Xonacatlán',
       'Calimaya', 'Mexicaltzingo', 'Chapultepec', 'San Antonio la Isla',
-      'Santiago Tianguistenco',
+      'Santiago Tianguistenco', 'Rayón', 'Tenango del Valle',
     ].map((name) => ({ '@type': 'City', name })),
     sameAs: sameAs(),
   });

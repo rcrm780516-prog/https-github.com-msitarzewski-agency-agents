@@ -39,10 +39,10 @@ faq:
   - q: "¿Puedo entrar acompañada?"
     a: "[POR CONFIRMAR] Indicar la política de acompañantes por sede."
   - q: "¿Realizan ultrasonido estructural o genético?"
-    a: "Sí, como estudio de alta especialidad independiente, en las unidades de Toluca, Metepec y Santa Fé. Se programa aparte porque requiere más tiempo y se realiza en semanas específicas del embarazo."
+    a: "Sí, como estudio de alta especialidad independiente, en las unidades de Toluca y Metepec. Se programa aparte porque requiere más tiempo y se realiza en semanas específicas del embarazo."
   - q: "¿Entregan imágenes o video del estudio?"
     a: "[POR CONFIRMAR] Indicar qué se entrega (impresión, archivo digital) y si tiene costo adicional."
-locations: [toluca, auge, metepec, zinacantepec, santa-fe]
+locations: [toluca, auge, metepec, zinacantepec, calimaya]
 related: [ultrasonido-especializado, embarazo, ginecologia, fertilidad, obstetricia]
 searchTerms: ["ultrasonido", "ecografia", "ultrasonido obstetrico", "ultrasonido pelvico", "ultrasonido transvaginal", "ver al bebe"]
 ---

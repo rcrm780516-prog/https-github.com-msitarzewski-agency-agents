@@ -34,7 +34,7 @@ faq:
     a: "Sí. La consulta puede realizarse acompañada; en algunos momentos puede ser útil un espacio a solas para que la paciente exprese dudas con libertad, siempre con acuerdo previo."
   - q: "¿Se puede aplicar la vacuna contra el VPH?"
     a: "[POR CONFIRMAR] Indicar si GEMMAE aplica la vacuna, en qué esquemas y desde qué edad."
-locations: [toluca, auge, metepec, zinacantepec, santa-fe]
+locations: [toluca, auge, metepec, zinacantepec]
 related: [ginecologia, vph, salud-femenina]
 searchTerms: ["ginecologia adolescente", "primera consulta ginecologica", "dolor menstrual", "colicos menstruales", "regla irregular", "adolescente"]
 ---

@@ -54,7 +54,6 @@ coverage:
   - "Toluca sur"
   - "Mexicaltzingo"
   - "Chapultepec"
-  - "Calimaya"
   - "San Antonio la Isla"
   - "Santiago Tianguistenco"
 faq:

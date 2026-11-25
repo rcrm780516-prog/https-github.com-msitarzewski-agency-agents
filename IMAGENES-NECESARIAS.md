@@ -103,7 +103,7 @@ cálido y tranquilo, no hospitalario. Sin personas.
 - **Dónde:** cabecera de cada página de sede, junto al mapa.
 - **Formato:** horizontal **3:2** · mínimo 1600 × 1067 px
 - **Archivos:** `sede-toluca.jpg`, `sede-auge.jpg`, `sede-metepec.jpg`,
-  `sede-zinacantepec.jpg`, `sede-santa-fe.jpg`
+  `sede-zinacantepec.jpg`, `sede-calimaya.jpg`
 
 **Esto no lo generes con IA.** Con un teléfono moderno basta. Qué tomar, en
 orden de utilidad:

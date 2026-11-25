@@ -138,7 +138,7 @@ Google) y los iconos del pie. Si están vacías, no se renderizan.
 ## 6. Sedes
 
 Cinco sedes, según el logotipo oficial. Se editan en
-`src/content/ubicaciones/{toluca,auge,metepec,zinacantepec,santa-fe}.md`.
+`src/content/ubicaciones/{toluca,auge,metepec,zinacantepec,calimaya}.md`.
 
 Cada sede ya está enlazada a su perfil de Google Business (campo
 `googleBusinessUrl`), que alimenta el `sameAs` del schema y el enlace visible
@@ -150,7 +150,7 @@ Cada sede ya está enlazada a su perfil de Google Business (campo
 | `auge.md` | Toluca | "GEMMAE Ginecólogos" |
 | `metepec.md` | Metepec | "Gemmae Metepec" |
 | `zinacantepec.md` | Zinacantepec | "GEMMAE ginecólogos zinacantepec" |
-| `santa-fe.md` | Cuajimalpa de Morelos, CDMX | "Gemmae Santa Fe" |
+| `calimaya.md` | Calimaya, Estado de México | **[POR CONFIRMAR]** |
 
 **Atención al NAP:** el nombre del sitio y el de la ficha no coinciden en dos
 casos ("GEMMAE Toluca" vs "Gemmae tollocan"; "GEMMAE Auge" vs "GEMMAE

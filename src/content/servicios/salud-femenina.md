@@ -32,7 +32,7 @@ faq:
     a: "La valoración mamaria forma parte de la consulta. La indicación de mastografía u otros estudios de imagen depende de tu edad y antecedentes. [POR CONFIRMAR] Indicar si GEMMAE realiza el estudio o deriva."
   - q: "Me siento bien, ¿necesito revisión?"
     a: "Sí. Varias condiciones ginecológicas relevantes no producen síntomas en etapas iniciales; ese es precisamente el propósito de la detección oportuna."
-locations: [toluca, auge, metepec, zinacantepec, santa-fe]
+locations: [toluca, auge, metepec, zinacantepec, calimaya]
 related: [ginecologia, vph, colposcopia, ultrasonido, menopausia]
 searchTerms: ["revision preventiva", "chequeo ginecologico", "papanicolaou", "citologia", "deteccion oportuna", "salud femenina", "prevencion"]
 ---

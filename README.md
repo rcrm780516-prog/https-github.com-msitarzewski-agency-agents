@@ -108,7 +108,7 @@ enseñar el sitio a alguien que no va a montar nada.
 
 Dentro, un enrutador reemplaza el contenido al hacer clic en vez de cargar
 otro documento. Los CTA flotantes viajan con cada página, de modo que el
-botón de WhatsApp de Santa Fé marca su número y no el de la matriz.
+botón de WhatsApp de Metepec marca su número y no el de la matriz.
 
 ### Modo presentación
 

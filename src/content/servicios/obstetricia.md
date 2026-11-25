@@ -32,7 +32,7 @@ faq:
     a: "Lo recomendable es acudir en cuanto se confirma o se sospecha el embarazo. Un inicio temprano permite valorar mejor y planear el seguimiento; el esquema exacto puede variar según cada paciente."
   - q: "¿Atienden partos y cesáreas?"
     a: "[POR CONFIRMAR] Especificar hospitales y convenios donde el equipo GEMMAE atiende el nacimiento."
-locations: [toluca, auge, metepec, zinacantepec, santa-fe]
+locations: [toluca, auge, metepec, zinacantepec]
 related: [embarazo, embarazo-alto-riesgo, ultrasonido, ginecologia]
 searchTerms: ["obstetricia", "obstetra", "parto", "cesarea", "puerperio", "control del embarazo"]
 ---

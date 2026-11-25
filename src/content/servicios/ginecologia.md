@@ -41,7 +41,7 @@ faq:
     a: "Sí. La consulta ginecológica no requiere haber iniciado vida sexual y la valoración se adapta a tu situación."
   - q: "¿Atienden a adolescentes?"
     a: "Sí. La primera consulta en la adolescencia se aborda con un enfoque informativo y respetuoso, y puede realizarse acompañada por madre, padre o tutor."
-locations: [toluca, auge, metepec, zinacantepec, santa-fe]
+locations: [toluca, auge, metepec, zinacantepec, calimaya]
 related: [salud-femenina, colposcopia, vph, ultrasonido, ginecologia-adolescente, menopausia]
 searchTerms: ["ginecologo", "ginecologa", "consulta ginecologica", "papanicolaou", "citologia", "revision anual", "anticoncepcion"]
 ---
